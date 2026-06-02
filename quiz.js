@@ -1184,3 +1184,24 @@ function updateDaily(inc = false) {
 
 function shuffle(a) { return a.sort(() => Math.random() - 0.5); }
 function loadTemplate(id) { document.getElementById('content-area').innerHTML = document.getElementById(id).innerHTML; }
+
+window.addEventListener('resize', () => {
+    const dynamicsCanvas = document.getElementById('home-dynamics-canvas');
+    if (dynamicsCanvas) {
+        QuizApp.drawDynamicsChart();
+    }
+    const donutCanvas = document.getElementById('home-donut-canvas');
+    if (donutCanvas) {
+        let globalCorrect = 0;
+        let globalWrong = 0;
+        let globalTotalAns = 0;
+        Object.values(QuizApp.stats).forEach(s => {
+            if (s.c) globalCorrect += s.c;
+            if (s.w) globalWrong += s.w;
+            if (s.t) globalTotalAns += s.t;
+        });
+        let globalTotalQ = typeof quizData !== 'undefined' ? quizData.length : 0;
+        const unanswered = Math.max(0, globalTotalQ - globalTotalAns);
+        QuizApp.renderHomeCharts(globalCorrect, globalWrong, unanswered);
+    }
+});

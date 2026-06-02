@@ -1426,6 +1426,37 @@ body {
         max-height: none;
         overflow-y: visible;
     }
+    .home-analytics-panel {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hap-course-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 10px 8px;
+    }
+    .hap-course-stats {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding-left: 48px;
+    }
+    .hap-chart-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .hap-chart-toggles {
+        width: 100%;
+        display: flex;
+    }
+    .chart-toggle-btn {
+        flex: 1;
+        text-align: center;
+    }
 }
 
 .btn-back-to-db:hover {
