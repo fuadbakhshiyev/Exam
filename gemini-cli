@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+import os
+import sys
+
+try:
+    import google.generativeai as genai
+except ImportError:
+    print("Xəta: google-generativeai kitabxanası tapılmadı. Zəhmət olmasa 'pip install google-generativeai' yazın.")
+    sys.exit(1)
+
+# API Key yoxlanışı
+api_key = os.getenv("GEMINI_API_KEY")
+if not api_key:
+    print("Xəta: GEMINI_API_KEY mühit dəyişəni təyin edilməyib!")
+    print("Zəhmət olmasa əvvəlcə bunu yazın: export GEMINI_API_KEY=\"sizin_açarınız\"")
+    sys.exit(1)
+
+genai.configure(api_key=api_key)
+model = genai.GenerativeModel('gemini-1.5-flash')
+chat = model.start_chat(history=[])
+
+print("\033[92mGemini CLI Söhbət Başladı! Çıxmaq üçün 'exit' yazın.\033[0m\n")
+
+while True:
+    try:
+        user_input = input("\033[1;34mSiz: \033[0m")
+        if user_input.lower() in ['exit', 'quit', 'cix', 'çıx']:
+            print("Söhbət bitdi.")
+            break
+        if not user_input.strip():
+            continue
+            
+        response = chat.send_message(user_input)
+        print(f"\n\033[1;32mGemini:\033[0m {response.text}\n")
+    except KeyboardInterrupt:
+        print("\nSöhbət dayandırıldı.")
+        break
+    except Exception as e:
+        print(f"\nXəta baş verdi: {e}\n")
+
+

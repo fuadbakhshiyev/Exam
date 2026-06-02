@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şəkildən Sual Generatoru - Manual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --border-color: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #888;
+            --accent: #4285f4;
+            --accent-hover: #5a95f5;
+            --success: #34a853;
+            --warning: #fbbc04;
+            --error: #ea4335;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .settings-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        select, input[type="text"] {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--accent);
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .image-viewer {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-color);
+            border-radius: 12px;
+            min-height: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-viewer img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .image-viewer.empty {
+            border: 2px dashed var(--border-color);
+            cursor: pointer;
+        }
+
+        .image-viewer.empty:hover {
+            border-color: var(--accent);
+        }
+
+        .upload-prompt {
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .upload-prompt .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .image-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .nav-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: var(--border-color);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .image-counter {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .image-counter span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            overflow-x: auto;
+            padding: 8px 0;
+        }
+
+        .thumbnail {
+            width: 60px;
+            height: 45px;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            flex-shrink: 0;
+            opacity: 0.6;
+            transition: all 0.2s;
+        }
+
+        .thumbnail:hover {
+            opacity: 1;
+        }
+
+        .thumbnail.active {
+            border-color: var(--accent);
+            opacity: 1;
+        }
+
+        .thumbnail.done {
+            border-color: var(--success);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .question-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .question-form textarea {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            resize: vertical;
+            min-height: 100px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .question-form textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-label {
+            width: 30px;
+            height: 30px;
+            background: var(--bg-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .option-row input[type="text"] {
+            flex: 1;
+        }
+
+        .option-row input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--success);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-color);
+        }
+
+        .actions-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .actions-row .btn {
+            flex: 1;
+        }
+
+        .results-section {
+            margin-top: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            display: none;
+        }
+
+        .results-section.visible {
+            display: block;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .results-header h3 {
+            font-size: 18px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .stats span {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        #resultCode {
+            width: 100%;
+            height: 300px;
+            background: #0d1117;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            color: #c9d1d9;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 13px;
+            resize: vertical;
+            outline: none;
+        }
+
+        .hidden-input {
+            display: none;
+        }
+
+        .shortcut-hint {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .shortcut-hint kbd {
+            background: var(--bg-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Şəkildən <span>Sual</span> Generatoru</h1>
+
+        <div class="settings-card">
+            <div class="settings-grid">
+                <div class="form-group">
+                    <label>Fənn</label>
+                    <select id="courseSelect"></select>
+                </div>
+                <div class="form-group">
+                    <label>Unit</label>
+                    <select id="unitSelect"></select>
+                </div>
+                <div class="form-group">
+                    <label>Sual sayı (şəkildə)</label>
+                    <input type="text" id="questionCount" value="1" style="width: 80px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="main-layout">
+            <!-- Sol panel - Şəkil -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">📷 Şəkillər</div>
+                    <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()">+ Əlavə et</button>
+                </div>
+                
+                <div class="image-viewer empty" id="imageViewer" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-prompt">
+                        <div class="icon">📷</div>
+                        <div>Şəkil yükləyin və ya <strong>Ctrl+V</strong></div>
+                        <div style="margin-top: 8px; font-size: 13px;">Klikləyin, sürükləyin və ya yapışdırın</div>
+                    </div>
+                </div>
+
+                <div class="image-nav" id="imageNav" style="display: none;">
+                    <button class="nav-btn" onclick="prevImage()">← Əvvəlki</button>
+                    <div class="image-counter">
+                        <span id="currentIndex">1</span> / <span id="totalImages">1</span>
+                    </div>
+                    <button class="nav-btn" onclick="nextImage()">Sonrakı →</button>
+                </div>
+
+                <div class="thumbnails" id="thumbnails"></div>
+            </div>
+
+            <!-- Sağ panel - Form -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">✏️ Sualı daxil edin</div>
+                    <div class="image-counter" id="questionProgress" style="display: none;">
+                        Sual <span id="currentQ">1</span> / <span id="totalQ">1</span>
+                    </div>
+                </div>
+
+                <div class="question-form">
+                    <div class="form-group">
+                        <label>Sual mətni</label>
+                        <textarea id="questionText" placeholder="Sualı buraya yazın..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cavab variantları (düzgün olanı seçin)</label>
+                        <div class="options-grid">
+                            <div class="option-row">
+                                <span class="option-label">A</span>
+                                <input type="text" id="optionA" placeholder="A variantı">
+                                <input type="radio" name="correct" value="0">
+                            </div>
+                            <div class="option-row">
+                                <span class="option-label">B</span>
+                                <input type="text" id="optionB" placeholder="B variantı">
+                                <input type="radio" name="correct" value="1">
+                            </div>
+                            <div class="option-row">
+                                <span class="option-label">C</span>
+                                <input type="text" id="optionC" placeholder="C variantı">
+                                <input type="radio" name="correct" value="2">
+                            </div>
+                            <div class="option-row">
+                                <span class="option-label">D</span>
+                                <input type="text" id="optionD" placeholder="D variantı">
+                                <input type="radio" name="correct" value="3">
+                            </div>
+                            <div class="option-row">
+                                <span class="option-label">E</span>
+                                <input type="text" id="optionE" placeholder="E variantı">
+                                <input type="radio" name="correct" value="4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="actions-row">
+                        <button class="btn btn-primary" onclick="saveQuestion()">💾 Saxla və Növbəti</button>
+                        <button class="btn btn-secondary" onclick="clearForm()">🗑 Təmizlə</button>
+                    </div>
+
+                    <div class="shortcut-hint">
+                        <kbd>Ctrl+Enter</kbd> Saxla və Növbəti | <kbd>1-5</kbd> Düzgün cavab | <kbd>←</kbd><kbd>→</kbd> Şəkil naviqasiya
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="file" id="fileInput" class="hidden-input" multiple accept="image/*">
+
+        <div class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h3>📋 Nəticələr</h3>
+                <div class="stats">
+                    Saxlanılan suallar: <span id="savedCount">0</span>
+                </div>
+            </div>
+            <textarea id="resultCode" readonly></textarea>
+            <div class="actions-row" style="margin-top: 16px;">
+                <button class="btn btn-success" onclick="copyResult()">📋 Kopyala</button>
+                <button class="btn btn-secondary" onclick="downloadResult()">💾 Yüklə</button>
+                <button class="btn btn-secondary" onclick="clearAll()">🗑 Hamısını Sil</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script>
+        let images = [];
+        let currentImageIndex = 0;
+        let savedQuestions = [];
+        let currentQuestionInImage = 1;
+        let questionsPerImage = 1;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            populateCourses();
+            setupEventListeners();
+        });
+
+        function populateCourses() {
+            const select = document.getElementById('courseSelect');
+            Object.keys(CONFIG).forEach(course => {
+                const opt = document.createElement('option');
+                opt.value = course;
+                opt.textContent = course;
+                select.appendChild(opt);
+            });
+            populateUnits();
+            select.addEventListener('change', populateUnits);
+        }
+
+        function populateUnits() {
+            const course = document.getElementById('courseSelect').value;
+            const select = document.getElementById('unitSelect');
+            select.innerHTML = '';
+            
+            if (CONFIG[course] && CONFIG[course].units) {
+                CONFIG[course].units.forEach((unit, idx) => {
+                    const opt = document.createElement('option');
+                    opt.value = idx + 1;
+                    opt.textContent = unit;
+                    select.appendChild(opt);
+                });
+            }
+        }
+
+        function setupEventListeners() {
+            // File input
+            document.getElementById('fileInput').addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+
+            // Drag & Drop
+            const viewer = document.getElementById('imageViewer');
+            viewer.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                viewer.style.borderColor = 'var(--accent)';
+            });
+            viewer.addEventListener('dragleave', () => {
+                viewer.style.borderColor = '';
+            });
+            viewer.addEventListener('drop', (e) => {
+                e.preventDefault();
+                viewer.style.borderColor = '';
+                handleFiles(e.dataTransfer.files);
+            });
+
+            // Paste
+            document.addEventListener('paste', (e) => {
+                const items = e.clipboardData?.items;
+                if (!items) return;
+                
+                const imageFiles = [];
+                for (let item of items) {
+                    if (item.type.startsWith('image/')) {
+                        imageFiles.push(item.getAsFile());
+                    }
+                }
+                if (imageFiles.length > 0) {
+                    e.preventDefault();
+                    handleFiles(imageFiles);
+                }
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                // Ctrl+Enter = Save
+                if (e.ctrlKey && e.key === 'Enter') {
+                    e.preventDefault();
+                    saveQuestion();
+                }
+                // 1-5 = Select correct answer
+                if (!e.ctrlKey && !e.altKey && ['1','2','3','4','5'].includes(e.key)) {
+                    const active = document.activeElement;
+                    if (active.tagName !== 'INPUT' && active.tagName !== 'TEXTAREA') {
+                        e.preventDefault();
+                        const radios = document.querySelectorAll('input[name="correct"]');
+                        radios[parseInt(e.key) - 1].checked = true;
+                    }
+                }
+                // Arrow keys = Navigate images
+                if (e.key === 'ArrowLeft' && !e.target.matches('input, textarea')) {
+                    prevImage();
+                }
+                if (e.key === 'ArrowRight' && !e.target.matches('input, textarea')) {
+                    nextImage();
+                }
+            });
+
+            // Question count change
+            document.getElementById('questionCount').addEventListener('change', (e) => {
+                questionsPerImage = parseInt(e.target.value) || 1;
+                updateQuestionProgress();
+            });
+        }
+
+        function handleFiles(files) {
+            const fileArray = Array.isArray(files) ? files : Array.from(files);
+            
+            for (let file of fileArray) {
+                if (file.type.startsWith('image/')) {
+                    const url = URL.createObjectURL(file);
+                    images.push({
+                        file: file,
+                        url: url,
+                        done: false
+                    });
+                }
+            }
+
+            if (images.length > 0) {
+                showImage(images.length - fileArray.length);
+                updateUI();
+            }
+        }
+
+        function showImage(index) {
+            if (index < 0 || index >= images.length) return;
+            
+            currentImageIndex = index;
+            const viewer = document.getElementById('imageViewer');
+            viewer.classList.remove('empty');
+            viewer.innerHTML = `<img src="${images[index].url}" alt="Question image">`;
+            viewer.onclick = null;
+
+            updateUI();
+        }
+
+        function updateUI() {
+            // Nav
+            const nav = document.getElementById('imageNav');
+            nav.style.display = images.length > 0 ? 'flex' : 'none';
+            
+            document.getElementById('currentIndex').textContent = currentImageIndex + 1;
+            document.getElementById('totalImages').textContent = images.length;
+
+            // Thumbnails
+            const thumbs = document.getElementById('thumbnails');
+            thumbs.innerHTML = images.map((img, idx) => `
+                <div class="thumbnail ${idx === currentImageIndex ? 'active' : ''} ${img.done ? 'done' : ''}" 
+                     onclick="showImage(${idx})">
+                    <img src="${img.url}" alt="Thumb">
+                </div>
+            `).join('');
+
+            // Question progress
+            updateQuestionProgress();
+        }
+
+        function updateQuestionProgress() {
+            questionsPerImage = parseInt(document.getElementById('questionCount').value) || 1;
+            const progress = document.getElementById('questionProgress');
+            
+            if (questionsPerImage > 1) {
+                progress.style.display = 'block';
+                document.getElementById('currentQ').textContent = currentQuestionInImage;
+                document.getElementById('totalQ').textContent = questionsPerImage;
+            } else {
+                progress.style.display = 'none';
+            }
+        }
+
+        function prevImage() {
+            if (currentImageIndex > 0) {
+                showImage(currentImageIndex - 1);
+                currentQuestionInImage = 1;
+                updateQuestionProgress();
+            }
+        }
+
+        function nextImage() {
+            if (currentImageIndex < images.length - 1) {
+                showImage(currentImageIndex + 1);
+                currentQuestionInImage = 1;
+                updateQuestionProgress();
+            }
+        }
+
+        function saveQuestion() {
+            const course = document.getElementById('courseSelect').value;
+            const unit = document.getElementById('unitSelect').value;
+            const question = document.getElementById('questionText').value.trim();
+            
+            const options = [
+                document.getElementById('optionA').value.trim(),
+                document.getElementById('optionB').value.trim(),
+                document.getElementById('optionC').value.trim(),
+                document.getElementById('optionD').value.trim(),
+                document.getElementById('optionE').value.trim()
+            ].filter(o => o);
+
+            const correctRadio = document.querySelector('input[name="correct"]:checked');
+            
+            if (!question) {
+                alert('Sual mətnini daxil edin!');
+                return;
+            }
+            if (options.length < 2) {
+                alert('Ən azı 2 variant daxil edin!');
+                return;
+            }
+            if (!correctRadio) {
+                alert('Düzgün cavabı seçin!');
+                return;
+            }
+
+            const correct = parseInt(correctRadio.value);
+
+            savedQuestions.push({
+                c: course,
+                u: parseInt(unit),
+                q: question,
+                o: options,
+                a: correct
+            });
+
+            // Update results
+            updateResults();
+            
+            // Clear form
+            clearForm();
+
+            // Next question or next image
+            if (currentQuestionInImage < questionsPerImage) {
+                currentQuestionInImage++;
+                updateQuestionProgress();
+            } else {
+                // Mark current image as done
+                if (images[currentImageIndex]) {
+                    images[currentImageIndex].done = true;
+                }
+                currentQuestionInImage = 1;
+                
+                // Go to next image
+                if (currentImageIndex < images.length - 1) {
+                    nextImage();
+                }
+            }
+
+            updateUI();
+            
+            // Focus question textarea
+            document.getElementById('questionText').focus();
+        }
+
+        function clearForm() {
+            document.getElementById('questionText').value = '';
+            document.getElementById('optionA').value = '';
+            document.getElementById('optionB').value = '';
+            document.getElementById('optionC').value = '';
+            document.getElementById('optionD').value = '';
+            document.getElementById('optionE').value = '';
+            document.querySelectorAll('input[name="correct"]').forEach(r => r.checked = false);
+        }
+
+        function updateResults() {
+            const section = document.getElementById('resultsSection');
+            section.classList.add('visible');
+            
+            document.getElementById('savedCount').textContent = savedQuestions.length;
+
+            const code = savedQuestions.map(q => {
+                const qSafe = q.q.replace(/"/g, '\\"');
+                const oSafe = q.o.map(o => `"${o.replace(/"/g, '\\"')}"`).join(', ');
+                return `    { c: "${q.c}", u: ${q.u}, q: "${qSafe}", o: [${oSafe}], a: ${q.a} },`;
+            }).join('\n');
+
+            document.getElementById('resultCode').value = code;
+        }
+
+        function copyResult() {
+            const code = document.getElementById('resultCode');
+            code.select();
+            document.execCommand('copy');
+            alert('Kopyalandı! data.js-ə yapışdırın.');
+        }
+
+        function downloadResult() {
+            const code = document.getElementById('resultCode').value;
+            const blob = new Blob([code], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'questions.txt';
+            a.click();
+        }
+
+        function clearAll() {
+            if (!confirm('Bütün sualları silmək istəyirsiniz?')) return;
+            savedQuestions = [];
+            updateResults();
+            document.getElementById('resultsSection').classList.remove('visible');
+        }
+    </script>
+</body>
+
+</html>

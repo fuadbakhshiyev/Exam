@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Toplu Sual Generatoru v10.0 (Smart Parse)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background: var(--bg-color);
+            color: var(--text-primary);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1E1E1E;
+            --header-bg: #1E1E1E;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B3B8;
+            --border-color: #2F2F2F;
+            --input-bg: #2C2C2C;
+            --input-border: #333;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --unit-border: #34495e;
+            --exam-border: #8e44ad;
+            --mixed-border: #d35400;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #eaeff2;
+            --card-bg: #FFFFFF;
+            --header-bg: #FFFFFF;
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --border-color: #e0e0e0;
+            --input-bg: #FFFFFF;
+            --input-border: #bdc3c7;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --unit-border: #bdc3c7;
+            --exam-border: #9b59b6;
+            --mixed-border: #e67e22;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header-box {
+            background: var(--header-bg);
+            padding: 20px;
+            border-radius: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border: 0.5px solid var(--accent-color);
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 20px;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .left-controls {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .control-group {
+            flex: 1;
+        }
+
+        label {
+            font-weight: bold;
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            background: var(--input-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--input-border);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            background: var(--bg-color);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .radio-group label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        input[type="radio"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent-color);
+        }
+
+        .generate-btn {
+            background: var(--success-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            height: 48px;
+        }
+
+        .add-block-btn {
+            background: var(--mixed-border);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .theme-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            height: 48px;
+            width: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .units-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-bottom: 50px;
+        }
+
+        .unit-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 24px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid var(--unit-border);
+            transition: 0.3s;
+        }
+
+        .unit-card.exam-card {
+            border-left-color: var(--exam-border);
+        }
+
+        .unit-card.mixed-card {
+            border-left-color: var(--mixed-border);
+        }
+
+        .unit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .unit-title {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .unit-badge {
+            background: var(--bg-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        .custom-title-input {
+            width: 60%;
+            padding: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 1px solid var(--accent-color);
+            background: var(--bg-color);
+            color: var(--text-primary);
+            border-radius: 6px;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .col-8 {
+            flex: 8;
+        }
+
+        .col-4 {
+            flex: 4;
+        }
+
+        textarea,
+        input[type="text"]:not(.custom-title-input) {
+            width: 100%;
+            border: 1px solid var(--input-border);
+            border-radius: 16px;
+            padding: 12px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            background: var(--input-bg);
+            color: var(--text-primary);
+        }
+
+        textarea {
+            height: 180px;
+            resize: vertical;
+            line-height: 1.4;
+        }
+
+        .helper-text {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+            display: block;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(2px);
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            width: 85%;
+            height: 85%;
+            padding: 25px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        #finalCode {
+            flex: 1;
+            background: #2c3e50;
+            color: #ecf0f1;
+            font-family: monospace;
+            padding: 20px;
+            border-radius: 8px;
+            border: none;
+            resize: none;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            background: transparent;
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .controls-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .left-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .row {
+                flex-direction: column;
+            }
+
+            .theme-btn {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            .custom-title-input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body data-theme="dark">
+
+    <div class="container">
+        <div class="header-box">
+            <div class="controls-row">
+                <div class="left-controls">
+                    <div class="control-group">
+                        <label>1. Dərsi Seçin:</label>
+                        <select id="courseSelect" onchange="renderContent()"></select>
+                    </div>
+                    <div class="control-group">
+                        <label>2. Növü Seçin:</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="mode" value="units" checked onchange="renderContent()"> 📘
+                                Dərs</label>
+                            <label><input type="radio" name="mode" value="mixed" onchange="renderContent()"> 🔀
+                                Qarışıq</label>
+                            <label><input type="radio" name="mode" value="exams" onchange="renderContent()"> 🏛️
+                                Keçmiş</label>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: flex-end;">
+                    <button class="theme-btn" onclick="toggleTheme()" title="Rejimi Dəyiş"><span
+                            id="theme-icon">☀️</span></button>
+                    <button class="generate-btn" onclick="generateAll()">⚙️ KODU YARAT</button>
+                </div>
+            </div>
+        </div>
+
+        <button id="addMixedBtn" class="add-block-btn" onclick="addMixedBlock()">➕ Yeni Blok Əlavə Et</button>
+        <div id="contentContainer" class="units-wrapper"></div>
+    </div>
+
+    <div id="outputModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 style="margin:0; color:var(--text-primary);">🎉 Hazır Kod</h3>
+                <div>
+                    <span id="copyMsg"
+                        style="color:var(--success-color); font-weight:bold; margin-right:15px; display:none;">✔
+                        Kopyalandı!</span>
+                    <button class="copy-btn" onclick="copyResult()">📋 Kopyala</button>
+                    <button class="close-btn"
+                        onclick="document.getElementById('outputModal').style.display='none'">Bağla</button>
+                </div>
+            </div>
+            <textarea id="finalCode" readonly></textarea>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', next);
+            icon.textContent = next === 'dark' ? '☀️' : '🌙';
+            localStorage.setItem('theme', next);
+        }
+
+        function initTheme() {
+            const saved = localStorage.getItem('theme') || 'dark';
+            document.body.setAttribute('data-theme', saved);
+            const icon = document.getElementById('theme-icon');
+            if (icon) icon.textContent = saved === 'dark' ? '☀️' : '🌙';
+        }
+
+        window.onload = function () {
+            initTheme();
+            const sel = document.getElementById('courseSelect');
+            Object.keys(CONFIG).forEach(c => {
+                let opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                sel.appendChild(opt);
+            });
+            renderContent();
+        };
+
+        function renderContent() {
+            const course = document.getElementById('courseSelect').value;
+            const mode = document.querySelector('input[name="mode"]:checked').value;
+            const container = document.getElementById('contentContainer');
+            const addBtn = document.getElementById('addMixedBtn');
+
+            container.innerHTML = "";
+
+            if (mode === 'mixed') {
+                addBtn.style.display = 'block';
+                addMixedBlock();
+                return;
+            } else {
+                addBtn.style.display = 'none';
+            }
+
+            const dataList = CONFIG[course][mode];
+            if (!dataList || dataList.length === 0) {
+                container.innerHTML = "<div style='text-align:center; color:var(--text-secondary); padding:20px;'>Bu seçim üçün məlumat tapılmadı.</div>";
+                return;
+            }
+
+            dataList.forEach((itemTitle, idx) => {
+                let badgeText = mode === 'units' ? `Unit ${idx + 1}` : `İmtahan`;
+                let cardClass = mode === 'units' ? "unit-card" : "unit-card exam-card";
+                let badgeClass = mode === 'units' ? "unit-badge" : "unit-badge exam-badge";
+
+                const html = `
+            <div class="${cardClass}" data-type="${mode}" data-val="${mode === 'units' ? idx + 1 : itemTitle}">
+                <div class="unit-header">
+                    <div class="unit-title">${itemTitle}</div>
+                    <div class="${badgeClass}">${badgeText}</div>
+                </div>
+                <div class="row">
+                    <div class="col-8"> 
+                        <textarea placeholder="Sualları bura yapışdırın...\nFormat:\n1. Sual mətni...\nA) Variant..."></textarea>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" class="answer-key-input" placeholder="Cavablar (Məs: 1a 2b 3c)">
+                    </div>
+                </div>
+            </div>`;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        }
+
+        function addMixedBlock() {
+            const container = document.getElementById('contentContainer');
+            const html = `
+        <div class="unit-card mixed-card" data-type="mixed">
+            <div class="unit-header">
+                <div class="unit-title">
+                    <input type="text" class="custom-title-input" placeholder="Testin Adı (Məs: 1-20)">
+                </div>
+                <div class="unit-badge" style="background:#fbe6d4; color:#d35400;">Qarışıq</div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <textarea placeholder="Sualları bura yapışdırın...\nFormat:\n1. Sual mətni...\nA) Variant..."></textarea>
+                </div>
+                <div class="col-4">
+                    <input type="text" class="answer-key-input" placeholder="Cavablar (Məs: 1a 2b 3c)">
+                </div>
+            </div>
+        </div>`;
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        function generateAll() {
+            const course = document.getElementById('courseSelect').value;
+            const blocks = document.querySelectorAll('.unit-card');
+            let fullCode = "";
+            let totalCount = 0;
+            let errorMsg = "";
+
+            blocks.forEach((block, idx) => {
+                const type = block.getAttribute('data-type');
+                let val = block.getAttribute('data-val');
+
+                if (type === 'mixed') {
+                    const titleInput = block.querySelector('.custom-title-input');
+                    val = titleInput ? titleInput.value.trim() : "";
+                    if (!val) val = `Qarışıq Test ${idx + 1}`;
+                }
+
+                const textArea = block.querySelector('textarea');
+                const keyInput = block.querySelector('.answer-key-input');
+
+                const text = textArea.value.trim();
+                const keys = keyInput.value.trim();
+
+                if (text && keys) {
+                    const parsedCode = parseText(course, type, val, text, keys);
+                    if (parsedCode) {
+                        let header = type === 'units' ? `Unit ${val}` : (type === 'mixed' ? `Qarışıq: ${val}` : `İmtahan: ${val}`);
+                        fullCode += `\n    // --- ${course} | ${header} ---\n` + parsedCode;
+                        totalCount++;
+                    } else {
+                        errorMsg = `Xəta: ${idx + 1}-ci blokda suallar düzgün formatda deyil.`;
+                    }
+                }
+            });
+
+            if (errorMsg && totalCount === 0) {
+                alert(errorMsg);
+                return;
+            }
+
+            if (totalCount === 0) {
+                alert("Heç bir xana doldurulmayıb!");
+                return;
+            }
+
+            document.getElementById('finalCode').value = fullCode;
+            document.getElementById('outputModal').style.display = 'flex';
+            document.getElementById('copyMsg').style.display = 'none';
+        }
+
+        function parseText(c, type, val, txt, keys) {
+            const ansMap = {};
+            // Təmizləmə: Nöqtələri, tireləri sil, yalnız rəqəm+hərf saxla
+            keys.toLowerCase().replace(/[\.,\-\)]/g, ' ').split(/\s+/).forEach(k => {
+                const m = k.match(/(\d+)([a-e])/);
+                if (m) ansMap[m[1]] = m[2].charCodeAt(0) - 97;
+            });
+
+            // Yeni Sətirlərə görə böl
+            const lines = txt.split('\n');
+            let res = "";
+            let curr = null;
+
+            lines.forEach(line => {
+                line = line.trim();
+                if (!line) return;
+
+                // SMART PARSE REGEX
+                // 1. | 1) | 1- | 1. Sual
+                const qMatch = line.match(/^(\d+)[\.\)\-\s]\s*(.+)/);
+
+                // A) | A. | A- | a)
+                const optMatch = line.match(/^([a-eA-E])[\.\)\-\s]\s*(.+)/);
+
+                if (qMatch) {
+                    if (curr) res += fmt(curr, c, type, val, ansMap);
+                    curr = { n: qMatch[1], q: qMatch[2], o: [] };
+                } else if (optMatch && curr) {
+                    curr.o.push(optMatch[2]);
+                } else if (curr) {
+                    // Əgər variant deyilsə və sual başlayıbsa, deməli bu sualın davamıdır (multiline sual)
+                    // Yaxud variantın davamıdır
+                    if (curr.o.length === 0) {
+                        curr.q += " " + line;
+                    } else {
+                        // Sonuncu variantın davamı
+                        curr.o[curr.o.length - 1] += " " + line;
+                    }
+                }
+            });
+
+            if (curr) res += fmt(curr, c, type, val, ansMap);
+            return res;
+        }
+
+        function fmt(obj, c, type, val, map) {
+            let a = map[obj.n] !== undefined ? map[obj.n] : -1; // -1 if no key found
+            let qSafe = obj.q.replace(/"/g, '\\"').trim();
+            let oSafe = obj.o.map(x => `"${x.replace(/"/g, '\\"').trim()}"`).join(',');
+
+            // JSON formatının düzgün olması üçün
+            let entry = `{ c: "${c}", `;
+
+            if (type === 'units') entry += `u: ${val}, `;
+            else if (type === 'mixed') entry += `m: "${val}", `;
+            else entry += `e: "${val}", `;
+
+            entry += `q: "${qSafe}", o: [${oSafe}], a: ${a} },\n`;
+            return "    " + entry;
+        }
+
+        function copyResult() {
+            document.getElementById("finalCode").select();
+            document.execCommand("copy");
+            document.getElementById("copyMsg").style.display = "inline";
+        }
+    </script>
+
+</body>
+
+</html>
