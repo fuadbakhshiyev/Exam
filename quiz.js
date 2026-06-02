@@ -22,44 +22,18 @@ const QuizApp = {
         this.correctDB = JSON.parse(localStorage.getItem(this.DB.correct)) || {};
         this.bookmarks = JSON.parse(localStorage.getItem(this.DB.marks)) || [];
         this.settings = JSON.parse(localStorage.getItem(this.DB.settings)) || { scale: 1 };
+        
+        if (!localStorage.getItem('qa_v31_h_real_v2')) {
+            localStorage.removeItem('qa_v31_h');
+            localStorage.setItem('qa_v31_h_real_v2', 'true');
+        }
+        this.dailyHistory = JSON.parse(localStorage.getItem('qa_v31_h')) || {};
         this.applyTheme();
     },
 
     start: function () {
         const container = document.getElementById('content-area');
         if (!container) return;
-
-        // Custom config for beautiful course cards
-        const courseStyles = {
-            "Atatürk İlkeleri ve İnkılap Tarihi II": { icon: "🏛️", accent: "#ef4444", accentBorder: "rgba(239, 68, 68, 0.15)" },
-            "Görsel İletişim Tasarımı": { icon: "🎨", accent: "#6366f1", accentBorder: "rgba(99, 102, 241, 0.15)" },
-            "Grafik Tasarım II": { icon: "📐", accent: "#10b981", accentBorder: "rgba(16, 185, 129, 0.15)" },
-            "Masaüstü Yayıncılık": { icon: "💻", accent: "#3b82f6", accentBorder: "rgba(59, 130, 246, 0.15)" },
-            "Tasarımda Tipografi": { icon: "✍️", accent: "#f59e0b", accentBorder: "rgba(245, 158, 11, 0.15)" },
-            "Türk Dili II": { icon: "📖", accent: "#8b5cf6", accentBorder: "rgba(139, 92, 246, 0.15)" }
-        };
-
-        const defaultStyle = { icon: "📘", accent: "#6366f1", accentBorder: "rgba(99, 102, 241, 0.15)" };
-
-        let cardsHTML = "";
-        Object.keys(CONFIG).forEach(c => {
-            const style = courseStyles[c] || defaultStyle;
-            let questionCount = 0;
-            if (typeof quizData !== 'undefined') {
-                questionCount = quizData.filter(q => q.c === c).length;
-            }
-
-            cardsHTML += `
-                <div class="subject-card" style="--card-accent: ${style.accent}; --card-accent-border: ${style.accentBorder};" onclick="QuizApp.selectCat('${c.replace(/'/g, "\\'")}', 'units')">
-                    <div class="subject-icon">${style.icon}</div>
-                    <div class="subject-title">${c}</div>
-                    <div class="subject-meta">
-                        <div>Sual: <span>${questionCount}</span></div>
-                        <div class="subject-action">Başla →</div>
-                    </div>
-                </div>
-            `;
-        });
 
         let globalTime = 0;
         let globalCorrect = 0;
@@ -91,7 +65,7 @@ const QuizApp = {
                     <div class="hap-donut-section">
                         <div class="hap-section-label">Ümumi Performans</div>
                         <div class="hap-donut-ring-wrap">
-                            <canvas id="home-donut-canvas" width="220" height="220"></canvas>
+                            <canvas id="home-donut-canvas" width="312" height="312"></canvas>
                             <div class="hap-donut-inner">
                                 <div class="hap-donut-big">${globalAcc}<span class="hap-pct-sign">%</span></div>
                                 <div class="hap-donut-label">Dəqiqlik</div>
@@ -99,60 +73,49 @@ const QuizApp = {
                         </div>
                         <div class="hap-legend">
                             <div class="hap-legend-badge" style="background:#22c55e18; border-color:#22c55e40;">
-                                <span class="hap-lc-dot" style="background:#22c55e; box-shadow:0 0 6px #22c55e80;"></span>
                                 <span class="hap-lc-lbl">Düzgün</span>
                                 <span class="hap-lc-num" style="color:#22c55e;">${globalCorrect}</span>
                             </div>
                             <div class="hap-legend-badge" style="background:#ef444418; border-color:#ef444440;">
-                                <span class="hap-lc-dot" style="background:#ef4444; box-shadow:0 0 6px #ef444460;"></span>
                                 <span class="hap-lc-lbl">Səhv</span>
                                 <span class="hap-lc-num" style="color:#ef4444;">${globalWrong}</span>
-                            </div>
-                            <div class="hap-legend-badge" style="background:#ffffff08; border-color:#ffffff15;">
-                                <span class="hap-lc-dot" style="background:#ffffff30;"></span>
-                                <span class="hap-lc-lbl">Qalıb</span>
-                                <span class="hap-lc-num" style="color:var(--text-muted);">${unanswered}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="hap-courses-section">
-                        <div class="hap-section-label">Fənn Üzrə İrəliləyiş</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="hap-section-label" style="margin-bottom: 0;">Fənn Üzrə İrəliləyiş</div>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; gap: 6px; background: var(--bg-main); padding: 6px 12px; border-radius: 99px; border: 1px solid var(--border);">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <span>Sərf Edilən Vaxt:</span>
+                                <span style="color: var(--text-main); font-weight: 700;">${this.formatTime(globalTime)}</span>
+                            </div>
+                        </div>
                         <div class="hap-course-list" id="home-progress-list"></div>
                     </div>
 
                 </div>
 
-                <div class="dashboard-stats-grid" style="margin-bottom: 30px; grid-template-columns: repeat(5, 1fr);">
-                    <div class="db-stat-card">
-                        <div class="db-stat-lbl">Cəmi Sual</div>
-                        <div class="db-stat-val">${globalTotalQ}</div>
+                <div class="hap-chart-panel">
+                    <div class="hap-chart-header">
+                        <div class="hap-section-label">Fənlərin İnkişaf Dinamikası</div>
+                        <div class="hap-chart-toggles">
+                            <button id="toggle-chart-mode-q" class="chart-toggle-btn active" onclick="setChartMode('questions')">Suallar</button>
+                            <button id="toggle-chart-mode-t" class="chart-toggle-btn" onclick="setChartMode('time')">Sərf edilən vaxt</button>
+                        </div>
                     </div>
-                    <div class="db-stat-card">
-                        <div class="db-stat-lbl">Sərf Edilən Vaxt</div>
-                        <div class="db-stat-val">${this.formatTime(globalTime)}</div>
-                    </div>
-                    <div class="db-stat-card">
-                        <div class="db-stat-lbl">Düzgün Cavab</div>
-                        <div class="db-stat-val" style="color:var(--active)">${globalCorrect}</div>
-                    </div>
-                    <div class="db-stat-card">
-                        <div class="db-stat-lbl">Səhv Cavab</div>
-                        <div class="db-stat-val" style="color:var(--wrong)">${globalWrong}</div>
-                    </div>
-                    <div class="db-stat-card">
-                        <div class="db-stat-lbl">Dəqiqlik</div>
-                        <div class="db-stat-val" style="color:var(--accent)">${globalAcc}%</div>
+                    <div class="hap-chart-body" style="position: relative;">
+                        <canvas id="home-dynamics-canvas" style="width: 100%; height: 250px;"></canvas>
+                        <div id="chart-tooltip" class="chart-tooltip" style="display: none;"></div>
                     </div>
                 </div>
 
-                <div class="subject-grid">
-                    ${cardsHTML}
-                </div>
             </div>
         `;
 
         this.renderHomeCharts(globalCorrect, globalWrong, unanswered);
+        this.drawDynamicsChart();
 
         // Hide top nav since we are in home screen
         const tn = document.getElementById('top-nav');
@@ -169,12 +132,12 @@ const QuizApp = {
 
     renderHomeCharts: function (correct, wrong, unanswered) {
         const courseStyles = {
-            "Atatürk İlkeleri ve İnkılap Tarihi II": { accent: "#ef4444", g1: "#ef4444", g2: "#f97316" },
-            "Görsel İletişim Tasarımı": { accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" },
-            "Grafik Tasarım II": { accent: "#10b981", g1: "#10b981", g2: "#06b6d4" },
-            "Masaüstü Yayıncılık": { accent: "#3b82f6", g1: "#3b82f6", g2: "#6366f1" },
-            "Tasarımda Tipografi": { accent: "#f59e0b", g1: "#f59e0b", g2: "#ef4444" },
-            "Türk Dili II": { accent: "#8b5cf6", g1: "#8b5cf6", g2: "#ec4899" }
+            "Atatürk İlkeleri ve İnkılap Tarihi II": { icon: "🏛️", accent: "#ef4444", g1: "#ef4444", g2: "#f97316" },
+            "Görsel İletişim Tasarımı": { icon: "🎨", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" },
+            "Grafik Tasarım II": { icon: "📐", accent: "#10b981", g1: "#10b981", g2: "#06b6d4" },
+            "Masaüstü Yayıncılık": { icon: "💻", accent: "#3b82f6", g1: "#3b82f6", g2: "#6366f1" },
+            "Tasarımda Tipografi": { icon: "✍️", accent: "#f59e0b", g1: "#f59e0b", g2: "#ef4444" },
+            "Türk Dili II": { icon: "📖", accent: "#8b5cf6", g1: "#8b5cf6", g2: "#ec4899" }
         };
 
         // --- Animated Donut Chart ---
@@ -182,11 +145,11 @@ const QuizApp = {
         if (canvas) {
             const ctx = canvas.getContext('2d');
             const dpr = window.devicePixelRatio || 1;
-            canvas.width = 220 * dpr; canvas.height = 220 * dpr;
-            canvas.style.width = '220px'; canvas.style.height = '220px';
+            canvas.width = 312 * dpr; canvas.height = 312 * dpr;
+            canvas.style.width = '312px'; canvas.style.height = '312px';
             ctx.scale(dpr, dpr);
 
-            const cx = 110, cy = 110, r = 88, strokeW = 18;
+            const cx = 156, cy = 156, r = 126, strokeW = 24;
             const total = correct + wrong + unanswered;
 
             const segments = total === 0
@@ -215,7 +178,7 @@ const QuizApp = {
             const draw = (now) => {
                 progress = Math.min((now - startTime) / animDuration, 1);
                 const ease = 1 - Math.pow(1 - progress, 3);
-                ctx.clearRect(0, 0, 220, 220);
+                ctx.clearRect(0, 0, 312, 312);
 
                 // Background ring
                 ctx.beginPath();
@@ -258,6 +221,32 @@ const QuizApp = {
         if (!list) return;
         list.innerHTML = '';
 
+        const totalQ = correct + wrong + unanswered;
+        const totalAns = correct + wrong;
+        const acc = totalAns > 0 ? Math.round((correct / totalAns) * 100) : 0;
+        const pctProgress = totalQ > 0 ? (totalAns / totalQ) * 100 : 0;
+
+        const totalRow = document.createElement('div');
+        totalRow.className = 'hap-course-row';
+        totalRow.innerHTML = `
+            <div class="hap-course-left">
+                <div class="hap-course-dot" style="background: linear-gradient(135deg, #a8a29e, #78716c);">📊</div>
+                <div class="hap-course-info">
+                    <div class="hap-course-name" style="font-weight: 800; color: #f5f5f5;">Ümumi Toplam</div>
+                    <div class="hap-course-track">
+                        <div class="hap-course-bar" style="background: linear-gradient(90deg, #a8a29e, #78716c); width: ${Math.min(pctProgress, 100)}%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hap-course-stats">
+                <div class="hap-mini-stat" style="color:#22c55e">${correct}</div>
+                <div class="hap-mini-stat" style="color:#ef4444">${wrong}</div>
+                <div class="hap-mini-badge" style="background: #ffffff15; color: #ffffff">${acc}%</div>
+                <div class="hap-mini-badge" style="background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.1);">${totalQ}</div>
+            </div>
+        `;
+        list.appendChild(totalRow);
+
         Object.keys(CONFIG).forEach((c, idx) => {
             const s = this.stats[c];
             const style = courseStyles[c] || { accent: '#6366f1', g1: '#6366f1', g2: '#8b5cf6' };
@@ -271,13 +260,14 @@ const QuizApp = {
             const pctCorrect = answered > 0 ? Math.round((correctC / answered) * 100) : 0;
 
             const row = document.createElement('div');
-            row.className = 'hap-course-row';
+            row.className = 'hap-course-row clickable';
+            row.onclick = () => this.selectCat(c, 'units');
             row.style.setProperty('--c-accent', style.accent);
             row.style.setProperty('--c-g1', style.g1);
             row.style.setProperty('--c-g2', style.g2);
             row.innerHTML = `
                 <div class="hap-course-left">
-                    <div class="hap-course-dot" style="background: linear-gradient(135deg, ${style.g1}, ${style.g2});"></div>
+                    <div class="hap-course-dot" style="background: linear-gradient(135deg, ${style.g1}, ${style.g2});">${style.icon || '📘'}</div>
                     <div class="hap-course-info">
                         <div class="hap-course-name">${c}</div>
                         <div class="hap-course-track">
@@ -289,6 +279,7 @@ const QuizApp = {
                     <div class="hap-mini-stat" style="color:#22c55e">${correctC}</div>
                     <div class="hap-mini-stat" style="color:#ef4444">${wrongC}</div>
                     <div class="hap-mini-badge" style="background: ${style.accent}22; color: ${style.accent}">${pctCorrect}%</div>
+                    <div class="hap-mini-badge" style="background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.1);">${totalQ}</div>
                 </div>
             `;
             list.appendChild(row);
@@ -780,7 +771,13 @@ const QuizApp = {
         this.stopTimer();
         this.activeCourse = c;
         if (!this.stats[c]) this.stats[c] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
-        this.timer = setInterval(() => { if (this.activeCourse) { this.stats[c].time++; if (this.stats[c].time % 10 === 0) this.saveStats(); } }, 1000);
+        this.timer = setInterval(() => { 
+            if (this.activeCourse) { 
+                this.stats[c].time++; 
+                this.recordDailyHistory(c, null, 1);
+                if (this.stats[c].time % 10 === 0) this.saveStats(); 
+            } 
+        }, 1000);
     },
     stopTimer: function () { clearInterval(this.timer); this.activeCourse = null; this.saveStats(); },
 
@@ -791,10 +788,303 @@ const QuizApp = {
         if (!this.stats[c].bd[cat][sub]) this.stats[c].bd[cat][sub] = { t: 0, c: 0, w: 0 };
         this.stats[c].bd[cat][sub].t++;
         if (isCorr) this.stats[c].bd[cat][sub].c++; else this.stats[c].bd[cat][sub].w++;
+        this.recordDailyHistory(c, isCorr, 0);
         this.saveStats();
     },
 
-    saveStats: function () { localStorage.setItem(this.DB.stats, JSON.stringify(this.stats)); },
+    recordDailyHistory: function(course, isCorrect, timeIncrement = 0) {
+        if (!this.dailyHistory) this.dailyHistory = {};
+        const today = new Date().toISOString().split('T')[0];
+        if (!this.dailyHistory[today]) this.dailyHistory[today] = {};
+        if (!this.dailyHistory[today][course]) this.dailyHistory[today][course] = { time: 0, correct: 0, wrong: 0 };
+        
+        if (timeIncrement > 0) {
+            this.dailyHistory[today][course].time += timeIncrement;
+        } else {
+            if (isCorrect) this.dailyHistory[today][course].correct++;
+            else this.dailyHistory[today][course].wrong++;
+        }
+    },
+
+    setChartMode: function(mode) {
+        this.state.chartMode = mode;
+        const btnQ = document.getElementById('toggle-chart-mode-q');
+        const btnT = document.getElementById('toggle-chart-mode-t');
+        if (btnQ && btnT) {
+            btnQ.classList.toggle('active', mode === 'questions');
+            btnT.classList.toggle('active', mode === 'time');
+        }
+        this.drawDynamicsChart();
+    },
+
+    drawDynamicsChart: function(hoveredIndex = null) {
+        const canvas = document.getElementById('home-dynamics-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const mode = this.state.chartMode || 'questions';
+
+        const last7Days = [];
+        const startDate = new Date(2026, 5, 3); // June 3rd
+        for (let i = 0; i < 12; i++) {
+            const d = new Date(startDate);
+            d.setDate(startDate.getDate() + i);
+            last7Days.push(d.toISOString().split('T')[0]);
+        }
+
+        const courseStyles = {
+            "Atatürk İlkeleri ve İnkılap Tarihi II": { g1: "#ef4444", g2: "#f97316" },
+            "Görsel İletişim Tasarımı": { g1: "#6366f1", g2: "#8b5cf6" },
+            "Grafik Tasarım II": { g1: "#10b981", g2: "#06b6d4" },
+            "Masaüstü Yayıncılık": { g1: "#3b82f6", g2: "#6366f1" },
+            "Tasarımda Tipografi": { g1: "#f59e0b", g2: "#ef4444" },
+            "Türk Dili II": { g1: "#8b5cf6", g2: "#ec4899" }
+        };
+        const defaultStyle = { g1: "#6366f1", g2: "#8b5cf6" };
+
+        const chartData = last7Days.map(date => {
+            const dayData = this.dailyHistory[date] || {};
+            const coursesData = [];
+            let totalVal = 0;
+            const coursesList = ["Atatürk İlkeleri ve İnkılap Tarihi II", "Görsel İletişim Tasarımı", "Grafik Tasarım II", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Türk Dili II"];
+            coursesList.forEach(c => {
+                const data = dayData[c] || { time: 0, correct: 0, wrong: 0 };
+                const val = mode === 'questions' ? (data.correct + data.wrong) : Math.round(data.time / 60);
+                coursesData.push({ course: c, val, correct: data.correct, wrong: data.wrong, time: data.time });
+                totalVal += val;
+            });
+            return { date, totalVal, coursesData };
+        });
+
+        // Find the maximum value to scale the Y axis
+        let maxVal = 10;
+        chartData.forEach(day => {
+            day.coursesData.forEach(c => {
+                if (c.val > maxVal) maxVal = c.val;
+            });
+        });
+        const gridMax = Math.ceil(maxVal / 5) * 5;
+
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+
+        const w = rect.width;
+        const h = rect.height;
+        const padding = { top: 20, right: 0, bottom: 40, left: 0 };
+
+        ctx.clearRect(0, 0, w, h);
+
+        // Draw grid lines
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 4]);
+
+        const chartWidth = w - padding.left - padding.right;
+        const stepWidth = chartWidth / (last7Days.length - 1);
+
+        // 1. Horizontal grid lines
+        const gridLinesCount = 4;
+        for (let i = 0; i <= gridLinesCount; i++) {
+            const val = Math.round((gridMax / gridLinesCount) * i);
+            const y = h - padding.bottom - ((val / gridMax) * (h - padding.top - padding.bottom));
+            
+            ctx.beginPath();
+            ctx.moveTo(padding.left, y);
+            ctx.lineTo(w - padding.right, y);
+            ctx.stroke();
+        }
+
+        // 2. Vertical grid lines
+        chartData.forEach((day, index) => {
+            const x = padding.left + index * stepWidth;
+            ctx.beginPath();
+            ctx.moveTo(x, padding.top);
+            ctx.lineTo(x, h - padding.bottom);
+            ctx.stroke();
+        });
+
+        ctx.setLineDash([]); // Reset line dash
+
+        // 3. Draw Y-axis labels
+        ctx.fillStyle = "rgba(255, 255, 255, 0.35)";
+        ctx.font = "500 0.72rem sans-serif";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "bottom";
+        for (let i = 0; i <= gridLinesCount; i++) {
+            const val = Math.round((gridMax / gridLinesCount) * i);
+            const y = h - padding.bottom - ((val / gridMax) * (h - padding.top - padding.bottom));
+            ctx.fillText(val + (mode === 'time' ? ' d' : ''), 6, y - 4);
+        }
+
+        // Draw X-axis labels
+        ctx.textBaseline = "top";
+        ctx.font = "500 0.65rem sans-serif";
+        chartData.forEach((day, index) => {
+            const x = padding.left + index * stepWidth;
+            const dObj = new Date(day.date + 'T00:00:00');
+            const dayNum = String(dObj.getDate()).padStart(2, '0');
+            const monthName = dObj.toLocaleDateString('en-US', { month: 'long' });
+            const label = `${dayNum} ${monthName}`;
+            
+            ctx.fillStyle = "rgba(255, 255, 255, 0.45)";
+            if (index === 0) {
+                ctx.textAlign = "left";
+            } else if (index === last7Days.length - 1) {
+                ctx.textAlign = "right";
+            } else {
+                ctx.textAlign = "center";
+            }
+            ctx.fillText(label, x, h - padding.bottom + 14);
+        });
+
+        // Draw vertical hovered indicator line
+        if (hoveredIndex !== null) {
+            const x = padding.left + hoveredIndex * stepWidth;
+            ctx.beginPath();
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.moveTo(x, padding.top);
+            ctx.lineTo(x, h - padding.bottom);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        // Draw lines for each course
+        const coursesList = ["Atatürk İlkeleri ve İnkılap Tarihi II", "Görsel İletişim Tasarımı", "Grafik Tasarım II", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Türk Dili II"];
+        
+        // Draw lines for each course using smooth Catmull-Rom splines
+        coursesList.forEach(courseName => {
+            const style = courseStyles[courseName] || defaultStyle;
+            
+            const points = chartData.map((day, index) => {
+                const x = padding.left + index * stepWidth;
+                const cData = day.coursesData.find(d => d.course === courseName);
+                const val = cData ? cData.val : 0;
+                const y = h - padding.bottom - ((val / gridMax) * (h - padding.top - padding.bottom));
+                return { x, y };
+            });
+
+            ctx.beginPath();
+            ctx.strokeStyle = style.g1;
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            if (points.length > 0) {
+                ctx.moveTo(points[0].x, points[0].y);
+                for (let i = 0; i < points.length - 1; i++) {
+                    const p0 = points[Math.max(i - 1, 0)];
+                    const p1 = points[i];
+                    const p2 = points[i + 1];
+                    const p3 = points[Math.min(i + 2, points.length - 1)];
+                    
+                    const tension = 0.2;
+                    const cp1x = p1.x + (p2.x - p0.x) * tension;
+                    const cp1y = p1.y + (p2.y - p0.y) * tension;
+                    const cp2x = p2.x - (p3.x - p1.x) * tension;
+                    const cp2y = p2.y - (p3.y - p1.y) * tension;
+                    
+                    ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, p2.x, p2.y);
+                }
+                ctx.stroke();
+            }
+        });
+
+        // Only draw dots for the hovered day to keep the chart clean and modern
+        if (hoveredIndex !== null) {
+            coursesList.forEach(courseName => {
+                const style = courseStyles[courseName] || defaultStyle;
+                const day = chartData[hoveredIndex];
+                const x = padding.left + hoveredIndex * stepWidth;
+                const cData = day.coursesData.find(d => d.course === courseName);
+                const val = cData ? cData.val : 0;
+                const y = h - padding.bottom - ((val / gridMax) * (h - padding.top - padding.bottom));
+                
+                ctx.beginPath();
+                ctx.arc(x, y, 5.5, 0, 2 * Math.PI);
+                ctx.fillStyle = style.g1;
+                ctx.fill();
+                ctx.strokeStyle = "#ffffff";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            });
+        }
+
+        const tooltip = document.getElementById('chart-tooltip');
+        if (!tooltip) return;
+
+        if (canvas._onMouseMove) canvas.removeEventListener('mousemove', canvas._onMouseMove);
+
+        canvas._onMouseMove = (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            const hoveredIdx = Math.max(0, Math.min(last7Days.length - 1, Math.round((mouseX - padding.left) / stepWidth)));
+
+            if (hoveredIdx !== this._lastHoveredIndex) {
+                this._lastHoveredIndex = hoveredIdx;
+                this.drawDynamicsChart(hoveredIdx);
+            }
+
+            if (hoveredIdx !== null) {
+                const dayData = chartData[hoveredIdx];
+                const dObj = new Date(dayData.date + 'T00:00:00');
+                const dayNum = String(dObj.getDate()).padStart(2, '0');
+                const monthName = dObj.toLocaleDateString('en-US', { month: 'long' });
+                const weekdayName = dObj.toLocaleDateString('en-US', { weekday: 'long' });
+                const dateStr = `${dayNum} ${monthName}, ${weekdayName}`;
+                
+                let detailsHTML = `<div style="font-weight:700; font-size:0.8rem; margin-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:4px;">${dateStr}</div>`;
+                let hasData = false;
+
+                dayData.coursesData.forEach(seg => {
+                    if (seg.val === 0) return;
+                    hasData = true;
+                    const style = courseStyles[seg.course] || defaultStyle;
+                    const valStr = mode === 'questions' 
+                        ? `<span style="color:#22c55e;font-weight:700;">${seg.correct} D</span> / <span style="color:#ef4444;font-weight:700;">${seg.wrong} S</span>`
+                        : `<span style="color:var(--text-main);font-weight:700;">${Math.round(seg.time/60)}</span> dəq`;
+                    
+                    detailsHTML += `
+                        <div style="display:flex; align-items:center; gap:8px; font-size:0.72rem; margin-bottom:4px;">
+                            <span style="width:8px; height:8px; border-radius:50%; background: ${style.g1}; flex-shrink:0;"></span>
+                            <span style="flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:rgba(255,255,255,0.7);">${seg.course}</span>
+                            <span>${valStr}</span>
+                        </div>
+                    `;
+                });
+
+                if (!hasData) {
+                    detailsHTML += `<div style="font-size:0.72rem; color:var(--text-muted); text-align:center;">Fəaliyyət yoxdur</div>`;
+                }
+
+                tooltip.innerHTML = detailsHTML;
+                tooltip.style.display = 'block';
+                tooltip.style.left = Math.min(rect.width - 200, Math.max(10, e.clientX - rect.left + 15)) + 'px';
+                tooltip.style.top = Math.min(rect.height - 120, Math.max(10, e.clientY - rect.top - 50)) + 'px';
+            } else {
+                tooltip.style.display = 'none';
+            }
+        };
+
+        canvas.addEventListener('mousemove', canvas._onMouseMove);
+        canvas.addEventListener('mouseleave', () => { 
+            tooltip.style.display = 'none'; 
+            if (this._lastHoveredIndex !== null) {
+                this._lastHoveredIndex = null;
+                this.drawDynamicsChart(null);
+            }
+        });
+    },
+
+    saveStats: function () { 
+        localStorage.setItem(this.DB.stats, JSON.stringify(this.stats)); 
+        localStorage.setItem('qa_v31_h', JSON.stringify(this.dailyHistory));
+    },
     saveWrong: function (c, q) { if (!this.wrongDB[c]) this.wrongDB[c] = []; if (!this.wrongDB[c].some(x => x.q === q.q)) { this.wrongDB[c].push(q); localStorage.setItem(this.DB.wrong, JSON.stringify(this.wrongDB)); } },
     removeWrong: function (c, qt) { if (this.wrongDB[c]) { this.wrongDB[c] = this.wrongDB[c].filter(x => x.q !== qt); if (!this.wrongDB[c].length) delete this.wrongDB[c]; localStorage.setItem(this.DB.wrong, JSON.stringify(this.wrongDB)); } },
     saveCorrect: function (c, q) { if (!this.correctDB[c]) this.correctDB[c] = []; if (!this.correctDB[c].some(x => x.q === q.q)) { this.correctDB[c].push(q); localStorage.setItem(this.DB.correct, JSON.stringify(this.correctDB)); } },
@@ -871,6 +1161,7 @@ window.closeModal = window.closeModal || ((e) => {
     else document.getElementById('modal-overlay').style.display = 'none';
 });
 
+window.setChartMode = QuizApp.setChartMode.bind(QuizApp);
 window.resetStatistics = QuizApp.resetStatistics.bind(QuizApp);
 window.handleSearch = QuizApp.handleSearch.bind(QuizApp);
 window.showStatDetails = QuizApp.showStatDetails.bind(QuizApp);
