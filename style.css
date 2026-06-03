@@ -869,18 +869,22 @@ body {
     }
 
     .controls {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 10px;
-        flex-direction: column-reverse;
     }
 
-    .btn-pri {
-        width: 100%;
+    .controls .btn {
+        width: 100% !important;
+        flex: none !important;
+        padding: 14px 8px !important;
+        font-size: 0.9rem;
+    }
+
+    #btn-next {
+        grid-column: span 3;
         font-size: 1.05rem;
-        padding: 16px 20px;
-    }
-
-    .btn-sec {
-        width: 100%;
+        padding: 16px 20px !important;
     }
     
     .stat-grid {
@@ -1102,14 +1106,14 @@ body {
     display: flex;
     align-items: center;
     gap: 14px;
+    padding: 4px 8px;
+    margin: -4px -8px;
 }
 
 .hap-course-row.clickable {
     cursor: pointer;
     transition: transform 0.2s, opacity 0.2s, background-color 0.2s;
     border-radius: 12px;
-    padding: 4px 8px;
-    margin: -4px -8px;
 }
 
 .hap-course-row.clickable:hover {
@@ -1174,19 +1178,23 @@ body {
 }
 
 .hap-course-stats {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 36px 36px 48px 48px;
     gap: 8px;
+    align-items: center;
+    justify-items: center;
     flex-shrink: 0;
 }
 
 .hap-mini-stat {
     font-size: 0.78rem;
     font-weight: 700;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 2px;
-    min-width: 32px;
+    width: 100%;
+    text-align: center;
 }
 
 .hap-mini-stat span {
@@ -1197,9 +1205,15 @@ body {
 .hap-mini-badge {
     font-size: 0.75rem;
     font-weight: 800;
-    padding: 3px 9px;
+    padding: 3px 4px;
     border-radius: 20px;
     letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 
@@ -1438,6 +1452,7 @@ body {
         align-items: stretch;
         gap: 10px;
         padding: 10px 8px;
+        margin: 0;
     }
     .hap-course-stats {
         justify-content: flex-start;

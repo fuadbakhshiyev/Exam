@@ -794,7 +794,8 @@ const QuizApp = {
 
     recordDailyHistory: function(course, isCorrect, timeIncrement = 0) {
         if (!this.dailyHistory) this.dailyHistory = {};
-        const today = new Date().toISOString().split('T')[0];
+        const tempD = new Date();
+        const today = `${tempD.getFullYear()}-${String(tempD.getMonth() + 1).padStart(2, '0')}-${String(tempD.getDate()).padStart(2, '0')}`;
         if (!this.dailyHistory[today]) this.dailyHistory[today] = {};
         if (!this.dailyHistory[today][course]) this.dailyHistory[today][course] = { time: 0, correct: 0, wrong: 0 };
         
@@ -828,7 +829,10 @@ const QuizApp = {
         for (let i = 0; i < 12; i++) {
             const d = new Date(startDate);
             d.setDate(startDate.getDate() + i);
-            last7Days.push(d.toISOString().split('T')[0]);
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const dayNum = String(d.getDate()).padStart(2, '0');
+            last7Days.push(`${y}-${m}-${dayNum}`);
         }
 
         const courseStyles = {
