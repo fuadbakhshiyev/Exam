@@ -1002,8 +1002,8 @@ body {
 
 .hap-donut-ring-wrap {
     position: relative;
-    width: 312px;
-    height: 312px;
+    width: 240px;
+    height: 240px;
 }
 
 .hap-donut-inner {
@@ -1014,18 +1014,20 @@ body {
     align-items: center;
     justify-content: center;
     pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .hap-donut-big {
-    font-size: 4.3rem;
-    font-weight: 900;
+    font-size: 3.6rem;
+    font-weight: 800;
     color: var(--text-main);
     line-height: 1;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
 }
 
 .hap-pct-sign {
-    font-size: 1.9rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: var(--accent);
     vertical-align: super;
@@ -1033,34 +1035,36 @@ body {
 }
 
 .hap-donut-label {
-    font-size: 0.86rem;
+    font-size: 0.78rem;
     font-weight: 600;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    margin-top: 8px;
+    margin-top: 4px;
 }
 
 .hap-legend {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
+    gap: 12px;
     width: 100%;
 }
 
 .hap-legend-badge {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     border: 1px solid;
-    border-radius: 999px;
-    padding: 6px 10px;
-    transition: transform 0.2s, filter 0.2s;
+    border-radius: 12px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.2s ease;
 }
 
 .hap-legend-badge:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.2);
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.04);
+    filter: brightness(1.1);
 }
 
 .hap-lc-dot {

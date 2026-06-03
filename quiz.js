@@ -65,7 +65,7 @@ const QuizApp = {
                     <div class="hap-donut-section">
                         <div class="hap-section-label">Ümumi Performans</div>
                         <div class="hap-donut-ring-wrap">
-                            <canvas id="home-donut-canvas" width="312" height="312"></canvas>
+                            <canvas id="home-donut-canvas" width="240" height="240"></canvas>
                             <div class="hap-donut-inner">
                                 <div class="hap-donut-big">${globalAcc}<span class="hap-pct-sign">%</span></div>
                                 <div class="hap-donut-label">Dəqiqlik</div>
@@ -145,11 +145,11 @@ const QuizApp = {
         if (canvas) {
             const ctx = canvas.getContext('2d');
             const dpr = window.devicePixelRatio || 1;
-            canvas.width = 312 * dpr; canvas.height = 312 * dpr;
-            canvas.style.width = '312px'; canvas.style.height = '312px';
+            canvas.width = 240 * dpr; canvas.height = 240 * dpr;
+            canvas.style.width = '240px'; canvas.style.height = '240px';
             ctx.scale(dpr, dpr);
 
-            const cx = 156, cy = 156, r = 126, strokeW = 24;
+            const cx = 120, cy = 120, r = 96, strokeW = 16;
             const total = correct + wrong + unanswered;
 
             const segments = total === 0
@@ -178,7 +178,7 @@ const QuizApp = {
             const draw = (now) => {
                 progress = Math.min((now - startTime) / animDuration, 1);
                 const ease = 1 - Math.pow(1 - progress, 3);
-                ctx.clearRect(0, 0, 312, 312);
+                ctx.clearRect(0, 0, 240, 240);
 
                 // Background ring
                 ctx.beginPath();
