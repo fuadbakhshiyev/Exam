@@ -22,6 +22,7 @@
     --text-muted: #a3a3a3;
     --border: #262626;
     --border-hover: #3f3f46;
+    --bg-track: rgba(255, 255, 255, 0.08);
     
     /* Vibrant harmonized colors */
     --active: #10b981; /* Premium Emerald */
@@ -57,6 +58,7 @@
     --text-muted: #64748b;
     --border: rgba(15, 23, 42, 0.08);
     --border-hover: rgba(15, 23, 42, 0.16);
+    --bg-track: rgba(15, 23, 42, 0.06);
     --card-shadow: 0 20px 40px rgba(15, 23, 42, 0.06), 0 0 1px rgba(15, 23, 42, 0.05) inset;
 }
 
@@ -1099,31 +1101,35 @@ body {
 .hap-course-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
 }
 
 .hap-course-row {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 4px 8px;
-    margin: -4px -8px;
+    padding: 14px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .hap-course-row.clickable {
     cursor: pointer;
-    transition: transform 0.2s, opacity 0.2s, background-color 0.2s;
-    border-radius: 12px;
 }
 
 .hap-course-row.clickable:hover {
-    transform: translateX(4px);
-    background-color: rgba(255, 255, 255, 0.03);
+    transform: translateY(-2px);
+    border-color: var(--border-hover);
+    background: var(--bg-element);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 0 1px rgba(255, 255, 255, 0.1) inset;
 }
 
 .hap-course-row.clickable:active {
-    transform: translateX(2px);
-    opacity: 0.8;
+    transform: translateY(0);
+    opacity: 0.9;
 }
 
 .hap-course-left {
@@ -1165,7 +1171,7 @@ body {
 
 .hap-course-track {
     height: 6px;
-    background: var(--bg-main);
+    background: var(--bg-track);
     border-radius: 999px;
     overflow: hidden;
 }
@@ -1539,7 +1545,7 @@ body {
 .hap-chart-toggles {
     display: flex;
     gap: 6px;
-    background: var(--bg-main);
+    background: var(--bg-input);
     padding: 4px;
     border-radius: 99px;
     border: 1px solid var(--border);
