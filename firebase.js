@@ -73,16 +73,24 @@ const FirebaseSync = {
             if (userInfo) {
                 userInfo.style.display = 'flex';
                 userInfo.innerHTML = `
-                    <img src="${currentUser.photoURL || ''}" alt="" style="width:24px; height:24px; border-radius:50%;">
-                    <span style="font-size:0.85rem; color:var(--text-muted);">${currentUser.displayName || currentUser.email}</span>
-                    <button onclick="FirebaseSync.signOut()" style="background:none; border:none; color:var(--wrong); cursor:pointer; font-size:0.8rem;">Çıxış</button>
+                    <div class="user-info-left">
+                        <img src="${currentUser.photoURL || ''}" alt="" class="user-avatar">
+                        <span class="user-name">${currentUser.displayName || currentUser.email}</span>
+                    </div>
+                    <button onclick="FirebaseSync.signOut()" class="logout-btn">Çıxış</button>
                 `;
             }
-            if (syncStatus) syncStatus.textContent = '☁️ Sinxron';
+            if (syncStatus) {
+                syncStatus.className = 'sync-status-badge synced';
+                syncStatus.innerHTML = '<span class="dot"></span><span>Sinxron</span>';
+            }
         } else {
-            if (loginBtn) loginBtn.style.display = 'block';
+            if (loginBtn) loginBtn.style.display = 'flex';
             if (userInfo) userInfo.style.display = 'none';
-            if (syncStatus) syncStatus.textContent = '💾 Lokal';
+            if (syncStatus) {
+                syncStatus.className = 'sync-status-badge local';
+                syncStatus.innerHTML = '<span class="dot"></span><span>Lokal</span>';
+            }
         }
     },
 
