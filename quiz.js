@@ -1160,9 +1160,13 @@ window.nav = QuizApp.nav.bind(QuizApp);
 window.resetUnit = QuizApp.resetUnit.bind(QuizApp);
 window.hint = QuizApp.hint.bind(QuizApp);
 window.closeModal = window.closeModal || ((e) => {
-    // If a specific close function is needed we can check visibility
-    if (document.getElementById('todo-modal').style.display === 'flex') TodoApp.closeModal();
-    else document.getElementById('modal-overlay').style.display = 'none';
+    const todoModal = document.getElementById('todo-modal');
+    if (todoModal && todoModal.style.display === 'flex') {
+        if (typeof TodoApp !== 'undefined') TodoApp.closeModal();
+    } else {
+        const overlay = document.getElementById('modal-overlay');
+        if (overlay) overlay.style.display = 'none';
+    }
 });
 
 window.setChartMode = QuizApp.setChartMode.bind(QuizApp);
