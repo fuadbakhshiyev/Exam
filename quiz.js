@@ -849,7 +849,7 @@ const QuizApp = {
             const dayData = this.dailyHistory[date] || {};
             const coursesData = [];
             let totalVal = 0;
-            const coursesList = ["Atatürk İlkeleri ve İnkılap Tarihi II", "Görsel İletişim Tasarımı", "Grafik Tasarım II", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Türk Dili II"];
+            const coursesList = ["Grafik Tasarım II", "Görsel İletişim Tasarımı", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Atatürk İlkeleri ve İnkılap Tarihi II", "Türk Dili II"];
             coursesList.forEach(c => {
                 const data = dayData[c] || { time: 0, correct: 0, wrong: 0 };
                 const val = mode === 'questions' ? (data.correct + data.wrong) : Math.round(data.time / 60);
@@ -957,7 +957,7 @@ const QuizApp = {
         }
 
         // Draw lines for each course
-        const coursesList = ["Atatürk İlkeleri ve İnkılap Tarihi II", "Görsel İletişim Tasarımı", "Grafik Tasarım II", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Türk Dili II"];
+        const coursesList = ["Grafik Tasarım II", "Görsel İletişim Tasarımı", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Atatürk İlkeleri ve İnkılap Tarihi II", "Türk Dili II"];
         
         // Draw lines for each course using smooth Catmull-Rom splines
         coursesList.forEach(courseName => {
