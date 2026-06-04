@@ -32,6 +32,7 @@ const QuizApp = {
     },
 
     start: function () {
+        this.stopTimer();
         const container = document.getElementById('content-area');
         if (!container) return;
 
@@ -769,16 +770,40 @@ const QuizApp = {
     startTimer: function (c) {
         this.stopTimer();
         this.activeCourse = c;
+        this.sessionStartTime = Date.now();
+        this.secondsElapsedInSession = 0;
         if (!this.stats[c]) this.stats[c] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
         this.timer = setInterval(() => { 
             if (this.activeCourse) { 
-                this.stats[c].time++; 
-                this.recordDailyHistory(c, null, 1);
-                if (this.stats[c].time % 10 === 0) this.saveStats(); 
+                const now = Date.now();
+                const totalElapsed = Math.floor((now - this.sessionStartTime) / 1000);
+                const delta = totalElapsed - this.secondsElapsedInSession;
+                if (delta > 0) {
+                    this.stats[c].time += delta; 
+                    this.recordDailyHistory(c, null, delta);
+                    this.secondsElapsedInSession = totalElapsed;
+                    if (this.secondsElapsedInSession % 10 === 0) this.saveStats(); 
+                }
             } 
         }, 1000);
     },
-    stopTimer: function () { clearInterval(this.timer); this.activeCourse = null; this.saveStats(); },
+    stopTimer: function () { 
+        if (this.timer) {
+            clearInterval(this.timer);
+            this.timer = null;
+        }
+        if (this.activeCourse) {
+            const now = Date.now();
+            const totalElapsed = Math.floor((now - this.sessionStartTime) / 1000);
+            const delta = totalElapsed - this.secondsElapsedInSession;
+            if (delta > 0) {
+                this.stats[this.activeCourse].time += delta;
+                this.recordDailyHistory(this.activeCourse, null, delta);
+            }
+            this.activeCourse = null;
+        }
+        this.saveStats(); 
+    },
 
     recordStat: function (c, cat, sub, isCorr) {
         if (!this.stats[c]) this.stats[c] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
@@ -1270,3 +1295,39 @@ function fireConfetti() {
     
     draw();
 }
+
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+        if (QuizApp.timer && QuizApp.activeCourse) {
+            const now = Date.now();
+            const totalElapsed = Math.floor((now - QuizApp.sessionStartTime) / 1000);
+            const delta = totalElapsed - QuizApp.secondsElapsedInSession;
+            if (delta > 0) {
+                QuizApp.stats[QuizApp.activeCourse].time += delta;
+                QuizApp.recordDailyHistory(QuizApp.activeCourse, null, delta);
+            }
+            clearInterval(QuizApp.timer);
+            QuizApp.timer = null;
+            QuizApp.saveStats();
+        }
+    } else if (document.visibilityState === 'visible') {
+        if (QuizApp.activeCourse && !QuizApp.timer) {
+            QuizApp.sessionStartTime = Date.now();
+            QuizApp.secondsElapsedInSession = 0;
+            const c = QuizApp.activeCourse;
+            QuizApp.timer = setInterval(() => { 
+                if (QuizApp.activeCourse) { 
+                    const now = Date.now();
+                    const totalElapsed = Math.floor((now - QuizApp.sessionStartTime) / 1000);
+                    const delta = totalElapsed - QuizApp.secondsElapsedInSession;
+                    if (delta > 0) {
+                        QuizApp.stats[c].time += delta; 
+                        QuizApp.recordDailyHistory(c, null, delta);
+                        QuizApp.secondsElapsedInSession = totalElapsed;
+                        if (QuizApp.secondsElapsedInSession % 10 === 0) QuizApp.saveStats(); 
+                    }
+                } 
+            }, 1000);
+        }
+    }
+});
