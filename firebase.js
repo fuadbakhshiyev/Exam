@@ -95,7 +95,7 @@ const FirebaseSync = {
     },
 
     // Save to Cloud
-    saveToCloud: async function() {
+    saveToCloud: async function(isSilent = false) {
         if (!currentUser) return;
         
         try {
@@ -112,8 +112,10 @@ const FirebaseSync = {
             await db.collection('users').doc(currentUser.uid).set(data, { merge: true });
             console.log("Data saved to cloud");
             
-            // Show sync indicator
-            this.showSyncIndicator('saved');
+            // Show sync indicator if not silent
+            if (!isSilent) {
+                this.showSyncIndicator('saved');
+            }
         } catch (error) {
             console.error("Save to cloud error:", error);
         }
@@ -176,7 +178,7 @@ const FirebaseSync = {
         
         clearTimeout(this.autoSaveTimeout);
         this.autoSaveTimeout = setTimeout(() => {
-            this.saveToCloud();
+            this.saveToCloud(true);
         }, 3000); // 3 saniyə sonra saxla
     }
 };
