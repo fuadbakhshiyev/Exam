@@ -7,6 +7,11 @@ const LifeOS = {
 
         // Default App
         this.switchApp('quiz');
+
+        // Init Sidebar Timer
+        if (window.SidebarTimer) {
+            window.SidebarTimer.init();
+        }
     },
 
     renderSidebar: function () {
@@ -154,6 +159,132 @@ const LifeOS = {
         }
     }
 };
+
+const SidebarTimer = {
+    seconds: 0,
+    timerId: null,
+    status: 'stopped', // 'stopped', 'running', 'paused'
+    sessionStart: 0,
+    accumulatedTime: 0,
+
+    init: function () {
+        const savedStatus = localStorage.getItem('sb_timer_status') || 'stopped';
+        const savedAccumulated = parseInt(localStorage.getItem('sb_timer_accumulated') || '0', 10);
+        const savedSessionStart = parseInt(localStorage.getItem('sb_timer_session_start') || '0', 10);
+
+        if (savedStatus === 'running') {
+            this.status = 'running';
+            this.sessionStart = savedSessionStart;
+            this.accumulatedTime = savedAccumulated;
+            this.seconds = Math.floor((Date.now() - this.sessionStart) / 1000) + this.accumulatedTime;
+            
+            const startBtn = document.getElementById('sb-timer-start');
+            if (startBtn) {
+                startBtn.textContent = 'Durdur';
+                startBtn.classList.add('running');
+            }
+            this.startInterval();
+        } else if (savedStatus === 'paused') {
+            this.status = 'paused';
+            this.accumulatedTime = savedAccumulated;
+            this.seconds = this.accumulatedTime;
+            
+            const startBtn = document.getElementById('sb-timer-start');
+            if (startBtn) {
+                startBtn.textContent = 'Davam et';
+                startBtn.classList.remove('running');
+            }
+            this.updateDisplay();
+        } else {
+            this.reset();
+        }
+    },
+
+    toggle: function () {
+        if (this.status === 'running') {
+            this.pause();
+        } else {
+            this.start();
+        }
+    },
+
+    start: function () {
+        if (this.status === 'running') return;
+        this.status = 'running';
+        this.sessionStart = Date.now();
+        
+        localStorage.setItem('sb_timer_status', 'running');
+        localStorage.setItem('sb_timer_session_start', this.sessionStart.toString());
+        localStorage.setItem('sb_timer_accumulated', this.accumulatedTime.toString());
+
+        const startBtn = document.getElementById('sb-timer-start');
+        if (startBtn) {
+            startBtn.textContent = 'Durdur';
+            startBtn.classList.add('running');
+        }
+        this.startInterval();
+    },
+
+    startInterval: function () {
+        if (this.timerId) clearInterval(this.timerId);
+        this.timerId = setInterval(() => {
+            const elapsed = Math.floor((Date.now() - this.sessionStart) / 1000) + this.accumulatedTime;
+            this.seconds = elapsed;
+            this.updateDisplay();
+        }, 200);
+    },
+
+    pause: function () {
+        if (this.status !== 'running') return;
+        this.status = 'paused';
+        if (this.timerId) {
+            clearInterval(this.timerId);
+            this.timerId = null;
+        }
+        this.accumulatedTime = this.seconds;
+        
+        localStorage.setItem('sb_timer_status', 'paused');
+        localStorage.setItem('sb_timer_accumulated', this.accumulatedTime.toString());
+
+        const startBtn = document.getElementById('sb-timer-start');
+        if (startBtn) {
+            startBtn.textContent = 'Davam et';
+            startBtn.classList.remove('running');
+        }
+    },
+
+    reset: function () {
+        this.status = 'stopped';
+        if (this.timerId) {
+            clearInterval(this.timerId);
+            this.timerId = null;
+        }
+        this.seconds = 0;
+        this.accumulatedTime = 0;
+        this.sessionStart = 0;
+
+        localStorage.removeItem('sb_timer_status');
+        localStorage.removeItem('sb_timer_session_start');
+        localStorage.removeItem('sb_timer_accumulated');
+
+        const startBtn = document.getElementById('sb-timer-start');
+        if (startBtn) {
+            startBtn.textContent = 'Başla';
+            startBtn.classList.remove('running');
+        }
+        this.updateDisplay();
+    },
+
+    updateDisplay: function () {
+        const hrs = Math.floor(this.seconds / 3600);
+        const mins = Math.floor((this.seconds % 3600) / 60);
+        const secs = this.seconds % 60;
+        const displayStr = String(hrs).padStart(2, '0') + ':' + String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+        const el = document.getElementById('sb-timer-display');
+        if (el) el.textContent = displayStr;
+    }
+};
+window.SidebarTimer = SidebarTimer;
 
 // Simple global helpers for sidebar toggle
 function toggleSidebar() {

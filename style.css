@@ -500,39 +500,62 @@ body {
 /* --- PROGRESS SEGMENTS --- */
 .progress-track {
     display: flex;
-    gap: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
     width: 100%;
-    height: 6px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .progress-segment {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    height: 6px;
+    user-select: none;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="light"] .progress-segment {
-    background: rgba(15, 23, 42, 0.06);
+    background: rgba(15, 23, 42, 0.04);
+    color: var(--text-muted);
+}
+
+.progress-segment:hover {
+    background: var(--bg-element-hover);
+    color: var(--text-main);
+    border-color: var(--text-muted);
+    transform: translateY(-2px);
 }
 
 .progress-segment.active {
     background: var(--accent);
-    transform: scaleY(1.3);
-    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    transform: scale(1.1);
 }
 
 .progress-segment.done {
     background: var(--active);
-    opacity: 0.8;
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
 .progress-segment.wrong {
     background: var(--wrong);
-    opacity: 0.8;
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
 }
 
 .question-box {
@@ -1721,4 +1744,166 @@ body {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.3); opacity: 0.5; }
     100% { transform: scale(1); opacity: 1; }
+}
+
+/* --- SIDEBAR TIMER BOX --- */
+.sidebar-timer-box {
+    background: var(--bg-element);
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-timer-box:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.timer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timer-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.timer-display {
+    font-family: 'Plus Jakarta Sans', monospace;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+.timer-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.timer-btn {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--bg-body);
+    color: var(--text-main);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-btn:hover {
+    background: var(--bg-element-hover);
+    border-color: var(--text-muted);
+}
+
+.timer-btn.running {
+    background: var(--wrong);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.timer-btn.running:hover {
+    filter: brightness(1.1);
+}
+
+.timer-btn.reset {
+    background: transparent;
+    color: var(--text-muted);
+}
+
+.timer-btn.reset:hover {
+    color: var(--wrong);
+    border-color: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+/* --- COURSE DASHBOARD WRONG EXAM BOX --- */
+.db-wrong-exam-box {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(249, 115, 22, 0.08) 100%);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(239, 68, 68, 0.05);
+    margin-bottom: 20px;
+}
+
+.db-wrong-exam-box:hover {
+    border-color: rgba(239, 68, 68, 0.4);
+    box-shadow: 0 12px 40px rgba(239, 68, 68, 0.08);
+    transform: translateY(-2px);
+}
+
+.db-wrong-exam-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.db-wrong-exam-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--wrong);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: -0.2px;
+}
+
+.db-wrong-exam-desc {
+    font-size: 0.88rem;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+
+.db-wrong-exam-desc span {
+    font-weight: bold;
+    color: var(--wrong);
+}
+
+.db-wrong-exam-btn {
+    background: var(--wrong);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.db-wrong-exam-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+}
+
+.db-wrong-exam-btn:active {
+    transform: translateY(0);
 }

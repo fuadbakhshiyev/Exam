@@ -60,6 +60,18 @@
             </div>
         </div>
 
+        <!-- Sidebar Custom Stopwatch Tool -->
+        <div class="sidebar-timer-box">
+            <div class="timer-header">
+                <span class="timer-title">⏱️ XRONOMETR</span>
+                <span class="timer-display" id="sb-timer-display">00:00:00</span>
+            </div>
+            <div class="timer-controls">
+                <button class="timer-btn" id="sb-timer-start" onclick="SidebarTimer.toggle()">Başla</button>
+                <button class="timer-btn reset" id="sb-timer-reset" onclick="SidebarTimer.reset()">Sıfırla</button>
+            </div>
+        </div>
+
         <div class="course-list" id="sidebar-list">
             <!-- Main.js will render App Switcher and Sub-menus here -->
         </div>
@@ -109,7 +121,7 @@
                     </div>
                 </div>
 
-                <div style="display:flex; gap:3px; height:4px; width:100%; margin-bottom:20px;" id="progress-bar"></div>
+                <div class="progress-track" id="progress-bar"></div>
             </div>
 
             <div class="question-box">
@@ -207,6 +219,8 @@
                             <div class="db-stat-val" id="db-accuracy" style="color:var(--accent)">0%</div>
                         </div>
                     </div>
+
+                    <div id="db-wrong-exam-container" style="display:none; margin-bottom:20px;"></div>
 
                     <div class="recommendation-box" id="db-recommendation">
                         <div style="font-weight:700; font-size:0.95rem; margin-bottom:8px; color:var(--accent);">💡 AI TÖVSİYƏSİ</div>

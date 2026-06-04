@@ -354,6 +354,27 @@ const QuizApp = {
             else alert("Əla! Səhv cavablandırdığınız sual yoxdur.");
         };
 
+        // Wrong Exam Section
+        const wrongExamContainer = document.getElementById('db-wrong-exam-container');
+        if (wrongExamContainer) {
+            const wrQs = this.wrongDB[c] || [];
+            if (wrQs.length > 0) {
+                wrongExamContainer.style.display = 'block';
+                wrongExamContainer.innerHTML = `
+                    <div class="db-wrong-exam-box">
+                        <div class="db-wrong-exam-info">
+                            <div class="db-wrong-exam-title">❌ SƏHVLƏRİN TƏKRARI</div>
+                            <div class="db-wrong-exam-desc">Bu fəndən <span>${wrQs.length}</span> səhv cavablandırdığınız sual var. Onları düzəltmək üçün imtahana başlayın.</div>
+                        </div>
+                        <button class="db-wrong-exam-btn" onclick="startCourseWrongExam('${c.replace(/'/g, "\\'")}')">İmtahana Başla</button>
+                    </div>
+                `;
+            } else {
+                wrongExamContainer.style.display = 'none';
+                wrongExamContainer.innerHTML = '';
+            }
+        }
+
         // AI Recommendation
         const recTextEl = document.getElementById('db-recommendation-text');
         if (recTextEl) {
@@ -511,7 +532,9 @@ const QuizApp = {
             for (let i = 0; i < total; i++) {
                 const s = document.createElement('div');
                 s.className = 'progress-segment ' + (i === this.state.index ? 'active' : '') + (this.state.answers[i] ? (this.state.answers[i].chosen === this.state.questions[i].a ? ' done' : ' wrong') : '');
-                s.onclick = () => { QuizApp.state.index = i; QuizApp.renderQ(); }; pBar.appendChild(s);
+                s.textContent = i + 1;
+                s.onclick = () => { QuizApp.state.index = i; QuizApp.renderQ(); };
+                pBar.appendChild(s);
             }
         }
 
@@ -587,6 +610,14 @@ const QuizApp = {
         if (!pool.length) return alert("Səhv yoxdur!");
         this.startSpecial(shuffle(pool).slice(0, 20), "💀 Ən Çətinlər", "Səhvlər Təkrarı");
         this.state.isWrongMode = true; this.state.course = "Hard";
+    },
+
+    startCourseWrongExam: function (c) {
+        const arr = this.wrongDB[c] || [];
+        if (!arr.length) return alert("Səhv cavablandırdığınız sual yoxdur.");
+        this.startSpecial(arr, "Səhvlərin Təkrarı: " + c, c);
+        this.state.isWrongMode = true;
+        this.state.course = c;
     },
 
     handleSearch: function (e) {
@@ -1190,6 +1221,11 @@ window.closeModal = (e) => {
     } else {
         const overlay = document.getElementById('modal-overlay');
         if (overlay) overlay.style.display = 'none';
+        
+        // Redirection on closing modal
+        if (QuizApp.state.view === 'quiz' && QuizApp.state.course && QuizApp.state.course !== 'Mock' && QuizApp.state.course !== 'Hard' && QuizApp.state.course !== 'Axtarış') {
+            QuizApp.showCourseDashboard(QuizApp.state.course);
+        }
     }
 };
 
@@ -1199,6 +1235,7 @@ window.handleSearch = QuizApp.handleSearch.bind(QuizApp);
 window.showStatDetails = QuizApp.showStatDetails.bind(QuizApp);
 window.showStatDetailsModal = QuizApp.showStatDetailsModal.bind(QuizApp);
 window.startMock = QuizApp.startMock.bind(QuizApp);
+window.startCourseWrongExam = QuizApp.startCourseWrongExam.bind(QuizApp);
 
 // Simple helpers
 function updateDaily(inc = false) {
