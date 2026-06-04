@@ -152,23 +152,8 @@ const FirebaseSync = {
 
     // Show sync indicator
     showSyncIndicator: function(type) {
-        const indicator = document.createElement('div');
-        indicator.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--bg-element);
-            border: 1px solid var(--border);
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            z-index: 9999;
-            animation: fadeIn 0.3s ease;
-        `;
-        indicator.textContent = type === 'saved' ? '☁️ Yadda saxlanıldı' : '☁️ Yükləndi';
-        document.body.appendChild(indicator);
-        
-        setTimeout(() => indicator.remove(), 2000);
+        // Disabled to prevent user distraction as requested
+        console.log("Sync indicator:", type);
     },
 
     // Auto-save on changes (debounced)
