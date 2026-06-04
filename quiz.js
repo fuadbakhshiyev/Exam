@@ -397,49 +397,128 @@ const QuizApp = {
 
         // Render Units List
         const listEl = document.getElementById('db-unit-list');
+        const layout = localStorage.getItem('quiz_dashboard_layout') || 'grid';
+        
+        // Update layout toggle button active states
+        const gridBtn = document.getElementById('layout-grid-btn');
+        const tableBtn = document.getElementById('layout-table-btn');
+        if (gridBtn && tableBtn) {
+            if (layout === 'table') {
+                gridBtn.classList.remove('active');
+                tableBtn.classList.add('active');
+            } else {
+                tableBtn.classList.remove('active');
+                gridBtn.classList.add('active');
+            }
+        }
+
         if (listEl && CONFIG[c]) {
             listEl.innerHTML = "";
-            CONFIG[c].units.forEach((unitName, i) => {
-                const unitIdx = i + 1;
-                let totalUnitQ = 0;
-                if (typeof quizData !== 'undefined') {
-                    totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
-                }
-
-                const unitKey = `Unit ${unitIdx}`;
-                let c_correct = 0;
-                let c_wrong = 0;
-
-                if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
-                    const us = s.bd['units'][unitKey];
-                    c_correct = us.c;
-                    c_wrong = us.w;
-                }
-
-                const item = document.createElement('div');
-                item.className = 'unit-item';
-                item.innerHTML = `
-                    <div class="unit-item-header">
-                        <div class="unit-item-title">${unitName}</div>
-                        <button class="unit-btn-start" onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">Başla</button>
-                    </div>
-                    <div class="unit-item-stats-grid">
-                        <div class="unit-stat-box">
-                            <span class="us-val">${totalUnitQ}</span>
-                            <span class="us-lbl">CƏMİ SUAL</span>
-                        </div>
-                        <div class="unit-stat-box">
-                            <span class="us-val" style="color: var(--correct)">${c_correct}</span>
-                            <span class="us-lbl">DOĞRU</span>
-                        </div>
-                        <div class="unit-stat-box">
-                            <span class="us-val" style="color: var(--wrong)">${c_wrong}</span>
-                            <span class="us-lbl">YANLIŞ</span>
-                        </div>
-                    </div>
+            
+            if (layout === 'table') {
+                listEl.classList.add('table-mode');
+                
+                // Create table element
+                const table = document.createElement('table');
+                table.className = 'stat-table unit-table';
+                
+                let tbodyHTML = '';
+                CONFIG[c].units.forEach((unitName, i) => {
+                    const unitIdx = i + 1;
+                    let totalUnitQ = 0;
+                    if (typeof quizData !== 'undefined') {
+                        totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
+                    }
+                    
+                    const unitKey = `Unit ${unitIdx}`;
+                    let c_correct = 0;
+                    let c_wrong = 0;
+                    if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
+                        const us = s.bd['units'][unitKey];
+                        c_correct = us.c;
+                        c_wrong = us.w;
+                    }
+                    
+                    let unitAcc = 0;
+                    const totalAnswered = c_correct + c_wrong;
+                    if (totalAnswered > 0) {
+                        unitAcc = Math.round((c_correct / totalAnswered) * 100);
+                    }
+                    
+                    tbodyHTML += `
+                        <tr onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">
+                            <td style="font-weight: 700; color: var(--text-main);"><span class="unit-table-num">${unitIdx}.</span> ${unitName}</td>
+                            <td style="text-align: center;">${totalUnitQ}</td>
+                            <td style="text-align: center; color: var(--active); font-weight: 700;">${c_correct}</td>
+                            <td style="text-align: center; color: var(--wrong); font-weight: 700;">${c_wrong}</td>
+                            <td style="text-align: center; color: var(--accent); font-weight: 700;">${unitAcc}%</td>
+                            <td style="text-align: right;" onclick="event.stopPropagation();">
+                                <button class="unit-btn-start" onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">Başla</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th style="width: 45%;">Bölmə</th>
+                            <th style="text-align: center; width: 12%;">Sual</th>
+                            <th style="text-align: center; width: 10%; color: var(--active);">Düz</th>
+                            <th style="text-align: center; width: 10%; color: var(--wrong);">Səhv</th>
+                            <th style="text-align: center; width: 10%;">Faiz</th>
+                            <th style="text-align: right; width: 13%;">İcra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${tbodyHTML}
+                    </tbody>
                 `;
-                listEl.appendChild(item);
-            });
+                listEl.appendChild(table);
+            } else {
+                listEl.classList.remove('table-mode');
+                CONFIG[c].units.forEach((unitName, i) => {
+                    const unitIdx = i + 1;
+                    let totalUnitQ = 0;
+                    if (typeof quizData !== 'undefined') {
+                        totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
+                    }
+
+                    const unitKey = `Unit ${unitIdx}`;
+                    let c_correct = 0;
+                    let c_wrong = 0;
+
+                    if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
+                        const us = s.bd['units'][unitKey];
+                        c_correct = us.c;
+                        c_wrong = us.w;
+                    }
+
+                    const item = document.createElement('div');
+                    item.className = 'unit-item';
+                    item.innerHTML = `
+                        <div class="unit-item-header">
+                            <div class="unit-item-title">${unitName}</div>
+                            <button class="unit-btn-start" onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">Başla</button>
+                        </div>
+                        <div class="unit-item-stats-grid">
+                            <div class="unit-stat-box">
+                                <span class="us-val">${totalUnitQ}</span>
+                                <span class="us-lbl">CƏMİ SUAL</span>
+                            </div>
+                            <div class="unit-stat-box">
+                                <span class="us-val" style="color: var(--active)">${c_correct}</span>
+                                <span class="us-lbl">DOĞRU</span>
+                            </div>
+                            <div class="unit-stat-box">
+                                <span class="us-val" style="color: var(--wrong)">${c_wrong}</span>
+                                <span class="us-lbl">YANLIŞ</span>
+                            </div>
+                        </div>
+                    `;
+                    listEl.appendChild(item);
+                });
+            }
         }
     },
 
@@ -618,6 +697,13 @@ const QuizApp = {
         this.startSpecial(arr, "Səhvlərin Təkrarı: " + c, c);
         this.state.isWrongMode = true;
         this.state.course = c;
+    },
+
+    setDashboardLayout: function (layout) {
+        localStorage.setItem('quiz_dashboard_layout', layout);
+        if (this.state.course) {
+            this.showCourseDashboard(this.state.course);
+        }
     },
 
     handleSearch: function (e) {
@@ -1236,6 +1322,7 @@ window.showStatDetails = QuizApp.showStatDetails.bind(QuizApp);
 window.showStatDetailsModal = QuizApp.showStatDetailsModal.bind(QuizApp);
 window.startMock = QuizApp.startMock.bind(QuizApp);
 window.startCourseWrongExam = QuizApp.startCourseWrongExam.bind(QuizApp);
+window.setDashboardLayout = QuizApp.setDashboardLayout.bind(QuizApp);
 
 // Simple helpers
 function updateDaily(inc = false) {

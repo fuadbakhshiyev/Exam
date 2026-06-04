@@ -230,7 +230,13 @@
                 
                 <!-- Right Column: Units List -->
                 <div class="dashboard-col-right">
-
+                    <div class="units-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+                        <h3 style="font-size:1.1rem; margin:0; font-family:'Plus Jakarta Sans', sans-serif; font-weight:700;">Bölmələr</h3>
+                        <div class="layout-toggle" style="display:flex; gap:4px; background:var(--bg-element); padding:4px; border-radius:10px; border:1px solid var(--border);">
+                            <button class="layout-btn active" id="layout-grid-btn" onclick="setDashboardLayout('grid')">Kart</button>
+                            <button class="layout-btn" id="layout-table-btn" onclick="setDashboardLayout('table')">Cədvəl</button>
+                        </div>
+                    </div>
                     <div class="unit-list-container" id="db-unit-list"></div>
                 </div>
             </div>
