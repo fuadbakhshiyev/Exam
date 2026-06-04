@@ -509,8 +509,7 @@ const QuizApp = {
         if (total <= 40) {
             for (let i = 0; i < total; i++) {
                 const s = document.createElement('div');
-                s.className = 'progress-segment ' + (i === this.state.index ? 'active' : '') + (this.state.answers[i] ? (this.state.answers[i].chosen === this.state.questions[i].a ? ' correct' : ' done') : '');
-                if (this.state.answers[i] && this.state.answers[i].chosen !== this.state.questions[i].a) s.classList.add('wrong');
+                s.className = 'progress-segment ' + (i === this.state.index ? 'active' : '') + (this.state.answers[i] ? (this.state.answers[i].chosen === this.state.questions[i].a ? ' done' : ' wrong') : '');
                 s.onclick = () => { QuizApp.state.index = i; QuizApp.renderQ(); }; pBar.appendChild(s);
             }
         }
@@ -1159,7 +1158,7 @@ window.checkAnswer = QuizApp.checkAnswer.bind(QuizApp);
 window.nav = QuizApp.nav.bind(QuizApp);
 window.resetUnit = QuizApp.resetUnit.bind(QuizApp);
 window.hint = QuizApp.hint.bind(QuizApp);
-window.closeModal = window.closeModal || ((e) => {
+window.closeModal = (e) => {
     const todoModal = document.getElementById('todo-modal');
     if (todoModal && todoModal.style.display === 'flex') {
         if (typeof TodoApp !== 'undefined') TodoApp.closeModal();
@@ -1167,7 +1166,7 @@ window.closeModal = window.closeModal || ((e) => {
         const overlay = document.getElementById('modal-overlay');
         if (overlay) overlay.style.display = 'none';
     }
-});
+};
 
 window.setChartMode = QuizApp.setChartMode.bind(QuizApp);
 window.resetStatistics = QuizApp.resetStatistics.bind(QuizApp);
