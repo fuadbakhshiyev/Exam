@@ -375,6 +375,20 @@ const QuizApp = {
             }
         }
 
+        // Mixed Exam Section
+        const mixedExamContainer = document.getElementById('db-mixed-exam-container');
+        if (mixedExamContainer) {
+            mixedExamContainer.innerHTML = `
+                <div class="db-mixed-exam-box">
+                    <div class="db-mixed-exam-info">
+                        <div class="db-mixed-exam-title">🎲 QARIŞIQ SINAQ</div>
+                        <div class="db-mixed-exam-desc">Fənnin bütün bölmələrindən qarışıq <span>20 suallıq</span> sürətli sınaq imtahanı işləyin.</div>
+                    </div>
+                    <button class="db-mixed-exam-btn" onclick="startCourseMixedExam('${c.replace(/'/g, "\\'")}')">Sınağa Başla</button>
+                </div>
+            `;
+        }
+
         // AI Recommendation
         const recTextEl = document.getElementById('db-recommendation-text');
         if (recTextEl) {
@@ -382,6 +396,10 @@ const QuizApp = {
             const totalAnswered = s.t;
             if (totalAnswered === 0) {
                 rec = "Bu fənn üzrə hələ heç bir sual cavablandırmamısınız. Öyrənməyə və özünüzü sınamağa başlamaq üçün aşağıdakı bölmələrdən birini seçib 'Başla' düyməsinə klikləyin!";
+            } else if (totalAnswered < 15) {
+                const percent = Math.round((s.c / s.t) * 100);
+                const progressPct = totalQ > 0 ? Math.round((totalAnswered / totalQ) * 100) : 0;
+                rec = `Siz hələ ki bu fənn üzrə cəmi <b>${totalAnswered} sual</b> cavablandırmısınız (doğru cavab nisbəti: ${percent}%, fənn üzrə irəliləyiş: ${progressPct}%). AI-in daha dolğun analiz və tövsiyələr verə bilməsi üçün bölmələri işləməyə davam edin!`;
             } else {
                 const percent = Math.round((s.c / s.t) * 100);
                 if (percent >= 80) {
@@ -662,13 +680,33 @@ const QuizApp = {
         const isCorrect = i === q.a;
         this.state.answers[this.state.index] = { chosen: i };
 
-        if (isCorrect) { this.state.correct++; this.saveCorrect(this.state.course, q); if (this.state.isWrongMode) this.removeWrong(this.state.course, q.q); }
-        else { this.state.wrong++; this.saveWrong(this.state.course, q); this.removeCorrect(this.state.course, q.q); }
+        if (isCorrect) { 
+            this.state.correct++; 
+            this.saveCorrect(this.state.course, q); 
+            if (this.state.isWrongMode) this.removeWrong(this.state.course, q.q); 
+        } else { 
+            this.state.wrong++; 
+            this.saveWrong(this.state.course, q); 
+            this.removeCorrect(this.state.course, q.q); 
+        }
 
-        if (this.state.isMockMode) this.recordStat(this.MOCK_KEY, "mock", `Sınaq`, isCorrect);
-        else if (this.state.course && !this.state.isSearchMode && !this.state.isWrongMode) {
-            let sub = this.state.currentTitle; if (this.state.category === 'units') sub = `Unit ${this.state.selectionIndex + 1}`;
-            this.recordStat(this.state.course, this.state.category, sub, isCorrect);
+        if (this.state.isMockMode) {
+            this.recordStat(this.MOCK_KEY, "mock", `Sınaq`, isCorrect);
+        } else if (this.state.course && !this.state.isSearchMode) {
+            let cat = this.state.category;
+            let sub = this.state.currentTitle;
+            
+            if (this.state.isWrongMode) {
+                cat = 'wrong';
+                sub = 'Səhvlərin Təkrarı';
+            } else if (this.state.isMixedMode) {
+                cat = 'mixed';
+                sub = 'Qarışıq Sınaq';
+            } else if (cat === 'units') {
+                sub = `Unit ${this.state.selectionIndex + 1}`;
+            }
+            
+            this.recordStat(this.state.course, cat, sub, isCorrect);
         }
         updateDaily(true); this.renderQ();
     },
@@ -697,6 +735,20 @@ const QuizApp = {
         this.startSpecial(arr, "Səhvlərin Təkrarı: " + c, c);
         this.state.isWrongMode = true;
         this.state.course = c;
+        this.startTimer(c);
+    },
+
+    startCourseMixedExam: function (c) {
+        if (typeof quizData === 'undefined') return;
+        const qs = quizData.filter(q => q.c === c);
+        if (!qs.length) return alert("Bu fənn üzrə sual tapılmadı.");
+        
+        // Shuffle and take 20 questions
+        const shuffled = shuffle([...qs]).slice(0, 20);
+        this.startSpecial(shuffled, "Qarışıq Sınaq: " + c, c);
+        this.state.isMixedMode = true;
+        this.state.course = c;
+        this.startTimer(c);
     },
 
     setDashboardLayout: function (layout) {
@@ -719,7 +771,7 @@ const QuizApp = {
     startSpecial: function (qs, t, s) {
         this.stopTimer(); this.state.view = 'quiz'; this.state.questions = [...qs];
         this.state.questions.forEach(q => { q.shuffledOpts = shuffle(q.o.map((txt, i) => ({ txt, i }))); });
-        this.state.index = 0; this.state.answers = {}; this.state.correct = 0; this.state.wrong = 0; this.state.isMockMode = false; this.state.isWrongMode = false; this.state.isSearchMode = false;
+        this.state.index = 0; this.state.answers = {}; this.state.correct = 0; this.state.wrong = 0; this.state.isMockMode = false; this.state.isWrongMode = false; this.state.isSearchMode = false; this.state.isMixedMode = false;
         loadTemplate('quiz-template');
 
         document.getElementById('title-unit').textContent = t;
@@ -1322,6 +1374,7 @@ window.showStatDetails = QuizApp.showStatDetails.bind(QuizApp);
 window.showStatDetailsModal = QuizApp.showStatDetailsModal.bind(QuizApp);
 window.startMock = QuizApp.startMock.bind(QuizApp);
 window.startCourseWrongExam = QuizApp.startCourseWrongExam.bind(QuizApp);
+window.startCourseMixedExam = QuizApp.startCourseMixedExam.bind(QuizApp);
 window.setDashboardLayout = QuizApp.setDashboardLayout.bind(QuizApp);
 
 // Simple helpers

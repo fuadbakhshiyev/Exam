@@ -1338,7 +1338,7 @@ body {
 .dashboard-col-left {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
 }
 
 .dashboard-col-right {
@@ -1696,30 +1696,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 2px;
 }
 
 .sync-status-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 600;
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 20px;
-    letter-spacing: 0.02em;
     transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
 }
 
-.sync-status-badge.local {
-    background: rgba(245, 158, 11, 0.1);
-    color: #f59e0b;
-    border: 1px solid rgba(245, 158, 11, 0.2);
-}
-
-.sync-status-badge.synced {
-    background: rgba(34, 197, 94, 0.1);
-    color: #22c55e;
-    border: 1px solid rgba(34, 197, 94, 0.2);
+[data-theme="light"] .sync-status-badge {
+    background: rgba(15, 23, 42, 0.03);
 }
 
 .sync-status-badge .dot {
@@ -1730,13 +1725,13 @@ body {
 }
 
 .sync-status-badge.local .dot {
-    background: #f59e0b;
-    box-shadow: 0 0 6px #f59e0b;
+    background: var(--hint);
+    box-shadow: 0 0 6px var(--hint);
 }
 
 .sync-status-badge.synced .dot {
-    background: #22c55e;
-    box-shadow: 0 0 6px #22c55e;
+    background: var(--active);
+    box-shadow: 0 0 6px var(--active);
     animation: pulse 2s infinite;
 }
 
@@ -1846,7 +1841,6 @@ body {
     gap: 15px;
     transition: all 0.3s ease;
     box-shadow: 0 8px 32px rgba(239, 68, 68, 0.05);
-    margin-bottom: 20px;
 }
 
 .db-wrong-exam-box:hover {
@@ -1970,4 +1964,77 @@ body {
     color: var(--text-muted);
     margin-right: 4px;
     font-weight: 500;
+}
+
+/* --- COURSE DASHBOARD MIXED EXAM BOX --- */
+.db-mixed-exam-box {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.05);
+}
+
+.db-mixed-exam-box:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.08);
+    transform: translateY(-2px);
+}
+
+.db-mixed-exam-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.db-mixed-exam-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: -0.2px;
+}
+
+.db-mixed-exam-desc {
+    font-size: 0.88rem;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+
+.db-mixed-exam-desc span {
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.db-mixed-exam-btn {
+    background: var(--accent-gradient);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.db-mixed-exam-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+}
+
+.db-mixed-exam-btn:active {
+    transform: translateY(0);
 }

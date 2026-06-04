@@ -1,8 +1,9 @@
-const CACHE_NAME = 'quiz-app-v81';
+const CACHE_NAME = 'quiz-app-v88';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
     './manifest.json',
+    './favicon.png',
     './icon-192.png',
     './icon-512.png'
 ];
