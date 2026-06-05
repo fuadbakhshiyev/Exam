@@ -342,7 +342,7 @@ const QuizApp = {
         const correctVal = document.getElementById('db-total-correct');
         const wrongVal = document.getElementById('db-total-wrong');
         correctVal.textContent = s.c;
-        wrongVal.textContent = s.w;
+        wrongVal.textContent = this.wrongDB[c] ? this.wrongDB[c].length : 0;
 
         let acc = 0;
         if (s.t > 0) acc = Math.round((s.c / s.t) * 100);
@@ -931,7 +931,12 @@ const QuizApp = {
         const correctVal = document.getElementById('db-total-correct');
         const wrongVal = document.getElementById('db-total-wrong');
         correctVal.textContent = globalCorrect;
-        wrongVal.textContent = globalWrong;
+        
+        let globalWrongActive = 0;
+        Object.keys(this.wrongDB).forEach(k => {
+            globalWrongActive += this.wrongDB[k].length;
+        });
+        wrongVal.textContent = globalWrongActive;
 
         const accVal = document.getElementById('db-accuracy');
         if (accVal) accVal.textContent = globalAcc + '%';
@@ -1196,7 +1201,7 @@ const QuizApp = {
     startSpecial: function (qs, t, s, isMock = false) {
         this.stopTimer();
         
-        const isWrong = t.toLowerCase().includes('sehv') || t.toLowerCase().includes('cetin') || t.toLowerCase().includes('wrong') || t.toLowerCase().includes('hard');
+        const isWrong = t.toLowerCase().includes('sehv') || t.toLowerCase().includes('səhv') || t.toLowerCase().includes('cetin') || t.toLowerCase().includes('çətin') || t.toLowerCase().includes('wrong') || t.toLowerCase().includes('hard') || t.toLowerCase().includes('multi');
         const isMixed = t.toLowerCase().includes('qarisig') || t.toLowerCase().includes('qarışıq') || t.toLowerCase().includes('mixed');
         const isSearch = t.toLowerCase().includes('axtar') || t.toLowerCase().includes('search');
 
