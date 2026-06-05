@@ -603,19 +603,29 @@ const QuizApp = {
     },
 
     startMultiUnit: function (c) {
-        const arr = this.wrongDB[c] || [];
+        let arr = [];
+        let courseName = c;
+        if (!c || c === 'all' || c === 'Ümumi Toplam') {
+            courseName = 'Ümumi Toplam';
+            Object.keys(this.wrongDB).forEach(k => {
+                arr = arr.concat(this.wrongDB[k]);
+            });
+        } else {
+            arr = this.wrongDB[c] || [];
+        }
+
         if (!arr.length) {
-            alert("Multi bölməsi boşdur! Bu fənn üzrə heç bir səhv cavablandırdığınız sual yoxdur. Əla!");
+            alert("Multi bölməsi boşdur! Heç bir səhv cavablandırdığınız sual yoxdur. Əla!");
             return;
         }
         
         // Start the test with the wrong questions
-        this.startSpecial(arr, "Multi: Səhvlərin Təkrarı", c);
+        this.startSpecial(arr, "Multi: Səhvlərin Təkrarı", courseName);
         this.state.isWrongMode = true;
-        this.state.course = c;
+        this.state.course = courseName;
         this.state.category = 'units'; 
         this.state.currentTitle = 'Multi';
-        this.startTimer(c);
+        this.startTimer(courseName);
     },
 
     renderTopNav: function () {
@@ -757,12 +767,12 @@ const QuizApp = {
 
         if (isCorrect) { 
             this.state.correct++; 
-            this.saveCorrect(this.state.course, q); 
-            if (this.state.isWrongMode) this.removeWrong(this.state.course, q.q); 
+            this.saveCorrect(q.c, q); 
+            if (this.state.isWrongMode) this.removeWrong(q.c, q.q); 
         } else { 
             this.state.wrong++; 
-            this.saveWrong(this.state.course, q); 
-            this.removeCorrect(this.state.course, q.q); 
+            this.saveWrong(q.c, q); 
+            this.removeCorrect(q.c, q.q); 
             
             // Increment persistent wrong counts for difficulty analysis
             if (!this.wrongCounts) this.wrongCounts = {};
@@ -1007,6 +1017,12 @@ const QuizApp = {
 
         if (listEl) {
             listEl.innerHTML = "";
+            let wrQs = [];
+            Object.keys(this.wrongDB).forEach(k => {
+                wrQs = wrQs.concat(this.wrongDB[k]);
+            });
+            const hardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 2).length;
+            const veryHardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 3).length;
             
             if (layout === 'table') {
                 listEl.classList.add('table-mode');
@@ -1015,7 +1031,23 @@ const QuizApp = {
                 const table = document.createElement('table');
                 table.className = 'stat-table unit-table';
                 
-                let tbodyHTML = '';
+                // Prepend Multi row to tbodyHTML
+                let tbodyHTML = `
+                    <tr onclick="QuizApp.startMultiUnit('all')" style="background: rgba(99, 102, 241, 0.05); border-left: 3px solid var(--accent);">
+                        <td style="font-weight: 800; color: var(--accent);">
+                            <span class="unit-table-num">⭐</span> Multi (Səhvlərin Təkrarı)
+                            ${hardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(245, 158, 11, 0.08); border: 1px solid var(--hint); color: var(--hint); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">⚠️ ${hardQsCount} Çətin</span>` : ''}
+                            ${veryHardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid var(--wrong); color: var(--wrong); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">🔥 ${veryHardQsCount} Çox Çətin</span>` : ''}
+                        </td>
+                        <td style="text-align: center;">${wrQs.length}</td>
+                        <td style="text-align: center; color: var(--active); font-weight: 700;">-</td>
+                        <td style="text-align: center; color: var(--wrong); font-weight: 700;">${wrQs.length}</td>
+                        <td style="text-align: center; color: var(--accent); font-weight: 700;">-</td>
+                        <td style="text-align: right;" onclick="event.stopPropagation();">
+                            <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('all')">Başla</button>
+                        </td>
+                    </tr>
+                `;
                 Object.keys(CONFIG).forEach((c) => {
                     let totalCourseQ = 0;
                     if (typeof quizData !== 'undefined') {
@@ -1061,6 +1093,34 @@ const QuizApp = {
                 listEl.appendChild(table);
             } else {
                 listEl.classList.remove('table-mode');
+                
+                // Prepend Multi card to listEl in Grid layout
+                const multiItem = document.createElement('div');
+                multiItem.className = 'unit-item';
+                multiItem.style.background = 'linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%)';
+                multiItem.style.border = '1px solid rgba(139, 92, 246, 0.3)';
+                multiItem.innerHTML = `
+                    <div class="unit-item-header">
+                        <div class="unit-item-title" style="color: var(--accent); font-weight: 800;">⭐ Multi (Səhvlərin Təkrarı)</div>
+                        <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('all')">Başla</button>
+                    </div>
+                    <div class="unit-item-stats-grid">
+                        <div class="unit-stat-box">
+                            <span class="us-val" style="color: var(--text-main); font-weight: 800;">${wrQs.length}</span>
+                            <span class="us-lbl">SƏHV SUAL</span>
+                        </div>
+                        <div class="unit-stat-box">
+                            <span class="us-val" style="color: var(--hint); font-weight: 800;">⚠️ ${hardQsCount}</span>
+                            <span class="us-lbl">ÇƏTİN (2+)</span>
+                        </div>
+                        <div class="unit-stat-box">
+                            <span class="us-val" style="color: var(--wrong); font-weight: 800;">🔥 ${veryHardQsCount}</span>
+                            <span class="us-lbl">ÇOX ÇƏTİN (3+)</span>
+                        </div>
+                    </div>
+                `;
+                listEl.appendChild(multiItem);
+                
                 Object.keys(CONFIG).forEach((c) => {
                     let totalCourseQ = 0;
                     if (typeof quizData !== 'undefined') {
