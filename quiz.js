@@ -23,6 +23,7 @@ const QuizApp = {
 
     init: function () {
         this.loadData();
+        this.initSurpriseTimer();
     },
 
     loadData: function () {
@@ -2006,6 +2007,134 @@ const QuizApp = {
                 </div>
             </div>
         `;
+    },
+
+    surpriseInterval: null,
+    surpriseCountdown: null,
+    
+    initSurpriseTimer: function() {
+        if (this.surpriseInterval) clearInterval(this.surpriseInterval);
+        
+        // Every 3 minutes (180,000 ms), trigger a surprise question
+        this.surpriseInterval = setInterval(() => {
+            const overlay = document.getElementById('surprise-modal-overlay');
+            if (overlay && overlay.style.display !== 'flex') {
+                this.triggerSurpriseQuestion();
+            }
+        }, 180000);
+    },
+    
+    triggerSurpriseQuestion: function() {
+        if (typeof quizData === 'undefined' || quizData.length === 0) return;
+        
+        // Pick a random question
+        const randIndex = Math.floor(Math.random() * quizData.length);
+        const q = quizData[randIndex];
+        
+        const overlay = document.getElementById('surprise-modal-overlay');
+        const meta = document.getElementById('surprise-meta');
+        const qText = document.getElementById('surprise-question-text');
+        const optList = document.getElementById('surprise-options-list');
+        const timerDisp = document.getElementById('surprise-timer');
+        const footer = document.getElementById('surprise-footer');
+        
+        if (!overlay || !meta || !qText || !optList || !timerDisp || !footer) return;
+        
+        meta.textContent = `${q.c} • Unit ${q.u}`;
+        qText.textContent = q.q;
+        optList.innerHTML = '';
+        footer.style.display = 'none';
+        
+        // Reset and start 30s countdown
+        let timeLeft = 30;
+        timerDisp.textContent = `${timeLeft}s`;
+        timerDisp.style.color = '#ef4444';
+        timerDisp.style.background = 'rgba(239,68,68,0.1)';
+        timerDisp.style.borderColor = 'rgba(239,68,68,0.2)';
+        
+        let answered = false;
+        
+        if (this.surpriseCountdown) clearInterval(this.surpriseCountdown);
+        this.surpriseCountdown = setInterval(() => {
+            timeLeft--;
+            timerDisp.textContent = `${timeLeft}s`;
+            if (timeLeft <= 0) {
+                clearInterval(this.surpriseCountdown);
+                if (!answered) {
+                    revealAnswer(null); // Time out, count as incorrect
+                }
+            }
+        }, 1000);
+        
+        const revealAnswer = (chosenIndex) => {
+            answered = true;
+            clearInterval(this.surpriseCountdown);
+            
+            const isCorrect = chosenIndex === q.a;
+            
+            // Record stats
+            if (!this.stats[q.c]) this.stats[q.c] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
+            this.stats[q.c].t++;
+            if (isCorrect) {
+                this.stats[q.c].c++;
+                this.saveCorrect(q.c, q);
+                this.recordDailyHistory(q.c, true, 0);
+            } else {
+                this.stats[q.c].w++;
+                this.saveWrong(q.c, q);
+                this.recordDailyHistory(q.c, false, 0);
+                
+                // Multi unit wrong count increment
+                if (!this.wrongCounts) this.wrongCounts = {};
+                this.wrongCounts[q.q] = (this.wrongCounts[q.q] || 0) + 1;
+                localStorage.setItem(this.DB.wrongCounts, JSON.stringify(this.wrongCounts));
+            }
+            this.saveStats();
+            updateDaily(isCorrect);
+            
+            // Sync with Firebase automatically
+            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
+                FirebaseSync.triggerAutoSave();
+            }
+            
+            // Style the options to show correct/incorrect
+            const buttons = optList.querySelectorAll('.surprise-opt-btn');
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === q.a) {
+                    btn.classList.add('correct');
+                } else if (idx === chosenIndex) {
+                    btn.classList.add('wrong');
+                }
+            });
+            
+            // Display footer to let user close
+            footer.style.display = 'flex';
+        };
+        
+        q.o.forEach((option, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'surprise-opt-btn';
+            btn.textContent = option;
+            btn.onclick = () => {
+                if (!answered) {
+                    revealAnswer(idx);
+                }
+            };
+            optList.appendChild(btn);
+        });
+        
+        overlay.style.display = 'flex';
+    },
+    
+    closeSurpriseModal: function() {
+        const overlay = document.getElementById('surprise-modal-overlay');
+        if (overlay) overlay.style.display = 'none';
+        
+        // If we are on the home screen, reload the screen to update stats
+        if (this.state.view === 'home') {
+            this.start();
+        }
     }
 };
 
@@ -2053,6 +2182,7 @@ window.exportBackup = QuizApp.exportBackup.bind(QuizApp);
 window.copyBackupToClipboard = QuizApp.copyBackupToClipboard.bind(QuizApp);
 window.importBackup = QuizApp.importBackup.bind(QuizApp);
 window.startMultiUnit = QuizApp.startMultiUnit.bind(QuizApp);
+window.closeSurpriseModal = QuizApp.closeSurpriseModal.bind(QuizApp);
 
 // Simple helpers
 function updateDaily(inc = false) {

@@ -260,6 +260,27 @@
         </div>
     </div>
 
+    <!-- Surprise Question Modal Overlay -->
+    <div class="modal-overlay" id="surprise-modal-overlay" style="display:none; justify-content:center; align-items:center; z-index:2000;">
+        <div class="modal-box surprise-box" style="position:relative; max-width:550px; width:90%; padding:28px; border-radius:24px; background:var(--bg-card); border:1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+            <div class="surprise-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:1.5rem;">🎁</span>
+                    <h3 style="margin:0; font-family:'Plus Jakarta Sans', sans-serif; font-weight:800; background:linear-gradient(135deg, #f59e0b 0%, #f97316 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Sürpriz Sual!</h3>
+                </div>
+                <div id="surprise-timer" style="font-family:'Plus Jakarta Sans', sans-serif; font-weight:800; font-size:1.1rem; color:#ef4444; background:rgba(239,68,68,0.1); padding:4px 10px; border-radius:8px; border:1px solid rgba(239,68,68,0.2);">30s</div>
+            </div>
+            <div class="surprise-content">
+                <div id="surprise-meta" style="font-size:0.8rem; color:var(--text-muted); font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;"></div>
+                <div id="surprise-question-text" style="font-size:1.1rem; font-weight:600; color:var(--text-main); margin-bottom:20px; line-height:1.5;"></div>
+                <div id="surprise-options-list" style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;"></div>
+            </div>
+            <div class="surprise-footer" id="surprise-footer" style="display:none; justify-content:flex-end;">
+                <button class="btn btn-pri" onclick="QuizApp.closeSurpriseModal()" style="width:100%; padding:12px; border-radius:12px; font-weight:700; background:var(--accent-gradient);">Davam Et</button>
+            </div>
+        </div>
+    </div>
+
     <!-- SCRIPTS -->
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
