@@ -65,6 +65,30 @@ const QuizApp = {
 
         const unanswered = Math.max(0, globalTotalQ - globalTotalAns);
 
+        // Calculate today's stats from dailyHistory
+        const tempD = new Date();
+        const todayStr = `${tempD.getFullYear()}-${String(tempD.getMonth() + 1).padStart(2, '0')}-${String(tempD.getDate()).padStart(2, '0')}`;
+        const todayData = this.dailyHistory ? (this.dailyHistory[todayStr] || {}) : {};
+        let todayQuestions = 0;
+        let todayTime = 0;
+        let todayCorrect = 0;
+        let todayWrong = 0;
+        Object.values(todayData).forEach(cData => {
+            todayQuestions += (cData.correct || 0) + (cData.wrong || 0);
+            todayTime += (cData.time || 0);
+            todayCorrect += (cData.correct || 0);
+            todayWrong += (cData.wrong || 0);
+        });
+
+        const formatTodayTime = (s) => {
+            if (s <= 0) return '0m';
+            if (s < 60) return `${s}s`;
+            const h = Math.floor(s / 3600);
+            const m = Math.floor((s % 3600) / 60);
+            if (h > 0) return `${h}h ${m}m`;
+            return `${m}m`;
+        };
+
         container.innerHTML = `
             <div class="dashboard">
                 <div class="dashboard-header">
@@ -117,6 +141,25 @@ const QuizApp = {
                             <button id="toggle-chart-mode-t" class="chart-toggle-btn" onclick="setChartMode('time')">Sərf edilən vaxt</button>
                         </div>
                     </div>
+
+                    <div class="hap-today-summary-box">
+                        <div class="hap-today-stat-item">
+                            <span class="hap-today-stat-label">Bugünkü Sual Sayı</span>
+                            <span class="hap-today-stat-val questions">${todayQuestions}</span>
+                        </div>
+                        <div class="hap-today-stat-item">
+                            <span class="hap-today-stat-label">Bugünkü Vaxt</span>
+                            <span class="hap-today-stat-val time">${formatTodayTime(todayTime)}</span>
+                        </div>
+                        <div class="hap-today-stat-item">
+                            <span class="hap-today-stat-label">Bugünkü Cavablar</span>
+                            <span class="hap-today-stat-val ratio">
+                                <span class="correct-text">${todayCorrect} Düz</span> / 
+                                <span class="wrong-text">${todayWrong} Səhv</span>
+                            </span>
+                        </div>
+                    </div>
+
                     <div class="hap-chart-body" style="position: relative;">
                         <canvas id="home-dynamics-canvas" style="width: 100%; height: 250px;"></canvas>
                         <div id="chart-tooltip" class="chart-tooltip" style="display: none;"></div>

@@ -2077,6 +2077,59 @@ body {
         max-width: 820px !important;
     }
     .home-analytics-panel {
-        grid-template-columns: 30% 70% !important;
+        grid-template-columns: 3fr 7fr !important;
+    }
+}
+
+/* --- TODAY SUMMARY BOX STYLES --- */
+.hap-today-summary-box {
+    display: flex;
+    gap: 32px;
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.hap-today-stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.hap-today-stat-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+.hap-today-stat-val {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+.hap-today-stat-val.questions {
+    color: var(--accent);
+}
+.hap-today-stat-val.time {
+    color: var(--hint);
+}
+.correct-text {
+    color: var(--active);
+}
+.wrong-text {
+    color: var(--wrong);
+}
+
+@media (max-width: 600px) {
+    .hap-today-summary-box {
+        gap: 16px;
+        padding: 12px 14px;
+        flex-wrap: wrap;
+    }
+    .hap-today-stat-val {
+        font-size: 1.05rem;
     }
 }
