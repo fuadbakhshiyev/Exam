@@ -93,7 +93,6 @@ const QuizApp = {
             <div class="dashboard">
                 <div class="dashboard-header">
                     <h1>Xoş gəldiniz, Fuad!</h1>
-                    <p>Hazırlaşmaq istədiyiniz fənni seçərək imtahan testlərinə başlayın.</p>
                 </div>
 
                 <div class="home-analytics-panel">
