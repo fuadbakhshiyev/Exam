@@ -1645,17 +1645,125 @@ const QuizApp = {
         document.getElementById('theme-btn').textContent = n === 'dark' ? '☀️' : '🌙';
     },
 
+    changeFontScale: function (scale) {
+        this.settings.scale = scale;
+        this.applyTheme();
+        localStorage.setItem(this.DB.settings, JSON.stringify(this.settings));
+        this.showSettings();
+    },
+
+    exportBackup: function () {
+        const backup = {};
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.startsWith('qa_v31_') || key === 'theme' || key === 'qa_v31_h') {
+                backup[key] = localStorage.getItem(key);
+            }
+        }
+        return JSON.stringify(backup);
+    },
+
+    copyBackupToClipboard: function () {
+        const txt = document.getElementById('backup-export-text');
+        if (!txt) return;
+        txt.select();
+        txt.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(txt.value).then(() => {
+            const btn = document.getElementById('btn-copy-backup');
+            if (btn) {
+                const oldText = btn.textContent;
+                btn.textContent = "Kopyalandı! ✓";
+                btn.style.background = "var(--active)";
+                btn.style.color = "white";
+                setTimeout(() => {
+                    btn.textContent = oldText;
+                    btn.style.background = "";
+                    btn.style.color = "";
+                }, 2000);
+            }
+        }).catch(err => {
+            alert("Kopyalama xətası: " + err);
+        });
+    },
+
+    importBackup: function () {
+        const txt = document.getElementById('backup-import-text');
+        if (!txt || !txt.value.trim()) {
+            alert("Zəhmət olmasa, ehtiyat nüsxə JSON-unu daxil edin.");
+            return;
+        }
+        try {
+            const data = JSON.parse(txt.value.trim());
+            let count = 0;
+            for (const [key, val] of Object.entries(data)) {
+                if (key.startsWith('qa_v31_') || key === 'theme' || key === 'qa_v31_h') {
+                    const stringValue = typeof val === 'string' ? val : JSON.stringify(val);
+                    localStorage.setItem(key, stringValue);
+                    count++;
+                }
+            }
+            if (count > 0) {
+                alert("Məlumatlar uğurla idxal edildi! Səhifə yenilənəcək.");
+                this.loadData();
+                if (typeof FirebaseSync !== 'undefined' && FirebaseSync.saveToCloud) {
+                    FirebaseSync.saveToCloud();
+                }
+                location.reload();
+            } else {
+                alert("İdxal üçün uyğun açarlar (qa_v31_) tapılmadı.");
+            }
+        } catch (e) {
+            alert("İdxal xətası: Daxil edilən məlumat düzgün JSON formatında deyil. Zəhmət olmasa, kopyaladığınız mətni tam olaraq daxil etdiyinizdən əmin olun.");
+        }
+    },
+
     showSettings: function () {
         document.getElementById('modal-overlay').style.display = 'flex';
         document.getElementById('modal-title').textContent = "Tənzimləmələr";
-        document.getElementById('modal-body').innerHTML = `<div class="settings-row" style="text-align:center; padding:20px;">
-            <h3 style="margin-bottom:15px;">Şrift Ölçüsü</h3>
-            <div style="display:flex; justify-content:center; gap:10px;">
-                <button class="nav-pill" onclick="QuizApp.settings.scale=0.9;QuizApp.applyTheme();localStorage.setItem(QuizApp.DB.settings,JSON.stringify(QuizApp.settings))">Kiçik</button>
-                <button class="nav-pill" onclick="QuizApp.settings.scale=1;QuizApp.applyTheme();localStorage.setItem(QuizApp.DB.settings,JSON.stringify(QuizApp.settings))">Orta</button>
-                <button class="nav-pill" onclick="QuizApp.settings.scale=1.15;QuizApp.applyTheme();localStorage.setItem(QuizApp.DB.settings,JSON.stringify(QuizApp.settings))">Böyük</button>
+        
+        const scale = this.settings.scale || 1;
+        const backupData = this.exportBackup();
+        
+        document.getElementById('modal-body').innerHTML = `
+            <div class="settings-container" style="display:flex; flex-direction:column; gap:24px; padding:10px 0;">
+                <!-- Font Scale Section -->
+                <div class="settings-section" style="border-bottom:1px solid var(--border); padding-bottom:20px;">
+                    <h4 style="margin-bottom:12px; font-weight:600; color:var(--text-main);">Şrift Ölçüsü</h4>
+                    <div style="display:flex; gap:10px;">
+                        <button class="nav-pill ${scale === 0.9 ? 'active' : ''}" onclick="window.changeFontScale(0.9)">Kiçik</button>
+                        <button class="nav-pill ${scale === 1 ? 'active' : ''}" onclick="window.changeFontScale(1)">Orta</button>
+                        <button class="nav-pill ${scale === 1.15 ? 'active' : ''}" onclick="window.changeFontScale(1.15)">Böyük</button>
+                    </div>
+                </div>
+                
+                <!-- Backup & Restore Section -->
+                <div class="settings-section">
+                    <h4 style="margin-bottom:8px; font-weight:600; color:var(--text-main);">Məlumatların Ehtiyat Nüsxəsi</h4>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:15px; line-height:1.4;">
+                        Statistikalarınızı, səhvlərinizi və digər datalarınızı başqa bir cihaza/domenə keçirmək üçün istifadə edin.
+                    </p>
+                    
+                    <!-- Export Box -->
+                    <div style="margin-bottom:18px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                            <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Ehtiyat Nüsxəni İxrac Et</span>
+                            <button id="btn-copy-backup" onclick="window.copyBackupToClipboard()" style="background:var(--bg-element); border:1px solid var(--border); color:var(--text-main); font-size:0.75rem; padding:4px 10px; border-radius:6px; cursor:pointer; font-weight:600; transition:all 0.2s;">Kopyala</button>
+                        </div>
+                        <textarea id="backup-export-text" readonly style="width:100%; height:80px; background:var(--bg-input); border:1px solid var(--border); border-radius:8px; padding:8px; font-family:monospace; font-size:0.75rem; color:var(--text-muted); resize:none; outline:none; white-space:pre-wrap; word-break:break-all;">${backupData}</textarea>
+                    </div>
+                    
+                    <!-- Import Box -->
+                    <div>
+                        <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; display:block; margin-bottom:6px;">Ehtiyat Nüsxəni İdxal Et</span>
+                        <textarea id="backup-import-text" placeholder="Bərpa etmək istədiyiniz JSON məlumatını bura yapışdırın..." style="width:100%; height:80px; background:var(--bg-input); border:1px solid var(--border); border-radius:8px; padding:8px; font-family:monospace; font-size:0.75rem; color:var(--text-main); resize:none; outline:none; margin-bottom:10px; transition:border-color 0.2s;"></textarea>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:0.7rem; color:var(--wrong); font-weight:500;">⚠️ Mövcud lokal datanız silinəcək!</span>
+                            <button onclick="window.importBackup()" style="background:var(--accent); border:none; color:white; font-size:0.8rem; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:600; transition:opacity 0.2s;">İdxal Et</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>`;
+        `;
     }
 };
 
@@ -1696,6 +1804,10 @@ window.startMock = QuizApp.startMock.bind(QuizApp);
 window.startCourseWrongExam = QuizApp.startCourseWrongExam.bind(QuizApp);
 window.startCourseMixedExam = QuizApp.startCourseMixedExam.bind(QuizApp);
 window.setDashboardLayout = QuizApp.setDashboardLayout.bind(QuizApp);
+window.changeFontScale = QuizApp.changeFontScale.bind(QuizApp);
+window.exportBackup = QuizApp.exportBackup.bind(QuizApp);
+window.copyBackupToClipboard = QuizApp.copyBackupToClipboard.bind(QuizApp);
+window.importBackup = QuizApp.importBackup.bind(QuizApp);
 
 // Simple helpers
 function updateDaily(inc = false) {
