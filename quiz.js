@@ -33,6 +33,7 @@ const QuizApp = {
 
     start: function () {
         this.stopTimer();
+        this.state.view = 'home';
         const container = document.getElementById('content-area');
         if (!container) return;
 
@@ -305,6 +306,8 @@ const QuizApp = {
 
     showCourseDashboard: function (c) {
         this.stopTimer();
+        this.state.view = 'dashboard';
+        this.state.course = c;
         const tn = document.getElementById('top-nav');
         if (tn) tn.style.display = 'none';
 
@@ -1061,6 +1064,7 @@ const QuizApp = {
 
     showStats: function () {
         this.stopTimer();
+        this.state.view = 'stats';
         const tn = document.getElementById('top-nav');
         if (tn) tn.style.display = 'none';
 
@@ -1216,6 +1220,7 @@ const QuizApp = {
 
     showWrong: function () {
         this.stopTimer();
+        this.state.view = 'wrong';
         const tn = document.getElementById('top-nav');
         if (tn) tn.style.display = 'none';
         loadTemplate('wrong-menu-template');
@@ -1785,11 +1790,13 @@ window.closeModal = (e) => {
         if (overlay) overlay.style.display = 'none';
         
         // Redirection on closing modal
-        if (QuizApp.state.view === 'quiz' && QuizApp.state.course) {
+        if (QuizApp.state.view === 'quiz') {
             if (QuizApp.state.course === 'Ümumi Toplam' || QuizApp.state.course === QuizApp.MOCK_KEY) {
                 QuizApp.showOverallDashboard();
-            } else if (typeof CONFIG !== 'undefined' && CONFIG[QuizApp.state.course] !== undefined) {
+            } else if (QuizApp.state.course && typeof CONFIG !== 'undefined' && CONFIG[QuizApp.state.course] !== undefined) {
                 QuizApp.showCourseDashboard(QuizApp.state.course);
+            } else {
+                QuizApp.start();
             }
         }
     }
