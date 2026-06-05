@@ -1,3 +1,12 @@
+const COURSE_STYLES = {
+    "Atatürk İlkeleri ve İnkılap Tarihi II": { icon: "🏛️", accent: "#ef4444", g1: "#ef4444", g2: "#f97316" },
+    "Görsel İletişim Tasarımı": { icon: "🎨", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" },
+    "Grafik Tasarım II": { icon: "📐", accent: "#10b981", g1: "#10b981", g2: "#06b6d4" },
+    "Masaüstü Yayıncılık": { icon: "💻", accent: "#3b82f6", g1: "#3b82f6", g2: "#6366f1" },
+    "Tasarımda Tipografi": { icon: "✍️", accent: "#f59e0b", g1: "#f59e0b", g2: "#ef4444" },
+    "Türk Dili II": { icon: "📖", accent: "#8b5cf6", g1: "#8b5cf6", g2: "#ec4899" }
+};
+
 const QuizApp = {
     state: { course: null, category: null, currentTitle: null, questions: [], index: 0, answers: {}, correct: 0, wrong: 0, view: 'quiz', sessionStartTime: 0, isWrongMode: false, isSearchMode: false, isMockMode: false, isFlashcard: false },
     DB: { stats: 'qa_v31_s', wrong: 'qa_v31_w', correct: 'qa_v31_c', marks: 'qa_v31_m', daily: 'qa_v31_d', settings: 'qa_v31_conf', wrongCounts: 'qa_v31_wc' },
@@ -684,6 +693,23 @@ const QuizApp = {
 
         const q = this.state.questions[this.state.index];
         const ans = this.state.answers[this.state.index];
+
+        const qMetaEl = document.getElementById('q-meta');
+        if (qMetaEl) {
+            const isMixedOrWrongOrMockOrMulti = this.state.isMockMode || this.state.isWrongMode || this.state.isSearchMode || this.state.category === 'mixed' || this.state.category === 'exams' || this.state.currentTitle === 'Multi';
+            if (isMixedOrWrongOrMockOrMulti) {
+                const uName = (CONFIG[q.c] && CONFIG[q.c].units[q.u - 1]) || `Unit ${q.u}`;
+                const style = COURSE_STYLES[q.c] || { accent: '#6366f1', g1: '#6366f1', g2: '#8b5cf6' };
+                qMetaEl.innerHTML = `
+                    <span class="badge-meta-course" style="background: rgba(99, 102, 241, 0.08); border: 1px solid ${style.accent}30; color: ${style.accent}; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700;">${q.c}</span>
+                    <span style="color: var(--text-muted); font-size: 0.75rem;">&bull;</span>
+                    <span class="badge-meta-unit" style="background: var(--bg-element); border: 1px solid var(--border); color: var(--text-main); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 600;">${uName}</span>
+                `;
+                qMetaEl.style.display = 'flex';
+            } else {
+                qMetaEl.style.display = 'none';
+            }
+        }
 
         const sNav = document.getElementById('subject-nav');
         if (this.state.isMockMode) {
