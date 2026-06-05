@@ -228,7 +228,8 @@ const QuizApp = {
         const pctProgress = totalQ > 0 ? (totalAns / totalQ) * 100 : 0;
 
         const totalRow = document.createElement('div');
-        totalRow.className = 'hap-course-row';
+        totalRow.className = 'hap-course-row clickable';
+        totalRow.onclick = () => this.showOverallDashboard();
         totalRow.innerHTML = `
             <div class="hap-course-left">
                 <div class="hap-course-dot" style="background: linear-gradient(135deg, #a8a29e, #78716c);">📊</div>
@@ -718,8 +719,8 @@ const QuizApp = {
             const qs = quizData.filter(q => q.c === c);
             if (qs.length) pool = pool.concat(shuffle(qs).slice(0, 20));
         });
-        this.startSpecial(pool, this.MOCK_KEY, "Real Sınaq Rejimi");
-        this.state.isMockMode = true; this.state.course = this.MOCK_KEY; this.startTimer(this.MOCK_KEY);
+        this.startSpecial(pool, this.MOCK_KEY, "Real Sınaq Rejimi", true);
+        this.state.course = this.MOCK_KEY; this.startTimer(this.MOCK_KEY);
     },
 
     startHard: function () {
@@ -754,7 +755,261 @@ const QuizApp = {
     setDashboardLayout: function (layout) {
         localStorage.setItem('quiz_dashboard_layout', layout);
         if (this.state.course) {
-            this.showCourseDashboard(this.state.course);
+            if (this.state.course === 'Ümumi Toplam') {
+                this.showOverallDashboard();
+            } else {
+                this.showCourseDashboard(this.state.course);
+            }
+        }
+    },
+
+    showOverallDashboard: function () {
+        this.stopTimer();
+        this.state = { ...this.state, view: 'dashboard', course: 'Ümumi Toplam', category: null, isWrongMode: false, isSearchMode: false, isMockMode: false };
+
+        const tn = document.getElementById('top-nav');
+        if (tn) tn.style.display = 'none';
+
+        // Clear sidebar active states
+        document.querySelectorAll('.course-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active-sub'));
+
+        loadTemplate('course-dashboard-template');
+
+        // Title and Subtitle
+        const titleEl = document.getElementById('db-course-title');
+        if (titleEl) titleEl.textContent = 'Ümumi Toplam';
+        
+        // Find subtitle element
+        const headerDiv = document.querySelector('.dashboard-full-container .dashboard-header div');
+        if (headerDiv) {
+            const sub = headerDiv.querySelector('span');
+            if (sub) sub.textContent = 'Bütün fənlər üzrə ümumi irəliləyiş, analiz və göstəricilər';
+        }
+
+        // Aggregate statistics
+        let globalTime = 0;
+        let globalCorrect = 0;
+        let globalWrong = 0;
+        let globalTotalAns = 0;
+
+        Object.values(this.stats).forEach(s => {
+            if (s.time) globalTime += s.time;
+            if (s.c) globalCorrect += s.c;
+            if (s.w) globalWrong += s.w;
+            if (s.t) globalTotalAns += s.t;
+        });
+
+        let globalAcc = 0;
+        if (globalTotalAns > 0) globalAcc = Math.round((globalCorrect / globalTotalAns) * 100);
+        let globalTotalQ = typeof quizData !== 'undefined' ? quizData.length : 0;
+
+        document.getElementById('db-total-questions').textContent = globalTotalQ;
+        document.getElementById('db-total-time').textContent = this.formatTime(globalTime);
+        
+        const correctVal = document.getElementById('db-total-correct');
+        const wrongVal = document.getElementById('db-total-wrong');
+        correctVal.textContent = globalCorrect;
+        wrongVal.textContent = globalWrong;
+
+        const accVal = document.getElementById('db-accuracy');
+        if (accVal) accVal.textContent = globalAcc + '%';
+
+        // Interactive correct/wrong clicks
+        const correctCard = correctVal.parentElement;
+        const wrongCard = wrongVal.parentElement;
+        
+        correctCard.style.cursor = 'pointer';
+        correctCard.title = 'Bütün fənlərdən düzgün cavablandırdığınız suallara baxmaq üçün klikləyin';
+        correctCard.onclick = () => {
+            let arr = [];
+            Object.keys(this.correctDB).forEach(k => {
+                arr = arr.concat(this.correctDB[k]);
+            });
+            if(arr.length) this.startSpecial(arr, "Ümumi Doğrular", "Bütün Fənlər");
+            else alert("Doğru cavablandırdığınız sual hələ ki yoxdur.");
+        };
+
+        wrongCard.style.cursor = 'pointer';
+        wrongCard.title = 'Bütün fənlərdən səhv cavablandırdığınız suallara baxmaq üçün klikləyin';
+        wrongCard.onclick = () => {
+            let arr = [];
+            Object.keys(this.wrongDB).forEach(k => {
+                arr = arr.concat(this.wrongDB[k]);
+            });
+            if(arr.length) this.startSpecial(arr, "Ümumi Səhvlər", "Bütün Fənlər");
+            else alert("Əla! Səhv cavablandırdığınız sual yoxdur.");
+        };
+
+        // Səhvlərin Təkrarı Box
+        const wrongExamContainer = document.getElementById('db-wrong-exam-container');
+        if (wrongExamContainer) {
+            let wrQs = [];
+            Object.keys(this.wrongDB).forEach(k => {
+                wrQs = wrQs.concat(this.wrongDB[k]);
+            });
+            if (wrQs.length > 0) {
+                wrongExamContainer.style.display = 'block';
+                wrongExamContainer.innerHTML = `
+                    <div class="db-wrong-exam-box">
+                        <div class="db-wrong-exam-info">
+                            <div class="db-wrong-exam-title">❌ SƏHVLƏRİN TƏKRARI</div>
+                            <div class="db-wrong-exam-desc">Bütün fənlərdən cəmi <span>${wrQs.length}</span> səhv cavablandırdığınız sual var. Onları düzəltmək üçün imtahana başlayın.</div>
+                        </div>
+                        <button class="db-wrong-exam-btn" onclick="QuizApp.startHard()">İmtahana Başla</button>
+                    </div>
+                `;
+            } else {
+                wrongExamContainer.style.display = 'none';
+            }
+        }
+
+        // Qarışıq Sınaq Box (Real Sınaq Rejimi)
+        const mixedExamContainer = document.getElementById('db-mixed-exam-container');
+        if (mixedExamContainer) {
+            mixedExamContainer.innerHTML = `
+                <div class="db-mixed-exam-box">
+                    <div class="db-mixed-exam-info">
+                        <div class="db-mixed-exam-title">🎲 BÖYÜK SINAQ</div>
+                        <div class="db-mixed-exam-desc">Bütün fənlərdən qarışıq <span>real sınaq imtahanı</span> işləyərək özünüzü yoxlayın.</div>
+                    </div>
+                    <button class="db-mixed-exam-btn" onclick="QuizApp.startMock()">Sınağa Başla</button>
+                </div>
+            `;
+        }
+
+        // AI Recommendation
+        const recTextEl = document.getElementById('db-recommendation-text');
+        if (recTextEl) {
+            let rec = "";
+            if (globalTotalAns === 0) {
+                rec = "Hələ ki heç bir sual cavablandırmamısınız. İmtahana hazırlaşmaq üçün hər hansı bir fənni seçib sualları işləməyə başlayın!";
+            } else {
+                const percent = globalAcc;
+                if (percent >= 80) {
+                    rec = `Mükəmməl ümumi nəticə! Dəqiqliyiniz ${percent}%-dir. Bu tempi qoruyub saxlamaq üçün mütəmadi olaraq <b>Böyük Sınaq</b> işləyin.`;
+                } else if (percent >= 50) {
+                    rec = `Ümumi hazırlıq səviyyəniz yaxşıdır (${percent}% doğru). Göstəricinizi daha da yaxşılaşdırmaq üçün zəif olduğunuz fənlərə və bölmələrə diqqət yetirin, səhv etdiyiniz sualları <b>Səhvlərin Təkrarı</b> rejimində yenidən işləyin.`;
+                } else {
+                    rec = `Ümumi nəticəniz zəifdir (${percent}% doğru). Hər bir fənni ayrı-ayrılıqda daha diqqətlə öyrənməyinizi və çətinlik çəkdiyiniz mövzuları təkrarlamağı tövsiyə edirik.`;
+                }
+            }
+            recTextEl.innerHTML = rec;
+        }
+
+        // Right Column Title - change to "Fənlər"
+        const unitsHeaderH3 = document.querySelector('.units-header h3');
+        if (unitsHeaderH3) {
+            unitsHeaderH3.textContent = "Fənlər";
+        }
+
+        // Render Subjects List
+        const listEl = document.getElementById('db-unit-list');
+        const layout = localStorage.getItem('quiz_dashboard_layout') || 'grid';
+        
+        // Update layout toggle button active states
+        const gridBtn = document.getElementById('layout-grid-btn');
+        const tableBtn = document.getElementById('layout-table-btn');
+        if (gridBtn && tableBtn) {
+            if (layout === 'table') {
+                gridBtn.classList.remove('active');
+                tableBtn.classList.add('active');
+            } else {
+                tableBtn.classList.remove('active');
+                gridBtn.classList.add('active');
+            }
+        }
+
+        if (listEl) {
+            listEl.innerHTML = "";
+            
+            if (layout === 'table') {
+                listEl.classList.add('table-mode');
+                
+                // Create table element
+                const table = document.createElement('table');
+                table.className = 'stat-table unit-table';
+                
+                let tbodyHTML = '';
+                Object.keys(CONFIG).forEach((c) => {
+                    let totalCourseQ = 0;
+                    if (typeof quizData !== 'undefined') {
+                        totalCourseQ = quizData.filter(q => q.c === c).length;
+                    }
+                    
+                    const cs = this.stats[c] || { t: 0, c: 0, w: 0 };
+                    
+                    let courseAcc = 0;
+                    if (cs.t > 0) {
+                        courseAcc = Math.round((cs.c / cs.t) * 100);
+                    }
+                    
+                    tbodyHTML += `
+                        <tr onclick="QuizApp.showCourseDashboard('${c.replace(/'/g, "\\'")}')">
+                            <td style="font-weight: 700; color: var(--text-main);">${c}</td>
+                            <td style="text-align: center;">${totalCourseQ}</td>
+                            <td style="text-align: center; color: var(--active); font-weight: 700;">${cs.c}</td>
+                            <td style="text-align: center; color: var(--wrong); font-weight: 700;">${cs.w}</td>
+                            <td style="text-align: center; color: var(--accent); font-weight: 700;">${courseAcc}%</td>
+                            <td style="text-align: right;" onclick="event.stopPropagation();">
+                                <button class="unit-btn-start" onclick="QuizApp.showCourseDashboard('${c.replace(/'/g, "\\'")}')">Keç</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th style="width: 45%;">Fənn</th>
+                            <th style="text-align: center; width: 12%;">Sual</th>
+                            <th style="text-align: center; width: 10%; color: var(--active);">Düz</th>
+                            <th style="text-align: center; width: 10%; color: var(--wrong);">Səhv</th>
+                            <th style="text-align: center; width: 10%;">Faiz</th>
+                            <th style="text-align: right; width: 13%;">Keçid</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${tbodyHTML}
+                    </tbody>
+                `;
+                listEl.appendChild(table);
+            } else {
+                listEl.classList.remove('table-mode');
+                Object.keys(CONFIG).forEach((c) => {
+                    let totalCourseQ = 0;
+                    if (typeof quizData !== 'undefined') {
+                        totalCourseQ = quizData.filter(q => q.c === c).length;
+                    }
+
+                    const cs = this.stats[c] || { t: 0, c: 0, w: 0 };
+
+                    const item = document.createElement('div');
+                    item.className = 'unit-item';
+                    item.innerHTML = `
+                        <div class="unit-item-header">
+                            <div class="unit-item-title">${c}</div>
+                            <button class="unit-btn-start" onclick="QuizApp.showCourseDashboard('${c.replace(/'/g, "\\'")}')">Keç</button>
+                        </div>
+                        <div class="unit-item-stats-grid">
+                            <div class="unit-stat-box">
+                                <span class="us-val">${totalCourseQ}</span>
+                                <span class="us-lbl">CƏMİ SUAL</span>
+                            </div>
+                            <div class="unit-stat-box">
+                                <span class="us-val" style="color: var(--active)">${cs.c}</span>
+                                <span class="us-lbl">DOĞRU</span>
+                            </div>
+                            <div class="unit-stat-box">
+                                <span class="us-val" style="color: var(--wrong)">${cs.w}</span>
+                                <span class="us-lbl">YANLIŞ</span>
+                            </div>
+                        </div>
+                    `;
+                    listEl.appendChild(item);
+                });
+            }
         }
     },
 
@@ -768,10 +1023,30 @@ const QuizApp = {
         }
     },
 
-    startSpecial: function (qs, t, s) {
-        this.stopTimer(); this.state.view = 'quiz'; this.state.questions = [...qs];
+    startSpecial: function (qs, t, s, isMock = false) {
+        this.stopTimer();
+        
+        const isWrong = t.toLowerCase().includes('sehv') || t.toLowerCase().includes('cetin') || t.toLowerCase().includes('wrong') || t.toLowerCase().includes('hard');
+        const isMixed = t.toLowerCase().includes('qarisig') || t.toLowerCase().includes('qarışıq') || t.toLowerCase().includes('mixed');
+        const isSearch = t.toLowerCase().includes('axtar') || t.toLowerCase().includes('search');
+
+        this.state = {
+            ...this.state,
+            view: 'quiz',
+            questions: [...qs],
+            index: 0,
+            answers: {},
+            correct: 0,
+            wrong: 0,
+            isMockMode: isMock,
+            isWrongMode: isWrong,
+            isMixedMode: isMixed,
+            isSearchMode: isSearch,
+            course: s
+        };
+
         this.state.questions.forEach(q => { q.shuffledOpts = shuffle(q.o.map((txt, i) => ({ txt, i }))); });
-        this.state.index = 0; this.state.answers = {}; this.state.correct = 0; this.state.wrong = 0; this.state.isMockMode = false; this.state.isWrongMode = false; this.state.isSearchMode = false; this.state.isMixedMode = false;
+        
         loadTemplate('quiz-template');
 
         document.getElementById('title-unit').textContent = t;
@@ -781,6 +1056,7 @@ const QuizApp = {
         if (tn) tn.style.display = 'none';
 
         this.renderQ();
+        this.startTimer(s);
     },
 
     showStats: function () {
@@ -839,8 +1115,12 @@ const QuizApp = {
         document.getElementById('modal-title').textContent = c;
         const s = this.stats[c];
         let h = "";
-        if (!s || !s.bd) h = "Məlumat yoxdur";
-        else {
+        if (!s || !s.bd || Object.keys(s.bd).length === 0) {
+            h = `<div style="text-align: center; padding: 30px 10px; color: var(--text-muted); font-size: 0.95rem;">
+                    <div style="font-size: 2.5rem; margin-bottom: 12px;">📊</div>
+                    Bu fənn üzrə hələ heç bir sual cavablandırılmayıb.
+                 </div>`;
+        } else {
             const cats = { 'units': '📘 Dərs', 'exams': '🏛️ Keçmiş', 'mixed': '🔀 Qarışıq', 'mock': '🎲 Sınaq' };
             for (let k in cats) {
                 if (s.bd[k]) {
@@ -868,33 +1148,52 @@ const QuizApp = {
             }
         });
         const net = c - (w / 4);
-        const score = Math.max(0, net * 5);
-        const pct = (score / (total * 5)) * 100;
+        const score = Math.max(0, (net / total) * 100);
+        const pct = score;
         let color = pct >= 90 ? 'var(--active)' : (pct >= 50 ? 'var(--finish)' : 'var(--wrong)');
-        if (pct >= 50) fireConfetti();
+        
+        let subHTML = `<table class="stat-table" style="margin-top:20px;"><thead><tr><th>Fənn</th><th>D</th><th>Y</th><th>Bal</th></tr></thead><tbody>`;
+        let totalMockScore = 0;
+        const mockSubjects = Object.keys(subRes);
+        mockSubjects.forEach(k => {
+            const subTotalQs = this.state.questions.filter(q => q.c === k).length;
+            const subNet = subRes[k].c - (subRes[k].w / 4);
+            const subScore = Math.max(0, (subNet / subTotalQs) * 100);
+            totalMockScore += subScore;
+            subHTML += `<tr><td>${k}</td><td style="color:var(--active)">${subRes[k].c}</td><td style="color:var(--wrong)">${subRes[k].w}</td><td style="font-weight:700; color:var(--accent);">${subScore.toFixed(1)}</td></tr>`;
+        });
+        subHTML += '</tbody></table>';
+
+        const averageMockScore = mockSubjects.length > 0 ? (totalMockScore / mockSubjects.length) : 0;
+        const triggerConfetti = this.state.isMockMode ? (averageMockScore >= 50) : (pct >= 50);
+        if (triggerConfetti) fireConfetti();
 
         const body = document.getElementById('modal-body');
         document.getElementById('modal-title').textContent = "Nəticə";
 
-        let subHTML = `<table class="stat-table" style="margin-top:20px;"><thead><tr><th>Fənn</th><th>D</th><th>Y</th><th>Net</th></tr></thead><tbody>`;
-        Object.keys(subRes).forEach(k => {
-            subHTML += `<tr><td>${k}</td><td style="color:var(--active)">${subRes[k].c}</td><td style="color:var(--wrong)">${subRes[k].w}</td><td>${(subRes[k].c - subRes[k].w / 4).toFixed(2)}</td></tr>`;
-        });
-        subHTML += '</tbody></table>';
-
-        body.innerHTML = `
-            <div style="text-align:center; padding:10px;">
-                <div style="font-size:2.5rem; font-weight:800; color:${color};">${score.toFixed(1)}</div>
-                <div style="color:var(--text-muted);">${Math.round(pct)}%</div>
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px; margin-top:15px;">
-                    <div style="background:var(--bg-element); padding:8px; border-radius:8px;"><div style="color:var(--active); font-weight:bold;">${c}</div><div style="font-size:0.7rem">D</div></div>
-                    <div style="background:var(--bg-element); padding:8px; border-radius:8px;"><div style="color:var(--wrong); font-weight:bold;">${w}</div><div style="font-size:0.7rem">Y</div></div>
-                    <div style="background:var(--bg-element); padding:8px; border-radius:8px;"><div style="font-weight:bold;">${net.toFixed(2)}</div><div style="font-size:0.7rem">Net</div></div>
+        if (this.state.isMockMode) {
+            body.innerHTML = `
+                <div style="text-align:center; padding:10px;">
+                    <div style="font-size:2.0rem; font-weight:800; color:var(--accent);">Sınaq Nəticələri</div>
+                    <div style="color:var(--text-muted); margin-bottom: 15px;">Fənn üzrə ballar (Maks. 100):</div>
+                    ${subHTML}
+                    <button class="btn btn-pri" style="margin-top:20px; width:100%" onclick="closeModal()">Bağla</button>
                 </div>
-                ${this.state.isMockMode ? subHTML : ''}
-                <button class="btn btn-pri" style="margin-top:20px; width:100%" onclick="closeModal()">Bağla</button>
-            </div>
-        `;
+            `;
+        } else {
+            body.innerHTML = `
+                <div style="text-align:center; padding:10px;">
+                    <div style="font-size:2.5rem; font-weight:800; color:${color};">${score.toFixed(1)}</div>
+                    <div style="color:var(--text-muted);">${Math.round(pct)}%</div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px; margin-top:15px;">
+                        <div style="background:var(--bg-element); padding:8px; border-radius:8px;"><div style="color:var(--active); font-weight:bold;">${c}</div><div style="font-size:0.7rem">D</div></div>
+                        <div style="background:var(--bg-element); padding:8px; border-radius:8px;"><div style="color:var(--wrong); font-weight:bold;">${w}</div><div style="font-size:0.7rem">Y</div></div>
+                        <div style="background:var(--bg-element); padding:8px; border-radius:8px;"><div style="font-weight:bold;">${net.toFixed(2)}</div><div style="font-size:0.7rem">Net</div></div>
+                    </div>
+                    <button class="btn btn-pri" style="margin-top:20px; width:100%" onclick="closeModal()">Bağla</button>
+                </div>
+            `;
+        }
         document.getElementById('modal-overlay').style.display = 'flex';
     },
 
@@ -941,17 +1240,33 @@ const QuizApp = {
         this.activeCourse = c;
         this.sessionStartTime = Date.now();
         this.secondsElapsedInSession = 0;
-        if (!this.stats[c]) this.stats[c] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
+        
+        const isStatTracked = c && (typeof CONFIG !== 'undefined' && CONFIG[c] !== undefined || c === this.MOCK_KEY);
+
+        if (isStatTracked) {
+            if (!this.stats[c]) this.stats[c] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
+        }
+        
+        const timerDisp = document.getElementById('quiz-timer-disp');
+        if (timerDisp) timerDisp.textContent = "00:00";
+
         this.timer = setInterval(() => { 
             if (this.activeCourse) { 
                 const now = Date.now();
                 const totalElapsed = Math.floor((now - this.sessionStartTime) / 1000);
                 const delta = totalElapsed - this.secondsElapsedInSession;
                 if (delta > 0) {
-                    this.stats[c].time += delta; 
-                    this.recordDailyHistory(c, null, delta);
+                    if (isStatTracked) {
+                        this.stats[c].time += delta; 
+                        this.recordDailyHistory(c, null, delta);
+                    }
                     this.secondsElapsedInSession = totalElapsed;
-                    if (this.secondsElapsedInSession % 10 === 0) this.saveStats(); 
+                    if (isStatTracked && this.secondsElapsedInSession % 10 === 0) this.saveStats(); 
+                }
+                if (timerDisp) {
+                    const mins = Math.floor(totalElapsed / 60);
+                    const secs = totalElapsed % 60;
+                    timerDisp.textContent = String(mins).padStart(2, '0') + ":" + String(secs).padStart(2, '0');
                 }
             } 
         }, 1000);
@@ -965,7 +1280,8 @@ const QuizApp = {
             const now = Date.now();
             const totalElapsed = Math.floor((now - this.sessionStartTime) / 1000);
             const delta = totalElapsed - this.secondsElapsedInSession;
-            if (delta > 0) {
+            const isStatTracked = this.activeCourse && (typeof CONFIG !== 'undefined' && CONFIG[this.activeCourse] !== undefined || this.activeCourse === this.MOCK_KEY);
+            if (delta > 0 && isStatTracked) {
                 this.stats[this.activeCourse].time += delta;
                 this.recordDailyHistory(this.activeCourse, null, delta);
             }
@@ -1361,8 +1677,12 @@ window.closeModal = (e) => {
         if (overlay) overlay.style.display = 'none';
         
         // Redirection on closing modal
-        if (QuizApp.state.view === 'quiz' && QuizApp.state.course && QuizApp.state.course !== 'Mock' && QuizApp.state.course !== 'Hard' && QuizApp.state.course !== 'Axtarış') {
-            QuizApp.showCourseDashboard(QuizApp.state.course);
+        if (QuizApp.state.view === 'quiz' && QuizApp.state.course) {
+            if (QuizApp.state.course === 'Ümumi Toplam' || QuizApp.state.course === QuizApp.MOCK_KEY) {
+                QuizApp.showOverallDashboard();
+            } else if (typeof CONFIG !== 'undefined' && CONFIG[QuizApp.state.course] !== undefined) {
+                QuizApp.showCourseDashboard(QuizApp.state.course);
+            }
         }
     }
 };

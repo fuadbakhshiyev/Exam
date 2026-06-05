@@ -451,6 +451,13 @@ body {
     background: rgba(16, 185, 129, 0.08);
 }
 
+.score-box.timer {
+    border-color: rgba(99, 102, 241, 0.3);
+    color: var(--accent);
+    background: rgba(99, 102, 241, 0.08);
+    font-family: monospace;
+}
+
 .quiz-actions {
     display: flex;
     gap: 8px;
