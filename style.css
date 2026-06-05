@@ -2050,3 +2050,30 @@ body {
     box-shadow: none !important;
     text-shadow: none !important;
 }
+
+/* --- FLAT SPACING ALIGNMENT UPGRADES (June 5, 2026) ---
+   To revert these changes in one step, simply comment out or delete this block! */
+@media (min-width: 769px) {
+    .top-nav {
+        padding: 16px 40px !important;
+    }
+    .content-area {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 40px !important;
+    }
+    .dashboard {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .dashboard-full-container {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .card {
+        width: 100% !important;
+        max-width: 820px !important;
+    }
+}
