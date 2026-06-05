@@ -1469,11 +1469,34 @@ const QuizApp = {
 
     recordStat: function (c, cat, sub, isCorr) {
         if (!this.stats[c]) this.stats[c] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
-        this.stats[c].t++; if (isCorr) this.stats[c].c++; else this.stats[c].w++;
+        if (!this.stats[c].bd) this.stats[c].bd = {};
         if (!this.stats[c].bd[cat]) this.stats[c].bd[cat] = {};
-        if (!this.stats[c].bd[cat][sub]) this.stats[c].bd[cat][sub] = { t: 0, c: 0, w: 0 };
-        this.stats[c].bd[cat][sub].t++;
-        if (isCorr) this.stats[c].bd[cat][sub].c++; else this.stats[c].bd[cat][sub].w++;
+        
+        // Overwrite this specific unit/mode breakdown with the current attempt's results
+        this.stats[c].bd[cat][sub] = {
+            t: this.state.correct + this.state.wrong,
+            c: this.state.correct,
+            w: this.state.wrong
+        };
+
+        // Recalculate overall course-level correct, wrong, and total counts based on the latest states of all units/modes
+        let courseCorrect = 0;
+        let courseWrong = 0;
+        let courseTotal = 0;
+
+        Object.keys(this.stats[c].bd).forEach(catKey => {
+            Object.keys(this.stats[c].bd[catKey]).forEach(subKey => {
+                const item = this.stats[c].bd[catKey][subKey];
+                courseCorrect += item.c || 0;
+                courseWrong += item.w || 0;
+                courseTotal += item.t || 0;
+            });
+        });
+
+        this.stats[c].c = courseCorrect;
+        this.stats[c].w = courseWrong;
+        this.stats[c].t = courseTotal;
+
         this.recordDailyHistory(c, isCorr, 0);
         this.saveStats();
     },
