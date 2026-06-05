@@ -106,6 +106,7 @@ const FirebaseSync = {
                 bookmarks: JSON.parse(localStorage.getItem(QuizApp.DB.marks)) || [],
                 daily: JSON.parse(localStorage.getItem(QuizApp.DB.daily)) || {},
                 settings: JSON.parse(localStorage.getItem(QuizApp.DB.settings)) || {},
+                wrongCounts: JSON.parse(localStorage.getItem(QuizApp.DB.wrongCounts)) || {},
                 updatedAt: firebase.firestore.FieldValue.serverTimestamp()
             };
             
@@ -138,6 +139,7 @@ const FirebaseSync = {
                 if (data.bookmarks) localStorage.setItem(QuizApp.DB.marks, JSON.stringify(data.bookmarks));
                 if (data.daily) localStorage.setItem(QuizApp.DB.daily, JSON.stringify(data.daily));
                 if (data.settings) localStorage.setItem(QuizApp.DB.settings, JSON.stringify(data.settings));
+                if (data.wrongCounts) localStorage.setItem(QuizApp.DB.wrongCounts, JSON.stringify(data.wrongCounts));
                 
                 // Reload QuizApp data
                 QuizApp.loadData();

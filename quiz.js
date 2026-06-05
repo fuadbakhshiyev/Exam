@@ -1,6 +1,6 @@
 const QuizApp = {
     state: { course: null, category: null, currentTitle: null, questions: [], index: 0, answers: {}, correct: 0, wrong: 0, view: 'quiz', sessionStartTime: 0, isWrongMode: false, isSearchMode: false, isMockMode: false, isFlashcard: false },
-    DB: { stats: 'qa_v31_s', wrong: 'qa_v31_w', correct: 'qa_v31_c', marks: 'qa_v31_m', daily: 'qa_v31_d', settings: 'qa_v31_conf' },
+    DB: { stats: 'qa_v31_s', wrong: 'qa_v31_w', correct: 'qa_v31_c', marks: 'qa_v31_m', daily: 'qa_v31_d', settings: 'qa_v31_conf', wrongCounts: 'qa_v31_wc' },
     MOCK_KEY: "🎲 Ümumi Sınaq",
 
     stats: {},
@@ -22,6 +22,7 @@ const QuizApp = {
         this.correctDB = JSON.parse(localStorage.getItem(this.DB.correct)) || {};
         this.bookmarks = JSON.parse(localStorage.getItem(this.DB.marks)) || [];
         this.settings = JSON.parse(localStorage.getItem(this.DB.settings)) || { scale: 1 };
+        this.wrongCounts = JSON.parse(localStorage.getItem(this.DB.wrongCounts)) || {};
         
         if (!localStorage.getItem('qa_v31_h_real_v2')) {
             localStorage.removeItem('qa_v31_h');
@@ -436,6 +437,9 @@ const QuizApp = {
 
         if (listEl && CONFIG[c]) {
             listEl.innerHTML = "";
+            const wrQs = this.wrongDB[c] || [];
+            const hardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 2).length;
+            const veryHardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 3).length;
             
             if (layout === 'table') {
                 listEl.classList.add('table-mode');
@@ -444,7 +448,24 @@ const QuizApp = {
                 const table = document.createElement('table');
                 table.className = 'stat-table unit-table';
                 
-                let tbodyHTML = '';
+                // Prepend Multi row to tbodyHTML
+                let tbodyHTML = `
+                    <tr onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')" style="background: rgba(99, 102, 241, 0.05); border-left: 3px solid var(--accent);">
+                        <td style="font-weight: 800; color: var(--accent);">
+                            <span class="unit-table-num">⭐</span> Multi (Səhvlərin Təkrarı)
+                            ${hardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(245, 158, 11, 0.08); border: 1px solid var(--hint); color: var(--hint); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">⚠️ ${hardQsCount} Çətin</span>` : ''}
+                            ${veryHardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid var(--wrong); color: var(--wrong); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">🔥 ${veryHardQsCount} Çox Çətin</span>` : ''}
+                        </td>
+                        <td style="text-align: center;">${wrQs.length}</td>
+                        <td style="text-align: center; color: var(--active); font-weight: 700;">-</td>
+                        <td style="text-align: center; color: var(--wrong); font-weight: 700;">${wrQs.length}</td>
+                        <td style="text-align: center; color: var(--accent); font-weight: 700;">-</td>
+                        <td style="text-align: right;" onclick="event.stopPropagation();">
+                            <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')">Başla</button>
+                        </td>
+                    </tr>
+                `;
+                
                 CONFIG[c].units.forEach((unitName, i) => {
                     const unitIdx = i + 1;
                     let totalUnitQ = 0;
@@ -499,6 +520,34 @@ const QuizApp = {
                 listEl.appendChild(table);
             } else {
                 listEl.classList.remove('table-mode');
+                
+                // Prepend Multi card to listEl in Grid layout
+                const multiItem = document.createElement('div');
+                multiItem.className = 'unit-item';
+                multiItem.style.background = 'linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%)';
+                multiItem.style.border = '1px solid rgba(139, 92, 246, 0.3)';
+                multiItem.innerHTML = `
+                    <div class="unit-item-header">
+                        <div class="unit-item-title" style="color: var(--accent); font-weight: 800;">⭐ Multi (Səhvlərin Təkrarı)</div>
+                        <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')">Başla</button>
+                    </div>
+                    <div class="unit-item-stats-grid">
+                        <div class="unit-stat-box">
+                            <span class="us-val" style="color: var(--text-main); font-weight: 800;">${wrQs.length}</span>
+                            <span class="us-lbl">SƏHV SUAL</span>
+                        </div>
+                        <div class="unit-stat-box">
+                            <span class="us-val" style="color: var(--hint); font-weight: 800;">⚠️ ${hardQsCount}</span>
+                            <span class="us-lbl">ÇƏTİN (2+)</span>
+                        </div>
+                        <div class="unit-stat-box">
+                            <span class="us-val" style="color: var(--wrong); font-weight: 800;">🔥 ${veryHardQsCount}</span>
+                            <span class="us-lbl">ÇOX ÇƏTİN (3+)</span>
+                        </div>
+                    </div>
+                `;
+                listEl.appendChild(multiItem);
+                
                 CONFIG[c].units.forEach((unitName, i) => {
                     const unitIdx = i + 1;
                     let totalUnitQ = 0;
@@ -550,6 +599,22 @@ const QuizApp = {
         loadTemplate('quiz-template');
         this.renderTopNav();
         this.loadContent(idx);
+        this.startTimer(c);
+    },
+
+    startMultiUnit: function (c) {
+        const arr = this.wrongDB[c] || [];
+        if (!arr.length) {
+            alert("Multi bölməsi boşdur! Bu fənn üzrə heç bir səhv cavablandırdığınız sual yoxdur. Əla!");
+            return;
+        }
+        
+        // Start the test with the wrong questions
+        this.startSpecial(arr, "Multi: Səhvlərin Təkrarı", c);
+        this.state.isWrongMode = true;
+        this.state.course = c;
+        this.state.category = 'units'; 
+        this.state.currentTitle = 'Multi';
         this.startTimer(c);
     },
 
@@ -639,7 +704,13 @@ const QuizApp = {
             }
         }
 
-        qTextEl.innerHTML = `${this.state.index + 1}. ${q.q}`;
+        let qText = q.q;
+        const qWrongCount = this.wrongCounts && this.wrongCounts[q.q] ? this.wrongCounts[q.q] : 0;
+        if (qWrongCount >= 2) {
+            const warningColor = qWrongCount >= 3 ? 'var(--wrong)' : 'var(--hint)';
+            qText += ` <span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid ${warningColor}; color: ${warningColor}; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">⚠️ ${qWrongCount} Səhv</span>`;
+        }
+        qTextEl.innerHTML = `${this.state.index + 1}. ${qText}`;
 
         const btnStar = document.getElementById('btn-star');
         if (btnStar) btnStar.classList.toggle('active', this.bookmarks.some(b => b.q === q.q));
@@ -692,6 +763,16 @@ const QuizApp = {
             this.state.wrong++; 
             this.saveWrong(this.state.course, q); 
             this.removeCorrect(this.state.course, q.q); 
+            
+            // Increment persistent wrong counts for difficulty analysis
+            if (!this.wrongCounts) this.wrongCounts = {};
+            this.wrongCounts[q.q] = (this.wrongCounts[q.q] || 0) + 1;
+            localStorage.setItem(this.DB.wrongCounts, JSON.stringify(this.wrongCounts));
+            
+            // Trigger Firebase sync automatically if synced
+            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
+                FirebaseSync.triggerAutoSave();
+            }
         }
 
         if (this.state.isMockMode) {
@@ -1815,6 +1896,7 @@ window.changeFontScale = QuizApp.changeFontScale.bind(QuizApp);
 window.exportBackup = QuizApp.exportBackup.bind(QuizApp);
 window.copyBackupToClipboard = QuizApp.copyBackupToClipboard.bind(QuizApp);
 window.importBackup = QuizApp.importBackup.bind(QuizApp);
+window.startMultiUnit = QuizApp.startMultiUnit.bind(QuizApp);
 
 // Simple helpers
 function updateDaily(inc = false) {
