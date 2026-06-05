@@ -1289,7 +1289,6 @@ body {
     font-size: 2.6rem;
     margin-bottom: 12px;
     display: inline-block;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 .subject-title {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -2044,4 +2043,10 @@ body {
 
 .db-mixed-exam-btn:active {
     transform: translateY(0);
+}
+
+/* Remove all box-shadows and text-shadows globally for a flat, modern flat design */
+*, *::before, *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
 }
