@@ -2076,4 +2076,7 @@ body {
         width: 100% !important;
         max-width: 820px !important;
     }
+    .home-analytics-panel {
+        grid-template-columns: 30% 70% !important;
+    }
 }
