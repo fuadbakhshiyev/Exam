@@ -501,10 +501,12 @@ const QuizApp = {
                 table.className = 'stat-table unit-table';
                 
                 let multiLastTested = 0;
+                let hasMultiData = false;
                 if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
                     multiLastTested = s.bd['units']['Multi'].last || 0;
+                    hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
                 }
-                const multiLastTestedStr = this.formatLastTested(multiLastTested);
+                const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
 
                 // Prepend Multi row to tbodyHTML
                 let tbodyHTML = `
@@ -551,7 +553,7 @@ const QuizApp = {
                         unitAcc = Math.round((c_correct / totalAnswered) * 100);
                     }
                     
-                    const unitLastTestedStr = this.formatLastTested(unitLastTested);
+                    const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
                     
                     tbodyHTML += `
                         <tr onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">
@@ -593,10 +595,12 @@ const QuizApp = {
                 
                 // Prepend Multi card to listEl in Grid layout
                 let multiLastTested = 0;
+                let hasMultiData = false;
                 if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
                     multiLastTested = s.bd['units']['Multi'].last || 0;
+                    hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
                 }
-                const multiLastTestedStr = this.formatLastTested(multiLastTested);
+                const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
 
                 const multiItem = document.createElement('div');
                 multiItem.className = 'unit-item';
@@ -648,7 +652,7 @@ const QuizApp = {
                         unitLastTested = us.last || 0;
                     }
 
-                    const unitLastTestedStr = this.formatLastTested(unitLastTested);
+                    const unitLastTestedStr = this.formatLastTested(unitLastTested, (c_correct + c_wrong) > 0);
 
                     const item = document.createElement('div');
                     item.className = 'unit-item';
@@ -1147,13 +1151,15 @@ const QuizApp = {
                 table.className = 'stat-table unit-table';
                 
                 let multiLastTested = 0;
+                let hasMultiData = false;
                 Object.keys(this.stats).forEach(k => {
                     if (this.stats[k] && this.stats[k].bd && this.stats[k].bd['units'] && this.stats[k].bd['units']['Multi']) {
                         const mTs = this.stats[k].bd['units']['Multi'].last || 0;
                         if (mTs > multiLastTested) multiLastTested = mTs;
+                        if ((this.stats[k].bd['units']['Multi'].t || 0) > 0) hasMultiData = true;
                     }
                 });
-                const multiLastTestedStr = this.formatLastTested(multiLastTested);
+                const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
 
                 // Prepend Multi row to tbodyHTML
                 let tbodyHTML = `
@@ -1189,7 +1195,7 @@ const QuizApp = {
                     }
                     
                     const courseLastTested = this.getCourseLastTested(c);
-                    const courseLastTestedStr = this.formatLastTested(courseLastTested);
+                    const courseLastTestedStr = this.formatLastTested(courseLastTested, cs.t > 0);
                     
                     tbodyHTML += `
                         <tr onclick="QuizApp.showCourseDashboard('${c.replace(/'/g, "\\'")}')">
@@ -1231,13 +1237,15 @@ const QuizApp = {
                 
                 // Prepend Multi card to listEl in Grid layout
                 let multiLastTested = 0;
+                let hasMultiData = false;
                 Object.keys(this.stats).forEach(k => {
                     if (this.stats[k] && this.stats[k].bd && this.stats[k].bd['units'] && this.stats[k].bd['units']['Multi']) {
                         const mTs = this.stats[k].bd['units']['Multi'].last || 0;
                         if (mTs > multiLastTested) multiLastTested = mTs;
+                        if ((this.stats[k].bd['units']['Multi'].t || 0) > 0) hasMultiData = true;
                     }
                 });
-                const multiLastTestedStr = this.formatLastTested(multiLastTested);
+                const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
 
                 const multiItem = document.createElement('div');
                 multiItem.className = 'unit-item';
@@ -1279,7 +1287,7 @@ const QuizApp = {
                     const cs = this.stats[c] || { t: 0, c: 0, w: 0 };
                     
                     const courseLastTested = this.getCourseLastTested(c);
-                    const courseLastTestedStr = this.formatLastTested(courseLastTested);
+                    const courseLastTestedStr = this.formatLastTested(courseLastTested, cs.t > 0);
 
                     const item = document.createElement('div');
                     item.className = 'unit-item';
@@ -2221,8 +2229,8 @@ const QuizApp = {
         }
     },
 
-    formatLastTested: function(ts) {
-        if (!ts) return 'Heç vaxt';
+    formatLastTested: function(ts, hasData = false) {
+        if (!ts) return hasData ? 'Əvvəllər' : 'Heç vaxt';
         const d = new Date(ts);
         const now = new Date();
         const diffMs = now - d;
