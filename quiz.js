@@ -453,7 +453,7 @@ const QuizApp = {
         const correctVal = document.getElementById('db-total-correct');
         const wrongVal = document.getElementById('db-total-wrong');
         correctVal.textContent = s.c;
-        wrongVal.textContent = this.wrongDB[c] ? this.wrongDB[c].length : 0;
+        wrongVal.textContent = s.w;
 
         let acc = 0;
         if (s.t > 0) acc = Math.round((s.c / s.t) * 100);
@@ -1103,12 +1103,7 @@ const QuizApp = {
         const correctVal = document.getElementById('db-total-correct');
         const wrongVal = document.getElementById('db-total-wrong');
         correctVal.textContent = globalCorrect;
-        
-        let globalWrongActive = 0;
-        Object.keys(this.wrongDB).forEach(k => {
-            globalWrongActive += this.wrongDB[k].length;
-        });
-        wrongVal.textContent = globalWrongActive;
+        wrongVal.textContent = globalWrong;
 
         const accVal = document.getElementById('db-accuracy');
         if (accVal) accVal.textContent = globalAcc + '%';
@@ -1702,13 +1697,18 @@ const QuizApp = {
         if (!this.stats[c].bd) this.stats[c].bd = {};
         if (!this.stats[c].bd[cat]) this.stats[c].bd[cat] = {};
         
-        // Overwrite this specific unit/mode breakdown with the current attempt's results
-        this.stats[c].bd[cat][sub] = {
-            t: this.state.correct + this.state.wrong,
-            c: this.state.correct,
-            w: this.state.wrong,
-            last: Date.now()
-        };
+        if (!this.stats[c].bd[cat][sub]) {
+            this.stats[c].bd[cat][sub] = { t: 0, c: 0, w: 0, last: 0 };
+        }
+        
+        // Accumulate statistics instead of overwriting
+        this.stats[c].bd[cat][sub].t++;
+        if (isCorr) {
+            this.stats[c].bd[cat][sub].c++;
+        } else {
+            this.stats[c].bd[cat][sub].w++;
+        }
+        this.stats[c].bd[cat][sub].last = Date.now();
 
         // Recalculate overall course-level correct, wrong, and total counts based on the latest states of all units/modes
         let courseCorrect = 0;
@@ -2312,23 +2312,17 @@ const QuizApp = {
             const isCorrect = chosenIndex === q.a;
             
             // Record stats
-            if (!this.stats[q.c]) this.stats[q.c] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
-            this.stats[q.c].t++;
+            this.recordStat(q.c, 'surprise', 'Sürpriz Sual', isCorrect);
             if (isCorrect) {
-                this.stats[q.c].c++;
                 this.saveCorrect(q.c, q);
-                this.recordDailyHistory(q.c, true, 0);
             } else {
-                this.stats[q.c].w++;
                 this.saveWrong(q.c, q);
-                this.recordDailyHistory(q.c, false, 0);
                 
                 // Multi unit wrong count increment
                 if (!this.wrongCounts) this.wrongCounts = {};
                 this.wrongCounts[q.q] = (this.wrongCounts[q.q] || 0) + 1;
                 localStorage.setItem(this.DB.wrongCounts, JSON.stringify(this.wrongCounts));
             }
-            this.saveStats();
             updateDaily(isCorrect);
             
             // Sync with Firebase automatically
