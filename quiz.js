@@ -380,6 +380,8 @@ const QuizApp = {
         }
 
         document.getElementById('db-total-questions').textContent = totalQ;
+        const attemptsVal = document.getElementById('db-total-attempts');
+        if (attemptsVal) attemptsVal.textContent = s.t;
         document.getElementById('db-total-time').textContent = this.formatTime(s.time);
         
         const correctVal = document.getElementById('db-total-correct');
@@ -506,6 +508,9 @@ const QuizApp = {
                     multiLastTested = s.bd['units']['Multi'].last || 0;
                     hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
                 }
+                if (multiLastTested === 0 && hasMultiData) {
+                    multiLastTested = this.getCourseLastActiveDateFromHistory(c);
+                }
                 const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
 
                 // Prepend Multi row to tbodyHTML
@@ -551,6 +556,10 @@ const QuizApp = {
                     const totalAnswered = c_correct + c_wrong;
                     if (totalAnswered > 0) {
                         unitAcc = Math.round((c_correct / totalAnswered) * 100);
+                    }
+                    
+                    if (unitLastTested === 0 && totalAnswered > 0) {
+                        unitLastTested = this.getCourseLastActiveDateFromHistory(c);
                     }
                     
                     const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
@@ -599,6 +608,9 @@ const QuizApp = {
                 if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
                     multiLastTested = s.bd['units']['Multi'].last || 0;
                     hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
+                }
+                if (multiLastTested === 0 && hasMultiData) {
+                    multiLastTested = this.getCourseLastActiveDateFromHistory(c);
                 }
                 const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
 
@@ -651,8 +663,12 @@ const QuizApp = {
                         c_wrong = us.w;
                         unitLastTested = us.last || 0;
                     }
+                    const totalAnswered = c_correct + c_wrong;
+                    if (unitLastTested === 0 && totalAnswered > 0) {
+                        unitLastTested = this.getCourseLastActiveDateFromHistory(c);
+                    }
 
-                    const unitLastTestedStr = this.formatLastTested(unitLastTested, (c_correct + c_wrong) > 0);
+                    const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
 
                     const item = document.createElement('div');
                     item.className = 'unit-item';
@@ -1014,6 +1030,8 @@ const QuizApp = {
         let globalTotalQ = typeof quizData !== 'undefined' ? quizData.length : 0;
 
         document.getElementById('db-total-questions').textContent = globalTotalQ;
+        const attemptsVal = document.getElementById('db-total-attempts');
+        if (attemptsVal) attemptsVal.textContent = globalTotalAns;
         document.getElementById('db-total-time').textContent = this.formatTime(globalTime);
         
         const correctVal = document.getElementById('db-total-correct');
@@ -1159,6 +1177,12 @@ const QuizApp = {
                         if ((this.stats[k].bd['units']['Multi'].t || 0) > 0) hasMultiData = true;
                     }
                 });
+                if (multiLastTested === 0 && hasMultiData) {
+                    Object.keys(this.stats).forEach(k => {
+                        const fallTs = this.getCourseLastActiveDateFromHistory(k);
+                        if (fallTs > multiLastTested) multiLastTested = fallTs;
+                    });
+                }
                 const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
 
                 // Prepend Multi row to tbodyHTML
@@ -1245,6 +1269,12 @@ const QuizApp = {
                         if ((this.stats[k].bd['units']['Multi'].t || 0) > 0) hasMultiData = true;
                     }
                 });
+                if (multiLastTested === 0 && hasMultiData) {
+                    Object.keys(this.stats).forEach(k => {
+                        const fallTs = this.getCourseLastActiveDateFromHistory(k);
+                        if (fallTs > multiLastTested) multiLastTested = fallTs;
+                    });
+                }
                 const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
 
                 const multiItem = document.createElement('div');
@@ -2293,17 +2323,37 @@ const QuizApp = {
 
     getCourseLastTested: function(c) {
         const cs = this.stats[c];
-        if (!cs || !cs.bd) return 0;
         let maxTs = 0;
-        Object.keys(cs.bd).forEach(cat => {
-            Object.keys(cs.bd[cat]).forEach(sub => {
-                const item = cs.bd[cat][sub];
-                if (item && item.last && item.last > maxTs) {
-                    maxTs = item.last;
-                }
+        if (cs && cs.bd) {
+            Object.keys(cs.bd).forEach(cat => {
+                Object.keys(cs.bd[cat]).forEach(sub => {
+                    const item = cs.bd[cat][sub];
+                    if (item && item.last && item.last > maxTs) {
+                        maxTs = item.last;
+                    }
+                });
             });
-        });
+        }
+        if (maxTs === 0) {
+            maxTs = this.getCourseLastActiveDateFromHistory(c);
+        }
         return maxTs;
+    },
+
+    getCourseLastActiveDateFromHistory: function(c) {
+        if (!this.dailyHistory) return 0;
+        let mostRecentDateStr = null;
+        Object.keys(this.dailyHistory).forEach(dateStr => {
+            if (this.dailyHistory[dateStr] && this.dailyHistory[dateStr][c]) {
+                if (!mostRecentDateStr || dateStr > mostRecentDateStr) {
+                    mostRecentDateStr = dateStr;
+                }
+            }
+        });
+        if (mostRecentDateStr) {
+            return new Date(mostRecentDateStr + 'T12:00:00').getTime();
+        }
+        return 0;
     }
 };
 
