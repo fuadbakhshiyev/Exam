@@ -105,6 +105,7 @@ const FirebaseSync = {
                 correct: JSON.parse(localStorage.getItem(QuizApp.DB.correct)) || {},
                 bookmarks: JSON.parse(localStorage.getItem(QuizApp.DB.marks)) || [],
                 daily: JSON.parse(localStorage.getItem(QuizApp.DB.daily)) || {},
+                dailyGoal: JSON.parse(localStorage.getItem(QuizApp.DB.dailyGoal)) || { d: '', c: 0 },
                 settings: JSON.parse(localStorage.getItem(QuizApp.DB.settings)) || {},
                 wrongCounts: JSON.parse(localStorage.getItem(QuizApp.DB.wrongCounts)) || {},
                 localUpdatedAt: parseInt(localStorage.getItem('qa_v31_localUpdatedAt') || '0'),
@@ -196,6 +197,20 @@ const FirebaseSync = {
                     }
                 });
                 localStorage.setItem(QuizApp.DB.daily, JSON.stringify(mergedDaily));
+
+                // Safely merge daily goal to prevent progress loss
+                if (data.dailyGoal) {
+                    const localDG = JSON.parse(localStorage.getItem(QuizApp.DB.dailyGoal)) || { d: '', c: 0 };
+                    const cloudDG = data.dailyGoal;
+                    const todayStr = new Date().toDateString();
+                    let mergedDG = { d: todayStr, c: 0 };
+                    
+                    const localCount = localDG.d === todayStr ? localDG.c : 0;
+                    const cloudCount = cloudDG.d === todayStr ? cloudDG.c : 0;
+                    
+                    mergedDG.c = Math.max(localCount, cloudCount);
+                    localStorage.setItem(QuizApp.DB.dailyGoal, JSON.stringify(mergedDG));
+                }
 
                 if (data.settings) localStorage.setItem(QuizApp.DB.settings, JSON.stringify(data.settings));
                 if (data.wrongCounts) localStorage.setItem(QuizApp.DB.wrongCounts, JSON.stringify(data.wrongCounts));

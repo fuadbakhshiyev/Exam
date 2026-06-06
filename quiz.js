@@ -9,7 +9,7 @@ const COURSE_STYLES = {
 
 const QuizApp = {
     state: { course: null, category: null, currentTitle: null, questions: [], index: 0, answers: {}, correct: 0, wrong: 0, view: 'quiz', sessionStartTime: 0, isWrongMode: false, isSearchMode: false, isMockMode: false, isFlashcard: false },
-    DB: { stats: 'qa_v31_s', wrong: 'qa_v31_w', correct: 'qa_v31_c', marks: 'qa_v31_m', daily: 'qa_v31_h', settings: 'qa_v31_conf', wrongCounts: 'qa_v31_wc' },
+    DB: { stats: 'qa_v31_s', wrong: 'qa_v31_w', correct: 'qa_v31_c', marks: 'qa_v31_m', daily: 'qa_v31_h', dailyGoal: 'qa_v31_dg', settings: 'qa_v31_conf', wrongCounts: 'qa_v31_wc' },
     MOCK_KEY: "🎲 Ümumi Sınaq",
 
     stats: {},
@@ -77,22 +77,26 @@ const QuizApp = {
         };
 
         if (!this.dailyHistory["2026-06-06"]) {
-            this.dailyHistory["2026-06-06"] = targetJune6;
+            this.dailyHistory["2026-06-06"] = JSON.parse(JSON.stringify(targetJune6));
             historyChanged = true;
         } else {
             let needsUpdate = false;
             Object.keys(targetJune6).forEach(subj => {
-                const cur = this.dailyHistory["2026-06-06"][subj];
-                const tgt = targetJune6[subj];
-                if (!cur || cur.correct !== tgt.correct || cur.wrong !== tgt.wrong) {
+                if (!this.dailyHistory["2026-06-06"][subj]) {
+                    this.dailyHistory["2026-06-06"][subj] = { ...targetJune6[subj] };
                     needsUpdate = true;
+                } else {
+                    const cur = this.dailyHistory["2026-06-06"][subj];
+                    const tgt = targetJune6[subj];
+                    if ((cur.correct || 0) < tgt.correct || (cur.wrong || 0) < tgt.wrong || (cur.time || 0) < tgt.time) {
+                        cur.correct = Math.max(cur.correct || 0, tgt.correct);
+                        cur.wrong = Math.max(cur.wrong || 0, tgt.wrong);
+                        cur.time = Math.max(cur.time || 0, tgt.time);
+                        needsUpdate = true;
+                    }
                 }
             });
             if (needsUpdate) {
-                this.dailyHistory["2026-06-06"] = {
-                    ...this.dailyHistory["2026-06-06"],
-                    ...targetJune6
-                };
                 historyChanged = true;
             }
         }
@@ -106,6 +110,7 @@ const QuizApp = {
         }
 
         this.applyTheme();
+        updateDaily(false);
     },
 
     start: function () {
@@ -2498,10 +2503,10 @@ window.closeSurpriseModal = QuizApp.closeSurpriseModal.bind(QuizApp);
 
 // Simple helpers
 function updateDaily(inc = false) {
-    let d = JSON.parse(localStorage.getItem(QuizApp.DB.daily)) || { d: '', c: 0 };
+    let d = JSON.parse(localStorage.getItem(QuizApp.DB.dailyGoal)) || { d: '', c: 0 };
     if (d.d !== new Date().toDateString()) d = { d: new Date().toDateString(), c: 0 };
     if (inc) d.c++;
-    localStorage.setItem(QuizApp.DB.daily, JSON.stringify(d));
+    localStorage.setItem(QuizApp.DB.dailyGoal, JSON.stringify(d));
     const dt = document.getElementById('daily-text');
     const db = document.getElementById('daily-bar');
     if (dt && db) {
