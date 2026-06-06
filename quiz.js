@@ -9,7 +9,7 @@ const COURSE_STYLES = {
 
 const QuizApp = {
     state: { course: null, category: null, currentTitle: null, questions: [], index: 0, answers: {}, correct: 0, wrong: 0, view: 'quiz', sessionStartTime: 0, isWrongMode: false, isSearchMode: false, isMockMode: false, isFlashcard: false },
-    DB: { stats: 'qa_v31_s', wrong: 'qa_v31_w', correct: 'qa_v31_c', marks: 'qa_v31_m', daily: 'qa_v31_d', settings: 'qa_v31_conf', wrongCounts: 'qa_v31_wc' },
+    DB: { stats: 'qa_v31_s', wrong: 'qa_v31_w', correct: 'qa_v31_c', marks: 'qa_v31_m', daily: 'qa_v31_h', settings: 'qa_v31_conf', wrongCounts: 'qa_v31_wc' },
     MOCK_KEY: "🎲 Ümumi Sınaq",
 
     stats: {},
@@ -1773,7 +1773,7 @@ const QuizApp = {
             const x = padding.left + index * stepWidth;
             const dObj = new Date(day.date + 'T00:00:00');
             const dayNum = String(dObj.getDate()).padStart(2, '0');
-            const monthName = dObj.toLocaleDateString('en-US', { month: 'long' });
+            const monthName = dObj.toLocaleDateString('az-AZ', { month: 'short' });
             const label = `${dayNum} ${monthName}`;
             
             ctx.fillStyle = "rgba(255, 255, 255, 0.45)";
@@ -1882,8 +1882,8 @@ const QuizApp = {
                 const dayData = chartData[hoveredIdx];
                 const dObj = new Date(dayData.date + 'T00:00:00');
                 const dayNum = String(dObj.getDate()).padStart(2, '0');
-                const monthName = dObj.toLocaleDateString('en-US', { month: 'long' });
-                const weekdayName = dObj.toLocaleDateString('en-US', { weekday: 'long' });
+                const monthName = dObj.toLocaleDateString('az-AZ', { month: 'long' });
+                const weekdayName = dObj.toLocaleDateString('az-AZ', { weekday: 'long' });
                 const dateStr = `${dayNum} ${monthName}, ${weekdayName}`;
                 
                 let detailsHTML = `<div style="font-weight:700; font-size:0.8rem; margin-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:4px;">${dateStr}</div>`;
@@ -1893,9 +1893,12 @@ const QuizApp = {
                     if (seg.val === 0) return;
                     hasData = true;
                     const style = courseStyles[seg.course] || defaultStyle;
-                    const valStr = mode === 'questions' 
-                        ? `<span style="color:#22c55e;font-weight:700;">${seg.correct} D</span> / <span style="color:#ef4444;font-weight:700;">${seg.wrong} S</span>`
-                        : `<span style="color:var(--text-main);font-weight:700;">${Math.round(seg.time/60)}</span> dəq`;
+                    const mins = Math.floor(seg.time / 60);
+                    const secs = seg.time % 60;
+                    const timeStr = mins > 0 
+                        ? `${mins} d ${secs > 0 ? secs + ' s' : ''}` 
+                        : `${secs} s`;
+                    const valStr = `<span style="color:#22c55e;font-weight:700;">${seg.correct} D</span> / <span style="color:#ef4444;font-weight:700;">${seg.wrong} S</span> <span style="color:rgba(255,255,255,0.45); font-size:0.68rem; margin-left:6px;">(${timeStr})</span>`;
                     
                     detailsHTML += `
                         <div style="display:flex; align-items:center; gap:8px; font-size:0.72rem; margin-bottom:4px;">
@@ -2038,12 +2041,21 @@ const QuizApp = {
                 }
             }
             if (count > 0) {
-                alert("Məlumatlar uğurla idxal edildi! Səhifə yenilənəcək.");
+                localStorage.setItem('qa_v31_localUpdatedAt', Date.now().toString());
                 this.loadData();
                 if (typeof FirebaseSync !== 'undefined' && FirebaseSync.saveToCloud) {
-                    FirebaseSync.saveToCloud();
+                    FirebaseSync.saveToCloud().then(() => {
+                        alert("Məlumatlar uğurla idxal edildi və buludla sinxronlaşdırıldı!");
+                        location.reload();
+                    }).catch(err => {
+                        console.error(err);
+                        alert("Məlumatlar lokal olaraq idxal edildi, lakin bulud sinxronizasiyası alınmadı. Səhifə yenilənir.");
+                        location.reload();
+                    });
+                } else {
+                    alert("Məlumatlar uğurla idxal edildi! Səhifə yenilənir.");
+                    location.reload();
                 }
-                location.reload();
             } else {
                 alert("İdxal üçün uyğun açarlar (qa_v31_) tapılmadı.");
             }
@@ -2137,6 +2149,12 @@ const QuizApp = {
         optList.innerHTML = '';
         footer.style.display = 'none';
         
+        const feedbackEl = document.getElementById('surprise-feedback');
+        if (feedbackEl) {
+            feedbackEl.style.display = 'none';
+            feedbackEl.textContent = '';
+        }
+        
         // Reset and start 30s countdown
         let timeLeft = 30;
         timerDisp.textContent = `${timeLeft}s`;
@@ -2199,6 +2217,27 @@ const QuizApp = {
                     btn.classList.add('wrong');
                 }
             });
+            
+            const feedbackEl = document.getElementById('surprise-feedback');
+            if (feedbackEl) {
+                feedbackEl.style.display = 'block';
+                if (chosenIndex === null) {
+                    feedbackEl.textContent = "⏱️ Vaxt bitdi! Cavablandırılmadı.";
+                    feedbackEl.style.color = "var(--wrong)";
+                    feedbackEl.style.background = "rgba(239, 68, 68, 0.08)";
+                    feedbackEl.style.border = "1px solid rgba(239, 68, 68, 0.15)";
+                } else if (isCorrect) {
+                    feedbackEl.textContent = "🎉 Doğrudur! Əla.";
+                    feedbackEl.style.color = "var(--active)";
+                    feedbackEl.style.background = "rgba(16, 185, 129, 0.08)";
+                    feedbackEl.style.border = "1px solid rgba(16, 185, 129, 0.15)";
+                } else {
+                    feedbackEl.textContent = "❌ Yanlışdır! Düzgün cavabı yoxlayın.";
+                    feedbackEl.style.color = "var(--wrong)";
+                    feedbackEl.style.background = "rgba(239, 68, 68, 0.08)";
+                    feedbackEl.style.border = "1px solid rgba(239, 68, 68, 0.15)";
+                }
+            }
             
             // Display footer to let user close
             footer.style.display = 'flex';

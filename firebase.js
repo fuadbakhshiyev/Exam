@@ -107,6 +107,7 @@ const FirebaseSync = {
                 daily: JSON.parse(localStorage.getItem(QuizApp.DB.daily)) || {},
                 settings: JSON.parse(localStorage.getItem(QuizApp.DB.settings)) || {},
                 wrongCounts: JSON.parse(localStorage.getItem(QuizApp.DB.wrongCounts)) || {},
+                localUpdatedAt: parseInt(localStorage.getItem('qa_v31_localUpdatedAt') || '0'),
                 updatedAt: firebase.firestore.FieldValue.serverTimestamp()
             };
             
@@ -123,6 +124,8 @@ const FirebaseSync = {
     },
 
     // Load from Cloud
+    isLoadingFromCloud: false,
+
     loadFromCloud: async function() {
         if (!currentUser) return;
         
@@ -132,6 +135,18 @@ const FirebaseSync = {
             if (doc.exists) {
                 const data = doc.data();
                 
+                const cloudLocalUpdatedAt = data.localUpdatedAt || 0;
+                const localUpdatedAt = parseInt(localStorage.getItem('qa_v31_localUpdatedAt') || '0');
+                
+                // If local data is newer than cloud data, do not overwrite it. Instead, upload local data.
+                if (localUpdatedAt > cloudLocalUpdatedAt) {
+                    console.log("Local data is newer than cloud data, uploading local data...");
+                    this.saveToCloud(true);
+                    return;
+                }
+                
+                this.isLoadingFromCloud = true;
+                
                 // Merge with local data (cloud wins for newer data)
                 if (data.stats) localStorage.setItem(QuizApp.DB.stats, JSON.stringify(data.stats));
                 if (data.wrong) localStorage.setItem(QuizApp.DB.wrong, JSON.stringify(data.wrong));
@@ -140,14 +155,22 @@ const FirebaseSync = {
                 if (data.daily) localStorage.setItem(QuizApp.DB.daily, JSON.stringify(data.daily));
                 if (data.settings) localStorage.setItem(QuizApp.DB.settings, JSON.stringify(data.settings));
                 if (data.wrongCounts) localStorage.setItem(QuizApp.DB.wrongCounts, JSON.stringify(data.wrongCounts));
+                if (data.localUpdatedAt) localStorage.setItem('qa_v31_localUpdatedAt', data.localUpdatedAt.toString());
+                
+                this.isLoadingFromCloud = false;
                 
                 // Reload QuizApp data
                 QuizApp.loadData();
                 
                 console.log("Data loaded from cloud");
                 this.showSyncIndicator('loaded');
+            } else {
+                // If doc doesn't exist in cloud, upload our current local data
+                console.log("No cloud data found, uploading local data...");
+                this.saveToCloud(true);
             }
         } catch (error) {
+            this.isLoadingFromCloud = false;
             console.error("Load from cloud error:", error);
         }
     },
@@ -176,8 +199,11 @@ localStorage.setItem = function(key, value) {
     originalSetItem(key, value);
     
     // Auto-save when quiz data changes
-    if (key.startsWith('qa_v31_')) {
-        FirebaseSync.triggerAutoSave();
+    if (key.startsWith('qa_v31_') && key !== 'qa_v31_localUpdatedAt' && (!window.FirebaseSync || !window.FirebaseSync.isLoadingFromCloud)) {
+        originalSetItem('qa_v31_localUpdatedAt', Date.now().toString());
+        if (window.FirebaseSync && window.FirebaseSync.triggerAutoSave) {
+            window.FirebaseSync.triggerAutoSave();
+        }
     }
 };
 
