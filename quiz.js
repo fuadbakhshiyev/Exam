@@ -67,39 +67,6 @@ const QuizApp = {
             };
             historyChanged = true;
         }
-        // Recover today's data (June 6th) including Grafik Tasarım II and other screenshotted subjects
-        const targetJune6 = {
-            "Grafik Tasarım II": { "time": 2436, "correct": 186, "wrong": 17 },
-            "Görsel İletişim Tasarımı": { "time": 152, "correct": 19, "wrong": 1 },
-            "Tasarımda Tipografi": { "time": 0, "correct": 1, "wrong": 1 },
-            "Atatürk İlkeleri ve İnkılap Tarihi II": { "time": 0, "correct": 0, "wrong": 1 },
-            "Türk Dili II": { "time": 0, "correct": 1, "wrong": 0 }
-        };
-
-        if (!this.dailyHistory["2026-06-06"]) {
-            this.dailyHistory["2026-06-06"] = JSON.parse(JSON.stringify(targetJune6));
-            historyChanged = true;
-        } else {
-            let needsUpdate = false;
-            Object.keys(targetJune6).forEach(subj => {
-                if (!this.dailyHistory["2026-06-06"][subj]) {
-                    this.dailyHistory["2026-06-06"][subj] = { ...targetJune6[subj] };
-                    needsUpdate = true;
-                } else {
-                    const cur = this.dailyHistory["2026-06-06"][subj];
-                    const tgt = targetJune6[subj];
-                    if ((cur.correct || 0) < tgt.correct || (cur.wrong || 0) < tgt.wrong || (cur.time || 0) < tgt.time) {
-                        cur.correct = Math.max(cur.correct || 0, tgt.correct);
-                        cur.wrong = Math.max(cur.wrong || 0, tgt.wrong);
-                        cur.time = Math.max(cur.time || 0, tgt.time);
-                        needsUpdate = true;
-                    }
-                }
-            });
-            if (needsUpdate) {
-                historyChanged = true;
-            }
-        }
         
         if (historyChanged) {
             localStorage.setItem('qa_v31_h', JSON.stringify(this.dailyHistory));
