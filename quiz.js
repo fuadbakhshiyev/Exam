@@ -46,6 +46,65 @@ const QuizApp = {
         }
         localStorage.setItem('qa_v31_h_real_v2', 'true');
         this.dailyHistory = JSON.parse(localStorage.getItem('qa_v31_h')) || {};
+
+        // Recover screenshotted history data (June 4th and June 5th)
+        let historyChanged = false;
+        if (!this.dailyHistory["2026-06-04"]) {
+            this.dailyHistory["2026-06-04"] = {
+                "Grafik Tasarım II": { "time": 2910, "correct": 193, "wrong": 37 },
+                "Görsel İletişim Tasarımı": { "time": 997, "correct": 193, "wrong": 25 },
+                "Masaüstü Yayıncılık": { "time": 3367, "correct": 198, "wrong": 73 },
+                "Tasarımda Tipografi": { "time": 1593, "correct": 91, "wrong": 29 }
+            };
+            historyChanged = true;
+        }
+        if (!this.dailyHistory["2026-06-05"]) {
+            this.dailyHistory["2026-06-05"] = {
+                "Grafik Tasarım II": { "time": 200, "correct": 21, "wrong": 5 },
+                "Görsel İletişim Tasarımı": { "time": 498, "correct": 41, "wrong": 5 },
+                "Masaüstü Yayıncılık": { "time": 216, "correct": 21, "wrong": 3 },
+                "Tasarımda Tipografi": { "time": 1600, "correct": 124, "wrong": 21 }
+            };
+            historyChanged = true;
+        }
+        // Recover today's data (June 6th) including Grafik Tasarım II and other screenshotted subjects
+        const targetJune6 = {
+            "Grafik Tasarım II": { "time": 2436, "correct": 186, "wrong": 17 },
+            "Görsel İletişim Tasarımı": { "time": 152, "correct": 19, "wrong": 1 },
+            "Tasarımda Tipografi": { "time": 0, "correct": 1, "wrong": 1 },
+            "Atatürk İlkeleri ve İnkılap Tarihi II": { "time": 0, "correct": 0, "wrong": 1 },
+            "Türk Dili II": { "time": 0, "correct": 1, "wrong": 0 }
+        };
+
+        if (!this.dailyHistory["2026-06-06"]) {
+            this.dailyHistory["2026-06-06"] = targetJune6;
+            historyChanged = true;
+        } else {
+            let needsUpdate = false;
+            Object.keys(targetJune6).forEach(subj => {
+                const cur = this.dailyHistory["2026-06-06"][subj];
+                const tgt = targetJune6[subj];
+                if (!cur || cur.correct !== tgt.correct || cur.wrong !== tgt.wrong) {
+                    needsUpdate = true;
+                }
+            });
+            if (needsUpdate) {
+                this.dailyHistory["2026-06-06"] = {
+                    ...this.dailyHistory["2026-06-06"],
+                    ...targetJune6
+                };
+                historyChanged = true;
+            }
+        }
+        
+        if (historyChanged) {
+            localStorage.setItem('qa_v31_h', JSON.stringify(this.dailyHistory));
+            localStorage.setItem('qa_v31_localUpdatedAt', Date.now().toString());
+            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
+                FirebaseSync.triggerAutoSave();
+            }
+        }
+
         this.applyTheme();
     },
 
