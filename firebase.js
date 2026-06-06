@@ -138,11 +138,28 @@ const FirebaseSync = {
                 const cloudLocalUpdatedAt = data.localUpdatedAt || 0;
                 const localUpdatedAt = parseInt(localStorage.getItem('qa_v31_localUpdatedAt') || '0');
                 
-                // If local data is newer than cloud data, or both are 0 but local has data, upload local data instead of overwriting.
+                // Helper to check if local has actual statistics data
                 const hasLocalData = () => {
                     const stats = localStorage.getItem(QuizApp.DB.stats);
-                    return stats && stats !== '{}';
+                    if (!stats || stats === '{}') return false;
+                    try {
+                        const parsed = JSON.parse(stats);
+                        // If there is any course with total answers > 0
+                        return Object.values(parsed).some(c => c && c.t > 0);
+                    } catch (e) {
+                        return false;
+                    }
                 };
+
+                // Safety check: if cloud stats are empty/missing, but local has stats, upload local instead of overwriting
+                const isCloudEmpty = !data.stats || Object.keys(data.stats).length === 0 || !Object.values(data.stats).some(c => c && c.t > 0);
+                if (isCloudEmpty && hasLocalData()) {
+                    console.log("Cloud stats are empty, but local has stats. Uploading local data to protect user progress...");
+                    this.saveToCloud(true);
+                    return;
+                }
+
+                // If local data is newer than cloud data, or both are 0 but local has data, upload local data.
                 if (localUpdatedAt > cloudLocalUpdatedAt || (localUpdatedAt === 0 && cloudLocalUpdatedAt === 0 && hasLocalData())) {
                     console.log("Local data is newer or has initial data, uploading local data...");
                     this.saveToCloud(true);
@@ -156,7 +173,30 @@ const FirebaseSync = {
                 if (data.wrong) localStorage.setItem(QuizApp.DB.wrong, JSON.stringify(data.wrong));
                 if (data.correct) localStorage.setItem(QuizApp.DB.correct, JSON.stringify(data.correct));
                 if (data.bookmarks) localStorage.setItem(QuizApp.DB.marks, JSON.stringify(data.bookmarks));
-                if (data.daily) localStorage.setItem(QuizApp.DB.daily, JSON.stringify(data.daily));
+                
+                // Safely merge daily history instead of raw overwrite to prevent key mismatches/missing days
+                const localDaily = JSON.parse(localStorage.getItem(QuizApp.DB.daily)) || {};
+                const cloudDaily = data.daily || {};
+                const mergedDaily = { ...localDaily };
+                Object.keys(cloudDaily).forEach(date => {
+                    if (!mergedDaily[date]) {
+                        mergedDaily[date] = cloudDaily[date];
+                    } else {
+                        Object.keys(cloudDaily[date]).forEach(course => {
+                            if (!mergedDaily[date][course]) {
+                                mergedDaily[date][course] = cloudDaily[date][course];
+                            } else {
+                                const localAttempts = (mergedDaily[date][course].correct || 0) + (mergedDaily[date][course].wrong || 0);
+                                const cloudAttempts = (cloudDaily[date][course].correct || 0) + (cloudDaily[date][course].wrong || 0);
+                                if (cloudAttempts > localAttempts) {
+                                    mergedDaily[date][course] = cloudDaily[date][course];
+                                }
+                            }
+                        });
+                    }
+                });
+                localStorage.setItem(QuizApp.DB.daily, JSON.stringify(mergedDaily));
+
                 if (data.settings) localStorage.setItem(QuizApp.DB.settings, JSON.stringify(data.settings));
                 if (data.wrongCounts) localStorage.setItem(QuizApp.DB.wrongCounts, JSON.stringify(data.wrongCounts));
                 if (data.localUpdatedAt) localStorage.setItem('qa_v31_localUpdatedAt', data.localUpdatedAt.toString());

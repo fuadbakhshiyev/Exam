@@ -34,10 +34,17 @@ const QuizApp = {
         this.settings = JSON.parse(localStorage.getItem(this.DB.settings)) || { scale: 1 };
         this.wrongCounts = JSON.parse(localStorage.getItem(this.DB.wrongCounts)) || {};
         
-        if (!localStorage.getItem('qa_v31_h_real_v2')) {
-            localStorage.removeItem('qa_v31_h');
-            localStorage.setItem('qa_v31_h_real_v2', 'true');
+        // Migrate legacy daily history key (qa_v31_d) to new key (qa_v31_h) if necessary
+        if (!localStorage.getItem('qa_v31_h') && localStorage.getItem('qa_v31_d')) {
+            try {
+                const oldHistory = localStorage.getItem('qa_v31_d');
+                localStorage.setItem('qa_v31_h', oldHistory);
+                console.log("Migrated daily history from qa_v31_d to qa_v31_h");
+            } catch (e) {
+                console.error("Migration error:", e);
+            }
         }
+        localStorage.setItem('qa_v31_h_real_v2', 'true');
         this.dailyHistory = JSON.parse(localStorage.getItem('qa_v31_h')) || {};
         this.applyTheme();
     },
@@ -1799,17 +1806,30 @@ const QuizApp = {
         // Draw X-axis labels
         ctx.textBaseline = "top";
         ctx.font = "500 0.65rem sans-serif";
+        const monthsAzShort = ["Yan", "Fev", "Mar", "Apr", "May", "İyn", "İyl", "Avq", "Sen", "Okt", "Noy", "Dek"];
         chartData.forEach((day, index) => {
             const x = padding.left + index * stepWidth;
-            const dObj = new Date(day.date + 'T00:00:00');
+            
+            // Thinning: only draw label for even indices (0, 2, 4...) to prevent overlap
+            const isLast = (index === chartData.length - 1);
+            if (index % 2 !== 0 && !isLast) {
+                return;
+            }
+            if (isLast && index % 2 !== 0 && (chartData.length - 2) % 2 === 0) {
+                // Skip last index if it's odd and the previous even index was drawn, to prevent overlap
+                return;
+            }
+            
+            const parts = day.date.split('-');
+            const dObj = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
             const dayNum = String(dObj.getDate()).padStart(2, '0');
-            const monthName = dObj.toLocaleDateString('az-AZ', { month: 'short' });
+            const monthName = monthsAzShort[dObj.getMonth()];
             const label = `${dayNum} ${monthName}`;
             
             ctx.fillStyle = "rgba(255, 255, 255, 0.45)";
             if (index === 0) {
                 ctx.textAlign = "left";
-            } else if (index === last7Days.length - 1) {
+            } else if (isLast) {
                 ctx.textAlign = "right";
             } else {
                 ctx.textAlign = "center";
@@ -1910,10 +1930,13 @@ const QuizApp = {
 
             if (hoveredIdx !== null) {
                 const dayData = chartData[hoveredIdx];
-                const dObj = new Date(dayData.date + 'T00:00:00');
+                const monthsAzLong = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
+                const weekdaysAz = ["Bazar", "Bazar ertəsi", "Çərşənbə axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Şənbə"];
+                const parts = dayData.date.split('-');
+                const dObj = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
                 const dayNum = String(dObj.getDate()).padStart(2, '0');
-                const monthName = dObj.toLocaleDateString('az-AZ', { month: 'long' });
-                const weekdayName = dObj.toLocaleDateString('az-AZ', { weekday: 'long' });
+                const monthName = monthsAzLong[dObj.getMonth()];
+                const weekdayName = weekdaysAz[dObj.getDay()];
                 const dateStr = `${dayNum} ${monthName}, ${weekdayName}`;
                 
                 let detailsHTML = `<div style="font-weight:700; font-size:0.8rem; margin-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:4px;">${dateStr}</div>`;
@@ -1970,7 +1993,21 @@ const QuizApp = {
     removeWrong: function (c, qt) { if (this.wrongDB[c]) { this.wrongDB[c] = this.wrongDB[c].filter(x => x.q !== qt); if (!this.wrongDB[c].length) delete this.wrongDB[c]; localStorage.setItem(this.DB.wrong, JSON.stringify(this.wrongDB)); } },
     saveCorrect: function (c, q) { if (!this.correctDB[c]) this.correctDB[c] = []; if (!this.correctDB[c].some(x => x.q === q.q)) { this.correctDB[c].push(q); localStorage.setItem(this.DB.correct, JSON.stringify(this.correctDB)); } },
     removeCorrect: function (c, qt) { if (this.correctDB[c]) { this.correctDB[c] = this.correctDB[c].filter(x => x.q !== qt); if (!this.correctDB[c].length) delete this.correctDB[c]; localStorage.setItem(this.DB.correct, JSON.stringify(this.correctDB)); } },
-    resetStatistics: function () { if (confirm("Bütün məlumatlar silinəcək!")) { localStorage.clear(); location.reload(); } },
+    resetStatistics: async function () {
+        if (confirm("Bütün məlumatlar silinəcək!")) {
+            if (typeof firebase !== 'undefined' && firebase.auth && firebase.auth().currentUser) {
+                try {
+                    const uid = firebase.auth().currentUser.uid;
+                    await firebase.firestore().collection('users').doc(uid).delete();
+                    console.log("Cloud database document deleted");
+                } catch (e) {
+                    console.error("Error deleting cloud data:", e);
+                }
+            }
+            localStorage.clear();
+            location.reload();
+        }
+    },
     formatTime: function (s) { return `${Math.floor(s / 3600)}h ${Math.floor((s % 3600) / 60)}m`; },
 
     getCategoryData: function () {
@@ -2063,8 +2100,11 @@ const QuizApp = {
         try {
             const data = JSON.parse(txt.value.trim());
             let count = 0;
-            for (const [key, val] of Object.entries(data)) {
-                if (key.startsWith('qa_v31_') || key === 'theme' || key === 'qa_v31_h') {
+            for (let [key, val] of Object.entries(data)) {
+                if (key === 'qa_v31_d') {
+                    key = 'qa_v31_h';
+                }
+                if (key.startsWith('qa_v31_') || key === 'theme') {
                     const stringValue = typeof val === 'string' ? val : JSON.stringify(val);
                     localStorage.setItem(key, stringValue);
                     count++;
