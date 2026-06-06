@@ -500,11 +500,20 @@ const QuizApp = {
                 const table = document.createElement('table');
                 table.className = 'stat-table unit-table';
                 
+                let multiLastTested = 0;
+                if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
+                    multiLastTested = s.bd['units']['Multi'].last || 0;
+                }
+                const multiLastTestedStr = this.formatLastTested(multiLastTested);
+
                 // Prepend Multi row to tbodyHTML
                 let tbodyHTML = `
                     <tr onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')" style="background: rgba(99, 102, 241, 0.05); border-left: 3px solid var(--accent);">
                         <td style="font-weight: 800; color: var(--accent);">
-                            <span class="unit-table-num">⭐</span> Multi (Səhvlərin Təkrarı)
+                            <div class="unit-table-title"><span class="unit-table-num">⭐</span> Multi (Səhvlərin Təkrarı)</div>
+                            <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
+                                ⏱️ Son sınaq: ${multiLastTestedStr}
+                            </div>
                             ${hardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(245, 158, 11, 0.08); border: 1px solid var(--hint); color: var(--hint); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">⚠️ ${hardQsCount} Çətin</span>` : ''}
                             ${veryHardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid var(--wrong); color: var(--wrong); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">🔥 ${veryHardQsCount} Çox Çətin</span>` : ''}
                         </td>
@@ -528,10 +537,12 @@ const QuizApp = {
                     const unitKey = `Unit ${unitIdx}`;
                     let c_correct = 0;
                     let c_wrong = 0;
+                    let unitLastTested = 0;
                     if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
                         const us = s.bd['units'][unitKey];
                         c_correct = us.c;
                         c_wrong = us.w;
+                        unitLastTested = us.last || 0;
                     }
                     
                     let unitAcc = 0;
@@ -540,9 +551,16 @@ const QuizApp = {
                         unitAcc = Math.round((c_correct / totalAnswered) * 100);
                     }
                     
+                    const unitLastTestedStr = this.formatLastTested(unitLastTested);
+                    
                     tbodyHTML += `
                         <tr onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">
-                            <td style="font-weight: 700; color: var(--text-main);"><span class="unit-table-num">${unitIdx}.</span> ${unitName}</td>
+                            <td style="font-weight: 700; color: var(--text-main);">
+                                <div class="unit-table-title"><span class="unit-table-num">${unitIdx}.</span> ${unitName}</div>
+                                <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
+                                    ⏱️ Son sınaq: ${unitLastTestedStr}
+                                </div>
+                            </td>
                             <td style="text-align: center;">${totalUnitQ}</td>
                             <td style="text-align: center; color: var(--active); font-weight: 700;">${c_correct}</td>
                             <td style="text-align: center; color: var(--wrong); font-weight: 700;">${c_wrong}</td>
@@ -574,13 +592,24 @@ const QuizApp = {
                 listEl.classList.remove('table-mode');
                 
                 // Prepend Multi card to listEl in Grid layout
+                let multiLastTested = 0;
+                if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
+                    multiLastTested = s.bd['units']['Multi'].last || 0;
+                }
+                const multiLastTestedStr = this.formatLastTested(multiLastTested);
+
                 const multiItem = document.createElement('div');
                 multiItem.className = 'unit-item';
                 multiItem.style.background = 'linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%)';
                 multiItem.style.border = '1px solid rgba(139, 92, 246, 0.3)';
                 multiItem.innerHTML = `
                     <div class="unit-item-header">
-                        <div class="unit-item-title" style="color: var(--accent); font-weight: 800;">⭐ Multi (Səhvlərin Təkrarı)</div>
+                        <div>
+                            <div class="unit-item-title" style="color: var(--accent); font-weight: 800;">⭐ Multi (Səhvlərin Təkrarı)</div>
+                            <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                                ⏱️ Son sınaq: ${multiLastTestedStr}
+                            </div>
+                        </div>
                         <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')">Başla</button>
                     </div>
                     <div class="unit-item-stats-grid">
@@ -610,18 +639,27 @@ const QuizApp = {
                     const unitKey = `Unit ${unitIdx}`;
                     let c_correct = 0;
                     let c_wrong = 0;
+                    let unitLastTested = 0;
 
                     if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
                         const us = s.bd['units'][unitKey];
                         c_correct = us.c;
                         c_wrong = us.w;
+                        unitLastTested = us.last || 0;
                     }
+
+                    const unitLastTestedStr = this.formatLastTested(unitLastTested);
 
                     const item = document.createElement('div');
                     item.className = 'unit-item';
                     item.innerHTML = `
                         <div class="unit-item-header">
-                            <div class="unit-item-title">${unitName}</div>
+                            <div>
+                                <div class="unit-item-title">${unitName}</div>
+                                <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                                    ⏱️ Son sınaq: ${unitLastTestedStr}
+                                </div>
+                            </div>
                             <button class="unit-btn-start" onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">Başla</button>
                         </div>
                         <div class="unit-item-stats-grid">
@@ -860,7 +898,10 @@ const QuizApp = {
             let cat = this.state.category;
             let sub = this.state.currentTitle;
             
-            if (this.state.isWrongMode) {
+            if (this.state.currentTitle === 'Multi') {
+                cat = 'units';
+                sub = 'Multi';
+            } else if (this.state.isWrongMode) {
                 cat = 'wrong';
                 sub = 'Səhvlərin Təkrarı';
             } else if (this.state.isMixedMode) {
@@ -1105,11 +1146,23 @@ const QuizApp = {
                 const table = document.createElement('table');
                 table.className = 'stat-table unit-table';
                 
+                let multiLastTested = 0;
+                Object.keys(this.stats).forEach(k => {
+                    if (this.stats[k] && this.stats[k].bd && this.stats[k].bd['units'] && this.stats[k].bd['units']['Multi']) {
+                        const mTs = this.stats[k].bd['units']['Multi'].last || 0;
+                        if (mTs > multiLastTested) multiLastTested = mTs;
+                    }
+                });
+                const multiLastTestedStr = this.formatLastTested(multiLastTested);
+
                 // Prepend Multi row to tbodyHTML
                 let tbodyHTML = `
                     <tr onclick="QuizApp.startMultiUnit('all')" style="background: rgba(99, 102, 241, 0.05); border-left: 3px solid var(--accent);">
                         <td style="font-weight: 800; color: var(--accent);">
-                            <span class="unit-table-num">⭐</span> Multi (Səhvlərin Təkrarı)
+                            <div class="unit-table-title"><span class="unit-table-num">⭐</span> Multi (Səhvlərin Təkrarı)</div>
+                            <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
+                                ⏱️ Son sınaq: ${multiLastTestedStr}
+                            </div>
                             ${hardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(245, 158, 11, 0.08); border: 1px solid var(--hint); color: var(--hint); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">⚠️ ${hardQsCount} Çətin</span>` : ''}
                             ${veryHardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid var(--wrong); color: var(--wrong); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">🔥 ${veryHardQsCount} Çox Çətin</span>` : ''}
                         </td>
@@ -1135,9 +1188,17 @@ const QuizApp = {
                         courseAcc = Math.round((cs.c / cs.t) * 100);
                     }
                     
+                    const courseLastTested = this.getCourseLastTested(c);
+                    const courseLastTestedStr = this.formatLastTested(courseLastTested);
+                    
                     tbodyHTML += `
                         <tr onclick="QuizApp.showCourseDashboard('${c.replace(/'/g, "\\'")}')">
-                            <td style="font-weight: 700; color: var(--text-main);">${c}</td>
+                            <td style="font-weight: 700; color: var(--text-main);">
+                                <div class="unit-table-title">${c}</div>
+                                <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
+                                    ⏱️ Son sınaq: ${courseLastTestedStr}
+                                </div>
+                            </td>
                             <td style="text-align: center;">${totalCourseQ}</td>
                             <td style="text-align: center; color: var(--active); font-weight: 700;">${cs.c}</td>
                             <td style="text-align: center; color: var(--wrong); font-weight: 700;">${cs.w}</td>
@@ -1169,13 +1230,27 @@ const QuizApp = {
                 listEl.classList.remove('table-mode');
                 
                 // Prepend Multi card to listEl in Grid layout
+                let multiLastTested = 0;
+                Object.keys(this.stats).forEach(k => {
+                    if (this.stats[k] && this.stats[k].bd && this.stats[k].bd['units'] && this.stats[k].bd['units']['Multi']) {
+                        const mTs = this.stats[k].bd['units']['Multi'].last || 0;
+                        if (mTs > multiLastTested) multiLastTested = mTs;
+                    }
+                });
+                const multiLastTestedStr = this.formatLastTested(multiLastTested);
+
                 const multiItem = document.createElement('div');
                 multiItem.className = 'unit-item';
                 multiItem.style.background = 'linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%)';
                 multiItem.style.border = '1px solid rgba(139, 92, 246, 0.3)';
                 multiItem.innerHTML = `
                     <div class="unit-item-header">
-                        <div class="unit-item-title" style="color: var(--accent); font-weight: 800;">⭐ Multi (Səhvlərin Təkrarı)</div>
+                        <div>
+                            <div class="unit-item-title" style="color: var(--accent); font-weight: 800;">⭐ Multi (Səhvlərin Təkrarı)</div>
+                            <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                                ⏱️ Son sınaq: ${multiLastTestedStr}
+                            </div>
+                        </div>
                         <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('all')">Başla</button>
                     </div>
                     <div class="unit-item-stats-grid">
@@ -1202,12 +1277,20 @@ const QuizApp = {
                     }
 
                     const cs = this.stats[c] || { t: 0, c: 0, w: 0 };
+                    
+                    const courseLastTested = this.getCourseLastTested(c);
+                    const courseLastTestedStr = this.formatLastTested(courseLastTested);
 
                     const item = document.createElement('div');
                     item.className = 'unit-item';
                     item.innerHTML = `
                         <div class="unit-item-header">
-                            <div class="unit-item-title">${c}</div>
+                            <div>
+                                <div class="unit-item-title">${c}</div>
+                                <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                                    ⏱️ Son sınaq: ${courseLastTestedStr}
+                                </div>
+                            </div>
                             <button class="unit-btn-start" onclick="QuizApp.showCourseDashboard('${c.replace(/'/g, "\\'")}')">Keç</button>
                         </div>
                         <div class="unit-item-stats-grid">
@@ -1519,7 +1602,8 @@ const QuizApp = {
         this.stats[c].bd[cat][sub] = {
             t: this.state.correct + this.state.wrong,
             c: this.state.correct,
-            w: this.state.wrong
+            w: this.state.wrong,
+            last: Date.now()
         };
 
         // Recalculate overall course-level correct, wrong, and total counts based on the latest states of all units/modes
@@ -2135,6 +2219,44 @@ const QuizApp = {
         if (this.state.view === 'home') {
             this.start();
         }
+    },
+
+    formatLastTested: function(ts) {
+        if (!ts) return 'Heç vaxt';
+        const d = new Date(ts);
+        const now = new Date();
+        const diffMs = now - d;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
+        
+        if (diffMins < 1) return 'İndi';
+        if (diffMins < 60) return `${diffMins} dəq əvvəl`;
+        if (diffHours < 24) return `${diffHours} saat əvvəl`;
+        if (diffDays === 1) return 'Dünən';
+        if (diffDays < 7) return `${diffDays} gün əvvəl`;
+        
+        const day = String(d.getDate()).padStart(2, '0');
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const year = d.getFullYear();
+        const hours = String(d.getHours()).padStart(2, '0');
+        const mins = String(d.getMinutes()).padStart(2, '0');
+        return `${day}.${month}.${year} ${hours}:${mins}`;
+    },
+
+    getCourseLastTested: function(c) {
+        const cs = this.stats[c];
+        if (!cs || !cs.bd) return 0;
+        let maxTs = 0;
+        Object.keys(cs.bd).forEach(cat => {
+            Object.keys(cs.bd[cat]).forEach(sub => {
+                const item = cs.bd[cat][sub];
+                if (item && item.last && item.last > maxTs) {
+                    maxTs = item.last;
+                }
+            });
+        });
+        return maxTs;
     }
 };
 
