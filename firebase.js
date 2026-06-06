@@ -138,9 +138,13 @@ const FirebaseSync = {
                 const cloudLocalUpdatedAt = data.localUpdatedAt || 0;
                 const localUpdatedAt = parseInt(localStorage.getItem('qa_v31_localUpdatedAt') || '0');
                 
-                // If local data is newer than cloud data, do not overwrite it. Instead, upload local data.
-                if (localUpdatedAt > cloudLocalUpdatedAt) {
-                    console.log("Local data is newer than cloud data, uploading local data...");
+                // If local data is newer than cloud data, or both are 0 but local has data, upload local data instead of overwriting.
+                const hasLocalData = () => {
+                    const stats = localStorage.getItem(QuizApp.DB.stats);
+                    return stats && stats !== '{}';
+                };
+                if (localUpdatedAt > cloudLocalUpdatedAt || (localUpdatedAt === 0 && cloudLocalUpdatedAt === 0 && hasLocalData())) {
+                    console.log("Local data is newer or has initial data, uploading local data...");
                     this.saveToCloud(true);
                     return;
                 }
