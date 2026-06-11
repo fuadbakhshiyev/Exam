@@ -184,6 +184,14 @@ const QuizApp = {
                                 <span class="hap-lc-lbl">Səhv</span>
                                 <span class="hap-lc-num" style="color:#ef4444;">${globalWrong}</span>
                             </div>
+                            <div class="hap-legend-badge" style="background:#3b82f618; border-color:#3b82f640;">
+                                <span class="hap-lc-lbl">Sual sayı</span>
+                                <span class="hap-lc-num" style="color:#3b82f6;">${globalTotalAns}</span>
+                            </div>
+                            <div class="hap-legend-badge" style="background:#f59e0b18; border-color:#f59e0b40;">
+                                <span class="hap-lc-lbl">Vaxt</span>
+                                <span class="hap-lc-num" style="color:#f59e0b;">${this.formatTime(globalTime)}</span>
+                            </div>
                         </div>
                     </div>
 
