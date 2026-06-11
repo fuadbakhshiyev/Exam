@@ -24,7 +24,50 @@ const QuizApp = {
 
     init: function () {
         this.loadData();
+        this.buildMixedUnits();
         this.initSurpriseTimer();
+    },
+
+    buildMixedUnits: function () {
+        if (typeof quizData === 'undefined') return;
+        
+        const subjects = [
+            "Atatürk İlkeleri ve İnkılap Tarihi II",
+            "Grafik Tasarım II",
+            "Görsel İletişim Tasarımı",
+            "Masaüstü Yayıncılık",
+            "Tasarımda Tipografi",
+            "Türk Dili II"
+        ];
+        
+        const mixedUnits = [];
+        subjects.forEach((subjName, sIdx) => {
+            const uVal = sIdx + 1;
+            const subjQuestions = quizData.filter(q => q.c === "Mixed" && q.u === uVal);
+            const totalSubjQ = subjQuestions.length;
+            const chunkSize = 20;
+            const numParts = Math.ceil(totalSubjQ / chunkSize);
+            
+            for (let part = 1; part <= numParts; part++) {
+                const start = (part - 1) * chunkSize;
+                const end = Math.min(part * chunkSize, totalSubjQ);
+                const unitName = `${subjName} - Hissə ${part} (${start + 1}-${end})`;
+                
+                mixedUnits.push({
+                    name: unitName,
+                    subject: subjName,
+                    uVal: uVal,
+                    part: part,
+                    startIdx: start,
+                    endIdx: end
+                });
+            }
+        });
+        
+        this.mixedUnitsInfo = mixedUnits;
+        if (CONFIG["Mixed"]) {
+            CONFIG["Mixed"].units = mixedUnits.map(mu => mu.name);
+        }
     },
 
     loadData: function () {
@@ -607,7 +650,14 @@ const QuizApp = {
                     const unitIdx = i + 1;
                     let totalUnitQ = 0;
                     if (typeof quizData !== 'undefined') {
-                        totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
+                        if (c === "Mixed" && this.mixedUnitsInfo) {
+                            const muInfo = this.mixedUnitsInfo[i];
+                            if (muInfo) {
+                                totalUnitQ = muInfo.endIdx - muInfo.startIdx;
+                            }
+                        } else {
+                            totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
+                        }
                     }
                     
                     const unitKey = `Unit ${unitIdx}`;
@@ -718,7 +768,14 @@ const QuizApp = {
                     const unitIdx = i + 1;
                     let totalUnitQ = 0;
                     if (typeof quizData !== 'undefined') {
-                        totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
+                        if (c === "Mixed" && this.mixedUnitsInfo) {
+                            const muInfo = this.mixedUnitsInfo[i];
+                            if (muInfo) {
+                                totalUnitQ = muInfo.endIdx - muInfo.startIdx;
+                            }
+                        } else {
+                            totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
+                        }
                     }
 
                     const unitKey = `Unit ${unitIdx}`;
@@ -842,8 +899,17 @@ const QuizApp = {
 
         if (typeof quizData !== 'undefined' && this.state.currentTitle) {
             let f = [];
-            if (this.state.category === 'units') f = quizData.filter(q => q.c === this.state.course && q.u === (idx + 1));
-            else if (this.state.category === 'mixed') f = quizData.filter(q => q.c === this.state.course && q.m === this.state.currentTitle);
+            if (this.state.category === 'units') {
+                if (this.state.course === "Mixed" && this.mixedUnitsInfo) {
+                    const muInfo = this.mixedUnitsInfo[idx];
+                    if (muInfo) {
+                        const subjQuestions = quizData.filter(q => q.c === "Mixed" && q.u === muInfo.uVal);
+                        f = subjQuestions.slice(muInfo.startIdx, muInfo.endIdx);
+                    }
+                } else {
+                    f = quizData.filter(q => q.c === this.state.course && q.u === (idx + 1));
+                }
+            } else if (this.state.category === 'mixed') f = quizData.filter(q => q.c === this.state.course && q.m === this.state.currentTitle);
             else f = quizData.filter(q => q.c === this.state.course && q.e === this.state.currentTitle);
 
             this.state.questions = shuffle([...f]);
@@ -866,14 +932,35 @@ const QuizApp = {
 
         const qMetaEl = document.getElementById('q-meta');
         if (qMetaEl) {
-            const isMixedOrWrongOrMockOrMulti = this.state.isMockMode || this.state.isWrongMode || this.state.isSearchMode || this.state.category === 'mixed' || this.state.category === 'exams' || this.state.currentTitle === 'Multi';
+            const isMixedOrWrongOrMockOrMulti = this.state.isMockMode || this.state.isWrongMode || this.state.isSearchMode || this.state.category === 'mixed' || this.state.category === 'exams' || this.state.currentTitle === 'Multi' || this.state.course === 'Mixed';
             if (isMixedOrWrongOrMockOrMulti) {
-                const uName = (CONFIG[q.c] && CONFIG[q.c].units[q.u - 1]) || `Unit ${q.u}`;
-                const style = COURSE_STYLES[q.c] || { accent: '#6366f1', g1: '#6366f1', g2: '#8b5cf6' };
+                let displayCourse = q.c;
+                let displayUnit = "";
+                let accentColor = '#6366f1';
+                
+                if (q.c === "Mixed") {
+                    const subjects = [
+                        "Atatürk İlkeleri ve İnkılap Tarihi II",
+                        "Grafik Tasarım II",
+                        "Görsel İletişim Tasarımı",
+                        "Masaüstü Yayıncılık",
+                        "Tasarımda Tipografi",
+                        "Türk Dili II"
+                    ];
+                    displayCourse = subjects[q.u - 1] || "Mixed";
+                    displayUnit = this.state.currentTitle || "";
+                    const style = COURSE_STYLES[displayCourse] || { accent: '#ec4899' };
+                    accentColor = style.accent;
+                } else {
+                    displayUnit = (CONFIG[q.c] && CONFIG[q.c].units[q.u - 1]) || `Unit ${q.u}`;
+                    const style = COURSE_STYLES[q.c] || { accent: '#6366f1' };
+                    accentColor = style.accent;
+                }
+                
                 qMetaEl.innerHTML = `
-                    <span class="badge-meta-course" style="background: rgba(99, 102, 241, 0.08); border: 1px solid ${style.accent}30; color: ${style.accent}; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700;">${q.c}</span>
-                    <span style="color: var(--text-muted); font-size: 0.75rem;">&bull;</span>
-                    <span class="badge-meta-unit" style="background: var(--bg-element); border: 1px solid var(--border); color: var(--text-main); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 600;">${uName}</span>
+                    <span class="badge-meta-course" style="background: rgba(99, 102, 241, 0.08); border: 1px solid ${accentColor}30; color: ${accentColor}; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700;">${displayCourse}</span>
+                    ${displayUnit ? `<span style="color: var(--text-muted); font-size: 0.75rem;">&bull;</span>
+                    <span class="badge-meta-unit" style="background: var(--bg-element); border: 1px solid var(--border); color: var(--text-main); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 600;">${displayUnit}</span>` : ''}
                 `;
                 qMetaEl.style.display = 'flex';
             } else {
