@@ -2062,7 +2062,7 @@ body {
         flex-direction: column !important;
         align-items: center !important;
         justify-content: flex-start !important;
-        padding: 40px !important;
+        padding: 16px !important;
     }
     .dashboard {
         width: 100% !important;
