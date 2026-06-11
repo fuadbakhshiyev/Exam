@@ -54,6 +54,20 @@ const LifeOS = {
         };
         container.appendChild(homeBtn);
 
+        // PDF Exams (İmtahan) Button
+        const pdfExamsBtn = document.createElement('button');
+        pdfExamsBtn.className = 'menu-btn';
+        pdfExamsBtn.id = 'btn-pdf-exams';
+        pdfExamsBtn.innerHTML = `<span>İmtahan</span>`;
+        pdfExamsBtn.onclick = () => {
+            document.querySelectorAll('.course-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+            pdfExamsBtn.classList.add('active');
+            QuizApp.showPdfExamsDashboard();
+            if (window.innerWidth <= 768) toggleSidebar();
+        };
+        container.appendChild(pdfExamsBtn);
+
         Object.keys(CONFIG).forEach(c => {
             const btn = document.createElement('button'); btn.className = 'menu-btn course-btn';
             btn.innerHTML = `<span>${c}</span>`; btn.id = `btn-${c}`;

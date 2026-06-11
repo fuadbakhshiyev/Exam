@@ -554,6 +554,27 @@ const QuizApp = {
             return `${m}m`;
         };
 
+        // Generate PDF Subject Cards
+        let subjectCardsHTML = "";
+        if (typeof pdfExamsData !== 'undefined') {
+            Object.keys(pdfExamsData).forEach(subject => {
+                const style = COURSE_STYLES[subject] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
+                const numExams = pdfExamsData[subject].length;
+                subjectCardsHTML += `
+                    <div class="pdf-subject-card" onclick="QuizApp.showPdfExamsList('${subject.replace(/'/g, "\\'")}', 'home')">
+                        <div class="subject-icon-wrap" style="width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; background: linear-gradient(135deg, ${style.g1}20, ${style.g2}20); border: 1px solid ${style.accent}30; color: ${style.accent};">
+                            ${style.icon}
+                        </div>
+                        <div class="subject-info-wrap" style="flex: 1;">
+                            <div class="subject-title" style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif;">${subject}</div>
+                            <div class="subject-desc" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; margin-top: 4px;">${numExams} Sınaq İmtahanı</div>
+                        </div>
+                        <div class="subject-arrow" style="font-size: 1rem; color: var(--text-muted); font-weight: 700;">→</div>
+                    </div>
+                `;
+            });
+        }
+
         container.innerHTML = `
             <div class="dashboard">
 
@@ -635,6 +656,20 @@ const QuizApp = {
                     </div>
                 </div>
 
+                <!-- Mövzu Sınaq İmtahanları (PDF) Bölməsi -->
+                <div class="hap-chart-panel" style="margin-top: 12px; border-color: rgba(99, 102, 241, 0.15);">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.3rem;">📝</span>
+                        <div class="hap-section-label" style="margin: 0; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Mövzu Sınaq İmtahanları (PDF)</div>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: -4px; margin-bottom: 8px; font-weight: 500;">
+                        Yüklənmiş PDF testlərinin hər biri üzrə ayrıca tərtib olunmuş 20 suallıq sınaqlar.
+                    </p>
+                    <div class="home-pdf-subjects-grid">
+                        ${subjectCardsHTML || '<div style="color: var(--text-muted); font-size: 0.9rem; padding: 10px;">İmtahan tapılmadı</div>'}
+                    </div>
+                </div>
+
             </div>
         `;
 
@@ -652,6 +687,172 @@ const QuizApp = {
             document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
             homeBtn.classList.add('active');
         }
+    },
+
+    showPdfExamsDashboard: function () {
+        this.stopTimer();
+        this.state.view = 'pdf-exams-dashboard';
+        this.state.pdfExamReferrer = 'dashboard';
+        
+        const container = document.getElementById('content-area');
+        if (!container) return;
+
+        // Generate PDF Subject Cards
+        let subjectCardsHTML = "";
+        if (typeof pdfExamsData !== 'undefined') {
+            Object.keys(pdfExamsData).forEach(subject => {
+                const style = COURSE_STYLES[subject] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
+                const numExams = pdfExamsData[subject].length;
+                subjectCardsHTML += `
+                    <div class="pdf-subject-card" onclick="QuizApp.showPdfExamsList('${subject.replace(/'/g, "\\'")}', 'dashboard')">
+                        <div class="subject-icon-wrap" style="width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; background: linear-gradient(135deg, ${style.g1}20, ${style.g2}20); border: 1px solid ${style.accent}30; color: ${style.accent};">
+                            ${style.icon}
+                        </div>
+                        <div class="subject-info-wrap" style="flex: 1;">
+                            <div class="subject-title" style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif;">${subject}</div>
+                            <div class="subject-desc" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; margin-top: 4px;">${numExams} Sınaq İmtahanı</div>
+                        </div>
+                        <div class="subject-arrow" style="font-size: 1rem; color: var(--text-muted); font-weight: 700;">→</div>
+                    </div>
+                `;
+            });
+        }
+
+        container.innerHTML = `
+            <div class="dashboard" style="max-width: 1000px; width: 100%; margin: 0 auto; padding: 10px 0;">
+                <div class="hap-chart-panel" style="border-color: rgba(99, 102, 241, 0.15); padding: 24px; border-radius: 20px; background: var(--bg-card);">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                        <span style="font-size: 1.6rem;">📝</span>
+                        <div class="hap-section-label" style="margin: 0; font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Plus Jakarta Sans', sans-serif;">Mövzu Sınaq İmtahanları (PDF)</div>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0; margin-bottom: 20px; font-weight: 500; line-height: 1.5;">
+                        Yüklənmiş PDF testlərinin hər biri üzrə ayrıca tərtib olunmuş 20 suallıq sınaqlar.
+                    </p>
+                    <div class="home-pdf-subjects-grid">
+                        ${subjectCardsHTML || '<div style="color: var(--text-muted); font-size: 0.9rem; padding: 10px;">İmtahan tapılmadı</div>'}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Hide top nav since we are in a dashboard screen
+        const tn = document.getElementById('top-nav');
+        if (tn) tn.style.display = 'none';
+
+        // Manage sidebar active states
+        const pdfExamsBtn = document.getElementById('btn-pdf-exams');
+        if (pdfExamsBtn) {
+            document.querySelectorAll('.course-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+            pdfExamsBtn.classList.add('active');
+        }
+    },
+
+    showPdfExamsList: function (subjectName, referrer) {
+        this.stopTimer();
+        this.state.view = 'pdf-exams-list';
+        this.state.pdfExamSubject = subjectName;
+        if (referrer) {
+            this.state.pdfExamReferrer = referrer;
+        }
+        
+        const container = document.getElementById('content-area');
+        if (!container) return;
+        
+        const exams = (typeof pdfExamsData !== 'undefined') ? (pdfExamsData[subjectName] || []) : [];
+        const style = COURSE_STYLES[subjectName] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
+        
+        let examsHTML = "";
+        exams.forEach((examQs, idx) => {
+            const examTitle = `İmtahan ${idx + 1}`;
+            const examKey = `${subjectName}_pdf_${idx}`;
+            let c_correct = 0, c_wrong = 0, lastTested = 0;
+            if (this.stats[examKey]) {
+                c_correct = this.stats[examKey].c || 0;
+                c_wrong = this.stats[examKey].w || 0;
+                if (this.stats[examKey].bd && this.stats[examKey].bd['pdf-exam'] && this.stats[examKey].bd['pdf-exam'][examTitle]) {
+                    lastTested = this.stats[examKey].bd['pdf-exam'][examTitle].last || 0;
+                }
+            }
+            const totalAnswered = c_correct + c_wrong;
+            const lastTestedStr = this.formatLastTested(lastTested, totalAnswered > 0);
+            
+            examsHTML += `
+                <div class="unit-item" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 20px; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 14px;">
+                    <div class="unit-item-header" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+                        <div>
+                            <div class="unit-item-title" style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif;">
+                                ${examTitle}
+                            </div>
+                            <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                                ⏱️ Son sınaq: ${lastTestedStr}
+                            </div>
+                        </div>
+                        <button class="unit-btn-start" style="background: linear-gradient(135deg, ${style.g1}, ${style.g2}); box-shadow: 0 4px 12px ${style.accent}30;" onclick="QuizApp.startPdfExam('${subjectName.replace(/'/g, "\\'")}', ${idx})">Başla</button>
+                    </div>
+                    
+                    <div class="unit-item-stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: rgba(255,255,255,0.02); padding: 12px; border-radius: 12px; border: 1px solid var(--border);">
+                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--text-main);">${examQs.length}</span>
+                            <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Cəm Sual</span>
+                        </div>
+                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--active);">${c_correct}</span>
+                            <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Düzgün</span>
+                        </div>
+                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--wrong);">${c_wrong}</span>
+                            <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Səhv</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = `
+            <div class="dashboard" style="max-width: 1000px; width: 100%; margin: 0 auto; padding: 10px 0;">
+                <div style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 12px;">
+                    <button class="btn btn-sec" style="padding: 8px 16px; width: auto; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;" onclick="if(QuizApp.state.pdfExamReferrer === 'dashboard') { QuizApp.showPdfExamsDashboard(); } else { QuizApp.start(); }">
+                        ← Geri Qayıt
+                    </button>
+                    <div style="display: flex; align-items: center; gap: 12px; margin-top: 8px;">
+                        <div style="width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; background: linear-gradient(135deg, ${style.g1}20, ${style.g2}20); border: 1px solid ${style.accent}30; color: ${style.accent};">
+                            ${style.icon}
+                        </div>
+                        <div>
+                            <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; margin: 0;">${subjectName}</h2>
+                            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 3px; font-weight: 500;">PDF Sınaq İmtahanları</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="unit-list-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+                    ${examsHTML || '<div style="color: var(--text-muted); font-size: 0.9rem; padding: 20px;">İmtahan tapılmadı</div>'}
+                </div>
+            </div>
+        `;
+        
+        const tn = document.getElementById('top-nav');
+        if (tn) tn.style.display = 'none';
+        
+        document.querySelectorAll('.course-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+    },
+    
+    startPdfExam: function (subjectName, examIdx) {
+        const exams = (typeof pdfExamsData !== 'undefined') ? (pdfExamsData[subjectName] || []) : [];
+        const questions = exams[examIdx] || [];
+        if (!questions.length) return alert("Bu imtahanda sual tapılmadı.");
+        
+        const title = `İmtahan ${examIdx + 1}`;
+        const examKey = `${subjectName}_pdf_${examIdx}`;
+        
+        this.startSpecial(questions, title, examKey);
+        
+        this.state.category = 'pdf-exam';
+        this.state.currentTitle = title;
+        this.state.selectionIndex = examIdx;
+        this.state.activePdfSubject = subjectName;
     },
 
     renderHomeCharts: function (correct, wrong, unanswered) {
@@ -820,6 +1021,13 @@ const QuizApp = {
     },
 
     showCourseDashboard: function (c) {
+        if (c && c.includes('_pdf_')) {
+            const subjectName = this.state.activePdfSubject;
+            if (subjectName) {
+                this.showPdfExamsList(subjectName);
+                return;
+            }
+        }
         this.stopTimer();
         this.state.view = 'dashboard';
         this.state.course = c;
