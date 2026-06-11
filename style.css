@@ -2170,3 +2170,45 @@ body {
     color: var(--text-main) !important;
     font-weight: 700;
 }
+
+/* --- MOST WRONG UNIT WARNING BOX --- */
+.db-warning-box {
+    background: rgba(239, 68, 68, 0.08); /* Transparent Coral Red */
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    padding: 18px 22px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.4s ease;
+}
+
+.db-warning-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.db-warning-content {
+    flex: 1;
+}
+
+.db-warning-title {
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+    color: #ef4444; /* Coral/Red warning color */
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-transform: uppercase;
+}
+
+.db-warning-desc {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--text-main);
+}
+.db-warning-desc span {
+    font-weight: 700;
+}

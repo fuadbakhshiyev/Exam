@@ -70,6 +70,356 @@ const QuizApp = {
         }
     },
 
+    selectMixedSubSubject: function (subjName) {
+        this.state.mixedSubSubject = subjName;
+        this.showCourseDashboard("Mixed");
+    },
+
+    renderMixedDashboard: function (listEl, layout, s) {
+        listEl.innerHTML = "";
+        const c = "Mixed";
+        
+        // If in Level 2 (Sub-subject view)
+        if (this.state.mixedSubSubject) {
+            const subSubject = this.state.mixedSubSubject;
+            
+            // Add a Back Button at the top of the unit list
+            const backHeader = document.createElement('div');
+            backHeader.style.gridColumn = '1 / -1';
+            backHeader.style.marginBottom = '8px';
+            backHeader.innerHTML = `
+                <button class="btn btn-sec" style="padding: 8px 16px; width: auto; font-size: 0.85rem;" onclick="QuizApp.state.mixedSubSubject = null; QuizApp.showCourseDashboard('Mixed')">
+                    ← Fənlər Siyahısına Qayıt
+                </button>
+                <div style="font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-top: 12px; font-family: 'Plus Jakarta Sans', sans-serif;">
+                    ${subSubject} - Bölmələr
+                </div>
+            `;
+            listEl.appendChild(backHeader);
+            
+            // Filter chunks belonging to this subSubject
+            const filteredChunks = this.mixedUnitsInfo.map((chunk, idx) => ({ chunk, idx }))
+                .filter(item => item.chunk.subject === subSubject);
+            
+            if (layout === 'table') {
+                listEl.classList.add('table-mode');
+                const table = document.createElement('table');
+                table.className = 'stat-table unit-table';
+                
+                let tbodyHTML = "";
+                filteredChunks.forEach(({ chunk, idx }) => {
+                    const unitKey = `Unit ${idx + 1}`;
+                    let c_correct = 0, c_wrong = 0, unitLastTested = 0;
+                    if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
+                        const us = s.bd['units'][unitKey];
+                        c_correct = us.c;
+                        c_wrong = us.w;
+                        unitLastTested = us.last || 0;
+                    }
+                    const totalAnswered = c_correct + c_wrong;
+                    const unitAcc = totalAnswered > 0 ? Math.round((c_correct / totalAnswered) * 100) : 0;
+                    const totalUnitQ = chunk.endIdx - chunk.startIdx;
+                    const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
+                    
+                    tbodyHTML += `
+                        <tr onclick="QuizApp.startUnit('Mixed', ${idx})">
+                            <td style="font-weight: 700; color: var(--text-main);">
+                                <div class="unit-table-title">Hissə ${chunk.part} (${chunk.startIdx + 1}-${chunk.endIdx})</div>
+                                <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
+                                    Son sınaq: ${unitLastTestedStr}
+                                </div>
+                            </td>
+                            <td style="text-align: center;">${totalUnitQ}</td>
+                            <td style="text-align: center; color: var(--active); font-weight: 700;">${c_correct}</td>
+                            <td style="text-align: center; color: var(--wrong); font-weight: 700;">${c_wrong}</td>
+                            <td style="text-align: center; color: var(--accent); font-weight: 700;">${unitAcc}%</td>
+                            <td style="text-align: right;" onclick="event.stopPropagation();">
+                                <button class="unit-btn-start" onclick="QuizApp.startUnit('Mixed', ${idx})">Başla</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th style="width: 45%;">Hissə</th>
+                            <th style="text-align: center; width: 12%;">Sual</th>
+                            <th style="text-align: center; width: 10%; color: var(--active);">Düz</th>
+                            <th style="text-align: center; width: 10%; color: var(--wrong);">Səhv</th>
+                            <th style="text-align: center; width: 10%;">Faiz</th>
+                            <th style="text-align: right; width: 13%;">İcra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${tbodyHTML}
+                    </tbody>
+                `;
+                listEl.appendChild(table);
+            } else {
+                listEl.classList.remove('table-mode');
+                
+                filteredChunks.forEach(({ chunk, idx }) => {
+                    const unitKey = `Unit ${idx + 1}`;
+                    let c_correct = 0, c_wrong = 0, unitLastTested = 0;
+                    if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
+                        const us = s.bd['units'][unitKey];
+                        c_correct = us.c;
+                        c_wrong = us.w;
+                        unitLastTested = us.last || 0;
+                    }
+                    const totalAnswered = c_correct + c_wrong;
+                    const totalUnitQ = chunk.endIdx - chunk.startIdx;
+                    const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
+                    
+                    const item = document.createElement('div');
+                    item.className = 'unit-item';
+                    item.innerHTML = `
+                        <div class="unit-item-header">
+                            <div>
+                                <div class="unit-item-title">Hissə ${chunk.part} (${chunk.startIdx + 1}-${chunk.endIdx})</div>
+                                <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                                    ⏱️ Son sınaq: ${unitLastTestedStr}
+                                </div>
+                            </div>
+                            <button class="unit-btn-start" onclick="QuizApp.startUnit('Mixed', ${idx})">Başla</button>
+                        </div>
+                        <div class="unit-item-stats-grid">
+                            <div class="unit-stat-box">
+                                <span class="us-val">${totalUnitQ}</span>
+                                <span class="us-lbl">CƏMİ SUAL</span>
+                            </div>
+                            <div class="unit-stat-box">
+                                <span class="us-val" style="color: var(--active)">${c_correct}</span>
+                                <span class="us-lbl">DOĞRU</span>
+                            </div>
+                            <div class="unit-stat-box">
+                                <span class="us-val" style="color: var(--wrong)">${c_wrong}</span>
+                                <span class="us-lbl">YANLIŞ</span>
+                            </div>
+                        </div>
+                    `;
+                    listEl.appendChild(item);
+                });
+            }
+        } else {
+            // Level 1: Subjects List
+            const subjects = [
+                "Atatürk İlkeleri ve İnkılap Tarihi II",
+                "Grafik Tasarım II",
+                "Görsel İletişim Tasarımı",
+                "Masaüstü Yayıncılık",
+                "Tasarımda Tipografi",
+                "Türk Dili II"
+            ];
+            
+            const wrQs = this.wrongDB[c] || [];
+            const hardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 2).length;
+            const veryHardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 3).length;
+            
+            // Render Multi row/card first
+            if (layout === 'table') {
+                listEl.classList.add('table-mode');
+                const table = document.createElement('table');
+                table.className = 'stat-table unit-table';
+                
+                let multiLastTested = 0;
+                let hasMultiData = false;
+                if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
+                    multiLastTested = s.bd['units']['Multi'].last || 0;
+                    hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
+                }
+                if (multiLastTested === 0 && hasMultiData) {
+                    multiLastTested = this.getCourseLastActiveDateFromHistory(c);
+                }
+                const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
+                
+                let tbodyHTML = `
+                    <tr onclick="QuizApp.startMultiUnit('Mixed')" style="background: rgba(99, 102, 241, 0.05); border-left: 3px solid var(--accent);">
+                        <td style="font-weight: 800; color: var(--accent);">
+                            <div class="unit-table-title"><span class="unit-table-num">⭐</span> Multi (Səhvlərin Təkrarı)</div>
+                            <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
+                                ⏱️ Son sınaq: ${multiLastTestedStr}
+                            </div>
+                            ${hardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(245, 158, 11, 0.08); border: 1px solid var(--hint); color: var(--hint); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">⚠️ ${hardQsCount} Çətin</span>` : ''}
+                            ${veryHardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid var(--wrong); color: var(--wrong); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">🔥 ${veryHardQsCount} Çox Çətin</span>` : ''}
+                        </td>
+                        <td style="text-align: center;">${wrQs.length}</td>
+                        <td style="text-align: center; color: var(--active); font-weight: 700;">-</td>
+                        <td style="text-align: center; color: var(--wrong); font-weight: 700;">${wrQs.length}</td>
+                        <td style="text-align: center; color: var(--accent); font-weight: 700;">-</td>
+                        <td style="text-align: right;" onclick="event.stopPropagation();">
+                            <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('Mixed')">Başla</button>
+                        </td>
+                    </tr>
+                `;
+                
+                subjects.forEach((subjName, sIdx) => {
+                    const uVal = sIdx + 1;
+                    // Aggregate stats for this subject
+                    let c_correct = 0, c_wrong = 0, subjLastTested = 0;
+                    const subjChunks = this.mixedUnitsInfo.map((chunk, idx) => ({ chunk, idx }))
+                        .filter(item => item.chunk.uVal === uVal);
+                    
+                    let totalSubjQ = 0;
+                    subjChunks.forEach(({ chunk, idx }) => {
+                        totalSubjQ += chunk.endIdx - chunk.startIdx;
+                        const unitKey = `Unit ${idx + 1}`;
+                        if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
+                            const us = s.bd['units'][unitKey];
+                            c_correct += us.c || 0;
+                            c_wrong += us.w || 0;
+                            subjLastTested = Math.max(subjLastTested, us.last || 0);
+                        }
+                    });
+                    
+                    const totalAnswered = c_correct + c_wrong;
+                    const subjAcc = totalAnswered > 0 ? Math.round((c_correct / totalAnswered) * 100) : 0;
+                    if (subjLastTested === 0 && totalAnswered > 0) {
+                        subjLastTested = this.getCourseLastActiveDateFromHistory(c);
+                    }
+                    const subjLastTestedStr = this.formatLastTested(subjLastTested, totalAnswered > 0);
+                    
+                    tbodyHTML += `
+                        <tr onclick="QuizApp.selectMixedSubSubject('${subjName.replace(/'/g, "\\'")}')">
+                            <td style="font-weight: 700; color: var(--text-main);">
+                                <div class="unit-table-title">${subjName}</div>
+                                <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
+                                    ⏱️ Son sınaq: ${subjLastTestedStr}
+                                </div>
+                            </td>
+                            <td style="text-align: center;">${totalSubjQ}</td>
+                            <td style="text-align: center; color: var(--active); font-weight: 700;">${c_correct}</td>
+                            <td style="text-align: center; color: var(--wrong); font-weight: 700;">${c_wrong}</td>
+                            <td style="text-align: center; color: var(--accent); font-weight: 700;">${subjAcc}%</td>
+                            <td style="text-align: right;" onclick="event.stopPropagation();">
+                                <button class="unit-btn-start" onclick="QuizApp.selectMixedSubSubject('${subjName.replace(/'/g, "\\'")}')">Giriş</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th style="width: 45%;">Fənn</th>
+                            <th style="text-align: center; width: 12%;">Sual</th>
+                            <th style="text-align: center; width: 10%; color: var(--active);">Düz</th>
+                            <th style="text-align: center; width: 10%; color: var(--wrong);">Səhv</th>
+                            <th style="text-align: center; width: 10%;">Faiz</th>
+                            <th style="text-align: right; width: 13%;">İcra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${tbodyHTML}
+                    </tbody>
+                `;
+                listEl.appendChild(table);
+            } else {
+                listEl.classList.remove('table-mode');
+                
+                // Prepend Multi Card
+                let multiLastTested = 0;
+                let hasMultiData = false;
+                if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
+                    multiLastTested = s.bd['units']['Multi'].last || 0;
+                    hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
+                }
+                if (multiLastTested === 0 && hasMultiData) {
+                    multiLastTested = this.getCourseLastActiveDateFromHistory(c);
+                }
+                const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
+                
+                const multiItem = document.createElement('div');
+                multiItem.className = 'unit-item';
+                multiItem.style.background = 'linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%)';
+                multiItem.style.border = '1px solid rgba(139, 92, 246, 0.3)';
+                multiItem.innerHTML = `
+                    <div class="unit-item-header">
+                        <div>
+                            <div class="unit-item-title" style="color: var(--accent); font-weight: 800;">⭐ Multi (Səhvlərin Təkrarı)</div>
+                            <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                                ⏱️ Son sınaq: ${multiLastTestedStr}
+                            </div>
+                        </div>
+                        <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('Mixed')">Başla</button>
+                    </div>
+                    <div class="unit-item-stats-grid">
+                        <div class="unit-stat-box">
+                            <span class="us-val" style="color: var(--text-main); font-weight: 800;">${wrQs.length}</span>
+                            <span class="us-lbl">SƏHV SUAL</span>
+                        </div>
+                        <div class="unit-stat-box">
+                            <span class="us-val" style="color: var(--hint); font-weight: 800;">⚠️ ${hardQsCount}</span>
+                            <span class="us-lbl">ÇƏTİN (2+)</span>
+                        </div>
+                        <div class="unit-stat-box">
+                            <span class="us-val" style="color: var(--wrong); font-weight: 800;">🔥 ${veryHardQsCount}</span>
+                            <span class="us-lbl">ÇOX ÇƏTİN (3+)</span>
+                        </div>
+                    </div>
+                `;
+                listEl.appendChild(multiItem);
+                
+                subjects.forEach((subjName, sIdx) => {
+                    const uVal = sIdx + 1;
+                    let c_correct = 0, c_wrong = 0, subjLastTested = 0;
+                    const subjChunks = this.mixedUnitsInfo.map((chunk, idx) => ({ chunk, idx }))
+                        .filter(item => item.chunk.uVal === uVal);
+                    
+                    let totalSubjQ = 0;
+                    subjChunks.forEach(({ chunk, idx }) => {
+                        totalSubjQ += chunk.endIdx - chunk.startIdx;
+                        const unitKey = `Unit ${idx + 1}`;
+                        if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
+                            const us = s.bd['units'][unitKey];
+                            c_correct += us.c || 0;
+                            c_wrong += us.w || 0;
+                            subjLastTested = Math.max(subjLastTested, us.last || 0);
+                        }
+                    });
+                    
+                    const totalAnswered = c_correct + c_wrong;
+                    if (subjLastTested === 0 && totalAnswered > 0) {
+                        subjLastTested = this.getCourseLastActiveDateFromHistory(c);
+                    }
+                    const subjLastTestedStr = this.formatLastTested(subjLastTested, totalAnswered > 0);
+                    
+                    const style = COURSE_STYLES[subjName] || { accent: '#6366f1', g1: '#6366f1', g2: '#8b5cf6' };
+                    
+                    const item = document.createElement('div');
+                    item.className = 'unit-item';
+                    item.innerHTML = `
+                        <div class="unit-item-header">
+                            <div>
+                                <div class="unit-item-title" style="color: var(--text-main); font-weight: 700;">${subjName}</div>
+                                <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                                    ⏱️ Son sınaq: ${subjLastTestedStr}
+                                </div>
+                            </div>
+                            <button class="unit-btn-start" style="background: linear-gradient(135deg, ${style.g1}, ${style.g2}); box-shadow: 0 4px 12px ${style.accent}30;" onclick="QuizApp.selectMixedSubSubject('${subjName.replace(/'/g, "\\'")}')">Giriş</button>
+                        </div>
+                        <div class="unit-item-stats-grid">
+                            <div class="unit-stat-box">
+                                <span class="us-val">${totalSubjQ}</span>
+                                <span class="us-lbl">CƏMİ SUAL</span>
+                            </div>
+                            <div class="unit-stat-box">
+                                <span class="us-val" style="color: var(--active)">${c_correct}</span>
+                                <span class="us-lbl">DOĞRU</span>
+                            </div>
+                            <div class="unit-stat-box">
+                                <span class="us-val" style="color: var(--wrong)">${c_wrong}</span>
+                                <span class="us-lbl">YANLIŞ</span>
+                            </div>
+                        </div>
+                    `;
+                    listEl.appendChild(item);
+                });
+            }
+        }
+    },
+
     loadData: function () {
         this.stats = JSON.parse(localStorage.getItem(this.DB.stats)) || {};
         this.wrongDB = JSON.parse(localStorage.getItem(this.DB.wrong)) || {};
@@ -460,7 +810,7 @@ const QuizApp = {
     },
 
     selectCat: function (c, type, btn) {
-        this.state = { ...this.state, view: 'dashboard', course: c, category: type, isWrongMode: false, isSearchMode: false, isMockMode: false };
+        this.state = { ...this.state, view: 'dashboard', course: c, category: type, isWrongMode: false, isSearchMode: false, isMockMode: false, mixedSubSubject: null };
 
         document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active-sub'));
         if (btn) btn.classList.add('active-sub');
@@ -560,6 +910,45 @@ const QuizApp = {
             `;
         }
 
+        // Find unit with most wrong answers
+        let maxWrong = 0;
+        let maxUnitName = "";
+        let maxUnitIdx = -1;
+        
+        if (s.bd && s.bd['units']) {
+            CONFIG[c].units.forEach((unitName, i) => {
+                const unitKey = `Unit ${i + 1}`;
+                const us = s.bd['units'][unitKey];
+                if (us && us.w > maxWrong) {
+                    maxWrong = us.w;
+                    maxUnitName = unitName;
+                    maxUnitIdx = i;
+                }
+            });
+        }
+        
+        const warningContainer = document.getElementById('db-warning-container');
+        if (warningContainer) {
+            if (maxWrong > 0) {
+                warningContainer.style.display = 'block';
+                warningContainer.innerHTML = `
+                    <div class="db-warning-box">
+                        <div class="db-warning-icon">⚠️</div>
+                        <div class="db-warning-content" style="display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 16px; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 200px;">
+                                <div class="db-warning-title">ƏN ÇOX SƏHV EDİLƏN BÖLMƏ</div>
+                                <div class="db-warning-desc">Bu fəndən ən çox səhvi <span>${maxUnitName}</span> bölməsində etmisiniz (<span>${maxWrong} səhv</span>).</div>
+                            </div>
+                            <button class="unit-btn-start" style="background: linear-gradient(135deg, #ef4444 0%, #f97316 100%); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);" onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${maxUnitIdx})">Bölməyə Başla</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                warningContainer.style.display = 'none';
+                warningContainer.innerHTML = '';
+            }
+        }
+
         // AI Recommendation
         const recTextEl = document.getElementById('db-recommendation-text');
         if (recTextEl) {
@@ -602,229 +991,233 @@ const QuizApp = {
         }
 
         if (listEl && CONFIG[c]) {
-            listEl.innerHTML = "";
-            const wrQs = this.wrongDB[c] || [];
-            const hardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 2).length;
-            const veryHardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 3).length;
-            
-            if (layout === 'table') {
-                listEl.classList.add('table-mode');
+            if (c === "Mixed") {
+                this.renderMixedDashboard(listEl, layout, s);
+            } else {
+                listEl.innerHTML = "";
+                const wrQs = this.wrongDB[c] || [];
+                const hardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 2).length;
+                const veryHardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 3).length;
                 
-                // Create table element
-                const table = document.createElement('table');
-                table.className = 'stat-table unit-table';
-                
-                let multiLastTested = 0;
-                let hasMultiData = false;
-                if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
-                    multiLastTested = s.bd['units']['Multi'].last || 0;
-                    hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
-                }
-                if (multiLastTested === 0 && hasMultiData) {
-                    multiLastTested = this.getCourseLastActiveDateFromHistory(c);
-                }
-                const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
+                if (layout === 'table') {
+                    listEl.classList.add('table-mode');
+                    
+                    // Create table element
+                    const table = document.createElement('table');
+                    table.className = 'stat-table unit-table';
+                    
+                    let multiLastTested = 0;
+                    let hasMultiData = false;
+                    if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
+                        multiLastTested = s.bd['units']['Multi'].last || 0;
+                        hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
+                    }
+                    if (multiLastTested === 0 && hasMultiData) {
+                        multiLastTested = this.getCourseLastActiveDateFromHistory(c);
+                    }
+                    const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
 
-                // Prepend Multi row to tbodyHTML
-                let tbodyHTML = `
-                    <tr onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')" style="background: rgba(99, 102, 241, 0.05); border-left: 3px solid var(--accent);">
-                        <td style="font-weight: 800; color: var(--accent);">
-                            <div class="unit-table-title"><span class="unit-table-num">⭐</span> Multi (Səhvlərin Təkrarı)</div>
-                            <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
-                                ⏱️ Son sınaq: ${multiLastTestedStr}
-                            </div>
-                            ${hardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(245, 158, 11, 0.08); border: 1px solid var(--hint); color: var(--hint); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">⚠️ ${hardQsCount} Çətin</span>` : ''}
-                            ${veryHardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid var(--wrong); color: var(--wrong); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">🔥 ${veryHardQsCount} Çox Çətin</span>` : ''}
-                        </td>
-                        <td style="text-align: center;">${wrQs.length}</td>
-                        <td style="text-align: center; color: var(--active); font-weight: 700;">-</td>
-                        <td style="text-align: center; color: var(--wrong); font-weight: 700;">${wrQs.length}</td>
-                        <td style="text-align: center; color: var(--accent); font-weight: 700;">-</td>
-                        <td style="text-align: right;" onclick="event.stopPropagation();">
-                            <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')">Başla</button>
-                        </td>
-                    </tr>
-                `;
-                
-                CONFIG[c].units.forEach((unitName, i) => {
-                    const unitIdx = i + 1;
-                    let totalUnitQ = 0;
-                    if (typeof quizData !== 'undefined') {
-                        if (c === "Mixed" && this.mixedUnitsInfo) {
-                            const muInfo = this.mixedUnitsInfo[i];
-                            if (muInfo) {
-                                totalUnitQ = muInfo.endIdx - muInfo.startIdx;
-                            }
-                        } else {
-                            totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
-                        }
-                    }
-                    
-                    const unitKey = `Unit ${unitIdx}`;
-                    let c_correct = 0;
-                    let c_wrong = 0;
-                    let unitLastTested = 0;
-                    if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
-                        const us = s.bd['units'][unitKey];
-                        c_correct = us.c;
-                        c_wrong = us.w;
-                        unitLastTested = us.last || 0;
-                    }
-                    
-                    let unitAcc = 0;
-                    const totalAnswered = c_correct + c_wrong;
-                    if (totalAnswered > 0) {
-                        unitAcc = Math.round((c_correct / totalAnswered) * 100);
-                    }
-                    
-                    if (unitLastTested === 0 && totalAnswered > 0) {
-                        unitLastTested = this.getCourseLastActiveDateFromHistory(c);
-                    }
-                    
-                    const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
-                    
-                    tbodyHTML += `
-                        <tr onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">
-                            <td style="font-weight: 700; color: var(--text-main);">
-                                <div class="unit-table-title"><span class="unit-table-num">${unitIdx}.</span> ${unitName}</div>
+                    // Prepend Multi row to tbodyHTML
+                    let tbodyHTML = `
+                        <tr onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')" style="background: rgba(99, 102, 241, 0.05); border-left: 3px solid var(--accent);">
+                            <td style="font-weight: 800; color: var(--accent);">
+                                <div class="unit-table-title"><span class="unit-table-num">⭐</span> Multi (Səhvlərin Təkrarı)</div>
                                 <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
-                                    ⏱️ Son sınaq: ${unitLastTestedStr}
+                                    ⏱️ Son sınaq: ${multiLastTestedStr}
                                 </div>
+                                ${hardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(245, 158, 11, 0.08); border: 1px solid var(--hint); color: var(--hint); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">⚠️ ${hardQsCount} Çətin</span>` : ''}
+                                ${veryHardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid var(--wrong); color: var(--wrong); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">🔥 ${veryHardQsCount} Çox Çətin</span>` : ''}
                             </td>
-                            <td style="text-align: center;">${totalUnitQ}</td>
-                            <td style="text-align: center; color: var(--active); font-weight: 700;">${c_correct}</td>
-                            <td style="text-align: center; color: var(--wrong); font-weight: 700;">${c_wrong}</td>
-                            <td style="text-align: center; color: var(--accent); font-weight: 700;">${unitAcc}%</td>
+                            <td style="text-align: center;">${wrQs.length}</td>
+                            <td style="text-align: center; color: var(--active); font-weight: 700;">-</td>
+                            <td style="text-align: center; color: var(--wrong); font-weight: 700;">${wrQs.length}</td>
+                            <td style="text-align: center; color: var(--accent); font-weight: 700;">-</td>
                             <td style="text-align: right;" onclick="event.stopPropagation();">
-                                <button class="unit-btn-start" onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">Başla</button>
+                                <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')">Başla</button>
                             </td>
                         </tr>
                     `;
-                });
-                
-                table.innerHTML = `
-                    <thead>
-                        <tr>
-                            <th style="width: 45%;">Bölmə</th>
-                            <th style="text-align: center; width: 12%;">Sual</th>
-                            <th style="text-align: center; width: 10%; color: var(--active);">Düz</th>
-                            <th style="text-align: center; width: 10%; color: var(--wrong);">Səhv</th>
-                            <th style="text-align: center; width: 10%;">Faiz</th>
-                            <th style="text-align: right; width: 13%;">İcra</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${tbodyHTML}
-                    </tbody>
-                `;
-                listEl.appendChild(table);
-            } else {
-                listEl.classList.remove('table-mode');
-                
-                // Prepend Multi card to listEl in Grid layout
-                let multiLastTested = 0;
-                let hasMultiData = false;
-                if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
-                    multiLastTested = s.bd['units']['Multi'].last || 0;
-                    hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
-                }
-                if (multiLastTested === 0 && hasMultiData) {
-                    multiLastTested = this.getCourseLastActiveDateFromHistory(c);
-                }
-                const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
-
-                const multiItem = document.createElement('div');
-                multiItem.className = 'unit-item';
-                multiItem.style.background = 'linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%)';
-                multiItem.style.border = '1px solid rgba(139, 92, 246, 0.3)';
-                multiItem.innerHTML = `
-                    <div class="unit-item-header">
-                        <div>
-                            <div class="unit-item-title" style="color: var(--accent); font-weight: 800;">⭐ Multi (Səhvlərin Təkrarı)</div>
-                            <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                ⏱️ Son sınaq: ${multiLastTestedStr}
-                            </div>
-                        </div>
-                        <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')">Başla</button>
-                    </div>
-                    <div class="unit-item-stats-grid">
-                        <div class="unit-stat-box">
-                            <span class="us-val" style="color: var(--text-main); font-weight: 800;">${wrQs.length}</span>
-                            <span class="us-lbl">SƏHV SUAL</span>
-                        </div>
-                        <div class="unit-stat-box">
-                            <span class="us-val" style="color: var(--hint); font-weight: 800;">⚠️ ${hardQsCount}</span>
-                            <span class="us-lbl">ÇƏTİN (2+)</span>
-                        </div>
-                        <div class="unit-stat-box">
-                            <span class="us-val" style="color: var(--wrong); font-weight: 800;">🔥 ${veryHardQsCount}</span>
-                            <span class="us-lbl">ÇOX ÇƏTİN (3+)</span>
-                        </div>
-                    </div>
-                `;
-                listEl.appendChild(multiItem);
-                
-                CONFIG[c].units.forEach((unitName, i) => {
-                    const unitIdx = i + 1;
-                    let totalUnitQ = 0;
-                    if (typeof quizData !== 'undefined') {
-                        if (c === "Mixed" && this.mixedUnitsInfo) {
-                            const muInfo = this.mixedUnitsInfo[i];
-                            if (muInfo) {
-                                totalUnitQ = muInfo.endIdx - muInfo.startIdx;
+                    
+                    CONFIG[c].units.forEach((unitName, i) => {
+                        const unitIdx = i + 1;
+                        let totalUnitQ = 0;
+                        if (typeof quizData !== 'undefined') {
+                            if (c === "Mixed" && this.mixedUnitsInfo) {
+                                const muInfo = this.mixedUnitsInfo[i];
+                                if (muInfo) {
+                                    totalUnitQ = muInfo.endIdx - muInfo.startIdx;
+                                }
+                            } else {
+                                totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
                             }
-                        } else {
-                            totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
                         }
+                        
+                        const unitKey = `Unit ${unitIdx}`;
+                        let c_correct = 0;
+                        let c_wrong = 0;
+                        let unitLastTested = 0;
+                        if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
+                            const us = s.bd['units'][unitKey];
+                            c_correct = us.c;
+                            c_wrong = us.w;
+                            unitLastTested = us.last || 0;
+                        }
+                        
+                        let unitAcc = 0;
+                        const totalAnswered = c_correct + c_wrong;
+                        if (totalAnswered > 0) {
+                            unitAcc = Math.round((c_correct / totalAnswered) * 100);
+                        }
+                        
+                        if (unitLastTested === 0 && totalAnswered > 0) {
+                            unitLastTested = this.getCourseLastActiveDateFromHistory(c);
+                        }
+                        
+                        const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
+                        
+                        tbodyHTML += `
+                            <tr onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">
+                                <td style="font-weight: 700; color: var(--text-main);">
+                                    <div class="unit-table-title"><span class="unit-table-num">${unitIdx}.</span> ${unitName}</div>
+                                    <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
+                                        ⏱️ Son sınaq: ${unitLastTestedStr}
+                                    </div>
+                                </td>
+                                <td style="text-align: center;">${totalUnitQ}</td>
+                                <td style="text-align: center; color: var(--active); font-weight: 700;">${c_correct}</td>
+                                <td style="text-align: center; color: var(--wrong); font-weight: 700;">${c_wrong}</td>
+                                <td style="text-align: center; color: var(--accent); font-weight: 700;">${unitAcc}%</td>
+                                <td style="text-align: right;" onclick="event.stopPropagation();">
+                                    <button class="unit-btn-start" onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">Başla</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                    
+                    table.innerHTML = `
+                        <thead>
+                            <tr>
+                                <th style="width: 45%;">Bölmə</th>
+                                <th style="text-align: center; width: 12%;">Sual</th>
+                                <th style="text-align: center; width: 10%; color: var(--active);">Düz</th>
+                                <th style="text-align: center; width: 10%; color: var(--wrong);">Səhv</th>
+                                <th style="text-align: center; width: 10%;">Faiz</th>
+                                <th style="text-align: right; width: 13%;">İcra</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${tbodyHTML}
+                        </tbody>
+                    `;
+                    listEl.appendChild(table);
+                } else {
+                    listEl.classList.remove('table-mode');
+                    
+                    // Prepend Multi card to listEl in Grid layout
+                    let multiLastTested = 0;
+                    let hasMultiData = false;
+                    if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
+                        multiLastTested = s.bd['units']['Multi'].last || 0;
+                        hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
                     }
-
-                    const unitKey = `Unit ${unitIdx}`;
-                    let c_correct = 0;
-                    let c_wrong = 0;
-                    let unitLastTested = 0;
-
-                    if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
-                        const us = s.bd['units'][unitKey];
-                        c_correct = us.c;
-                        c_wrong = us.w;
-                        unitLastTested = us.last || 0;
+                    if (multiLastTested === 0 && hasMultiData) {
+                        multiLastTested = this.getCourseLastActiveDateFromHistory(c);
                     }
-                    const totalAnswered = c_correct + c_wrong;
-                    if (unitLastTested === 0 && totalAnswered > 0) {
-                        unitLastTested = this.getCourseLastActiveDateFromHistory(c);
-                    }
+                    const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
 
-                    const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
-
-                    const item = document.createElement('div');
-                    item.className = 'unit-item';
-                    item.innerHTML = `
+                    const multiItem = document.createElement('div');
+                    multiItem.className = 'unit-item';
+                    multiItem.style.background = 'linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%)';
+                    multiItem.style.border = '1px solid rgba(139, 92, 246, 0.3)';
+                    multiItem.innerHTML = `
                         <div class="unit-item-header">
                             <div>
-                                <div class="unit-item-title">${unitName}</div>
+                                <div class="unit-item-title" style="color: var(--accent); font-weight: 800;">⭐ Multi (Səhvlərin Təkrarı)</div>
                                 <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                    ⏱️ Son sınaq: ${unitLastTestedStr}
+                                    ⏱️ Son sınaq: ${multiLastTestedStr}
                                 </div>
                             </div>
-                            <button class="unit-btn-start" onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">Başla</button>
+                            <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')">Başla</button>
                         </div>
                         <div class="unit-item-stats-grid">
                             <div class="unit-stat-box">
-                                <span class="us-val">${totalUnitQ}</span>
-                                <span class="us-lbl">CƏMİ SUAL</span>
+                                <span class="us-val" style="color: var(--text-main); font-weight: 800;">${wrQs.length}</span>
+                                <span class="us-lbl">SƏHV SUAL</span>
                             </div>
                             <div class="unit-stat-box">
-                                <span class="us-val" style="color: var(--active)">${c_correct}</span>
-                                <span class="us-lbl">DOĞRU</span>
+                                <span class="us-val" style="color: var(--hint); font-weight: 800;">⚠️ ${hardQsCount}</span>
+                                <span class="us-lbl">ÇƏTİN (2+)</span>
                             </div>
                             <div class="unit-stat-box">
-                                <span class="us-val" style="color: var(--wrong)">${c_wrong}</span>
-                                <span class="us-lbl">YANLIŞ</span>
+                                <span class="us-val" style="color: var(--wrong); font-weight: 800;">🔥 ${veryHardQsCount}</span>
+                                <span class="us-lbl">ÇOX ÇƏTİN (3+)</span>
                             </div>
                         </div>
                     `;
-                    listEl.appendChild(item);
-                });
+                    listEl.appendChild(multiItem);
+                    
+                    CONFIG[c].units.forEach((unitName, i) => {
+                        const unitIdx = i + 1;
+                        let totalUnitQ = 0;
+                        if (typeof quizData !== 'undefined') {
+                            if (c === "Mixed" && this.mixedUnitsInfo) {
+                                const muInfo = this.mixedUnitsInfo[i];
+                                if (muInfo) {
+                                    totalUnitQ = muInfo.endIdx - muInfo.startIdx;
+                                }
+                            } else {
+                                totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
+                            }
+                        }
+
+                        const unitKey = `Unit ${unitIdx}`;
+                        let c_correct = 0;
+                        let c_wrong = 0;
+                        let unitLastTested = 0;
+
+                        if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
+                            const us = s.bd['units'][unitKey];
+                            c_correct = us.c;
+                            c_wrong = us.w;
+                            unitLastTested = us.last || 0;
+                        }
+                        const totalAnswered = c_correct + c_wrong;
+                        if (unitLastTested === 0 && totalAnswered > 0) {
+                            unitLastTested = this.getCourseLastActiveDateFromHistory(c);
+                        }
+
+                        const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
+
+                        const item = document.createElement('div');
+                        item.className = 'unit-item';
+                        item.innerHTML = `
+                            <div class="unit-item-header">
+                                <div>
+                                    <div class="unit-item-title">${unitName}</div>
+                                    <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                                        ⏱️ Son sınaq: ${unitLastTestedStr}
+                                    </div>
+                                </div>
+                                <button class="unit-btn-start" onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">Başla</button>
+                            </div>
+                            <div class="unit-item-stats-grid">
+                                <div class="unit-stat-box">
+                                    <span class="us-val">${totalUnitQ}</span>
+                                    <span class="us-lbl">CƏMİ SUAL</span>
+                                </div>
+                                <div class="unit-stat-box">
+                                    <span class="us-val" style="color: var(--active)">${c_correct}</span>
+                                    <span class="us-lbl">DOĞRU</span>
+                                </div>
+                                <div class="unit-stat-box">
+                                    <span class="us-val" style="color: var(--wrong)">${c_wrong}</span>
+                                    <span class="us-lbl">YANLIŞ</span>
+                                </div>
+                            </div>
+                        `;
+                        listEl.appendChild(item);
+                    });
+                }
             }
         }
     },
@@ -2684,6 +3077,7 @@ window.copyBackupToClipboard = QuizApp.copyBackupToClipboard.bind(QuizApp);
 window.importBackup = QuizApp.importBackup.bind(QuizApp);
 window.startMultiUnit = QuizApp.startMultiUnit.bind(QuizApp);
 window.closeSurpriseModal = QuizApp.closeSurpriseModal.bind(QuizApp);
+window.selectMixedSubSubject = QuizApp.selectMixedSubSubject.bind(QuizApp);
 
 // Simple helpers
 function updateDaily(inc = false) {
