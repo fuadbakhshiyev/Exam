@@ -36,11 +36,43 @@ const QuizApp = {
         this.wrongCounts = JSON.parse(localStorage.getItem(this.DB.wrongCounts)) || {};
         
         // Migrate legacy daily history key (qa_v31_d) to new key (qa_v31_h) if necessary
-        if (!localStorage.getItem('qa_v31_h') && localStorage.getItem('qa_v31_d')) {
+        if (localStorage.getItem('qa_v31_d')) {
             try {
-                const oldHistory = localStorage.getItem('qa_v31_d');
-                localStorage.setItem('qa_v31_h', oldHistory);
-                console.log("Migrated daily history from qa_v31_d to qa_v31_h");
+                const oldHistoryStr = localStorage.getItem('qa_v31_d');
+                const newHistoryStr = localStorage.getItem('qa_v31_h');
+                
+                let merged = {};
+                if (oldHistoryStr) {
+                    try { merged = JSON.parse(oldHistoryStr); } catch(e) {}
+                }
+                if (newHistoryStr) {
+                    try {
+                        const newHistory = JSON.parse(newHistoryStr);
+                        Object.keys(newHistory).forEach(date => {
+                            if (!merged[date]) {
+                                merged[date] = newHistory[date];
+                            } else {
+                                Object.keys(newHistory[date]).forEach(course => {
+                                    if (!merged[date][course]) {
+                                        merged[date][course] = newHistory[date][course];
+                                    } else {
+                                        const c1 = merged[date][course];
+                                        const c2 = newHistory[date][course];
+                                        merged[date][course] = {
+                                            time: Math.max(c1.time || 0, c2.time || 0),
+                                            correct: Math.max(c1.correct || 0, c2.correct || 0),
+                                            wrong: Math.max(c1.wrong || 0, c2.wrong || 0)
+                                        };
+                                    }
+                                });
+                            }
+                        });
+                    } catch(e) {}
+                }
+                
+                localStorage.setItem('qa_v31_h', JSON.stringify(merged));
+                localStorage.removeItem('qa_v31_d');
+                console.log("Migrated and merged daily history from qa_v31_d to qa_v31_h, removed legacy key.");
             } catch (e) {
                 console.error("Migration error:", e);
             }
@@ -2143,16 +2175,94 @@ const QuizApp = {
         try {
             const data = JSON.parse(txt.value.trim());
             let count = 0;
+            
+            // 1. Map Firestore-style keys to localStorage keys
+            const firestoreKeyMap = {
+                'stats': 'qa_v31_s',
+                'wrong': 'qa_v31_w',
+                'correct': 'qa_v31_c',
+                'bookmarks': 'qa_v31_m',
+                'daily': 'qa_v31_h',
+                'dailyGoal': 'qa_v31_dg',
+                'settings': 'qa_v31_conf',
+                'wrongCounts': 'qa_v31_wc',
+                'localUpdatedAt': 'qa_v31_localUpdatedAt'
+            };
+
+            const normalizedData = {};
             for (let [key, val] of Object.entries(data)) {
-                if (key === 'qa_v31_d') {
-                    key = 'qa_v31_h';
+                if (firestoreKeyMap[key]) {
+                    normalizedData[firestoreKeyMap[key]] = val;
+                } else {
+                    normalizedData[key] = val;
                 }
+            }
+
+            // 2. Resolve & merge daily history if both qa_v31_h and legacy qa_v31_d exist
+            let dailyHistoryToImport = null;
+            
+            // Extract new daily history
+            if (normalizedData['qa_v31_h']) {
+                try {
+                    dailyHistoryToImport = typeof normalizedData['qa_v31_h'] === 'string' 
+                        ? JSON.parse(normalizedData['qa_v31_h']) 
+                        : normalizedData['qa_v31_h'];
+                } catch(e) {}
+            }
+            
+            // Extract legacy daily history
+            if (data['qa_v31_d']) {
+                try {
+                    const legacyDaily = typeof data['qa_v31_d'] === 'string' 
+                        ? JSON.parse(data['qa_v31_d']) 
+                        : data['qa_v31_d'];
+                        
+                    if (legacyDaily && Object.keys(legacyDaily).length > 0) {
+                        if (!dailyHistoryToImport) {
+                            dailyHistoryToImport = legacyDaily;
+                        } else {
+                            // Merge legacy history into new history
+                            Object.keys(legacyDaily).forEach(date => {
+                                if (!dailyHistoryToImport[date]) {
+                                    dailyHistoryToImport[date] = legacyDaily[date];
+                                } else {
+                                    Object.keys(legacyDaily[date]).forEach(course => {
+                                        if (!dailyHistoryToImport[date][course]) {
+                                            dailyHistoryToImport[date][course] = legacyDaily[date][course];
+                                        } else {
+                                            const c1 = dailyHistoryToImport[date][course];
+                                            const c2 = legacyDaily[date][course];
+                                            dailyHistoryToImport[date][course] = {
+                                                time: Math.max(c1.time || 0, c2.time || 0),
+                                                correct: Math.max(c1.correct || 0, c2.correct || 0),
+                                                wrong: Math.max(c1.wrong || 0, c2.wrong || 0)
+                                            };
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }
+                } catch(e) {}
+            }
+
+            if (dailyHistoryToImport) {
+                normalizedData['qa_v31_h'] = JSON.stringify(dailyHistoryToImport);
+            }
+            
+            // Delete legacy qa_v31_d from data and localStorage to prevent pollution
+            delete normalizedData['qa_v31_d'];
+            localStorage.removeItem('qa_v31_d');
+
+            // 3. Save all normalized keys to localStorage
+            for (let [key, val] of Object.entries(normalizedData)) {
                 if (key.startsWith('qa_v31_') || key === 'theme') {
                     const stringValue = typeof val === 'string' ? val : JSON.stringify(val);
                     localStorage.setItem(key, stringValue);
                     count++;
                 }
             }
+
             if (count > 0) {
                 localStorage.setItem('qa_v31_localUpdatedAt', Date.now().toString());
                 this.loadData();
