@@ -4,7 +4,8 @@ const COURSE_STYLES = {
     "Grafik Tasarım II": { icon: "📐", accent: "#10b981", g1: "#10b981", g2: "#06b6d4" },
     "Masaüstü Yayıncılık": { icon: "💻", accent: "#3b82f6", g1: "#3b82f6", g2: "#6366f1" },
     "Tasarımda Tipografi": { icon: "✍️", accent: "#f59e0b", g1: "#f59e0b", g2: "#ef4444" },
-    "Türk Dili II": { icon: "📖", accent: "#8b5cf6", g1: "#8b5cf6", g2: "#ec4899" }
+    "Türk Dili II": { icon: "📖", accent: "#8b5cf6", g1: "#8b5cf6", g2: "#ec4899" },
+    "Mixed": { icon: "🔀", accent: "#ec4899", g1: "#ec4899", g2: "#f43f5e" }
 };
 
 const QuizApp = {
@@ -130,9 +131,6 @@ const QuizApp = {
 
         container.innerHTML = `
             <div class="dashboard">
-                <div class="dashboard-header">
-                    <h1>Xoş gəldiniz, Fuad!</h1>
-                </div>
 
                 <div class="home-analytics-panel">
 
@@ -224,14 +222,7 @@ const QuizApp = {
     },
 
     renderHomeCharts: function (correct, wrong, unanswered) {
-        const courseStyles = {
-            "Atatürk İlkeleri ve İnkılap Tarihi II": { icon: "🏛️", accent: "#ef4444", g1: "#ef4444", g2: "#f97316" },
-            "Görsel İletişim Tasarımı": { icon: "🎨", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" },
-            "Grafik Tasarım II": { icon: "📐", accent: "#10b981", g1: "#10b981", g2: "#06b6d4" },
-            "Masaüstü Yayıncılık": { icon: "💻", accent: "#3b82f6", g1: "#3b82f6", g2: "#6366f1" },
-            "Tasarımda Tipografi": { icon: "✍️", accent: "#f59e0b", g1: "#f59e0b", g2: "#ef4444" },
-            "Türk Dili II": { icon: "📖", accent: "#8b5cf6", g1: "#8b5cf6", g2: "#ec4899" }
-        };
+        const courseStyles = COURSE_STYLES;
 
         // --- Animated Donut Chart ---
         const canvas = document.getElementById('home-donut-canvas');
@@ -790,7 +781,7 @@ const QuizApp = {
 
         items.forEach((t, i) => {
             const p = document.createElement('button'); p.className = 'nav-pill';
-            p.textContent = this.state.category === 'units' ? `Unit ${i + 1}` : t;
+            p.textContent = (this.state.category === 'units' && this.state.course !== 'Mixed') ? `Unit ${i + 1}` : t;
             p.onclick = () => QuizApp.loadContent(i);
             nav.appendChild(p);
         });
@@ -869,6 +860,11 @@ const QuizApp = {
 
         const pBar = document.getElementById('progress-bar');
         pBar.innerHTML = "";
+        pBar.style.display = "";
+        pBar.style.flexDirection = "";
+        pBar.style.width = "";
+        pBar.style.gap = "";
+
         if (total <= 40) {
             for (let i = 0; i < total; i++) {
                 const s = document.createElement('div');
@@ -877,6 +873,21 @@ const QuizApp = {
                 s.onclick = () => { QuizApp.state.index = i; QuizApp.renderQ(); };
                 pBar.appendChild(s);
             }
+        } else {
+            const percent = Math.round((this.state.index / total) * 100);
+            pBar.style.display = 'flex';
+            pBar.style.flexDirection = 'column';
+            pBar.style.width = '100%';
+            pBar.style.gap = '6px';
+            pBar.innerHTML = `
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif;">
+                    <span>Sual: ${this.state.index + 1} / ${total}</span>
+                    <span>${percent}% Tamamlandı</span>
+                </div>
+                <div style="height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 10px; overflow: hidden; width: 100%;">
+                    <div style="height: 100%; width: ${((this.state.index + 1) / total) * 100}%; background: var(--accent-gradient); border-radius: 10px; transition: width 0.3s ease;"></div>
+                </div>
+            `;
         }
 
         let qText = q.q;
@@ -1753,7 +1764,8 @@ const QuizApp = {
             "Grafik Tasarım II": { g1: "#10b981", g2: "#06b6d4" },
             "Masaüstü Yayıncılık": { g1: "#3b82f6", g2: "#6366f1" },
             "Tasarımda Tipografi": { g1: "#f59e0b", g2: "#ef4444" },
-            "Türk Dili II": { g1: "#8b5cf6", g2: "#ec4899" }
+            "Türk Dili II": { g1: "#8b5cf6", g2: "#ec4899" },
+            "Mixed": { g1: "#ec4899", g2: "#f43f5e" }
         };
         const defaultStyle = { g1: "#6366f1", g2: "#8b5cf6" };
 
@@ -1761,7 +1773,7 @@ const QuizApp = {
             const dayData = this.dailyHistory[date] || {};
             const coursesData = [];
             let totalVal = 0;
-            const coursesList = ["Grafik Tasarım II", "Görsel İletişim Tasarımı", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Atatürk İlkeleri ve İnkılap Tarihi II", "Türk Dili II"];
+            const coursesList = ["Grafik Tasarım II", "Görsel İletişim Tasarımı", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Atatürk İlkeleri ve İnkılap Tarihi II", "Türk Dili II", "Mixed"];
             coursesList.forEach(c => {
                 const data = dayData[c] || { time: 0, correct: 0, wrong: 0 };
                 const val = mode === 'questions' ? (data.correct + data.wrong) : Math.round(data.time / 60);
@@ -1882,7 +1894,7 @@ const QuizApp = {
         }
 
         // Draw lines for each course
-        const coursesList = ["Grafik Tasarım II", "Görsel İletişim Tasarımı", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Atatürk İlkeleri ve İnkılap Tarihi II", "Türk Dili II"];
+        const coursesList = ["Grafik Tasarım II", "Görsel İletişim Tasarımı", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Atatürk İlkeleri ve İnkılap Tarihi II", "Türk Dili II", "Mixed"];
         
         // Draw lines for each course using smooth Catmull-Rom splines
         coursesList.forEach(courseName => {
@@ -2474,11 +2486,57 @@ function updateDaily(inc = false) {
     if (d.d !== new Date().toDateString()) d = { d: new Date().toDateString(), c: 0 };
     if (inc) d.c++;
     localStorage.setItem(QuizApp.DB.dailyGoal, JSON.stringify(d));
+    
+    // Milestones for confetti celebration
+    const milestones = [50, 100, 200, 300, 500, 750, 1000];
+    if (inc && milestones.includes(d.c)) {
+        try {
+            fireConfetti();
+        } catch (e) {
+            console.error("Confetti error:", e);
+        }
+    }
+
+    // Determine current level and target
+    let currentLevel = "Amateur";
+    let target = 50;
+    
+    if (d.c < 50) {
+        currentLevel = "Amateur";
+        target = 50;
+    } else if (d.c < 100) {
+        currentLevel = "Beginner";
+        target = 100;
+    } else if (d.c < 200) {
+        currentLevel = "Novice";
+        target = 200;
+    } else if (d.c < 300) {
+        currentLevel = "Intermediate";
+        target = 300;
+    } else if (d.c < 500) {
+        currentLevel = "Advanced";
+        target = 500;
+    } else if (d.c < 750) {
+        currentLevel = "Expert";
+        target = 750;
+    } else if (d.c < 1000) {
+        currentLevel = "Master";
+        target = 1000;
+    } else {
+        currentLevel = "Legend";
+        target = 1000;
+    }
+
     const dt = document.getElementById('daily-text');
     const db = document.getElementById('daily-bar');
+    const dl = document.getElementById('daily-label');
+    
     if (dt && db) {
-        dt.textContent = `${d.c}/50`;
-        db.style.width = Math.min((d.c / 50) * 100, 100) + '%';
+        dt.textContent = `${d.c}/${target}`;
+        db.style.width = Math.min((d.c / target) * 100, 100) + '%';
+        if (dl) {
+            dl.textContent = `HƏDƏF: ${currentLevel.toUpperCase()}`;
+        }
     }
 }
 
