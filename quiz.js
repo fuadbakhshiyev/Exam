@@ -561,15 +561,17 @@ const QuizApp = {
                 const style = COURSE_STYLES[subject] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
                 const numExams = pdfExamsData[subject].length;
                 subjectCardsHTML += `
-                    <div class="pdf-subject-card" onclick="QuizApp.showPdfExamsList('${subject.replace(/'/g, "\\'")}', 'home')">
-                        <div class="subject-icon-wrap" style="width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; background: linear-gradient(135deg, ${style.g1}20, ${style.g2}20); border: 1px solid ${style.accent}30; color: ${style.accent};">
+                    <div class="pdf-subject-card" onclick="QuizApp.showPdfExamsList('${subject.replace(/'/g, "\\'")}', 'home')" style="--accent-color: ${style.accent}; --accent-glow: ${style.accent}25; --icon-bg: linear-gradient(135deg, ${style.g1}20, ${style.g2}20); --icon-border: ${style.accent}30;">
+                        <div class="subject-icon-wrap">
                             ${style.icon}
                         </div>
-                        <div class="subject-info-wrap" style="flex: 1;">
-                            <div class="subject-title" style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif;">${subject}</div>
-                            <div class="subject-desc" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; margin-top: 4px;">${numExams} Sınaq İmtahanı</div>
+                        <div class="subject-info-wrap">
+                            <div class="subject-title" title="${subject}">${subject}</div>
+                            <div class="subject-desc">${numExams} Sınaq İmtahanı</div>
                         </div>
-                        <div class="subject-arrow" style="font-size: 1rem; color: var(--text-muted); font-weight: 700;">→</div>
+                        <div class="subject-arrow-wrap">
+                            <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                        </div>
                     </div>
                 `;
             });
@@ -704,15 +706,17 @@ const QuizApp = {
                 const style = COURSE_STYLES[subject] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
                 const numExams = pdfExamsData[subject].length;
                 subjectCardsHTML += `
-                    <div class="pdf-subject-card" onclick="QuizApp.showPdfExamsList('${subject.replace(/'/g, "\\'")}', 'dashboard')">
-                        <div class="subject-icon-wrap" style="width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; background: linear-gradient(135deg, ${style.g1}20, ${style.g2}20); border: 1px solid ${style.accent}30; color: ${style.accent};">
+                    <div class="pdf-subject-card" onclick="QuizApp.showPdfExamsList('${subject.replace(/'/g, "\\'")}', 'dashboard')" style="--accent-color: ${style.accent}; --accent-glow: ${style.accent}25; --icon-bg: linear-gradient(135deg, ${style.g1}20, ${style.g2}20); --icon-border: ${style.accent}30;">
+                        <div class="subject-icon-wrap">
                             ${style.icon}
                         </div>
-                        <div class="subject-info-wrap" style="flex: 1;">
-                            <div class="subject-title" style="font-size: 0.95rem; font-weight: 700; color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif;">${subject}</div>
-                            <div class="subject-desc" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; margin-top: 4px;">${numExams} Sınaq İmtahanı</div>
+                        <div class="subject-info-wrap">
+                            <div class="subject-title" title="${subject}">${subject}</div>
+                            <div class="subject-desc">${numExams} Sınaq İmtahanı</div>
                         </div>
-                        <div class="subject-arrow" style="font-size: 1rem; color: var(--text-muted); font-weight: 700;">→</div>
+                        <div class="subject-arrow-wrap">
+                            <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                        </div>
                     </div>
                 `;
             });
