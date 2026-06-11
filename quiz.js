@@ -696,48 +696,171 @@ const QuizApp = {
         this.state.view = 'pdf-exams-dashboard';
         this.state.pdfExamReferrer = 'dashboard';
         
-        const container = document.getElementById('content-area');
-        if (!container) return;
+        let totalQ = 0;
+        let totalAttempts = 0;
+        let totalCorrect = 0;
+        let totalWrong = 0;
+        let totalTime = 0;
 
-        // Generate PDF Subject Cards
-        let subjectCardsHTML = "";
+        // Calculate aggregates for all PDF Exams
         if (typeof pdfExamsData !== 'undefined') {
             Object.keys(pdfExamsData).forEach(subject => {
-                const style = COURSE_STYLES[subject] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
-                const numExams = pdfExamsData[subject].length;
-                subjectCardsHTML += `
-                    <div class="pdf-subject-card" onclick="QuizApp.showPdfExamsList('${subject.replace(/'/g, "\\'")}', 'dashboard')" style="--accent-color: ${style.accent}; --accent-glow: ${style.accent}25; --icon-bg: linear-gradient(135deg, ${style.g1}20, ${style.g2}20); --icon-border: ${style.accent}30;">
-                        <div class="subject-icon-wrap">
-                            ${style.icon}
-                        </div>
-                        <div class="subject-info-wrap">
-                            <div class="subject-title" title="${subject}">${subject}</div>
-                            <div class="subject-desc">${numExams} Sınaq İmtahanı</div>
-                        </div>
-                        <div class="subject-arrow-wrap">
-                            <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
-                        </div>
-                    </div>
-                `;
+                const exams = pdfExamsData[subject] || [];
+                exams.forEach((examQs, idx) => {
+                    totalQ += examQs.length;
+                    const examKey = `${subject}_pdf_${idx}`;
+                    if (this.stats[examKey]) {
+                        const s = this.stats[examKey];
+                        if (s.t) totalAttempts += s.t;
+                        if (s.c) totalCorrect += s.c;
+                        if (s.w) totalWrong += s.w;
+                        if (s.time) totalTime += s.time;
+                    }
+                });
             });
         }
 
-        container.innerHTML = `
-            <div class="dashboard" style="max-width: 1000px; width: 100%; margin: 0 auto; padding: 10px 0;">
-                <div class="hap-chart-panel" style="border-color: rgba(99, 102, 241, 0.15); padding: 24px; border-radius: 20px; background: var(--bg-card);">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-                        <span style="font-size: 1.6rem;">📝</span>
-                        <div class="hap-section-label" style="margin: 0; font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Plus Jakarta Sans', sans-serif;">Mövzu Sınaq İmtahanları (PDF)</div>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0; margin-bottom: 20px; font-weight: 500; line-height: 1.5;">
-                        Yüklənmiş PDF testlərinin hər biri üzrə ayrıca tərtib olunmuş 20 suallıq sınaqlar.
-                    </p>
-                    <div class="home-pdf-subjects-grid">
-                        ${subjectCardsHTML || '<div style="color: var(--text-muted); font-size: 0.9rem; padding: 10px;">İmtahan tapılmadı</div>'}
-                    </div>
-                </div>
-            </div>
-        `;
+        loadTemplate('course-dashboard-template');
+
+        // Course Title
+        const titleEl = document.getElementById('db-course-title');
+        if (titleEl) titleEl.textContent = "Mövzu Sınaq İmtahanları";
+
+        const descEl = titleEl ? titleEl.nextElementSibling : null;
+        if (descEl) descEl.textContent = "Yüklənmiş PDF sınaq imtahanları üzrə ümumi statistikalar və fənlər";
+
+        // Statistics
+        document.getElementById('db-total-questions').textContent = totalQ;
+        const attemptsVal = document.getElementById('db-total-attempts');
+        if (attemptsVal) attemptsVal.textContent = totalAttempts;
+        document.getElementById('db-total-time').textContent = this.formatTime(totalTime);
+        
+        const correctVal = document.getElementById('db-total-correct');
+        const wrongVal = document.getElementById('db-total-wrong');
+        correctVal.textContent = totalCorrect;
+        wrongVal.textContent = totalWrong;
+
+        let acc = 0;
+        if (totalAttempts > 0) acc = Math.round((totalCorrect / totalAttempts) * 100);
+        const accVal = document.getElementById('db-accuracy');
+        if (accVal) accVal.textContent = acc + '%';
+
+        // Hide specific elements not needed for global PDF exams dashboard
+        const wrongExamContainer = document.getElementById('db-wrong-exam-container');
+        if (wrongExamContainer) {
+            wrongExamContainer.style.display = 'none';
+            wrongExamContainer.innerHTML = '';
+        }
+        const mixedExamContainer = document.getElementById('db-mixed-exam-container');
+        if (mixedExamContainer) {
+            mixedExamContainer.style.display = 'none';
+            mixedExamContainer.innerHTML = '';
+        }
+        const warningContainer = document.getElementById('db-warning-container');
+        if (warningContainer) {
+            warningContainer.style.display = 'none';
+            warningContainer.innerHTML = '';
+        }
+
+        // Configure correct/wrong card click behavior
+        const correctCard = correctVal.parentElement;
+        const wrongCard = wrongVal.parentElement;
+        if (correctCard && wrongCard) {
+            correctCard.style.cursor = 'default';
+            correctCard.onclick = null;
+            correctCard.title = '';
+            wrongCard.style.cursor = 'default';
+            wrongCard.onclick = null;
+            wrongCard.title = '';
+        }
+
+        // AI Recommendation text
+        const recTextEl = document.getElementById('db-recommendation-text');
+        if (recTextEl) {
+            let rec = "";
+            if (totalAttempts === 0) {
+                rec = "Siz hələ heç bir PDF sınaq imtahanı işləməmisiniz. Mövzu biliklərinizi yoxlamaq üçün aşağıdakı fənlərdən birini seçib ilk sınağa başlayın!";
+            } else {
+                if (acc >= 80) {
+                    rec = `Əla göstərici! PDF sınaqlarında ümumi dəqiqliyiniz <b>${acc}%</b> təşkil edir. Mövzuları yaxşı mənimsədiyiniz görünür. Hələ işləmədiyiniz digər PDF imtahanlarını tamamlayaraq hazırlığınızı mükəmməlləşdirə bilərsiniz.`;
+                } else if (acc >= 50) {
+                    rec = `İrəliləyişiniz yaxşıdır (ümumi dəqiqlik: <b>${acc}%</b>). Daha yüksək nəticə əldə etmək üçün səhv cavablandırdığınız sualları və sınaqları yenidən işləməyi və mövzuları nəzərdən keçirməyi tövsiyə edirik.`;
+                } else {
+                    rec = `PDF sınaqlarında dəqiqliyiniz <b>${acc}%</b> səviyyəsindədir. Mövzuları daha dərindən öyrənməyi, sualları tələsmədən oxumağı və zəif nəticə göstərdiyiniz sınaqları təkrar işləməyi tövsiyə edirik.`;
+                }
+            }
+            recTextEl.innerHTML = rec;
+        }
+
+        // Right column setup
+        const unitsHeader = document.querySelector('.units-header h3');
+        if (unitsHeader) unitsHeader.textContent = "Fənlər";
+
+        const layoutToggle = document.querySelector('.layout-toggle');
+        if (layoutToggle) layoutToggle.style.display = 'none';
+
+        const listEl = document.getElementById('db-unit-list');
+        if (listEl) {
+            listEl.innerHTML = "";
+            listEl.className = "unit-list-container";
+            listEl.style.display = 'grid';
+            listEl.style.gridTemplateColumns = 'repeat(auto-fill, minmax(280px, 1fr))';
+            listEl.style.gap = '16px';
+
+            if (typeof pdfExamsData !== 'undefined') {
+                Object.keys(pdfExamsData).forEach(subject => {
+                    const style = COURSE_STYLES[subject] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
+                    const numExams = pdfExamsData[subject].length;
+
+                    // Calculate subject completed/attempted exams and accuracy
+                    let attemptedExams = 0;
+                    let subjectCorrect = 0;
+                    let subjectAttempts = 0;
+                    for (let idx = 0; idx < numExams; idx++) {
+                        const examKey = `${subject}_pdf_${idx}`;
+                        if (this.stats[examKey] && this.stats[examKey].t > 0) {
+                            attemptedExams++;
+                            subjectCorrect += this.stats[examKey].c || 0;
+                            subjectAttempts += this.stats[examKey].t || 0;
+                        }
+                    }
+                    let subjectAcc = subjectAttempts > 0 ? Math.round((subjectCorrect / subjectAttempts) * 100) : 0;
+
+                    const card = document.createElement('div');
+                    card.className = "pdf-subject-card";
+                    card.style.cssText = `--accent-color: ${style.accent}; --accent-glow: ${style.accent}25; --icon-bg: linear-gradient(135deg, ${style.g1}20, ${style.g2}20); --icon-border: ${style.accent}30; display: flex; flex-direction: column; gap: 14px; padding: 20px; align-items: stretch;`;
+                    card.onclick = () => QuizApp.showPdfExamsList(subject, 'dashboard');
+                    card.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <div class="subject-icon-wrap">
+                                ${style.icon}
+                            </div>
+                            <div style="flex: 1; min-width: 0;">
+                                <div class="subject-title" style="min-height: auto; font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${subject}">${subject}</div>
+                                <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 500; margin-top: 4px;">
+                                    ${numExams} Sınaq İmtahanı
+                                </div>
+                            </div>
+                            <div class="subject-arrow-wrap">
+                                <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            </div>
+                        </div>
+                        
+                        <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem;">
+                            <div style="display: flex; flex-direction: column; gap: 2px;">
+                                <span style="color: var(--text-muted); font-size: 0.68rem; font-weight: 600; text-transform: uppercase;">İşlənilib</span>
+                                <span style="color: var(--text-main); font-weight: 700;">${attemptedExams} / ${numExams}</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 2px; align-items: flex-end;">
+                                <span style="color: var(--text-muted); font-size: 0.68rem; font-weight: 600; text-transform: uppercase;">Dəqiqlik</span>
+                                <span style="color: ${attemptedExams > 0 ? 'var(--accent)' : 'var(--text-muted)'}; font-weight: 700;">${attemptedExams > 0 ? subjectAcc + '%' : '-'}</span>
+                            </div>
+                        </div>
+                    `;
+                    listEl.appendChild(card);
+                });
+            }
+        }
 
         // Hide top nav since we are in a dashboard screen
         const tn = document.getElementById('top-nav');
