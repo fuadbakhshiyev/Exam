@@ -94,10 +94,21 @@ const QuizApp = {
             }
         }
 
-        // Inject 52 tests into daily goal
-        if (!localStorage.getItem('qa_v31_injected_52_tests')) {
-            updateDaily(52);
-            localStorage.setItem('qa_v31_injected_52_tests', 'true');
+        // Inject 52 tests into daily goal and daily history
+        if (!localStorage.getItem('qa_v31_injected_52_tests_v2')) {
+            const tempD = new Date();
+            const todayStr = `${tempD.getFullYear()}-${String(tempD.getMonth() + 1).padStart(2, '0')}-${String(tempD.getDate()).padStart(2, '0')}`;
+            if (!this.dailyHistory) this.dailyHistory = {};
+            if (!this.dailyHistory[todayStr]) this.dailyHistory[todayStr] = {};
+            const course = "Tasarımda Tipografi";
+            if (!this.dailyHistory[todayStr][course]) {
+                this.dailyHistory[todayStr][course] = { time: 0, correct: 0, wrong: 0 };
+            }
+            this.dailyHistory[todayStr][course].correct += 52;
+            this.saveStats();
+            
+            updateDaily(false);
+            localStorage.setItem('qa_v31_injected_52_tests_v2', 'true');
             if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
                 FirebaseSync.triggerAutoSave();
             }
@@ -3789,12 +3800,20 @@ window.selectMixedSubSubject = QuizApp.selectMixedSubSubject.bind(QuizApp);
 // Simple helpers
 function updateDaily(inc = false) {
     let d = JSON.parse(localStorage.getItem(QuizApp.DB.dailyGoal)) || { d: '', c: 0 };
-    if (d.d !== new Date().toDateString()) d = { d: new Date().toDateString(), c: 0 };
-    if (typeof inc === 'number') {
-        d.c += inc;
-    } else if (inc === true) {
-        d.c++;
-    }
+    const tempD = new Date();
+    const todayStr = `${tempD.getFullYear()}-${String(tempD.getMonth() + 1).padStart(2, '0')}-${String(tempD.getDate()).padStart(2, '0')}`;
+    
+    const todayData = QuizApp.dailyHistory ? (QuizApp.dailyHistory[todayStr] || {}) : {};
+    let todayQuestions = 0;
+    Object.keys(todayData).forEach(course => {
+        if (course === 'platformTime') return;
+        const cData = todayData[course] || {};
+        todayQuestions += (cData.correct || 0) + (cData.wrong || 0);
+    });
+
+    if (d.d !== tempD.toDateString()) d = { d: tempD.toDateString(), c: 0 };
+    d.c = todayQuestions;
+    
     localStorage.setItem(QuizApp.DB.dailyGoal, JSON.stringify(d));
     
     // Milestones for celebration
