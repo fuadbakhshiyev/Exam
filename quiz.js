@@ -2481,7 +2481,7 @@ const QuizApp = {
         this.sessionStartTime = Date.now();
         this.secondsElapsedInSession = 0;
         
-        const isStatTracked = c && (typeof CONFIG !== 'undefined' && CONFIG[c] !== undefined || c === this.MOCK_KEY);
+        const isStatTracked = c && (typeof CONFIG !== 'undefined' && CONFIG[c] !== undefined || c === this.MOCK_KEY || c.includes('_pdf_'));
 
         if (isStatTracked) {
             if (!this.stats[c]) this.stats[c] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
@@ -2520,7 +2520,7 @@ const QuizApp = {
             const now = Date.now();
             const totalElapsed = Math.floor((now - this.sessionStartTime) / 1000);
             const delta = totalElapsed - this.secondsElapsedInSession;
-            const isStatTracked = this.activeCourse && (typeof CONFIG !== 'undefined' && CONFIG[this.activeCourse] !== undefined || this.activeCourse === this.MOCK_KEY);
+            const isStatTracked = this.activeCourse && (typeof CONFIG !== 'undefined' && CONFIG[this.activeCourse] !== undefined || this.activeCourse === this.MOCK_KEY || this.activeCourse.includes('_pdf_'));
             if (delta > 0 && isStatTracked) {
                 this.stats[this.activeCourse].time += delta;
                 this.recordDailyHistory(this.activeCourse, null, delta);
