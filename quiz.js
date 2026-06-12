@@ -2594,8 +2594,15 @@ const QuizApp = {
     },
 
     finishTest: function () {
-        this.stopTimer();
         const total = this.state.questions.length;
+        const answeredCount = Object.keys(this.state.answers).length;
+        if (answeredCount < total) {
+            if (!confirm(`Sınaq yarımçıqdır (Cavablandırılıb: ${answeredCount}/${total}). Bitirməkdən əminsiniz?`)) {
+                return;
+            }
+        }
+
+        this.stopTimer();
         let c = 0, w = 0; let subRes = {};
         this.state.questions.forEach((q, i) => {
             if (!subRes[q.c]) subRes[q.c] = { c: 0, w: 0 };
@@ -3561,7 +3568,7 @@ const QuizApp = {
                 this.wrongCounts[q.q] = (this.wrongCounts[q.q] || 0) + 1;
                 localStorage.setItem(this.DB.wrongCounts, JSON.stringify(this.wrongCounts));
             }
-            updateDaily(isCorrect);
+            updateDaily(false);
             
             // Sync with Firebase automatically
             if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
