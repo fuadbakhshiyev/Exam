@@ -94,21 +94,33 @@ const QuizApp = {
             }
         }
 
-        // Inject 52 tests into daily goal and daily history
-        if (!localStorage.getItem('qa_v31_injected_52_tests_v2')) {
+        // Inject 52 tests into yesterday's history
+        if (!localStorage.getItem('qa_v31_injected_52_tests_v3')) {
             const tempD = new Date();
             const todayStr = `${tempD.getFullYear()}-${String(tempD.getMonth() + 1).padStart(2, '0')}-${String(tempD.getDate()).padStart(2, '0')}`;
+            
+            tempD.setDate(tempD.getDate() - 1);
+            const yesterdayStr = `${tempD.getFullYear()}-${String(tempD.getMonth() + 1).padStart(2, '0')}-${String(tempD.getDate()).padStart(2, '0')}`;
+            
             if (!this.dailyHistory) this.dailyHistory = {};
-            if (!this.dailyHistory[todayStr]) this.dailyHistory[todayStr] = {};
-            const course = "Tasarımda Tipografi";
-            if (!this.dailyHistory[todayStr][course]) {
-                this.dailyHistory[todayStr][course] = { time: 0, correct: 0, wrong: 0 };
+            
+            // Clean up today's incorrect injection if it exists
+            if (this.dailyHistory[todayStr] && this.dailyHistory[todayStr]["Tasarımda Tipografi"]) {
+                this.dailyHistory[todayStr]["Tasarımda Tipografi"].correct = Math.max(0, this.dailyHistory[todayStr]["Tasarımda Tipografi"].correct - 52);
             }
-            this.dailyHistory[todayStr][course].correct += 52;
+            
+            // Inject to yesterday's history
+            if (!this.dailyHistory[yesterdayStr]) this.dailyHistory[yesterdayStr] = {};
+            const course = "Tasarımda Tipografi";
+            if (!this.dailyHistory[yesterdayStr][course]) {
+                this.dailyHistory[yesterdayStr][course] = { time: 0, correct: 0, wrong: 0 };
+            }
+            this.dailyHistory[yesterdayStr][course].correct += 52;
             this.saveStats();
             
             updateDaily(false);
             localStorage.setItem('qa_v31_injected_52_tests_v2', 'true');
+            localStorage.setItem('qa_v31_injected_52_tests_v3', 'true');
             if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
                 FirebaseSync.triggerAutoSave();
             }
