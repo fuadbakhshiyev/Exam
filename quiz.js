@@ -3358,7 +3358,7 @@ const QuizApp = {
         if (!overlay || !meta || !qText || !optList || !timerDisp || !footer) return;
         
         meta.textContent = `${q.c} • Unit ${q.u}`;
-        qText.textContent = q.q;
+        qText.innerHTML = q.q;
         optList.innerHTML = '';
         footer.style.display = 'none';
         
@@ -3443,7 +3443,7 @@ const QuizApp = {
         q.o.forEach((option, idx) => {
             const btn = document.createElement('button');
             btn.className = 'surprise-opt-btn';
-            btn.textContent = option;
+            btn.innerHTML = option;
             btn.onclick = () => {
                 if (!this.state.surpriseAnswered) {
                     revealAnswer(idx);
