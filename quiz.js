@@ -32,6 +32,23 @@ const QuizApp = {
         this.loadData();
         this.buildMixedUnits();
         this.initSurpriseTimer();
+        
+        // Inject manual exam results for Tasarımda Tipografi (20 correct, 0 wrong, 4 mins)
+        if (!localStorage.getItem('qa_v31_injected_tipografi_20_20')) {
+            const course = "Tasarımda Tipografi";
+            for (let i = 0; i < 20; i++) {
+                this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+            }
+            if (this.stats[course]) {
+                this.stats[course].time += 240;
+            }
+            this.recordDailyHistory(course, null, 240);
+            this.saveStats();
+            localStorage.setItem('qa_v31_injected_tipografi_20_20', 'true');
+            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
+                FirebaseSync.triggerAutoSave();
+            }
+        }
     },
 
     buildMixedUnits: function () {
