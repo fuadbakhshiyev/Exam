@@ -3612,7 +3612,9 @@ const QuizApp = {
             btn.innerHTML = option;
             btn.onclick = () => {
                 if (!this.state.surpriseAnswered) {
-                    revealAnswer(idx);
+                    if (confirm("Bu cavabdan əminsiniz?")) {
+                        revealAnswer(idx);
+                    }
                 }
             };
             optList.appendChild(btn);
@@ -4115,7 +4117,7 @@ document.addEventListener('visibilitychange', () => {
 
 // Keyboard Shortcuts for Quiz Screen
 window.addEventListener('keydown', (e) => {
-    if (QuizApp.state.view !== 'quiz') return;
+    if (QuizApp.state.view !== 'quiz' || QuizApp.state.isSurpriseActive) return;
 
     // input, textarea və ya contenteditable elementlərdə yazarkən qısayollar işləməsin
     const activeEl = document.activeElement;
