@@ -527,6 +527,14 @@ const QuizApp = {
         let globalAcc = 0;
         if (globalTotalAns > 0) globalAcc = Math.round((globalCorrect / globalTotalAns) * 100);
         let globalTotalQ = typeof quizData !== 'undefined' ? quizData.length : 0;
+        if (typeof pdfExamsData !== 'undefined') {
+            Object.keys(pdfExamsData).forEach(subject => {
+                const exams = pdfExamsData[subject] || [];
+                exams.forEach(examQs => {
+                    globalTotalQ += examQs.length;
+                });
+            });
+        }
 
         const unanswered = Math.max(0, globalTotalQ - globalTotalAns);
 
@@ -1094,14 +1102,28 @@ const QuizApp = {
         list.appendChild(totalRow);
 
         Object.keys(CONFIG).forEach((c, idx) => {
-            const s = this.stats[c];
             const style = courseStyles[c] || { accent: '#6366f1', g1: '#6366f1', g2: '#8b5cf6' };
             let totalQ = 0;
             if (typeof quizData !== 'undefined') totalQ = quizData.filter(q => q.c === c).length;
+            if (typeof pdfExamsData !== 'undefined' && pdfExamsData[c]) {
+                pdfExamsData[c].forEach(examQs => {
+                    totalQ += examQs.length;
+                });
+            }
 
-            const answered = s ? (s.t || 0) : 0;
-            const correctC = s ? (s.c || 0) : 0;
-            const wrongC = s ? (s.w || 0) : 0;
+            let answered = 0;
+            let correctC = 0;
+            let wrongC = 0;
+
+            Object.keys(this.stats).forEach(key => {
+                if (key === c || key.startsWith(c + '_pdf_')) {
+                    const stat = this.stats[key] || {};
+                    answered += stat.t || 0;
+                    correctC += stat.c || 0;
+                    wrongC += stat.w || 0;
+                }
+            });
+
             const pctProgress = totalQ > 0 ? (answered / totalQ) * 100 : 0;
             const pctCorrect = answered > 0 ? Math.round((correctC / answered) * 100) : 0;
 
@@ -1169,25 +1191,43 @@ const QuizApp = {
 
         // Statistics
         const s = this.stats[c] || { t: 0, c: 0, w: 0, time: 0, bd: {} };
-        
-        // Total questions in this course
         let totalQ = 0;
         if (typeof quizData !== 'undefined') {
             totalQ = quizData.filter(q => q.c === c).length;
         }
+        if (typeof pdfExamsData !== 'undefined' && pdfExamsData[c]) {
+            pdfExamsData[c].forEach(examQs => {
+                totalQ += examQs.length;
+            });
+        }
+
+        let answered = 0;
+        let correctC = 0;
+        let wrongC = 0;
+        let timeC = 0;
+
+        Object.keys(this.stats).forEach(key => {
+            if (key === c || key.startsWith(c + '_pdf_')) {
+                const stat = this.stats[key] || {};
+                answered += stat.t || 0;
+                correctC += stat.c || 0;
+                wrongC += stat.w || 0;
+                timeC += stat.time || 0;
+            }
+        });
 
         document.getElementById('db-total-questions').textContent = totalQ;
         const attemptsVal = document.getElementById('db-total-attempts');
-        if (attemptsVal) attemptsVal.textContent = s.t;
-        document.getElementById('db-total-time').textContent = this.formatTime(s.time);
+        if (attemptsVal) attemptsVal.textContent = answered;
+        document.getElementById('db-total-time').textContent = this.formatTime(timeC);
         
         const correctVal = document.getElementById('db-total-correct');
         const wrongVal = document.getElementById('db-total-wrong');
-        correctVal.textContent = s.c;
-        wrongVal.textContent = s.w;
+        correctVal.textContent = correctC;
+        wrongVal.textContent = wrongC;
 
         let acc = 0;
-        if (s.t > 0) acc = Math.round((s.c / s.t) * 100);
+        if (answered > 0) acc = Math.round((correctC / answered) * 100);
         const accVal = document.getElementById('db-accuracy');
         if (accVal) accVal.textContent = acc + '%';
 
@@ -2475,59 +2515,76 @@ const QuizApp = {
         if (!g.innerHTML) g.innerHTML = "<p style='text-align:center;color:var(--text-muted)'>Əla! Səhv yoxdur.</p>";
     },
 
+    quizSecondsAccumulated: 0,
+
     startTimer: function (c) {
         this.stopTimer();
         this.activeCourse = c;
-        this.sessionStartTime = Date.now();
-        this.secondsElapsedInSession = 0;
-        
-        const isStatTracked = c && (typeof CONFIG !== 'undefined' && CONFIG[c] !== undefined || c === this.MOCK_KEY || c.includes('_pdf_'));
-
-        if (isStatTracked) {
-            if (!this.stats[c]) this.stats[c] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
-        }
-        
-        const timerDisp = document.getElementById('quiz-timer-disp');
-        if (timerDisp) timerDisp.textContent = "00:00";
-
-        this.timer = setInterval(() => { 
-            if (this.activeCourse) { 
-                const now = Date.now();
-                const totalElapsed = Math.floor((now - this.sessionStartTime) / 1000);
-                const delta = totalElapsed - this.secondsElapsedInSession;
-                if (delta > 0) {
-                    if (isStatTracked) {
-                        this.stats[c].time += delta; 
-                        this.recordDailyHistory(c, null, delta);
-                    }
-                    this.secondsElapsedInSession = totalElapsed;
-                    if (isStatTracked && this.secondsElapsedInSession % 10 === 0) this.saveStats(); 
-                }
-                if (timerDisp) {
-                    const mins = Math.floor(totalElapsed / 60);
-                    const secs = totalElapsed % 60;
-                    timerDisp.textContent = String(mins).padStart(2, '0') + ":" + String(secs).padStart(2, '0');
-                }
-            } 
-        }, 1000);
+        this.quizSecondsAccumulated = 0;
+        this.resumeTimer();
     },
+    
     stopTimer: function () { 
+        this.pauseTimer();
+        this.activeCourse = null;
+        this.quizSecondsAccumulated = 0;
+    },
+
+    pauseTimer: function () {
         if (this.timer) {
             clearInterval(this.timer);
             this.timer = null;
-        }
-        if (this.activeCourse) {
-            const now = Date.now();
-            const totalElapsed = Math.floor((now - this.sessionStartTime) / 1000);
-            const delta = totalElapsed - this.secondsElapsedInSession;
-            const isStatTracked = this.activeCourse && (typeof CONFIG !== 'undefined' && CONFIG[this.activeCourse] !== undefined || this.activeCourse === this.MOCK_KEY || this.activeCourse.includes('_pdf_'));
-            if (delta > 0 && isStatTracked) {
-                this.stats[this.activeCourse].time += delta;
-                this.recordDailyHistory(this.activeCourse, null, delta);
+            
+            if (this.activeCourse) {
+                const now = Date.now();
+                const totalElapsed = Math.floor((now - this.sessionStartTime) / 1000);
+                const delta = totalElapsed - this.secondsElapsedInSession;
+                const isStatTracked = this.activeCourse && (typeof CONFIG !== 'undefined' && CONFIG[this.activeCourse] !== undefined || this.activeCourse === this.MOCK_KEY || this.activeCourse.includes('_pdf_'));
+                if (delta > 0 && isStatTracked) {
+                    this.stats[this.activeCourse].time += delta;
+                    this.recordDailyHistory(this.activeCourse, null, delta);
+                }
+                this.quizSecondsAccumulated += totalElapsed;
             }
-            this.activeCourse = null;
         }
-        this.saveStats(); 
+        this.saveStats();
+    },
+
+    resumeTimer: function () {
+        if (this.activeCourse && !this.timer) {
+            this.sessionStartTime = Date.now();
+            this.secondsElapsedInSession = 0;
+            const c = this.activeCourse;
+            const isStatTracked = c && (typeof CONFIG !== 'undefined' && CONFIG[c] !== undefined || c === this.MOCK_KEY || c.includes('_pdf_'));
+            
+            if (isStatTracked && !this.stats[c]) {
+                this.stats[c] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
+            }
+            
+            const timerDisp = document.getElementById('quiz-timer-disp');
+
+            this.timer = setInterval(() => { 
+                if (this.activeCourse) { 
+                    const now = Date.now();
+                    const totalElapsed = Math.floor((now - this.sessionStartTime) / 1000);
+                    const delta = totalElapsed - this.secondsElapsedInSession;
+                    if (delta > 0) {
+                        if (isStatTracked) {
+                            this.stats[c].time += delta; 
+                            this.recordDailyHistory(c, null, delta);
+                        }
+                        this.secondsElapsedInSession = totalElapsed;
+                        if (isStatTracked && this.secondsElapsedInSession % 10 === 0) this.saveStats(); 
+                    }
+                    if (timerDisp) {
+                        const displaySeconds = this.quizSecondsAccumulated + totalElapsed;
+                        const mins = Math.floor(displaySeconds / 60);
+                        const secs = displaySeconds % 60;
+                        timerDisp.textContent = String(mins).padStart(2, '0') + ":" + String(secs).padStart(2, '0');
+                    }
+                } 
+            }, 1000);
+        }
     },
 
     recordStat: function (c, cat, sub, isCorr) {
@@ -3195,6 +3252,9 @@ const QuizApp = {
     triggerSurpriseQuestion: function() {
         if (typeof quizData === 'undefined' || quizData.length === 0) return;
         
+        // Pause main timer
+        this.pauseTimer();
+        
         // Pick a random question
         const randIndex = Math.floor(Math.random() * quizData.length);
         const q = quizData[randIndex];
@@ -3220,29 +3280,17 @@ const QuizApp = {
         }
         
         // Reset and start 30s countdown
-        let timeLeft = 30;
-        timerDisp.textContent = `${timeLeft}s`;
-        timerDisp.style.color = '#ef4444';
-        timerDisp.style.background = 'rgba(239,68,68,0.1)';
-        timerDisp.style.borderColor = 'rgba(239,68,68,0.2)';
-        
-        let answered = false;
-        
-        if (this.surpriseCountdown) clearInterval(this.surpriseCountdown);
-        this.surpriseCountdown = setInterval(() => {
-            timeLeft--;
-            timerDisp.textContent = `${timeLeft}s`;
-            if (timeLeft <= 0) {
-                clearInterval(this.surpriseCountdown);
-                if (!answered) {
-                    revealAnswer(null); // Time out, count as incorrect
-                }
-            }
-        }, 1000);
+        this.state.surpriseTimeLeft = 30;
+        this.state.isSurpriseActive = true;
+        this.state.surpriseAnswered = false;
         
         const revealAnswer = (chosenIndex) => {
-            answered = true;
-            clearInterval(this.surpriseCountdown);
+            this.state.surpriseAnswered = true;
+            this.state.isSurpriseActive = false;
+            if (this.surpriseCountdown) {
+                clearInterval(this.surpriseCountdown);
+                this.surpriseCountdown = null;
+            }
             
             const isCorrect = chosenIndex === q.a;
             
@@ -3301,12 +3349,14 @@ const QuizApp = {
             footer.style.display = 'flex';
         };
         
+        this.revealSurpriseAnswer = revealAnswer;
+        
         q.o.forEach((option, idx) => {
             const btn = document.createElement('button');
             btn.className = 'surprise-opt-btn';
             btn.textContent = option;
             btn.onclick = () => {
-                if (!answered) {
+                if (!this.state.surpriseAnswered) {
                     revealAnswer(idx);
                 }
             };
@@ -3314,11 +3364,42 @@ const QuizApp = {
         });
         
         overlay.style.display = 'flex';
+        this.resumeSurpriseTimer();
+    },
+    
+    resumeSurpriseTimer: function() {
+        const timerDisp = document.getElementById('surprise-timer');
+        if (!timerDisp) return;
+        
+        timerDisp.textContent = `${this.state.surpriseTimeLeft}s`;
+        timerDisp.style.color = '#ef4444';
+        timerDisp.style.background = 'rgba(239,68,68,0.1)';
+        timerDisp.style.borderColor = 'rgba(239,68,68,0.2)';
+
+        if (this.surpriseCountdown) clearInterval(this.surpriseCountdown);
+        this.surpriseCountdown = setInterval(() => {
+            this.state.surpriseTimeLeft--;
+            timerDisp.textContent = `${this.state.surpriseTimeLeft}s`;
+            if (this.state.surpriseTimeLeft <= 0) {
+                clearInterval(this.surpriseCountdown);
+                this.surpriseCountdown = null;
+                if (!this.state.surpriseAnswered) {
+                    this.revealSurpriseAnswer(null);
+                }
+            }
+        }, 1000);
     },
     
     closeSurpriseModal: function() {
         const overlay = document.getElementById('surprise-modal-overlay');
         if (overlay) overlay.style.display = 'none';
+        
+        this.state.isSurpriseActive = false;
+        
+        // Resume main timer if we are in quiz view
+        if (this.state.view === 'quiz' && this.activeCourse) {
+            this.resumeTimer();
+        }
         
         // If we are on the home screen, reload the screen to update stats
         if (this.state.view === 'home') {
@@ -3577,35 +3658,18 @@ function fireConfetti() {
 document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') {
         if (QuizApp.timer && QuizApp.activeCourse) {
-            const now = Date.now();
-            const totalElapsed = Math.floor((now - QuizApp.sessionStartTime) / 1000);
-            const delta = totalElapsed - QuizApp.secondsElapsedInSession;
-            if (delta > 0) {
-                QuizApp.stats[QuizApp.activeCourse].time += delta;
-                QuizApp.recordDailyHistory(QuizApp.activeCourse, null, delta);
-            }
-            clearInterval(QuizApp.timer);
-            QuizApp.timer = null;
-            QuizApp.saveStats();
+            QuizApp.pauseTimer();
+        }
+        if (QuizApp.surpriseCountdown && QuizApp.state.isSurpriseActive) {
+            clearInterval(QuizApp.surpriseCountdown);
+            QuizApp.surpriseCountdown = null;
         }
     } else if (document.visibilityState === 'visible') {
-        if (QuizApp.activeCourse && !QuizApp.timer) {
-            QuizApp.sessionStartTime = Date.now();
-            QuizApp.secondsElapsedInSession = 0;
-            const c = QuizApp.activeCourse;
-            QuizApp.timer = setInterval(() => { 
-                if (QuizApp.activeCourse) { 
-                    const now = Date.now();
-                    const totalElapsed = Math.floor((now - QuizApp.sessionStartTime) / 1000);
-                    const delta = totalElapsed - QuizApp.secondsElapsedInSession;
-                    if (delta > 0) {
-                        QuizApp.stats[c].time += delta; 
-                        QuizApp.recordDailyHistory(c, null, delta);
-                        QuizApp.secondsElapsedInSession = totalElapsed;
-                        if (QuizApp.secondsElapsedInSession % 10 === 0) QuizApp.saveStats(); 
-                    }
-                } 
-            }, 1000);
+        if (QuizApp.activeCourse && !QuizApp.timer && !QuizApp.state.isSurpriseActive) {
+            QuizApp.resumeTimer();
+        }
+        if (QuizApp.state.isSurpriseActive && !QuizApp.surpriseCountdown) {
+            QuizApp.resumeSurpriseTimer();
         }
     }
 });
