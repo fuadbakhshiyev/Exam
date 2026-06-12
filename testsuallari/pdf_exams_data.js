@@ -10150,7 +10150,7 @@ const pdfExamsData = {
           "Avrupa",
           "Asya"
         ],
-        "a": 1
+        "a": 0
       },
       {
         "q": "Yazar adı, telif hakkı, renk uzayı, çözünürlüğü, anahtar kelimeler gibi standart bilgiler e-kitap ile ilgili ………….. verilerdir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
