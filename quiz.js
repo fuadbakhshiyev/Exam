@@ -904,6 +904,34 @@ const QuizApp = {
         const style = COURSE_STYLES[subjectName] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
         
         let examsHTML = "";
+        
+        // Prepend Multi (All wrongs for this PDF subject)
+        let pdfWrQs = [];
+        exams.forEach((examQs, idx) => {
+            const examKey = `${subjectName}_pdf_${idx}`;
+            if (this.wrongDB[examKey]) {
+                pdfWrQs = pdfWrQs.concat(this.wrongDB[examKey]);
+            }
+        });
+        
+        if (pdfWrQs.length > 0) {
+            examsHTML += `
+                <div class="unit-item" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.06) 0%, rgba(249, 115, 22, 0.06) 100%); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 18px; padding: 20px; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 14px; grid-column: 1 / -1;">
+                    <div class="unit-item-header" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                        <div>
+                            <div class="unit-item-title" style="font-size: 1.15rem; font-weight: 800; color: var(--wrong); font-family: 'Plus Jakarta Sans', sans-serif;">
+                                ❌ SƏHVLƏRİN TƏKRARI (MULTİ)
+                            </div>
+                            <div class="unit-item-last-tested" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                                Bu fənnin bütün PDF sınaqlarında etdiyiniz <strong>${pdfWrQs.length}</strong> səhv sualı yenidən işləyin.
+                            </div>
+                        </div>
+                        <button class="unit-btn-start" style="background: linear-gradient(135deg, #ef4444, #f97316); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); border: none;" onclick="QuizApp.startPdfSubjectAllWrQs('${subjectName.replace(/'/g, "\\'")}')">Başla</button>
+                    </div>
+                </div>
+            `;
+        }
+
         exams.forEach((examQs, idx) => {
             const examTitle = `İmtahan ${idx + 1}`;
             const examKey = `${subjectName}_pdf_${idx}`;
@@ -1020,6 +1048,34 @@ const QuizApp = {
         this.state.category = 'pdf-exam';
         this.state.currentTitle = title;
         this.state.selectionIndex = examIdx;
+        this.state.activePdfSubject = subjectName;
+    },
+
+    startPdfSubjectAllWrQs: function (subjectName) {
+        const exams = (typeof pdfExamsData !== 'undefined') ? (pdfExamsData[subjectName] || []) : [];
+        let pdfWrQs = [];
+        exams.forEach((examQs, idx) => {
+            const examKey = `${subjectName}_pdf_${idx}`;
+            if (this.wrongDB[examKey]) {
+                this.wrongDB[examKey].forEach(q => {
+                    q.c = examKey;
+                    q.u = idx + 1;
+                });
+                pdfWrQs = pdfWrQs.concat(this.wrongDB[examKey]);
+            }
+        });
+
+        if (pdfWrQs.length === 0) {
+            return alert("Bu fənnin PDF sınaqlarından heç bir səhv cavablandırdığınız sual yoxdur!");
+        }
+        
+        const title = `PDF Səhvlərin Təkrarı (Multi)`;
+        
+        this.startSpecial(pdfWrQs, title, subjectName);
+        
+        this.state.category = 'pdf-exam';
+        this.state.currentTitle = title;
+        this.state.selectionIndex = -1;
         this.state.activePdfSubject = subjectName;
     },
 
