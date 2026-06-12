@@ -13991,7 +13991,7 @@ const pdfExamsData = {
           "Calibri",
           "calibri",
           "CALİBRİ",
-          "Calibri",
+          "<strong>Calibri</strong>",
           "Calibri"
         ],
         "a": 3
