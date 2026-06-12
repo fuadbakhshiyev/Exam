@@ -23,6 +23,12 @@ const QuizApp = {
     synth: window.speechSynthesis,
 
     init: function () {
+        if (typeof ataaofSorularData !== 'undefined' && typeof quizData !== 'undefined') {
+            const hasMixed = quizData.some(q => q.c === "Mixed");
+            if (!hasMixed) {
+                quizData.push(...ataaofSorularData);
+            }
+        }
         this.loadData();
         this.buildMixedUnits();
         this.initSurpriseTimer();
@@ -935,7 +941,7 @@ const QuizApp = {
                             <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--active);">${c_correct}</span>
                             <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Düzgün</span>
                         </div>
-                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center; ${c_wrong > 0 ? 'cursor: pointer; background: rgba(239, 68, 68, 0.05); transition: background 0.2s;' : ''}" ${c_wrong > 0 ? `onclick="QuizApp.startPdfExamWrQs('${subjectName.replace(/'/g, "\\'")}', ${idx})" title="Səhvləri yenidən işləmək üçün klikləyin"` : ''}>
                             <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--wrong);">${c_wrong}</span>
                             <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Səhv</span>
                         </div>
@@ -982,7 +988,34 @@ const QuizApp = {
         const title = `İmtahan ${examIdx + 1}`;
         const examKey = `${subjectName}_pdf_${examIdx}`;
         
+        questions.forEach(q => {
+            q.c = examKey;
+            q.u = examIdx + 1;
+        });
+        
         this.startSpecial(questions, title, examKey);
+        
+        this.state.category = 'pdf-exam';
+        this.state.currentTitle = title;
+        this.state.selectionIndex = examIdx;
+        this.state.activePdfSubject = subjectName;
+    },
+
+    startPdfExamWrQs: function (subjectName, examIdx) {
+        const examKey = `${subjectName}_pdf_${examIdx}`;
+        const wrQs = this.wrongDB[examKey] || [];
+        if (wrQs.length === 0) {
+            return alert("Bu imtahandan səhv cavablandırdığınız sual yoxdur!");
+        }
+        
+        const title = `İmtahan ${examIdx + 1} (Səhvlərin Təkrarı)`;
+        
+        wrQs.forEach(q => {
+            q.c = examKey;
+            q.u = examIdx + 1;
+        });
+        
+        this.startSpecial(wrQs, title, examKey);
         
         this.state.category = 'pdf-exam';
         this.state.currentTitle = title;
