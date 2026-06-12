@@ -93,6 +93,15 @@ const QuizApp = {
                 FirebaseSync.triggerAutoSave();
             }
         }
+
+        // Inject 52 tests into daily goal
+        if (!localStorage.getItem('qa_v31_injected_52_tests')) {
+            updateDaily(52);
+            localStorage.setItem('qa_v31_injected_52_tests', 'true');
+            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
+                FirebaseSync.triggerAutoSave();
+            }
+        }
     },
 
     buildMixedUnits: function () {
