@@ -34,17 +34,21 @@ const QuizApp = {
         this.initSurpriseTimer();
         
         // Inject manual exam results for Tasarımda Tipografi (20 correct, 0 wrong, 4 mins)
-        if (!localStorage.getItem('qa_v31_injected_tipografi_20_20')) {
+        if (!localStorage.getItem('qa_v31_injected_tipografi_20_20_v2')) {
             const course = "Tasarımda Tipografi";
-            for (let i = 0; i < 20; i++) {
-                this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+            if (!localStorage.getItem('qa_v31_injected_tipografi_20_20')) {
+                for (let i = 0; i < 20; i++) {
+                    this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+                }
+                if (this.stats[course]) {
+                    this.stats[course].time += 240;
+                }
+                this.recordDailyHistory(course, null, 240);
+                this.saveStats();
+                localStorage.setItem('qa_v31_injected_tipografi_20_20', 'true');
             }
-            if (this.stats[course]) {
-                this.stats[course].time += 240;
-            }
-            this.recordDailyHistory(course, null, 240);
-            this.saveStats();
-            localStorage.setItem('qa_v31_injected_tipografi_20_20', 'true');
+            updateDaily(20);
+            localStorage.setItem('qa_v31_injected_tipografi_20_20_v2', 'true');
             if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
                 FirebaseSync.triggerAutoSave();
             }
@@ -3623,7 +3627,11 @@ window.selectMixedSubSubject = QuizApp.selectMixedSubSubject.bind(QuizApp);
 function updateDaily(inc = false) {
     let d = JSON.parse(localStorage.getItem(QuizApp.DB.dailyGoal)) || { d: '', c: 0 };
     if (d.d !== new Date().toDateString()) d = { d: new Date().toDateString(), c: 0 };
-    if (inc) d.c++;
+    if (typeof inc === 'number') {
+        d.c += inc;
+    } else if (inc === true) {
+        d.c++;
+    }
     localStorage.setItem(QuizApp.DB.dailyGoal, JSON.stringify(d));
     
     // Milestones for confetti celebration
