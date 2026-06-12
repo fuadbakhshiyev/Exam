@@ -2306,3 +2306,129 @@ body {
     fill: currentColor;
     transition: transform 0.25s ease;
 }
+
+/* --- MOTIVATIONAL CELEBRATION MODAL --- */
+.mot-celebration-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mot-celebration-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.celebration-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.mot-celebration-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 28px;
+    padding: 40px 32px;
+    width: 90%;
+    max-width: 460px;
+    text-align: center;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 40px rgba(99, 102, 241, 0.15);
+    transform: scale(0.8) translateY(20px);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: #ffffff;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    overflow: hidden;
+}
+
+.mot-celebration-overlay.active .mot-celebration-card {
+    transform: scale(1) translateY(0);
+}
+
+.mot-celebration-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.mot-badge-wrap {
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+    animation: pulseGlow 2s infinite ease-in-out;
+}
+
+.mot-level-title {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.mot-level-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.mot-quote {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #f1f5f9;
+    margin-bottom: 24px;
+    font-style: italic;
+}
+
+.mot-milestone-text {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 99px;
+    display: inline-block;
+    margin-bottom: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mot-close-btn {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+@keyframes pulseGlow {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0)); }
+    50% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.6)); }
+}

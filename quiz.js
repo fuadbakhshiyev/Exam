@@ -817,7 +817,7 @@ const QuizApp = {
         document.getElementById('db-total-questions').textContent = totalQ;
         const attemptsVal = document.getElementById('db-total-attempts');
         if (attemptsVal) attemptsVal.textContent = totalAttempts;
-        document.getElementById('db-total-time').textContent = this.formatTime(totalTime);
+        document.getElementById('db-total-time').textContent = this.formatTime(totalTime) + " / " + this.formatTime(this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0);
         
         const correctVal = document.getElementById('db-total-correct');
         const wrongVal = document.getElementById('db-total-wrong');
@@ -1378,7 +1378,7 @@ const QuizApp = {
         document.getElementById('db-total-questions').textContent = totalQ;
         const attemptsVal = document.getElementById('db-total-attempts');
         if (attemptsVal) attemptsVal.textContent = answered;
-        document.getElementById('db-total-time').textContent = this.formatTime(timeC);
+        document.getElementById('db-total-time').textContent = this.formatTime(timeC) + " / " + this.formatTime(this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0);
         
         const correctVal = document.getElementById('db-total-correct');
         const wrongVal = document.getElementById('db-total-wrong');
@@ -2121,7 +2121,9 @@ const QuizApp = {
         let globalWrong = 0;
         let globalTotalAns = 0;
 
-        Object.values(this.stats).forEach(s => {
+        Object.keys(this.stats).forEach(courseName => {
+            if (courseName === '_platform') return;
+            const s = this.stats[courseName];
             if (s.time) globalTime += s.time;
             if (s.c) globalCorrect += s.c;
             if (s.w) globalWrong += s.w;
@@ -2135,7 +2137,7 @@ const QuizApp = {
         document.getElementById('db-total-questions').textContent = globalTotalQ;
         const attemptsVal = document.getElementById('db-total-attempts');
         if (attemptsVal) attemptsVal.textContent = globalTotalAns;
-        document.getElementById('db-total-time').textContent = this.formatTime(globalTime);
+        document.getElementById('db-total-time').textContent = this.formatTime(globalTime) + " / " + this.formatTime(this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0);
         
         const correctVal = document.getElementById('db-total-correct');
         const wrongVal = document.getElementById('db-total-wrong');
@@ -2517,7 +2519,7 @@ const QuizApp = {
             }
         });
         document.getElementById('st-total').textContent = gt;
-        document.getElementById('st-time').textContent = this.formatTime(tm);
+        document.getElementById('st-time').textContent = this.formatTime(tm) + " / " + this.formatTime(this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0);
         document.getElementById('st-correct').textContent = gc;
         document.getElementById('st-wrong').textContent = gw;
         document.getElementById('st-accuracy').textContent = gt > 0 ? Math.round((gc / gt) * 100) + '%' : '-';
@@ -3761,13 +3763,13 @@ function updateDaily(inc = false) {
     }
     localStorage.setItem(QuizApp.DB.dailyGoal, JSON.stringify(d));
     
-    // Milestones for confetti celebration
-    const milestones = [50, 100, 200, 300, 500, 750, 1000];
+    // Milestones for celebration
+    const milestones = [50, 100, 200, 300, 500, 750, 1000, 1250, 1500, 1750, 2000];
     if (inc && milestones.includes(d.c)) {
         try {
-            fireConfetti();
+            fireMotivationalCelebration(d.c);
         } catch (e) {
-            console.error("Confetti error:", e);
+            console.error("Celebration error:", e);
         }
     }
 
@@ -3796,9 +3798,21 @@ function updateDaily(inc = false) {
     } else if (d.c < 1000) {
         currentLevel = "Master";
         target = 1000;
-    } else {
+    } else if (d.c < 1250) {
+        currentLevel = "Grandmaster";
+        target = 1250;
+    } else if (d.c < 1500) {
+        currentLevel = "Conqueror";
+        target = 1500;
+    } else if (d.c < 1750) {
+        currentLevel = "Champion";
+        target = 1750;
+    } else if (d.c < 2000) {
         currentLevel = "Legend";
-        target = 1000;
+        target = 2000;
+    } else {
+        currentLevel = "Immortal";
+        target = 2000;
     }
 
     const dt = document.getElementById('daily-text');
@@ -3837,6 +3851,172 @@ window.addEventListener('resize', () => {
         QuizApp.renderHomeCharts(globalCorrect, globalWrong, unanswered);
     }
 });
+
+
+const CELEBRATION_DATA = {
+    50: { level: "Beginner", quote: "İlk addım ən çətinidir. Sən başladın və irəliləyirsən! 🚀" },
+    100: { level: "Novice", quote: "Mükəmməllik vərdişdir. Hər gün daha da güclənirsən! 💪" },
+    200: { level: "Intermediate", quote: "Dayanmaq yoxdur! Limitlər yalnız zehindədir. 🧠" },
+    300: { level: "Advanced", quote: "Artıq digərlərindən bir addım öndəsən. Möhtəşəm nəticədir! ⭐" },
+    500: { level: "Expert", quote: "Fokuslanma və nizam-intizam. Əsl peşəkar kimi davam edirsən! 🔥" },
+    750: { level: "Master", quote: "Zirvəyə çox az qaldı. Sənin iradən sarsılmazdır! 👑" },
+    1000: { level: "Grandmaster", quote: "Möhtəşəm! Sən artıq bir Grandmaster-sən. Hədəfləri fəth etməyə davam et! 🏆" },
+    1250: { level: "Conqueror", quote: "Fatih! Sən çətinlikləri üstələyərək hər şeyi fəth edirsən! 🗡️" },
+    1500: { level: "Champion", quote: "Çempion! Qələbə sənin qanındadır. İlham verməyə davam et! 🏅" },
+    1750: { level: "Legend", quote: "Əfsanə! Adını bu günün tarixinə yazdın. İnanılmaz iradə! 🌟" },
+    2000: { level: "Immortal", quote: "Ölümsüz! Sən artıq bu sistemin ən uca zirvəsindəsən. Sərhədsiz güc! 🌌" }
+};
+
+function fireMotivationalCelebration(milestone) {
+    const data = CELEBRATION_DATA[milestone] || { level: "Legend", quote: "Hər gün bir addım irəli! Sərhədləri aşmağa davam et! 🌟" };
+    
+    let overlay = document.getElementById('mot-celebration-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'mot-celebration-overlay';
+        overlay.className = 'mot-celebration-overlay';
+        document.body.appendChild(overlay);
+    }
+    
+    overlay.innerHTML = `
+        <canvas id="celebration-canvas" class="celebration-canvas"></canvas>
+        <div class="mot-celebration-card">
+            <div class="mot-badge-wrap">🏆</div>
+            <div class="mot-level-title">YENİ SƏVİYYƏ</div>
+            <div class="mot-level-name">${data.level.toUpperCase()}</div>
+            <div class="mot-quote">"${data.quote}"</div>
+            <div class="mot-milestone-text">Bugünkü Hədəf: ${milestone} Sual Cavablandırıldı!</div>
+            <button class="btn btn-primary mot-close-btn" onclick="document.getElementById('mot-celebration-overlay').classList.remove('active')">Davam Et</button>
+        </div>
+    `;
+    
+    setTimeout(() => overlay.classList.add('active'), 50);
+    
+    const canvas = document.getElementById('celebration-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    const resizeCanvas = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    class Sparkle {
+        constructor(x, y, color) {
+            this.x = x;
+            this.y = y;
+            this.color = color;
+            this.radius = Math.random() * 2 + 1;
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 5 + 1;
+            this.vx = Math.cos(angle) * speed;
+            this.vy = Math.sin(angle) * speed;
+            this.alpha = 1;
+            this.decay = Math.random() * 0.015 + 0.01;
+            this.gravity = 0.04;
+        }
+        update() {
+            this.vy += this.gravity;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.alpha -= this.decay;
+        }
+        draw() {
+            ctx.save();
+            ctx.globalAlpha = this.alpha;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = this.color;
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+    
+    class Rocket {
+        constructor() {
+            this.x = Math.random() * (canvas.width - 200) + 100;
+            this.y = canvas.height;
+            this.targetY = Math.random() * (canvas.height * 0.5);
+            const dx = (Math.random() * canvas.width * 0.4 + canvas.width * 0.3) - this.x;
+            const dy = this.targetY - this.y;
+            this.vx = dx / 50;
+            this.vy = dy / 50;
+            this.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+            this.exploded = false;
+        }
+        update() {
+            if (!this.exploded) {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.y <= this.targetY) {
+                    this.exploded = true;
+                    for (let i = 0; i < 40; i++) {
+                        sparkles.push(new Sparkle(this.x, this.y, this.color));
+                    }
+                }
+            }
+        }
+        draw() {
+            if (!this.exploded) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+            }
+        }
+    }
+    
+    const rockets = [];
+    const sparkles = [];
+    let animationActive = true;
+    
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+            if (animationActive) rockets.push(new Rocket());
+        }, i * 500);
+    }
+    
+    const animate = () => {
+        if (!animationActive) return;
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.15)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        for (let i = rockets.length - 1; i >= 0; i--) {
+            rockets[i].update();
+            rockets[i].draw();
+            if (rockets[i].exploded) {
+                rockets.splice(i, 1);
+            }
+        }
+        
+        for (let i = sparkles.length - 1; i >= 0; i--) {
+            sparkles[i].update();
+            sparkles[i].draw();
+            if (sparkles[i].alpha <= 0) {
+                sparkles.splice(i, 1);
+            }
+        }
+        
+        if (Math.random() < 0.03 && rockets.length < 4) {
+            rockets.push(new Rocket());
+        }
+        
+        requestAnimationFrame(animate);
+    };
+    animate();
+    
+    setTimeout(() => {
+        animationActive = false;
+        overlay.classList.remove('active');
+        window.removeEventListener('resize', resizeCanvas);
+    }, 4500);
+}
 
 function fireConfetti() {
     const canvas = document.getElementById('confetti-canvas');
