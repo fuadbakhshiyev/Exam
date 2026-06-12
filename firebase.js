@@ -127,6 +127,85 @@ const FirebaseSync = {
     // Load from Cloud
     isLoadingFromCloud: false,
 
+    mergeStats: function(local, cloud) {
+        const merged = { ...local };
+        Object.keys(cloud).forEach(course => {
+            if (!merged[course]) {
+                merged[course] = cloud[course];
+            } else {
+                merged[course] = {
+                    t: Math.max(merged[course].t || 0, cloud[course].t || 0),
+                    c: Math.max(merged[course].c || 0, cloud[course].c || 0),
+                    w: Math.max(merged[course].w || 0, cloud[course].w || 0),
+                    time: Math.max(merged[course].time || 0, cloud[course].time || 0),
+                    bd: merged[course].bd || {}
+                };
+                
+                if (cloud[course].bd) {
+                    Object.keys(cloud[course].bd).forEach(cat => {
+                        if (!merged[course].bd[cat]) {
+                            merged[course].bd[cat] = cloud[course].bd[cat];
+                        } else {
+                            Object.keys(cloud[course].bd[cat]).forEach(sub => {
+                                if (!merged[course].bd[cat][sub]) {
+                                    merged[course].bd[cat][sub] = cloud[course].bd[cat][sub];
+                                } else {
+                                    const localSub = merged[course].bd[cat][sub];
+                                    const cloudSub = cloud[course].bd[cat][sub];
+                                    merged[course].bd[cat][sub] = {
+                                        t: Math.max(localSub.t || 0, cloudSub.t || 0),
+                                        c: Math.max(localSub.c || 0, cloudSub.c || 0),
+                                        w: Math.max(localSub.w || 0, cloudSub.w || 0),
+                                        last: Math.max(localSub.last || 0, cloudSub.last || 0)
+                                    };
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
+        return merged;
+    },
+
+    mergeQuestionsDB: function(local, cloud) {
+        const merged = { ...local };
+        Object.keys(cloud).forEach(course => {
+            if (!merged[course]) {
+                merged[course] = cloud[course];
+            } else {
+                const localQs = merged[course] || [];
+                const cloudQs = cloud[course] || [];
+                const uniqueQs = [...localQs];
+                cloudQs.forEach(cq => {
+                    if (!uniqueQs.some(lq => lq.q === cq.q)) {
+                        uniqueQs.push(cq);
+                    }
+                });
+                merged[course] = uniqueQs;
+            }
+        });
+        return merged;
+    },
+
+    mergeBookmarks: function(local, cloud) {
+        const merged = [...(local || [])];
+        (cloud || []).forEach(cq => {
+            if (!merged.some(lq => lq.q === cq.q)) {
+                merged.push(cq);
+            }
+        });
+        return merged;
+    },
+
+    mergeWrongCounts: function(local, cloud) {
+        const merged = { ...local };
+        Object.keys(cloud || {}).forEach(qText => {
+            merged[qText] = Math.max(merged[qText] || 0, cloud[qText] || 0);
+        });
+        return merged;
+    },
+
     loadFromCloud: async function() {
         if (!currentUser) return;
         
@@ -139,43 +218,41 @@ const FirebaseSync = {
                 const cloudLocalUpdatedAt = data.localUpdatedAt || 0;
                 const localUpdatedAt = parseInt(localStorage.getItem('qa_v31_localUpdatedAt') || '0');
                 
-                // Helper to check if local has actual statistics data
                 const hasLocalData = () => {
                     const stats = localStorage.getItem(QuizApp.DB.stats);
                     if (!stats || stats === '{}') return false;
                     try {
                         const parsed = JSON.parse(stats);
-                        // If there is any course with total answers > 0
                         return Object.values(parsed).some(c => c && c.t > 0);
                     } catch (e) {
                         return false;
                     }
                 };
 
-                // Safety check: if cloud stats are empty/missing, but local has stats, upload local instead of overwriting
                 const isCloudEmpty = !data.stats || Object.keys(data.stats).length === 0 || !Object.values(data.stats).some(c => c && c.t > 0);
                 if (isCloudEmpty && hasLocalData()) {
-                    console.log("Cloud stats are empty, but local has stats. Uploading local data to protect user progress...");
-                    this.saveToCloud(true);
-                    return;
-                }
-
-                // If local data is newer than cloud data, or both are 0 but local has data, upload local data.
-                if (localUpdatedAt > cloudLocalUpdatedAt || (localUpdatedAt === 0 && cloudLocalUpdatedAt === 0 && hasLocalData())) {
-                    console.log("Local data is newer or has initial data, uploading local data...");
+                    console.log("Cloud stats are empty, but local has stats. Uploading local data...");
                     this.saveToCloud(true);
                     return;
                 }
                 
                 this.isLoadingFromCloud = true;
                 
-                // Merge with local data (cloud wins for newer data)
-                if (data.stats) localStorage.setItem(QuizApp.DB.stats, JSON.stringify(data.stats));
-                if (data.wrong) localStorage.setItem(QuizApp.DB.wrong, JSON.stringify(data.wrong));
-                if (data.correct) localStorage.setItem(QuizApp.DB.correct, JSON.stringify(data.correct));
-                if (data.bookmarks) localStorage.setItem(QuizApp.DB.marks, JSON.stringify(data.bookmarks));
+                // Retrieve local data
+                const localStats = JSON.parse(localStorage.getItem(QuizApp.DB.stats)) || {};
+                const localWrong = JSON.parse(localStorage.getItem(QuizApp.DB.wrong)) || {};
+                const localCorrect = JSON.parse(localStorage.getItem(QuizApp.DB.correct)) || {};
+                const localBookmarks = JSON.parse(localStorage.getItem(QuizApp.DB.marks)) || [];
+                const localWrongCounts = JSON.parse(localStorage.getItem(QuizApp.DB.wrongCounts)) || {};
                 
-                // Safely merge daily history instead of raw overwrite to prevent key mismatches/missing days
+                // Merge data
+                const mergedStats = this.mergeStats(localStats, data.stats || {});
+                const mergedWrong = this.mergeQuestionsDB(localWrong, data.wrong || {});
+                const mergedCorrect = this.mergeQuestionsDB(localCorrect, data.correct || {});
+                const mergedBookmarks = this.mergeBookmarks(localBookmarks, data.bookmarks || []);
+                const mergedWrongCounts = this.mergeWrongCounts(localWrongCounts, data.wrongCounts || {});
+                
+                // Merge daily history (safely with platformTime)
                 const localDaily = JSON.parse(localStorage.getItem(QuizApp.DB.daily)) || {};
                 const cloudDaily = data.daily || {};
                 const mergedDaily = { ...localDaily };
@@ -183,48 +260,66 @@ const FirebaseSync = {
                     if (!mergedDaily[date]) {
                         mergedDaily[date] = cloudDaily[date];
                     } else {
+                        // Merge platformTime
+                        mergedDaily[date].platformTime = Math.max(mergedDaily[date].platformTime || 0, cloudDaily[date].platformTime || 0);
+                        
                         Object.keys(cloudDaily[date]).forEach(course => {
+                            if (course === 'platformTime') return;
                             if (!mergedDaily[date][course]) {
                                 mergedDaily[date][course] = cloudDaily[date][course];
                             } else {
-                                const localAttempts = (mergedDaily[date][course].correct || 0) + (mergedDaily[date][course].wrong || 0);
-                                const cloudAttempts = (cloudDaily[date][course].correct || 0) + (cloudDaily[date][course].wrong || 0);
-                                if (cloudAttempts > localAttempts) {
-                                    mergedDaily[date][course] = cloudDaily[date][course];
-                                }
+                                const localVal = mergedDaily[date][course];
+                                const cloudVal = cloudDaily[date][course];
+                                mergedDaily[date][course] = {
+                                    time: Math.max(localVal.time || 0, cloudVal.time || 0),
+                                    correct: Math.max(localVal.correct || 0, cloudVal.correct || 0),
+                                    wrong: Math.max(localVal.wrong || 0, cloudVal.wrong || 0)
+                                };
                             }
                         });
                     }
                 });
+                
+                // Merge daily goal
+                const localDG = JSON.parse(localStorage.getItem(QuizApp.DB.dailyGoal)) || { d: '', c: 0 };
+                const cloudDG = data.dailyGoal || { d: '', c: 0 };
+                const todayStr = new Date().toDateString();
+                let mergedDG = { d: todayStr, c: 0 };
+                
+                const localCount = localDG.d === todayStr ? localDG.c : 0;
+                const cloudCount = cloudDG.d === todayStr ? cloudDG.c : 0;
+                mergedDG.c = Math.max(localCount, cloudCount);
+
+                // Merge settings (cloud wins if newer, otherwise keep local)
+                const mergedSettings = cloudLocalUpdatedAt > localUpdatedAt ? (data.settings || {}) : (JSON.parse(localStorage.getItem(QuizApp.DB.settings)) || {});
+
+                // Save merged data back to localStorage
+                localStorage.setItem(QuizApp.DB.stats, JSON.stringify(mergedStats));
+                localStorage.setItem(QuizApp.DB.wrong, JSON.stringify(mergedWrong));
+                localStorage.setItem(QuizApp.DB.correct, JSON.stringify(mergedCorrect));
+                localStorage.setItem(QuizApp.DB.marks, JSON.stringify(mergedBookmarks));
                 localStorage.setItem(QuizApp.DB.daily, JSON.stringify(mergedDaily));
-
-                // Safely merge daily goal to prevent progress loss
-                if (data.dailyGoal) {
-                    const localDG = JSON.parse(localStorage.getItem(QuizApp.DB.dailyGoal)) || { d: '', c: 0 };
-                    const cloudDG = data.dailyGoal;
-                    const todayStr = new Date().toDateString();
-                    let mergedDG = { d: todayStr, c: 0 };
-                    
-                    const localCount = localDG.d === todayStr ? localDG.c : 0;
-                    const cloudCount = cloudDG.d === todayStr ? cloudDG.c : 0;
-                    
-                    mergedDG.c = Math.max(localCount, cloudCount);
-                    localStorage.setItem(QuizApp.DB.dailyGoal, JSON.stringify(mergedDG));
-                }
-
-                if (data.settings) localStorage.setItem(QuizApp.DB.settings, JSON.stringify(data.settings));
-                if (data.wrongCounts) localStorage.setItem(QuizApp.DB.wrongCounts, JSON.stringify(data.wrongCounts));
-                if (data.localUpdatedAt) localStorage.setItem('qa_v31_localUpdatedAt', data.localUpdatedAt.toString());
+                localStorage.setItem(QuizApp.DB.dailyGoal, JSON.stringify(mergedDG));
+                localStorage.setItem(QuizApp.DB.settings, JSON.stringify(mergedSettings));
+                localStorage.setItem(QuizApp.DB.wrongCounts, JSON.stringify(mergedWrongCounts));
+                
+                const newestTimestamp = Math.max(localUpdatedAt, cloudLocalUpdatedAt, Date.now());
+                localStorage.setItem('qa_v31_localUpdatedAt', newestTimestamp.toString());
                 
                 this.isLoadingFromCloud = false;
                 
                 // Reload QuizApp data
                 QuizApp.loadData();
                 
-                console.log("Data loaded from cloud");
+                // If local was newer or cloud empty, or we merged new things, sync back to cloud
+                if (localUpdatedAt > cloudLocalUpdatedAt || isCloudEmpty) {
+                    console.log("Syncing merged state back to cloud...");
+                    this.saveToCloud(true);
+                }
+                
+                console.log("Data merged and loaded from cloud");
                 this.showSyncIndicator('loaded');
             } else {
-                // If doc doesn't exist in cloud, upload our current local data
                 console.log("No cloud data found, uploading local data...");
                 this.saveToCloud(true);
             }

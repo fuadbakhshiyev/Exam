@@ -20,6 +20,11 @@ const QuizApp = {
     settings: { scale: 1 },
     timer: null,
     activeCourse: null,
+    platformTimer: null,
+    platformSessionStart: 0,
+    platformSecondsElapsedInSession: 0,
+    lastActivityTime: Date.now(),
+    isIdle: false,
     synth: window.speechSynthesis,
 
     init: function () {
@@ -32,6 +37,23 @@ const QuizApp = {
         this.loadData();
         this.buildMixedUnits();
         this.initSurpriseTimer();
+        
+        this.lastActivityTime = Date.now();
+        this.isIdle = false;
+        const updateActivity = () => {
+            this.lastActivityTime = Date.now();
+            if (this.isIdle) {
+                this.isIdle = false;
+                this.startPlatformTimer();
+                if (this.activeCourse && !this.timer && !this.state.isSurpriseActive) {
+                    this.resumeTimer();
+                }
+            }
+        };
+        window.addEventListener('click', updateActivity);
+        window.addEventListener('keydown', updateActivity);
+        window.addEventListener('touchstart', updateActivity);
+        this.startPlatformTimer();
         
         // Inject manual exam results for Tasarımda Tipografi (20 correct, 0 wrong, 4 mins)
         if (!localStorage.getItem('qa_v31_injected_tipografi_20_20_v2')) {
@@ -562,7 +584,9 @@ const QuizApp = {
         let globalWrong = 0;
         let globalTotalAns = 0;
 
-        Object.values(this.stats).forEach(s => {
+        Object.keys(this.stats).forEach(courseName => {
+            if (courseName === '_platform') return;
+            const s = this.stats[courseName];
             if (s.time) globalTime += s.time;
             if (s.c) globalCorrect += s.c;
             if (s.w) globalWrong += s.w;
@@ -589,9 +613,12 @@ const QuizApp = {
         const todayData = this.dailyHistory ? (this.dailyHistory[todayStr] || {}) : {};
         let todayQuestions = 0;
         let todayTime = 0;
+        let todayPlatformTime = todayData.platformTime || 0;
         let todayCorrect = 0;
         let todayWrong = 0;
-        Object.values(todayData).forEach(cData => {
+        Object.keys(todayData).forEach(course => {
+            if (course === 'platformTime') return;
+            const cData = todayData[course] || {};
             todayQuestions += (cData.correct || 0) + (cData.wrong || 0);
             todayTime += (cData.time || 0);
             todayCorrect += (cData.correct || 0);
@@ -687,20 +714,24 @@ const QuizApp = {
                         </div>
                     </div>
 
-                    <div class="hap-today-summary-box">
+                    <div class="hap-today-summary-box" style="grid-template-columns: repeat(4, 1fr); gap: 12px;">
                         <div class="hap-today-stat-item">
-                            <span class="hap-today-stat-label">Bugünkü Sual Sayı</span>
+                            <span class="hap-today-stat-label">Bugünkü Sual</span>
                             <span class="hap-today-stat-val questions">${todayQuestions}</span>
                         </div>
                         <div class="hap-today-stat-item">
-                            <span class="hap-today-stat-label">Bugünkü Vaxt</span>
-                            <span class="hap-today-stat-val time">${formatTodayTime(todayTime)}</span>
+                            <span class="hap-today-stat-label">Platforma Vaxtı</span>
+                            <span class="hap-today-stat-val time" style="color: var(--accent);">${formatTodayTime(todayPlatformTime)}</span>
+                        </div>
+                        <div class="hap-today-stat-item">
+                            <span class="hap-today-stat-label">Test Vaxtı</span>
+                            <span class="hap-today-stat-val time" style="color: #f59e0b;">${formatTodayTime(todayTime)}</span>
                         </div>
                         <div class="hap-today-stat-item">
                             <span class="hap-today-stat-label">Bugünkü Cavablar</span>
                             <span class="hap-today-stat-val ratio">
-                                <span class="correct-text">${todayCorrect} Düz</span> / 
-                                <span class="wrong-text">${todayWrong} Səhv</span>
+                                <span class="correct-text" style="color: var(--active); font-weight: 700;">${todayCorrect} Düz</span> / 
+                                <span class="wrong-text" style="color: var(--wrong); font-weight: 700;">${todayWrong} Səhv</span>
                             </span>
                         </div>
                     </div>
@@ -2666,13 +2697,17 @@ const QuizApp = {
             if (this.activeCourse) {
                 const now = Date.now();
                 const totalElapsed = Math.floor((now - this.sessionStartTime) / 1000);
-                const delta = totalElapsed - this.secondsElapsedInSession;
+                let delta = totalElapsed - this.secondsElapsedInSession;
                 const isStatTracked = this.activeCourse && (typeof CONFIG !== 'undefined' && CONFIG[this.activeCourse] !== undefined || this.activeCourse === this.MOCK_KEY || this.activeCourse.includes('_pdf_'));
-                if (delta > 0 && isStatTracked) {
-                    this.stats[this.activeCourse].time += delta;
-                    this.recordDailyHistory(this.activeCourse, null, delta);
+                if (delta > 0) {
+                    if (delta > 5) delta = 1;
+                    if (isStatTracked) {
+                        this.stats[this.activeCourse].time += delta;
+                        this.recordDailyHistory(this.activeCourse, null, delta);
+                    }
+                    this.secondsElapsedInSession += delta;
                 }
-                this.quizSecondsAccumulated += totalElapsed;
+                this.quizSecondsAccumulated += this.secondsElapsedInSession;
             }
         }
         this.saveStats();
@@ -2694,18 +2729,31 @@ const QuizApp = {
             this.timer = setInterval(() => { 
                 if (this.activeCourse) { 
                     const now = Date.now();
+                    
+                    // Idle check (180 seconds)
+                    if (now - this.lastActivityTime > 180000) {
+                        this.isIdle = true;
+                        this.pauseTimer();
+                        this.pausePlatformTimer();
+                        return;
+                    }
+                    
                     const totalElapsed = Math.floor((now - this.sessionStartTime) / 1000);
-                    const delta = totalElapsed - this.secondsElapsedInSession;
+                    let delta = totalElapsed - this.secondsElapsedInSession;
                     if (delta > 0) {
+                        if (delta > 5) {
+                            delta = 1;
+                            this.sessionStartTime = now - (this.secondsElapsedInSession + 1) * 1000;
+                        }
                         if (isStatTracked) {
                             this.stats[c].time += delta; 
                             this.recordDailyHistory(c, null, delta);
                         }
-                        this.secondsElapsedInSession = totalElapsed;
+                        this.secondsElapsedInSession += delta;
                         if (isStatTracked && this.secondsElapsedInSession % 10 === 0) this.saveStats(); 
                     }
                     if (timerDisp) {
-                        const displaySeconds = this.quizSecondsAccumulated + totalElapsed;
+                        const displaySeconds = this.quizSecondsAccumulated + this.secondsElapsedInSession;
                         const mins = Math.floor(displaySeconds / 60);
                         const secs = displaySeconds % 60;
                         timerDisp.textContent = String(mins).padStart(2, '0') + ":" + String(secs).padStart(2, '0');
@@ -2713,6 +2761,67 @@ const QuizApp = {
                 } 
             }, 1000);
         }
+    },
+
+    startPlatformTimer: function () {
+        if (this.platformTimer) return;
+        this.platformSessionStart = Date.now();
+        this.platformSecondsElapsedInSession = 0;
+        
+        this.platformTimer = setInterval(() => {
+            const now = Date.now();
+            
+            // Idle check (180 seconds)
+            if (now - this.lastActivityTime > 180000) {
+                this.isIdle = true;
+                this.pauseTimer();
+                this.pausePlatformTimer();
+                return;
+            }
+            
+            const totalElapsed = Math.floor((now - this.platformSessionStart) / 1000);
+            let delta = totalElapsed - this.platformSecondsElapsedInSession;
+            if (delta > 0) {
+                if (delta > 5) {
+                    delta = 1;
+                    this.platformSessionStart = now - (this.platformSecondsElapsedInSession + 1) * 1000;
+                }
+                this.recordPlatformTime(delta);
+                this.platformSecondsElapsedInSession += delta;
+                
+                if (this.platformSecondsElapsedInSession % 10 === 0) this.saveStats();
+            }
+        }, 1000);
+    },
+
+    pausePlatformTimer: function () {
+        if (this.platformTimer) {
+            clearInterval(this.platformTimer);
+            this.platformTimer = null;
+            
+            const now = Date.now();
+            const totalElapsed = Math.floor((now - this.platformSessionStart) / 1000);
+            let delta = totalElapsed - this.platformSecondsElapsedInSession;
+            if (delta > 0) {
+                if (delta > 5) delta = 1;
+                this.recordPlatformTime(delta);
+            }
+        }
+        this.saveStats();
+    },
+
+    recordPlatformTime: function (delta) {
+        if (!this.dailyHistory) this.dailyHistory = {};
+        const tempD = new Date();
+        const today = `${tempD.getFullYear()}-${String(tempD.getMonth() + 1).padStart(2, '0')}-${String(tempD.getDate()).padStart(2, '0')}`;
+        if (!this.dailyHistory[today]) this.dailyHistory[today] = {};
+        
+        this.dailyHistory[today].platformTime = (this.dailyHistory[today].platformTime || 0) + delta;
+        
+        if (!this.stats["_platform"]) {
+            this.stats["_platform"] = { time: 0 };
+        }
+        this.stats["_platform"].time += delta;
     },
 
     recordStat: function (c, cat, sub, isCorr) {
@@ -3792,11 +3901,13 @@ document.addEventListener('visibilitychange', () => {
         if (QuizApp.timer && QuizApp.activeCourse) {
             QuizApp.pauseTimer();
         }
+        QuizApp.pausePlatformTimer();
         if (QuizApp.surpriseCountdown && QuizApp.state.isSurpriseActive) {
             clearInterval(QuizApp.surpriseCountdown);
             QuizApp.surpriseCountdown = null;
         }
     } else if (document.visibilityState === 'visible') {
+        QuizApp.startPlatformTimer();
         if (QuizApp.activeCourse && !QuizApp.timer && !QuizApp.state.isSurpriseActive) {
             QuizApp.resumeTimer();
         }
