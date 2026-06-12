@@ -2575,13 +2575,19 @@ const QuizApp = {
         const tempD = new Date();
         const today = `${tempD.getFullYear()}-${String(tempD.getMonth() + 1).padStart(2, '0')}-${String(tempD.getDate()).padStart(2, '0')}`;
         if (!this.dailyHistory[today]) this.dailyHistory[today] = {};
-        if (!this.dailyHistory[today][course]) this.dailyHistory[today][course] = { time: 0, correct: 0, wrong: 0 };
+        
+        let targetCourse = course;
+        if (course && course.includes('_pdf_')) {
+            targetCourse = course.split('_pdf_')[0];
+        }
+        
+        if (!this.dailyHistory[today][targetCourse]) this.dailyHistory[today][targetCourse] = { time: 0, correct: 0, wrong: 0 };
         
         if (timeIncrement > 0) {
-            this.dailyHistory[today][course].time += timeIncrement;
+            this.dailyHistory[today][targetCourse].time += timeIncrement;
         } else {
-            if (isCorrect) this.dailyHistory[today][course].correct++;
-            else this.dailyHistory[today][course].wrong++;
+            if (isCorrect) this.dailyHistory[today][targetCourse].correct++;
+            else this.dailyHistory[today][targetCourse].wrong++;
         }
     },
 
@@ -2630,9 +2636,21 @@ const QuizApp = {
             let totalVal = 0;
             const coursesList = ["Grafik Tasarım II", "Görsel İletişim Tasarımı", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Atatürk İlkeleri ve İnkılap Tarihi II", "Türk Dili II", "Mixed"];
             coursesList.forEach(c => {
-                const data = dayData[c] || { time: 0, correct: 0, wrong: 0 };
-                const val = mode === 'questions' ? (data.correct + data.wrong) : Math.round(data.time / 60);
-                coursesData.push({ course: c, val, correct: data.correct, wrong: data.wrong, time: data.time });
+                let time = 0;
+                let correct = 0;
+                let wrong = 0;
+                
+                Object.keys(dayData).forEach(key => {
+                    if (key === c || key.startsWith(c + '_pdf_')) {
+                        const data = dayData[key] || {};
+                        time += data.time || 0;
+                        correct += data.correct || 0;
+                        wrong += data.wrong || 0;
+                    }
+                });
+
+                const val = mode === 'questions' ? (correct + wrong) : Math.round(time / 60);
+                coursesData.push({ course: c, val, correct, wrong, time });
                 totalVal += val;
             });
             return { date, totalVal, coursesData };
