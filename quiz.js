@@ -2040,6 +2040,19 @@ const QuizApp = {
             this.recordStat(this.state.course, cat, sub, isCorrect);
         }
         updateDaily(true); this.renderQ();
+
+        // Auto-advance to the next question with a 1-second delay so user can see correct/wrong state
+        const currentIndex = this.state.index;
+        setTimeout(() => {
+            if (QuizApp.state.view === 'quiz' && QuizApp.state.index === currentIndex) {
+                const total = QuizApp.state.questions.length;
+                if (QuizApp.state.index === total - 1) {
+                    QuizApp.finishTest();
+                } else {
+                    QuizApp.nav(1);
+                }
+            }
+        }, 1000);
     },
 
     startMock: function () {
