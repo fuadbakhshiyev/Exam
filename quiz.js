@@ -1985,6 +1985,9 @@ const QuizApp = {
         if (this.state.index === total - 1) { btnNext.textContent = "Bitir"; btnNext.onclick = () => QuizApp.finishTest(); }
         else { btnNext.textContent = "Növbəti"; btnNext.onclick = () => QuizApp.nav(1); }
 
+        const btnPrev = document.getElementById('btn-prev');
+        if (btnPrev) btnPrev.disabled = this.state.index === 0;
+
         const btnHint = document.getElementById('btn-hint');
         if (btnHint) btnHint.disabled = !!ans;
     },
@@ -2638,7 +2641,7 @@ const QuizApp = {
     },
 
     // Helpers
-    nav: function (d) { this.state.index += d; this.renderQ(); },
+    nav: function (d) { const nextIdx = this.state.index + d; if (nextIdx >= 0 && nextIdx < this.state.questions.length) { this.state.index = nextIdx; this.renderQ(); } },
     resetUnit: function () { this.state.index = 0; this.state.answers = {}; this.state.correct = 0; this.state.wrong = 0; this.renderQ(); },
     hint: function () { this.state.answers[this.state.index] = { chosen: -1, hint: true }; this.renderQ(); },
     toggleFlashcard: function () { this.state.isFlashcard = !this.state.isFlashcard; this.renderQ(); },
@@ -4094,5 +4097,64 @@ document.addEventListener('visibilitychange', () => {
         if (QuizApp.state.isSurpriseActive && !QuizApp.surpriseCountdown) {
             QuizApp.resumeSurpriseTimer();
         }
+    }
+});
+
+// Keyboard Shortcuts for Quiz Screen
+window.addEventListener('keydown', (e) => {
+    if (QuizApp.state.view !== 'quiz') return;
+
+    // input, textarea və ya contenteditable elementlərdə yazarkən qısayollar işləməsin
+    const activeEl = document.activeElement;
+    if (activeEl && (
+        activeEl.tagName === 'INPUT' || 
+        activeEl.tagName === 'TEXTAREA' || 
+        activeEl.isContentEditable
+    )) {
+        return;
+    }
+
+    const key = e.key.toLowerCase();
+
+    // 1-5 və ya A-E / a-e variant seçimi
+    const variantKeys = ['1', '2', '3', '4', '5'];
+    const letterKeys = ['a', 'b', 'c', 'd', 'e'];
+    
+    let optIdx = -1;
+    if (variantKeys.includes(key)) {
+        optIdx = variantKeys.indexOf(key);
+    } else if (letterKeys.includes(key)) {
+        optIdx = letterKeys.indexOf(key);
+    }
+
+    if (optIdx !== -1) {
+        if (!QuizApp.state.answers[QuizApp.state.index]) {
+            const q = QuizApp.state.questions[QuizApp.state.index];
+            if (q && q.shuffledOpts && q.shuffledOpts[optIdx]) {
+                QuizApp.checkAnswer(q.shuffledOpts[optIdx].i);
+            }
+        }
+        return;
+    }
+
+    // Növbəti: Backspace, Enter, Space, ArrowRight
+    if (key === 'backspace' || key === 'enter' || e.code === 'Space' || key === 'arrowright') {
+        if (key === 'backspace' || e.code === 'Space') {
+            e.preventDefault();
+        }
+        
+        const btnNext = document.getElementById('btn-next');
+        if (btnNext && !btnNext.disabled) {
+            btnNext.click();
+        }
+        return;
+    }
+
+    // Əvvəlki: ArrowLeft
+    if (key === 'arrowleft') {
+        if (QuizApp.state.index > 0) {
+            QuizApp.nav(-1);
+        }
+        return;
     }
 });
