@@ -194,6 +194,43 @@ const QuizApp = {
                 FirebaseSync.triggerAutoSave();
             }
         }
+
+        // Inject manual exam results for Grafik Tasarım II (90 correct, 10 wrong, 1221s)
+        if (!localStorage.getItem('qa_v31_injected_grafik_tasarim')) {
+            const course = "Grafik Tasarım II";
+            
+            // 17 correct, 3 wrong
+            for (let i = 0; i < 17; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+            for (let i = 0; i < 3; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
+            
+            // 18 correct, 2 wrong
+            for (let i = 0; i < 18; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+            for (let i = 0; i < 2; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
+            
+            // 19 correct, 1 wrong
+            for (let i = 0; i < 19; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+            for (let i = 0; i < 1; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
+            
+            // 19 correct, 1 wrong
+            for (let i = 0; i < 19; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+            for (let i = 0; i < 1; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
+            
+            // 17 correct, 3 wrong
+            for (let i = 0; i < 17; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+            for (let i = 0; i < 3; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
+            
+            if (this.stats[course]) {
+                this.stats[course].time += 1221;
+            }
+            this.recordDailyHistory(course, null, 1221);
+            this.saveStats();
+            
+            updateDaily(false);
+            localStorage.setItem('qa_v31_injected_grafik_tasarim', 'true');
+            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
+                FirebaseSync.triggerAutoSave();
+            }
+        }
     },
 
     buildMixedUnits: function () {
