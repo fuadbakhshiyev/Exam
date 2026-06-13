@@ -919,9 +919,12 @@ const QuizApp = {
                 <div class="hap-chart-panel">
                     <div class="hap-chart-header">
                         <div class="hap-section-label">Fənlərin İnkişaf Dinamikası</div>
-                        <div class="hap-chart-toggles">
-                            <button id="toggle-chart-mode-q" class="chart-toggle-btn active" onclick="setChartMode('questions')">Suallar</button>
-                            <button id="toggle-chart-mode-t" class="chart-toggle-btn" onclick="setChartMode('time')">Sərf edilən vaxt</button>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div class="hap-chart-filters" id="chart-courses-filters"></div>
+                            <div class="hap-chart-toggles">
+                                <button id="toggle-chart-mode-q" class="chart-toggle-btn active" onclick="setChartMode('questions')">Suallar</button>
+                                <button id="toggle-chart-mode-t" class="chart-toggle-btn" onclick="setChartMode('time')">Sərf edilən vaxt</button>
+                            </div>
                         </div>
                     </div>
 
@@ -946,7 +949,6 @@ const QuizApp = {
                             </span>
                         </div>
                     </div>
-                    <div class="hap-chart-filters" id="chart-courses-filters"></div>
 
                     <div class="hap-chart-body" style="position: relative;">
                         <canvas id="home-dynamics-canvas" style="width: 100%; height: 250px;"></canvas>

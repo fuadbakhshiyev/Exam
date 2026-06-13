@@ -1598,10 +1598,7 @@ body {
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
-    margin-top: -4px;
-    margin-bottom: -4px;
     justify-content: flex-start;
-    width: 100%;
 }
 
 .chart-filter-select-wrap {
