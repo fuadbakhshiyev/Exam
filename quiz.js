@@ -4406,8 +4406,12 @@ const QuizApp = {
             btn.innerHTML = option;
             btn.onclick = () => {
                 if (!this.state.surpriseAnswered) {
-                    if (confirm("Bu cavabdan əminsiniz?")) {
+                    if (btn.classList.contains('selected')) {
                         revealAnswer(idx);
+                    } else {
+                        const buttons = optList.querySelectorAll('.surprise-opt-btn');
+                        buttons.forEach(b => b.classList.remove('selected'));
+                        btn.classList.add('selected');
                     }
                 }
             };

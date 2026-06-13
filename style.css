@@ -2170,6 +2170,12 @@ body {
     color: var(--text-main) !important;
     font-weight: 700;
 }
+.surprise-opt-btn.selected {
+    background: rgba(99, 102, 241, 0.15) !important;
+    border-color: var(--accent) !important;
+    color: var(--text-main) !important;
+    font-weight: 700;
+}
 
 /* --- MOST WRONG UNIT WARNING BOX --- */
 .db-warning-box {
