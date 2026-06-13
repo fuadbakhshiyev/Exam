@@ -1160,6 +1160,51 @@ const QuizApp = {
             `;
         }
 
+        // Add "Ən çox düşən suallar" section
+        const freqQs = this.getMostFrequentQuestions(subjectName);
+        if (freqQs.length > 0) {
+            let f_correct = 0, f_wrong = 0, f_lastTested = 0;
+            if (this.stats[subjectName] && this.stats[subjectName].bd && this.stats[subjectName].bd['pdf-exam'] && this.stats[subjectName].bd['pdf-exam']['Ən çox düşən suallar']) {
+                const item = this.stats[subjectName].bd['pdf-exam']['Ən çox düşən suallar'];
+                f_correct = item.c || 0;
+                f_wrong = item.w || 0;
+                f_lastTested = item.last || 0;
+            }
+            const f_totalAnswered = f_correct + f_wrong;
+            const f_lastTestedStr = this.formatLastTested(f_lastTested, f_totalAnswered > 0);
+
+            examsHTML += `
+                <div class="unit-item" style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.06) 0%, rgba(239, 68, 68, 0.06) 100%); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 18px; padding: 20px; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 14px; grid-column: 1 / -1;">
+                    <div class="unit-item-header" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                        <div>
+                            <div class="unit-item-title" style="font-size: 1.15rem; font-weight: 800; color: #f97316; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; gap: 8px;">
+                                🔥 ƏN ÇOX DÜŞƏN SUALLAR
+                            </div>
+                            <div class="unit-item-last-tested" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                                Bu fənnin imtahanlarında təkrarlanan <strong>${freqQs.length}</strong> ən populyar sualı işləyin. Son sınaq: ${f_lastTestedStr}
+                            </div>
+                        </div>
+                        <button class="unit-btn-start" style="background: linear-gradient(135deg, #f97316, #ef4444); box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2); border: none;" onclick="QuizApp.startPdfSubjectFrequentQs('${subjectName.replace(/'/g, "\\'")}')">Başla</button>
+                    </div>
+                    
+                    <div class="unit-item-stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: rgba(255,255,255,0.02); padding: 12px; border-radius: 12px; border: 1px solid var(--border);">
+                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--text-main);">${freqQs.length}</span>
+                            <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Cəm Sual</span>
+                        </div>
+                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--active);">${f_correct}</span>
+                            <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Düzgün</span>
+                        </div>
+                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--wrong);">${f_wrong}</span>
+                            <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Səhv</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         exams.forEach((examQs, idx) => {
             const examTitle = `İmtahan ${idx + 1}`;
             const examKey = `${subjectName}_pdf_${idx}`;
@@ -1304,6 +1349,116 @@ const QuizApp = {
         this.state.category = 'pdf-exam';
         this.state.currentTitle = title;
         this.state.selectionIndex = -1;
+        this.state.activePdfSubject = subjectName;
+    },
+
+    getMostFrequentQuestions: function (subjectName) {
+        const exams = (typeof pdfExamsData !== 'undefined') ? (pdfExamsData[subjectName] || []) : [];
+        const counts = {};
+        const firstOccurrences = {};
+        
+        exams.forEach(examQs => {
+            examQs.forEach(q => {
+                const qText = q.q.trim();
+                counts[qText] = (counts[qText] || 0) + 1;
+                if (!firstOccurrences[qText]) {
+                    firstOccurrences[qText] = q;
+                }
+            });
+        });
+        
+        const dupes = [];
+        Object.keys(counts).forEach(qText => {
+            if (counts[qText] > 1) {
+                const qObj = { ...firstOccurrences[qText] };
+                qObj._frequency = counts[qText];
+                dupes.push(qObj);
+            }
+        });
+        
+        dupes.sort((a, b) => b._frequency - a._frequency);
+        return dupes;
+    },
+
+    startPdfSubjectFrequentQs: function (subjectName) {
+        const questions = this.getMostFrequentQuestions(subjectName);
+        if (questions.length === 0) {
+            return alert("Bu fənnin PDF sınaqlarında təkrarlanan sual tapılmadı.");
+        }
+        
+        const title = `Ən çox düşən suallar`;
+        const examKey = subjectName;
+        
+        const clonedQs = questions.map(q => {
+            const cloned = { ...q };
+            cloned.c = examKey;
+            cloned.u = -2;
+            return cloned;
+        });
+        
+        this.startSpecial(clonedQs, title, examKey);
+        
+        this.state.category = 'pdf-exam';
+        this.state.currentTitle = title;
+        this.state.selectionIndex = -2;
+        this.state.activePdfSubject = subjectName;
+    },
+
+    getMixedOnlyQuestions: function (subjectName) {
+        if (typeof quizData === 'undefined') return [];
+        
+        const subjects = [
+            "Atatürk İlkeleri ve İnkılap Tarihi II",
+            "Grafik Tasarım II",
+            "Görsel İletişim Tasarımı",
+            "Masaüstü Yayıncılık",
+            "Tasarımda Tipografi",
+            "Türk Dili II"
+        ];
+        const sIdx = subjects.indexOf(subjectName);
+        if (sIdx === -1) return [];
+        const uVal = sIdx + 1;
+        
+        const mixedQs = quizData.filter(q => q.c === "Mixed" && q.u === uVal);
+        const normalQs = quizData.filter(q => q.c === subjectName);
+        
+        const cleanText = (txt) => {
+            if (!txt) return "";
+            return txt.replace(/<[^>]*>/g, "")
+                      .replace(/&nbsp;/g, " ")
+                      .replace(/&#39;/g, "'")
+                      .replace(/&quot;/g, '"')
+                      .replace(/&ldquo;/g, '"')
+                      .replace(/&rdquo;/g, '"')
+                      .replace(/&lsquo;/g, "'")
+                      .replace(/&rsquo;/g, "'")
+                      .replace(/&amp;/g, '&')
+                      .replace(/\s+/g, " ")
+                      .trim()
+                      .toLowerCase();
+        };
+        
+        const normalSet = new Set(normalQs.map(q => cleanText(q.q)));
+        
+        return mixedQs.filter(q => {
+            const cleaned = cleanText(q.q);
+            return !normalSet.has(cleaned);
+        });
+    },
+
+    startMixedOnlyQs: function (subjectName) {
+        const questions = this.getMixedOnlyQuestions(subjectName);
+        if (questions.length === 0) {
+            return alert("Bu fənn üçün yalnız Mixed-də olan hər hansı bir fərqli sual tapılmadı.");
+        }
+        
+        const title = `Yalnız Mixed-də olan suallar`;
+        
+        this.startSpecial(questions, title, subjectName);
+        
+        this.state.category = 'mixed-only';
+        this.state.currentTitle = title;
+        this.state.selectionIndex = -3;
         this.state.activePdfSubject = subjectName;
     },
 
@@ -1729,6 +1884,43 @@ const QuizApp = {
                             </td>
                         </tr>
                     `;
+
+                    // Prepend Mixed Only row if there are mixed-only questions
+                    const mixedOnlyQs = this.getMixedOnlyQuestions(c);
+                    if (mixedOnlyQs.length > 0) {
+                        let mixedOnlyLastTested = 0;
+                        let hasMixedOnlyData = false;
+                        if (s.bd && s.bd['mixed-only'] && s.bd['mixed-only']['Yalnız Mixed-də olan suallar']) {
+                            mixedOnlyLastTested = s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].last || 0;
+                            hasMixedOnlyData = (s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].t || 0) > 0;
+                        }
+                        const mixedOnlyLastTestedStr = this.formatLastTested(mixedOnlyLastTested, hasMixedOnlyData);
+                        let mixedOnlyCorrect = 0, mixedOnlyWrong = 0, mixedOnlyAcc = 0;
+                        if (hasMixedOnlyData) {
+                            mixedOnlyCorrect = s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].c || 0;
+                            mixedOnlyWrong = s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].w || 0;
+                            const totalMixedOnly = mixedOnlyCorrect + mixedOnlyWrong;
+                            if (totalMixedOnly > 0) mixedOnlyAcc = Math.round((mixedOnlyCorrect / totalMixedOnly) * 100);
+                        }
+
+                        tbodyHTML += `
+                            <tr onclick="QuizApp.startMixedOnlyQs('${c.replace(/'/g, "\\'")}')" style="background: rgba(139, 92, 246, 0.05); border-left: 3px solid #8b5cf6;">
+                                <td style="font-weight: 800; color: #8b5cf6;">
+                                    <div class="unit-table-title"><span class="unit-table-num">💎</span> Yalnız Mixed-də olan suallar</div>
+                                    <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
+                                        ⏱️ Son sınaq: ${mixedOnlyLastTestedStr}
+                                    </div>
+                                </td>
+                                <td style="text-align: center;">${mixedOnlyQs.length}</td>
+                                <td style="text-align: center; color: var(--active); font-weight: 700;">${hasMixedOnlyData ? mixedOnlyCorrect : '-'}</td>
+                                <td style="text-align: center; color: var(--wrong); font-weight: 700;">${hasMixedOnlyData ? mixedOnlyWrong : '-'}</td>
+                                <td style="text-align: center; color: var(--accent); font-weight: 700;">${hasMixedOnlyData ? mixedOnlyAcc + '%' : '-'}</td>
+                                <td style="text-align: right;" onclick="event.stopPropagation();">
+                                    <button class="unit-btn-start" style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); border: none;" onclick="QuizApp.startMixedOnlyQs('${c.replace(/'/g, "\\'")}')">Başla</button>
+                                </td>
+                            </tr>
+                        `;
+                    }
                     
                     CONFIG[c].units.forEach((unitName, i) => {
                         const unitIdx = i + 1;
@@ -1847,6 +2039,54 @@ const QuizApp = {
                         </div>
                     `;
                     listEl.appendChild(multiItem);
+
+                    // Add "Yalnız Mixed-də olan suallar" card to Grid layout
+                    const mixedOnlyQs = this.getMixedOnlyQuestions(c);
+                    if (mixedOnlyQs.length > 0) {
+                        let mixedOnlyLastTested = 0;
+                        let hasMixedOnlyData = false;
+                        if (s.bd && s.bd['mixed-only'] && s.bd['mixed-only']['Yalnız Mixed-də olan suallar']) {
+                            mixedOnlyLastTested = s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].last || 0;
+                            hasMixedOnlyData = (s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].t || 0) > 0;
+                        }
+                        const mixedOnlyLastTestedStr = this.formatLastTested(mixedOnlyLastTested, hasMixedOnlyData);
+                        let mixedOnlyCorrect = 0, mixedOnlyWrong = 0;
+                        if (hasMixedOnlyData) {
+                            mixedOnlyCorrect = s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].c || 0;
+                            mixedOnlyWrong = s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].w || 0;
+                        }
+
+                        const mixedOnlyItem = document.createElement('div');
+                        mixedOnlyItem.className = 'unit-item';
+                        mixedOnlyItem.style.background = 'linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(99, 102, 241, 0.06) 100%)';
+                        mixedOnlyItem.style.border = '1px solid rgba(139, 92, 246, 0.3)';
+                        mixedOnlyItem.innerHTML = `
+                            <div class="unit-item-header">
+                                <div>
+                                    <div class="unit-item-title" style="color: #8b5cf6; font-weight: 800;">💎 Yalnız Mixed-də olan suallar</div>
+                                    <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
+                                        ⏱️ Son sınaq: ${mixedOnlyLastTestedStr}
+                                    </div>
+                                </div>
+                                <button class="unit-btn-start" style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); border: none;" onclick="QuizApp.startMixedOnlyQs('${c.replace(/'/g, "\\'")}')">Başla</button>
+                            </div>
+                            <div class="unit-item-stats-grid">
+                                <div class="unit-stat-box">
+                                    <span class="us-val" style="color: var(--text-main); font-weight: 800;">${mixedOnlyQs.length}</span>
+                                    <span class="us-lbl">CƏMİ SUAL</span>
+                                </div>
+                                <div class="unit-stat-box">
+                                    <span class="us-val" style="color: var(--active); font-weight: 800;">${mixedOnlyCorrect}</span>
+                                    <span class="us-lbl">DOĞRU</span>
+                                </div>
+                                <div class="unit-stat-box">
+                                    <span class="us-val" style="color: var(--wrong); font-weight: 800;">${mixedOnlyWrong}</span>
+                                    <span class="us-lbl">YANLIŞ</span>
+                                </div>
+                            </div>
+                        `;
+                        listEl.appendChild(mixedOnlyItem);
+                    }
                     
                     CONFIG[c].units.forEach((unitName, i) => {
                         const unitIdx = i + 1;
