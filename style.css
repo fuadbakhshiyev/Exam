@@ -1592,6 +1592,45 @@ body {
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
+.hap-chart-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    justify-content: center;
+    width: 100%;
+}
+
+.chart-filter-pill {
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-muted);
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 99px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.chart-filter-pill:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--text-main);
+    transform: translateY(-1px);
+}
+
+.chart-filter-pill.active {
+    background: var(--pill-bg, rgba(99, 102, 241, 0.12)) !important;
+    border-color: var(--pill-accent, var(--accent)) !important;
+    color: var(--text-main) !important;
+    box-shadow: 0 4px 12px var(--pill-glow, rgba(99, 102, 241, 0.15)) !important;
+}
+
 .chart-tooltip {
     position: absolute;
     background: rgba(20, 20, 30, 0.92);

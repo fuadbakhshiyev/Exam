@@ -946,6 +946,7 @@ const QuizApp = {
                             </span>
                         </div>
                     </div>
+                    <div class="hap-chart-filters" id="chart-courses-filters"></div>
 
                     <div class="hap-chart-body" style="position: relative;">
                         <canvas id="home-dynamics-canvas" style="width: 100%; height: 250px;"></canvas>
@@ -3658,11 +3659,67 @@ const QuizApp = {
         };
         const defaultStyle = { g1: "#6366f1", g2: "#8b5cf6" };
 
+        const coursesList = ["Mixed", "Atatürk İlkeleri ve İnkılap Tarihi II", "Türk Dili II", "Grafik Tasarım II", "Görsel İletişim Tasarımı", "Masaüstü Yayıncılık", "Tasarımda Tipografi"];
+        
+        if (!this.state.chartCoursesFilter) {
+            this.state.chartCoursesFilter = [...coursesList];
+        }
+
+        // Render dynamic filter pills
+        const filtersContainer = document.getElementById('chart-courses-filters');
+        if (filtersContainer) {
+            filtersContainer.innerHTML = '';
+            
+            // "Hamısı" Pill
+            const allPill = document.createElement('button');
+            allPill.className = 'chart-filter-pill';
+            const isAllSelected = this.state.chartCoursesFilter.length === coursesList.length;
+            if (isAllSelected) {
+                allPill.classList.add('active');
+            }
+            allPill.innerHTML = `🌟 <span>Hamısı</span>`;
+            allPill.onclick = () => {
+                if (isAllSelected) {
+                    this.state.chartCoursesFilter = [];
+                } else {
+                    this.state.chartCoursesFilter = [...coursesList];
+                }
+                this.drawDynamicsChart();
+            };
+            filtersContainer.appendChild(allPill);
+            
+            // Course Pills
+            coursesList.forEach(c => {
+                const style = COURSE_STYLES[c] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
+                const pill = document.createElement('button');
+                pill.className = 'chart-filter-pill';
+                const isSelected = this.state.chartCoursesFilter.includes(c);
+                if (isSelected) {
+                    pill.classList.add('active');
+                }
+                
+                pill.style.setProperty('--pill-accent', style.accent);
+                pill.style.setProperty('--pill-bg', `${style.accent}1c`);
+                pill.style.setProperty('--pill-glow', `${style.accent}25`);
+                
+                pill.innerHTML = `<span>${style.icon}</span> <span>${c}</span>`;
+                pill.onclick = () => {
+                    const idx = this.state.chartCoursesFilter.indexOf(c);
+                    if (idx > -1) {
+                        this.state.chartCoursesFilter.splice(idx, 1);
+                    } else {
+                        this.state.chartCoursesFilter.push(c);
+                    }
+                    this.drawDynamicsChart();
+                };
+                filtersContainer.appendChild(pill);
+            });
+        }
+
         const chartData = last7Days.map(date => {
             const dayData = this.dailyHistory[date] || {};
             const coursesData = [];
             let totalVal = 0;
-            const coursesList = ["Grafik Tasarım II", "Görsel İletişim Tasarımı", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Atatürk İlkeleri ve İnkılap Tarihi II", "Türk Dili II", "Mixed"];
             coursesList.forEach(c => {
                 let time = 0;
                 let correct = 0;
@@ -3684,10 +3741,11 @@ const QuizApp = {
             return { date, totalVal, coursesData };
         });
 
-        // Find the maximum value to scale the Y axis
+        // Find the maximum value to scale the Y axis based on filtered courses
         let maxVal = 10;
         chartData.forEach(day => {
             day.coursesData.forEach(c => {
+                if (!this.state.chartCoursesFilter.includes(c.course)) return;
                 if (c.val > maxVal) maxVal = c.val;
             });
         });
@@ -3794,11 +3852,9 @@ const QuizApp = {
             ctx.setLineDash([]);
         }
 
-        // Draw lines for each course
-        const coursesList = ["Grafik Tasarım II", "Görsel İletişim Tasarımı", "Masaüstü Yayıncılık", "Tasarımda Tipografi", "Atatürk İlkeleri ve İnkılap Tarihi II", "Türk Dili II", "Mixed"];
-        
         // Draw lines for each course using smooth Catmull-Rom splines
         coursesList.forEach(courseName => {
+            if (!this.state.chartCoursesFilter.includes(courseName)) return;
             const style = courseStyles[courseName] || defaultStyle;
             
             const points = chartData.map((day, index) => {
@@ -3838,6 +3894,7 @@ const QuizApp = {
         // Only draw dots for the hovered day to keep the chart clean and modern
         if (hoveredIndex !== null) {
             coursesList.forEach(courseName => {
+                if (!this.state.chartCoursesFilter.includes(courseName)) return;
                 const style = courseStyles[courseName] || defaultStyle;
                 const day = chartData[hoveredIndex];
                 const x = padding.left + hoveredIndex * stepWidth;
@@ -3888,6 +3945,7 @@ const QuizApp = {
 
                 dayData.coursesData.forEach(seg => {
                     if (seg.val === 0) return;
+                    if (!this.state.chartCoursesFilter.includes(seg.course)) return;
                     hasData = true;
                     const style = courseStyles[seg.course] || defaultStyle;
                     const mins = Math.floor(seg.time / 60);
