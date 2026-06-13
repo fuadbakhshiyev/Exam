@@ -837,12 +837,15 @@ const QuizApp = {
         });
 
         const formatTodayTime = (s) => {
-            if (s <= 0) return '0m';
-            if (s < 60) return `${s}s`;
+            if (s <= 0) return '0s';
             const h = Math.floor(s / 3600);
             const m = Math.floor((s % 3600) / 60);
-            if (h > 0) return `${h}h ${m}m`;
-            return `${m}m`;
+            const sec = s % 60;
+            let parts = [];
+            if (h > 0) parts.push(`${h}h`);
+            if (m > 0 || h > 0) parts.push(`${m}m`);
+            parts.push(`${sec}s`);
+            return parts.join(' ');
         };
 
         // Generate PDF Subject Cards
@@ -928,7 +931,7 @@ const QuizApp = {
                         </div>
                     </div>
 
-                    <div class="hap-today-summary-box" style="grid-template-columns: repeat(4, 1fr); gap: 12px;">
+                    <div class="hap-today-summary-box">
                         <div class="hap-today-stat-item">
                             <span class="hap-today-stat-label">Bugünkü Sual</span>
                             <span class="hap-today-stat-val questions">${todayQuestions}</span>
@@ -3516,12 +3519,15 @@ const QuizApp = {
                     const today = `${tempD.getFullYear()}-${String(tempD.getMonth() + 1).padStart(2, '0')}-${String(tempD.getDate()).padStart(2, '0')}`;
                     const seconds = (this.dailyHistory && this.dailyHistory[today] && this.dailyHistory[today].platformTime) || 0;
                     const formatTodayTime = (s) => {
-                        if (s <= 0) return '0m';
-                        if (s < 60) return `${s}s`;
+                        if (s <= 0) return '0s';
                         const h = Math.floor(s / 3600);
                         const m = Math.floor((s % 3600) / 60);
-                        if (h > 0) return `${h}h ${m}m`;
-                        return `${m}m`;
+                        const sec = s % 60;
+                        let parts = [];
+                        if (h > 0) parts.push(`${h}h`);
+                        if (m > 0 || h > 0) parts.push(`${m}m`);
+                        parts.push(`${sec}s`);
+                        return parts.join(' ');
                     };
                     platTimeEl.textContent = formatTodayTime(seconds);
                 }

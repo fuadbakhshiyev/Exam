@@ -2142,7 +2142,7 @@ body {
 /* --- TODAY SUMMARY BOX STYLES --- */
 .hap-today-summary-box {
     display: flex;
-    gap: 32px;
+    gap: 48px;
     background: transparent;
     border: none;
     border-radius: 0;
