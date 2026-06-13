@@ -4641,7 +4641,7 @@ function updateDaily(inc = false) {
     localStorage.setItem(QuizApp.DB.dailyGoal, JSON.stringify(d));
     
     // Milestones for celebration
-    const milestones = [50, 100, 200, 300, 500, 750, 1000, 1250, 1500, 1750, 2000];
+    const milestones = [50, 100, 200, 300, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000];
     if (inc && milestones.includes(d.c)) {
         try {
             fireMotivationalCelebration(d.c);
@@ -4687,9 +4687,21 @@ function updateDaily(inc = false) {
     } else if (d.c < 2000) {
         currentLevel = "Legend";
         target = 2000;
-    } else {
+    } else if (d.c < 2250) {
         currentLevel = "Immortal";
-        target = 2000;
+        target = 2250;
+    } else if (d.c < 2500) {
+        currentLevel = "Mythic";
+        target = 2500;
+    } else if (d.c < 2750) {
+        currentLevel = "Demi-God";
+        target = 2750;
+    } else if (d.c < 3000) {
+        currentLevel = "Godlike";
+        target = 3000;
+    } else {
+        currentLevel = "Titan";
+        target = 3000;
     }
 
     const dt = document.getElementById('daily-text');
@@ -4741,7 +4753,11 @@ const CELEBRATION_DATA = {
     1250: { level: "Conqueror", quote: "Fatih! Sən çətinlikləri üstələyərək hər şeyi fəth edirsən! 🗡️" },
     1500: { level: "Champion", quote: "Çempion! Qələbə sənin qanındadır. İlham verməyə davam et! 🏅" },
     1750: { level: "Legend", quote: "Əfsanə! Adını bu günün tarixinə yazdın. İnanılmaz iradə! 🌟" },
-    2000: { level: "Immortal", quote: "Ölümsüz! Sən artıq bu sistemin ən uca zirvəsindəsən. Sərhədsiz güc! 🌌" }
+    2000: { level: "Immortal", quote: "Ölümsüz! Sən artıq bu sistemin ən uca zirvəsindəsən. Sərhədsiz güc! 🌌" },
+    2250: { level: "Mythic", quote: "Mifik! Sənin bu nailiyyətin dildən-dilə gəzəcək bir dastan yazır! 📖✨" },
+    2500: { level: "Demi-God", quote: "Yarı-Tanrı! Gücün və intizamın qarşısında heç bir sual dayana bilməz! ⚡" },
+    2750: { level: "Godlike", quote: "Tanrısal! Sənin iradən artıq bu aləmin fizika qanunlarını aşmışdır! 🌌☄️" },
+    3000: { level: "Titan", quote: "TİTAN! Sən sistemin ən uca zirvəsini fəth etdin, mükəmməlliyin canlı sübutusan! 👑🪐🏆" }
 };
 
 function fireMotivationalCelebration(milestone) {
@@ -4757,13 +4773,15 @@ function fireMotivationalCelebration(milestone) {
     
     overlay.innerHTML = `
         <canvas id="celebration-canvas" class="celebration-canvas"></canvas>
-        <div class="mot-celebration-card">
-            <div class="mot-badge-wrap">🏆</div>
-            <div class="mot-level-title">YENİ SƏVİYYƏ</div>
-            <div class="mot-level-name">${data.level.toUpperCase()}</div>
-            <div class="mot-quote">"${data.quote}"</div>
-            <div class="mot-milestone-text">Bugünkü Hədəf: ${milestone} Sual Cavablandırıldı!</div>
-            <button class="btn btn-primary mot-close-btn" onclick="document.getElementById('mot-celebration-overlay').classList.remove('active')">Davam Et</button>
+        <div class="mot-celebration-card ${milestone === 3000 ? 'mot-card-3000' : ''}">
+            <div class="${milestone === 3000 ? 'mot-floating-wrap' : ''}">
+                <div class="mot-badge-wrap">${milestone === 3000 ? '🌌👑🏆👑🌌' : '🏆'}</div>
+                <div class="mot-level-title">${milestone === 3000 ? '🏆 LİMİTSİZ ZİRVƏ 🏆' : 'YENİ SƏVİYYƏ'}</div>
+                <div class="mot-level-name">${data.level.toUpperCase()}</div>
+                <div class="mot-quote">"${data.quote}"</div>
+                <div class="mot-milestone-text">Bugünkü Hədəf: ${milestone} Sual Cavablandırıldı!</div>
+                <button class="btn btn-primary mot-close-btn" onclick="document.getElementById('mot-celebration-overlay').classList.remove('active')">Davam Et</button>
+            </div>
         </div>
     `;
     
@@ -4848,15 +4866,280 @@ function fireMotivationalCelebration(milestone) {
             }
         }
     }
+
+    class Confetti {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * -canvas.height;
+            this.r = Math.random() * 6 + 4;
+            this.d = Math.random() * canvas.height;
+            const colors = ['#6366f1', '#8b5cf6', '#10b981', '#ef4444', '#f59e0b', '#3b82f6'];
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+            this.tilt = Math.random() * 10 - 5;
+            this.tiltAngleIncremental = Math.random() * 0.07 + 0.02;
+            this.tiltAngle = 0;
+            this.vy = Math.random() * 2 + 2;
+        }
+        update() {
+            this.tiltAngle += this.tiltAngleIncremental;
+            this.y += this.vy;
+            this.x += Math.sin(this.tiltAngle);
+            this.tilt = Math.sin(this.tiltAngle - this.r / 2) * 15;
+        }
+        draw() {
+            ctx.save();
+            ctx.beginPath();
+            ctx.lineWidth = this.r;
+            ctx.strokeStyle = this.color;
+            ctx.moveTo(this.x + this.tilt + this.r / 2, this.y);
+            ctx.lineTo(this.x + this.tilt, this.y + this.tilt + this.r / 2);
+            ctx.stroke();
+            ctx.restore();
+        }
+    }
+
+    class GoldenStar {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * -canvas.height;
+            this.size = Math.random() * 8 + 6;
+            this.vy = Math.random() * 1.5 + 1;
+            this.vx = Math.sin(Math.random() * Math.PI) * 0.5;
+            this.rotation = Math.random() * Math.PI;
+            this.rotationSpeed = Math.random() * 0.02 + 0.01;
+            this.color = Math.random() > 0.3 ? '#ffd700' : '#ff8c00';
+            this.alpha = 1;
+        }
+        update() {
+            this.y += this.vy;
+            this.x += this.vx;
+            this.rotation += this.rotationSpeed;
+            if (this.y > canvas.height - 50) {
+                this.alpha -= 0.02;
+            }
+        }
+        draw() {
+            if (this.alpha <= 0) return;
+            ctx.save();
+            ctx.globalAlpha = this.alpha;
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation);
+            ctx.fillStyle = this.color;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = this.color;
+            ctx.beginPath();
+            for (let i = 0; i < 5; i++) {
+                ctx.lineTo(Math.cos((18 + i * 72) * Math.PI / 180) * this.size,
+                           Math.sin((18 + i * 72) * Math.PI / 180) * this.size);
+                ctx.lineTo(Math.cos((54 + i * 72) * Math.PI / 180) * (this.size / 2),
+                           Math.sin((54 + i * 72) * Math.PI / 180) * (this.size / 2));
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    class SupernovaOrb {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.radius = 5;
+            this.alpha = 1;
+            this.pulsate = 0;
+            this.exploded = false;
+            this.glow = 10;
+        }
+        update() {
+            if (!this.exploded) {
+                this.pulsate += 0.15;
+                this.radius = 5 + Math.sin(this.pulsate) * 8 + (this.pulsate * 3.5);
+                this.glow = 10 + this.radius * 2;
+                if (this.radius > 110) {
+                    this.exploded = true;
+                    // Trigger Galaxy Spiral arms!
+                    const colors = ['#ffd700', '#ff8c00', '#ff0080', '#8a2be2', '#00ffff'];
+                    for (let arm = 0; arm < 4; arm++) {
+                        const armAngle = (arm * Math.PI) / 2;
+                        for (let i = 0; i < 100; i++) {
+                            const angle = armAngle + (Math.random() * 0.4 - 0.2);
+                            const speed = Math.random() * 3.5 + 1;
+                            const color = colors[Math.floor(Math.random() * colors.length)];
+                            galaxyParticles.push(new GalaxyParticle(this.x, this.y, angle, speed, color));
+                        }
+                    }
+                    // Trigger shockwaves
+                    for (let r = 0; r < 3; r++) {
+                        shockwaves.push(new Shockwave(this.x, this.y, r * 12 + 10));
+                    }
+                }
+            }
+        }
+        draw() {
+            if (!this.exploded) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+                grad.addColorStop(0, '#ffffff');
+                grad.addColorStop(0.3, '#ffd700');
+                grad.addColorStop(0.8, '#ff0080');
+                grad.addColorStop(1, 'rgba(15, 23, 42, 0)');
+                ctx.fillStyle = grad;
+                ctx.shadowBlur = this.glow;
+                ctx.shadowColor = '#ffd700';
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+    }
+
+    class GalaxyParticle {
+        constructor(centerX, centerY, angle, speed, color) {
+            this.centerX = centerX;
+            this.centerY = centerY;
+            this.angle = angle;
+            this.radius = 0;
+            this.speed = speed;
+            this.color = color;
+            this.size = Math.random() * 2 + 1.5;
+            this.alpha = 1;
+            this.rotationSpeed = Math.random() * 0.015 + 0.01;
+            this.fadeSpeed = Math.random() * 0.003 + 0.001;
+        }
+        update() {
+            this.angle += this.rotationSpeed;
+            this.radius += this.speed;
+            this.x = this.centerX + Math.cos(this.angle) * this.radius;
+            this.y = this.centerY + Math.sin(this.angle) * this.radius;
+            this.alpha -= this.fadeSpeed;
+        }
+        draw() {
+            if (this.alpha <= 0) return;
+            ctx.save();
+            ctx.globalAlpha = this.alpha;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = this.color;
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    class Shockwave {
+        constructor(x, y, startSpeed) {
+            this.x = x;
+            this.y = y;
+            this.radius = 10;
+            this.speed = startSpeed;
+            this.alpha = 1;
+            this.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        }
+        update() {
+            this.radius += this.speed;
+            this.speed *= 0.95;
+            this.alpha -= 0.012;
+        }
+        draw() {
+            if (this.alpha <= 0) return;
+            ctx.save();
+            ctx.globalAlpha = this.alpha;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = this.color;
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = this.color;
+            ctx.stroke();
+            ctx.restore();
+        }
+    }
+
+    class CornerRocket {
+        constructor(side) {
+            this.side = side;
+            this.x = side === 'left' ? 0 : canvas.width;
+            this.y = canvas.height;
+            const targetX = canvas.width * 0.5 + (Math.random() * 200 - 100);
+            const targetY = canvas.height * 0.2 + (Math.random() * 150);
+            const dx = targetX - this.x;
+            const dy = targetY - this.y;
+            this.vx = dx / 45;
+            this.vy = dy / 45;
+            this.color = `hsl(${Math.random() * 360}, 100%, 65%)`;
+            this.exploded = false;
+            this.trail = [];
+        }
+        update() {
+            if (!this.exploded) {
+                this.trail.push({ x: this.x, y: this.y });
+                if (this.trail.length > 8) this.trail.shift();
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.y <= canvas.height * 0.35 || this.y <= 120) {
+                    this.exploded = true;
+                    for (let i = 0; i < 50; i++) {
+                        sparkles.push(new Sparkle(this.x, this.y, this.color));
+                    }
+                }
+            }
+        }
+        draw() {
+            if (!this.exploded) {
+                ctx.save();
+                for (let i = 0; i < this.trail.length; i++) {
+                    const t = this.trail[i];
+                    ctx.globalAlpha = (i / this.trail.length) * 0.4;
+                    ctx.beginPath();
+                    ctx.arc(t.x, t.y, 2, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+                ctx.globalAlpha = 1;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 4, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffffff';
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+    }
     
     const rockets = [];
+    const cornerRockets = [];
     const sparkles = [];
+    const confetti = [];
+    const galaxyParticles = [];
+    const shockwaves = [];
+    const goldenStars = [];
+    const supernovaOrbs = [];
     let animationActive = true;
     
-    for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-            if (animationActive) rockets.push(new Rocket());
-        }, i * 500);
+    // Initialize particles based on milestone
+    if (milestone === 3000) {
+        supernovaOrbs.push(new SupernovaOrb(canvas.width / 2, canvas.height / 2));
+        for (let i = 0; i < 80; i++) {
+            goldenStars.push(new GoldenStar());
+        }
+    } else if (milestone >= 2250) {
+        for (let i = 0; i < 100; i++) {
+            confetti.push(new Confetti());
+        }
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                if (animationActive) rockets.push(new Rocket());
+            }, i * 400);
+        }
+    } else {
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                if (animationActive) rockets.push(new Rocket());
+            }, i * 500);
+        }
     }
     
     const animate = () => {
@@ -4864,6 +5147,43 @@ function fireMotivationalCelebration(milestone) {
         ctx.fillStyle = 'rgba(15, 23, 42, 0.15)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
+        // Update & Draw Supernova Orbs
+        for (let i = supernovaOrbs.length - 1; i >= 0; i--) {
+            supernovaOrbs[i].update();
+            supernovaOrbs[i].draw();
+            if (supernovaOrbs[i].exploded) {
+                supernovaOrbs.splice(i, 1);
+            }
+        }
+        
+        // Update & Draw Galaxy Particles
+        for (let i = galaxyParticles.length - 1; i >= 0; i--) {
+            galaxyParticles[i].update();
+            galaxyParticles[i].draw();
+            if (galaxyParticles[i].alpha <= 0) {
+                galaxyParticles.splice(i, 1);
+            }
+        }
+        
+        // Update & Draw Shockwaves
+        for (let i = shockwaves.length - 1; i >= 0; i--) {
+            shockwaves[i].update();
+            shockwaves[i].draw();
+            if (shockwaves[i].alpha <= 0) {
+                shockwaves.splice(i, 1);
+            }
+        }
+        
+        // Update & Draw Corner Rockets
+        for (let i = cornerRockets.length - 1; i >= 0; i--) {
+            cornerRockets[i].update();
+            cornerRockets[i].draw();
+            if (cornerRockets[i].exploded) {
+                cornerRockets.splice(i, 1);
+            }
+        }
+        
+        // Update & Draw Rockets
         for (let i = rockets.length - 1; i >= 0; i--) {
             rockets[i].update();
             rockets[i].draw();
@@ -4872,6 +5192,7 @@ function fireMotivationalCelebration(milestone) {
             }
         }
         
+        // Update & Draw Sparkles
         for (let i = sparkles.length - 1; i >= 0; i--) {
             sparkles[i].update();
             sparkles[i].draw();
@@ -4880,19 +5201,55 @@ function fireMotivationalCelebration(milestone) {
             }
         }
         
-        if (Math.random() < 0.03 && rockets.length < 4) {
-            rockets.push(new Rocket());
+        // Update & Draw Confetti
+        for (let i = confetti.length - 1; i >= 0; i--) {
+            confetti[i].update();
+            confetti[i].draw();
+            if (confetti[i].y > canvas.height + 20) {
+                confetti.splice(i, 1);
+            }
+        }
+        
+        // Update & Draw Golden Stars
+        for (let i = goldenStars.length - 1; i >= 0; i--) {
+            goldenStars[i].update();
+            goldenStars[i].draw();
+            if (goldenStars[i].y > canvas.height + 20 || goldenStars[i].alpha <= 0) {
+                goldenStars.splice(i, 1);
+            }
+        }
+        
+        // Spawning extra particles during animation loop
+        if (milestone === 3000) {
+            if (Math.random() < 0.25 && goldenStars.length < 120) {
+                goldenStars.push(new GoldenStar());
+            }
+            if (Math.random() < 0.04 && cornerRockets.length < 3) {
+                cornerRockets.push(new CornerRocket(Math.random() > 0.5 ? 'left' : 'right'));
+            }
+        } else if (milestone >= 2250) {
+            if (Math.random() < 0.15 && confetti.length < 120) {
+                confetti.push(new Confetti());
+            }
+            if (Math.random() < 0.03 && rockets.length < 4) {
+                rockets.push(new Rocket());
+            }
+        } else {
+            if (Math.random() < 0.03 && rockets.length < 4) {
+                rockets.push(new Rocket());
+            }
         }
         
         requestAnimationFrame(animate);
     };
     animate();
     
+    const duration = milestone === 3000 ? 8000 : (milestone >= 2250 ? 6000 : 4500);
     setTimeout(() => {
         animationActive = false;
         overlay.classList.remove('active');
         window.removeEventListener('resize', resizeCanvas);
-    }, 4500);
+    }, duration);
 }
 
 function fireConfetti() {
