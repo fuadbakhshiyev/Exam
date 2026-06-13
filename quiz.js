@@ -932,11 +932,11 @@ const QuizApp = {
                         </div>
                         <div class="hap-today-stat-item">
                             <span class="hap-today-stat-label">Platforma Vaxtı</span>
-                            <span class="hap-today-stat-val time" style="color: var(--accent);">${formatTodayTime(todayPlatformTime)}</span>
+                            <span class="hap-today-stat-val time platform-time-val" style="color: var(--accent);">${formatTodayTime(todayPlatformTime)}</span>
                         </div>
                         <div class="hap-today-stat-item">
                             <span class="hap-today-stat-label">Test Vaxtı</span>
-                            <span class="hap-today-stat-val time" style="color: #f59e0b;">${formatTodayTime(todayTime)}</span>
+                            <span class="hap-today-stat-val time test-time-val" style="color: #f59e0b;">${formatTodayTime(todayTime)}</span>
                         </div>
                         <div class="hap-today-stat-item">
                             <span class="hap-today-stat-label">Bugünkü Cavablar</span>
@@ -3506,6 +3506,22 @@ const QuizApp = {
                 }
                 this.recordPlatformTime(delta);
                 this.platformSecondsElapsedInSession += delta;
+                
+                const platTimeEl = document.querySelector('.platform-time-val');
+                if (platTimeEl) {
+                    const tempD = new Date();
+                    const today = `${tempD.getFullYear()}-${String(tempD.getMonth() + 1).padStart(2, '0')}-${String(tempD.getDate()).padStart(2, '0')}`;
+                    const seconds = (this.dailyHistory && this.dailyHistory[today] && this.dailyHistory[today].platformTime) || 0;
+                    const formatTodayTime = (s) => {
+                        if (s <= 0) return '0m';
+                        if (s < 60) return `${s}s`;
+                        const h = Math.floor(s / 3600);
+                        const m = Math.floor((s % 3600) / 60);
+                        if (h > 0) return `${h}h ${m}m`;
+                        return `${m}m`;
+                    };
+                    platTimeEl.textContent = formatTodayTime(seconds);
+                }
                 
                 if (this.platformSecondsElapsedInSession % 10 === 0) this.saveStats();
             }
