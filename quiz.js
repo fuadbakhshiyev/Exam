@@ -162,6 +162,38 @@ const QuizApp = {
                 FirebaseSync.triggerAutoSave();
             }
         }
+
+        // Inject manual exam results for Görsel İletişim Tasarımı Part 2 (74 correct, 6 wrong, 1020s)
+        if (!localStorage.getItem('qa_v31_injected_gorsel_iletisim_part2')) {
+            const course = "Görsel İletişim Tasarımı";
+            
+            // 18 correct, 2 wrong
+            for (let i = 0; i < 18; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+            for (let i = 0; i < 2; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
+            
+            // 20 correct, 0 wrong
+            for (let i = 0; i < 20; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+            
+            // 18 correct, 2 wrong
+            for (let i = 0; i < 18; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+            for (let i = 0; i < 2; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
+            
+            // 18 correct, 2 wrong
+            for (let i = 0; i < 18; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+            for (let i = 0; i < 2; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
+            
+            if (this.stats[course]) {
+                this.stats[course].time += 1020;
+            }
+            this.recordDailyHistory(course, null, 1020);
+            this.saveStats();
+            
+            updateDaily(false);
+            localStorage.setItem('qa_v31_injected_gorsel_iletisim_part2', 'true');
+            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
+                FirebaseSync.triggerAutoSave();
+            }
+        }
     },
 
     buildMixedUnits: function () {
