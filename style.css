@@ -1594,11 +1594,11 @@ body {
 
 .hap-chart-filters {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
-    margin-top: 14px;
-    margin-bottom: 6px;
-    justify-content: center;
+    margin-top: -4px;
+    margin-bottom: -4px;
+    justify-content: flex-start;
     width: 100%;
 }
 
