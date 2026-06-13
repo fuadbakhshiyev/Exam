@@ -114,6 +114,7 @@ const LifeOS = {
         addSubBtn('Ən Çətinlər', () => QuizApp.startHard(), 'hard-btn');
         addSubBtn('Seçilmişlər', () => QuizApp.showBookmarks(), 'star-btn');
         addSubBtn('Səhvlərim', () => QuizApp.showWrong(), 'wrong-btn');
+        addSubBtn('Ziddiyyətli Suallar', () => QuizApp.showConflictingQuestions(), 'conflict-btn');
 
         container.appendChild(toolsBtn);
         container.appendChild(toolsSub);

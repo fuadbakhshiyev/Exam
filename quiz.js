@@ -1462,6 +1462,248 @@ const QuizApp = {
         this.state.activePdfSubject = subjectName;
     },
 
+    normalizeText: function (txt) {
+        if (!txt) return "";
+        let decoded = "";
+        try {
+            const doc = new DOMParser().parseFromString(txt, 'text/html');
+            decoded = doc.body.textContent || "";
+        } catch (e) {
+            decoded = txt.replace(/<[^>]*>/g, "")
+                         .replace(/&nbsp;/g, " ")
+                         .replace(/&rsquo;/g, "'")
+                         .replace(/&lsquo;/g, "'")
+                         .replace(/&rdquo;/g, '"')
+                         .replace(/&ldquo;/g, '"')
+                         .replace(/&#39;/g, "'")
+                         .replace(/&quot;/g, '"')
+                         .replace(/&amp;/g, '&')
+                         .replace(/&ouml;/g, 'ö')
+                         .replace(/&Ouml;/g, 'Ö')
+                         .replace(/&uuml;/g, 'ü')
+                         .replace(/&Uuml;/g, 'Ü')
+                         .replace(/&ccedil;/g, 'ç')
+                         .replace(/&Ccedil;/g, 'Ç')
+                         .replace(/&ş/g, 'ş')
+                         .replace(/&Ş/g, 'Ş')
+                         .replace(/&ğ/g, 'ğ')
+                         .replace(/&Ğ/g, 'Ğ');
+        }
+        
+        // Normalize spacing around apostrophes and single quotes
+        decoded = decoded.replace(/\s*’\s*/g, "'")
+                         .replace(/\s*‘\s*/g, "'")
+                         .replace(/\s*'\s*/g, "'")
+                         .replace(/\s*`\s*/g, "'");
+
+        const replacements = {
+            'ı': 'i', 'i̇': 'i', 'İ': 'i', 'ö': 'o', 'Ö': 'o', 'ü': 'u', 'Ü': 'u',
+            'ç': 'c', 'Ç': 'c', 'ş': 's', 'Ş': 's', 'ğ': 'g', 'Ğ': 'g',
+            'â': 'a', 'î': 'i', 'û': 'u', '’': "'", '‘': "'", '`': "'",
+            "'": '',
+            '.': '', ',': '', ';': '', ':': '', '?': '', '!': '', '-': ' ',
+            '_': ' ', '(': '', ')': '', '[': '', ']': '', '/': ' '
+        };
+        decoded = decoded.toLowerCase();
+        Object.keys(replacements).forEach(k => {
+            decoded = decoded.split(k).join(replacements[k]);
+        });
+        return decoded.replace(/\s+/g, " ").trim();
+    },
+
+    getConflictingQuestions: function () {
+        const allQs = [];
+        
+        // 1. Gather from quizData
+        if (typeof quizData !== 'undefined') {
+            const subjects = [
+                "Atatürk İlkeleri ve İnkılap Tarihi II",
+                "Grafik Tasarım II",
+                "Görsel İletişim Tasarımı",
+                "Masaüstü Yayıncılık",
+                "Tasarımda Tipografi",
+                "Türk Dili II"
+            ];
+            quizData.forEach(q => {
+                let source = q.c;
+                if (q.c === 'Mixed') {
+                    const subj = subjects[q.u - 1] || 'Mixed';
+                    source = `${subj} (Mixed - Hissə ${q.u})`;
+                } else {
+                    source = `${q.c} - Unit ${q.u}`;
+                }
+                const ansText = q.o[q.a] || 'Unknown';
+                allQs.push({
+                    source: source,
+                    course: q.c === 'Mixed' ? (subjects[q.u - 1] || 'Mixed') : q.c,
+                    q_raw: q.q,
+                    q_norm: this.normalizeText(q.q),
+                    o: q.o,
+                    a: q.a,
+                    ans_text: ansText,
+                    ans_norm: this.normalizeText(ansText),
+                    q_orig: q
+                });
+            });
+        }
+        
+        // 2. Gather from pdfExamsData
+        if (typeof pdfExamsData !== 'undefined') {
+            Object.keys(pdfExamsData).forEach(subject => {
+                const exams = pdfExamsData[subject] || [];
+                exams.forEach((examQs, examIdx) => {
+                    examQs.forEach(q => {
+                        const ansText = q.o[q.a] || 'Unknown';
+                        allQs.push({
+                            source: `${subject} (PDF İmtahan ${examIdx + 1})`,
+                            course: subject,
+                            q_raw: q.q,
+                            q_norm: this.normalizeText(q.q),
+                            o: q.o,
+                            a: q.a,
+                            ans_text: ansText,
+                            ans_norm: this.normalizeText(ansText),
+                            q_orig: q
+                        });
+                    });
+                });
+            });
+        }
+        
+        // Group by q_norm
+        const grouped = {};
+        allQs.forEach(q => {
+            if (!grouped[q.q_norm]) grouped[q.q_norm] = [];
+            grouped[q.q_norm].push(q);
+        });
+        
+        // Filter conflicts
+        const conflicts = [];
+        Object.keys(grouped).forEach(qNorm => {
+            const occurrences = grouped[qNorm];
+            const ansVariants = {};
+            occurrences.forEach(occ => {
+                if (!ansVariants[occ.ans_norm]) ansVariants[occ.ans_norm] = [];
+                ansVariants[occ.ans_norm].push(occ);
+            });
+            
+            if (Object.keys(ansVariants).length > 1) {
+                conflicts.push({
+                    q_norm: qNorm,
+                    q_raw: occurrences[0].q_raw,
+                    variants: ansVariants,
+                    occurrences: occurrences
+                });
+            }
+        });
+        
+        return conflicts;
+    },
+
+    showConflictingQuestions: function () {
+        this.stopTimer();
+        this.state.view = 'conflicting-questions';
+        const tn = document.getElementById('top-nav');
+        if (tn) tn.style.display = 'none';
+
+        const container = document.getElementById('content-area');
+        if (!container) return;
+
+        const conflicts = this.getConflictingQuestions();
+
+        let cardsHTML = "";
+        conflicts.forEach((c, idx) => {
+            let variantsHTML = "";
+            Object.keys(c.variants).forEach(ansNorm => {
+                const occurrences = c.variants[ansNorm];
+                const rawAns = occurrences[0].ans_text;
+                
+                let badgesHTML = "";
+                occurrences.forEach(occ => {
+                    const style = COURSE_STYLES[occ.course] || { accent: '#6366f1' };
+                    badgesHTML += `
+                        <span class="badge-meta-course" style="background: rgba(99, 102, 241, 0.08); border: 1px solid ${style.accent}30; color: ${style.accent}; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; margin-right: 6px; margin-top: 4px; display: inline-block;">
+                            ${occ.source}
+                        </span>
+                    `;
+                });
+
+                variantsHTML += `
+                    <div style="background: var(--bg-element); padding: 12px; border-radius: 10px; border: 1px solid var(--border); margin-top: 8px;">
+                        <div style="font-weight: 700; color: var(--active); font-size: 0.95rem;">Cavab: ${rawAns}</div>
+                        <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px;">
+                            ${badgesHTML}
+                        </div>
+                    </div>
+                `;
+            });
+
+            cardsHTML += `
+                <div class="unit-item conflict-card" data-q="${c.q_norm}" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 20px; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 12px;">
+                    <div style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif;">
+                        ${c.q_raw}
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        ${variantsHTML}
+                    </div>
+                </div>
+            `;
+        });
+
+        container.innerHTML = `
+            <div class="dashboard" style="max-width: 1000px; width: 100%; margin: 0 auto; padding: 10px 0;">
+                <div style="margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    <div>
+                        <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; margin: 0;">⚠️ Ziddiyyətli Suallar</h2>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 5px; font-weight: 500;">Bazada eyni suala fərqli imtahanlarda fərqli cavab verilmiş ${conflicts.length} ziddiyyət mövcuddur.</p>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-pri" style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2); border: none;" onclick="QuizApp.startConflictingQuestionsQuiz()">
+                            ⚡ Sınağa Başla (${conflicts.length} Sual)
+                        </button>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <input type="text" id="conflict-search" placeholder="Suallarda axtarış..." oninput="QuizApp.filterConflicts(this.value)" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main); font-size: 0.95rem; font-family: 'Plus Jakarta Sans', sans-serif; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+                </div>
+                
+                <div id="conflicts-container" class="unit-list-container" style="display: grid; grid-template-columns: 1fr; gap: 16px;">
+                    ${cardsHTML || '<div style="color: var(--text-muted); font-size: 0.9rem; padding: 20px;">Heç bir ziddiyyət tapılmadı.</div>'}
+                </div>
+            </div>
+        `;
+    },
+
+    filterConflicts: function (val) {
+        const query = this.normalizeText(val);
+        document.querySelectorAll('.conflict-card').forEach(card => {
+            const q = card.getAttribute('data-q');
+            if (q.includes(query)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    },
+
+    startConflictingQuestionsQuiz: function () {
+        const conflicts = this.getConflictingQuestions();
+        if (conflicts.length === 0) return alert("Ziddiyyətli sual tapılmadı.");
+        
+        const questions = conflicts.map(c => {
+            const occ = c.occurrences[0];
+            return occ.q_orig;
+        });
+
+        const title = "Ziddiyyətli Suallar";
+        this.startSpecial(questions, title, "Bütün Fənlər");
+        
+        this.state.category = 'conflicting-quiz';
+        this.state.currentTitle = title;
+        this.state.selectionIndex = -4;
+    },
+
     renderHomeCharts: function (correct, wrong, unanswered) {
         const courseStyles = COURSE_STYLES;
 
