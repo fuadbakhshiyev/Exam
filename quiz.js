@@ -4262,12 +4262,26 @@ const QuizApp = {
     triggerSurpriseQuestion: function() {
         if (typeof quizData === 'undefined' || quizData.length === 0) return;
         
+        // Filter questions to only Atatürk and Türk Dili courses
+        const surprisePool = quizData.filter(q => {
+            const courseLower = (q.c || "").toLowerCase();
+            return courseLower.includes("atatürk") || 
+                   courseLower.includes("ataturk") || 
+                   courseLower.includes("türk dil") || 
+                   courseLower.includes("turk dil");
+        });
+        
+        if (surprisePool.length === 0) {
+            console.log("No Atatürk or Türk Dili questions found for surprise pool.");
+            return;
+        }
+
         // Pause main timer
         this.pauseTimer();
         
-        // Pick a random question
-        const randIndex = Math.floor(Math.random() * quizData.length);
-        const q = quizData[randIndex];
+        // Pick a random question from the pool
+        const randIndex = Math.floor(Math.random() * surprisePool.length);
+        const q = surprisePool[randIndex];
         
         const overlay = document.getElementById('surprise-modal-overlay');
         const meta = document.getElementById('surprise-meta');
