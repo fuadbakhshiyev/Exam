@@ -1,7 +1,56 @@
 const LifeOS = {
     currentApp: null,
 
-    init: function () {
+    init: async function () {
+        // Auto-restore fallback if localStorage statistics is empty
+        const stats = localStorage.getItem('qa_v31_s');
+        if (!stats || stats === '{}') {
+            console.log("Stats empty, attempting automatic restore from recovered_backup.json...");
+            try {
+                const r = await fetch('./recovered_backup.json');
+                if (r.ok) {
+                    const data = await r.json();
+                    let count = 0;
+                    const firestoreKeyMap = {
+                        'stats': 'qa_v31_s',
+                        'wrong': 'qa_v31_w',
+                        'correct': 'qa_v31_c',
+                        'bookmarks': 'qa_v31_m',
+                        'daily': 'qa_v31_h',
+                        'dailyGoal': 'qa_v31_dg',
+                        'settings': 'qa_v31_conf',
+                        'wrongCounts': 'qa_v31_wc',
+                        'localUpdatedAt': 'qa_v31_localUpdatedAt'
+                    };
+                    const normalizedData = {};
+                    for (let [key, val] of Object.entries(data)) {
+                        if (firestoreKeyMap[key]) {
+                            normalizedData[firestoreKeyMap[key]] = val;
+                        } else {
+                            normalizedData[key] = val;
+                        }
+                    }
+                    
+                    delete normalizedData['qa_v31_d'];
+                    localStorage.removeItem('qa_v31_d');
+
+                    for (let [key, val] of Object.entries(normalizedData)) {
+                        if (key.startsWith('qa_v31_') || key === 'theme') {
+                            const stringValue = typeof val === 'string' ? val : JSON.stringify(val);
+                            localStorage.setItem(key, stringValue);
+                            count++;
+                        }
+                    }
+                    if (count > 0) {
+                        localStorage.setItem('qa_v31_localUpdatedAt', Date.now().toString());
+                        console.log("Automatic restore from recovered_backup.json completed successfully!");
+                    }
+                }
+            } catch (err) {
+                console.warn("Auto-restore from recovered_backup.json skipped:", err.message);
+            }
+        }
+
         this.renderSidebar();
         QuizApp.init(); // Pre-load Quiz Data
 
