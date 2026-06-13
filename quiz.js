@@ -698,111 +698,79 @@ const QuizApp = {
         localStorage.setItem('qa_v31_h_real_v2', 'true');
         this.dailyHistory = JSON.parse(localStorage.getItem('qa_v31_h')) || {};
 
-        // Recover screenshotted and manually injected historical statistics
-        let historyChanged = false;
-        let statsChanged = false;
-        const targetHistory = {
-            "2026-06-04": {
-                "Grafik Tasarım II": { "time": 2910, "correct": 193, "wrong": 37 },
-                "Görsel İletişim Tasarımı": { "time": 997, "correct": 193, "wrong": 25 },
-                "Masaüstü Yayıncılık": { "time": 3367, "correct": 198, "wrong": 73 },
-                "Tasarımda Tipografi": { "time": 1593, "correct": 91, "wrong": 29 }
-            },
-            "2026-06-05": {
-                "Grafik Tasarım II": { "time": 200, "correct": 21, "wrong": 5 },
-                "Görsel İletişim Tasarımı": { "time": 498, "correct": 41, "wrong": 5 },
-                "Masaüstü Yayıncılık": { "time": 216, "correct": 21, "wrong": 3 },
-                "Tasarımda Tipografi": { "time": 1600, "correct": 124, "wrong": 21 }
-            },
-            "2026-06-06": {
-                "Grafik Tasarım II": { "time": 2436, "correct": 186, "wrong": 17 },
-                "Görsel İletişim Tasarımı": { "time": 152, "correct": 19, "wrong": 1 },
-                "Tasarımda Tipografi": { "time": 0, "correct": 1, "wrong": 1 },
-                "Atatürk İlkeleri ve İnkılap Tarihi II": { "time": 0, "correct": 0, "wrong": 1 },
-                "Türk Dili II": { "time": 0, "correct": 1, "wrong": 0 }
-            },
-            "2026-06-10": {
-                "Tasarımda Tipografi": { "time": 0, "correct": 52, "wrong": 0 }
-            },
-            "2026-06-11": {
-                "Tasarımda Tipografi": { "time": 420, "correct": 39, "wrong": 0 }
-            },
-            "2026-06-12": {
-                "Görsel İletişim Tasarımı": { "time": 2160, "correct": 166, "wrong": 14 }
-            },
-            "2026-06-13": {
-                "Grafik Tasarım II": { "time": 1221, "correct": 90, "wrong": 10 },
-                "Masaüstü Yayıncılık": { "time": 213, "correct": 20, "wrong": 0 }
-            }
-        };
+                // ==========================================
+        // ULTIMATE STATISTICS RECOVERY BLOCK (LEVELDB RESTORED)
+        // ==========================================
+        const recoveredStats = {"Görsel İletişim Tasarımı": {"time": 5967, "bd": {"mixed": {"Qarışıq Sınaq": {"w": 19, "t": 220, "c": 201, "last": 1781345183754}}, "wrong": {"Səhvlərin Təkrarı": {"c": 8, "t": 8, "w": 0}}, "units": {"Unit 5": {"c": 16, "t": 17, "w": 1}, "Unit 6": {"c": 16, "w": 3, "t": 19}, "Unit 12": {"t": 10, "w": 3, "c": 7}, "Unit 13": {"c": 9, "w": 1, "t": 10}, "Unit 4": {"t": 21, "c": 16, "w": 5, "last": 1780738056522}, "Unit 8": {"c": 20, "t": 20, "w": 0}, "Unit 2": {"t": 20, "c": 19, "w": 1, "last": 1780736601984}, "Unit 7": {"w": 3, "t": 18, "c": 15}, "Unit 10": {"w": 1, "t": 10, "c": 9}, "Unit 9": {"c": 8, "w": 2, "t": 10}, "Unit 1": {"t": 23, "c": 22, "w": 1, "last": 1780733356289}, "Unit 3": {"t": 19, "c": 19, "w": 0, "last": 1780737696148}, "Unit 11": {"w": 0, "t": 10, "c": 10}, "Unit 14": {"w": 2, "t": 10, "c": 8}}, "surprise": {"Sürpriz Sual": {"t": 4, "c": 2, "w": 2, "last": 1781189806983}}}, "w": 61, "t": 647, "c": 586}, "Tasarımda Tipografi": {"w": 89, "t": 688, "c": 599, "time": 6768, "bd": {"wrong": {"Səhvlərin Təkrarı": {"c": 68, "t": 91, "w": 23, "last": 1780820325429}}, "units": {"Unit 10": {"w": 4, "t": 28, "c": 24, "last": 1780815270272}, "Unit 9": {"c": 18, "w": 5, "t": 23, "last": 1780815124410}, "Unit 7": {"c": 31, "t": 36, "w": 5, "last": 1780814780118}, "Unit 14": {"t": 45, "w": 6, "c": 39, "last": 1780816129759}, "Unit 11": {"t": 26, "w": 1, "c": 25, "last": 1780815398400}, "Unit 1": {"t": 30, "w": 6, "c": 24, "last": 1780813046845}, "Unit 3": {"w": 7, "t": 32, "c": 25, "last": 1780813552702}, "Unit 5": {"c": 28, "w": 0, "t": 28, "last": 1780814414666}, "Unit 4": {"w": 8, "t": 26, "c": 18, "last": 1780814182761}, "Unit 2": {"w": 5, "t": 28, "c": 23, "last": 1780813294075}, "Unit 8": {"c": 18, "w": 10, "t": 28, "last": 1780814990831}, "Unit 6": {"c": 27, "w": 3, "t": 30, "last": 1780814595555}, "Unit 13": {"c": 20, "t": 22, "w": 2, "last": 1780815870819}, "Unit 12": {"c": 26, "w": 2, "t": 28, "last": 1780815749643}, "Multi": {"t": 2, "c": 2, "w": 0, "last": 1780820350399}}, "surprise": {"Sürpriz Sual": {"t": 1, "c": 0, "w": 1, "last": 1780744497900}}, "mixed": {"Qarışıq Sınaq": {"t": 39, "c": 39, "w": 0, "last": 1781280905600}}}}, "Grafik Tasarım II": {"c": 584, "w": 79, "t": 663, "time": 8039, "bd": {"units": {"Unit 14": {"c": 10, "t": 14, "w": 4}, "Unit 11": {"w": 1, "t": 13, "c": 12}, "Unit 3": {"c": 12, "t": 13, "w": 1}, "Unit 1": {"c": 14, "t": 16, "w": 2, "last": 1781280919378}, "Unit 9": {"t": 15, "w": 1, "c": 14}, "Unit 10": {"w": 2, "t": 16, "c": 14}, "Unit 7": {"w": 0, "t": 16, "c": 16}, "Unit 2": {"w": 1, "t": 14, "c": 13}, "Unit 8": {"t": 13, "w": 0, "c": 13}, "Unit 4": {"c": 15, "t": 15, "w": 0}, "Unit 13": {"w": 2, "t": 13, "c": 11}, "Unit 12": {"w": 0, "t": 14, "c": 14}, "Unit 6": {"w": 2, "t": 17, "c": 15}, "Unit 5": {"c": 14, "w": 1, "t": 15}}, "mixed": {"Qarışıq Sınaq": {"c": 109, "t": 122, "w": 13, "last": 1781345183765}}, "wrong": {"Səhvlərin Təkrarı": {"t": 45, "w": 5, "c": 40}}, "surprise": {"Sürpriz Sual": {"t": 2, "c": 1, "w": 1, "last": 1781170259760}}}}, "Masaüstü Yayıncılık": {"w": 121, "t": 619, "c": 498, "time": 7754, "bd": {"units": {"Unit 11": {"w": 4, "t": 12, "c": 8, "last": 1780818961525}, "Unit 1": {"t": 76, "w": 7, "c": 69, "last": 1781006282891}, "Unit 3": {"c": 27, "t": 34, "w": 7, "last": 1780817566380}, "Unit 10": {"c": 19, "t": 29, "w": 10, "last": 1781005701434}, "Unit 9": {"c": 9, "t": 12, "w": 3, "last": 1780818811617}, "Unit 7": {"c": 29, "t": 38, "w": 9, "last": 1780818622133}, "Unit 4": {"t": 40, "w": 5, "c": 35, "last": 1780817780201}, "Unit 8": {"w": 3, "t": 20, "c": 17, "last": 1780818762821}, "Unit 2": {"c": 38, "t": 44, "w": 6, "last": 1780817239154}, "Unit 6": {"w": 7, "t": 38, "c": 31, "last": 1780818430134}, "Unit 12": {"c": 13, "w": 17, "t": 30, "last": 1780819161046}, "Unit 13": {"c": 24, "t": 32, "w": 8, "last": 1780819349637}, "Unit 5": {"c": 31, "t": 38, "w": 7, "last": 1780818205787}, "Unit 14": {"t": 16, "c": 13, "w": 3, "last": 1780819516633}, "Multi": {"t": 2, "c": 2, "w": 0, "last": 1780820367058}}, "mixed": {"Qarışıq Sınaq": {"c": 36, "w": 4, "t": 40, "last": 1781345183771}}, "wrong": {"Səhvlərin Təkrarı": {"t": 42, "w": 7, "c": 35, "last": 1780820244629}}, "surprise": {"Sürpriz Sual": {"t": 2, "c": 1, "w": 1, "last": 1781283042744}}}}, "Atatürk İlkeleri ve İnkılap Tarihi II": {"t": 543, "c": 408, "w": 135, "time": 6986, "bd": {"units": {"Unit 1": {"t": 100, "c": 84, "w": 16, "last": 1781076752408}, "Unit 2": {"t": 63, "c": 49, "w": 14, "last": 1781089587848}, "Unit 3": {"t": 67, "c": 60, "w": 7, "last": 1781090196150}, "Unit 4": {"t": 75, "c": 61, "w": 14, "last": 1781090874942}, "Unit 5": {"t": 80, "c": 58, "w": 22, "last": 1781091685670}, "Unit 6": {"t": 60, "c": 50, "w": 10, "last": 1781096735914}, "Unit 7": {"t": 25, "c": 16, "w": 9, "last": 1781097386331}, "Unit 8": {"t": 10, "c": 7, "w": 3, "last": 1781062152478}, "Unit 9": {"t": 10, "c": 2, "w": 8, "last": 1781062325371}, "Unit 10": {"t": 10, "c": 5, "w": 5, "last": 1781062500532}, "Unit 11": {"t": 10, "c": 2, "w": 8, "last": 1781062638571}, "Unit 12": {"t": 10, "c": 1, "w": 9, "last": 1781062762425}, "Unit 13": {"t": 10, "c": 5, "w": 5, "last": 1781062888885}, "Unit 14": {"t": 10, "c": 7, "w": 3, "last": 1781063029484}}, "surprise": {"Sürpriz Sual": {"t": 2, "c": 1, "w": 1, "last": 1781189282119}}}}, "Türk Dili II": {"t": 822, "c": 640, "w": 182, "time": 10797, "bd": {"units": {"Unit 1": {"t": 80, "c": 72, "w": 8, "last": 1781033645786}, "Unit 2": {"t": 66, "c": 50, "w": 16, "last": 1781033492772}, "Unit 3": {"t": 60, "c": 50, "w": 10, "last": 1781033143290}, "Unit 4": {"t": 69, "c": 48, "w": 21, "last": 1781032974609}, "Unit 5": {"t": 60, "c": 48, "w": 12, "last": 1781032750196}, "Unit 6": {"t": 57, "c": 49, "w": 8, "last": 1781032581675}, "Unit 7": {"t": 57, "c": 51, "w": 6, "last": 1781032428486}, "Unit 8": {"t": 30, "c": 20, "w": 10, "last": 1781032281742}, "Unit 9": {"t": 30, "c": 22, "w": 8, "last": 1781032218305}, "Unit 10": {"t": 30, "c": 21, "w": 9, "last": 1781032110806}, "Unit 11": {"t": 30, "c": 18, "w": 12, "last": 1781032039287}, "Unit 12": {"t": 30, "c": 20, "w": 10, "last": 1781031944177}, "Unit 13": {"t": 30, "c": 18, "w": 12, "last": 1781031881399}, "Unit 14": {"t": 30, "c": 16, "w": 14, "last": 1781031752530}, "Multi": {"t": 61, "c": 50, "w": 11, "last": 1781033839179}}, "wrong": {"Səhvlərin Təkrarı": {"t": 101, "c": 86, "w": 15, "last": 1781031130890}}}}, "Mixed": {"t": 6, "c": 4, "w": 2, "time": 62, "bd": {"surprise": {"Sürpriz Sual": {"t": 3, "c": 1, "w": 2, "last": 1781173130568}}, "units": {"Unit 2": {"t": 3, "c": 3, "w": 0, "last": 1781169816015}}}}, "_platform": {"time": 69}};
+        const recoveredHistory = {"d": "Sat Jun 06 2026", "c": 228, "2026-06-06": {"Görsel İletişim Tasarımı": {"time": 152, "correct": 19, "wrong": 1}, "Tasarımda Tipografi": {"time": 0, "correct": 1, "wrong": 2}, "Atatürk İlkeleri ve İnkılap Tarihi II": {"time": 0, "correct": 0, "wrong": 1}, "Türk Dili II": {"time": 0, "correct": 1, "wrong": 0}, "Grafik Tasarım II": {"time": 2436, "correct": 186, "wrong": 17}}, "2026-06-04": {"Grafik Tasarım II": {"time": 2910, "correct": 193, "wrong": 37}, "Görsel İletişim Tasarımı": {"time": 997, "correct": 193, "wrong": 25}, "Masaüstü Yayıncılık": {"time": 3367, "correct": 198, "wrong": 73}, "Tasarımda Tipografi": {"time": 1593, "correct": 91, "wrong": 29}}, "2026-06-05": {"Grafik Tasarım II": {"time": 200, "correct": 21, "wrong": 5}, "Görsel İletişim Tasarımı": {"time": 498, "correct": 41, "wrong": 5}, "Masaüstü Yayıncılık": {"time": 216, "correct": 21, "wrong": 3}, "Tasarımda Tipografi": {"time": 1600, "correct": 124, "wrong": 21}}, "2026-06-07": {"Tasarımda Tipografi": {"time": 2735, "correct": 201, "wrong": 37}, "Masaüstü Yayıncılık": {"time": 2807, "correct": 215, "wrong": 39}}, "2026-06-09": {"Türk Dili II": {"time": 10797, "correct": 639, "wrong": 182}, "Masaüstü Yayıncılık": {"time": 695, "correct": 23, "wrong": 5}}, "2026-06-10": {"Atatürk İlkeleri ve İnkılap Tarihi II": {"time": 6986, "correct": 407, "wrong": 133}, "Tasarımda Tipografi": {"time": 0, "correct": 52, "wrong": 0}}, "2026-06-11": {"🎲 Ümumi Sınaq": {"time": 5, "correct": 0, "wrong": 0}, "Görsel İletişim Tasarımı": {"time": 0, "correct": 1, "wrong": 2}, "Atatürk İlkeleri ve İnkılap Tarihi II": {"time": 0, "correct": 1, "wrong": 1}, "Mixed": {"time": 62, "correct": 4, "wrong": 2}, "Grafik Tasarım II": {"time": 40, "correct": 3, "wrong": 0}, "Masaüstü Yayıncılık": {"time": 0, "correct": 1, "wrong": 0}, "Tasarımda Tipografi": {"time": 420, "correct": 39, "wrong": 0}}, "2026-06-12": {"Tasarımda Tipografi": {"time": 420, "correct": 91, "wrong": 0}, "platformTime": 24, "Grafik Tasarım II": {"time": 11, "correct": 1, "wrong": 0}, "Masaüstü Yayıncılık": {"time": 0, "correct": 0, "wrong": 1}, "Görsel İletişim Tasarımı": {"time": 2160, "correct": 166, "wrong": 14}}, "2026-06-13": {"platformTime": 45, "Grafik Tasarım II": {"time": 2442, "correct": 180, "wrong": 20}, "Masaüstü Yayıncılık": {"time": 426, "correct": 40, "wrong": 0}, "Görsel İletişim Tasarımı": {"time": 2160, "correct": 166, "wrong": 14}}};
 
-        Object.keys(targetHistory).forEach(date => {
+        let historyRestored = false;
+        let statsRestored = false;
+
+        // Merge daily history
+        Object.keys(recoveredHistory).forEach(date => {
+            if (date === 'd' || date === 'c') return;
             if (!this.dailyHistory[date]) {
-                this.dailyHistory[date] = JSON.parse(JSON.stringify(targetHistory[date]));
-                historyChanged = true;
+                this.dailyHistory[date] = JSON.parse(JSON.stringify(recoveredHistory[date]));
+                historyRestored = true;
             } else {
-                Object.keys(targetHistory[date]).forEach(subj => {
-                    if (!this.dailyHistory[date][subj]) {
-                        this.dailyHistory[date][subj] = { ...targetHistory[date][subj] };
-                        historyChanged = true;
+                Object.keys(recoveredHistory[date]).forEach(course => {
+                    if (course === 'platformTime' || course === 'personalNotes') {
+                        if (!this.dailyHistory[date][course]) {
+                            this.dailyHistory[date][course] = recoveredHistory[date][course];
+                            historyRestored = true;
+                        }
+                        return;
+                    }
+                    if (!this.dailyHistory[date][course]) {
+                        this.dailyHistory[date][course] = JSON.parse(JSON.stringify(recoveredHistory[date][course]));
+                        historyRestored = true;
                     } else {
-                        const cur = this.dailyHistory[date][subj];
-                        const tgt = targetHistory[date][subj];
-                        if ((cur.correct || 0) < tgt.correct || (cur.wrong || 0) < tgt.wrong || (cur.time || 0) < tgt.time) {
-                            cur.correct = Math.max(cur.correct || 0, tgt.correct);
-                            cur.wrong = Math.max(cur.wrong || 0, tgt.wrong);
-                            cur.time = Math.max(cur.time || 0, tgt.time);
-                            historyChanged = true;
+                        const cur = this.dailyHistory[date][course];
+                        const rec = recoveredHistory[date][course];
+                        if ((cur.correct || 0) < (rec.correct || 0) || (cur.wrong || 0) < (rec.wrong || 0) || (cur.time || 0) < (rec.time || 0)) {
+                            cur.correct = Math.max(cur.correct || 0, rec.correct || 0);
+                            cur.wrong = Math.max(cur.wrong || 0, rec.wrong || 0);
+                            cur.time = Math.max(cur.time || 0, rec.time || 0);
+                            historyRestored = true;
                         }
                     }
                 });
             }
         });
 
-        // Ensure overall course stats contain at least the sums of daily history
-        const courseSums = {};
-        Object.keys(this.dailyHistory).forEach(date => {
-            Object.keys(this.dailyHistory[date]).forEach(course => {
-                if (course === 'platformTime' || course === 'personalNotes') return;
-                const daily = this.dailyHistory[date][course];
-                if (!courseSums[course]) {
-                    courseSums[course] = { correct: 0, wrong: 0, time: 0 };
-                }
-                courseSums[course].correct += (daily.correct || 0);
-                courseSums[course].wrong += (daily.wrong || 0);
-                courseSums[course].time += (daily.time || 0);
-            });
-        });
-
-        Object.keys(courseSums).forEach(course => {
+        // Merge overall stats
+        Object.keys(recoveredStats).forEach(course => {
             if (!this.stats[course]) {
-                this.stats[course] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
-            }
-            const s = this.stats[course];
-            const sum = courseSums[course];
-            
-            if ((s.c || 0) < sum.correct || (s.w || 0) < sum.wrong || (s.time || 0) < sum.time) {
-                s.c = Math.max(s.c || 0, sum.correct);
-                s.w = Math.max(s.w || 0, sum.wrong);
-                s.t = Math.max(s.t || 0, s.c + s.w);
-                s.time = Math.max(s.time || 0, sum.time);
-                statsChanged = true;
+                this.stats[course] = JSON.parse(JSON.stringify(recoveredStats[course]));
+                statsRestored = true;
+            } else {
+                const cur = this.stats[course];
+                const rec = recoveredStats[course];
+                if ((cur.c || 0) < (rec.c || 0) || (cur.w || 0) < (rec.w || 0) || (cur.time || 0) < (rec.time || 0)) {
+                    cur.c = Math.max(cur.c || 0, rec.c || 0);
+                    cur.w = Math.max(cur.w || 0, rec.w || 0);
+                    cur.t = Math.max(cur.t || 0, cur.c + cur.w);
+                    cur.time = Math.max(cur.time || 0, rec.time || 0);
+                    statsRestored = true;
+                }
             }
         });
 
-        if (historyChanged) {
+        if (historyRestored) {
             localStorage.setItem('qa_v31_h', JSON.stringify(this.dailyHistory));
         }
-        if (statsChanged) {
+        if (statsRestored) {
             localStorage.setItem(this.DB.stats, JSON.stringify(this.stats));
         }
-        if (historyChanged || statsChanged) {
+        if (historyRestored || statsRestored) {
             localStorage.setItem('qa_v31_localUpdatedAt', Date.now().toString());
             if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
                 FirebaseSync.triggerAutoSave();
             }
+            console.log("Ultimate Recovery: Restored missing statistics from LevelDB!");
         }
-
+        // ==========================================
         this.applyTheme();
         updateDaily(false);
     },
