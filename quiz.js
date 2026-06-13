@@ -698,29 +698,105 @@ const QuizApp = {
         localStorage.setItem('qa_v31_h_real_v2', 'true');
         this.dailyHistory = JSON.parse(localStorage.getItem('qa_v31_h')) || {};
 
-        // Recover screenshotted history data (June 4th and June 5th)
+        // Recover screenshotted and manually injected historical statistics
         let historyChanged = false;
-        if (!this.dailyHistory["2026-06-04"]) {
-            this.dailyHistory["2026-06-04"] = {
+        let statsChanged = false;
+        const targetHistory = {
+            "2026-06-04": {
                 "Grafik Tasarım II": { "time": 2910, "correct": 193, "wrong": 37 },
                 "Görsel İletişim Tasarımı": { "time": 997, "correct": 193, "wrong": 25 },
                 "Masaüstü Yayıncılık": { "time": 3367, "correct": 198, "wrong": 73 },
                 "Tasarımda Tipografi": { "time": 1593, "correct": 91, "wrong": 29 }
-            };
-            historyChanged = true;
-        }
-        if (!this.dailyHistory["2026-06-05"]) {
-            this.dailyHistory["2026-06-05"] = {
+            },
+            "2026-06-05": {
                 "Grafik Tasarım II": { "time": 200, "correct": 21, "wrong": 5 },
                 "Görsel İletişim Tasarımı": { "time": 498, "correct": 41, "wrong": 5 },
                 "Masaüstü Yayıncılık": { "time": 216, "correct": 21, "wrong": 3 },
                 "Tasarımda Tipografi": { "time": 1600, "correct": 124, "wrong": 21 }
-            };
-            historyChanged = true;
-        }
-        
+            },
+            "2026-06-06": {
+                "Grafik Tasarım II": { "time": 2436, "correct": 186, "wrong": 17 },
+                "Görsel İletişim Tasarımı": { "time": 152, "correct": 19, "wrong": 1 },
+                "Tasarımda Tipografi": { "time": 0, "correct": 1, "wrong": 1 },
+                "Atatürk İlkeleri ve İnkılap Tarihi II": { "time": 0, "correct": 0, "wrong": 1 },
+                "Türk Dili II": { "time": 0, "correct": 1, "wrong": 0 }
+            },
+            "2026-06-10": {
+                "Tasarımda Tipografi": { "time": 0, "correct": 52, "wrong": 0 }
+            },
+            "2026-06-11": {
+                "Tasarımda Tipografi": { "time": 420, "correct": 39, "wrong": 0 }
+            },
+            "2026-06-12": {
+                "Görsel İletişim Tasarımı": { "time": 2160, "correct": 166, "wrong": 14 }
+            },
+            "2026-06-13": {
+                "Grafik Tasarım II": { "time": 1221, "correct": 90, "wrong": 10 },
+                "Masaüstü Yayıncılık": { "time": 213, "correct": 20, "wrong": 0 }
+            }
+        };
+
+        Object.keys(targetHistory).forEach(date => {
+            if (!this.dailyHistory[date]) {
+                this.dailyHistory[date] = JSON.parse(JSON.stringify(targetHistory[date]));
+                historyChanged = true;
+            } else {
+                Object.keys(targetHistory[date]).forEach(subj => {
+                    if (!this.dailyHistory[date][subj]) {
+                        this.dailyHistory[date][subj] = { ...targetHistory[date][subj] };
+                        historyChanged = true;
+                    } else {
+                        const cur = this.dailyHistory[date][subj];
+                        const tgt = targetHistory[date][subj];
+                        if ((cur.correct || 0) < tgt.correct || (cur.wrong || 0) < tgt.wrong || (cur.time || 0) < tgt.time) {
+                            cur.correct = Math.max(cur.correct || 0, tgt.correct);
+                            cur.wrong = Math.max(cur.wrong || 0, tgt.wrong);
+                            cur.time = Math.max(cur.time || 0, tgt.time);
+                            historyChanged = true;
+                        }
+                    }
+                });
+            }
+        });
+
+        // Ensure overall course stats contain at least the sums of daily history
+        const courseSums = {};
+        Object.keys(this.dailyHistory).forEach(date => {
+            Object.keys(this.dailyHistory[date]).forEach(course => {
+                if (course === 'platformTime' || course === 'personalNotes') return;
+                const daily = this.dailyHistory[date][course];
+                if (!courseSums[course]) {
+                    courseSums[course] = { correct: 0, wrong: 0, time: 0 };
+                }
+                courseSums[course].correct += (daily.correct || 0);
+                courseSums[course].wrong += (daily.wrong || 0);
+                courseSums[course].time += (daily.time || 0);
+            });
+        });
+
+        Object.keys(courseSums).forEach(course => {
+            if (!this.stats[course]) {
+                this.stats[course] = { t: 0, c: 0, w: 0, time: 0, bd: {} };
+            }
+            const s = this.stats[course];
+            const sum = courseSums[course];
+            
+            if ((s.c || 0) < sum.correct || (s.w || 0) < sum.wrong || (s.time || 0) < sum.time) {
+                s.c = Math.max(s.c || 0, sum.correct);
+                s.w = Math.max(s.w || 0, sum.wrong);
+                s.t = Math.max(s.t || 0, s.c + s.w);
+                s.time = Math.max(s.time || 0, sum.time);
+                statsChanged = true;
+            }
+        });
+
         if (historyChanged) {
             localStorage.setItem('qa_v31_h', JSON.stringify(this.dailyHistory));
+        }
+        if (statsChanged) {
+            localStorage.setItem(this.DB.stats, JSON.stringify(this.stats));
+        }
+        if (historyChanged || statsChanged) {
             localStorage.setItem('qa_v31_localUpdatedAt', Date.now().toString());
             if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
                 FirebaseSync.triggerAutoSave();
