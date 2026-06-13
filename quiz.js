@@ -653,6 +653,51 @@ const QuizApp = {
         this.settings = JSON.parse(localStorage.getItem(this.DB.settings)) || { scale: 1 };
         this.wrongCounts = JSON.parse(localStorage.getItem(this.DB.wrongCounts)) || {};
         
+        // Clean up/migrate the duplicate/incorrect Türk Dili II Unit 14 Question 8 in localStorage databases
+        const oldQText = "I. Panel II.Telekonferans III.Forum IV.Sempozyum Yukarıdaki sözlü anlatım türlerinin hangisinde ya da hangilerinde yönetici olarak bir başkan bulunur?";
+        const newQText = "I. Panel II. Açık Oturum III. Kongre IV. Sempozyum Yukarıdakilerin hangisi ya da hangilerinde dinleyiciler tartışmaya katılabilir?";
+        
+        ["Türk Dili II", "Türk dili", "Turk dili"].forEach(subjectKey => {
+            let dbChanged = false;
+            if (this.wrongDB && this.wrongDB[subjectKey]) {
+                this.wrongDB[subjectKey].forEach(item => {
+                    if (item.u === 14 && item.q === oldQText && item.a === 2) {
+                        item.q = newQText;
+                        dbChanged = true;
+                    }
+                });
+                if (dbChanged) {
+                    localStorage.setItem(this.DB.wrong, JSON.stringify(this.wrongDB));
+                }
+            }
+
+            let correctDbChanged = false;
+            if (this.correctDB && this.correctDB[subjectKey]) {
+                this.correctDB[subjectKey].forEach(item => {
+                    if (item.u === 14 && item.q === oldQText && item.a === 2) {
+                        item.q = newQText;
+                        correctDbChanged = true;
+                    }
+                });
+                if (correctDbChanged) {
+                    localStorage.setItem(this.DB.correct, JSON.stringify(this.correctDB));
+                }
+            }
+        });
+
+        let bookmarksChanged = false;
+        if (this.bookmarks && Array.isArray(this.bookmarks)) {
+            this.bookmarks.forEach(item => {
+                if ((item.c === "Türk Dili II" || item.c === "Türk dili" || item.c === "Turk dili") && item.u === 14 && item.q === oldQText && item.a === 2) {
+                    item.q = newQText;
+                    bookmarksChanged = true;
+                }
+            });
+            if (bookmarksChanged) {
+                localStorage.setItem(this.DB.marks, JSON.stringify(this.bookmarks));
+            }
+        }
+        
         // Migrate legacy daily history key (qa_v31_d) to new key (qa_v31_h) if necessary
         if (localStorage.getItem('qa_v31_d')) {
             try {
