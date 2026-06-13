@@ -3661,59 +3661,45 @@ const QuizApp = {
 
         const coursesList = ["Mixed", "Atatürk İlkeleri ve İnkılap Tarihi II", "Türk Dili II", "Grafik Tasarım II", "Görsel İletişim Tasarımı", "Masaüstü Yayıncılık", "Tasarımda Tipografi"];
         
-        if (!this.state.chartCoursesFilter) {
-            this.state.chartCoursesFilter = [...coursesList];
+        if (!this.state.chartSelectedCourse) {
+            this.state.chartSelectedCourse = 'all';
         }
 
-        // Render dynamic filter pills
+        // Render dynamic dropdown filter
         const filtersContainer = document.getElementById('chart-courses-filters');
         if (filtersContainer) {
             filtersContainer.innerHTML = '';
             
-            // "Hamısı" Pill
-            const allPill = document.createElement('button');
-            allPill.className = 'chart-filter-pill';
-            const isAllSelected = this.state.chartCoursesFilter.length === coursesList.length;
-            if (isAllSelected) {
-                allPill.classList.add('active');
-            }
-            allPill.innerHTML = `🌟 <span>Hamısı</span>`;
-            allPill.onclick = () => {
-                if (isAllSelected) {
-                    this.state.chartCoursesFilter = [];
-                } else {
-                    this.state.chartCoursesFilter = [...coursesList];
-                }
+            const selectWrap = document.createElement('div');
+            selectWrap.className = 'chart-filter-select-wrap';
+            
+            const select = document.createElement('select');
+            select.className = 'chart-filter-select';
+            
+            // "Hamısı" option
+            const optAll = document.createElement('option');
+            optAll.value = 'all';
+            optAll.textContent = '🌟 Hamısı';
+            if (this.state.chartSelectedCourse === 'all') optAll.selected = true;
+            select.appendChild(optAll);
+            
+            // Course options
+            coursesList.forEach(c => {
+                const style = COURSE_STYLES[c] || { icon: "📚" };
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = `${style.icon} ${c}`;
+                if (this.state.chartSelectedCourse === c) opt.selected = true;
+                select.appendChild(opt);
+            });
+            
+            select.onchange = (e) => {
+                this.state.chartSelectedCourse = e.target.value;
                 this.drawDynamicsChart();
             };
-            filtersContainer.appendChild(allPill);
             
-            // Course Pills
-            coursesList.forEach(c => {
-                const style = COURSE_STYLES[c] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
-                const pill = document.createElement('button');
-                pill.className = 'chart-filter-pill';
-                const isSelected = this.state.chartCoursesFilter.includes(c);
-                if (isSelected) {
-                    pill.classList.add('active');
-                }
-                
-                pill.style.setProperty('--pill-accent', style.accent);
-                pill.style.setProperty('--pill-bg', `${style.accent}1c`);
-                pill.style.setProperty('--pill-glow', `${style.accent}25`);
-                
-                pill.innerHTML = `<span>${style.icon}</span> <span>${c}</span>`;
-                pill.onclick = () => {
-                    const idx = this.state.chartCoursesFilter.indexOf(c);
-                    if (idx > -1) {
-                        this.state.chartCoursesFilter.splice(idx, 1);
-                    } else {
-                        this.state.chartCoursesFilter.push(c);
-                    }
-                    this.drawDynamicsChart();
-                };
-                filtersContainer.appendChild(pill);
-            });
+            selectWrap.appendChild(select);
+            filtersContainer.appendChild(selectWrap);
         }
 
         const chartData = last7Days.map(date => {
@@ -3745,7 +3731,7 @@ const QuizApp = {
         let maxVal = 10;
         chartData.forEach(day => {
             day.coursesData.forEach(c => {
-                if (!this.state.chartCoursesFilter.includes(c.course)) return;
+                if (this.state.chartSelectedCourse !== 'all' && this.state.chartSelectedCourse !== c.course) return;
                 if (c.val > maxVal) maxVal = c.val;
             });
         });
@@ -3854,7 +3840,7 @@ const QuizApp = {
 
         // Draw lines for each course using smooth Catmull-Rom splines
         coursesList.forEach(courseName => {
-            if (!this.state.chartCoursesFilter.includes(courseName)) return;
+            if (this.state.chartSelectedCourse !== 'all' && this.state.chartSelectedCourse !== courseName) return;
             const style = courseStyles[courseName] || defaultStyle;
             
             const points = chartData.map((day, index) => {
@@ -3894,7 +3880,7 @@ const QuizApp = {
         // Only draw dots for the hovered day to keep the chart clean and modern
         if (hoveredIndex !== null) {
             coursesList.forEach(courseName => {
-                if (!this.state.chartCoursesFilter.includes(courseName)) return;
+                if (this.state.chartSelectedCourse !== 'all' && this.state.chartSelectedCourse !== courseName) return;
                 const style = courseStyles[courseName] || defaultStyle;
                 const day = chartData[hoveredIndex];
                 const x = padding.left + hoveredIndex * stepWidth;
@@ -3945,7 +3931,7 @@ const QuizApp = {
 
                 dayData.coursesData.forEach(seg => {
                     if (seg.val === 0) return;
-                    if (!this.state.chartCoursesFilter.includes(seg.course)) return;
+                    if (this.state.chartSelectedCourse !== 'all' && this.state.chartSelectedCourse !== seg.course) return;
                     hasData = true;
                     const style = courseStyles[seg.course] || defaultStyle;
                     const mins = Math.floor(seg.time / 60);
