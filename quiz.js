@@ -655,7 +655,7 @@ const QuizApp = {
         
         // Clean up/migrate the duplicate/incorrect Türk Dili II Unit 14 Question 8 in localStorage databases
         const oldQText = "I. Panel II.Telekonferans III.Forum IV.Sempozyum Yukarıdaki sözlü anlatım türlerinin hangisinde ya da hangilerinde yönetici olarak bir başkan bulunur?";
-        const newQText = "I. Panel II. Açık Oturum III. Kongre IV. Sempozyum Yukarıdakilerin hangisi ya da hangilerinde dinleyiciler tartışmaya katılabilir?";
+        const newQText = "";
         
         ["Türk Dili II", "Türk dili", "Turk dili"].forEach(subjectKey => {
             let dbChanged = false;

@@ -1241,8 +1241,9 @@ const quizData = [
     { c: "Türk Dili II", u: 14, q: "Aşağıdaki sözlü anlatım türlerinden hangisinde sunulan bildiriler kitap hâlinde yayımlanabilir?", o: ["Kongre", "Telekonferans", "Panel", "Açık Oturum", "Konferans"], a: 0 },
     { c: "Türk Dili II", u: 14, q: "Farklı ülkelerden devlet ve kuruluş temsilcileriyle yöneticilerin katılmasıyla ya da siyasi parti ve derneklerin belli gündemler için bir araya gelmesiyle yapılan toplantılara ne ad verilir?", o: ["Kongre", "Açık oturum", "Münazara", "Telekonferans", "Sempozyum"], a: 0 },
     { c: "Türk Dili II", u: 14, q: "Aşağıdaki konuşma türlerinin hangisinde konuşmacı ve dinleyicilerin bir arada bulunmasına gerek yoktur?", o: ["Panel", "Telekonferans", "Konferans", "Açık oturum", "Sempozyum"], a: 1 },
-    { c: "Türk Dili II", u: 14, q: "I. Panel II. Açık Oturum III. Kongre IV. Sempozyum Yukarıdakilerin hangisi ya da hangilerinde dinleyiciler tartışmaya katılabilir?", o: ["Yalnız I", "Yalnız II", "I ve II", "II ve III", "III ve IV"], a: 2 },
+    { c: "Türk Dili II", u: 14, q: "", o: ["Yalnız I", "Yalnız II", "I ve II", "II ve III", "III ve IV"], a: 2 },
     { c: "Türk Dili II", u: 14, q: "Alanında otorite kabul edilen kişiler tarafından bir bilim dalındaki gelişmelerin, belli birikimi olan ilgili kişilere aktarıldığı toplantılara ne ad verilir?", o: ["Kongre", "Seminer", "Panel", "Münazara", "Forum"], a: 1 },
     { c: "Türk Dili II", u: 14, q: "Özellikle televizyonlarda yapılan tartışma programlarına uzakta olmalarına rağmen teknoloji yardımıyla uzmanların katıldıkları görülür. Yukarıda bir özelliğinden bahsedilen sözlü anlatım türü hangisidir?", o: ["Münazara", "Söyleşi", "Konferans", "Telekonferans", "Forum"], a: 3 },
+
 
 ];
