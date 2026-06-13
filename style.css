@@ -12,6 +12,7 @@
 :root {
     /* Dark Theme (Premium Dark Slate Theme) */
     --bg-body: #121212;
+    --bg-main: #121212;
     --bg-gradient: none;
     --bg-sidebar: #161616;
     --bg-card: #1e1e1e;
@@ -47,6 +48,7 @@
 [data-theme="light"] {
     /* Light Theme (Premium Clean Slate Theme) */
     --bg-body: #f8fafc;
+    --bg-main: #f8fafc;
     --bg-gradient: radial-gradient(circle at 80% 20%, #eff6ff 0%, #f8fafc 100%);
     --bg-sidebar: rgba(255, 255, 255, 0.8);
     --bg-card: rgba(255, 255, 255, 0.75);
