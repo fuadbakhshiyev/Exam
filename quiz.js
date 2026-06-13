@@ -231,6 +231,26 @@ const QuizApp = {
                 FirebaseSync.triggerAutoSave();
             }
         }
+
+        // Inject manual exam results for Masaüstü Yayıncılık (20 correct, 0 wrong, 213s)
+        if (!localStorage.getItem('qa_v31_injected_masaustu_yayin')) {
+            const course = "Masaüstü Yayıncılık";
+            
+            // 20 correct, 0 wrong
+            for (let i = 0; i < 20; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
+            
+            if (this.stats[course]) {
+                this.stats[course].time += 213;
+            }
+            this.recordDailyHistory(course, null, 213);
+            this.saveStats();
+            
+            updateDaily(false);
+            localStorage.setItem('qa_v31_injected_masaustu_yayin', 'true');
+            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
+                FirebaseSync.triggerAutoSave();
+            }
+        }
     },
 
     buildMixedUnits: function () {
