@@ -715,7 +715,16 @@ const QuizApp = {
                 historyRestored = true;
             } else {
                 Object.keys(recoveredHistory[date]).forEach(course => {
-                    if (course === 'platformTime' || course === 'personalNotes') {
+                    if (course === 'platformTime') {
+                        const curVal = this.dailyHistory[date][course] || 0;
+                        const recVal = recoveredHistory[date][course] || 0;
+                        if (curVal < recVal) {
+                            this.dailyHistory[date][course] = recVal;
+                            historyRestored = true;
+                        }
+                        return;
+                    }
+                    if (course === 'personalNotes') {
                         if (!this.dailyHistory[date][course]) {
                             this.dailyHistory[date][course] = recoveredHistory[date][course];
                             historyRestored = true;
