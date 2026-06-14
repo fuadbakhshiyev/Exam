@@ -4225,19 +4225,26 @@ const QuizApp = {
         const backup = {};
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
-            if (key.startsWith('qa_v31_') || key === 'theme' || key === 'qa_v31_h') {
-                backup[key] = localStorage.getItem(key);
+            if (key.startsWith('qa_v31_') || key === 'theme') {
+                const val = localStorage.getItem(key);
+                try {
+                    backup[key] = JSON.parse(val);
+                } catch (e) {
+                    backup[key] = val;
+                }
             }
         }
-        return JSON.stringify(backup);
+        return JSON.stringify(backup, null, 2);
     },
 
     copyBackupToClipboard: function () {
         const txt = document.getElementById('backup-export-text');
         if (!txt) return;
+        
         txt.select();
-        txt.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(txt.value).then(() => {
+        txt.setSelectionRange(0, txt.value.length);
+        
+        const doSuccessAnim = () => {
             const btn = document.getElementById('btn-copy-backup');
             if (btn) {
                 const oldText = btn.textContent;
@@ -4250,9 +4257,32 @@ const QuizApp = {
                     btn.style.color = "";
                 }, 2000);
             }
-        }).catch(err => {
-            alert("Kopyalama xətası: " + err);
-        });
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(txt.value).then(doSuccessAnim).catch(err => {
+                // Fallback to execCommand
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) doSuccessAnim();
+                    else alert("Kopyalama alınmadı. Zəhmət olmasa, mətni əllə seçib kopyalayın.");
+                } catch (e) {
+                    alert("Kopyalama xətası: " + err);
+                }
+            });
+        } else {
+            // Insecure context / old browser fallback
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    doSuccessAnim();
+                } else {
+                    alert("Kopyalama alınmadı. Zəhmət olmasa, mətni əllə seçib kopyalayın.");
+                }
+            } catch (e) {
+                alert("Kopyalama xətası: " + e.message);
+            }
+        }
     },
 
     importBackup: function () {
@@ -4312,6 +4342,7 @@ const QuizApp = {
                         } else {
                             // Merge legacy history into new history
                             Object.keys(legacyDaily).forEach(date => {
+                                if (date === 'c' || date === 'd') return; // Skip legacy metadata fields
                                 if (!dailyHistoryToImport[date]) {
                                     dailyHistoryToImport[date] = legacyDaily[date];
                                 } else {
@@ -4372,7 +4403,7 @@ const QuizApp = {
                 alert("İdxal üçün uyğun açarlar (qa_v31_) tapılmadı.");
             }
         } catch (e) {
-            alert("İdxal xətası: Daxil edilən məlumat düzgün JSON formatında deyil. Zəhmət olmasa, kopyaladığınız mətni tam olaraq daxil etdiyinizdən əmin olun.");
+            alert("İdxal xətası: " + e.message);
         }
     },
 
@@ -4463,7 +4494,7 @@ const QuizApp = {
                             <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Ehtiyat Nüsxəni İxrac Et</span>
                             <button id="btn-copy-backup" onclick="window.copyBackupToClipboard()" style="background:var(--bg-element); border:1px solid var(--border); color:var(--text-main); font-size:0.75rem; padding:4px 10px; border-radius:6px; cursor:pointer; font-weight:600; transition:all 0.2s;">Kopyala</button>
                         </div>
-                        <textarea id="backup-export-text" readonly style="width:100%; height:80px; background:var(--bg-input); border:1px solid var(--border); border-radius:8px; padding:8px; font-family:monospace; font-size:0.75rem; color:var(--text-muted); resize:none; outline:none; white-space:pre-wrap; word-break:break-all;">${backupData}</textarea>
+                        <textarea id="backup-export-text" readonly style="width:100%; height:80px; background:var(--bg-input); border:1px solid var(--border); border-radius:8px; padding:8px; font-family:monospace; font-size:0.75rem; color:var(--text-muted); resize:none; outline:none; white-space:pre-wrap; word-break:break-all;"></textarea>
                     </div>
                     
                     <!-- Import Box -->
@@ -4475,7 +4506,7 @@ const QuizApp = {
                             <button onclick="window.importBackup()" style="background:var(--accent); border:none; color:white; font-size:0.8rem; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:600; transition:opacity 0.2s;">İdxal Et</button>
                         </div>
                     </div>
-
+ 
                     <!-- Auto-Restore from recovered_backup.json -->
                     <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--border);">
                         <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; display:block; margin-bottom:6px;">Lokaldan Avtomatik Bərpa</span>
@@ -4487,6 +4518,11 @@ const QuizApp = {
                 </div>
             </div>
         `;
+        
+        const exportTxt = document.getElementById('backup-export-text');
+        if (exportTxt) {
+            exportTxt.value = backupData;
+        }
     },
 
     surpriseInterval: null,
