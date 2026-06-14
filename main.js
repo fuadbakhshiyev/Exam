@@ -159,7 +159,6 @@ const LifeOS = {
         };
 
         addSubBtn('Statistika', () => QuizApp.showStats());
-        addSubBtn('Cavab Axtarışı', () => QuizApp.showAnswerSearch(), 'search-btn');
         addSubBtn('Böyük Sınaq', () => QuizApp.startMock(), 'mock-btn');
         addSubBtn('Ən Çətinlər', () => QuizApp.startHard(), 'hard-btn');
         addSubBtn('Seçilmişlər', () => QuizApp.showBookmarks(), 'star-btn');

@@ -919,6 +919,13 @@ const QuizApp = {
         container.innerHTML = `
             <div class="dashboard">
 
+                <!-- Doğru Cavab Axtarışı Çubuğu -->
+                <div class="dashboard-search-bar" style="margin-bottom: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 16px 20px; box-shadow: var(--card-shadow); display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 1.2rem; opacity: 0.8;">🔍</span>
+                    <input type="text" id="db-answer-search-input" placeholder="Doğru cavablarda söz axtarışı..." style="flex: 1; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-element); color: var(--text-main); font-size: 0.92rem; outline: none; transition: all 0.2s;" onkeypress="if(event.key==='Enter') QuizApp.performDashboardAnswerSearch()">
+                    <button class="btn btn-pri" onclick="QuizApp.performDashboardAnswerSearch()" style="padding: 10px 18px; border-radius: 10px; font-size: 0.88rem; font-weight: 600; background: var(--accent-gradient); border: none; color: white; cursor: pointer; flex-shrink: 0;">Axtar</button>
+                </div>
+
                 <div class="home-analytics-panel">
 
                     <div class="hap-donut-section">
@@ -3443,6 +3450,20 @@ const QuizApp = {
         if (!g.innerHTML) g.innerHTML = "<p style='text-align:center;color:var(--text-muted)'>Əla! Səhv yoxdur.</p>";
     },
 
+    performDashboardAnswerSearch: function () {
+        const input = document.getElementById('db-answer-search-input');
+        if (!input) return;
+        const val = input.value.trim();
+        if (!val) return;
+        
+        this.showAnswerSearch();
+        const mainSearchInput = document.getElementById('answer-search-input');
+        if (mainSearchInput) {
+            mainSearchInput.value = val;
+            this.performAnswerSearch();
+        }
+    },
+
     showAnswerSearch: function () {
         this.stopTimer();
         this.state.view = 'search';
@@ -3464,10 +3485,22 @@ const QuizApp = {
             return;
         }
 
+        // 1. Doğru cavaba görə filter edirik
         const results = quizData.filter(q => {
             if (!q.o || q.a === undefined || q.a === null || q.a < 0 || q.a >= q.o.length) return false;
             const correctAnswer = q.o[q.a].toLowerCase();
             return correctAnswer.includes(query);
+        });
+
+        // 2. Sual mətninə görə dublikatları təmizləyirik (təkrarlanmaması üçün)
+        const uniqueResults = [];
+        const seenQuestions = new Set();
+        results.forEach(q => {
+            const normQ = q.q.trim().toLowerCase();
+            if (!seenQuestions.has(normQ)) {
+                seenQuestions.add(normQ);
+                uniqueResults.push(q);
+            }
         });
 
         const infoEl = document.getElementById('search-results-info');
@@ -3481,20 +3514,20 @@ const QuizApp = {
         infoEl.style.flexWrap = 'wrap';
         infoEl.style.gap = '10px';
 
-        if (results.length === 0) {
+        if (uniqueResults.length === 0) {
             infoEl.innerHTML = `<span style="color:var(--wrong)">"${input.value}" ifadəsi ilə doğru cavablarda heç bir uyğunluq tapılmadı.</span>`;
             return;
         }
 
-        QuizApp.lastSearchResults = results;
+        QuizApp.lastSearchResults = uniqueResults;
         QuizApp.lastSearchQuery = input.value;
 
         infoEl.innerHTML = `
-            <span>Tapılan sual sayı: <strong>${results.length}</strong></span>
+            <span>Tapılan unikal sual sayı: <strong>${uniqueResults.length}</strong></span>
             <button class="btn btn-pri" style="padding: 6px 14px; font-size: 0.85rem; border-radius: 10px;" onclick="QuizApp.startSpecial(QuizApp.lastSearchResults, 'Axtarış Nəticələri', 'Cavab: ' + QuizApp.lastSearchQuery)">🎯 Test kimi işlə</button>
         `;
 
-        results.forEach((q, idx) => {
+        uniqueResults.forEach((q, idx) => {
             const item = document.createElement('div');
             item.className = 'unit-item';
             item.style.cssText = "background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 20px; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 14px; margin-bottom: 5px;";

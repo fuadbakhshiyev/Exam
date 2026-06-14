@@ -170,7 +170,13 @@
 
     <template id="search-template">
         <div class="card" style="min-height:auto;">
-            <h2 style="margin-bottom:15px; font-family:'Plus Jakarta Sans', sans-serif; font-weight:800;">🔍 Doğru Cavab Axtarışı</h2>
+            <div style="display:flex; align-items:flex-start; gap:15px; margin-bottom:20px;">
+                <button onclick="QuizApp.start()" style="background:var(--bg-element); border:1px solid var(--border); color:var(--text-main); border-radius:12px; padding:8px 16px; cursor:pointer; font-size:1.2rem; display:flex; align-items:center; justify-content:center; transition:0.2s;" onmouseover="this.style.background='var(--bg-element-hover)'" onmouseout="this.style.background='var(--bg-element)'">←</button>
+                <div>
+                    <h2 style="margin:0; font-family:'Plus Jakarta Sans', sans-serif; font-weight:800; font-size: 1.5rem;">🔍 Doğru Cavab Axtarışı</h2>
+                    <span style="font-size:0.9rem; color:var(--text-muted);">Doğru cavabında axtarılan söz keçən sualların siyahısı</span>
+                </div>
+            </div>
             <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:20px; line-height:1.4;">
                 Daxil etdiyiniz söz və ya ifadə yalnız sualların <strong>doğru cavabında</strong> keçdiyi halda tapılacaqdır.
             </p>

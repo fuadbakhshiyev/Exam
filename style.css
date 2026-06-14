@@ -2607,13 +2607,15 @@ body {
 }
 
 /* --- ANSWER SEARCH STYLES --- */
-#answer-search-input:focus {
+#answer-search-input:focus,
+#db-answer-search-input:focus {
     border-color: var(--accent) !important;
     background: rgba(255, 255, 255, 0.03) !important;
     box-shadow: 0 0 15px rgba(99, 102, 241, 0.15) !important;
 }
 
-[data-theme="light"] #answer-search-input:focus {
+[data-theme="light"] #answer-search-input:focus,
+[data-theme="light"] #db-answer-search-input:focus {
     background: #ffffff !important;
     box-shadow: 0 0 15px rgba(99, 102, 241, 0.1) !important;
 }
