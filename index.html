@@ -43,8 +43,24 @@
             </div>
         </div>
 
-        <!-- Sidebar Custom Stopwatch Tool -->
-        <div class="sidebar-timer-box">
+        <!-- 1. Ana Səhifə Düyməsi (Static) -->
+        <button class="menu-btn active" id="btn-home" onclick="QuizApp.showHomeFromSidebar()" style="margin-bottom: 8px;">
+            <span>Ana Səhifə</span>
+        </button>
+
+        <!-- 2. Cavab Axtarış Bölməsi -->
+        <div class="sidebar-search-box" style="margin-bottom: 20px; background: rgba(255,255,255,0.01); border: 1px solid var(--border); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">
+                <span>🔍 Cavab Axtarışı</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+                <input type="text" id="sb-answer-search-input" placeholder="Söz daxil edin..." style="flex: 1; min-width: 0; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-element); color: var(--text-main); font-size: 0.85rem; outline: none; transition: all 0.2s;" onkeypress="if(event.key==='Enter') QuizApp.performSidebarAnswerSearch()">
+                <button class="btn btn-pri" onclick="QuizApp.performSidebarAnswerSearch()" style="padding: 0 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; background: var(--accent-gradient); border: none; color: white; cursor: pointer; flex-shrink: 0;">Axtar</button>
+            </div>
+        </div>
+
+        <!-- 3. Xronometr -->
+        <div class="sidebar-timer-box" style="margin-bottom: 20px;">
             <div class="timer-header">
                 <span class="timer-title">⏱️ XRONOMETR</span>
                 <span class="timer-display" id="sb-timer-display">00:00:00</span>

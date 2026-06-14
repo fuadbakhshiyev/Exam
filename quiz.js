@@ -919,13 +919,6 @@ const QuizApp = {
         container.innerHTML = `
             <div class="dashboard">
 
-                <!-- Doğru Cavab Axtarışı Çubuğu -->
-                <div class="dashboard-search-bar" style="margin-bottom: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 16px 20px; box-shadow: var(--card-shadow); display: flex; align-items: center; gap: 12px;">
-                    <span style="font-size: 1.2rem; opacity: 0.8;">🔍</span>
-                    <input type="text" id="db-answer-search-input" placeholder="Doğru cavablarda söz axtarışı..." style="flex: 1; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-element); color: var(--text-main); font-size: 0.92rem; outline: none; transition: all 0.2s;" onkeypress="if(event.key==='Enter') QuizApp.performDashboardAnswerSearch()">
-                    <button class="btn btn-pri" onclick="QuizApp.performDashboardAnswerSearch()" style="padding: 10px 18px; border-radius: 10px; font-size: 0.88rem; font-weight: 600; background: var(--accent-gradient); border: none; color: white; cursor: pointer; flex-shrink: 0;">Axtar</button>
-                </div>
-
                 <div class="home-analytics-panel">
 
                     <div class="hap-donut-section">
@@ -3450,8 +3443,17 @@ const QuizApp = {
         if (!g.innerHTML) g.innerHTML = "<p style='text-align:center;color:var(--text-muted)'>Əla! Səhv yoxdur.</p>";
     },
 
-    performDashboardAnswerSearch: function () {
-        const input = document.getElementById('db-answer-search-input');
+    showHomeFromSidebar: function () {
+        document.querySelectorAll('.course-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+        const homeBtn = document.getElementById('btn-home');
+        if (homeBtn) homeBtn.classList.add('active');
+        this.start();
+        if (window.innerWidth <= 768) toggleSidebar();
+    },
+
+    performSidebarAnswerSearch: function () {
+        const input = document.getElementById('sb-answer-search-input');
         if (!input) return;
         const val = input.value.trim();
         if (!val) return;
@@ -3462,6 +3464,7 @@ const QuizApp = {
             mainSearchInput.value = val;
             this.performAnswerSearch();
         }
+        if (window.innerWidth <= 768) toggleSidebar();
     },
 
     showAnswerSearch: function () {

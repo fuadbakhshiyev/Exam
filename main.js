@@ -89,20 +89,6 @@ const LifeOS = {
         const container = document.getElementById('sub-container-quiz');
         container.innerHTML = "";
 
-        // Home Button
-        const homeBtn = document.createElement('button');
-        homeBtn.className = 'menu-btn active';
-        homeBtn.id = 'btn-home';
-        homeBtn.innerHTML = `<span>Ana Səhifə</span>`;
-        homeBtn.onclick = () => {
-            document.querySelectorAll('.course-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
-            homeBtn.classList.add('active');
-            QuizApp.start();
-            if (window.innerWidth <= 768) toggleSidebar();
-        };
-        container.appendChild(homeBtn);
-
         // PDF Exams (İmtahan) Button
         const pdfExamsBtn = document.createElement('button');
         pdfExamsBtn.className = 'menu-btn';
