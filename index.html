@@ -168,6 +168,23 @@
         </div>
     </template>
 
+    <template id="search-template">
+        <div class="card" style="min-height:auto;">
+            <h2 style="margin-bottom:15px; font-family:'Plus Jakarta Sans', sans-serif; font-weight:800;">🔍 Doğru Cavab Axtarışı</h2>
+            <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:20px; line-height:1.4;">
+                Daxil etdiyiniz söz və ya ifadə yalnız sualların <strong>doğru cavabında</strong> keçdiyi halda tapılacaqdır.
+            </p>
+            <div class="search-input-wrapper" style="position:relative; display:flex; gap:10px; margin-bottom:20px;">
+                <input type="text" id="answer-search-input" placeholder="Axtarmaq istədiyiniz sözü yazın..." style="flex:1; padding:12px 16px; border-radius:12px; border:1px solid var(--border); background:var(--bg-element); color:var(--text-main); font-size:1rem; outline:none; transition:all 0.2s;" onkeypress="if(event.key==='Enter') QuizApp.performAnswerSearch()">
+                <button class="btn btn-pri" onclick="QuizApp.performAnswerSearch()" style="padding:12px 20px; border-radius:12px; font-weight:600; background:var(--accent-gradient); border:none; color:white; cursor:pointer;">Axtar</button>
+            </div>
+            
+            <div id="search-results-info" style="font-size:0.9rem; color:var(--text-muted); margin-bottom:15px; display:none;"></div>
+            
+            <div id="search-results-list" style="display:flex; flex-direction:column; gap:16px;"></div>
+        </div>
+    </template>
+
     <template id="course-dashboard-template">
         <div class="dashboard-full-container">
             <div class="dashboard-header" style="margin-bottom:25px; display:flex; align-items:flex-start; gap:15px;">

@@ -3443,6 +3443,93 @@ const QuizApp = {
         if (!g.innerHTML) g.innerHTML = "<p style='text-align:center;color:var(--text-muted)'>Əla! Səhv yoxdur.</p>";
     },
 
+    showAnswerSearch: function () {
+        this.stopTimer();
+        this.state.view = 'search';
+        const tn = document.getElementById('top-nav');
+        if (tn) tn.style.display = 'none';
+        loadTemplate('search-template');
+        const input = document.getElementById('answer-search-input');
+        if (input) input.focus();
+    },
+
+    performAnswerSearch: function () {
+        const input = document.getElementById('answer-search-input');
+        if (!input) return;
+        const query = input.value.trim().toLowerCase();
+        if (!query) return;
+
+        if (typeof quizData === 'undefined') {
+            alert("Məlumat bazası tapılmadı.");
+            return;
+        }
+
+        const results = quizData.filter(q => {
+            if (!q.o || q.a === undefined || q.a === null || q.a < 0 || q.a >= q.o.length) return false;
+            const correctAnswer = q.o[q.a].toLowerCase();
+            return correctAnswer.includes(query);
+        });
+
+        const infoEl = document.getElementById('search-results-info');
+        const listEl = document.getElementById('search-results-list');
+        if (!infoEl || !listEl) return;
+
+        listEl.innerHTML = "";
+        infoEl.style.display = 'flex';
+        infoEl.style.justifyContent = 'space-between';
+        infoEl.style.alignItems = 'center';
+        infoEl.style.flexWrap = 'wrap';
+        infoEl.style.gap = '10px';
+
+        if (results.length === 0) {
+            infoEl.innerHTML = `<span style="color:var(--wrong)">"${input.value}" ifadəsi ilə doğru cavablarda heç bir uyğunluq tapılmadı.</span>`;
+            return;
+        }
+
+        QuizApp.lastSearchResults = results;
+        QuizApp.lastSearchQuery = input.value;
+
+        infoEl.innerHTML = `
+            <span>Tapılan sual sayı: <strong>${results.length}</strong></span>
+            <button class="btn btn-pri" style="padding: 6px 14px; font-size: 0.85rem; border-radius: 10px;" onclick="QuizApp.startSpecial(QuizApp.lastSearchResults, 'Axtarış Nəticələri', 'Cavab: ' + QuizApp.lastSearchQuery)">🎯 Test kimi işlə</button>
+        `;
+
+        results.forEach((q, idx) => {
+            const item = document.createElement('div');
+            item.className = 'unit-item';
+            item.style.cssText = "background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 20px; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 14px; margin-bottom: 5px;";
+            
+            const meta = document.createElement('div');
+            meta.style.cssText = "display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;";
+            meta.innerHTML = `<span>📚 ${q.c || 'Məlum deyil'}</span> <span>Bölmə ${q.u || '1'}</span>`;
+            item.appendChild(meta);
+
+            const questionText = document.createElement('div');
+            questionText.style.cssText = "font-size: 1rem; font-weight: 600; color: var(--text-main); line-height: 1.5;";
+            questionText.textContent = `${idx + 1}. ${q.q || '(Sual mətni yoxdur)'}`;
+            item.appendChild(questionText);
+
+            const optionsContainer = document.createElement('div');
+            optionsContainer.style.cssText = "display: flex; flex-direction: column; gap: 8px; margin-top: 8px;";
+
+            q.o.forEach((opt, optIdx) => {
+                const optDiv = document.createElement('div');
+                const isCorrect = optIdx === q.a;
+                
+                if (isCorrect) {
+                    optDiv.style.cssText = "padding: 10px 14px; border-radius: 10px; font-size: 0.9rem; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; font-weight: 600; display: flex; align-items: center; gap: 8px;";
+                    optDiv.innerHTML = `<span>✔️</span> <span>${opt}</span>`;
+                } else {
+                    optDiv.style.cssText = "padding: 10px 14px; border-radius: 10px; font-size: 0.9rem; background: rgba(255,255,255,0.01); border: 1px solid var(--border); color: var(--text-muted); display: flex; align-items: center; gap: 8px;";
+                    optDiv.innerHTML = `<span style="opacity: 0.3;">⚪</span> <span>${opt}</span>`;
+                }
+                optionsContainer.appendChild(optDiv);
+            });
+            item.appendChild(optionsContainer);
+            listEl.appendChild(item);
+        });
+    },
+
     quizSecondsAccumulated: 0,
 
     startTimer: function (c) {
