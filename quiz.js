@@ -1,16 +1,15 @@
 const COURSE_STYLES = {
-    "Atatürk İlkeleri ve İnkılap Tarihi II": { icon: "🏛️", accent: "#ef4444", g1: "#ef4444", g2: "#f97316" },
-    "Görsel İletişim Tasarımı": { icon: "🎨", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" },
-    "Grafik Tasarım II": { icon: "📐", accent: "#10b981", g1: "#10b981", g2: "#06b6d4" },
-    "Masaüstü Yayıncılık": { icon: "💻", accent: "#3b82f6", g1: "#3b82f6", g2: "#6366f1" },
-    "Tasarımda Tipografi": { icon: "✍️", accent: "#f59e0b", g1: "#f59e0b", g2: "#ef4444" },
-    "Türk Dili II": { icon: "📖", accent: "#8b5cf6", g1: "#8b5cf6", g2: "#ec4899" },
+    "Grafik Üretim Teknikleri": { icon: "🖨️", accent: "#10b981", g1: "#10b981", g2: "#06b6d4" },
+    "Özgün Baskı Teknikleri": { icon: "🎨", accent: "#8b5cf6", g1: "#8b5cf6", g2: "#8b5cf6" },
+    "Reklam Grafiği": { icon: "📢", accent: "#f59e0b", g1: "#f59e0b", g2: "#ef4444" },
+    "Tasarım Okumaları": { icon: "📖", accent: "#8b5cf6", g1: "#8b5cf6", g2: "#ec4899" },
+    "Web Tasarımının Temelleri": { icon: "💻", accent: "#8b5cf6", g1: "#8b5cf6", g2: "#8b5cf6" },
     "Mixed": { icon: "🔀", accent: "#ec4899", g1: "#ec4899", g2: "#f43f5e" }
 };
 
 const QuizApp = {
     state: { course: null, category: null, currentTitle: null, questions: [], index: 0, answers: {}, correct: 0, wrong: 0, view: 'quiz', sessionStartTime: 0, isWrongMode: false, isSearchMode: false, isMockMode: false, isFlashcard: false },
-    DB: { stats: 'qa_v31_s', wrong: 'qa_v31_w', correct: 'qa_v31_c', marks: 'qa_v31_m', daily: 'qa_v31_h', dailyGoal: 'qa_v31_dg', settings: 'qa_v31_conf', wrongCounts: 'qa_v31_wc' },
+    DB: { stats: 'qa_v32_s', wrong: 'qa_v32_w', correct: 'qa_v32_c', marks: 'qa_v32_m', daily: 'qa_v32_h', dailyGoal: 'qa_v32_dg', settings: 'qa_v32_conf', wrongCounts: 'qa_v32_wc' },
     MOCK_KEY: "🎲 Ümumi Sınaq",
 
     stats: {},
@@ -54,216 +53,12 @@ const QuizApp = {
         window.addEventListener('keydown', updateActivity);
         window.addEventListener('touchstart', updateActivity);
         this.startPlatformTimer();
-        
-        // Inject manual exam results for Tasarımda Tipografi (20 correct, 0 wrong, 4 mins)
-        if (!localStorage.getItem('qa_v31_injected_tipografi_20_20_v2')) {
-            const course = "Tasarımda Tipografi";
-            if (!localStorage.getItem('qa_v31_injected_tipografi_20_20')) {
-                for (let i = 0; i < 20; i++) {
-                    this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-                }
-                if (this.stats[course]) {
-                    this.stats[course].time += 240;
-                }
-                this.recordDailyHistory(course, null, 240);
-                this.saveStats();
-                localStorage.setItem('qa_v31_injected_tipografi_20_20', 'true');
-            }
-            updateDaily(20);
-            localStorage.setItem('qa_v31_injected_tipografi_20_20_v2', 'true');
-            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
-                FirebaseSync.triggerAutoSave();
-            }
-        }
-
-        // Inject manual exam results for Tasarımda Tipografi (19 correct, 0 wrong, 3 mins)
-        if (!localStorage.getItem('qa_v31_injected_tipografi_19_19')) {
-            const course = "Tasarımda Tipografi";
-            for (let i = 0; i < 19; i++) {
-                this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            }
-            if (this.stats[course]) {
-                this.stats[course].time += 180;
-            }
-            this.recordDailyHistory(course, null, 180);
-            this.saveStats();
-            updateDaily(19);
-            localStorage.setItem('qa_v31_injected_tipografi_19_19', 'true');
-            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
-                FirebaseSync.triggerAutoSave();
-            }
-        }
-
-        // Inject 52 tests into yesterday's history
-        if (!localStorage.getItem('qa_v31_injected_52_tests_v3')) {
-            const tempD = new Date();
-            const todayStr = `${tempD.getFullYear()}-${String(tempD.getMonth() + 1).padStart(2, '0')}-${String(tempD.getDate()).padStart(2, '0')}`;
-            
-            tempD.setDate(tempD.getDate() - 1);
-            const yesterdayStr = `${tempD.getFullYear()}-${String(tempD.getMonth() + 1).padStart(2, '0')}-${String(tempD.getDate()).padStart(2, '0')}`;
-            
-            if (!this.dailyHistory) this.dailyHistory = {};
-            
-            // Clean up today's incorrect injection if it exists
-            if (this.dailyHistory[todayStr] && this.dailyHistory[todayStr]["Tasarımda Tipografi"]) {
-                this.dailyHistory[todayStr]["Tasarımda Tipografi"].correct = Math.max(0, this.dailyHistory[todayStr]["Tasarımda Tipografi"].correct - 52);
-            }
-            
-            // Inject to yesterday's history
-            if (!this.dailyHistory[yesterdayStr]) this.dailyHistory[yesterdayStr] = {};
-            const course = "Tasarımda Tipografi";
-            if (!this.dailyHistory[yesterdayStr][course]) {
-                this.dailyHistory[yesterdayStr][course] = { time: 0, correct: 0, wrong: 0 };
-            }
-            this.dailyHistory[yesterdayStr][course].correct += 52;
-            this.saveStats();
-            
-            updateDaily(false);
-            localStorage.setItem('qa_v31_injected_52_tests_v2', 'true');
-            localStorage.setItem('qa_v31_injected_52_tests_v3', 'true');
-            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
-                FirebaseSync.triggerAutoSave();
-            }
-        }
-
-        // Inject manual exam results for Görsel İletişim Tasarımı (92 correct, 8 wrong, 1140s)
-        if (!localStorage.getItem('qa_v31_injected_gorsel_iletisim')) {
-            const course = "Görsel İletişim Tasarımı";
-            
-            // 18 correct, 2 wrong
-            for (let i = 0; i < 18; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 2; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            // 19 correct, 1 wrong
-            for (let i = 0; i < 19; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 1; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            // 18 correct, 2 wrong
-            for (let i = 0; i < 18; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 2; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            // 19 correct, 1 wrong
-            for (let i = 0; i < 19; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 1; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            // 18 correct, 2 wrong
-            for (let i = 0; i < 18; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 2; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            if (this.stats[course]) {
-                this.stats[course].time += 1140;
-            }
-            this.recordDailyHistory(course, null, 1140);
-            this.saveStats();
-            
-            updateDaily(false);
-            localStorage.setItem('qa_v31_injected_gorsel_iletisim', 'true');
-            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
-                FirebaseSync.triggerAutoSave();
-            }
-        }
-
-        // Inject manual exam results for Görsel İletişim Tasarımı Part 2 (74 correct, 6 wrong, 1020s)
-        if (!localStorage.getItem('qa_v31_injected_gorsel_iletisim_part2')) {
-            const course = "Görsel İletişim Tasarımı";
-            
-            // 18 correct, 2 wrong
-            for (let i = 0; i < 18; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 2; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            // 20 correct, 0 wrong
-            for (let i = 0; i < 20; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            
-            // 18 correct, 2 wrong
-            for (let i = 0; i < 18; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 2; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            // 18 correct, 2 wrong
-            for (let i = 0; i < 18; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 2; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            if (this.stats[course]) {
-                this.stats[course].time += 1020;
-            }
-            this.recordDailyHistory(course, null, 1020);
-            this.saveStats();
-            
-            updateDaily(false);
-            localStorage.setItem('qa_v31_injected_gorsel_iletisim_part2', 'true');
-            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
-                FirebaseSync.triggerAutoSave();
-            }
-        }
-
-        // Inject manual exam results for Grafik Tasarım II (90 correct, 10 wrong, 1221s)
-        if (!localStorage.getItem('qa_v31_injected_grafik_tasarim')) {
-            const course = "Grafik Tasarım II";
-            
-            // 17 correct, 3 wrong
-            for (let i = 0; i < 17; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 3; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            // 18 correct, 2 wrong
-            for (let i = 0; i < 18; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 2; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            // 19 correct, 1 wrong
-            for (let i = 0; i < 19; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 1; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            // 19 correct, 1 wrong
-            for (let i = 0; i < 19; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 1; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            // 17 correct, 3 wrong
-            for (let i = 0; i < 17; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            for (let i = 0; i < 3; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', false);
-            
-            if (this.stats[course]) {
-                this.stats[course].time += 1221;
-            }
-            this.recordDailyHistory(course, null, 1221);
-            this.saveStats();
-            
-            updateDaily(false);
-            localStorage.setItem('qa_v31_injected_grafik_tasarim', 'true');
-            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
-                FirebaseSync.triggerAutoSave();
-            }
-        }
-
-        // Inject manual exam results for Masaüstü Yayıncılık (20 correct, 0 wrong, 213s)
-        if (!localStorage.getItem('qa_v31_injected_masaustu_yayin')) {
-            const course = "Masaüstü Yayıncılık";
-            
-            // 20 correct, 0 wrong
-            for (let i = 0; i < 20; i++) this.recordStat(course, 'mixed', 'Qarışıq Sınaq', true);
-            
-            if (this.stats[course]) {
-                this.stats[course].time += 213;
-            }
-            this.recordDailyHistory(course, null, 213);
-            this.saveStats();
-            
-            updateDaily(false);
-            localStorage.setItem('qa_v31_injected_masaustu_yayin', 'true');
-            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
-                FirebaseSync.triggerAutoSave();
-            }
-        }
     },
 
     buildMixedUnits: function () {
         if (typeof quizData === 'undefined') return;
         
-        const subjects = [
-            "Atatürk İlkeleri ve İnkılap Tarihi II",
-            "Grafik Tasarım II",
-            "Görsel İletişim Tasarımı",
-            "Masaüstü Yayıncılık",
-            "Tasarımda Tipografi",
-            "Türk Dili II"
-        ];
+        const subjects = SUBJECTS;
         
         const mixedUnits = [];
         subjects.forEach((subjName, sIdx) => {
@@ -300,349 +95,171 @@ const QuizApp = {
         this.showCourseDashboard("Mixed");
     },
 
-    renderMixedDashboard: function (listEl, layout, s) {
-        listEl.innerHTML = "";
-        const c = "Mixed";
-        
-        // If in Level 2 (Sub-subject view)
-        if (this.state.mixedSubSubject) {
-            const subSubject = this.state.mixedSubSubject;
-            
-            // Add a Back Button at the top of the unit list
-            const backHeader = document.createElement('div');
-            backHeader.style.gridColumn = '1 / -1';
-            backHeader.style.marginBottom = '8px';
-            backHeader.innerHTML = `
-                <button class="btn btn-sec" style="padding: 8px 16px; width: auto; font-size: 0.85rem;" onclick="QuizApp.state.mixedSubSubject = null; QuizApp.showCourseDashboard('Mixed')">
-                    ← Fənlər Siyahısına Qayıt
-                </button>
-                <div style="font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-top: 12px; font-family: 'Plus Jakarta Sans', sans-serif;">
-                    ${subSubject} - Bölmələr
+    // Shared pieces of the subject-style pages (cp-*)
+    cpBar: function (total, ok, bad) {
+        const share = n => total > 0 ? Math.min(100, (n / total) * 100).toFixed(2) : 0;
+        return `<span class="cp-bar sm"><i class="ok" style="flex:0 0 ${share(ok)}%"></i><i class="bad" style="flex:0 0 ${share(bad)}%"></i><i class="rest"></i></span>`;
+    },
+
+    cpHead: function (title, sub, back, right) {
+        return `
+                <div class="cp-head">
+                    <div class="cp-head-l">
+                        <button class="qa-icon" onclick="${back || 'QuizApp.start()'}" title="Geri qayıt" aria-label="Geri qayıt">←</button>
+                        <div><h1>${title}</h1><p>${sub}</p></div>
+                    </div>
+                    ${right || ''}
+                </div>`;
+    },
+
+    cpToggle: function () {
+        const layout = this.getLayout();
+        return `
+                    <span class="hx-tog">
+                        <button class="${layout !== 'table' ? 'active' : ''}" onclick="setDashboardLayout('grid')">Kart</button>
+                        <button class="${layout === 'table' ? 'active' : ''}" onclick="setDashboardLayout('table')">Cədvəl</button>
+                    </span>`;
+    },
+
+    // "Multi" entry shown first in a list (card and table row)
+    cpMulti: function (target, wrQs, lastStr) {
+        const hard = wrQs.filter(x => ((this.wrongCounts || {})[x.q] || 0) >= 2).length;
+        const veryHard = wrQs.filter(x => ((this.wrongCounts || {})[x.q] || 0) >= 3).length;
+        return {
+            row: `<tr onclick="QuizApp.startMultiUnit('${target}')"><td><b>Multi (səhvlərin təkrarı)</b></td><td class="m">${hard} çətin (2+) · ${veryHard} çox çətin (3+)</td><td class="n">${wrQs.length}</td><td class="n">-</td><td class="n r">${wrQs.length}</td><td class="n">-</td><td class="m">${lastStr}</td><td class="n"><span class="cp-start">Başla</span></td></tr>`,
+            card: `
+                    <button class="cp-u multi" onclick="QuizApp.startMultiUnit('${target}')">
+                        <div class="cp-u-top"><b>Multi (səhvlərin təkrarı)</b><span class="cp-pct">${wrQs.length} səhv</span></div>
+                        <div class="cp-u-nums"><span><b>${wrQs.length}</b> səhv sual</span><span class="h"><b>${hard}</b> çətin (2+)</span><span class="r"><b>${veryHard}</b> çox çətin (3+)</span></div>
+                        <div class="cp-u-foot"><span>Son sınaq: ${lastStr}</span><span class="cp-start">Başla</span></div>
+                    </button>`
+        };
+    },
+
+    // Cards or table, by the saved layout. rows = [{ name, total, ok, bad, done, lastStr, click, extra }]
+    cpList: function (rows, firstCol, action, lead) {
+        const layout = this.getLayout();
+        let worst = -1;
+        rows.forEach((r, i) => { if (r.bad > 0 && (worst < 0 || r.bad > rows[worst].bad)) worst = i; });
+        const weakTag = '<span class="cp-weak-tag">Ən çox səhv</span>';
+        if (layout === 'table') return `
+                <div class="cp-tbl"><table>
+                    <thead><tr><th>${firstCol}</th><th>İrəliləyiş</th><th class="n">Sual</th><th class="n">Düz</th><th class="n">Səhv</th><th class="n">Faiz</th><th>Son sınaq</th><th></th></tr></thead>
+                    <tbody>
+                        ${lead ? lead.row : ''}
+                        ${rows.map((r, i) => `<tr class="${i === worst ? 'weak' : ''}" onclick="${r.click}"><td><b>${r.name}</b>${i === worst ? ' ' + weakTag : ''}</td><td>${this.cpBar(r.total, r.ok, r.bad)}</td><td class="n">${r.total}</td><td class="n g">${r.ok}</td><td class="n r"${r.badClick && r.bad > 0 ? ` onclick="event.stopPropagation(); ${r.badClick}" title="Səhvləri yenidən işləmək üçün klikləyin"` : ''}>${r.badClick && r.bad > 0 ? `<span class="cp-link">${r.bad}</span>` : r.bad}</td><td class="n">${r.done ? Math.round((r.ok / r.done) * 100) + '%' : '-'}</td><td class="m">${r.lastStr}</td><td class="n"><span class="cp-start">${action}</span></td></tr>`).join('')}
+                    </tbody>
+                </table></div>`;
+        return `
+                <div class="cp-cards">
+                    ${lead ? lead.card : ''}
+                    ${rows.map((r, i) => `
+                    <button class="cp-u ${r.total ? '' : 'empty'} ${i === worst ? 'weak' : ''}" onclick="${r.click}">
+                        ${i === worst ? weakTag : ''}
+                        <div class="cp-u-top"><b>${r.name}</b><span class="cp-pct">${r.total ? Math.min(100, Math.round((r.done / r.total) * 100)) + '%' : 'sual yoxdur'}</span></div>
+                        ${this.cpBar(r.total, r.ok, r.bad)}
+                        <div class="cp-u-nums">${r.extra || ''}<span><b>${r.total}</b> sual</span><span class="g"><b>${r.ok}</b> düz</span>${r.badClick && r.bad > 0 ? `<span class="r cp-link" onclick="event.stopPropagation(); ${r.badClick}" title="Səhvləri yenidən işləmək üçün klikləyin"><b>${r.bad}</b> səhv</span>` : `<span class="r"><b>${r.bad}</b> səhv</span>`}</div>
+                        <div class="cp-u-foot"><span>Son sınaq: ${r.lastStr}</span><span class="cp-start">${action}</span></div>
+                    </button>`).join('')}
+                </div>`;
+    },
+
+    // Stats strip: total / answered / correct / wrong / accuracy plus one free cell (o.extra = [label, value])
+    cpStrip: function (o) {
+        const acc = o.answered > 0 ? Math.round((o.correct / o.answered) * 100) : 0;
+        const cell = (cls, label, val, click, title) => click
+            ? `<button class="${cls}" onclick="${click}" title="${title}"><span class="hx-cap">${label}</span><b>${val}</b></button>`
+            : `<div class="${cls}"><span class="hx-cap">${label}</span><b>${val}</b></div>`;
+        return `
+            <section class="cp-strip">
+                <div class="cp-strip-row">
+                    ${cell('', 'Cəmi sual', o.totalQ)}
+                    ${cell('', 'İşlənən', o.answered)}
+                    ${cell('g', 'Düz', o.correct, o.onCorrect, 'Doğru cavablandırdığınız suallara baxmaq üçün klikləyin')}
+                    ${cell('r', 'Səhv', o.wrong, o.onWrong, 'Səhv cavablandırdığınız suallara baxmaq üçün klikləyin')}
+                    ${cell('a', 'Dəqiqlik', acc + '%')}
+                    ${cell('', o.extra[0], o.extra[1])}
                 </div>
-            `;
-            listEl.appendChild(backHeader);
-            
-            // Filter chunks belonging to this subSubject
-            const filteredChunks = this.mixedUnitsInfo.map((chunk, idx) => ({ chunk, idx }))
-                .filter(item => item.chunk.subject === subSubject);
-            
-            if (layout === 'table') {
-                listEl.classList.add('table-mode');
-                const table = document.createElement('table');
-                table.className = 'stat-table unit-table';
-                
-                let tbodyHTML = "";
-                filteredChunks.forEach(({ chunk, idx }) => {
-                    const unitKey = `Unit ${idx + 1}`;
-                    let c_correct = 0, c_wrong = 0, unitLastTested = 0;
-                    if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
-                        const us = s.bd['units'][unitKey];
-                        c_correct = us.c;
-                        c_wrong = us.w;
-                        unitLastTested = us.last || 0;
-                    }
-                    const totalAnswered = c_correct + c_wrong;
-                    const unitAcc = totalAnswered > 0 ? Math.round((c_correct / totalAnswered) * 100) : 0;
-                    const totalUnitQ = chunk.endIdx - chunk.startIdx;
-                    const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
-                    
-                    tbodyHTML += `
-                        <tr onclick="QuizApp.startUnit('Mixed', ${idx})">
-                            <td style="font-weight: 700; color: var(--text-main);">
-                                <div class="unit-table-title">Hissə ${chunk.part} (${chunk.startIdx + 1}-${chunk.endIdx})</div>
-                                <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
-                                    Son sınaq: ${unitLastTestedStr}
-                                </div>
-                            </td>
-                            <td style="text-align: center;">${totalUnitQ}</td>
-                            <td style="text-align: center; color: var(--active); font-weight: 700;">${c_correct}</td>
-                            <td style="text-align: center; color: var(--wrong); font-weight: 700;">${c_wrong}</td>
-                            <td style="text-align: center; color: var(--accent); font-weight: 700;">${unitAcc}%</td>
-                            <td style="text-align: right;" onclick="event.stopPropagation();">
-                                <button class="unit-btn-start" onclick="QuizApp.startUnit('Mixed', ${idx})">Başla</button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                
-                table.innerHTML = `
-                    <thead>
-                        <tr>
-                            <th style="width: 45%;">Hissə</th>
-                            <th style="text-align: center; width: 12%;">Sual</th>
-                            <th style="text-align: center; width: 10%; color: var(--active);">Düz</th>
-                            <th style="text-align: center; width: 10%; color: var(--wrong);">Səhv</th>
-                            <th style="text-align: center; width: 10%;">Faiz</th>
-                            <th style="text-align: right; width: 13%;">İcra</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${tbodyHTML}
-                    </tbody>
-                `;
-                listEl.appendChild(table);
-            } else {
-                listEl.classList.remove('table-mode');
-                
-                filteredChunks.forEach(({ chunk, idx }) => {
-                    const unitKey = `Unit ${idx + 1}`;
-                    let c_correct = 0, c_wrong = 0, unitLastTested = 0;
-                    if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
-                        const us = s.bd['units'][unitKey];
-                        c_correct = us.c;
-                        c_wrong = us.w;
-                        unitLastTested = us.last || 0;
-                    }
-                    const totalAnswered = c_correct + c_wrong;
-                    const totalUnitQ = chunk.endIdx - chunk.startIdx;
-                    const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
-                    
-                    const item = document.createElement('div');
-                    item.className = 'unit-item';
-                    item.innerHTML = `
-                        <div class="unit-item-header">
-                            <div>
-                                <div class="unit-item-title">Hissə ${chunk.part} (${chunk.startIdx + 1}-${chunk.endIdx})</div>
-                                <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                    ⏱️ Son sınaq: ${unitLastTestedStr}
-                                </div>
-                            </div>
-                            <button class="unit-btn-start" onclick="QuizApp.startUnit('Mixed', ${idx})">Başla</button>
-                        </div>
-                        <div class="unit-item-stats-grid">
-                            <div class="unit-stat-box">
-                                <span class="us-val">${totalUnitQ}</span>
-                                <span class="us-lbl">CƏMİ SUAL</span>
-                            </div>
-                            <div class="unit-stat-box">
-                                <span class="us-val" style="color: var(--active)">${c_correct}</span>
-                                <span class="us-lbl">DOĞRU</span>
-                            </div>
-                            <div class="unit-stat-box">
-                                <span class="us-val" style="color: var(--wrong)">${c_wrong}</span>
-                                <span class="us-lbl">YANLIŞ</span>
-                            </div>
-                        </div>
-                    `;
-                    listEl.appendChild(item);
-                });
-            }
-        } else {
-            // Level 1: Subjects List
-            const subjects = [
-                "Atatürk İlkeleri ve İnkılap Tarihi II",
-                "Grafik Tasarım II",
-                "Görsel İletişim Tasarımı",
-                "Masaüstü Yayıncılık",
-                "Tasarımda Tipografi",
-                "Türk Dili II"
-            ];
-            
-            const wrQs = this.wrongDB[c] || [];
-            const hardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 2).length;
-            const veryHardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 3).length;
-            
-            // Render Multi row/card first
-            if (layout === 'table') {
-                listEl.classList.add('table-mode');
-                const table = document.createElement('table');
-                table.className = 'stat-table unit-table';
-                
-                let multiLastTested = 0;
-                let hasMultiData = false;
-                if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
-                    multiLastTested = s.bd['units']['Multi'].last || 0;
-                    hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
-                }
-                if (multiLastTested === 0 && hasMultiData) {
-                    multiLastTested = this.getCourseLastActiveDateFromHistory(c);
-                }
-                const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
-                
-                let tbodyHTML = `
-                    <tr onclick="QuizApp.startMultiUnit('Mixed')" style="background: rgba(99, 102, 241, 0.05); border-left: 3px solid var(--accent);">
-                        <td style="font-weight: 800; color: var(--accent);">
-                            <div class="unit-table-title"><span class="unit-table-num">⭐</span> Multi (Səhvlərin Təkrarı)</div>
-                            <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
-                                ⏱️ Son sınaq: ${multiLastTestedStr}
-                            </div>
-                            ${hardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(245, 158, 11, 0.08); border: 1px solid var(--hint); color: var(--hint); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">⚠️ ${hardQsCount} Çətin</span>` : ''}
-                            ${veryHardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid var(--wrong); color: var(--wrong); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">🔥 ${veryHardQsCount} Çox Çətin</span>` : ''}
-                        </td>
-                        <td style="text-align: center;">${wrQs.length}</td>
-                        <td style="text-align: center; color: var(--active); font-weight: 700;">-</td>
-                        <td style="text-align: center; color: var(--wrong); font-weight: 700;">${wrQs.length}</td>
-                        <td style="text-align: center; color: var(--accent); font-weight: 700;">-</td>
-                        <td style="text-align: right;" onclick="event.stopPropagation();">
-                            <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('Mixed')">Başla</button>
-                        </td>
-                    </tr>
-                `;
-                
-                subjects.forEach((subjName, sIdx) => {
-                    const uVal = sIdx + 1;
-                    // Aggregate stats for this subject
-                    let c_correct = 0, c_wrong = 0, subjLastTested = 0;
-                    const subjChunks = this.mixedUnitsInfo.map((chunk, idx) => ({ chunk, idx }))
-                        .filter(item => item.chunk.uVal === uVal);
-                    
-                    let totalSubjQ = 0;
-                    subjChunks.forEach(({ chunk, idx }) => {
-                        totalSubjQ += chunk.endIdx - chunk.startIdx;
-                        const unitKey = `Unit ${idx + 1}`;
-                        if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
-                            const us = s.bd['units'][unitKey];
-                            c_correct += us.c || 0;
-                            c_wrong += us.w || 0;
-                            subjLastTested = Math.max(subjLastTested, us.last || 0);
-                        }
-                    });
-                    
-                    const totalAnswered = c_correct + c_wrong;
-                    const subjAcc = totalAnswered > 0 ? Math.round((c_correct / totalAnswered) * 100) : 0;
-                    if (subjLastTested === 0 && totalAnswered > 0) {
-                        subjLastTested = this.getCourseLastActiveDateFromHistory(c);
-                    }
-                    const subjLastTestedStr = this.formatLastTested(subjLastTested, totalAnswered > 0);
-                    
-                    tbodyHTML += `
-                        <tr onclick="QuizApp.selectMixedSubSubject('${subjName.replace(/'/g, "\\'")}')">
-                            <td style="font-weight: 700; color: var(--text-main);">
-                                <div class="unit-table-title">${subjName}</div>
-                                <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
-                                    ⏱️ Son sınaq: ${subjLastTestedStr}
-                                </div>
-                            </td>
-                            <td style="text-align: center;">${totalSubjQ}</td>
-                            <td style="text-align: center; color: var(--active); font-weight: 700;">${c_correct}</td>
-                            <td style="text-align: center; color: var(--wrong); font-weight: 700;">${c_wrong}</td>
-                            <td style="text-align: center; color: var(--accent); font-weight: 700;">${subjAcc}%</td>
-                            <td style="text-align: right;" onclick="event.stopPropagation();">
-                                <button class="unit-btn-start" onclick="QuizApp.selectMixedSubSubject('${subjName.replace(/'/g, "\\'")}')">Giriş</button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                
-                table.innerHTML = `
-                    <thead>
-                        <tr>
-                            <th style="width: 45%;">Fənn</th>
-                            <th style="text-align: center; width: 12%;">Sual</th>
-                            <th style="text-align: center; width: 10%; color: var(--active);">Düz</th>
-                            <th style="text-align: center; width: 10%; color: var(--wrong);">Səhv</th>
-                            <th style="text-align: center; width: 10%;">Faiz</th>
-                            <th style="text-align: right; width: 13%;">İcra</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${tbodyHTML}
-                    </tbody>
-                `;
-                listEl.appendChild(table);
-            } else {
-                listEl.classList.remove('table-mode');
-                
-                // Prepend Multi Card
-                let multiLastTested = 0;
-                let hasMultiData = false;
-                if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
-                    multiLastTested = s.bd['units']['Multi'].last || 0;
-                    hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
-                }
-                if (multiLastTested === 0 && hasMultiData) {
-                    multiLastTested = this.getCourseLastActiveDateFromHistory(c);
-                }
-                const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
-                
-                const multiItem = document.createElement('div');
-                multiItem.className = 'unit-item';
-                multiItem.style.background = 'linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%)';
-                multiItem.style.border = '1px solid rgba(139, 92, 246, 0.3)';
-                multiItem.innerHTML = `
-                    <div class="unit-item-header">
-                        <div>
-                            <div class="unit-item-title" style="color: var(--accent); font-weight: 800;">⭐ Multi (Səhvlərin Təkrarı)</div>
-                            <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                ⏱️ Son sınaq: ${multiLastTestedStr}
-                            </div>
-                        </div>
-                        <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('Mixed')">Başla</button>
-                    </div>
-                    <div class="unit-item-stats-grid">
-                        <div class="unit-stat-box">
-                            <span class="us-val" style="color: var(--text-main); font-weight: 800;">${wrQs.length}</span>
-                            <span class="us-lbl">SƏHV SUAL</span>
-                        </div>
-                        <div class="unit-stat-box">
-                            <span class="us-val" style="color: var(--hint); font-weight: 800;">⚠️ ${hardQsCount}</span>
-                            <span class="us-lbl">ÇƏTİN (2+)</span>
-                        </div>
-                        <div class="unit-stat-box">
-                            <span class="us-val" style="color: var(--wrong); font-weight: 800;">🔥 ${veryHardQsCount}</span>
-                            <span class="us-lbl">ÇOX ÇƏTİN (3+)</span>
-                        </div>
-                    </div>
-                `;
-                listEl.appendChild(multiItem);
-                
-                subjects.forEach((subjName, sIdx) => {
-                    const uVal = sIdx + 1;
-                    let c_correct = 0, c_wrong = 0, subjLastTested = 0;
-                    const subjChunks = this.mixedUnitsInfo.map((chunk, idx) => ({ chunk, idx }))
-                        .filter(item => item.chunk.uVal === uVal);
-                    
-                    let totalSubjQ = 0;
-                    subjChunks.forEach(({ chunk, idx }) => {
-                        totalSubjQ += chunk.endIdx - chunk.startIdx;
-                        const unitKey = `Unit ${idx + 1}`;
-                        if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
-                            const us = s.bd['units'][unitKey];
-                            c_correct += us.c || 0;
-                            c_wrong += us.w || 0;
-                            subjLastTested = Math.max(subjLastTested, us.last || 0);
-                        }
-                    });
-                    
-                    const totalAnswered = c_correct + c_wrong;
-                    if (subjLastTested === 0 && totalAnswered > 0) {
-                        subjLastTested = this.getCourseLastActiveDateFromHistory(c);
-                    }
-                    const subjLastTestedStr = this.formatLastTested(subjLastTested, totalAnswered > 0);
-                    
-                    const style = COURSE_STYLES[subjName] || { accent: '#6366f1', g1: '#6366f1', g2: '#8b5cf6' };
-                    
-                    const item = document.createElement('div');
-                    item.className = 'unit-item';
-                    item.innerHTML = `
-                        <div class="unit-item-header">
-                            <div>
-                                <div class="unit-item-title" style="color: var(--text-main); font-weight: 700;">${subjName}</div>
-                                <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                    ⏱️ Son sınaq: ${subjLastTestedStr}
-                                </div>
-                            </div>
-                            <button class="unit-btn-start" style="background: linear-gradient(135deg, ${style.g1}, ${style.g2}); box-shadow: 0 4px 12px ${style.accent}30;" onclick="QuizApp.selectMixedSubSubject('${subjName.replace(/'/g, "\\'")}')">Giriş</button>
-                        </div>
-                        <div class="unit-item-stats-grid">
-                            <div class="unit-stat-box">
-                                <span class="us-val">${totalSubjQ}</span>
-                                <span class="us-lbl">CƏMİ SUAL</span>
-                            </div>
-                            <div class="unit-stat-box">
-                                <span class="us-val" style="color: var(--active)">${c_correct}</span>
-                                <span class="us-lbl">DOĞRU</span>
-                            </div>
-                            <div class="unit-stat-box">
-                                <span class="us-val" style="color: var(--wrong)">${c_wrong}</span>
-                                <span class="us-lbl">YANLIŞ</span>
-                            </div>
-                        </div>
-                    `;
-                    listEl.appendChild(item);
-                });
-            }
+                ${this.cpBar(o.totalQ, o.correct, o.wrong)}
+            </section>`;
+    },
+
+    // Mixed page: subjects first, then the 20-question parts of the chosen subject
+    renderMixedPage: function () {
+        const c = "Mixed";
+        this.stopTimer();
+        if (this.state.courseTabFor !== c) { this.state.courseTab = 'units'; this.state.courseTabFor = c; }
+        this.state.view = 'dashboard';
+        this.state.course = c;
+        const tn = document.getElementById('top-nav');
+        if (tn) tn.style.display = 'none';
+        const container = document.getElementById('content-area');
+        if (!container) return;
+        const sub = this.state.mixedSubSubject;
+        const tab = sub ? 'units' : (this.state.courseTab || 'units');
+
+        const s = this.stats[c] || { t: 0, c: 0, w: 0, time: 0, bd: {} };
+        const unitStats = (s.bd && s.bd['units']) || {};
+        const lastStr = (last, done) => this.formatLastTested(last === 0 && done > 0 ? this.getCourseLastActiveDateFromHistory(c) : last, done > 0);
+        const parts = (this.mixedUnitsInfo || []).map((chunk, idx) => {
+            const us = unitStats[`Unit ${idx + 1}`] || {};
+            const ok = us.c || 0, bad = us.w || 0;
+            return { subject: chunk.subject, name: `Hissə ${chunk.part} (${chunk.startIdx + 1}-${chunk.endIdx})`, total: chunk.endIdx - chunk.startIdx, ok, bad, done: ok + bad, last: us.last || 0, lastStr: lastStr(us.last || 0, ok + bad), click: `QuizApp.startUnit('Mixed', ${idx})` };
+        });
+
+        // Level 2: the parts of one subject
+        if (sub) {
+            const rows = parts.filter(p => p.subject === sub);
+            const sum = k => rows.reduce((a, r) => a + r[k], 0);
+            container.innerHTML = `
+            <div class="cp">
+                ${this.cpHead(sub, `Mixed · ${rows.length} hissə`, 'QuizApp.selectMixedSubSubject(null)')}
+                ${this.cpStrip({ totalQ: sum('total'), answered: sum('done'), correct: sum('ok'), wrong: sum('bad'), extra: ['Hissə', rows.length] })}
+                <div class="cp-tabs-row"><span class="cp-sec">Hissələr</span>${this.cpToggle()}</div>
+                ${this.cpList(rows, 'Hissə', 'Başla')}
+            </div>`;
+            return;
         }
+
+        // Level 1: subjects
+        const totalQ = typeof quizData !== 'undefined' ? quizData.filter(x => x.c === c).length : 0;
+        const answered = s.t || 0;
+        const platformTime = this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0;
+        const wrQs = (this.wrongDB || {})[c] || [];
+        const multi = unitStats['Multi'] || {};
+        const subs = SUBJECTS.map(name => {
+            const ps = parts.filter(p => p.subject === name);
+            const sum = k => ps.reduce((a, p) => a + p[k], 0);
+            return { name, total: sum('total'), ok: sum('ok'), bad: sum('bad'), done: sum('done'), lastStr: lastStr(ps.reduce((a, p) => Math.max(a, p.last), 0), sum('done')), click: `QuizApp.selectMixedSubSubject('${name.replace(/'/g, "\\'")}')`, extra: `<span><b>${ps.length}</b> hissə</span>` };
+        });
+        const content = tab === 'mixed' ? `
+                <section class="cp-mix">
+                    <div>
+                        <h2>Qarışıq sınaq</h2>
+                        <p>Bütün fənlərin Mixed suallarından qarışıq 20 suallıq sürətli sınaq. Başlamaq üçün düyməyə basın.</p>
+                        <button class="btn btn-pri" onclick="startCourseMixedExam('Mixed')">Sınağa başla</button>
+                    </div>
+                    <div class="cp-mix-stats">
+                        <div><span class="hx-cap">Sual sayı</span><b>20</b></div>
+                        <div><span class="hx-cap">Mənbə</span><b>${subs.filter(r => r.total).length} fənn</b></div>
+                        <div><span class="hx-cap">Hələ işlənməyib</span><b>${Math.max(0, totalQ - answered)}</b></div>
+                    </div>
+                </section>` : this.cpList(subs, 'Fənn', 'Aç', this.cpMulti('Mixed', wrQs, lastStr(multi.last || 0, multi.t || 0)));
+
+        container.innerHTML = `
+            <div class="cp">
+                ${this.cpHead('Mixed', `${subs.length} fənn · ${parts.length} hissə`, '', `<button class="btn btn-pri cp-wrong" onclick="startCourseWrongExam('Mixed')" ${wrQs.length ? '' : 'disabled'}>Səhvlərim <i>${wrQs.length}</i></button>`)}
+                ${this.cpStrip({ totalQ, answered, correct: s.c || 0, wrong: s.w || 0, onCorrect: "QuizApp.reviewCourseAnswers('Mixed', true)", onWrong: "QuizApp.reviewCourseAnswers('Mixed', false)", extra: ['Vaxt', this.formatTime(s.time || 0) + ' / ' + this.formatTime(platformTime)] })}
+                <p class="cp-advice">${this.getCourseAdvice(s, totalQ)}</p>
+                <div class="cp-tabs-row">
+                    <span class="cp-tabs" role="group" aria-label="Bölmə">
+                        <button class="${tab === 'units' ? 'active' : ''}" onclick="QuizApp.setCourseTab('units')">Fənlər <i>${subs.length}</i></button>
+                        <button class="${tab === 'mixed' ? 'active' : ''}" onclick="QuizApp.setCourseTab('mixed')">Qarışıq sınaq <i>20 sual</i></button>
+                    </span>
+                    ${tab === 'units' ? this.cpToggle() : ''}
+                </div>
+                ${content}
+            </div>`;
     },
 
     loadData: function () {
@@ -653,178 +270,7 @@ const QuizApp = {
         this.settings = JSON.parse(localStorage.getItem(this.DB.settings)) || { scale: 1 };
         this.wrongCounts = JSON.parse(localStorage.getItem(this.DB.wrongCounts)) || {};
         
-        // Clean up/migrate the duplicate/incorrect Türk Dili II Unit 14 Question 8 in localStorage databases
-        const oldQText = "I. Panel II.Telekonferans III.Forum IV.Sempozyum Yukarıdaki sözlü anlatım türlerinin hangisinde ya da hangilerinde yönetici olarak bir başkan bulunur?";
-        const newQText = "";
-        
-        ["Türk Dili II", "Türk dili", "Turk dili"].forEach(subjectKey => {
-            let dbChanged = false;
-            if (this.wrongDB && this.wrongDB[subjectKey]) {
-                this.wrongDB[subjectKey].forEach(item => {
-                    if (item.u === 14 && item.q === oldQText && item.a === 2) {
-                        item.q = newQText;
-                        dbChanged = true;
-                    }
-                });
-                if (dbChanged) {
-                    localStorage.setItem(this.DB.wrong, JSON.stringify(this.wrongDB));
-                }
-            }
-
-            let correctDbChanged = false;
-            if (this.correctDB && this.correctDB[subjectKey]) {
-                this.correctDB[subjectKey].forEach(item => {
-                    if (item.u === 14 && item.q === oldQText && item.a === 2) {
-                        item.q = newQText;
-                        correctDbChanged = true;
-                    }
-                });
-                if (correctDbChanged) {
-                    localStorage.setItem(this.DB.correct, JSON.stringify(this.correctDB));
-                }
-            }
-        });
-
-        let bookmarksChanged = false;
-        if (this.bookmarks && Array.isArray(this.bookmarks)) {
-            this.bookmarks.forEach(item => {
-                if ((item.c === "Türk Dili II" || item.c === "Türk dili" || item.c === "Turk dili") && item.u === 14 && item.q === oldQText && item.a === 2) {
-                    item.q = newQText;
-                    bookmarksChanged = true;
-                }
-            });
-            if (bookmarksChanged) {
-                localStorage.setItem(this.DB.marks, JSON.stringify(this.bookmarks));
-            }
-        }
-        
-        // Migrate legacy daily history key (qa_v31_d) to new key (qa_v31_h) if necessary
-        if (localStorage.getItem('qa_v31_d')) {
-            try {
-                const oldHistoryStr = localStorage.getItem('qa_v31_d');
-                const newHistoryStr = localStorage.getItem('qa_v31_h');
-                
-                let merged = {};
-                if (oldHistoryStr) {
-                    try { merged = JSON.parse(oldHistoryStr); } catch(e) {}
-                }
-                if (newHistoryStr) {
-                    try {
-                        const newHistory = JSON.parse(newHistoryStr);
-                        Object.keys(newHistory).forEach(date => {
-                            if (!merged[date]) {
-                                merged[date] = newHistory[date];
-                            } else {
-                                Object.keys(newHistory[date]).forEach(course => {
-                                    if (!merged[date][course]) {
-                                        merged[date][course] = newHistory[date][course];
-                                    } else {
-                                        const c1 = merged[date][course];
-                                        const c2 = newHistory[date][course];
-                                        merged[date][course] = {
-                                            time: Math.max(c1.time || 0, c2.time || 0),
-                                            correct: Math.max(c1.correct || 0, c2.correct || 0),
-                                            wrong: Math.max(c1.wrong || 0, c2.wrong || 0)
-                                        };
-                                    }
-                                });
-                            }
-                        });
-                    } catch(e) {}
-                }
-                
-                localStorage.setItem('qa_v31_h', JSON.stringify(merged));
-                localStorage.removeItem('qa_v31_d');
-                console.log("Migrated and merged daily history from qa_v31_d to qa_v31_h, removed legacy key.");
-            } catch (e) {
-                console.error("Migration error:", e);
-            }
-        }
-        localStorage.setItem('qa_v31_h_real_v2', 'true');
-        this.dailyHistory = JSON.parse(localStorage.getItem('qa_v31_h')) || {};
-
-                // ==========================================
-        // ULTIMATE STATISTICS RECOVERY BLOCK (LEVELDB RESTORED)
-        // ==========================================
-        const recoveredStats = {"🎲 Ümumi Sınaq": {"t": 20, "c": 20, "w": 0, "time": 181, "bd": {"mock": {"Sınaq": {"t": 20, "c": 20, "w": 0, "last": 0}}}}, "Görsel İletişim Tasarımı": {"t": 1191, "c": 1023, "w": 168, "time": 10767, "bd": {"units": {"Unit 11": {"t": 10, "c": 10, "w": 0, "last": 0}, "Unit 12": {"t": 10, "c": 7, "w": 3, "last": 0}, "Unit 2": {"t": 20, "c": 19, "w": 2, "last": 1780736601984}, "Unit 9": {"t": 10, "c": 8, "w": 2, "last": 0}, "Unit 7": {"t": 18, "c": 15, "w": 3, "last": 0}, "Unit 14": {"t": 10, "c": 8, "w": 2, "last": 0}, "Unit 6": {"t": 19, "c": 16, "w": 3, "last": 0}, "Unit 8": {"t": 20, "c": 20, "w": 0, "last": 0}, "Unit 4": {"t": 21, "c": 18, "w": 5, "last": 1780738056522}, "Unit 5": {"t": 17, "c": 16, "w": 1, "last": 0}, "Unit 3": {"t": 19, "c": 19, "w": 3, "last": 1780737696148}, "Unit 10": {"t": 10, "c": 9, "w": 1, "last": 0}, "Unit 1": {"t": 23, "c": 22, "w": 1, "last": 1780733356289}, "Unit 13": {"t": 10, "c": 9, "w": 1, "last": 0}}, "mixed": {"Qarışıq Sınaq": {"t": 764, "c": 638, "w": 126, "last": 1781345183765}}, "wrong": {"Səhvlərin Təkrarı": {"t": 8, "c": 8, "w": 0, "last": 0}}, "surprise": {"Sürpriz Sual": {"t": 16, "c": 12, "w": 4, "last": 1781345563136}}}}, "Tasarımda Tipografi": {"t": 1588, "c": 1375, "w": 213, "time": 19462, "bd": {"wrong": {"Səhvlərin Təkrarı": {"t": 134, "c": 106, "w": 28, "last": 1781276495719}}, "units": {"Unit 9": {"t": 34, "c": 26, "w": 8, "last": 1781271798225}, "Unit 7": {"t": 54, "c": 48, "w": 6, "last": 1781270621008}, "Unit 11": {"t": 39, "c": 37, "w": 2, "last": 1781271985807}, "Unit 12": {"t": 42, "c": 40, "w": 2, "last": 1781272194919}, "Unit 2": {"t": 42, "c": 37, "w": 5, "last": 1781269261443}, "Unit 3": {"t": 48, "c": 40, "w": 8, "last": 1781269414340}, "Unit 5": {"t": 42, "c": 41, "w": 1, "last": 1781270132231}, "Unit 1": {"t": 45, "c": 38, "w": 7, "last": 1781269166952}, "Unit 10": {"t": 42, "c": 36, "w": 6, "last": 1781271914498}, "Unit 13": {"t": 33, "c": 31, "w": 2, "last": 1781272271397}, "Unit 14": {"t": 60, "c": 51, "w": 9, "last": 1781272374525}, "Unit 6": {"t": 45, "c": 42, "w": 3, "last": 1781270331832}, "Unit 8": {"t": 42, "c": 32, "w": 10, "last": 1781271029069}, "Unit 4": {"t": 39, "c": 30, "w": 9, "last": 1781269925190}, "Multi": {"t": 2, "c": 2, "w": 0, "last": 1780820350399}}, "surprise": {"Sürpriz Sual": {"t": 8, "c": 5, "w": 3, "last": 1781283309792}}, "mixed": {"Qarışıq Sınaq": {"t": 585, "c": 503, "w": 82, "last": 1781345183765}}}}, "Masaüstü Yayıncılık": {"t": 1204, "c": 979, "w": 225, "time": 13154, "bd": {"units": {"Unit 7": {"t": 38, "c": 29, "w": 9, "last": 1780818622133}, "Unit 9": {"t": 12, "c": 9, "w": 3, "last": 1780818811617}, "Unit 2": {"t": 44, "c": 38, "w": 6, "last": 1780817239154}, "Unit 12": {"t": 30, "c": 13, "w": 17, "last": 1780819161046}, "Unit 11": {"t": 12, "c": 8, "w": 4, "last": 1780818961525}, "Unit 13": {"t": 32, "c": 24, "w": 8, "last": 1780819349637}, "Unit 1": {"t": 76, "c": 69, "w": 7, "last": 1781006282891}, "Unit 10": {"t": 29, "c": 19, "w": 10, "last": 1781005701434}, "Unit 5": {"t": 38, "c": 31, "w": 7, "last": 1780818205787}, "Unit 3": {"t": 34, "c": 27, "w": 7, "last": 1780817566380}, "Unit 4": {"t": 40, "c": 35, "w": 5, "last": 1780817780201}, "Unit 8": {"t": 20, "c": 17, "w": 3, "last": 1780818762821}, "Unit 6": {"t": 38, "c": 31, "w": 7, "last": 1780818430134}, "Unit 14": {"t": 16, "c": 13, "w": 3, "last": 1780819516633}, "Multi": {"t": 2, "c": 2, "w": 0, "last": 1780820367058}}, "mixed": {"Qarışıq Sınaq": {"t": 390, "c": 336, "w": 54, "last": 1781345183765}}, "wrong": {"Səhvlərin Təkrarı": {"t": 77, "c": 62, "w": 15, "last": 1780820244629}}, "surprise": {"Sürpriz Sual": {"t": 14, "c": 13, "w": 1, "last": 1781283526632}}}}, "Grafik Tasarım II": {"t": 1289, "c": 1158, "w": 131, "time": 14726, "bd": {"mixed": {"Qarışıq Sınaq": {"t": 451, "c": 399, "w": 52, "last": 1781345183765}}, "units": {"Unit 6": {"t": 34, "c": 32, "w": 3, "last": 1781256271096}, "Unit 4": {"t": 30, "c": 30, "w": 1, "last": 1781255848220}, "Unit 8": {"t": 26, "c": 26, "w": 3, "last": 1781257966873}, "Unit 5": {"t": 30, "c": 27, "w": 4, "last": 1781256006332}, "Unit 3": {"t": 26, "c": 25, "w": 1, "last": 1781255703577}, "Unit 10": {"t": 32, "c": 27, "w": 6, "last": 1781259010742}, "Unit 1": {"t": 30, "c": 28, "w": 4, "last": 1781280919378}, "Unit 13": {"t": 26, "c": 23, "w": 4, "last": 1781259954678}, "Unit 2": {"t": 28, "c": 27, "w": 5, "last": 1781255623489}, "Unit 11": {"t": 26, "c": 24, "w": 2, "last": 1781259462692}, "Unit 12": {"t": 28, "c": 28, "w": 3, "last": 1781259609551}, "Unit 9": {"t": 30, "c": 29, "w": 3, "last": 1781258138291}, "Unit 7": {"t": 32, "c": 32, "w": 1, "last": 1781256542802}, "Unit 14": {"t": 70, "c": 64, "w": 6, "last": 1781260228334}}, "wrong": {"Səhvlərin Təkrarı": {"t": 83, "c": 72, "w": 11, "last": 1781260392115}}, "surprise": {"Sürpriz Sual": {"t": 10, "c": 9, "w": 1, "last": 1781280198855}}}}, "Grafik Tasarım": {"t": 10, "c": 10, "w": 0, "time": 5260, "bd": {"units": {"Unit 1": {"t": 10, "c": 10, "w": 0, "last": 0}}}}, "Hard": {"t": 27, "c": 14, "w": 13, "time": 0, "bd": {"wrong": {"Səhvlərin Təkrarı": {"t": 21, "c": 10, "w": 11, "last": 1781273391699}}}}, "Atatürk İlkeleri ve İnkılap Tarihi II": {"t": 615, "c": 464, "w": 151, "time": 7886, "bd": {"units": {"Unit 1": {"t": 100, "c": 84, "w": 16, "last": 1781076752408}, "Unit 2": {"t": 63, "c": 49, "w": 14, "last": 1781089587848}, "Unit 3": {"t": 67, "c": 60, "w": 7, "last": 1781090196150}, "Unit 4": {"t": 75, "c": 61, "w": 14, "last": 1781090874942}, "Unit 5": {"t": 80, "c": 58, "w": 22, "last": 1781091685670}, "Unit 6": {"t": 60, "c": 50, "w": 10, "last": 1781096735914}, "Unit 7": {"t": 25, "c": 16, "w": 9, "last": 1781097386331}, "Unit 8": {"t": 10, "c": 7, "w": 3, "last": 1781062152478}, "Unit 9": {"t": 10, "c": 2, "w": 8, "last": 1781062325371}, "Unit 10": {"t": 10, "c": 5, "w": 5, "last": 1781062500532}, "Unit 11": {"t": 10, "c": 2, "w": 8, "last": 1781062638571}, "Unit 12": {"t": 10, "c": 1, "w": 9, "last": 1781062762425}, "Unit 13": {"t": 10, "c": 5, "w": 5, "last": 1781062888885}, "Unit 14": {"t": 10, "c": 7, "w": 3, "last": 1781063029484}}, "surprise": {"Sürpriz Sual": {"t": 19, "c": 15, "w": 4, "last": 1781344826063}}, "mixed": {"Qarışıq Sınaq": {"t": 55, "c": 42, "w": 13, "last": 1781345183765}}}}, "Türk Dili II": {"t": 867, "c": 673, "w": 194, "time": 11277, "bd": {"units": {"Unit 1": {"t": 80, "c": 72, "w": 8, "last": 1781033645786}, "Unit 2": {"t": 66, "c": 50, "w": 16, "last": 1781033492772}, "Unit 3": {"t": 60, "c": 50, "w": 10, "last": 1781033143290}, "Unit 4": {"t": 69, "c": 48, "w": 21, "last": 1781032974609}, "Unit 5": {"t": 60, "c": 48, "w": 12, "last": 1781032750196}, "Unit 6": {"t": 57, "c": 49, "w": 8, "last": 1781032581675}, "Unit 7": {"t": 57, "c": 51, "w": 6, "last": 1781032428486}, "Unit 8": {"t": 30, "c": 20, "w": 10, "last": 1781032281742}, "Unit 9": {"t": 30, "c": 22, "w": 8, "last": 1781032218305}, "Unit 10": {"t": 30, "c": 21, "w": 9, "last": 1781032110806}, "Unit 11": {"t": 30, "c": 18, "w": 12, "last": 1781032039287}, "Unit 12": {"t": 30, "c": 20, "w": 10, "last": 1781031944177}, "Unit 13": {"t": 30, "c": 18, "w": 12, "last": 1781031881399}, "Unit 14": {"t": 30, "c": 16, "w": 14, "last": 1781031752530}, "Multi": {"t": 61, "c": 50, "w": 11, "last": 1781033839179}}, "wrong": {"Səhvlərin Təkrarı": {"t": 101, "c": 86, "w": 15, "last": 1781031130890}}, "surprise": {"Sürpriz Sual": {"t": 11, "c": 6, "w": 5, "last": 1781282596223}}, "mixed": {"Qarışıq Sınaq": {"t": 34, "c": 27, "w": 7, "last": 1781345183765}}}}, "Mixed": {"t": 67, "c": 41, "w": 26, "time": 62, "bd": {"surprise": {"Sürpriz Sual": {"t": 67, "c": 41, "w": 26, "last": 1781345226274}}, "units": {"Unit 2": {"t": 3, "c": 3, "w": 0, "last": 1781169816015}}}}, "Grafik Tasarım II_pdf_4": {"t": 20, "c": 16, "w": 4, "time": 205, "bd": {"pdf-exam": {"İmtahan 5": {"t": 20, "c": 16, "w": 4, "last": 1781248237609}}}}, "Grafik Tasarım II_pdf_3": {"t": 22, "c": 22, "w": 0, "time": 277, "bd": {"pdf-exam": {"İmtahan 4": {"t": 22, "c": 22, "w": 0, "last": 1781247942210}}}}, "Masaüstü Yayıncılık_pdf_1": {"t": 20, "c": 15, "w": 5, "time": 279, "bd": {"pdf-exam": {"İmtahan 2": {"t": 20, "c": 15, "w": 5, "last": 1781278046614}}}}, "Masaüstü Yayıncılık_pdf_5": {"t": 20, "c": 16, "w": 4, "time": 336, "bd": {"pdf-exam": {"İmtahan 6": {"t": 20, "c": 16, "w": 4, "last": 1781281285313}}}}, "Grafik Tasarım II_pdf_0": {"t": 20, "c": 18, "w": 2, "time": 0, "bd": {"pdf-exam": {"İmtahan 1": {"t": 20, "c": 18, "w": 2, "last": 1781245873960}}}}, "Masaüstü Yayıncılık_pdf_4": {"t": 20, "c": 18, "w": 2, "time": 220, "bd": {"pdf-exam": {"İmtahan 5": {"t": 20, "c": 18, "w": 2, "last": 1781280652980}}}}, "Grafik Tasarım II_pdf_2": {"t": 20, "c": 16, "w": 4, "time": 132, "bd": {"pdf-exam": {"İmtahan 3": {"t": 20, "c": 16, "w": 4, "last": 1781246476598}}}}, "Grafik Tasarım II_pdf_5": {"t": 20, "c": 20, "w": 0, "time": 235, "bd": {"pdf-exam": {"İmtahan 6": {"t": 20, "c": 20, "w": 0, "last": 1781248807568}}}}, "Masaüstü Yayıncılık_pdf_6": {"t": 20, "c": 15, "w": 5, "time": 247, "bd": {"pdf-exam": {"İmtahan 7": {"t": 20, "c": 15, "w": 5, "last": 1781281588882}}}}, "Tasarımda Tipografi_pdf_3": {"t": 20, "c": 19, "w": 1, "time": 295, "bd": {"pdf-exam": {"İmtahan 4": {"t": 20, "c": 19, "w": 1, "last": 1781267136616}}}}, "Tasarımda Tipografi_pdf_0": {"t": 19, "c": 14, "w": 5, "time": 200, "bd": {"pdf-exam": {"İmtahan 1": {"t": 19, "c": 14, "w": 5, "last": 1781260642968}}}}, "Masaüstü Yayıncılık_pdf_8": {"t": 20, "c": 14, "w": 6, "time": 375, "bd": {"pdf-exam": {"İmtahan 9": {"t": 20, "c": 14, "w": 6, "last": 1781283312752}}}}, "Masaüstü Yayıncılık_pdf_0": {"t": 20, "c": 12, "w": 8, "time": 249, "bd": {"pdf-exam": {"İmtahan 1": {"t": 20, "c": 12, "w": 8, "last": 1781277108917}}}}, "Masaüstü Yayıncılık_pdf_9": {"t": 19, "c": 16, "w": 3, "time": 235, "bd": {"pdf-exam": {"İmtahan 10": {"t": 19, "c": 16, "w": 3, "last": 1781283984152}}}}, "Masaüstü Yayıncılık_pdf_12": {"t": 6, "c": 3, "w": 3, "time": 70, "bd": {"pdf-exam": {"İmtahan 13": {"t": 6, "c": 3, "w": 3, "last": 1781284603217}}}}, "Masaüstü Yayıncılık_pdf_7": {"t": 20, "c": 19, "w": 1, "time": 379, "bd": {"pdf-exam": {"İmtahan 8": {"t": 20, "c": 19, "w": 1, "last": 1781282801941}}}}, "Grafik Tasarım II_pdf_1": {"t": 20, "c": 16, "w": 4, "time": 0, "bd": {"pdf-exam": {"İmtahan 2": {"t": 20, "c": 16, "w": 4, "last": 1781246145820}}}}, "Masaüstü Yayıncılık_pdf_10": {"t": 20, "c": 14, "w": 6, "time": 217, "bd": {"pdf-exam": {"İmtahan 11": {"t": 20, "c": 14, "w": 6, "last": 1781284229851}}}}, "Masaüstü Yayıncılık_pdf_2": {"t": 20, "c": 15, "w": 5, "time": 366, "bd": {"pdf-exam": {"İmtahan 3": {"t": 20, "c": 15, "w": 5, "last": 1781279992950}}}}, "Masaüstü Yayıncılık_pdf_11": {"t": 17, "c": 15, "w": 2, "time": 192, "bd": {"pdf-exam": {"İmtahan 12": {"t": 17, "c": 15, "w": 2, "last": 1781284468415}}}}, "Görsel İletişim Tasarımı_pdf_0": {"t": 20, "c": 13, "w": 7, "time": 32, "bd": {"pdf-exam": {"İmtahan 1": {"t": 20, "c": 13, "w": 7, "last": 1781189017715}}}}, "Grafik Tasarım II_pdf_7": {"t": 20, "c": 20, "w": 0, "time": 190, "bd": {"pdf-exam": {"İmtahan 8": {"t": 20, "c": 20, "w": 0, "last": 1781252611705}}}}, "Tasarımda Tipografi_pdf_6": {"t": 20, "c": 18, "w": 2, "time": 315, "bd": {"pdf-exam": {"İmtahan 7": {"t": 20, "c": 18, "w": 2, "last": 1781268086849}}}}, "Tasarımda Tipografi_pdf_5": {"t": 20, "c": 19, "w": 1, "time": 162, "bd": {"pdf-exam": {"İmtahan 6": {"t": 20, "c": 19, "w": 1, "last": 1781267647366}}}}, "Tasarımda Tipografi_pdf_2": {"t": 20, "c": 15, "w": 5, "time": 523, "bd": {"pdf-exam": {"İmtahan 3": {"t": 20, "c": 15, "w": 5, "last": 1781261488014}}}}, "Tasarımda Tipografi_pdf_1": {"t": 20, "c": 15, "w": 5, "time": 217, "bd": {"pdf-exam": {"İmtahan 2": {"t": 20, "c": 15, "w": 5, "last": 1781260898343}}}}, "Grafik Tasarım II_pdf_6": {"t": 20, "c": 20, "w": 0, "time": 288, "bd": {"pdf-exam": {"İmtahan 7": {"t": 20, "c": 20, "w": 0, "last": 1781249199933}}}}, "Masaüstü Yayıncılık_pdf_3": {"t": 20, "c": 16, "w": 4, "time": 264, "bd": {"pdf-exam": {"İmtahan 4": {"t": 20, "c": 16, "w": 4, "last": 1781280330313}}}}, "Tasarımda Tipografi_pdf_7": {"t": 20, "c": 20, "w": 0, "time": 293, "bd": {"pdf-exam": {"İmtahan 8": {"t": 20, "c": 20, "w": 0, "last": 1781268468118}}}}, "Tasarımda Tipografi_pdf_4": {"t": 20, "c": 18, "w": 2, "time": 219, "bd": {"pdf-exam": {"İmtahan 5": {"t": 20, "c": 18, "w": 2, "last": 1781267391898}}}}, "Türk dili": {"t": 259, "c": 200, "w": 59, "time": 969, "bd": {"units": {"Unit 7": {"t": 2, "c": 1, "w": 1, "last": 0}, "Unit 8": {"t": 27, "c": 22, "w": 5, "last": 0}, "Unit 9": {"t": 50, "c": 41, "w": 9, "last": 0}, "Unit 10": {"t": 30, "c": 21, "w": 9, "last": 0}, "Unit 11": {"t": 20, "c": 14, "w": 6, "last": 0}, "Unit 12": {"t": 40, "c": 35, "w": 5, "last": 0}, "Unit 13": {"t": 20, "c": 14, "w": 6, "last": 0}, "Unit 14": {"t": 70, "c": 52, "w": 18, "last": 0}}}}, "Atatürk İlkeleri ve İnkilap Tarihi": {"t": 6, "c": 6, "w": 0, "time": 302, "bd": {"units": {"Unit 7": {"t": 2, "c": 2, "w": 0, "last": 0}}, "mixed": {"1-20": {"t": 4, "c": 4, "w": 0, "last": 0}}}}, "Tipografi": {"t": 183, "c": 153, "w": 30, "time": 108, "bd": {"units": {"Unit 8": {"t": 10, "c": 10, "w": 0, "last": 0}, "Unit 9": {"t": 20, "c": 14, "w": 6, "last": 0}, "Unit 10": {"t": 10, "c": 8, "w": 2, "last": 0}, "Unit 11": {"t": 10, "c": 9, "w": 1, "last": 0}, "Unit 12": {"t": 10, "c": 10, "w": 0, "last": 0}, "Unit 13": {"t": 10, "c": 10, "w": 0, "last": 0}, "Unit 14": {"t": 10, "c": 9, "w": 1, "last": 0}, "Unit 7": {"t": 10, "c": 9, "w": 1, "last": 0}, "Unit 6": {"t": 10, "c": 8, "w": 2, "last": 0}, "Unit 1": {"t": 10, "c": 10, "w": 0, "last": 0}, "Unit 2": {"t": 10, "c": 8, "w": 2, "last": 0}, "Unit 4": {"t": 10, "c": 9, "w": 1, "last": 0}, "Unit 3": {"t": 10, "c": 9, "w": 1, "last": 0}, "Unit 5": {"t": 43, "c": 30, "w": 13, "last": 0}}}}, "Reklam Analizleri": {"t": 191, "c": 114, "w": 77, "time": 634, "bd": {"units": {"Unit 8": {"t": 30, "c": 21, "w": 9, "last": 0}, "Unit 9": {"t": 10, "c": 5, "w": 5, "last": 0}, "Unit 10": {"t": 10, "c": 5, "w": 5, "last": 0}, "Unit 11": {"t": 10, "c": 8, "w": 2, "last": 0}, "Unit 12": {"t": 10, "c": 4, "w": 6, "last": 0}, "Unit 13": {"t": 10, "c": 7, "w": 3, "last": 0}, "Unit 14": {"t": 10, "c": 6, "w": 4, "last": 0}, "Unit 1": {"t": 11, "c": 8, "w": 3, "last": 0}, "Unit 2": {"t": 10, "c": 7, "w": 3, "last": 0}, "Unit 3": {"t": 10, "c": 7, "w": 3, "last": 0}, "Unit 4": {"t": 10, "c": 8, "w": 2, "last": 0}, "Unit 5": {"t": 10, "c": 5, "w": 5, "last": 0}, "Unit 6": {"t": 10, "c": 1, "w": 9, "last": 0}, "Unit 7": {"t": 40, "c": 22, "w": 18, "last": 0}}}}};
-        const recoveredHistory = {"2026-06-03": {"Grafik Tasarım II": {"time": 547, "correct": 23, "wrong": 6}, "platformTime": 0}, "2026-06-04": {"Görsel İletişim Tasarımı": {"time": 997, "correct": 193, "wrong": 25}, "Grafik Tasarım II": {"time": 2910, "correct": 193, "wrong": 37}, "Masaüstü Yayıncılık": {"time": 3367, "correct": 198, "wrong": 73}, "Tasarımda Tipografi": {"time": 1593, "correct": 91, "wrong": 29}, "platformTime": 0}, "2026-06-05": {"Tasarımda Tipografi": {"time": 1600, "correct": 124, "wrong": 21}, "🎲 Ümumi Sınaq": {"time": 7, "correct": 0, "wrong": 0}, "Grafik Tasarım II": {"time": 200, "correct": 21, "wrong": 5}, "Görsel İletişim Tasarımı": {"time": 498, "correct": 41, "wrong": 5}, "Masaüstü Yayıncılık": {"time": 216, "correct": 21, "wrong": 3}, "platformTime": 0, "Hard": {"time": 0, "correct": 5, "wrong": 2}}, "2026-06-06": {"Görsel İletişim Tasarımı": {"time": 152, "correct": 20, "wrong": 1}, "Masaüstü Yayıncılık": {"time": 0, "correct": 1, "wrong": 2}, "Grafik Tasarım II": {"time": 2436, "correct": 186, "wrong": 18}, "Tasarımda Tipografi": {"time": 0, "correct": 2, "wrong": 2}, "Atatürk İlkeleri ve İnkılap Tarihi II": {"time": 0, "correct": 0, "wrong": 1}, "Türk Dili II": {"time": 0, "correct": 1, "wrong": 0}, "platformTime": 0}, "2026-06-07": {"Tasarımda Tipografi": {"time": 2735, "correct": 201, "wrong": 37}, "Masaüstü Yayıncılık": {"time": 2807, "correct": 215, "wrong": 39}, "platformTime": 0}, "2026-06-09": {"Türk Dili II": {"time": 10797, "correct": 639, "wrong": 182}, "Masaüstü Yayıncılık": {"time": 695, "correct": 23, "wrong": 5}, "platformTime": 0}, "2026-06-10": {"Atatürk İlkeleri ve İnkılap Tarihi II": {"time": 6986, "correct": 407, "wrong": 133}, "Tasarımda Tipografi": {"time": 0, "correct": 52, "wrong": 0}, "platformTime": 0}, "2026-06-11": {"🎲 Ümumi Sınaq": {"time": 5, "correct": 0, "wrong": 0}, "Görsel İletişim Tasarımı": {"time": 0, "correct": 3, "wrong": 2}, "Atatürk İlkeleri ve İnkılap Tarihi II": {"time": 0, "correct": 2, "wrong": 1}, "Mixed": {"time": 62, "correct": 4, "wrong": 2}, "Grafik Tasarım II": {"time": 555, "correct": 41, "wrong": 8}, "Masaüstü Yayıncılık": {"time": 0, "correct": 3, "wrong": 0}, "Tasarımda Tipografi": {"time": 420, "correct": 39, "wrong": 0}, "Türk Dili II": {"time": 0, "correct": 1, "wrong": 1}, "platformTime": 0, "Görsel İletişim Tasarımı_pdf_0": {"time": 32, "correct": 13, "wrong": 7}}, "2026-06-12": {"Tasarımda Tipografi": {"time": 5974, "correct": 454, "wrong": 45}, "platformTime": 4581, "Grafik Tasarım II": {"time": 3878, "correct": 314, "wrong": 9}, "Masaüstü Yayıncılık": {"time": 3429, "correct": 198, "wrong": 55}, "Görsel İletişim Tasarımı": {"time": 2160, "correct": 166, "wrong": 14}, "Türk Dili II": {"time": 0, "correct": 5, "wrong": 4}, "Mixed": {"time": 11, "correct": 39, "wrong": 26}, "Grafik Tasarım II_pdf_2": {"time": 132, "correct": 16, "wrong": 4}, "Grafik Tasarım II_pdf_0": {"time": 0, "correct": 18, "wrong": 2}, "Grafik Tasarım II_pdf_1": {"time": 0, "correct": 16, "wrong": 4}, "Hard": {"time": 0, "correct": 9, "wrong": 11}, "Grafik Tasarım II_pdf_4": {"time": 205, "correct": 16, "wrong": 4}, "Atatürk İlkeleri ve İnkılap Tarihi II": {"time": 0, "correct": 12, "wrong": 4}, "Grafik Tasarım II_pdf_3": {"time": 277, "correct": 22, "wrong": 0}}, "2026-06-13": {"platformTime": 26280, "Grafik Tasarım II": {"correct": 380, "wrong": 48, "time": 4200}, "Görsel İletişim Tasarımı": {"correct": 600, "wrong": 121, "time": 6960}, "Masaüstü Yayıncılık": {"correct": 320, "wrong": 48, "time": 2640}, "Tasarımda Tipografi": {"correct": 412, "wrong": 79, "time": 7140}, "Atatürk İlkeleri ve İnkılap Tarihi II": {"correct": 43, "wrong": 12, "time": 900}, "Türk Dili II": {"correct": 27, "wrong": 7, "time": 480}}};
-
-        let historyRestored = false;
-        let statsRestored = false;
-
-        // Merge daily history
-        Object.keys(recoveredHistory).forEach(date => {
-            if (date === 'd' || date === 'c') return;
-            if (!this.dailyHistory[date]) {
-                this.dailyHistory[date] = JSON.parse(JSON.stringify(recoveredHistory[date]));
-                historyRestored = true;
-            } else {
-                Object.keys(recoveredHistory[date]).forEach(course => {
-                    if (course === 'platformTime') {
-                        const curVal = this.dailyHistory[date][course] || 0;
-                        const recVal = recoveredHistory[date][course] || 0;
-                        if (curVal < recVal) {
-                            this.dailyHistory[date][course] = recVal;
-                            historyRestored = true;
-                        }
-                        return;
-                    }
-                    if (course === 'personalNotes') {
-                        if (!this.dailyHistory[date][course]) {
-                            this.dailyHistory[date][course] = recoveredHistory[date][course];
-                            historyRestored = true;
-                        }
-                        return;
-                    }
-                    if (!this.dailyHistory[date][course]) {
-                        this.dailyHistory[date][course] = JSON.parse(JSON.stringify(recoveredHistory[date][course]));
-                        historyRestored = true;
-                    } else {
-                        const cur = this.dailyHistory[date][course];
-                        const rec = recoveredHistory[date][course];
-                        if ((cur.correct || 0) < (rec.correct || 0) || (cur.wrong || 0) < (rec.wrong || 0) || (cur.time || 0) < (rec.time || 0)) {
-                            cur.correct = Math.max(cur.correct || 0, rec.correct || 0);
-                            cur.wrong = Math.max(cur.wrong || 0, rec.wrong || 0);
-                            cur.time = Math.max(cur.time || 0, rec.time || 0);
-                            historyRestored = true;
-                        }
-                    }
-                });
-            }
-        });
-
-        // Merge overall stats
-        Object.keys(recoveredStats).forEach(course => {
-            if (!this.stats[course]) {
-                this.stats[course] = JSON.parse(JSON.stringify(recoveredStats[course]));
-                statsRestored = true;
-            } else {
-                const cur = this.stats[course];
-                const rec = recoveredStats[course];
-                if ((cur.c || 0) < (rec.c || 0) || (cur.w || 0) < (rec.w || 0) || (cur.time || 0) < (rec.time || 0)) {
-                    cur.c = Math.max(cur.c || 0, rec.c || 0);
-                    cur.w = Math.max(cur.w || 0, rec.w || 0);
-                    cur.t = Math.max(cur.t || 0, cur.c + cur.w);
-                    cur.time = Math.max(cur.time || 0, rec.time || 0);
-                    statsRestored = true;
-                }
-            }
-        });
-
-        if (historyRestored) {
-            localStorage.setItem('qa_v31_h', JSON.stringify(this.dailyHistory));
-        }
-        if (statsRestored) {
-            localStorage.setItem(this.DB.stats, JSON.stringify(this.stats));
-        }
-        if (historyRestored || statsRestored) {
-            localStorage.setItem('qa_v31_localUpdatedAt', Date.now().toString());
-            if (typeof FirebaseSync !== 'undefined' && FirebaseSync.triggerAutoSave) {
-                FirebaseSync.triggerAutoSave();
-            }
-            console.log("Ultimate Recovery: Restored missing statistics from LevelDB!");
-        }
-        // ==========================================
+        this.dailyHistory = JSON.parse(localStorage.getItem('qa_v32_h')) || {};
         this.applyTheme();
         updateDaily(false);
     },
@@ -851,7 +297,8 @@ const QuizApp = {
 
         let globalAcc = 0;
         if (globalTotalAns > 0) globalAcc = Math.round((globalCorrect / globalTotalAns) * 100);
-        let globalTotalQ = typeof quizData !== 'undefined' ? quizData.length : 0;
+        // Mixed repeats the subjects' own questions, so it is left out of the grand total
+        let globalTotalQ = typeof quizData !== 'undefined' ? quizData.filter(q => q.c !== "Mixed").length : 0;
         if (typeof pdfExamsData !== 'undefined') {
             Object.keys(pdfExamsData).forEach(subject => {
                 const exams = pdfExamsData[subject] || [];
@@ -893,136 +340,78 @@ const QuizApp = {
             return parts.join(' ');
         };
 
-        // Generate PDF Subject Cards
-        let subjectCardsHTML = "";
+        // Exam list (one row per subject)
+        let examRowsHTML = "";
+        let examTotal = 0;
         if (typeof pdfExamsData !== 'undefined') {
             Object.keys(pdfExamsData).forEach(subject => {
-                const style = COURSE_STYLES[subject] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
                 const numExams = pdfExamsData[subject].length;
-                subjectCardsHTML += `
-                    <div class="pdf-subject-card" onclick="QuizApp.showPdfExamsList('${subject.replace(/'/g, "\\'")}', 'home')" style="--accent-color: ${style.accent}; --accent-glow: ${style.accent}25; --icon-bg: linear-gradient(135deg, ${style.g1}20, ${style.g2}20); --icon-border: ${style.accent}30;">
-                        <div class="subject-icon-wrap">
-                            ${style.icon}
-                        </div>
-                        <div class="subject-info-wrap">
-                            <div class="subject-title" title="${subject}">${subject}</div>
-                            <div class="subject-desc">${numExams} Sınaq İmtahanı</div>
-                        </div>
-                        <div class="subject-arrow-wrap">
-                            <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
-                        </div>
-                    </div>
+                examTotal += numExams;
+                examRowsHTML += `
+                    <button class="hx-ex-row" onclick="QuizApp.showPdfExamsList('${subject.replace(/'/g, "\\'")}', 'home')">
+                        <b title="${subject}">${subject}</b>
+                        <span class="hx-pill">${numExams} sınaq imtahanı</span>
+                        <span class="hx-chev">›</span>
+                    </button>
                 `;
             });
         }
 
+        const subjectCount = typeof SUBJECTS !== 'undefined' ? SUBJECTS.length : 0;
+        const pctOf = (n) => globalTotalQ > 0 ? ((n / globalTotalQ) * 100).toFixed(2) : 0;
+        const todaySplit = (todayCorrect + todayWrong) > 0
+            ? `<i class="ok" style="flex:${todayCorrect}"></i><i class="bad" style="flex:${todayWrong}"></i>`
+            : `<i class="rest"></i>`;
+
         container.innerHTML = `
-            <div class="dashboard">
-
-                <div class="home-analytics-panel">
-
-                    <div class="hap-donut-section">
-                        <div class="hap-section-label">Ümumi Performans</div>
-                        <div class="hap-donut-ring-wrap">
-                            <canvas id="home-donut-canvas" width="312" height="312"></canvas>
-                            <div class="hap-donut-inner">
-                                <div class="hap-donut-big">${globalAcc}<span class="hap-pct-sign">%</span></div>
-                                <div class="hap-donut-label">Dəqiqlik</div>
-                            </div>
-                        </div>
-                        <div class="hap-legend">
-                            <div class="hap-legend-badge" style="background:#22c55e18; border-color:#22c55e40;">
-                                <span class="hap-lc-lbl">Düzgün</span>
-                                <span class="hap-lc-num" style="color:#22c55e;">${globalCorrect}</span>
-                            </div>
-                            <div class="hap-legend-badge" style="background:#ef444418; border-color:#ef444440;">
-                                <span class="hap-lc-lbl">Səhv</span>
-                                <span class="hap-lc-num" style="color:#ef4444;">${globalWrong}</span>
-                            </div>
-                            <div class="hap-legend-badge" style="background:#3b82f618; border-color:#3b82f640;">
-                                <span class="hap-lc-lbl">Sual sayı</span>
-                                <span class="hap-lc-num" style="color:#3b82f6;">${globalTotalAns}</span>
-                            </div>
-                            <div class="hap-legend-badge" style="background:#f59e0b18; border-color:#f59e0b40;">
-                                <span class="hap-lc-lbl">Vaxt</span>
-                                <span class="hap-lc-num" style="color:#f59e0b;">${this.formatTime(globalTime)}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hap-courses-section">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <div class="hap-section-label" style="margin-bottom: 0;">Fənn Üzrə İrəliləyiş</div>
-                            <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; gap: 6px; background: var(--bg-main); padding: 6px 12px; border-radius: 99px; border: 1px solid var(--border);">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                <span>Sərf Edilən Vaxt:</span>
-                                <span style="color: var(--text-main); font-weight: 700;">${this.formatTime(globalTime)}</span>
-                            </div>
-                        </div>
-                        <div class="hap-course-list" id="home-progress-list"></div>
-                    </div>
-
+            <div class="hx">
+                <div class="hx-head">
+                    <h1>Ana səhifə</h1>
+                    <p>${subjectCount} fənn · ${globalTotalQ} sual · sərf edilən vaxt <b>${this.formatTime(globalTime)}</b></p>
                 </div>
 
-                <div class="hap-chart-panel">
-                    <div class="hap-chart-header">
-                        <div class="hap-section-label">Fənlərin İnkişaf Dinamikası</div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <div class="hap-chart-filters" id="chart-courses-filters"></div>
-                            <div class="hap-chart-toggles">
-                                <button id="toggle-chart-mode-q" class="chart-toggle-btn active" onclick="setChartMode('questions')">Suallar</button>
-                                <button id="toggle-chart-mode-t" class="chart-toggle-btn" onclick="setChartMode('time')">Sərf edilən vaxt</button>
+                <div class="hx-grid">
+                    <section class="cp-strip hx-one">
+                        <div class="cp-strip-row c4">
+                            <div><span class="hx-cap">Dəqiqlik</span><b>${globalAcc}%</b><small>${globalCorrect} düz · ${globalWrong} səhv</small></div>
+                            <div><span class="hx-cap">Cavablanan</span><b>${globalTotalAns}</b><small>${unanswered} sual işlənməyib</small></div>
+                            <div><span class="hx-cap">Bu gün</span><b>${todayQuestions} sual</b><small>${todayCorrect} düz · ${todayWrong} səhv</small></div>
+                            <div><span class="hx-cap">Bu gün vaxt</span><b class="platform-time-val">${formatTodayTime(todayPlatformTime)}</b><small>testdə <span class="test-time-val">${formatTodayTime(todayTime)}</span></small></div>
+                        </div>
+                    </section>
+
+                    <section class="hx-card hx-subj">
+                        <div class="hx-card-head"><h2>Fənn üzrə irəliləyiş</h2><span class="hx-cap">Sərf edilən vaxt: <b>${this.formatTime(globalTime)}</b></span></div>
+                        <div class="hx-tbl" id="home-progress-list"></div>
+                    </section>
+
+                    <section class="hx-card hx-chart">
+                        <div class="hx-card-head">
+                            <h2>Fənlərin inkişaf dinamikası</h2>
+                            <div class="hx-ctrl">
+                                <div id="chart-courses-filters"></div>
+                                <span class="hx-tog">
+                                    <button id="toggle-chart-mode-q" class="${(this.state.chartMode || 'questions') === 'questions' ? 'active' : ''}" onclick="setChartMode('questions')">Suallar</button>
+                                    <button id="toggle-chart-mode-t" class="${this.state.chartMode === 'time' ? 'active' : ''}" onclick="setChartMode('time')">Sərf edilən vaxt</button>
+                                </span>
                             </div>
                         </div>
-                    </div>
+                        <div class="hx-chart-body" id="home-dynamics"></div>
+                    </section>
 
-                    <div class="hap-today-summary-box">
-                        <div class="hap-today-stat-item">
-                            <span class="hap-today-stat-label">Bugünkü Sual</span>
-                            <span class="hap-today-stat-val questions">${todayQuestions}</span>
+                    <section class="hx-card hx-exam">
+                        <div class="hx-card-head"><h2>Mövzu sınaq imtahanları</h2><span class="hx-pill">${examTotal} PDF</span></div>
+                        <div class="hx-ex">
+                            ${examRowsHTML || '<div class="hx-empty">İmtahan tapılmadı</div>'}
                         </div>
-                        <div class="hap-today-stat-item">
-                            <span class="hap-today-stat-label">Platforma Vaxtı</span>
-                            <span class="hap-today-stat-val time platform-time-val" style="color: var(--accent);">${formatTodayTime(todayPlatformTime)}</span>
-                        </div>
-                        <div class="hap-today-stat-item">
-                            <span class="hap-today-stat-label">Test Vaxtı</span>
-                            <span class="hap-today-stat-val time test-time-val" style="color: #f59e0b;">${formatTodayTime(todayTime)}</span>
-                        </div>
-                        <div class="hap-today-stat-item">
-                            <span class="hap-today-stat-label">Bugünkü Cavablar</span>
-                            <span class="hap-today-stat-val ratio">
-                                <span class="correct-text" style="color: var(--active); font-weight: 700;">${todayCorrect} Düz</span> / 
-                                <span class="wrong-text" style="color: var(--wrong); font-weight: 700;">${todayWrong} Səhv</span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="hap-chart-body" style="position: relative;">
-                        <canvas id="home-dynamics-canvas" style="width: 100%; height: 250px;"></canvas>
-                        <div id="chart-tooltip" class="chart-tooltip" style="display: none;"></div>
-                    </div>
+                    </section>
                 </div>
-
-                <!-- Mövzu Sınaq İmtahanları (PDF) Bölməsi -->
-                <div class="hap-chart-panel" style="margin-top: 12px; border-color: rgba(99, 102, 241, 0.15);">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <span style="font-size: 1.3rem;">📝</span>
-                        <div class="hap-section-label" style="margin: 0; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Mövzu Sınaq İmtahanları (PDF)</div>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: -4px; margin-bottom: 8px; font-weight: 500;">
-                        Yüklənmiş PDF testlərinin hər biri üzrə ayrıca tərtib olunmuş 20 suallıq sınaqlar.
-                    </p>
-                    <div class="home-pdf-subjects-grid">
-                        ${subjectCardsHTML || '<div style="color: var(--text-muted); font-size: 0.9rem; padding: 10px;">İmtahan tapılmadı</div>'}
-                    </div>
-                </div>
-
             </div>
         `;
 
         this.renderHomeCharts(globalCorrect, globalWrong, unanswered);
         this.drawDynamicsChart();
+        if (typeof LifeOS !== 'undefined' && LifeOS.updateNavProgress) LifeOS.updateNavProgress();
 
         // Hide top nav since we are in home screen
         const tn = document.getElementById('top-nav');
@@ -1037,188 +426,98 @@ const QuizApp = {
         }
     },
 
+    // İmtahan page: every subject's midterm exams at a glance
     showPdfExamsDashboard: function () {
         this.stopTimer();
         this.state.view = 'pdf-exams-dashboard';
         this.state.pdfExamReferrer = 'dashboard';
-        
-        let totalQ = 0;
-        let totalAttempts = 0;
-        let totalCorrect = 0;
-        let totalWrong = 0;
-        let totalTime = 0;
+        const container = document.getElementById('content-area');
+        if (!container) return;
+        const data = (typeof pdfExamsData !== 'undefined') ? pdfExamsData : {};
 
-        // Calculate aggregates for all PDF Exams
-        if (typeof pdfExamsData !== 'undefined') {
-            Object.keys(pdfExamsData).forEach(subject => {
-                const exams = pdfExamsData[subject] || [];
-                exams.forEach((examQs, idx) => {
-                    totalQ += examQs.length;
-                    const examKey = `${subject}_pdf_${idx}`;
-                    if (this.stats[examKey]) {
-                        const s = this.stats[examKey];
-                        if (s.t) totalAttempts += s.t;
-                        if (s.c) totalCorrect += s.c;
-                        if (s.w) totalWrong += s.w;
-                        if (s.time) totalTime += s.time;
-                    }
-                });
+        let totalQ = 0, answered = 0, correct = 0, wrong = 0, time = 0, examCount = 0;
+        const rows = Object.keys(data).map(subject => {
+            const exams = data[subject] || [];
+            const r = { subject, exams: exams.length, done: 0, total: 0, t: 0, ok: 0, bad: 0, last: 0 };
+            exams.forEach((examQs, idx) => {
+                const st = this.stats[`${subject}_pdf_${idx}`] || {};
+                r.total += examQs.length;
+                if ((st.t || 0) > 0) r.done++;
+                r.t += st.t || 0; r.ok += st.c || 0; r.bad += st.w || 0;
+                const bd = st.bd && st.bd['pdf-exam'] && st.bd['pdf-exam'][`İmtahan ${idx + 1}`];
+                r.last = Math.max(r.last, (bd && bd.last) || 0);
+                time += st.time || 0;
             });
-        }
+            totalQ += r.total; answered += r.t; correct += r.ok; wrong += r.bad; examCount += r.exams;
+            return r;
+        });
+        const acc = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+        const platformTime = this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0;
 
-        loadTemplate('course-dashboard-template');
+        let rec;
+        if (answered === 0) rec = "Siz hələ heç bir vize imtahanı işləməmisiniz. Biliklərinizi yoxlamaq üçün aşağıdakı fənlərdən birini seçib ilk imtahana başlayın!";
+        else if (acc >= 80) rec = `Əla göstərici! Vize imtahanlarında ümumi dəqiqliyiniz <b>${acc}%</b> təşkil edir. Hələ işləmədiyiniz digər imtahanları tamamlayaraq hazırlığınızı mükəmməlləşdirə bilərsiniz.`;
+        else if (acc >= 50) rec = `İrəliləyişiniz yaxşıdır (ümumi dəqiqlik: <b>${acc}%</b>). Daha yüksək nəticə üçün səhv cavablandırdığınız sualları yenidən işləməyi tövsiyə edirik.`;
+        else rec = `Vize imtahanlarında dəqiqliyiniz <b>${acc}%</b> səviyyəsindədir. Sualları tələsmədən oxumağı və zəif nəticə göstərdiyiniz imtahanları təkrar işləməyi tövsiyə edirik.`;
 
-        // Course Title
-        const titleEl = document.getElementById('db-course-title');
-        if (titleEl) titleEl.textContent = "Mövzu Sınaq İmtahanları";
+        container.innerHTML = `
+            <div class="cp">
+                <div class="cp-head">
+                    <div class="cp-head-l">
+                        <button class="qa-icon" onclick="QuizApp.start()" title="Ana səhifə" aria-label="Ana səhifə">←</button>
+                        <div><h1>İmtahan</h1><p>${rows.length} fənn · ${examCount} vize imtahanı</p></div>
+                    </div>
+                </div>
+                ${this.cpStrip({ totalQ, answered, correct, wrong, extra: ['Vaxt', this.formatTime(time) + ' / ' + this.formatTime(platformTime)] })}
+                <p class="cp-advice">${rec}</p>
+                <div class="cp-tabs-row"><span class="cp-sec">Fənlər</span>${this.cpToggle()}</div>
+                ${rows.length ? this.cpList(rows.map(r => ({ name: r.subject, total: r.total, ok: r.ok, bad: r.bad, done: r.t, lastStr: this.formatLastTested(r.last, r.t > 0), click: `QuizApp.showPdfExamsList('${r.subject.replace(/'/g, "\\'")}', 'dashboard')`, extra: `<span><b>${r.done} / ${r.exams}</b> imtahan</span>` })), 'Fənn', 'Aç') : '<div class="hx-empty">İmtahan tapılmadı</div>'}
+            </div>`;
 
-        const descEl = titleEl ? titleEl.nextElementSibling : null;
-        if (descEl) descEl.textContent = "Yüklənmiş PDF sınaq imtahanları üzrə ümumi statistikalar və fənlər";
-
-        // Statistics
-        document.getElementById('db-total-questions').textContent = totalQ;
-        const attemptsVal = document.getElementById('db-total-attempts');
-        if (attemptsVal) attemptsVal.textContent = totalAttempts;
-        document.getElementById('db-total-time').textContent = this.formatTime(totalTime) + " / " + this.formatTime(this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0);
-        
-        const correctVal = document.getElementById('db-total-correct');
-        const wrongVal = document.getElementById('db-total-wrong');
-        correctVal.textContent = totalCorrect;
-        wrongVal.textContent = totalWrong;
-
-        let acc = 0;
-        if (totalAttempts > 0) acc = Math.round((totalCorrect / totalAttempts) * 100);
-        const accVal = document.getElementById('db-accuracy');
-        if (accVal) accVal.textContent = acc + '%';
-
-        // Hide specific elements not needed for global PDF exams dashboard
-        const wrongExamContainer = document.getElementById('db-wrong-exam-container');
-        if (wrongExamContainer) {
-            wrongExamContainer.style.display = 'none';
-            wrongExamContainer.innerHTML = '';
-        }
-        const mixedExamContainer = document.getElementById('db-mixed-exam-container');
-        if (mixedExamContainer) {
-            mixedExamContainer.style.display = 'none';
-            mixedExamContainer.innerHTML = '';
-        }
-        const warningContainer = document.getElementById('db-warning-container');
-        if (warningContainer) {
-            warningContainer.style.display = 'none';
-            warningContainer.innerHTML = '';
-        }
-
-        // Configure correct/wrong card click behavior
-        const correctCard = correctVal.parentElement;
-        const wrongCard = wrongVal.parentElement;
-        if (correctCard && wrongCard) {
-            correctCard.style.cursor = 'default';
-            correctCard.onclick = null;
-            correctCard.title = '';
-            wrongCard.style.cursor = 'default';
-            wrongCard.onclick = null;
-            wrongCard.title = '';
-        }
-
-        // AI Recommendation text
-        const recTextEl = document.getElementById('db-recommendation-text');
-        if (recTextEl) {
-            let rec = "";
-            if (totalAttempts === 0) {
-                rec = "Siz hələ heç bir PDF sınaq imtahanı işləməmisiniz. Mövzu biliklərinizi yoxlamaq üçün aşağıdakı fənlərdən birini seçib ilk sınağa başlayın!";
-            } else {
-                if (acc >= 80) {
-                    rec = `Əla göstərici! PDF sınaqlarında ümumi dəqiqliyiniz <b>${acc}%</b> təşkil edir. Mövzuları yaxşı mənimsədiyiniz görünür. Hələ işləmədiyiniz digər PDF imtahanlarını tamamlayaraq hazırlığınızı mükəmməlləşdirə bilərsiniz.`;
-                } else if (acc >= 50) {
-                    rec = `İrəliləyişiniz yaxşıdır (ümumi dəqiqlik: <b>${acc}%</b>). Daha yüksək nəticə əldə etmək üçün səhv cavablandırdığınız sualları və sınaqları yenidən işləməyi və mövzuları nəzərdən keçirməyi tövsiyə edirik.`;
-                } else {
-                    rec = `PDF sınaqlarında dəqiqliyiniz <b>${acc}%</b> səviyyəsindədir. Mövzuları daha dərindən öyrənməyi, sualları tələsmədən oxumağı və zəif nəticə göstərdiyiniz sınaqları təkrar işləməyi tövsiyə edirik.`;
-                }
-            }
-            recTextEl.innerHTML = rec;
-        }
-
-        // Right column setup
-        const unitsHeader = document.querySelector('.units-header h3');
-        if (unitsHeader) unitsHeader.textContent = "Fənlər";
-
-        const layoutToggle = document.querySelector('.layout-toggle');
-        if (layoutToggle) layoutToggle.style.display = 'none';
-
-        const listEl = document.getElementById('db-unit-list');
-        if (listEl) {
-            listEl.innerHTML = "";
-            listEl.className = "unit-list-container";
-            listEl.style.display = 'grid';
-            listEl.style.gridTemplateColumns = 'repeat(auto-fill, minmax(280px, 1fr))';
-            listEl.style.gap = '16px';
-
-            if (typeof pdfExamsData !== 'undefined') {
-                Object.keys(pdfExamsData).forEach(subject => {
-                    const style = COURSE_STYLES[subject] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
-                    const numExams = pdfExamsData[subject].length;
-
-                    // Calculate subject completed/attempted exams and accuracy
-                    let attemptedExams = 0;
-                    let subjectCorrect = 0;
-                    let subjectAttempts = 0;
-                    for (let idx = 0; idx < numExams; idx++) {
-                        const examKey = `${subject}_pdf_${idx}`;
-                        if (this.stats[examKey] && this.stats[examKey].t > 0) {
-                            attemptedExams++;
-                            subjectCorrect += this.stats[examKey].c || 0;
-                            subjectAttempts += this.stats[examKey].t || 0;
-                        }
-                    }
-                    let subjectAcc = subjectAttempts > 0 ? Math.round((subjectCorrect / subjectAttempts) * 100) : 0;
-
-                    const card = document.createElement('div');
-                    card.className = "pdf-subject-card";
-                    card.style.cssText = `--accent-color: ${style.accent}; --accent-glow: ${style.accent}25; --icon-bg: linear-gradient(135deg, ${style.g1}20, ${style.g2}20); --icon-border: ${style.accent}30; display: flex; flex-direction: column; gap: 14px; padding: 20px; align-items: stretch;`;
-                    card.onclick = () => QuizApp.showPdfExamsList(subject, 'dashboard');
-                    card.innerHTML = `
-                        <div style="display: flex; align-items: center; gap: 14px;">
-                            <div class="subject-icon-wrap">
-                                ${style.icon}
-                            </div>
-                            <div style="flex: 1; min-width: 0;">
-                                <div class="subject-title" style="min-height: auto; font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${subject}">${subject}</div>
-                                <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 500; margin-top: 4px;">
-                                    ${numExams} Sınaq İmtahanı
-                                </div>
-                            </div>
-                            <div class="subject-arrow-wrap">
-                                <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
-                            </div>
-                        </div>
-                        
-                        <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem;">
-                            <div style="display: flex; flex-direction: column; gap: 2px;">
-                                <span style="color: var(--text-muted); font-size: 0.68rem; font-weight: 600; text-transform: uppercase;">İşlənilib</span>
-                                <span style="color: var(--text-main); font-weight: 700;">${attemptedExams} / ${numExams}</span>
-                            </div>
-                            <div style="display: flex; flex-direction: column; gap: 2px; align-items: flex-end;">
-                                <span style="color: var(--text-muted); font-size: 0.68rem; font-weight: 600; text-transform: uppercase;">Dəqiqlik</span>
-                                <span style="color: ${attemptedExams > 0 ? 'var(--accent)' : 'var(--text-muted)'}; font-weight: 700;">${attemptedExams > 0 ? subjectAcc + '%' : '-'}</span>
-                            </div>
-                        </div>
-                    `;
-                    listEl.appendChild(card);
-                });
-            }
-        }
-
-        // Hide top nav since we are in a dashboard screen
         const tn = document.getElementById('top-nav');
         if (tn) tn.style.display = 'none';
-
-        // Manage sidebar active states
         const pdfExamsBtn = document.getElementById('btn-pdf-exams');
         if (pdfExamsBtn) {
             document.querySelectorAll('.course-btn').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
             pdfExamsBtn.classList.add('active');
         }
+    },
+
+    // Exam list for one subject (wrong-answer review, most frequent questions, then each exam)
+    buildPdfExamsHTML: function (subjectName) {
+        const exams = (typeof pdfExamsData !== 'undefined') ? (pdfExamsData[subjectName] || []) : [];
+        const esc = subjectName.replace(/'/g, "\\'");
+        const rows = [];
+
+        let wrongCount = 0;
+        exams.forEach((examQs, idx) => { wrongCount += (this.wrongDB[`${subjectName}_pdf_${idx}`] || []).length; });
+        const lead = wrongCount > 0 ? {
+            row: `<tr onclick="QuizApp.startPdfSubjectAllWrQs('${esc}')"><td><b>Multi (səhvlərin təkrarı)</b></td><td class="m">Bütün vize imtahanlarındakı səhvlər</td><td class="n">${wrongCount}</td><td class="n">-</td><td class="n r">${wrongCount}</td><td class="n">-</td><td class="m">-</td><td class="n"><span class="cp-start">Başla</span></td></tr>`,
+            card: `
+                    <button class="cp-u multi" onclick="QuizApp.startPdfSubjectAllWrQs('${esc}')">
+                        <div class="cp-u-top"><b>Multi (səhvlərin təkrarı)</b><span class="cp-pct">${wrongCount} səhv</span></div>
+                        <div class="cp-u-nums"><span>Bu fənnin bütün vize imtahanlarında etdiyiniz <b>${wrongCount}</b> səhv sual</span></div>
+                        <div class="cp-u-foot"><span></span><span class="cp-start">Başla</span></div>
+                    </button>`
+        } : null;
+
+        const freqQs = this.getMostFrequentQuestions(subjectName);
+        if (freqQs.length > 0) {
+            const bd = this.stats[subjectName] && this.stats[subjectName].bd && this.stats[subjectName].bd['pdf-exam'];
+            const f = (bd && bd['Ən çox düşən suallar']) || {};
+            const ok = f.c || 0, bad = f.w || 0;
+            rows.push({ name: 'Ən çox düşən suallar', total: freqQs.length, ok, bad, done: ok + bad, lastStr: this.formatLastTested(f.last || 0, ok + bad > 0), click: `QuizApp.startPdfSubjectFrequentQs('${esc}')` });
+        }
+
+        exams.forEach((examQs, idx) => {
+            const examTitle = `İmtahan ${idx + 1}`;
+            const st = this.stats[`${subjectName}_pdf_${idx}`] || {};
+            const ok = st.c || 0, bad = st.w || 0;
+            const last = (st.bd && st.bd['pdf-exam'] && st.bd['pdf-exam'][examTitle] && st.bd['pdf-exam'][examTitle].last) || 0;
+            rows.push({ name: examTitle, total: examQs.length, ok, bad, done: ok + bad, lastStr: this.formatLastTested(last, ok + bad > 0), click: `QuizApp.startPdfExam('${esc}', ${idx})`, badClick: `QuizApp.startPdfExamWrQs('${esc}', ${idx})` });
+        });
+        return rows.length ? this.cpList(rows, 'İmtahan', 'Başla', lead) : '<div class="hx-empty">İmtahan tapılmadı</div>';
     },
 
     showPdfExamsList: function (subjectName, referrer) {
@@ -1233,148 +532,26 @@ const QuizApp = {
         if (!container) return;
         
         const exams = (typeof pdfExamsData !== 'undefined') ? (pdfExamsData[subjectName] || []) : [];
-        const style = COURSE_STYLES[subjectName] || { icon: "📚", accent: "#6366f1", g1: "#6366f1", g2: "#8b5cf6" };
-        
-        let examsHTML = "";
-        
-        // Prepend Multi (All wrongs for this PDF subject)
-        let pdfWrQs = [];
+        let totalQ = 0, answered = 0, correct = 0, wrong = 0, time = 0;
         exams.forEach((examQs, idx) => {
-            const examKey = `${subjectName}_pdf_${idx}`;
-            if (this.wrongDB[examKey]) {
-                pdfWrQs = pdfWrQs.concat(this.wrongDB[examKey]);
-            }
+            const st = this.stats[`${subjectName}_pdf_${idx}`] || {};
+            totalQ += examQs.length;
+            answered += st.t || 0; correct += st.c || 0; wrong += st.w || 0; time += st.time || 0;
         });
-        
-        if (pdfWrQs.length > 0) {
-            examsHTML += `
-                <div class="unit-item" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.06) 0%, rgba(249, 115, 22, 0.06) 100%); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 18px; padding: 20px; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 14px; grid-column: 1 / -1;">
-                    <div class="unit-item-header" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-                        <div>
-                            <div class="unit-item-title" style="font-size: 1.15rem; font-weight: 800; color: var(--wrong); font-family: 'Plus Jakarta Sans', sans-serif;">
-                                ❌ SƏHVLƏRİN TƏKRARI (MULTİ)
-                            </div>
-                            <div class="unit-item-last-tested" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                Bu fənnin bütün PDF sınaqlarında etdiyiniz <strong>${pdfWrQs.length}</strong> səhv sualı yenidən işləyin.
-                            </div>
-                        </div>
-                        <button class="unit-btn-start" style="background: linear-gradient(135deg, #ef4444, #f97316); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); border: none;" onclick="QuizApp.startPdfSubjectAllWrQs('${subjectName.replace(/'/g, "\\'")}')">Başla</button>
-                    </div>
-                </div>
-            `;
-        }
+        const platformTime = this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0;
+        const examsHTML = this.buildPdfExamsHTML(subjectName);
 
-        // Add "Ən çox düşən suallar" section
-        const freqQs = this.getMostFrequentQuestions(subjectName);
-        if (freqQs.length > 0) {
-            let f_correct = 0, f_wrong = 0, f_lastTested = 0;
-            if (this.stats[subjectName] && this.stats[subjectName].bd && this.stats[subjectName].bd['pdf-exam'] && this.stats[subjectName].bd['pdf-exam']['Ən çox düşən suallar']) {
-                const item = this.stats[subjectName].bd['pdf-exam']['Ən çox düşən suallar'];
-                f_correct = item.c || 0;
-                f_wrong = item.w || 0;
-                f_lastTested = item.last || 0;
-            }
-            const f_totalAnswered = f_correct + f_wrong;
-            const f_lastTestedStr = this.formatLastTested(f_lastTested, f_totalAnswered > 0);
-
-            examsHTML += `
-                <div class="unit-item" style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.06) 0%, rgba(239, 68, 68, 0.06) 100%); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 18px; padding: 20px; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 14px; grid-column: 1 / -1;">
-                    <div class="unit-item-header" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-                        <div>
-                            <div class="unit-item-title" style="font-size: 1.15rem; font-weight: 800; color: #f97316; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; gap: 8px;">
-                                🔥 ƏN ÇOX DÜŞƏN SUALLAR
-                            </div>
-                            <div class="unit-item-last-tested" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                Bu fənnin imtahanlarında təkrarlanan <strong>${freqQs.length}</strong> ən populyar sualı işləyin. Son sınaq: ${f_lastTestedStr}
-                            </div>
-                        </div>
-                        <button class="unit-btn-start" style="background: linear-gradient(135deg, #f97316, #ef4444); box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2); border: none;" onclick="QuizApp.startPdfSubjectFrequentQs('${subjectName.replace(/'/g, "\\'")}')">Başla</button>
-                    </div>
-                    
-                    <div class="unit-item-stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: rgba(255,255,255,0.02); padding: 12px; border-radius: 12px; border: 1px solid var(--border);">
-                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                            <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--text-main);">${freqQs.length}</span>
-                            <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Cəm Sual</span>
-                        </div>
-                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                            <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--active);">${f_correct}</span>
-                            <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Düzgün</span>
-                        </div>
-                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                            <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--wrong);">${f_wrong}</span>
-                            <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Səhv</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        exams.forEach((examQs, idx) => {
-            const examTitle = `İmtahan ${idx + 1}`;
-            const examKey = `${subjectName}_pdf_${idx}`;
-            let c_correct = 0, c_wrong = 0, lastTested = 0;
-            if (this.stats[examKey]) {
-                c_correct = this.stats[examKey].c || 0;
-                c_wrong = this.stats[examKey].w || 0;
-                if (this.stats[examKey].bd && this.stats[examKey].bd['pdf-exam'] && this.stats[examKey].bd['pdf-exam'][examTitle]) {
-                    lastTested = this.stats[examKey].bd['pdf-exam'][examTitle].last || 0;
-                }
-            }
-            const totalAnswered = c_correct + c_wrong;
-            const lastTestedStr = this.formatLastTested(lastTested, totalAnswered > 0);
-            
-            examsHTML += `
-                <div class="unit-item" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 20px; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 14px;">
-                    <div class="unit-item-header" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
-                        <div>
-                            <div class="unit-item-title" style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif;">
-                                ${examTitle}
-                            </div>
-                            <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                ⏱️ Son sınaq: ${lastTestedStr}
-                            </div>
-                        </div>
-                        <button class="unit-btn-start" style="background: linear-gradient(135deg, ${style.g1}, ${style.g2}); box-shadow: 0 4px 12px ${style.accent}30;" onclick="QuizApp.startPdfExam('${subjectName.replace(/'/g, "\\'")}', ${idx})">Başla</button>
-                    </div>
-                    
-                    <div class="unit-item-stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: rgba(255,255,255,0.02); padding: 12px; border-radius: 12px; border: 1px solid var(--border);">
-                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                            <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--text-main);">${examQs.length}</span>
-                            <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Cəm Sual</span>
-                        </div>
-                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                            <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--active);">${c_correct}</span>
-                            <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Düzgün</span>
-                        </div>
-                        <div class="unit-stat-box" style="display: flex; flex-direction: column; align-items: center; justify-content: center; ${c_wrong > 0 ? 'cursor: pointer; background: rgba(239, 68, 68, 0.05); transition: background 0.2s;' : ''}" ${c_wrong > 0 ? `onclick="QuizApp.startPdfExamWrQs('${subjectName.replace(/'/g, "\\'")}', ${idx})" title="Səhvləri yenidən işləmək üçün klikləyin"` : ''}>
-                            <span class="us-val" style="font-size: 1rem; font-weight: 800; color: var(--wrong);">${c_wrong}</span>
-                            <span class="us-lbl" style="font-size: 0.62rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.5px;">Səhv</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-        
         container.innerHTML = `
-            <div class="dashboard" style="max-width: 1000px; width: 100%; margin: 0 auto; padding: 10px 0;">
-                <div style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 12px;">
-                    <button class="btn btn-sec" style="padding: 8px 16px; width: auto; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;" onclick="if(QuizApp.state.pdfExamReferrer === 'dashboard') { QuizApp.showPdfExamsDashboard(); } else { QuizApp.start(); }">
-                        ← Geri Qayıt
-                    </button>
-                    <div style="display: flex; align-items: center; gap: 12px; margin-top: 8px;">
-                        <div style="width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; background: linear-gradient(135deg, ${style.g1}20, ${style.g2}20); border: 1px solid ${style.accent}30; color: ${style.accent};">
-                            ${style.icon}
-                        </div>
-                        <div>
-                            <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; margin: 0;">${subjectName}</h2>
-                            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 3px; font-weight: 500;">PDF Sınaq İmtahanları</p>
-                        </div>
+            <div class="cp">
+                <div class="cp-head">
+                    <div class="cp-head-l">
+                        <button class="qa-icon" onclick="if(QuizApp.state.pdfExamReferrer === 'dashboard') { QuizApp.showPdfExamsDashboard(); } else { QuizApp.start(); }" title="Geri qayıt" aria-label="Geri qayıt">←</button>
+                        <div><h1>${subjectName}</h1><p>${exams.length} vize imtahanı</p></div>
                     </div>
                 </div>
-                
-                <div class="unit-list-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
-                    ${examsHTML || '<div style="color: var(--text-muted); font-size: 0.9rem; padding: 20px;">İmtahan tapılmadı</div>'}
-                </div>
+                ${this.cpStrip({ totalQ, answered, correct, wrong, extra: ['Vaxt', this.formatTime(time) + ' / ' + this.formatTime(platformTime)] })}
+                <div class="cp-tabs-row"><span class="cp-sec">İmtahanlar</span>${this.cpToggle()}</div>
+                ${examsHTML}
             </div>
         `;
         
@@ -1511,14 +688,7 @@ const QuizApp = {
     getMixedOnlyQuestions: function (subjectName) {
         if (typeof quizData === 'undefined') return [];
         
-        const subjects = [
-            "Atatürk İlkeleri ve İnkılap Tarihi II",
-            "Grafik Tasarım II",
-            "Görsel İletişim Tasarımı",
-            "Masaüstü Yayıncılık",
-            "Tasarımda Tipografi",
-            "Türk Dili II"
-        ];
+        const subjects = SUBJECTS;
         const sIdx = subjects.indexOf(subjectName);
         if (sIdx === -1) return [];
         const uVal = sIdx + 1;
@@ -1620,14 +790,7 @@ const QuizApp = {
         
         // 1. Gather from quizData
         if (typeof quizData !== 'undefined') {
-            const subjects = [
-                "Atatürk İlkeleri ve İnkılap Tarihi II",
-                "Grafik Tasarım II",
-                "Görsel İletişim Tasarımı",
-                "Masaüstü Yayıncılık",
-                "Tasarımda Tipografi",
-                "Türk Dili II"
-            ];
+            const subjects = SUBJECTS;
             quizData.forEach(q => {
                 let source = q.c;
                 if (q.c === 'Mixed') {
@@ -1724,9 +887,9 @@ const QuizApp = {
                 
                 let badgesHTML = "";
                 occurrences.forEach(occ => {
-                    const style = COURSE_STYLES[occ.course] || { accent: '#6366f1' };
+                    const style = COURSE_STYLES[occ.course] || { accent: '#8b5cf6' };
                     badgesHTML += `
-                        <span class="badge-meta-course" style="background: rgba(99, 102, 241, 0.08); border: 1px solid ${style.accent}30; color: ${style.accent}; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; margin-right: 6px; margin-top: 4px; display: inline-block;">
+                        <span class="badge-meta-course" style="background: rgba(139, 92, 246, 0.08); border: 1px solid ${style.accent}30; color: ${style.accent}; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; margin-right: 6px; margin-top: 4px; display: inline-block;">
                             ${occ.source}
                         </span>
                     `;
@@ -1755,23 +918,10 @@ const QuizApp = {
         });
 
         container.innerHTML = `
-            <div class="dashboard" style="max-width: 1000px; width: 100%; margin: 0 auto; padding: 10px 0;">
-                <div style="margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap;">
-                    <div>
-                        <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; margin: 0;">⚠️ Ziddiyyətli Suallar</h2>
-                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 5px; font-weight: 500;">Bazada eyni suala fərqli imtahanlarda fərqli cavab verilmiş ${conflicts.length} ziddiyyət mövcuddur.</p>
-                    </div>
-                    <div style="display: flex; gap: 10px;">
-                        <button class="btn btn-pri" style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2); border: none;" onclick="QuizApp.startConflictingQuestionsQuiz()">
-                            ⚡ Sınağa Başla (${conflicts.length} Sual)
-                        </button>
-                    </div>
-                </div>
+            <div class="cp">
+                ${this.cpHead('Ziddiyyətli suallar', `Eyni suala fərqli imtahanlarda fərqli cavab verilmiş ${conflicts.length} ziddiyyət`, '', `<button class="btn btn-pri cp-wrong" onclick="QuizApp.startConflictingQuestionsQuiz()" ${conflicts.length ? '' : 'disabled'}>Sınağa başla <i>${conflicts.length}</i></button>`)}
+                <input type="text" id="conflict-search" class="cp-field" placeholder="Suallarda axtarış..." oninput="QuizApp.filterConflicts(this.value)">
 
-                <div style="margin-bottom: 20px;">
-                    <input type="text" id="conflict-search" placeholder="Suallarda axtarış..." oninput="QuizApp.filterConflicts(this.value)" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main); font-size: 0.95rem; font-family: 'Plus Jakarta Sans', sans-serif; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-                </div>
-                
                 <div id="conflicts-container" class="unit-list-container" style="display: grid; grid-template-columns: 1fr; gap: 16px;">
                     ${cardsHTML || '<div style="color: var(--text-muted); font-size: 0.9rem; padding: 20px;">Heç bir ziddiyyət tapılmadı.</div>'}
                 </div>
@@ -1890,37 +1040,33 @@ const QuizApp = {
         // --- Course Progress Rows ---
         const list = document.getElementById('home-progress-list');
         if (!list) return;
-        list.innerHTML = '';
-
-        const totalQ = correct + wrong + unanswered;
-        const totalAns = correct + wrong;
-        const acc = totalAns > 0 ? Math.round((correct / totalAns) * 100) : 0;
-        const pctProgress = totalQ > 0 ? (totalAns / totalQ) * 100 : 0;
-
-        const totalRow = document.createElement('div');
-        totalRow.className = 'hap-course-row clickable';
-        totalRow.onclick = () => this.showOverallDashboard();
-        totalRow.innerHTML = `
-            <div class="hap-course-left">
-                <div class="hap-course-dot" style="background: linear-gradient(135deg, #a8a29e, #78716c);">📊</div>
-                <div class="hap-course-info">
-                    <div class="hap-course-name" style="font-weight: 800; color: #f5f5f5;">Ümumi Toplam</div>
-                    <div class="hap-course-track">
-                        <div class="hap-course-bar" style="background: linear-gradient(90deg, #a8a29e, #78716c); width: ${Math.min(pctProgress, 100)}%;"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="hap-course-stats">
-                <div class="hap-mini-stat" style="color:#22c55e">${correct}</div>
-                <div class="hap-mini-stat" style="color:#ef4444">${wrong}</div>
-                <div class="hap-mini-badge" style="background: #ffffff15; color: #ffffff">${acc}%</div>
-                <div class="hap-mini-badge" style="background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.1);">${totalQ}</div>
-            </div>
+        list.innerHTML = `
+            <div class="hx-tr hx-th"><span>Fənn</span><span>İrəliləyiş</span><span>Düz</span><span>Səhv</span><span>Dəqiqlik</span><span>Sual</span><span></span></div>
         `;
-        list.appendChild(totalRow);
 
-        Object.keys(CONFIG).forEach((c, idx) => {
-            const style = courseStyles[c] || { accent: '#6366f1', g1: '#6366f1', g2: '#8b5cf6' };
+        const addRow = (name, icon, c, w, total, onClick, isTotal) => {
+            const answered = c + w;
+            const acc = answered > 0 ? Math.round((c / answered) * 100) : 0;
+            const share = (n) => total > 0 ? ((n / total) * 100).toFixed(2) : 0;
+            const row = document.createElement('button');
+            row.className = 'hx-tr' + (isTotal ? ' hx-total' : '');
+            row.onclick = onClick;
+            row.innerHTML = `
+                <span class="hx-name"><span class="hx-em">${icon}</span><b>${name}</b></span>
+                <span class="hx-bar seg"><i class="ok" style="flex:0 0 ${share(c)}%"></i><i class="bad" style="flex:0 0 ${share(w)}%"></i><i class="rest"></i></span>
+                <span class="hx-td g">${c}</span>
+                <span class="hx-td r">${w}</span>
+                <span class="hx-acc ${answered === 0 ? '' : (acc >= 80 ? 'hi' : (acc < 60 ? 'lo' : ''))}">${acc}%</span>
+                <span class="hx-td m">${total}</span>
+                <span class="hx-chev">›</span>
+            `;
+            list.appendChild(row);
+        };
+
+        addRow('Ümumi Toplam', '📊', correct, wrong, correct + wrong + unanswered, () => this.showOverallDashboard(), true);
+
+        Object.keys(CONFIG).forEach((c) => {
+            const style = courseStyles[c] || {};
             let totalQ = 0;
             if (typeof quizData !== 'undefined') totalQ = quizData.filter(q => q.c === c).length;
             if (typeof pdfExamsData !== 'undefined' && pdfExamsData[c]) {
@@ -1929,51 +1075,17 @@ const QuizApp = {
                 });
             }
 
-            let answered = 0;
             let correctC = 0;
             let wrongC = 0;
-
             Object.keys(this.stats).forEach(key => {
                 if (key === c || key.startsWith(c + '_pdf_')) {
                     const stat = this.stats[key] || {};
-                    answered += stat.t || 0;
                     correctC += stat.c || 0;
                     wrongC += stat.w || 0;
                 }
             });
 
-            const pctProgress = totalQ > 0 ? (answered / totalQ) * 100 : 0;
-            const pctCorrect = answered > 0 ? Math.round((correctC / answered) * 100) : 0;
-
-            const row = document.createElement('div');
-            row.className = 'hap-course-row clickable';
-            row.onclick = () => this.selectCat(c, 'units');
-            row.style.setProperty('--c-accent', style.accent);
-            row.style.setProperty('--c-g1', style.g1);
-            row.style.setProperty('--c-g2', style.g2);
-            row.innerHTML = `
-                <div class="hap-course-left">
-                    <div class="hap-course-dot" style="background: linear-gradient(135deg, ${style.g1}, ${style.g2});">${style.icon || '📘'}</div>
-                    <div class="hap-course-info">
-                        <div class="hap-course-name">${c}</div>
-                        <div class="hap-course-track">
-                            <div class="hap-course-bar" data-pct="${pctProgress}" style="background: linear-gradient(90deg, ${style.g1}, ${style.g2});"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hap-course-stats">
-                    <div class="hap-mini-stat" style="color:#22c55e">${correctC}</div>
-                    <div class="hap-mini-stat" style="color:#ef4444">${wrongC}</div>
-                    <div class="hap-mini-badge" style="background: ${style.accent}22; color: ${style.accent}">${pctCorrect}%</div>
-                    <div class="hap-mini-badge" style="background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.1);">${totalQ}</div>
-                </div>
-            `;
-            list.appendChild(row);
-
-            setTimeout(() => {
-                const bar = row.querySelector('.hap-course-bar');
-                if (bar) bar.style.width = Math.min(pctProgress, 100) + '%';
-            }, 80 + idx * 60);
+            addRow(c, style.icon || '📘', correctC, wrongC, totalQ, () => this.selectCat(c, 'units'), false);
         });
     },
 
@@ -1984,7 +1096,193 @@ const QuizApp = {
         if (btn) btn.classList.add('active-sub');
 
         this.showCourseDashboard(c);
-        if (window.innerWidth <= 768) toggleSidebar();
+        closeSidebar();
+    },
+
+    // Short study advice for a subject, from its answered count and accuracy
+    getCourseAdvice: function (s, totalQ) {
+        let rec = "";
+        const totalAnswered = s.t;
+        if (totalAnswered === 0) {
+            rec = "Bu fənn üzrə hələ heç bir sual cavablandırmamısınız. Öyrənməyə və özünüzü sınamağa başlamaq üçün aşağıdakı bölmələrdən birini seçib 'Başla' düyməsinə klikləyin!";
+        } else if (totalAnswered < 15) {
+            const percent = Math.round((s.c / s.t) * 100);
+            const progressPct = totalQ > 0 ? Math.round((totalAnswered / totalQ) * 100) : 0;
+            rec = `Siz hələ ki bu fənn üzrə cəmi <b>${totalAnswered} sual</b> cavablandırmısınız (doğru cavab nisbəti: ${percent}%, fənn üzrə irəliləyiş: ${progressPct}%). AI-in daha dolğun analiz və tövsiyələr verə bilməsi üçün bölmələri işləməyə davam edin!`;
+        } else {
+            const percent = Math.round((s.c / s.t) * 100);
+            if (percent >= 80) {
+                rec = `Mükəmməl göstərici! Bu fənn üzrə cavablarınızın ${percent}%-i doğrudur. Biliklərinizi daha da möhkəmləndirmək üçün sol menyudakı <b>Böyük Sınaq</b> rejimi ilə özünüzü sınaqdan keçirə bilərsiniz.`;
+            } else if (percent >= 50) {
+                rec = `Göstəriciniz yaxşıdır (${percent}% doğru). Səhv etdiyiniz sualları yenidən nəzərdən keçirmək üçün sol menyudan <b>Səhvlərim</b> bölməsinə daxil olmanızı və zəif olduğunuz bölmələri yenidən təkrarlamanızı tövsiyə edirik.`;
+            } else {
+                rec = `Bu fənn üzrə çətinlik çəkdiyiniz görünür (doğru cavab: ${percent}%). Sualları daha diqqətlə oxumağı, hər bir bölməni (Unit) ayrıca olaraq təkrar-təkrar işləməyi və çətin sualları <b>Seçilmişlər</b> (Bookmark) siyahısına əlavə edərək təkrar etməyi tövsiyə edirik.`;
+            }
+        }
+        return rec;
+    },
+
+    setCourseTab: function (tab) {
+        this.state.courseTab = tab;
+        this.showCourseDashboard(this.state.course);
+    },
+
+    // Subject page: one stats strip, a view switcher (units / mixed quiz / midterm exams) and unit cards
+    renderCoursePage: function (c) {
+        this.stopTimer();
+        if (this.state.courseTabFor !== c) { this.state.courseTab = 'units'; this.state.courseTabFor = c; }
+        this.state.view = 'dashboard';
+        this.state.course = c;
+        const tn = document.getElementById('top-nav');
+        if (tn) tn.style.display = 'none';
+        const container = document.getElementById('content-area');
+        if (!container) return;
+        const esc = c.replace(/'/g, "\\'");
+        const tab = this.state.courseTab || 'units';
+        const layout = this.getLayout();
+
+        // Totals (same sources as before: the subject plus its exams)
+        const s = this.stats[c] || { t: 0, c: 0, w: 0, time: 0, bd: {} };
+        let totalQ = typeof quizData !== 'undefined' ? quizData.filter(q => q.c === c).length : 0;
+        const exams = (typeof pdfExamsData !== 'undefined' && pdfExamsData[c]) ? pdfExamsData[c] : [];
+        exams.forEach(e => { totalQ += e.length; });
+        let answered = 0, correctC = 0, wrongC = 0, timeC = 0;
+        Object.keys(this.stats).forEach(key => {
+            if (key === c || key.startsWith(c + '_pdf_')) {
+                const st = this.stats[key] || {};
+                answered += st.t || 0; correctC += st.c || 0; wrongC += st.w || 0; timeC += st.time || 0;
+            }
+        });
+        const acc = answered > 0 ? Math.round((correctC / answered) * 100) : 0;
+        const platformTime = this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0;
+        const share = (n, total) => total > 0 ? Math.min(100, (n / total) * 100).toFixed(2) : 0;
+        const bar = (total, ok, bad, cls) => `<span class="cp-bar ${cls || ''}"><i class="ok" style="flex:0 0 ${share(ok, total)}%"></i><i class="bad" style="flex:0 0 ${share(bad, total)}%"></i><i class="rest"></i></span>`;
+
+        // Units
+        const unitStats = (s.bd && s.bd['units']) || {};
+        const units = CONFIG[c].units.map((name, i) => {
+            const us = unitStats[`Unit ${i + 1}`] || {};
+            const total = typeof quizData !== 'undefined' ? quizData.filter(q => q.c === c && q.u === (i + 1)).length : 0;
+            const ok = us.c || 0, bad = us.w || 0;
+            let last = us.last || 0;
+            if (last === 0 && ok + bad > 0) last = this.getCourseLastActiveDateFromHistory(c);
+            return { name, total, ok, bad, done: ok + bad, lastStr: this.formatLastTested(last, ok + bad > 0) };
+        });
+        let worst = -1;
+        units.forEach((u, i) => { if (u.bad > 0 && (worst < 0 || u.bad > units[worst].bad)) worst = i; });
+
+        // Wrong answers
+        const wrQs = (this.wrongDB || {})[c] || [];
+        const hard = wrQs.filter(q => ((this.wrongCounts || {})[q.q] || 0) >= 2).length;
+        const veryHard = wrQs.filter(q => ((this.wrongCounts || {})[q.q] || 0) >= 3).length;
+        let multiLast = (unitStats['Multi'] && unitStats['Multi'].last) || 0;
+        const multiDone = unitStats['Multi'] ? (unitStats['Multi'].t || 0) : 0;
+        if (multiLast === 0 && multiDone > 0) multiLast = this.getCourseLastActiveDateFromHistory(c);
+
+        // Mixed-only questions (in the Mixed bank but not in the units)
+        const mixedOnly = this.getMixedOnlyQuestions(c);
+        const moStat = (s.bd && s.bd['mixed-only'] && s.bd['mixed-only']['Yalnız Mixed-də olan suallar']) || {};
+
+        const weakTag = '<span class="cp-weak-tag">Ən çox səhv</span>';
+        let content = '';
+        if (tab === 'mixed') {
+            content = `
+                <section class="cp-mix">
+                    <div>
+                        <h2>Qarışıq sınaq</h2>
+                        <p>Fənnin bütün bölmələrindən qarışıq 20 suallıq sürətli sınaq. Başlamaq üçün düyməyə basın.</p>
+                        <button class="btn btn-pri" onclick="startCourseMixedExam('${esc}')">Sınağa başla</button>
+                    </div>
+                    <div class="cp-mix-stats">
+                        <div><span class="hx-cap">Sual sayı</span><b>20</b></div>
+                        <div><span class="hx-cap">Mənbə</span><b>${units.filter(u => u.total).length} bölmə</b></div>
+                        <div><span class="hx-cap">Hələ işlənməyib</span><b>${Math.max(0, totalQ - answered)}</b></div>
+                    </div>
+                </section>`;
+        } else if (tab === 'exams') {
+            content = this.buildPdfExamsHTML(c);
+        } else if (layout === 'table') {
+            content = `
+                <div class="cp-tbl"><table>
+                    <thead><tr><th>Bölmə</th><th>İrəliləyiş</th><th class="n">Sual</th><th class="n">Düz</th><th class="n">Səhv</th><th class="n">Faiz</th><th>Son sınaq</th><th></th></tr></thead>
+                    <tbody>
+                        <tr onclick="QuizApp.startMultiUnit('${esc}')"><td><b>Multi (səhvlərin təkrarı)</b></td><td class="m">${hard} çətin (2+) · ${veryHard} çox çətin (3+)</td><td class="n">${wrQs.length}</td><td class="n">-</td><td class="n r">${wrQs.length}</td><td class="n">-</td><td class="m">${this.formatLastTested(multiLast, multiDone > 0)}</td><td class="n"><span class="cp-start">Başla</span></td></tr>
+                        ${mixedOnly.length ? `<tr onclick="QuizApp.startMixedOnlyQs('${esc}')"><td><b>Yalnız Mixed-də olan suallar</b></td><td>${bar(mixedOnly.length, moStat.c || 0, moStat.w || 0, 'sm')}</td><td class="n">${mixedOnly.length}</td><td class="n g">${moStat.c || 0}</td><td class="n r">${moStat.w || 0}</td><td class="n">${(moStat.t || 0) > 0 ? Math.round(((moStat.c || 0) / moStat.t) * 100) + '%' : '-'}</td><td class="m">${this.formatLastTested(moStat.last || 0, (moStat.t || 0) > 0)}</td><td class="n"><span class="cp-start">Başla</span></td></tr>` : ''}
+                        ${units.map((u, i) => `<tr class="${i === worst ? 'weak' : ''}" onclick="QuizApp.startUnit('${esc}', ${i})"><td><b>${u.name}</b>${i === worst ? ' ' + weakTag : ''}</td><td>${bar(u.total, u.ok, u.bad, 'sm')}</td><td class="n">${u.total}</td><td class="n g">${u.ok}</td><td class="n r">${u.bad}</td><td class="n">${u.done ? Math.round((u.ok / u.done) * 100) + '%' : '-'}</td><td class="m">${u.lastStr}</td><td class="n"><span class="cp-start">Başla</span></td></tr>`).join('')}
+                    </tbody>
+                </table></div>`;
+        } else {
+            content = `
+                <div class="cp-cards">
+                    <button class="cp-u multi" onclick="QuizApp.startMultiUnit('${esc}')">
+                        <div class="cp-u-top"><b>Multi (səhvlərin təkrarı)</b><span class="cp-pct">${wrQs.length} səhv</span></div>
+                        <div class="cp-u-nums"><span><b>${wrQs.length}</b> səhv sual</span><span class="h"><b>${hard}</b> çətin (2+)</span><span class="r"><b>${veryHard}</b> çox çətin (3+)</span></div>
+                        <div class="cp-u-foot"><span>Son sınaq: ${this.formatLastTested(multiLast, multiDone > 0)}</span><span class="cp-start">Başla</span></div>
+                    </button>
+                    ${mixedOnly.length ? `
+                    <button class="cp-u" onclick="QuizApp.startMixedOnlyQs('${esc}')">
+                        <div class="cp-u-top"><b>Yalnız Mixed-də olan suallar</b><span class="cp-pct">${mixedOnly.length} sual</span></div>
+                        ${bar(mixedOnly.length, moStat.c || 0, moStat.w || 0, 'sm')}
+                        <div class="cp-u-nums"><span><b>${mixedOnly.length}</b> sual</span><span class="g"><b>${moStat.c || 0}</b> düz</span><span class="r"><b>${moStat.w || 0}</b> səhv</span></div>
+                        <div class="cp-u-foot"><span>Son sınaq: ${this.formatLastTested(moStat.last || 0, (moStat.t || 0) > 0)}</span><span class="cp-start">Başla</span></div>
+                    </button>` : ''}
+                    ${units.map((u, i) => `
+                    <button class="cp-u ${u.total ? '' : 'empty'} ${i === worst ? 'weak' : ''}" onclick="QuizApp.startUnit('${esc}', ${i})">
+                        ${i === worst ? weakTag : ''}
+                        <div class="cp-u-top"><b>${u.name}</b><span class="cp-pct">${u.total ? Math.min(100, Math.round((u.done / u.total) * 100)) + '%' : 'sual yoxdur'}</span></div>
+                        ${bar(u.total, u.ok, u.bad, 'sm')}
+                        <div class="cp-u-nums"><span><b>${u.total}</b> sual</span><span class="g"><b>${u.ok}</b> düz</span><span class="r"><b>${u.bad}</b> səhv</span></div>
+                        <div class="cp-u-foot"><span>Son sınaq: ${u.lastStr}</span><span class="cp-start">Başla</span></div>
+                    </button>`).join('')}
+                </div>`;
+        }
+
+        container.innerHTML = `
+            <div class="cp">
+                <div class="cp-head">
+                    <div class="cp-head-l">
+                        <button class="qa-icon" onclick="QuizApp.start()" title="Ana səhifə" aria-label="Ana səhifə">←</button>
+                        <div><h1>${c}</h1><p>${units.length} bölmə · ${exams.length} vize imtahanı</p></div>
+                    </div>
+                    <button class="btn btn-pri cp-wrong" onclick="startCourseWrongExam('${esc}')" ${wrQs.length ? '' : 'disabled'}>Səhvlərim <i>${wrQs.length}</i></button>
+                </div>
+
+                <section class="cp-strip">
+                    <div class="cp-strip-row">
+                        <div><span class="hx-cap">Cəmi sual</span><b>${totalQ}</b></div>
+                        <div><span class="hx-cap">İşlənən</span><b>${answered}</b></div>
+                        <button class="g" onclick="QuizApp.reviewCourseAnswers('${esc}', true)" title="Doğru cavablandırdığınız suallara baxmaq üçün klikləyin"><span class="hx-cap">Düz</span><b>${correctC}</b></button>
+                        <button class="r" onclick="QuizApp.reviewCourseAnswers('${esc}', false)" title="Səhv cavablandırdığınız suallara baxmaq üçün klikləyin"><span class="hx-cap">Səhv</span><b>${wrongC}</b></button>
+                        <div class="a"><span class="hx-cap">Dəqiqlik</span><b>${acc}%</b></div>
+                        <div><span class="hx-cap">Vaxt</span><b>${this.formatTime(timeC)} / ${this.formatTime(platformTime)}</b></div>
+                    </div>
+                    ${bar(totalQ, correctC, wrongC, 'sm')}
+                </section>
+
+                <p class="cp-advice">${this.getCourseAdvice(s, totalQ)}</p>
+
+                <div class="cp-tabs-row">
+                    <span class="cp-tabs" role="group" aria-label="Bölmə">
+                        <button class="${tab === 'units' ? 'active' : ''}" onclick="QuizApp.setCourseTab('units')">Bölmələr <i>${units.length}</i></button>
+                        <button class="${tab === 'mixed' ? 'active' : ''}" onclick="QuizApp.setCourseTab('mixed')">Qarışıq sınaq <i>20 sual</i></button>
+                        <button class="${tab === 'exams' ? 'active' : ''}" onclick="QuizApp.setCourseTab('exams')">Vize imtahanları <i>${exams.length}</i></button>
+                    </span>
+                    ${tab !== 'mixed' ? `
+                    <span class="hx-tog">
+                        <button class="${layout !== 'table' ? 'active' : ''}" onclick="setDashboardLayout('grid')">Kart</button>
+                        <button class="${layout === 'table' ? 'active' : ''}" onclick="setDashboardLayout('table')">Cədvəl</button>
+                    </span>` : ''}
+                </div>
+                ${content}
+            </div>
+        `;
+    },
+
+    // Review the questions answered correctly or wrongly in a subject (from the stats strip)
+    reviewCourseAnswers: function (c, correct) {
+        const arr = ((correct ? this.correctDB : this.wrongDB) || {})[c] || [];
+        if (arr.length) this.startSpecial(arr, correct ? "Doğrular" : "Səhvlər", c);
+        else alert(correct ? "Doğru cavablandırdığınız sual hələ ki yoxdur və ya əvvəllər yaddaşda saxlanılmayıb." : "Əla! Səhv cavablandırdığınız sual yoxdur.");
     },
 
     showCourseDashboard: function (c) {
@@ -1995,509 +1293,9 @@ const QuizApp = {
                 return;
             }
         }
-        this.stopTimer();
-        this.state.view = 'dashboard';
-        this.state.course = c;
-        const tn = document.getElementById('top-nav');
-        if (tn) tn.style.display = 'none';
-
-        loadTemplate('course-dashboard-template');
-
-        // Course Title
-        const titleEl = document.getElementById('db-course-title');
-        if (titleEl) titleEl.textContent = c;
-
-        // Statistics
-        const s = this.stats[c] || { t: 0, c: 0, w: 0, time: 0, bd: {} };
-        let totalQ = 0;
-        if (typeof quizData !== 'undefined') {
-            totalQ = quizData.filter(q => q.c === c).length;
-        }
-        if (typeof pdfExamsData !== 'undefined' && pdfExamsData[c]) {
-            pdfExamsData[c].forEach(examQs => {
-                totalQ += examQs.length;
-            });
-        }
-
-        let answered = 0;
-        let correctC = 0;
-        let wrongC = 0;
-        let timeC = 0;
-
-        Object.keys(this.stats).forEach(key => {
-            if (key === c || key.startsWith(c + '_pdf_')) {
-                const stat = this.stats[key] || {};
-                answered += stat.t || 0;
-                correctC += stat.c || 0;
-                wrongC += stat.w || 0;
-                timeC += stat.time || 0;
-            }
-        });
-
-        document.getElementById('db-total-questions').textContent = totalQ;
-        const attemptsVal = document.getElementById('db-total-attempts');
-        if (attemptsVal) attemptsVal.textContent = answered;
-        document.getElementById('db-total-time').textContent = this.formatTime(timeC) + " / " + this.formatTime(this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0);
-        
-        const correctVal = document.getElementById('db-total-correct');
-        const wrongVal = document.getElementById('db-total-wrong');
-        correctVal.textContent = correctC;
-        wrongVal.textContent = wrongC;
-
-        let acc = 0;
-        if (answered > 0) acc = Math.round((correctC / answered) * 100);
-        const accVal = document.getElementById('db-accuracy');
-        if (accVal) accVal.textContent = acc + '%';
-
-        const correctCard = correctVal.parentElement;
-        const wrongCard = wrongVal.parentElement;
-        
-        correctCard.style.cursor = 'pointer';
-        correctCard.title = 'Doğru cavablandırdığınız suallara baxmaq üçün klikləyin';
-        correctCard.onclick = () => {
-            const arr = this.correctDB[c] || [];
-            if(arr.length) this.startSpecial(arr, "Doğrular", c);
-            else alert("Doğru cavablandırdığınız sual hələ ki yoxdur və ya əvvəllər yaddaşda saxlanılmayıb.");
-        };
-
-        wrongCard.style.cursor = 'pointer';
-        wrongCard.title = 'Səhv cavablandırdığınız suallara baxmaq üçün klikləyin';
-        wrongCard.onclick = () => {
-            const arr = this.wrongDB[c] || [];
-            if(arr.length) this.startSpecial(arr, "Səhvlər", c);
-            else alert("Əla! Səhv cavablandırdığınız sual yoxdur.");
-        };
-
-        // Wrong Exam Section
-        const wrongExamContainer = document.getElementById('db-wrong-exam-container');
-        if (wrongExamContainer) {
-            const wrQs = this.wrongDB[c] || [];
-            if (wrQs.length > 0) {
-                wrongExamContainer.style.display = 'block';
-                wrongExamContainer.innerHTML = `
-                    <div class="db-wrong-exam-box">
-                        <div class="db-wrong-exam-info">
-                            <div class="db-wrong-exam-title">❌ SƏHVLƏRİN TƏKRARI</div>
-                            <div class="db-wrong-exam-desc">Bu fəndən <span>${wrQs.length}</span> səhv cavablandırdığınız sual var. Onları düzəltmək üçün imtahana başlayın.</div>
-                        </div>
-                        <button class="db-wrong-exam-btn" onclick="startCourseWrongExam('${c.replace(/'/g, "\\'")}')">İmtahana Başla</button>
-                    </div>
-                `;
-            } else {
-                wrongExamContainer.style.display = 'none';
-                wrongExamContainer.innerHTML = '';
-            }
-        }
-
-        // Mixed Exam Section
-        const mixedExamContainer = document.getElementById('db-mixed-exam-container');
-        if (mixedExamContainer) {
-            mixedExamContainer.innerHTML = `
-                <div class="db-mixed-exam-box">
-                    <div class="db-mixed-exam-info">
-                        <div class="db-mixed-exam-title">🎲 QARIŞIQ SINAQ</div>
-                        <div class="db-mixed-exam-desc">Fənnin bütün bölmələrindən qarışıq <span>20 suallıq</span> sürətli sınaq imtahanı işləyin.</div>
-                    </div>
-                    <button class="db-mixed-exam-btn" onclick="startCourseMixedExam('${c.replace(/'/g, "\\'")}')">Sınağa Başla</button>
-                </div>
-            `;
-        }
-
-        // Find unit with most wrong answers
-        let maxWrong = 0;
-        let maxUnitName = "";
-        let maxUnitIdx = -1;
-        
-        if (s.bd && s.bd['units']) {
-            CONFIG[c].units.forEach((unitName, i) => {
-                const unitKey = `Unit ${i + 1}`;
-                const us = s.bd['units'][unitKey];
-                if (us && us.w > maxWrong) {
-                    maxWrong = us.w;
-                    maxUnitName = unitName;
-                    maxUnitIdx = i;
-                }
-            });
-        }
-        
-        const warningContainer = document.getElementById('db-warning-container');
-        if (warningContainer) {
-            if (maxWrong > 0) {
-                warningContainer.style.display = 'block';
-                warningContainer.innerHTML = `
-                    <div class="db-warning-box">
-                        <div class="db-warning-icon">⚠️</div>
-                        <div class="db-warning-content" style="display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 16px; flex-wrap: wrap;">
-                            <div style="flex: 1; min-width: 200px;">
-                                <div class="db-warning-title">ƏN ÇOX SƏHV EDİLƏN BÖLMƏ</div>
-                                <div class="db-warning-desc">Bu fəndən ən çox səhvi <span>${maxUnitName}</span> bölməsində etmisiniz (<span>${maxWrong} səhv</span>).</div>
-                            </div>
-                            <button class="unit-btn-start" style="background: linear-gradient(135deg, #ef4444 0%, #f97316 100%); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);" onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${maxUnitIdx})">Bölməyə Başla</button>
-                        </div>
-                    </div>
-                `;
-            } else {
-                warningContainer.style.display = 'none';
-                warningContainer.innerHTML = '';
-            }
-        }
-
-        // AI Recommendation
-        const recTextEl = document.getElementById('db-recommendation-text');
-        if (recTextEl) {
-            let rec = "";
-            const totalAnswered = s.t;
-            if (totalAnswered === 0) {
-                rec = "Bu fənn üzrə hələ heç bir sual cavablandırmamısınız. Öyrənməyə və özünüzü sınamağa başlamaq üçün aşağıdakı bölmələrdən birini seçib 'Başla' düyməsinə klikləyin!";
-            } else if (totalAnswered < 15) {
-                const percent = Math.round((s.c / s.t) * 100);
-                const progressPct = totalQ > 0 ? Math.round((totalAnswered / totalQ) * 100) : 0;
-                rec = `Siz hələ ki bu fənn üzrə cəmi <b>${totalAnswered} sual</b> cavablandırmısınız (doğru cavab nisbəti: ${percent}%, fənn üzrə irəliləyiş: ${progressPct}%). AI-in daha dolğun analiz və tövsiyələr verə bilməsi üçün bölmələri işləməyə davam edin!`;
-            } else {
-                const percent = Math.round((s.c / s.t) * 100);
-                if (percent >= 80) {
-                    rec = `Mükəmməl göstərici! Bu fənn üzrə cavablarınızın ${percent}%-i doğrudur. Biliklərinizi daha da möhkəmləndirmək üçün sol menyudakı <b>Böyük Sınaq</b> rejimi ilə özünüzü sınaqdan keçirə bilərsiniz.`;
-                } else if (percent >= 50) {
-                    rec = `Göstəriciniz yaxşıdır (${percent}% doğru). Səhv etdiyiniz sualları yenidən nəzərdən keçirmək üçün sol menyudan <b>Səhvlərim</b> bölməsinə daxil olmanızı və zəif olduğunuz bölmələri yenidən təkrarlamanızı tövsiyə edirik.`;
-                } else {
-                    rec = `Bu fənn üzrə çətinlik çəkdiyiniz görünür (doğru cavab: ${percent}%). Sualları daha diqqətlə oxumağı, hər bir bölməni (Unit) ayrıca olaraq təkrar-təkrar işləməyi və çətin sualları <b>Seçilmişlər</b> (Bookmark) siyahısına əlavə edərək təkrar etməyi tövsiyə edirik.`;
-                }
-            }
-            recTextEl.innerHTML = rec;
-        }
-
-        // Render Units List
-        const listEl = document.getElementById('db-unit-list');
-        const layout = localStorage.getItem('quiz_dashboard_layout') || 'grid';
-        
-        // Update layout toggle button active states
-        const gridBtn = document.getElementById('layout-grid-btn');
-        const tableBtn = document.getElementById('layout-table-btn');
-        if (gridBtn && tableBtn) {
-            if (layout === 'table') {
-                gridBtn.classList.remove('active');
-                tableBtn.classList.add('active');
-            } else {
-                tableBtn.classList.remove('active');
-                gridBtn.classList.add('active');
-            }
-        }
-
-        if (listEl && CONFIG[c]) {
-            if (c === "Mixed") {
-                this.renderMixedDashboard(listEl, layout, s);
-            } else {
-                listEl.innerHTML = "";
-                const wrQs = this.wrongDB[c] || [];
-                const hardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 2).length;
-                const veryHardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 3).length;
-                
-                if (layout === 'table') {
-                    listEl.classList.add('table-mode');
-                    
-                    // Create table element
-                    const table = document.createElement('table');
-                    table.className = 'stat-table unit-table';
-                    
-                    let multiLastTested = 0;
-                    let hasMultiData = false;
-                    if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
-                        multiLastTested = s.bd['units']['Multi'].last || 0;
-                        hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
-                    }
-                    if (multiLastTested === 0 && hasMultiData) {
-                        multiLastTested = this.getCourseLastActiveDateFromHistory(c);
-                    }
-                    const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
-
-                    // Prepend Multi row to tbodyHTML
-                    let tbodyHTML = `
-                        <tr onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')" style="background: rgba(99, 102, 241, 0.05); border-left: 3px solid var(--accent);">
-                            <td style="font-weight: 800; color: var(--accent);">
-                                <div class="unit-table-title"><span class="unit-table-num">⭐</span> Multi (Səhvlərin Təkrarı)</div>
-                                <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
-                                    ⏱️ Son sınaq: ${multiLastTestedStr}
-                                </div>
-                                ${hardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(245, 158, 11, 0.08); border: 1px solid var(--hint); color: var(--hint); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">⚠️ ${hardQsCount} Çətin</span>` : ''}
-                                ${veryHardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid var(--wrong); color: var(--wrong); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">🔥 ${veryHardQsCount} Çox Çətin</span>` : ''}
-                            </td>
-                            <td style="text-align: center;">${wrQs.length}</td>
-                            <td style="text-align: center; color: var(--active); font-weight: 700;">-</td>
-                            <td style="text-align: center; color: var(--wrong); font-weight: 700;">${wrQs.length}</td>
-                            <td style="text-align: center; color: var(--accent); font-weight: 700;">-</td>
-                            <td style="text-align: right;" onclick="event.stopPropagation();">
-                                <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')">Başla</button>
-                            </td>
-                        </tr>
-                    `;
-
-                    // Prepend Mixed Only row if there are mixed-only questions
-                    const mixedOnlyQs = this.getMixedOnlyQuestions(c);
-                    if (mixedOnlyQs.length > 0) {
-                        let mixedOnlyLastTested = 0;
-                        let hasMixedOnlyData = false;
-                        if (s.bd && s.bd['mixed-only'] && s.bd['mixed-only']['Yalnız Mixed-də olan suallar']) {
-                            mixedOnlyLastTested = s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].last || 0;
-                            hasMixedOnlyData = (s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].t || 0) > 0;
-                        }
-                        const mixedOnlyLastTestedStr = this.formatLastTested(mixedOnlyLastTested, hasMixedOnlyData);
-                        let mixedOnlyCorrect = 0, mixedOnlyWrong = 0, mixedOnlyAcc = 0;
-                        if (hasMixedOnlyData) {
-                            mixedOnlyCorrect = s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].c || 0;
-                            mixedOnlyWrong = s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].w || 0;
-                            const totalMixedOnly = mixedOnlyCorrect + mixedOnlyWrong;
-                            if (totalMixedOnly > 0) mixedOnlyAcc = Math.round((mixedOnlyCorrect / totalMixedOnly) * 100);
-                        }
-
-                        tbodyHTML += `
-                            <tr onclick="QuizApp.startMixedOnlyQs('${c.replace(/'/g, "\\'")}')" style="background: rgba(139, 92, 246, 0.05); border-left: 3px solid #8b5cf6;">
-                                <td style="font-weight: 800; color: #8b5cf6;">
-                                    <div class="unit-table-title"><span class="unit-table-num">💎</span> Yalnız Mixed-də olan suallar</div>
-                                    <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
-                                        ⏱️ Son sınaq: ${mixedOnlyLastTestedStr}
-                                    </div>
-                                </td>
-                                <td style="text-align: center;">${mixedOnlyQs.length}</td>
-                                <td style="text-align: center; color: var(--active); font-weight: 700;">${hasMixedOnlyData ? mixedOnlyCorrect : '-'}</td>
-                                <td style="text-align: center; color: var(--wrong); font-weight: 700;">${hasMixedOnlyData ? mixedOnlyWrong : '-'}</td>
-                                <td style="text-align: center; color: var(--accent); font-weight: 700;">${hasMixedOnlyData ? mixedOnlyAcc + '%' : '-'}</td>
-                                <td style="text-align: right;" onclick="event.stopPropagation();">
-                                    <button class="unit-btn-start" style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); border: none;" onclick="QuizApp.startMixedOnlyQs('${c.replace(/'/g, "\\'")}')">Başla</button>
-                                </td>
-                            </tr>
-                        `;
-                    }
-                    
-                    CONFIG[c].units.forEach((unitName, i) => {
-                        const unitIdx = i + 1;
-                        let totalUnitQ = 0;
-                        if (typeof quizData !== 'undefined') {
-                            if (c === "Mixed" && this.mixedUnitsInfo) {
-                                const muInfo = this.mixedUnitsInfo[i];
-                                if (muInfo) {
-                                    totalUnitQ = muInfo.endIdx - muInfo.startIdx;
-                                }
-                            } else {
-                                totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
-                            }
-                        }
-                        
-                        const unitKey = `Unit ${unitIdx}`;
-                        let c_correct = 0;
-                        let c_wrong = 0;
-                        let unitLastTested = 0;
-                        if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
-                            const us = s.bd['units'][unitKey];
-                            c_correct = us.c;
-                            c_wrong = us.w;
-                            unitLastTested = us.last || 0;
-                        }
-                        
-                        let unitAcc = 0;
-                        const totalAnswered = c_correct + c_wrong;
-                        if (totalAnswered > 0) {
-                            unitAcc = Math.round((c_correct / totalAnswered) * 100);
-                        }
-                        
-                        if (unitLastTested === 0 && totalAnswered > 0) {
-                            unitLastTested = this.getCourseLastActiveDateFromHistory(c);
-                        }
-                        
-                        const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
-                        
-                        tbodyHTML += `
-                            <tr onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">
-                                <td style="font-weight: 700; color: var(--text-main);">
-                                    <div class="unit-table-title"><span class="unit-table-num">${unitIdx}.</span> ${unitName}</div>
-                                    <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
-                                        ⏱️ Son sınaq: ${unitLastTestedStr}
-                                    </div>
-                                </td>
-                                <td style="text-align: center;">${totalUnitQ}</td>
-                                <td style="text-align: center; color: var(--active); font-weight: 700;">${c_correct}</td>
-                                <td style="text-align: center; color: var(--wrong); font-weight: 700;">${c_wrong}</td>
-                                <td style="text-align: center; color: var(--accent); font-weight: 700;">${unitAcc}%</td>
-                                <td style="text-align: right;" onclick="event.stopPropagation();">
-                                    <button class="unit-btn-start" onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">Başla</button>
-                                </td>
-                            </tr>
-                        `;
-                    });
-                    
-                    table.innerHTML = `
-                        <thead>
-                            <tr>
-                                <th style="width: 45%;">Bölmə</th>
-                                <th style="text-align: center; width: 12%;">Sual</th>
-                                <th style="text-align: center; width: 10%; color: var(--active);">Düz</th>
-                                <th style="text-align: center; width: 10%; color: var(--wrong);">Səhv</th>
-                                <th style="text-align: center; width: 10%;">Faiz</th>
-                                <th style="text-align: right; width: 13%;">İcra</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${tbodyHTML}
-                        </tbody>
-                    `;
-                    listEl.appendChild(table);
-                } else {
-                    listEl.classList.remove('table-mode');
-                    
-                    // Prepend Multi card to listEl in Grid layout
-                    let multiLastTested = 0;
-                    let hasMultiData = false;
-                    if (s.bd && s.bd['units'] && s.bd['units']['Multi']) {
-                        multiLastTested = s.bd['units']['Multi'].last || 0;
-                        hasMultiData = (s.bd['units']['Multi'].t || 0) > 0;
-                    }
-                    if (multiLastTested === 0 && hasMultiData) {
-                        multiLastTested = this.getCourseLastActiveDateFromHistory(c);
-                    }
-                    const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
-
-                    const multiItem = document.createElement('div');
-                    multiItem.className = 'unit-item';
-                    multiItem.style.background = 'linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%)';
-                    multiItem.style.border = '1px solid rgba(139, 92, 246, 0.3)';
-                    multiItem.innerHTML = `
-                        <div class="unit-item-header">
-                            <div>
-                                <div class="unit-item-title" style="color: var(--accent); font-weight: 800;">⭐ Multi (Səhvlərin Təkrarı)</div>
-                                <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                    ⏱️ Son sınaq: ${multiLastTestedStr}
-                                </div>
-                            </div>
-                            <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('${c.replace(/'/g, "\\'")}')">Başla</button>
-                        </div>
-                        <div class="unit-item-stats-grid">
-                            <div class="unit-stat-box">
-                                <span class="us-val" style="color: var(--text-main); font-weight: 800;">${wrQs.length}</span>
-                                <span class="us-lbl">SƏHV SUAL</span>
-                            </div>
-                            <div class="unit-stat-box">
-                                <span class="us-val" style="color: var(--hint); font-weight: 800;">⚠️ ${hardQsCount}</span>
-                                <span class="us-lbl">ÇƏTİN (2+)</span>
-                            </div>
-                            <div class="unit-stat-box">
-                                <span class="us-val" style="color: var(--wrong); font-weight: 800;">🔥 ${veryHardQsCount}</span>
-                                <span class="us-lbl">ÇOX ÇƏTİN (3+)</span>
-                            </div>
-                        </div>
-                    `;
-                    listEl.appendChild(multiItem);
-
-                    // Add "Yalnız Mixed-də olan suallar" card to Grid layout
-                    const mixedOnlyQs = this.getMixedOnlyQuestions(c);
-                    if (mixedOnlyQs.length > 0) {
-                        let mixedOnlyLastTested = 0;
-                        let hasMixedOnlyData = false;
-                        if (s.bd && s.bd['mixed-only'] && s.bd['mixed-only']['Yalnız Mixed-də olan suallar']) {
-                            mixedOnlyLastTested = s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].last || 0;
-                            hasMixedOnlyData = (s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].t || 0) > 0;
-                        }
-                        const mixedOnlyLastTestedStr = this.formatLastTested(mixedOnlyLastTested, hasMixedOnlyData);
-                        let mixedOnlyCorrect = 0, mixedOnlyWrong = 0;
-                        if (hasMixedOnlyData) {
-                            mixedOnlyCorrect = s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].c || 0;
-                            mixedOnlyWrong = s.bd['mixed-only']['Yalnız Mixed-də olan suallar'].w || 0;
-                        }
-
-                        const mixedOnlyItem = document.createElement('div');
-                        mixedOnlyItem.className = 'unit-item';
-                        mixedOnlyItem.style.background = 'linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(99, 102, 241, 0.06) 100%)';
-                        mixedOnlyItem.style.border = '1px solid rgba(139, 92, 246, 0.3)';
-                        mixedOnlyItem.innerHTML = `
-                            <div class="unit-item-header">
-                                <div>
-                                    <div class="unit-item-title" style="color: #8b5cf6; font-weight: 800;">💎 Yalnız Mixed-də olan suallar</div>
-                                    <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                        ⏱️ Son sınaq: ${mixedOnlyLastTestedStr}
-                                    </div>
-                                </div>
-                                <button class="unit-btn-start" style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); border: none;" onclick="QuizApp.startMixedOnlyQs('${c.replace(/'/g, "\\'")}')">Başla</button>
-                            </div>
-                            <div class="unit-item-stats-grid">
-                                <div class="unit-stat-box">
-                                    <span class="us-val" style="color: var(--text-main); font-weight: 800;">${mixedOnlyQs.length}</span>
-                                    <span class="us-lbl">CƏMİ SUAL</span>
-                                </div>
-                                <div class="unit-stat-box">
-                                    <span class="us-val" style="color: var(--active); font-weight: 800;">${mixedOnlyCorrect}</span>
-                                    <span class="us-lbl">DOĞRU</span>
-                                </div>
-                                <div class="unit-stat-box">
-                                    <span class="us-val" style="color: var(--wrong); font-weight: 800;">${mixedOnlyWrong}</span>
-                                    <span class="us-lbl">YANLIŞ</span>
-                                </div>
-                            </div>
-                        `;
-                        listEl.appendChild(mixedOnlyItem);
-                    }
-                    
-                    CONFIG[c].units.forEach((unitName, i) => {
-                        const unitIdx = i + 1;
-                        let totalUnitQ = 0;
-                        if (typeof quizData !== 'undefined') {
-                            if (c === "Mixed" && this.mixedUnitsInfo) {
-                                const muInfo = this.mixedUnitsInfo[i];
-                                if (muInfo) {
-                                    totalUnitQ = muInfo.endIdx - muInfo.startIdx;
-                                }
-                            } else {
-                                totalUnitQ = quizData.filter(q => q.c === c && q.u === unitIdx).length;
-                            }
-                        }
-
-                        const unitKey = `Unit ${unitIdx}`;
-                        let c_correct = 0;
-                        let c_wrong = 0;
-                        let unitLastTested = 0;
-
-                        if (s.bd && s.bd['units'] && s.bd['units'][unitKey]) {
-                            const us = s.bd['units'][unitKey];
-                            c_correct = us.c;
-                            c_wrong = us.w;
-                            unitLastTested = us.last || 0;
-                        }
-                        const totalAnswered = c_correct + c_wrong;
-                        if (unitLastTested === 0 && totalAnswered > 0) {
-                            unitLastTested = this.getCourseLastActiveDateFromHistory(c);
-                        }
-
-                        const unitLastTestedStr = this.formatLastTested(unitLastTested, totalAnswered > 0);
-
-                        const item = document.createElement('div');
-                        item.className = 'unit-item';
-                        item.innerHTML = `
-                            <div class="unit-item-header">
-                                <div>
-                                    <div class="unit-item-title">${unitName}</div>
-                                    <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                        ⏱️ Son sınaq: ${unitLastTestedStr}
-                                    </div>
-                                </div>
-                                <button class="unit-btn-start" onclick="QuizApp.startUnit('${c.replace(/'/g, "\\'")}', ${i})">Başla</button>
-                            </div>
-                            <div class="unit-item-stats-grid">
-                                <div class="unit-stat-box">
-                                    <span class="us-val">${totalUnitQ}</span>
-                                    <span class="us-lbl">CƏMİ SUAL</span>
-                                </div>
-                                <div class="unit-stat-box">
-                                    <span class="us-val" style="color: var(--active)">${c_correct}</span>
-                                    <span class="us-lbl">DOĞRU</span>
-                                </div>
-                                <div class="unit-stat-box">
-                                    <span class="us-val" style="color: var(--wrong)">${c_wrong}</span>
-                                    <span class="us-lbl">YANLIŞ</span>
-                                </div>
-                            </div>
-                        `;
-                        listEl.appendChild(item);
-                    });
-                }
-            }
-        }
+        if (c === 'Ümumi Toplam') return this.showOverallDashboard();
+        if (c === "Mixed") return this.renderMixedPage();
+        return this.renderCoursePage(c);
     },
 
     startUnit: function (c, idx) {
@@ -2607,29 +1405,22 @@ const QuizApp = {
             if (isMixedOrWrongOrMockOrMulti) {
                 let displayCourse = q.c;
                 let displayUnit = "";
-                let accentColor = '#6366f1';
+                let accentColor = '#8b5cf6';
                 
                 if (q.c === "Mixed") {
-                    const subjects = [
-                        "Atatürk İlkeleri ve İnkılap Tarihi II",
-                        "Grafik Tasarım II",
-                        "Görsel İletişim Tasarımı",
-                        "Masaüstü Yayıncılık",
-                        "Tasarımda Tipografi",
-                        "Türk Dili II"
-                    ];
+                    const subjects = SUBJECTS;
                     displayCourse = subjects[q.u - 1] || "Mixed";
                     displayUnit = this.state.currentTitle || "";
                     const style = COURSE_STYLES[displayCourse] || { accent: '#ec4899' };
                     accentColor = style.accent;
                 } else {
                     displayUnit = (CONFIG[q.c] && CONFIG[q.c].units[q.u - 1]) || `Unit ${q.u}`;
-                    const style = COURSE_STYLES[q.c] || { accent: '#6366f1' };
+                    const style = COURSE_STYLES[q.c] || { accent: '#8b5cf6' };
                     accentColor = style.accent;
                 }
                 
                 qMetaEl.innerHTML = `
-                    <span class="badge-meta-course" style="background: rgba(99, 102, 241, 0.08); border: 1px solid ${accentColor}30; color: ${accentColor}; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700;">${displayCourse}</span>
+                    <span class="badge-meta-course" style="background: rgba(139, 92, 246, 0.08); border: 1px solid ${accentColor}30; color: ${accentColor}; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700;">${displayCourse}</span>
                     ${displayUnit ? `<span style="color: var(--text-muted); font-size: 0.75rem;">&bull;</span>
                     <span class="badge-meta-unit" style="background: var(--bg-element); border: 1px solid var(--border); color: var(--text-main); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 600;">${displayUnit}</span>` : ''}
                 `;
@@ -2692,7 +1483,7 @@ const QuizApp = {
         const qWrongCount = this.wrongCounts && this.wrongCounts[q.q] ? this.wrongCounts[q.q] : 0;
         if (qWrongCount >= 2) {
             const warningColor = qWrongCount >= 3 ? 'var(--wrong)' : 'var(--hint)';
-            qText += ` <span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid ${warningColor}; color: ${warningColor}; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">⚠️ ${qWrongCount} Səhv</span>`;
+            qText += ` <span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid ${warningColor}; color: ${warningColor}; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">${qWrongCount} Səhv</span>`;
         }
         qTextEl.innerHTML = `${this.state.index + 1}. ${qText}`;
 
@@ -2714,26 +1505,76 @@ const QuizApp = {
         if (this.state.isFlashcard && !ans) { cover.style.display = 'block'; list.style.display = 'none'; }
         else { cover.style.display = 'none'; list.style.display = 'block'; }
 
+        const ABC = ['A', 'B', 'C', 'D', 'E'];
+        let correctLine = "";
         q.shuffledOpts.forEach((o, i) => {
-            const abc = ['A', 'B', 'C', 'D', 'E'][i];
+            const abc = ABC[i];
             const div = document.createElement('div'); div.className = 'option';
-            div.innerHTML = `<div class="option-letter">${abc}</div>${o.txt}`;
+            div.innerHTML = `<div class="option-letter">${abc}</div><div class="option-text">${o.txt}</div><div class="option-mark"></div>`;
+            if (o.i === q.a) correctLine = `${abc} · ${o.txt}`;
             if (ans) {
-                if (o.i === q.a) div.classList.add('correct');
-                else if (o.i === ans.chosen) div.classList.add('wrong');
+                if (o.i === q.a) { div.classList.add('correct'); div.querySelector('.option-mark').textContent = '✓'; }
+                else if (o.i === ans.chosen) { div.classList.add('wrong'); div.querySelector('.option-mark').textContent = '✕'; }
+                else div.classList.add('dim');
             } else { div.onclick = () => QuizApp.checkAnswer(o.i); }
             list.appendChild(div);
         });
 
-        const btnNext = document.getElementById('btn-next');
-        if (this.state.index === total - 1) { btnNext.textContent = "Bitir"; btnNext.onclick = () => QuizApp.finishTest(); }
-        else { btnNext.textContent = "Növbəti"; btnNext.onclick = () => QuizApp.nav(1); }
+        // Header: thin progress bar, counter, timer only in exam modes
+        const answered = Object.keys(this.state.answers).length;
+        const barFill = document.getElementById('qa-bar-fill');
+        if (barFill) barFill.style.width = `${(answered / total) * 100}%`;
+        const countEl = document.getElementById('qa-count');
+        if (countEl) countEl.textContent = `${this.state.index + 1} / ${total}`;
+        const timerEl = document.getElementById('quiz-timer-disp');
+        const isPdfExam = typeof this.state.course === 'string' && this.state.course.includes('_pdf_');
+        if (timerEl) timerEl.hidden = !(this.state.isMockMode || isPdfExam);
+        const courseNameEl = document.getElementById('course-name-sm');
+        if (courseNameEl) courseNameEl.textContent = courseNameEl.textContent.replace(/_pdf_\d+$/, '');
+        if (!this.state.pagerOpen) pBar.style.display = 'none';
 
-        const btnPrev = document.getElementById('btn-prev');
-        if (btnPrev) btnPrev.disabled = this.state.index === 0;
+        // Footer: skip controls while unanswered, a tinted feedback bar once answered
+        const foot = document.getElementById('qa-foot');
+        if (foot) {
+            const isLast = this.state.index === total - 1;
+            const prevBtn = `<button class="btn btn-sec qa-prev" id="btn-prev" onclick="nav(-1)" ${this.state.index === 0 ? 'disabled' : ''}>Geri</button>`;
+            if (!ans) {
+                foot.className = 'qa-foot';
+                foot.innerHTML = `${prevBtn}<button class="btn btn-sec" id="btn-next">${isLast ? 'Bitir' : 'Keç'}</button>`;
+            } else {
+                const isHint = !!ans.hint;
+                const isRight = !isHint && ans.chosen === q.a;
+                foot.className = 'qa-foot qa-fb ' + (isHint ? 'hint' : (isRight ? 'ok' : 'bad'));
+                foot.innerHTML = `
+                    <div class="qa-msg">
+                        <b>${isHint ? 'İpucu' : (isRight ? 'Düzdür' : 'Səhv')}</b>
+                        ${isRight ? '' : `<span>Düzgün cavab: ${correctLine}</span>`}
+                    </div>
+                    ${prevBtn}
+                    <button class="btn btn-pri" id="btn-next">${isLast ? 'Nəticəyə bax' : 'Davam'}</button>`;
+            }
+            const btnNext = document.getElementById('btn-next');
+            btnNext.onclick = isLast ? () => QuizApp.finishTest() : () => QuizApp.nav(1);
+        }
 
         const btnHint = document.getElementById('btn-hint');
         if (btnHint) btnHint.disabled = !!ans;
+
+        if (ans && ans.chosen !== q.a) {
+            const okEl = list.querySelector('.option.correct');
+            if (okEl && okEl.scrollIntoView) okEl.scrollIntoView({ block: 'nearest' });
+        }
+    },
+
+    togglePager: function () {
+        this.state.pagerOpen = !this.state.pagerOpen;
+        this.renderQ();
+    },
+
+    confirmReset: function (btn) {
+        if (btn.dataset.armed) { delete btn.dataset.armed; resetUnit(); return; }
+        btn.dataset.armed = '1';
+        btn.textContent = 'Əminsiniz? Bir də basın';
     },
 
     checkAnswer: function (i) {
@@ -2785,7 +1626,8 @@ const QuizApp = {
         }
         updateDaily(true); this.renderQ();
 
-        // Auto-advance to the next question with a 1-second delay so user can see correct/wrong state
+        // Auto-advance only after a correct answer; a wrong answer waits for "Davam" so the correct option can be read
+        if (!isCorrect) return;
         const currentIndex = this.state.index;
         setTimeout(() => {
             if (QuizApp.state.view === 'quiz' && QuizApp.state.index === currentIndex) {
@@ -2796,7 +1638,7 @@ const QuizApp = {
                     QuizApp.nav(1);
                 }
             }
-        }, 1000);
+        }, 750);
     },
 
     startMock: function () {
@@ -2839,377 +1681,106 @@ const QuizApp = {
         this.startTimer(c);
     },
 
-    setDashboardLayout: function (layout) {
-        localStorage.setItem('quiz_dashboard_layout', layout);
-        if (this.state.course) {
-            if (this.state.course === 'Ümumi Toplam') {
-                this.showOverallDashboard();
-            } else {
-                this.showCourseDashboard(this.state.course);
-            }
-        }
+    getLayout: function () {
+        if (this._layout) return this._layout;
+        let saved = null;
+        try { saved = localStorage.getItem('quiz_dashboard_layout'); } catch (e) {}
+        return saved === 'table' ? 'table' : 'grid';
     },
 
-    showOverallDashboard: function () {
-        this.stopTimer();
-        this.state = { ...this.state, view: 'dashboard', course: 'Ümumi Toplam', category: null, isWrongMode: false, isSearchMode: false, isMockMode: false };
+    // Kart / Cədvəl switch: remember the choice and redraw the page that is open
+    setDashboardLayout: function (layout) {
+        this._layout = layout;
+        try { localStorage.setItem('quiz_dashboard_layout', layout); } catch (e) {}
+        const v = this.state.view;
+        if (v === 'pdf-exams-dashboard') this.showPdfExamsDashboard();
+        else if (v === 'pdf-exams-list') this.showPdfExamsList(this.state.pdfExamSubject);
+        else if (this.state.course) this.showCourseDashboard(this.state.course);
+    },
 
+    // Ümumi Toplam: all subjects together
+    showOverallDashboard: function () {
+        const c = 'Ümumi Toplam';
+        this.stopTimer();
+        if (this.state.courseTabFor !== c) { this.state.courseTab = 'units'; this.state.courseTabFor = c; }
+        this.state = { ...this.state, view: 'dashboard', course: c, category: null, isWrongMode: false, isSearchMode: false, isMockMode: false };
         const tn = document.getElementById('top-nav');
         if (tn) tn.style.display = 'none';
-
-        // Clear sidebar active states
         document.querySelectorAll('.course-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active-sub'));
+        const container = document.getElementById('content-area');
+        if (!container) return;
+        const tab = this.state.courseTab || 'units';
 
-        loadTemplate('course-dashboard-template');
+        let time = 0, correct = 0, wrong = 0, answered = 0;
+        Object.keys(this.stats).forEach(k => {
+            if (k === '_platform') return;
+            const st = this.stats[k];
+            time += st.time || 0; correct += st.c || 0; wrong += st.w || 0; answered += st.t || 0;
+        });
+        const acc = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+        const totalQ = typeof quizData !== 'undefined' ? quizData.filter(q => q.c !== "Mixed").length : 0;
+        const platformTime = this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0;
 
-        // Title and Subtitle
-        const titleEl = document.getElementById('db-course-title');
-        if (titleEl) titleEl.textContent = 'Ümumi Toplam';
-        
-        // Find subtitle element
-        const headerDiv = document.querySelector('.dashboard-full-container .dashboard-header div');
-        if (headerDiv) {
-            const sub = headerDiv.querySelector('span');
-            if (sub) sub.textContent = 'Bütün fənlər üzrə ümumi irəliləyiş, analiz və göstəricilər';
-        }
+        let wrQs = [];
+        Object.keys(this.wrongDB).forEach(k => { wrQs = wrQs.concat(this.wrongDB[k]); });
+        let multiLast = 0, multiDone = false;
+        Object.keys(this.stats).forEach(k => {
+            const m = this.stats[k] && this.stats[k].bd && this.stats[k].bd['units'] && this.stats[k].bd['units']['Multi'];
+            if (!m) return;
+            multiLast = Math.max(multiLast, m.last || 0);
+            if ((m.t || 0) > 0) multiDone = true;
+        });
+        if (multiLast === 0 && multiDone) Object.keys(this.stats).forEach(k => { multiLast = Math.max(multiLast, this.getCourseLastActiveDateFromHistory(k)); });
 
-        // Aggregate statistics
-        let globalTime = 0;
-        let globalCorrect = 0;
-        let globalWrong = 0;
-        let globalTotalAns = 0;
-
-        Object.keys(this.stats).forEach(courseName => {
-            if (courseName === '_platform') return;
-            const s = this.stats[courseName];
-            if (s.time) globalTime += s.time;
-            if (s.c) globalCorrect += s.c;
-            if (s.w) globalWrong += s.w;
-            if (s.t) globalTotalAns += s.t;
+        const rows = Object.keys(CONFIG).map(name => {
+            const cs = this.stats[name] || {};
+            return { name, total: typeof quizData !== 'undefined' ? quizData.filter(q => q.c === name).length : 0, ok: cs.c || 0, bad: cs.w || 0, done: cs.t || 0, lastStr: this.formatLastTested(this.getCourseLastTested(name), (cs.t || 0) > 0), click: `QuizApp.showCourseDashboard('${name.replace(/'/g, "\\'")}')` };
         });
 
-        let globalAcc = 0;
-        if (globalTotalAns > 0) globalAcc = Math.round((globalCorrect / globalTotalAns) * 100);
-        let globalTotalQ = typeof quizData !== 'undefined' ? quizData.length : 0;
+        let rec;
+        if (answered === 0) rec = "Hələ ki heç bir sual cavablandırmamısınız. İmtahana hazırlaşmaq üçün hər hansı bir fənni seçib sualları işləməyə başlayın!";
+        else if (acc >= 80) rec = `Mükəmməl ümumi nəticə! Dəqiqliyiniz ${acc}%-dir. Bu tempi qoruyub saxlamaq üçün mütəmadi olaraq <b>Böyük sınaq</b> işləyin.`;
+        else if (acc >= 50) rec = `Ümumi hazırlıq səviyyəniz yaxşıdır (${acc}% doğru). Göstəricinizi daha da yaxşılaşdırmaq üçün zəif olduğunuz fənlərə diqqət yetirin, səhv etdiyiniz sualları <b>Səhvlərim</b> ilə yenidən işləyin.`;
+        else rec = `Ümumi nəticəniz zəifdir (${acc}% doğru). Hər bir fənni ayrı-ayrılıqda daha diqqətlə öyrənməyinizi və çətinlik çəkdiyiniz mövzuları təkrarlamağı tövsiyə edirik.`;
 
-        document.getElementById('db-total-questions').textContent = globalTotalQ;
-        const attemptsVal = document.getElementById('db-total-attempts');
-        if (attemptsVal) attemptsVal.textContent = globalTotalAns;
-        document.getElementById('db-total-time').textContent = this.formatTime(globalTime) + " / " + this.formatTime(this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0);
-        
-        const correctVal = document.getElementById('db-total-correct');
-        const wrongVal = document.getElementById('db-total-wrong');
-        correctVal.textContent = globalCorrect;
-        wrongVal.textContent = globalWrong;
-
-        const accVal = document.getElementById('db-accuracy');
-        if (accVal) accVal.textContent = globalAcc + '%';
-
-        // Interactive correct/wrong clicks
-        const correctCard = correctVal.parentElement;
-        const wrongCard = wrongVal.parentElement;
-        
-        correctCard.style.cursor = 'pointer';
-        correctCard.title = 'Bütün fənlərdən düzgün cavablandırdığınız suallara baxmaq üçün klikləyin';
-        correctCard.onclick = () => {
-            let arr = [];
-            Object.keys(this.correctDB).forEach(k => {
-                arr = arr.concat(this.correctDB[k]);
-            });
-            if(arr.length) this.startSpecial(arr, "Ümumi Doğrular", "Bütün Fənlər");
-            else alert("Doğru cavablandırdığınız sual hələ ki yoxdur.");
-        };
-
-        wrongCard.style.cursor = 'pointer';
-        wrongCard.title = 'Bütün fənlərdən səhv cavablandırdığınız suallara baxmaq üçün klikləyin';
-        wrongCard.onclick = () => {
-            let arr = [];
-            Object.keys(this.wrongDB).forEach(k => {
-                arr = arr.concat(this.wrongDB[k]);
-            });
-            if(arr.length) this.startSpecial(arr, "Ümumi Səhvlər", "Bütün Fənlər");
-            else alert("Əla! Səhv cavablandırdığınız sual yoxdur.");
-        };
-
-        // Səhvlərin Təkrarı Box
-        const wrongExamContainer = document.getElementById('db-wrong-exam-container');
-        if (wrongExamContainer) {
-            let wrQs = [];
-            Object.keys(this.wrongDB).forEach(k => {
-                wrQs = wrQs.concat(this.wrongDB[k]);
-            });
-            if (wrQs.length > 0) {
-                wrongExamContainer.style.display = 'block';
-                wrongExamContainer.innerHTML = `
-                    <div class="db-wrong-exam-box">
-                        <div class="db-wrong-exam-info">
-                            <div class="db-wrong-exam-title">❌ SƏHVLƏRİN TƏKRARI</div>
-                            <div class="db-wrong-exam-desc">Bütün fənlərdən cəmi <span>${wrQs.length}</span> səhv cavablandırdığınız sual var. Onları düzəltmək üçün imtahana başlayın.</div>
-                        </div>
-                        <button class="db-wrong-exam-btn" onclick="QuizApp.startHard()">İmtahana Başla</button>
+        const content = tab === 'mixed' ? `
+                <section class="cp-mix">
+                    <div>
+                        <h2>Böyük sınaq</h2>
+                        <p>Bütün fənlərdən qarışıq real sınaq imtahanı: hər fəndən 20 sual. Başlamaq üçün düyməyə basın.</p>
+                        <button class="btn btn-pri" onclick="QuizApp.startMock()">Sınağa başla</button>
                     </div>
-                `;
-            } else {
-                wrongExamContainer.style.display = 'none';
-            }
-        }
-
-        // Qarışıq Sınaq Box (Real Sınaq Rejimi)
-        const mixedExamContainer = document.getElementById('db-mixed-exam-container');
-        if (mixedExamContainer) {
-            mixedExamContainer.innerHTML = `
-                <div class="db-mixed-exam-box">
-                    <div class="db-mixed-exam-info">
-                        <div class="db-mixed-exam-title">🎲 BÖYÜK SINAQ</div>
-                        <div class="db-mixed-exam-desc">Bütün fənlərdən qarışıq <span>real sınaq imtahanı</span> işləyərək özünüzü yoxlayın.</div>
+                    <div class="cp-mix-stats">
+                        <div><span class="hx-cap">Hər fəndən</span><b>20 sual</b></div>
+                        <div><span class="hx-cap">Mənbə</span><b>${rows.filter(r => r.total).length} fənn</b></div>
+                        <div><span class="hx-cap">Hələ işlənməyib</span><b>${Math.max(0, totalQ - answered)}</b></div>
                     </div>
-                    <button class="db-mixed-exam-btn" onclick="QuizApp.startMock()">Sınağa Başla</button>
+                </section>` : this.cpList(rows, 'Fənn', 'Aç', this.cpMulti('all', wrQs, this.formatLastTested(multiLast, multiDone)));
+
+        container.innerHTML = `
+            <div class="cp">
+                ${this.cpHead(c, 'Bütün fənlər üzrə ümumi irəliləyiş', '', `<button class="btn btn-pri cp-wrong" onclick="QuizApp.startHard()" ${wrQs.length ? '' : 'disabled'}>Səhvlərim <i>${wrQs.length}</i></button>`)}
+                ${this.cpStrip({ totalQ, answered, correct, wrong, onCorrect: 'QuizApp.reviewAllAnswers(true)', onWrong: 'QuizApp.reviewAllAnswers(false)', extra: ['Vaxt', this.formatTime(time) + ' / ' + this.formatTime(platformTime)] })}
+                <p class="cp-advice">${rec}</p>
+                <div class="cp-tabs-row">
+                    <span class="cp-tabs" role="group" aria-label="Bölmə">
+                        <button class="${tab === 'units' ? 'active' : ''}" onclick="QuizApp.setCourseTab('units')">Fənlər <i>${rows.length}</i></button>
+                        <button class="${tab === 'mixed' ? 'active' : ''}" onclick="QuizApp.setCourseTab('mixed')">Böyük sınaq</button>
+                    </span>
+                    ${tab === 'units' ? this.cpToggle() : ''}
                 </div>
-            `;
-        }
+                ${content}
+            </div>`;
+    },
 
-        // AI Recommendation
-        const recTextEl = document.getElementById('db-recommendation-text');
-        if (recTextEl) {
-            let rec = "";
-            if (globalTotalAns === 0) {
-                rec = "Hələ ki heç bir sual cavablandırmamısınız. İmtahana hazırlaşmaq üçün hər hansı bir fənni seçib sualları işləməyə başlayın!";
-            } else {
-                const percent = globalAcc;
-                if (percent >= 80) {
-                    rec = `Mükəmməl ümumi nəticə! Dəqiqliyiniz ${percent}%-dir. Bu tempi qoruyub saxlamaq üçün mütəmadi olaraq <b>Böyük Sınaq</b> işləyin.`;
-                } else if (percent >= 50) {
-                    rec = `Ümumi hazırlıq səviyyəniz yaxşıdır (${percent}% doğru). Göstəricinizi daha da yaxşılaşdırmaq üçün zəif olduğunuz fənlərə və bölmələrə diqqət yetirin, səhv etdiyiniz sualları <b>Səhvlərin Təkrarı</b> rejimində yenidən işləyin.`;
-                } else {
-                    rec = `Ümumi nəticəniz zəifdir (${percent}% doğru). Hər bir fənni ayrı-ayrılıqda daha diqqətlə öyrənməyinizi və çətinlik çəkdiyiniz mövzuları təkrarlamağı tövsiyə edirik.`;
-                }
-            }
-            recTextEl.innerHTML = rec;
-        }
-
-        // Right Column Title - change to "Fənlər"
-        const unitsHeaderH3 = document.querySelector('.units-header h3');
-        if (unitsHeaderH3) {
-            unitsHeaderH3.textContent = "Fənlər";
-        }
-
-        // Render Subjects List
-        const listEl = document.getElementById('db-unit-list');
-        const layout = localStorage.getItem('quiz_dashboard_layout') || 'grid';
-        
-        // Update layout toggle button active states
-        const gridBtn = document.getElementById('layout-grid-btn');
-        const tableBtn = document.getElementById('layout-table-btn');
-        if (gridBtn && tableBtn) {
-            if (layout === 'table') {
-                gridBtn.classList.remove('active');
-                tableBtn.classList.add('active');
-            } else {
-                tableBtn.classList.remove('active');
-                gridBtn.classList.add('active');
-            }
-        }
-
-        if (listEl) {
-            listEl.innerHTML = "";
-            let wrQs = [];
-            Object.keys(this.wrongDB).forEach(k => {
-                wrQs = wrQs.concat(this.wrongDB[k]);
-            });
-            const hardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 2).length;
-            const veryHardQsCount = wrQs.filter(q => (this.wrongCounts[q.q] || 0) >= 3).length;
-            
-            if (layout === 'table') {
-                listEl.classList.add('table-mode');
-                
-                // Create table element
-                const table = document.createElement('table');
-                table.className = 'stat-table unit-table';
-                
-                let multiLastTested = 0;
-                let hasMultiData = false;
-                Object.keys(this.stats).forEach(k => {
-                    if (this.stats[k] && this.stats[k].bd && this.stats[k].bd['units'] && this.stats[k].bd['units']['Multi']) {
-                        const mTs = this.stats[k].bd['units']['Multi'].last || 0;
-                        if (mTs > multiLastTested) multiLastTested = mTs;
-                        if ((this.stats[k].bd['units']['Multi'].t || 0) > 0) hasMultiData = true;
-                    }
-                });
-                if (multiLastTested === 0 && hasMultiData) {
-                    Object.keys(this.stats).forEach(k => {
-                        const fallTs = this.getCourseLastActiveDateFromHistory(k);
-                        if (fallTs > multiLastTested) multiLastTested = fallTs;
-                    });
-                }
-                const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
-
-                // Prepend Multi row to tbodyHTML
-                let tbodyHTML = `
-                    <tr onclick="QuizApp.startMultiUnit('all')" style="background: rgba(99, 102, 241, 0.05); border-left: 3px solid var(--accent);">
-                        <td style="font-weight: 800; color: var(--accent);">
-                            <div class="unit-table-title"><span class="unit-table-num">⭐</span> Multi (Səhvlərin Təkrarı)</div>
-                            <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
-                                ⏱️ Son sınaq: ${multiLastTestedStr}
-                            </div>
-                            ${hardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(245, 158, 11, 0.08); border: 1px solid var(--hint); color: var(--hint); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">⚠️ ${hardQsCount} Çətin</span>` : ''}
-                            ${veryHardQsCount > 0 ? `<span class="badge-hard" style="background: rgba(239, 68, 68, 0.08); border: 1px solid var(--wrong); color: var(--wrong); font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;">🔥 ${veryHardQsCount} Çox Çətin</span>` : ''}
-                        </td>
-                        <td style="text-align: center;">${wrQs.length}</td>
-                        <td style="text-align: center; color: var(--active); font-weight: 700;">-</td>
-                        <td style="text-align: center; color: var(--wrong); font-weight: 700;">${wrQs.length}</td>
-                        <td style="text-align: center; color: var(--accent); font-weight: 700;">-</td>
-                        <td style="text-align: right;" onclick="event.stopPropagation();">
-                            <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('all')">Başla</button>
-                        </td>
-                    </tr>
-                `;
-                Object.keys(CONFIG).forEach((c) => {
-                    let totalCourseQ = 0;
-                    if (typeof quizData !== 'undefined') {
-                        totalCourseQ = quizData.filter(q => q.c === c).length;
-                    }
-                    
-                    const cs = this.stats[c] || { t: 0, c: 0, w: 0 };
-                    
-                    let courseAcc = 0;
-                    if (cs.t > 0) {
-                        courseAcc = Math.round((cs.c / cs.t) * 100);
-                    }
-                    
-                    const courseLastTested = this.getCourseLastTested(c);
-                    const courseLastTestedStr = this.formatLastTested(courseLastTested, cs.t > 0);
-                    
-                    tbodyHTML += `
-                        <tr onclick="QuizApp.showCourseDashboard('${c.replace(/'/g, "\\'")}')">
-                            <td style="font-weight: 700; color: var(--text-main);">
-                                <div class="unit-table-title">${c}</div>
-                                <div class="unit-table-last-tested" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500; margin-top: 3px;">
-                                    ⏱️ Son sınaq: ${courseLastTestedStr}
-                                </div>
-                            </td>
-                            <td style="text-align: center;">${totalCourseQ}</td>
-                            <td style="text-align: center; color: var(--active); font-weight: 700;">${cs.c}</td>
-                            <td style="text-align: center; color: var(--wrong); font-weight: 700;">${cs.w}</td>
-                            <td style="text-align: center; color: var(--accent); font-weight: 700;">${courseAcc}%</td>
-                            <td style="text-align: right;" onclick="event.stopPropagation();">
-                                <button class="unit-btn-start" onclick="QuizApp.showCourseDashboard('${c.replace(/'/g, "\\'")}')">Keç</button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                
-                table.innerHTML = `
-                    <thead>
-                        <tr>
-                            <th style="width: 45%;">Fənn</th>
-                            <th style="text-align: center; width: 12%;">Sual</th>
-                            <th style="text-align: center; width: 10%; color: var(--active);">Düz</th>
-                            <th style="text-align: center; width: 10%; color: var(--wrong);">Səhv</th>
-                            <th style="text-align: center; width: 10%;">Faiz</th>
-                            <th style="text-align: right; width: 13%;">Keçid</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${tbodyHTML}
-                    </tbody>
-                `;
-                listEl.appendChild(table);
-            } else {
-                listEl.classList.remove('table-mode');
-                
-                // Prepend Multi card to listEl in Grid layout
-                let multiLastTested = 0;
-                let hasMultiData = false;
-                Object.keys(this.stats).forEach(k => {
-                    if (this.stats[k] && this.stats[k].bd && this.stats[k].bd['units'] && this.stats[k].bd['units']['Multi']) {
-                        const mTs = this.stats[k].bd['units']['Multi'].last || 0;
-                        if (mTs > multiLastTested) multiLastTested = mTs;
-                        if ((this.stats[k].bd['units']['Multi'].t || 0) > 0) hasMultiData = true;
-                    }
-                });
-                if (multiLastTested === 0 && hasMultiData) {
-                    Object.keys(this.stats).forEach(k => {
-                        const fallTs = this.getCourseLastActiveDateFromHistory(k);
-                        if (fallTs > multiLastTested) multiLastTested = fallTs;
-                    });
-                }
-                const multiLastTestedStr = this.formatLastTested(multiLastTested, hasMultiData);
-
-                const multiItem = document.createElement('div');
-                multiItem.className = 'unit-item';
-                multiItem.style.background = 'linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%)';
-                multiItem.style.border = '1px solid rgba(139, 92, 246, 0.3)';
-                multiItem.innerHTML = `
-                    <div class="unit-item-header">
-                        <div>
-                            <div class="unit-item-title" style="color: var(--accent); font-weight: 800;">⭐ Multi (Səhvlərin Təkrarı)</div>
-                            <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                ⏱️ Son sınaq: ${multiLastTestedStr}
-                            </div>
-                        </div>
-                        <button class="unit-btn-start" style="background: var(--accent-gradient); border: none;" onclick="QuizApp.startMultiUnit('all')">Başla</button>
-                    </div>
-                    <div class="unit-item-stats-grid">
-                        <div class="unit-stat-box">
-                            <span class="us-val" style="color: var(--text-main); font-weight: 800;">${wrQs.length}</span>
-                            <span class="us-lbl">SƏHV SUAL</span>
-                        </div>
-                        <div class="unit-stat-box">
-                            <span class="us-val" style="color: var(--hint); font-weight: 800;">⚠️ ${hardQsCount}</span>
-                            <span class="us-lbl">ÇƏTİN (2+)</span>
-                        </div>
-                        <div class="unit-stat-box">
-                            <span class="us-val" style="color: var(--wrong); font-weight: 800;">🔥 ${veryHardQsCount}</span>
-                            <span class="us-lbl">ÇOX ÇƏTİN (3+)</span>
-                        </div>
-                    </div>
-                `;
-                listEl.appendChild(multiItem);
-                
-                Object.keys(CONFIG).forEach((c) => {
-                    let totalCourseQ = 0;
-                    if (typeof quizData !== 'undefined') {
-                        totalCourseQ = quizData.filter(q => q.c === c).length;
-                    }
-
-                    const cs = this.stats[c] || { t: 0, c: 0, w: 0 };
-                    
-                    const courseLastTested = this.getCourseLastTested(c);
-                    const courseLastTestedStr = this.formatLastTested(courseLastTested, cs.t > 0);
-
-                    const item = document.createElement('div');
-                    item.className = 'unit-item';
-                    item.innerHTML = `
-                        <div class="unit-item-header">
-                            <div>
-                                <div class="unit-item-title">${c}</div>
-                                <div class="unit-item-last-tested" style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">
-                                    ⏱️ Son sınaq: ${courseLastTestedStr}
-                                </div>
-                            </div>
-                            <button class="unit-btn-start" onclick="QuizApp.showCourseDashboard('${c.replace(/'/g, "\\'")}')">Keç</button>
-                        </div>
-                        <div class="unit-item-stats-grid">
-                            <div class="unit-stat-box">
-                                <span class="us-val">${totalCourseQ}</span>
-                                <span class="us-lbl">CƏMİ SUAL</span>
-                            </div>
-                            <div class="unit-stat-box">
-                                <span class="us-val" style="color: var(--active)">${cs.c}</span>
-                                <span class="us-lbl">DOĞRU</span>
-                            </div>
-                            <div class="unit-stat-box">
-                                <span class="us-val" style="color: var(--wrong)">${cs.w}</span>
-                                <span class="us-lbl">YANLIŞ</span>
-                            </div>
-                        </div>
-                    `;
-                    listEl.appendChild(item);
-                });
-            }
-        }
+    reviewAllAnswers: function (correct) {
+        const db = (correct ? this.correctDB : this.wrongDB) || {};
+        let arr = [];
+        Object.keys(db).forEach(k => { arr = arr.concat(db[k]); });
+        if (arr.length) this.startSpecial(arr, correct ? "Ümumi Doğrular" : "Ümumi Səhvlər", "Bütün Fənlər");
+        else alert(correct ? "Doğru cavablandırdığınız sual hələ ki yoxdur." : "Əla! Səhv cavablandırdığınız sual yoxdur.");
     },
 
     handleSearch: function (e) {
@@ -3263,26 +1834,40 @@ const QuizApp = {
         this.state.view = 'stats';
         const tn = document.getElementById('top-nav');
         if (tn) tn.style.display = 'none';
+        const container = document.getElementById('content-area');
+        if (!container) return;
 
-        loadTemplate('stats-template');
-
-        let gt = 0, gc = 0, gw = 0, tm = 0;
-        const tb = document.getElementById('stat-table-body'); tb.innerHTML = "";
-
+        let gt = 0, gc = 0, gw = 0, tm = 0, rowsHTML = '';
         [...Object.keys(CONFIG), this.MOCK_KEY].forEach(c => {
-            const s = this.stats[c]; if (s && s.t > 0) {
-                gt += s.t; gc += s.c; gw += s.w; tm += s.time;
-                const row = document.createElement('tr');
-                row.onclick = () => this.showStatDetailsModal(c);
-                row.innerHTML = `<td>${c}</td><td>${this.formatTime(s.time)}</td><td>${s.t}</td><td>${s.c}/${s.w}</td><td>${Math.round((s.c / s.t) * 100)}%</td>`;
-                tb.appendChild(row);
-            }
+            const s = this.stats[c];
+            if (!s || !(s.t > 0)) return;
+            gt += s.t; gc += s.c; gw += s.w; tm += s.time;
+            rowsHTML += `<tr onclick="QuizApp.showStatDetailsModal('${c.replace(/'/g, "\\'")}')"><td><b>${c}</b></td><td>${this.cpBar(s.t, s.c, s.w)}</td><td class="n">${s.t}</td><td class="n g">${s.c}</td><td class="n r">${s.w}</td><td class="n">${Math.round((s.c / s.t) * 100)}%</td><td class="m">${this.formatTime(s.time)}</td></tr>`;
         });
-        document.getElementById('st-total').textContent = gt;
-        document.getElementById('st-time').textContent = this.formatTime(tm) + " / " + this.formatTime(this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0);
-        document.getElementById('st-correct').textContent = gc;
-        document.getElementById('st-wrong').textContent = gw;
-        document.getElementById('st-accuracy').textContent = gt > 0 ? Math.round((gc / gt) * 100) + '%' : '-';
+        const platformTime = this.stats["_platform"] ? this.stats["_platform"].time || 0 : 0;
+        const cell = (cls, label, val, type) => `<button class="${cls}" onclick="showStatDetails('${type}')" title="Fənlər üzrə baxmaq üçün klikləyin"><span class="hx-cap">${label}</span><b>${val}</b></button>`;
+
+        container.innerHTML = `
+            <div class="cp">
+                ${this.cpHead('Statistika', 'Ümumi göstəricilər və fənlər üzrə detallar')}
+                <section class="cp-strip">
+                    <div class="cp-strip-row c5">
+                        ${cell('', 'İşlənən', gt, 'total')}
+                        ${cell('g', 'Düz', gc, 'correct')}
+                        ${cell('r', 'Səhv', gw, 'wrong')}
+                        ${cell('a', 'Dəqiqlik', gt > 0 ? Math.round((gc / gt) * 100) + '%' : '-', 'accuracy')}
+                        ${cell('', 'Vaxt', this.formatTime(tm) + ' / ' + this.formatTime(platformTime), 'time')}
+                    </div>
+                    ${this.cpBar(gt, gc, gw)}
+                </section>
+                <div class="cp-tabs-row"><span class="cp-sec">Fənlər üzrə</span></div>
+                ${rowsHTML ? `
+                <div class="cp-tbl"><table>
+                    <thead><tr><th>Fənn</th><th>Düz / səhv</th><th class="n">İşlənən</th><th class="n">Düz</th><th class="n">Səhv</th><th class="n">Faiz</th><th>Vaxt</th></tr></thead>
+                    <tbody>${rowsHTML}</tbody>
+                </table></div>` : '<div class="hx-empty">Hələ heç bir sual cavablandırılmayıb.</div>'}
+                <button class="btn btn-sec px-danger" onclick="resetStatistics()">Sıfırla</button>
+            </div>`;
     },
 
     showStatDetails: function (type) {
@@ -3299,7 +1884,7 @@ const QuizApp = {
                 let val = 0, disp = "";
                 if (type === 'time') { val = s.time; disp = this.formatTime(s.time); }
                 else if (type === 'accuracy') { val = (s.c / s.t); disp = Math.round(val * 100) + "%"; }
-                else { val = s[type]; disp = val; }
+                else { val = s[{ total: 't', correct: 'c', wrong: 'w' }[type]] || 0; disp = val; }
                 data.push({ n: c, v: val, d: disp });
             }
         });
@@ -3346,6 +1931,8 @@ const QuizApp = {
             }
         }
 
+        const timerDisp = document.getElementById('quiz-timer-disp');
+        const elapsedText = timerDisp ? timerDisp.textContent : '';
         this.stopTimer();
         let c = 0, w = 0; let subRes = {};
         this.state.questions.forEach((q, i) => {
@@ -3375,33 +1962,68 @@ const QuizApp = {
         const triggerConfetti = this.state.isMockMode ? (averageMockScore >= 50) : (pct >= 50);
         if (triggerConfetti) fireConfetti();
 
+        // Missed questions, shown with the chosen and the correct answer, and kept for "Səhvləri təkrarla"
+        const missed = [];
+        this.state.questions.forEach((q, i) => {
+            const an = this.state.answers[i];
+            if (an && an.chosen !== q.a) missed.push({ q, chosen: an.chosen });
+        });
+        this.lastMissed = missed.map(m => m.q);
+        this.lastMissedCourse = this.state.course;
+        const missedHTML = missed.length ? `
+            <div class="res-missed">
+                <div class="res-cap">Səhv cavablar</div>
+                ${missed.map(m => `
+                    <article>
+                        <p>${m.q.q}</p>
+                        <dl>
+                            <dt>Sizin cavab</dt><dd class="y">${m.chosen >= 0 ? m.q.o[m.chosen] : '—'}</dd>
+                            <dt>Düzgün cavab</dt><dd class="c">${m.q.o[m.q.a]}</dd>
+                        </dl>
+                    </article>`).join('')}
+            </div>` : '';
+        const actionsHTML = `
+            <div class="res-actions">
+                ${missed.length ? `<button class="btn btn-pri" onclick="QuizApp.reviewMissed()">Səhvləri təkrarla (${missed.length})</button>` : ''}
+                <button class="btn ${missed.length ? 'btn-sec' : 'btn-pri'}" onclick="closeModal()">Bağla</button>
+            </div>`;
+
         const body = document.getElementById('modal-body');
         document.getElementById('modal-title').textContent = "Nəticə";
 
         if (this.state.isMockMode) {
             body.innerHTML = `
-                <div style="text-align:center; padding:10px;">
-                    <div style="font-size:2.0rem; font-weight:800; color:var(--accent);">Sınaq Nəticələri</div>
-                    <div style="color:var(--text-muted); margin-bottom: 15px;">Fənn üzrə ballar (Maks. 100):</div>
+                <div class="res">
+                    <div style="font-size:1.6rem; font-weight:800; color:var(--accent);">Sınaq Nəticələri</div>
+                    <div style="color:var(--text-muted);">Fənn üzrə ballar (Maks. 100):</div>
                     ${subHTML}
-                    <button class="btn btn-pri" style="margin-top:20px; width:100%" onclick="closeModal()">Bağla</button>
+                    ${actionsHTML}
+                    ${missedHTML}
                 </div>
             `;
         } else {
             body.innerHTML = `
-                <div style="text-align:center; padding:10px;">
-                    <div style="font-size:2.5rem; font-weight:800; color:${color};">${score.toFixed(1)}</div>
-                    <div style="color:var(--text-muted);">${Math.round(pct)}%</div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px; margin-top:15px;">
-                        <div style="background:var(--bg-element); padding:8px; border-radius:8px;"><div style="color:var(--active); font-weight:bold;">${c}</div><div style="font-size:0.7rem">D</div></div>
-                        <div style="background:var(--bg-element); padding:8px; border-radius:8px;"><div style="color:var(--wrong); font-weight:bold;">${w}</div><div style="font-size:0.7rem">Y</div></div>
-                        <div style="background:var(--bg-element); padding:8px; border-radius:8px;"><div style="font-weight:bold;">${net.toFixed(2)}</div><div style="font-size:0.7rem">Net</div></div>
+                <div class="res">
+                    <div class="res-top">
+                        <div class="res-big" style="color:${color};">${c}<small> / ${total} düz</small></div>
+                        <div class="res-stats">
+                            <div><b>${total ? Math.round((c / total) * 100) : 0}%</b><span>Dəqiqlik</span></div>
+                            <div><b>${elapsedText || '—'}</b><span>Vaxt</span></div>
+                            <div><b>${net.toFixed(2)}</b><span>Net</span></div>
+                        </div>
                     </div>
-                    <button class="btn btn-pri" style="margin-top:20px; width:100%" onclick="closeModal()">Bağla</button>
+                    ${actionsHTML}
+                    ${missedHTML}
                 </div>
             `;
         }
         document.getElementById('modal-overlay').style.display = 'flex';
+    },
+
+    reviewMissed: function () {
+        if (!this.lastMissed || !this.lastMissed.length) return;
+        closeModal();
+        this.startSpecial(this.lastMissed, "Səhvlərin Təkrarı", this.lastMissedCourse);
     },
 
     // Helpers
@@ -3426,21 +2048,34 @@ const QuizApp = {
         this.state.view = 'wrong';
         const tn = document.getElementById('top-nav');
         if (tn) tn.style.display = 'none';
-        loadTemplate('wrong-menu-template');
+        const container = document.getElementById('content-area');
+        if (!container) return;
 
-        const g = document.getElementById('wrong-grid');
-        g.innerHTML = "";
+        const keys = Object.keys(this.wrongDB).filter(k => this.wrongDB[k].length);
+        const total = keys.reduce((a, k) => a + this.wrongDB[k].length, 0);
+        const label = k => { const m = k.match(/^(.*)_pdf_(\d+)$/); return m ? `${m[1]} · İmtahan ${+m[2] + 1}` : k; };
+        container.innerHTML = `
+            <div class="cp">
+                ${this.cpHead('Səhvlərim', `${total} səhv sual · ${keys.length} mənbə`, '', `<button class="btn btn-pri cp-wrong" onclick="QuizApp.startHard()" ${total ? '' : 'disabled'}>Qarışıq 20 sual</button>`)}
+                <div class="cp-cards">
+                    ${keys.map(k => {
+                        const arr = this.wrongDB[k];
+                        const hard = arr.filter(x => ((this.wrongCounts || {})[x.q] || 0) >= 2).length;
+                        const veryHard = arr.filter(x => ((this.wrongCounts || {})[x.q] || 0) >= 3).length;
+                        return `
+                    <button class="cp-u" onclick="QuizApp.startWrongFor('${k.replace(/'/g, "\\'")}')">
+                        <div class="cp-u-top"><b>${label(k)}</b><span class="cp-pct">${arr.length} səhv</span></div>
+                        <div class="cp-u-nums"><span><b>${arr.length}</b> səhv sual</span><span class="h"><b>${hard}</b> çətin (2+)</span><span class="r"><b>${veryHard}</b> çox çətin (3+)</span></div>
+                        <div class="cp-u-foot"><span></span><span class="cp-start">Başla</span></div>
+                    </button>`;
+                    }).join('') || '<div class="hx-empty">Əla! Səhv yoxdur.</div>'}
+                </div>
+            </div>`;
+    },
 
-        Object.keys(this.wrongDB).forEach(c => {
-            if (this.wrongDB[c].length) {
-                const d = document.createElement('div');
-                d.className = 'stat-card';
-                d.innerHTML = `<div class="stat-val" style="color:var(--wrong)">${this.wrongDB[c].length}</div><div class="stat-lbl">${c}</div>`;
-                d.onclick = () => this.startSpecial(this.wrongDB[c], "Səhvlər", c);
-                g.appendChild(d);
-            }
-        });
-        if (!g.innerHTML) g.innerHTML = "<p style='text-align:center;color:var(--text-muted)'>Əla! Səhv yoxdur.</p>";
+    startWrongFor: function (key) {
+        const arr = this.wrongDB[key] || [];
+        if (arr.length) this.startSpecial(arr, "Səhvlər", key);
     },
 
     showHomeFromSidebar: function () {
@@ -3449,7 +2084,7 @@ const QuizApp = {
         const homeBtn = document.getElementById('btn-home');
         if (homeBtn) homeBtn.classList.add('active');
         this.start();
-        if (window.innerWidth <= 768) toggleSidebar();
+        closeSidebar();
     },
 
     performSidebarAnswerSearch: function () {
@@ -3464,7 +2099,7 @@ const QuizApp = {
             mainSearchInput.value = val;
             this.performAnswerSearch();
         }
-        if (window.innerWidth <= 768) toggleSidebar();
+        closeSidebar();
     },
 
     showAnswerSearch: function () {
@@ -3542,7 +2177,7 @@ const QuizApp = {
 
             const questionText = document.createElement('div');
             questionText.style.cssText = "font-size: 1rem; font-weight: 600; color: var(--text-main); line-height: 1.5;";
-            questionText.textContent = `${idx + 1}. ${q.q || '(Sual mətni yoxdur)'}`;
+            questionText.innerHTML = `${idx + 1}. ${q.q || '(Sual mətni yoxdur)'}`;
             item.appendChild(questionText);
 
             const optionsContainer = document.createElement('div');
@@ -3807,351 +2442,104 @@ const QuizApp = {
         this.drawDynamicsChart();
     },
 
-    drawDynamicsChart: function(hoveredIndex = null) {
-        const canvas = document.getElementById('home-dynamics-canvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
+    // Activity per day across the semester's study window (STUDY_PERIOD in config.js): stacked correct/wrong bars, or minutes spent
+    drawDynamicsChart: function () {
+        const host = document.getElementById('home-dynamics');
+        if (!host) return;
         const mode = this.state.chartMode || 'questions';
+        if (!this.state.chartSelectedCourse) this.state.chartSelectedCourse = 'all';
+        const sel = this.state.chartSelectedCourse;
 
-        const last7Days = [];
-        const startDate = new Date(2026, 5, 3); // June 3rd
-        for (let i = 0; i < 12; i++) {
-            const d = new Date(startDate);
-            d.setDate(startDate.getDate() + i);
-            const y = d.getFullYear();
-            const m = String(d.getMonth() + 1).padStart(2, '0');
-            const dayNum = String(d.getDate()).padStart(2, '0');
-            last7Days.push(`${y}-${m}-${dayNum}`);
-        }
-
-        const courseStyles = {
-            "Atatürk İlkeleri ve İnkılap Tarihi II": { g1: "#ef4444", g2: "#f97316" },
-            "Görsel İletişim Tasarımı": { g1: "#6366f1", g2: "#8b5cf6" },
-            "Grafik Tasarım II": { g1: "#10b981", g2: "#06b6d4" },
-            "Masaüstü Yayıncılık": { g1: "#3b82f6", g2: "#6366f1" },
-            "Tasarımda Tipografi": { g1: "#f59e0b", g2: "#ef4444" },
-            "Türk Dili II": { g1: "#8b5cf6", g2: "#ec4899" },
-            "Mixed": { g1: "#ec4899", g2: "#f43f5e" }
-        };
-        const defaultStyle = { g1: "#6366f1", g2: "#8b5cf6" };
-
-        const coursesList = ["Mixed", "Atatürk İlkeleri ve İnkılap Tarihi II", "Türk Dili II", "Grafik Tasarım II", "Görsel İletişim Tasarımı", "Masaüstü Yayıncılık", "Tasarımda Tipografi"];
-        
-        if (!this.state.chartSelectedCourse) {
-            this.state.chartSelectedCourse = 'all';
-        }
-
-        // Render dynamic dropdown filter
         const filtersContainer = document.getElementById('chart-courses-filters');
         if (filtersContainer) {
             filtersContainer.innerHTML = '';
-            
-            const selectWrap = document.createElement('div');
-            selectWrap.className = 'chart-filter-select-wrap';
-            
             const select = document.createElement('select');
-            select.className = 'chart-filter-select';
-            
-            // "Hamısı" option
-            const optAll = document.createElement('option');
-            optAll.value = 'all';
-            optAll.textContent = '🌟 Hamısı';
-            if (this.state.chartSelectedCourse === 'all') optAll.selected = true;
-            select.appendChild(optAll);
-            
-            // Course options
-            coursesList.forEach(c => {
-                const style = COURSE_STYLES[c] || { icon: "📚" };
+            select.className = 'hx-sel';
+            select.setAttribute('aria-label', 'Fənn');
+            [['all', 'Hamısı'], ...Object.keys(CONFIG).map(c => [c, c])].forEach(([value, label]) => {
                 const opt = document.createElement('option');
-                opt.value = c;
-                opt.textContent = `${style.icon} ${c}`;
-                if (this.state.chartSelectedCourse === c) opt.selected = true;
+                opt.value = value; opt.textContent = label;
+                if (sel === value) opt.selected = true;
                 select.appendChild(opt);
             });
-            
             select.onchange = (e) => {
                 this.state.chartSelectedCourse = e.target.value;
                 this.drawDynamicsChart();
             };
-            
-            selectWrap.appendChild(select);
-            filtersContainer.appendChild(selectWrap);
+            filtersContainer.appendChild(select);
         }
 
-        const chartData = last7Days.map(date => {
-            const dayData = this.dailyHistory[date] || {};
-            const coursesData = [];
-            let totalVal = 0;
-            coursesList.forEach(c => {
-                let time = 0;
-                let correct = 0;
-                let wrong = 0;
-                
-                Object.keys(dayData).forEach(key => {
-                    if (key === c || key.startsWith(c + '_pdf_')) {
-                        const data = dayData[key] || {};
-                        time += data.time || 0;
-                        correct += data.correct || 0;
-                        wrong += data.wrong || 0;
-                    }
-                });
-
-                const val = mode === 'questions' ? (correct + wrong) : Math.round(time / 60);
-                coursesData.push({ course: c, val, correct, wrong, time });
-                totalVal += val;
+        const months = ['yan', 'fev', 'mar', 'apr', 'may', 'iyn', 'iyl', 'avq', 'sen', 'okt', 'noy', 'dek'];
+        const data = [];
+        const parseDay = (str) => { const [yy, mm, dd] = str.split('-').map(Number); return new Date(yy, mm - 1, dd); };
+        const period = typeof STUDY_PERIOD !== 'undefined' ? STUDY_PERIOD : null;
+        const endDay = period ? parseDay(period.end) : new Date();
+        const startDay = period ? parseDay(period.start) : new Date(Date.now() - 13 * 86400000);
+        for (let d = new Date(startDay); d <= endDay; d.setDate(d.getDate() + 1)) {
+            const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+            const day = (this.dailyHistory || {})[key] || {};
+            let c = 0, w = 0, t = 0;
+            Object.keys(day).forEach(k => {
+                if (k === 'platformTime' || k === 'personalNotes') return;
+                if (sel !== 'all' && k !== sel && !k.startsWith(sel + '_pdf_')) return;
+                const v = day[k] || {};
+                c += v.correct || 0; w += v.wrong || 0; t += v.time || 0;
             });
-            return { date, totalVal, coursesData };
-        });
-
-        // Find the maximum value to scale the Y axis based on filtered courses
-        let maxVal = 10;
-        chartData.forEach(day => {
-            day.coursesData.forEach(c => {
-                if (this.state.chartSelectedCourse !== 'all' && this.state.chartSelectedCourse !== c.course) return;
-                if (c.val > maxVal) maxVal = c.val;
-            });
-        });
-        const gridMax = Math.ceil(maxVal / 5) * 5;
-
-        const dpr = window.devicePixelRatio || 1;
-        const rect = canvas.getBoundingClientRect();
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-        ctx.scale(dpr, dpr);
-
-        const w = rect.width;
-        const h = rect.height;
-        const padding = { top: 20, right: 0, bottom: 40, left: 0 };
-
-        ctx.clearRect(0, 0, w, h);
-
-        // Draw grid lines
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
-        ctx.lineWidth = 1;
-        ctx.setLineDash([4, 4]);
-
-        const chartWidth = w - padding.left - padding.right;
-        const stepWidth = chartWidth / (last7Days.length - 1);
-
-        // 1. Horizontal grid lines
-        const gridLinesCount = 4;
-        for (let i = 0; i <= gridLinesCount; i++) {
-            const val = Math.round((gridMax / gridLinesCount) * i);
-            const y = h - padding.bottom - ((val / gridMax) * (h - padding.top - padding.bottom));
-            
-            ctx.beginPath();
-            ctx.moveTo(padding.left, y);
-            ctx.lineTo(w - padding.right, y);
-            ctx.stroke();
+            data.push({ label: `${d.getDate()} ${months[d.getMonth()]}`, c, w, m: Math.round(t / 60) });
         }
 
-        // 2. Vertical grid lines
-        chartData.forEach((day, index) => {
-            const x = padding.left + index * stepWidth;
-            ctx.beginPath();
-            ctx.moveTo(x, padding.top);
-            ctx.lineTo(x, h - padding.bottom);
-            ctx.stroke();
-        });
+        const isQ = mode === 'questions';
+        const top = Math.max(4, ...data.map(d => isQ ? d.c + d.w : d.m));
+        const step = top > 200 ? 50 : top > 80 ? 20 : top > 30 ? 10 : top > 12 ? 5 : top > 6 ? 2 : 1;
+        const max = Math.ceil(top / step) * step;
+        const W = 720, H = 230, L = 34, B = 26, T = 8, n = data.length;
+        const slot = (W - L) / n, bw = Math.min(26, slot * 0.62);
+        const labelEvery = n > 21 ? 7 : 2;
+        const y = (v) => T + (H - B - T) * (1 - v / max);
 
-        ctx.setLineDash([]); // Reset line dash
-
-        // 3. Draw Y-axis labels
-        ctx.fillStyle = "rgba(255, 255, 255, 0.35)";
-        ctx.font = "500 0.72rem sans-serif";
-        ctx.textAlign = "left";
-        ctx.textBaseline = "bottom";
-        for (let i = 0; i <= gridLinesCount; i++) {
-            const val = Math.round((gridMax / gridLinesCount) * i);
-            const y = h - padding.bottom - ((val / gridMax) * (h - padding.top - padding.bottom));
-            ctx.fillText(val + (mode === 'time' ? ' d' : ''), 6, y - 4);
+        let grid = '';
+        for (let v = 0; v <= max; v += step) {
+            grid += `<line class="gl" x1="${L}" x2="${W}" y1="${y(v)}" y2="${y(v)}"></line><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${v}</text>`;
         }
-
-        // Draw X-axis labels
-        ctx.textBaseline = "top";
-        ctx.font = "500 0.65rem sans-serif";
-        const monthsAzShort = ["Yan", "Fev", "Mar", "Apr", "May", "İyn", "İyl", "Avq", "Sen", "Okt", "Noy", "Dek"];
-        chartData.forEach((day, index) => {
-            const x = padding.left + index * stepWidth;
-            
-            // Thinning: only draw label for even indices (0, 2, 4...) to prevent overlap
-            const isLast = (index === chartData.length - 1);
-            if (index % 2 !== 0 && !isLast) {
-                return;
+        let bars = '';
+        data.forEach((d, i) => {
+            const x = L + i * slot + (slot - bw) / 2;
+            const total = isQ ? d.c + d.w : d.m;
+            const tip = isQ ? `${d.label}: ${d.c} düz, ${d.w} səhv` : `${d.label}: ${d.m} dəq`;
+            if (isQ) {
+                if (d.c) bars += `<rect class="b-ok" x="${x}" y="${y(d.c)}" width="${bw}" height="${y(0) - y(d.c)}" rx="3"></rect>`;
+                if (d.w) bars += `<rect class="b-bad" x="${x}" y="${y(d.c + d.w) - (d.c ? 2 : 0)}" width="${bw}" height="${y(0) - y(d.w)}" rx="3"></rect>`;
+            } else if (d.m) {
+                bars += `<rect class="b-t" x="${x}" y="${y(d.m)}" width="${bw}" height="${y(0) - y(d.m)}" rx="3"></rect>`;
             }
-            if (isLast && index % 2 !== 0 && (chartData.length - 2) % 2 === 0) {
-                // Skip last index if it's odd and the previous even index was drawn, to prevent overlap
-                return;
-            }
-            
-            const parts = day.date.split('-');
-            const dObj = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
-            const dayNum = String(dObj.getDate()).padStart(2, '0');
-            const monthName = monthsAzShort[dObj.getMonth()];
-            const label = `${dayNum} ${monthName}`;
-            
-            ctx.fillStyle = "rgba(255, 255, 255, 0.45)";
-            if (index === 0) {
-                ctx.textAlign = "left";
-            } else if (isLast) {
-                ctx.textAlign = "right";
-            } else {
-                ctx.textAlign = "center";
-            }
-            ctx.fillText(label, x, h - padding.bottom + 14);
+            bars += `<rect class="hit" data-tip="${tip}" data-x="${((L + i * slot + slot / 2) / W * 100).toFixed(1)}" data-y="${(y(total) / H * 100).toFixed(1)}" x="${L + i * slot}" y="${T}" width="${slot}" height="${H - B - T}"></rect>`;
+            if (i % labelEvery === 0 && i < n - labelEvery / 2) bars += `<text x="${L + i * slot + slot / 2}" y="${H - 6}" text-anchor="${i === 0 ? 'start' : 'middle'}">${d.label}</text>`;
+            else if (i === n - 1) bars += `<text x="${W}" y="${H - 6}" text-anchor="end">${d.label}</text>`;
         });
+        const legend = isQ ? '<span class="l-ok">Düz</span><span class="l-bad">Səhv</span>' : '<span class="l-time">Dəqiqə</span>';
 
-        // Draw vertical hovered indicator line
-        if (hoveredIndex !== null) {
-            const x = padding.left + hoveredIndex * stepWidth;
-            ctx.beginPath();
-            ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
-            ctx.lineWidth = 1;
-            ctx.setLineDash([4, 4]);
-            ctx.moveTo(x, padding.top);
-            ctx.lineTo(x, h - padding.bottom);
-            ctx.stroke();
-            ctx.setLineDash([]);
-        }
-
-        // Draw lines for each course using smooth Catmull-Rom splines
-        coursesList.forEach(courseName => {
-            if (this.state.chartSelectedCourse !== 'all' && this.state.chartSelectedCourse !== courseName) return;
-            const style = courseStyles[courseName] || defaultStyle;
-            
-            const points = chartData.map((day, index) => {
-                const x = padding.left + index * stepWidth;
-                const cData = day.coursesData.find(d => d.course === courseName);
-                const val = cData ? cData.val : 0;
-                const y = h - padding.bottom - ((val / gridMax) * (h - padding.top - padding.bottom));
-                return { x, y };
-            });
-
-            ctx.beginPath();
-            ctx.strokeStyle = style.g1;
-            ctx.lineWidth = 3;
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-
-            if (points.length > 0) {
-                ctx.moveTo(points[0].x, points[0].y);
-                for (let i = 0; i < points.length - 1; i++) {
-                    const p0 = points[Math.max(i - 1, 0)];
-                    const p1 = points[i];
-                    const p2 = points[i + 1];
-                    const p3 = points[Math.min(i + 2, points.length - 1)];
-                    
-                    const tension = 0.2;
-                    const cp1x = p1.x + (p2.x - p0.x) * tension;
-                    const cp1y = p1.y + (p2.y - p0.y) * tension;
-                    const cp2x = p2.x - (p3.x - p1.x) * tension;
-                    const cp2y = p2.y - (p3.y - p1.y) * tension;
-                    
-                    ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, p2.x, p2.y);
-                }
-                ctx.stroke();
-            }
-        });
-
-        // Only draw dots for the hovered day to keep the chart clean and modern
-        if (hoveredIndex !== null) {
-            coursesList.forEach(courseName => {
-                if (this.state.chartSelectedCourse !== 'all' && this.state.chartSelectedCourse !== courseName) return;
-                const style = courseStyles[courseName] || defaultStyle;
-                const day = chartData[hoveredIndex];
-                const x = padding.left + hoveredIndex * stepWidth;
-                const cData = day.coursesData.find(d => d.course === courseName);
-                const val = cData ? cData.val : 0;
-                const y = h - padding.bottom - ((val / gridMax) * (h - padding.top - padding.bottom));
-                
-                ctx.beginPath();
-                ctx.arc(x, y, 5.5, 0, 2 * Math.PI);
-                ctx.fillStyle = style.g1;
-                ctx.fill();
-                ctx.strokeStyle = "#ffffff";
-                ctx.lineWidth = 2;
-                ctx.stroke();
-            });
-        }
-
-        const tooltip = document.getElementById('chart-tooltip');
-        if (!tooltip) return;
-
-        if (canvas._onMouseMove) canvas.removeEventListener('mousemove', canvas._onMouseMove);
-
-        canvas._onMouseMove = (e) => {
-            const rect = canvas.getBoundingClientRect();
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-
-            const hoveredIdx = Math.max(0, Math.min(last7Days.length - 1, Math.round((mouseX - padding.left) / stepWidth)));
-
-            if (hoveredIdx !== this._lastHoveredIndex) {
-                this._lastHoveredIndex = hoveredIdx;
-                this.drawDynamicsChart(hoveredIdx);
-            }
-
-            if (hoveredIdx !== null) {
-                const dayData = chartData[hoveredIdx];
-                const monthsAzLong = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
-                const weekdaysAz = ["Bazar", "Bazar ertəsi", "Çərşənbə axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Şənbə"];
-                const parts = dayData.date.split('-');
-                const dObj = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
-                const dayNum = String(dObj.getDate()).padStart(2, '0');
-                const monthName = monthsAzLong[dObj.getMonth()];
-                const weekdayName = weekdaysAz[dObj.getDay()];
-                const dateStr = `${dayNum} ${monthName}, ${weekdayName}`;
-                
-                let detailsHTML = `<div style="font-weight:700; font-size:0.8rem; margin-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:4px;">${dateStr}</div>`;
-                let hasData = false;
-
-                dayData.coursesData.forEach(seg => {
-                    if (seg.val === 0) return;
-                    if (this.state.chartSelectedCourse !== 'all' && this.state.chartSelectedCourse !== seg.course) return;
-                    hasData = true;
-                    const style = courseStyles[seg.course] || defaultStyle;
-                    const mins = Math.floor(seg.time / 60);
-                    const secs = seg.time % 60;
-                    const timeStr = mins > 0 
-                        ? `${mins} d ${secs > 0 ? secs + ' s' : ''}` 
-                        : `${secs} s`;
-                    const valStr = `<span style="color:#22c55e;font-weight:700;">${seg.correct} D</span> / <span style="color:#ef4444;font-weight:700;">${seg.wrong} S</span> <span style="color:rgba(255,255,255,0.45); font-size:0.68rem; margin-left:6px;">(${timeStr})</span>`;
-                    
-                    detailsHTML += `
-                        <div style="display:flex; align-items:center; gap:8px; font-size:0.72rem; margin-bottom:4px;">
-                            <span style="width:8px; height:8px; border-radius:50%; background: ${style.g1}; flex-shrink:0;"></span>
-                            <span style="flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:rgba(255,255,255,0.7);">${seg.course}</span>
-                            <span>${valStr}</span>
-                        </div>
-                    `;
-                });
-
-                if (!hasData) {
-                    detailsHTML += `<div style="font-size:0.72rem; color:var(--text-muted); text-align:center;">Fəaliyyət yoxdur</div>`;
-                }
-
-                tooltip.innerHTML = detailsHTML;
-                tooltip.style.display = 'block';
-                tooltip.style.left = Math.min(rect.width - 200, Math.max(10, e.clientX - rect.left + 15)) + 'px';
-                tooltip.style.top = Math.min(rect.height - 120, Math.max(10, e.clientY - rect.top - 50)) + 'px';
-            } else {
-                tooltip.style.display = 'none';
-            }
+        host.innerHTML = `
+            <div class="hx-legend">${legend}</div>
+            <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Günlər üzrə fəallıq">${grid}${bars}</svg>
+            <div class="hx-tip" style="display:none"></div>
+        `;
+        const tipEl = host.querySelector('.hx-tip');
+        const svgEl = host.querySelector('svg');
+        host.onmousemove = (e) => {
+            const r = e.target.closest ? e.target.closest('.hit') : null;
+            if (!r) { tipEl.style.display = 'none'; return; }
+            const box = svgEl.getBoundingClientRect(), hb = host.getBoundingClientRect();
+            tipEl.style.display = 'block';
+            tipEl.textContent = r.dataset.tip;
+            tipEl.style.left = (box.left - hb.left + box.width * r.dataset.x / 100) + 'px';
+            tipEl.style.top = (box.top - hb.top + box.height * r.dataset.y / 100) + 'px';
         };
-
-        canvas.addEventListener('mousemove', canvas._onMouseMove);
-        canvas.addEventListener('mouseleave', () => { 
-            tooltip.style.display = 'none'; 
-            if (this._lastHoveredIndex !== null) {
-                this._lastHoveredIndex = null;
-                this.drawDynamicsChart(null);
-            }
-        });
+        host.onmouseleave = () => { tipEl.style.display = 'none'; };
     },
 
     saveStats: function () { 
         localStorage.setItem(this.DB.stats, JSON.stringify(this.stats)); 
-        localStorage.setItem('qa_v31_h', JSON.stringify(this.dailyHistory));
+        localStorage.setItem('qa_v32_h', JSON.stringify(this.dailyHistory));
     },
     saveWrong: function (c, q) { if (!this.wrongDB[c]) this.wrongDB[c] = []; if (!this.wrongDB[c].some(x => x.q === q.q)) { this.wrongDB[c].push(q); localStorage.setItem(this.DB.wrong, JSON.stringify(this.wrongDB)); } },
     removeWrong: function (c, qt) { if (this.wrongDB[c]) { this.wrongDB[c] = this.wrongDB[c].filter(x => x.q !== qt); if (!this.wrongDB[c].length) delete this.wrongDB[c]; localStorage.setItem(this.DB.wrong, JSON.stringify(this.wrongDB)); } },
@@ -4225,7 +2613,7 @@ const QuizApp = {
         const backup = {};
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
-            if (key.startsWith('qa_v31_') || key === 'theme') {
+            if (key.startsWith('qa_v32_') || key === 'theme') {
                 const val = localStorage.getItem(key);
                 try {
                     backup[key] = JSON.parse(val);
@@ -4297,15 +2685,15 @@ const QuizApp = {
             
             // 1. Map Firestore-style keys to localStorage keys
             const firestoreKeyMap = {
-                'stats': 'qa_v31_s',
-                'wrong': 'qa_v31_w',
-                'correct': 'qa_v31_c',
-                'bookmarks': 'qa_v31_m',
-                'daily': 'qa_v31_h',
-                'dailyGoal': 'qa_v31_dg',
-                'settings': 'qa_v31_conf',
-                'wrongCounts': 'qa_v31_wc',
-                'localUpdatedAt': 'qa_v31_localUpdatedAt'
+                'stats': 'qa_v32_s',
+                'wrong': 'qa_v32_w',
+                'correct': 'qa_v32_c',
+                'bookmarks': 'qa_v32_m',
+                'daily': 'qa_v32_h',
+                'dailyGoal': 'qa_v32_dg',
+                'settings': 'qa_v32_conf',
+                'wrongCounts': 'qa_v32_wc',
+                'localUpdatedAt': 'qa_v32_localUpdatedAt'
             };
 
             const normalizedData = {};
@@ -4317,24 +2705,24 @@ const QuizApp = {
                 }
             }
 
-            // 2. Resolve & merge daily history if both qa_v31_h and legacy qa_v31_d exist
+            // 2. Resolve & merge daily history if both qa_v32_h and legacy qa_v32_d exist
             let dailyHistoryToImport = null;
             
             // Extract new daily history
-            if (normalizedData['qa_v31_h']) {
+            if (normalizedData['qa_v32_h']) {
                 try {
-                    dailyHistoryToImport = typeof normalizedData['qa_v31_h'] === 'string' 
-                        ? JSON.parse(normalizedData['qa_v31_h']) 
-                        : normalizedData['qa_v31_h'];
+                    dailyHistoryToImport = typeof normalizedData['qa_v32_h'] === 'string' 
+                        ? JSON.parse(normalizedData['qa_v32_h']) 
+                        : normalizedData['qa_v32_h'];
                 } catch(e) {}
             }
             
             // Extract legacy daily history
-            if (data['qa_v31_d']) {
+            if (data['qa_v32_d']) {
                 try {
-                    const legacyDaily = typeof data['qa_v31_d'] === 'string' 
-                        ? JSON.parse(data['qa_v31_d']) 
-                        : data['qa_v31_d'];
+                    const legacyDaily = typeof data['qa_v32_d'] === 'string' 
+                        ? JSON.parse(data['qa_v32_d']) 
+                        : data['qa_v32_d'];
                         
                     if (legacyDaily && Object.keys(legacyDaily).length > 0) {
                         if (!dailyHistoryToImport) {
@@ -4367,16 +2755,16 @@ const QuizApp = {
             }
 
             if (dailyHistoryToImport) {
-                normalizedData['qa_v31_h'] = JSON.stringify(dailyHistoryToImport);
+                normalizedData['qa_v32_h'] = JSON.stringify(dailyHistoryToImport);
             }
             
-            // Delete legacy qa_v31_d from data and localStorage to prevent pollution
-            delete normalizedData['qa_v31_d'];
-            localStorage.removeItem('qa_v31_d');
+            // Delete legacy qa_v32_d from data and localStorage to prevent pollution
+            delete normalizedData['qa_v32_d'];
+            localStorage.removeItem('qa_v32_d');
 
             // 3. Save all normalized keys to localStorage
             for (let [key, val] of Object.entries(normalizedData)) {
-                if (key.startsWith('qa_v31_') || key === 'theme') {
+                if (key.startsWith('qa_v32_') || key === 'theme') {
                     const stringValue = typeof val === 'string' ? val : JSON.stringify(val);
                     localStorage.setItem(key, stringValue);
                     count++;
@@ -4384,7 +2772,7 @@ const QuizApp = {
             }
 
             if (count > 0) {
-                localStorage.setItem('qa_v31_localUpdatedAt', Date.now().toString());
+                localStorage.setItem('qa_v32_localUpdatedAt', Date.now().toString());
                 this.loadData();
                 if (typeof FirebaseSync !== 'undefined' && FirebaseSync.saveToCloud) {
                     FirebaseSync.saveToCloud().then(() => {
@@ -4400,7 +2788,7 @@ const QuizApp = {
                     location.reload();
                 }
             } else {
-                alert("İdxal üçün uyğun açarlar (qa_v31_) tapılmadı.");
+                alert("İdxal üçün uyğun açarlar (qa_v32_) tapılmadı.");
             }
         } catch (e) {
             alert("İdxal xətası: " + e.message);
@@ -4419,15 +2807,15 @@ const QuizApp = {
             const data = await response.json();
             let count = 0;
             const firestoreKeyMap = {
-                'stats': 'qa_v31_s',
-                'wrong': 'qa_v31_w',
-                'correct': 'qa_v31_c',
-                'bookmarks': 'qa_v31_m',
-                'daily': 'qa_v31_h',
-                'dailyGoal': 'qa_v31_dg',
-                'settings': 'qa_v31_conf',
-                'wrongCounts': 'qa_v31_wc',
-                'localUpdatedAt': 'qa_v31_localUpdatedAt'
+                'stats': 'qa_v32_s',
+                'wrong': 'qa_v32_w',
+                'correct': 'qa_v32_c',
+                'bookmarks': 'qa_v32_m',
+                'daily': 'qa_v32_h',
+                'dailyGoal': 'qa_v32_dg',
+                'settings': 'qa_v32_conf',
+                'wrongCounts': 'qa_v32_wc',
+                'localUpdatedAt': 'qa_v32_localUpdatedAt'
             };
             const normalizedData = {};
             for (let [key, val] of Object.entries(data)) {
@@ -4438,11 +2826,11 @@ const QuizApp = {
                 }
             }
             
-            delete normalizedData['qa_v31_d'];
-            localStorage.removeItem('qa_v31_d');
+            delete normalizedData['qa_v32_d'];
+            localStorage.removeItem('qa_v32_d');
 
             for (let [key, val] of Object.entries(normalizedData)) {
-                if (key.startsWith('qa_v31_') || key === 'theme') {
+                if (key.startsWith('qa_v32_') || key === 'theme') {
                     const stringValue = typeof val === 'string' ? val : JSON.stringify(val);
                     localStorage.setItem(key, stringValue);
                     count++;
@@ -4450,7 +2838,7 @@ const QuizApp = {
             }
 
             if (count > 0) {
-                localStorage.setItem('qa_v31_localUpdatedAt', Date.now().toString());
+                localStorage.setItem('qa_v32_localUpdatedAt', Date.now().toString());
                 alert("Məlumatlar recovered_backup.json faylından uğurla bərpa edildi!");
                 location.reload();
             } else {
@@ -4543,17 +2931,11 @@ const QuizApp = {
     triggerSurpriseQuestion: function() {
         if (typeof quizData === 'undefined' || quizData.length === 0) return;
         
-        // Filter questions to only Atatürk and Türk Dili courses
-        const surprisePool = quizData.filter(q => {
-            const courseLower = (q.c || "").toLowerCase();
-            return courseLower.includes("atatürk") || 
-                   courseLower.includes("ataturk") || 
-                   courseLower.includes("türk dil") || 
-                   courseLower.includes("turk dil");
-        });
+        // All subjects; Mixed is skipped because it repeats the same questions
+        const surprisePool = quizData.filter(q => q.c !== "Mixed");
         
         if (surprisePool.length === 0) {
-            console.log("No Atatürk or Türk Dili questions found for surprise pool.");
+            console.log("No questions found for surprise pool.");
             return;
         }
 
@@ -4701,6 +3083,12 @@ const QuizApp = {
         }, 1000);
     },
     
+    // Close button: stops the countdown first, so an unanswered question is not recorded as wrong
+    dismissSurpriseModal: function() {
+        if (this.surpriseCountdown) clearInterval(this.surpriseCountdown);
+        this.closeSurpriseModal();
+    },
+
     closeSurpriseModal: function() {
         const overlay = document.getElementById('surprise-modal-overlay');
         if (overlay) overlay.style.display = 'none';
@@ -5077,7 +3465,7 @@ function fireMotivationalCelebration(milestone) {
             this.y = Math.random() * -canvas.height;
             this.r = Math.random() * 6 + 4;
             this.d = Math.random() * canvas.height;
-            const colors = ['#6366f1', '#8b5cf6', '#10b981', '#ef4444', '#f59e0b', '#3b82f6'];
+            const colors = ['#8b5cf6', '#8b5cf6', '#10b981', '#ef4444', '#f59e0b', '#8b5cf6'];
             this.color = colors[Math.floor(Math.random() * colors.length)];
             this.tilt = Math.random() * 10 - 5;
             this.tiltAngleIncremental = Math.random() * 0.07 + 0.02;
@@ -5464,7 +3852,7 @@ function fireConfetti() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
-    const colors = ['#6366f1', '#8b5cf6', '#10b981', '#ef4444', '#f59e0b', '#3b82f6'];
+    const colors = ['#8b5cf6', '#8b5cf6', '#10b981', '#ef4444', '#f59e0b', '#8b5cf6'];
     const particles = [];
     
     for (let i = 0; i < 150; i++) {

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'quiz-app-v92';
+const CACHE_NAME = 'quiz-app-v118';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -8,8 +8,9 @@ const ASSETS_TO_CACHE = [
     './icon-512.png'
 ];
 
-// 1. Quraşdırma (Faylları yaddaşa yazır)
+// 1. Quraşdırma (Faylları yaddaşa yazır, yeni versiya gözləmədən işə düşür)
 self.addEventListener('install', (event) => {
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
@@ -19,7 +20,7 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// 2. Aktivləşmə (Köhnə keşləri silir)
+// 2. Aktivləşmə (Köhnə keşləri silir və açıq səhifələri dərhal idarəyə götürür)
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys().then((keyList) => {
@@ -28,17 +29,23 @@ self.addEventListener('activate', (event) => {
                     return caches.delete(key);
                 }
             }));
-        })
+        }).then(() => self.clients.claim())
     );
 });
 
-// 3. Sorğu (İnternet yoxdursa, yaddaşdan oxuyur)
+// 3. Sorğu (Əvvəlcə internetdən ən yeni versiyanı götürür, internet yoxdursa yaddaşdan oxuyur)
 self.addEventListener('fetch', (event) => {
+    const req = event.request;
+    if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
     event.respondWith(
-        caches.match(event.request)
+        fetch(req, { cache: 'no-cache' })
             .then((response) => {
-                // Keşdə varsa qaytar, yoxdursa internetdən götür
-                return response || fetch(event.request);
+                if (response.ok) {
+                    const copy = response.clone();
+                    caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+                }
+                return response;
             })
+            .catch(() => caches.match(req, { ignoreSearch: true }))
     );
 });

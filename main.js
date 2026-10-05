@@ -2,55 +2,6 @@ const LifeOS = {
     currentApp: null,
 
     init: async function () {
-        // Auto-restore fallback if localStorage statistics is empty
-        const stats = localStorage.getItem('qa_v31_s');
-        if (!stats || stats === '{}') {
-            console.log("Stats empty, attempting automatic restore from recovered_backup.json...");
-            try {
-                const r = await fetch('./recovered_backup.json');
-                if (r.ok) {
-                    const data = await r.json();
-                    let count = 0;
-                    const firestoreKeyMap = {
-                        'stats': 'qa_v31_s',
-                        'wrong': 'qa_v31_w',
-                        'correct': 'qa_v31_c',
-                        'bookmarks': 'qa_v31_m',
-                        'daily': 'qa_v31_h',
-                        'dailyGoal': 'qa_v31_dg',
-                        'settings': 'qa_v31_conf',
-                        'wrongCounts': 'qa_v31_wc',
-                        'localUpdatedAt': 'qa_v31_localUpdatedAt'
-                    };
-                    const normalizedData = {};
-                    for (let [key, val] of Object.entries(data)) {
-                        if (firestoreKeyMap[key]) {
-                            normalizedData[firestoreKeyMap[key]] = val;
-                        } else {
-                            normalizedData[key] = val;
-                        }
-                    }
-                    
-                    delete normalizedData['qa_v31_d'];
-                    localStorage.removeItem('qa_v31_d');
-
-                    for (let [key, val] of Object.entries(normalizedData)) {
-                        if (key.startsWith('qa_v31_') || key === 'theme') {
-                            const stringValue = typeof val === 'string' ? val : JSON.stringify(val);
-                            localStorage.setItem(key, stringValue);
-                            count++;
-                        }
-                    }
-                    if (count > 0) {
-                        localStorage.setItem('qa_v31_localUpdatedAt', Date.now().toString());
-                        console.log("Automatic restore from recovered_backup.json completed successfully!");
-                    }
-                }
-            } catch (err) {
-                console.warn("Auto-restore from recovered_backup.json skipped:", err.message);
-            }
-        }
-
         this.renderSidebar();
         QuizApp.init(); // Pre-load Quiz Data
 
@@ -89,39 +40,56 @@ const LifeOS = {
         const container = document.getElementById('sub-container-quiz');
         container.innerHTML = "";
 
-        // PDF Exams (İmtahan) Button
+        const icon = (d) => `<svg class="sbx-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+        const group = (label) => {
+            const g = document.createElement('div'); g.className = 'sbx-grp'; g.textContent = label;
+            container.appendChild(g);
+        };
+        const activate = (btn) => {
+            document.querySelectorAll('.course-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        };
+        const courseBtn = (c, inner) => {
+            const btn = document.createElement('button'); btn.className = 'menu-btn course-btn';
+            btn.innerHTML = inner; btn.id = `btn-${c}`;
+            btn.onclick = () => { activate(btn); QuizApp.selectCat(c, 'units'); };
+            container.appendChild(btn);
+        };
+
+        // Subjects, each with a small progress ring
+        group('Fənlər');
+        SUBJECTS.forEach((c, i) => {
+            courseBtn(c, `<svg class="sbx-ring" viewBox="0 0 20 20"><circle class="b" cx="10" cy="10" r="7"></circle><circle class="f" id="nav-ring-${i}" cx="10" cy="10" r="7" stroke-dasharray="0 44"></circle></svg><span>${c}</span><span class="sbx-meta" id="nav-pct-${i}">0%</span>`);
+        });
+
+        // Exams and the mixed bank
+        group('Sınaq');
+        const examCount = typeof pdfExamsData !== 'undefined' ? Object.keys(pdfExamsData).reduce((n, k) => n + pdfExamsData[k].length, 0) : 0;
         const pdfExamsBtn = document.createElement('button');
         pdfExamsBtn.className = 'menu-btn';
         pdfExamsBtn.id = 'btn-pdf-exams';
-        pdfExamsBtn.innerHTML = `<span>İmtahan</span>`;
+        pdfExamsBtn.innerHTML = `${icon('<path d="M7 3h8l4 4v14H7z"></path><path d="M10 12h6M10 16h6"></path>')}<span>İmtahan</span><span class="sbx-meta">${examCount}</span>`;
         pdfExamsBtn.onclick = () => {
-            document.querySelectorAll('.course-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
-            pdfExamsBtn.classList.add('active');
+            activate(pdfExamsBtn);
             QuizApp.showPdfExamsDashboard();
-            if (window.innerWidth <= 768) toggleSidebar();
+            closeSidebar();
         };
         container.appendChild(pdfExamsBtn);
+        if (CONFIG["Mixed"]) {
+            const mixedCount = typeof ataaofSorularData !== 'undefined' ? ataaofSorularData.length : 0;
+            courseBtn("Mixed", `${icon('<path d="M3 7h4l8 10h6M3 17h4l2.5-3M14.5 10L15 7h6"></path><path d="M18 4l3 3-3 3M18 14l3 3-3 3"></path>')}<span>Mixed</span><span class="sbx-meta">${mixedCount}</span>`);
+        }
 
-        Object.keys(CONFIG).forEach(c => {
-            const btn = document.createElement('button'); btn.className = 'menu-btn course-btn';
-            btn.innerHTML = `<span>${c}</span>`; btn.id = `btn-${c}`;
-            btn.onclick = () => {
-                document.querySelectorAll('.course-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                QuizApp.selectCat(c, 'units');
-            };
-            container.appendChild(btn);
-        });
+        group('Digər');
 
-        container.appendChild(document.createElement('br'));
+
 
         // Group Stats and Tools under a single dropdown (above Settings)
         const toolsBtn = document.createElement('button');
         toolsBtn.className = 'menu-btn';
         toolsBtn.id = 'btn-tools';
-        toolsBtn.innerHTML = `<span>Alətlər & Statistika</span> <span>▾</span>`;
+        toolsBtn.innerHTML = `${icon('<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"></path>')}<span>Alətlər & Statistika</span><span class="sbx-meta">▾</span>`;
         toolsBtn.onclick = () => {
             const sub = document.getElementById('sub-tools');
             sub.classList.toggle('show');
@@ -139,7 +107,7 @@ const LifeOS = {
                 document.querySelectorAll('.course-btn').forEach(x => x.classList.remove('active'));
                 document.querySelectorAll('.menu-btn').forEach(x => x.classList.remove('active'));
                 f();
-                if (window.innerWidth <= 768) toggleSidebar();
+                closeSidebar();
             };
             toolsSub.appendChild(b);
         };
@@ -157,10 +125,28 @@ const LifeOS = {
         // Add Settings button at the bottom of the list
         const addSettingsBtn = (t, f) => {
             const b = document.createElement('button'); b.className = 'menu-btn special-btn';
-            b.innerHTML = `<span>${t}</span>`; b.onclick = () => { f(); if (window.innerWidth <= 768) toggleSidebar(); };
+            b.innerHTML = `${icon('<circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"></path>')}<span>${t}</span>`; b.onclick = () => { f(); closeSidebar(); };
             container.appendChild(b);
         };
         addSettingsBtn('Ayarlar', () => QuizApp.showSettings());
+    },
+
+    // Share of each subject's questions answered so far, shown as the small ring in the menu
+    updateNavProgress: function () {
+        if (typeof SUBJECTS === 'undefined' || typeof QuizApp === 'undefined') return;
+        SUBJECTS.forEach((c, i) => {
+            let total = typeof quizData !== 'undefined' ? quizData.filter(q => q.c === c).length : 0;
+            if (typeof pdfExamsData !== 'undefined' && pdfExamsData[c]) pdfExamsData[c].forEach(e => { total += e.length; });
+            let answered = 0;
+            Object.keys(QuizApp.stats || {}).forEach(key => {
+                if (key === c || key.startsWith(c + '_pdf_')) answered += (QuizApp.stats[key] || {}).t || 0;
+            });
+            const pct = total ? Math.min(100, Math.round((answered / total) * 100)) : 0;
+            const ring = document.getElementById(`nav-ring-${i}`);
+            const txt = document.getElementById(`nav-pct-${i}`);
+            if (ring) ring.setAttribute('stroke-dasharray', `${(pct / 100 * 44).toFixed(1)} 44`);
+            if (txt) txt.textContent = `${pct}%`;
+        });
     },
 
 
@@ -191,7 +177,7 @@ const LifeOS = {
             QuizApp.start();
         }
 
-        if (window.innerWidth <= 768) toggleSidebar();
+        closeSidebar();
     },
 
     toggleQuizSub: function (c) {
@@ -340,6 +326,12 @@ window.SidebarTimer = SidebarTimer;
 function toggleSidebar() {
     document.getElementById('sidebar').classList.toggle('open');
     document.getElementById('sidebar-overlay').classList.toggle('open');
+}
+
+// After picking something from the menu on a phone, the drawer closes (it never opens by itself)
+function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebar-overlay').classList.remove('open');
 }
 
 window.onload = function () {
