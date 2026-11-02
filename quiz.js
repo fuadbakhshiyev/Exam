@@ -2513,7 +2513,7 @@ const QuizApp = {
                 bars += `<rect class="b-t" x="${x}" y="${y(d.m)}" width="${bw}" height="${y(0) - y(d.m)}" rx="3"></rect>`;
             }
             bars += `<rect class="hit" data-tip="${tip}" data-x="${((L + i * slot + slot / 2) / W * 100).toFixed(1)}" data-y="${(y(total) / H * 100).toFixed(1)}" x="${L + i * slot}" y="${T}" width="${slot}" height="${H - B - T}"></rect>`;
-            if (i % labelEvery === 0 && i < n - labelEvery / 2) bars += `<text x="${L + i * slot + slot / 2}" y="${H - 6}" text-anchor="${i === 0 ? 'start' : 'middle'}">${d.label}</text>`;
+            if (i % labelEvery === 0 && n - 1 - i >= Math.max(labelEvery, 3)) bars += `<text x="${L + i * slot + slot / 2}" y="${H - 6}" text-anchor="${i === 0 ? 'start' : 'middle'}">${d.label}</text>`;
             else if (i === n - 1) bars += `<text x="${W}" y="${H - 6}" text-anchor="end">${d.label}</text>`;
         });
         const legend = isQ ? '<span class="l-ok">Düz</span><span class="l-bad">Səhv</span>' : '<span class="l-time">Dəqiqə</span>';
