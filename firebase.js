@@ -261,9 +261,7 @@ const firebaseConfig = {
         readCloud: async function () {
             if (!mode) mode = ls.getItem('fb_sync_mode') || 'doc';
             try {
-                const d = await this.ref().get();
-                if (!d.exists) return null;
-                return mode === 'field' ? (d.data()[SEMESTER] || null) : d.data();
+                return this.decode(await this.ref().get());
             } catch (e) {
                 if (e.code === 'permission-denied' && mode === 'doc') {
                     mode = 'field';
@@ -274,9 +272,25 @@ const firebaseConfig = {
             }
         },
 
+        // The data is stored as one JSON text: Firestore then has no keys to check or index
+        // (question texts as map keys broke it with "invalid-argument")
+        decode: function (d) {
+            if (!d || !d.exists) return null;
+            const v = mode === 'field' ? d.data()[SEMESTER] : d.data();
+            if (!v) return null;
+            if (typeof v.json === 'string') { try { return JSON.parse(v.json); } catch (e) { return null; } }
+            return v;
+        },
+
         writeCloud: async function (data) {
-            if (mode === 'field') await this.ref().set({ [SEMESTER]: data }, { merge: true });
-            else await this.ref().set(data);
+            const json = JSON.stringify(data);
+            if (json.length > 950000) throw { code: 'çox böyük', message: 'Data ' + Math.round(json.length / 1024) + ' KB-dır (limit ~1 MB)' };
+            const value = { v: 2, ts: data.ts || 0, json };
+            if (mode === 'field') {
+                // update() replaces the whole field (set with merge would keep the old broken keys)
+                try { await this.ref().update({ [SEMESTER]: value }); }
+                catch (e) { if (e.code === 'not-found') await this.ref().set({ [SEMESTER]: value }); else throw e; }
+            } else await this.ref().set(value);
         },
 
         // Bring this device and the cloud together. Nothing is ever replaced wholesale:
@@ -302,7 +316,7 @@ const firebaseConfig = {
                 status = { ok: true, at: Date.now(), err: '' };
             } catch (e) {
                 dirty = true;
-                status = { ok: false, at: Date.now(), err: (e && (e.code || e.message)) || 'xəta' };
+                status = { ok: false, at: Date.now(), err: ((e && e.code) || 'xəta') + (e && e.message ? ': ' + e.message : '') };
                 console.error('Cloud sync error:', e);
             } finally {
                 saving = false;
@@ -322,7 +336,7 @@ const firebaseConfig = {
             try {
                 unlisten = this.ref().onSnapshot(d => {
                     if (d.metadata.hasPendingWrites || applying || saving) return;
-                    const cloud = !d.exists ? null : (mode === 'field' ? (d.data()[SEMESTER] || null) : d.data());
+                    const cloud = this.decode(d);
                     if (!cloud) return;
                     const local = snapshot();
                     const merged = merge(local, cloud);
