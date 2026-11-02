@@ -2546,19 +2546,12 @@ const QuizApp = {
     saveCorrect: function (c, q) { if (!this.correctDB[c]) this.correctDB[c] = []; if (!this.correctDB[c].some(x => x.q === q.q)) { this.correctDB[c].push(q); localStorage.setItem(this.DB.correct, JSON.stringify(this.correctDB)); } },
     removeCorrect: function (c, qt) { if (this.correctDB[c]) { this.correctDB[c] = this.correctDB[c].filter(x => x.q !== qt); if (!this.correctDB[c].length) delete this.correctDB[c]; localStorage.setItem(this.DB.correct, JSON.stringify(this.correctDB)); } },
     resetStatistics: async function () {
-        if (confirm("Bütün məlumatlar silinəcək!")) {
-            if (typeof firebase !== 'undefined' && firebase.auth && firebase.auth().currentUser) {
-                try {
-                    const uid = firebase.auth().currentUser.uid;
-                    await firebase.firestore().collection('users').doc(uid).delete();
-                    console.log("Cloud database document deleted");
-                } catch (e) {
-                    console.error("Error deleting cloud data:", e);
-                }
-            }
-            localStorage.clear();
-            location.reload();
+        if (!confirm("Bu semestrin bütün nəticələri silinəcək (hesaba daxil olmusunuzsa, buludda da)!")) return;
+        if (typeof FirebaseSync !== 'undefined' && FirebaseSync.user) {
+            try { await FirebaseSync.deleteCloud(); } catch (e) { console.error("Error deleting cloud data:", e); }
         }
+        Object.keys(localStorage).filter(k => k.startsWith('qa_v32_')).forEach(k => localStorage.removeItem(k));
+        location.reload();
     },
     formatTime: function (s) { return `${Math.floor(s / 3600)}h ${Math.floor((s % 3600) / 60)}m`; },
 

@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" href="icon-192.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=23">
+    <link rel="stylesheet" href="style.css?v=24">
 </head>
 
 <body data-theme="dark">
@@ -43,6 +43,7 @@
         </div>
 
         <div class="sbx-foot">
+            <div class="sbx-acc" id="sbx-acc"></div>
             <div class="sbx-sw">
                 <div class="sbx-sw-lbl"><span class="sbx-cap">Xronometr</span><b id="sb-timer-display">00:00:00</b></div>
                 <button class="sbx-ibtn" id="sb-timer-reset" onclick="SidebarTimer.reset()" title="Sıfırla" aria-label="Sıfırla">
@@ -180,14 +181,16 @@
     </div>
 
     <!-- SCRIPTS -->
-    <!-- Firebase SDK completely removed -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     
     <script src="data.js?v=3"></script>
     <script src="testsuallari/ataaof_sorular_data.js?v=3"></script>
     <script src="testsuallari/pdf_exams_data.js?v=3"></script>
     <script src="config.js?v=4"></script>
-    <script src="firebase.js?v=2.3"></script>
-    <script src="quiz.js?v=22"></script>
+    <script src="firebase.js?v=4"></script>
+    <script src="quiz.js?v=23"></script>
     <script src="main.js?v=5"></script>
     <script>
         if ('serviceWorker' in navigator) {

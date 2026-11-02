@@ -1,0 +1,8 @@
+pdf
+arxiv
+gemini-cli
+oys_*
+recovered_*.json
+*.py
+convert*.js
+console_restore.js
