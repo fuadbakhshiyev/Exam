@@ -172,6 +172,10 @@ const firebaseConfig = {
 
     let auth = null, db = null, user = null;
     let applying = false, dirty = false, saving = false, lastPull = 0, mode = null;
+    let quickTimer = null, unlisten = null, status = { ok: null, at: 0, err: '' };
+    const QUICK_DELAY = 8 * 1000;   // an answer goes out ~8 seconds later
+    // answering touches these; the open-app clock only touches stats/history, which ride the slower interval
+    const QUICK_KEYS = ['w', 'c', 'm', 'wc', 'dg', 'conf'].map(k => PREFIX + k);
 
     const FirebaseSync = {
         initialized: false,
@@ -190,7 +194,8 @@ const firebaseConfig = {
                 auth.onAuthStateChanged(u => {
                     user = u;
                     this.updateUI();
-                    if (u) this.sync();
+                    if (unlisten) { unlisten(); unlisten = null; }
+                    if (u) this.sync().then(() => this.listen());
                 });
             } catch (e) {
                 console.error('Firebase init error:', e);
@@ -224,6 +229,7 @@ const firebaseConfig = {
         signOut: async function () {
             if (!auth) return;
             await this.save();
+            if (unlisten) { unlisten(); unlisten = null; }
             await auth.signOut();
         },
 
@@ -234,8 +240,12 @@ const firebaseConfig = {
                 const name = (user.displayName || user.email || '').replace(/</g, '&lt;');
                 el.innerHTML = `
                     ${user.photoURL ? `<img class="sbx-acc-av" src="${user.photoURL}" alt="" referrerpolicy="no-referrer">` : `<span class="sbx-acc-av">${name.charAt(0)}</span>`}
-                    <span class="sbx-acc-name" title="${(user.email || '').replace(/"/g, '')}">${name}</span>
+                    <span class="sbx-acc-txt">
+                        <span class="sbx-acc-name" title="${(user.email || '').replace(/"/g, '')}">${name}</span>
+                        <button class="sbx-acc-st" id="sbx-acc-st" onclick="FirebaseSync.save(true)" title="İndi sinxronlaşdır">Sinxronlaşır…</button>
+                    </span>
                     <button class="sbx-acc-out" onclick="FirebaseSync.signOut()">Çıxış</button>`;
+                this.updateStatus();
             } else {
                 el.innerHTML = `
                     <button class="sbx-acc-in" onclick="FirebaseSync.signIn()">
@@ -289,12 +299,53 @@ const firebaseConfig = {
                 if (!cloud || !sameData(merged, cloud)) {
                     if (cloud || hasLocalData()) await this.writeCloud(merged);
                 }
+                status = { ok: true, at: Date.now(), err: '' };
             } catch (e) {
                 dirty = true;
+                status = { ok: false, at: Date.now(), err: (e && (e.code || e.message)) || 'xəta' };
                 console.error('Cloud sync error:', e);
             } finally {
                 saving = false;
+                this.updateStatus();
+                if (dirty) this.scheduleQuick();
             }
+        },
+
+        scheduleQuick: function () {
+            if (!user || quickTimer) return;
+            quickTimer = setTimeout(() => { quickTimer = null; this.save(); }, QUICK_DELAY);
+        },
+
+        // Live updates: when another device writes, merge it in right away
+        listen: function () {
+            if (!user || !db || unlisten || !mode) return;
+            try {
+                unlisten = this.ref().onSnapshot(d => {
+                    if (d.metadata.hasPendingWrites || applying || saving) return;
+                    const cloud = !d.exists ? null : (mode === 'field' ? (d.data()[SEMESTER] || null) : d.data());
+                    if (!cloud) return;
+                    const local = snapshot();
+                    const merged = merge(local, cloud);
+                    if (!sameData(merged, local)) this.apply(merged);
+                    if (!sameData(merged, cloud)) { dirty = true; this.scheduleQuick(); }
+                    status = { ok: true, at: Date.now(), err: '' };
+                    this.updateStatus();
+                }, e => {
+                    console.error('Cloud listen error:', e);
+                    status = { ok: false, at: Date.now(), err: e.code || e.message };
+                    this.updateStatus();
+                    unlisten = null;
+                });
+            } catch (e) { console.error('Cloud listen error:', e); }
+        },
+
+        updateStatus: function () {
+            const el = document.getElementById('sbx-acc-st');
+            if (!el) return;
+            if (status.ok === null) { el.textContent = 'Sinxronlaşır…'; el.className = 'sbx-acc-st'; return; }
+            const t = new Date(status.at), hm = String(t.getHours()).padStart(2, '0') + ':' + String(t.getMinutes()).padStart(2, '0');
+            el.textContent = status.ok ? 'Sinxron ✓ ' + hm : 'Xəta: ' + status.err + ' (' + hm + ')';
+            el.className = 'sbx-acc-st' + (status.ok ? '' : ' err');
         },
 
         apply: function (cloud) {
@@ -336,7 +387,7 @@ const firebaseConfig = {
         },
 
         // Old callers: a change was made, it will go out with the next scheduled write
-        triggerAutoSave: function () { dirty = true; },
+        triggerAutoSave: function () { dirty = true; this.scheduleQuick(); },
         saveToCloud: function () { dirty = true; return this.save(true); },
         loadFromCloud: function () { return this.sync(); },
 
@@ -356,6 +407,7 @@ const firebaseConfig = {
         if (this === ls && !applying && typeof key === 'string' && key.startsWith(PREFIX) && key !== TS_KEY && key !== SYNCED_KEY) {
             rawSet.call(this, TS_KEY, Date.now().toString());
             dirty = true;
+            if (QUICK_KEYS.includes(key)) FirebaseSync.scheduleQuick();
         }
     };
 
