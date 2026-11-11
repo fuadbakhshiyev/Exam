@@ -177,7 +177,7 @@ struct MetricCard<Mini: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Space.s12) {
             HStack(spacing: 6) {
-                IconTile(symbol: symbol, color: tint, size: 24)
+                Image(systemName: symbol).symbolVariant(.fill).foregroundStyle(tint)
                 Text(title)
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(tint)

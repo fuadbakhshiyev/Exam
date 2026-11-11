@@ -37,7 +37,7 @@ struct CardShell<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Space.s12) {
             HStack(spacing: 6) {
-                IconTile(symbol: symbol, color: tint, size: 24)
+                Image(systemName: symbol).symbolVariant(.fill).foregroundStyle(tint)
                 Text(title)
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(tint)
@@ -70,7 +70,9 @@ struct ShortcutTile: View {
     var body: some View {
         Button(action: action) {
             VStack(alignment: .leading, spacing: 10) {
-                IconTile(symbol: symbol, color: enabled ? tint : Theme.textMuted, size: 32)
+                Image(systemName: symbol).symbolVariant(.fill)
+                    .font(.system(size: 22, weight: .semibold))
+                    .foregroundStyle(enabled ? tint : Theme.textMuted)
                 VStack(alignment: .leading, spacing: 1) {
                     Text(title).font(.subheadline.weight(.semibold))
                         .foregroundStyle(enabled ? Theme.text : Theme.textMuted)
