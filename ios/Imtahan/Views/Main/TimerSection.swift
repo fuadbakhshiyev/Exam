@@ -18,8 +18,8 @@ struct TimerSection: View {
             }
             .pickerStyle(.segmented)
             .labelsHidden()
-            .listRowBackground(Color.clear)
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 0))
+            .listRowSeparator(.hidden, edges: .bottom)
+            .appRow()
 
             if stopwatch.mode == .stopwatch {
                 stopwatchRow
@@ -47,6 +47,7 @@ struct TimerSection: View {
             Button(stopwatch.buttonTitle) { stopwatch.toggle() }
                 .buttonStyle(.glassProminent)
         }
+        .listRowSeparator(.hidden, edges: .top)
         .appRow()
     }
 
@@ -91,6 +92,7 @@ struct TimerSection: View {
         .animation(.snappy, value: p.phase)
         .sensoryFeedback(.impact(weight: .medium), trigger: p.phase)
         .accessibilityElement(children: .contain)
+        .listRowSeparator(.hidden, edges: [.top, .bottom])
         .appRow()
     }
 
@@ -99,6 +101,7 @@ struct TimerSection: View {
         Stepper(value: $stopwatch.pomodoroSettings.focusMinutes, in: 5...90, step: 5) {
             LabeledContent("Fokus", value: "\(stopwatch.pomodoroSettings.focusMinutes) dəq")
         }
+        .listRowSeparator(.hidden, edges: .top)
         .appRow()
         Stepper(value: $stopwatch.pomodoroSettings.breakMinutes, in: 1...30) {
             LabeledContent("Fasilə", value: "\(stopwatch.pomodoroSettings.breakMinutes) dəq")
