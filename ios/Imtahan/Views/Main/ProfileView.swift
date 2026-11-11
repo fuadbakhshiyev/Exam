@@ -10,8 +10,6 @@ struct ProfileView: View {
         List {
             account
 
-            TimerSection()
-
             Section {
                 NavigationLink(value: Route.settings) {
                     LabeledContent {

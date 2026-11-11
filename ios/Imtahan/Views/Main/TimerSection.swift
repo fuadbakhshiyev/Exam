@@ -5,7 +5,17 @@ extension PomodoroPhase {
     var tint: Color { isBreak ? Theme.success : Theme.accent }
 }
 
-/// Profil → "Xronometr" section: a Xronometr / Fokus switch over the free stopwatch and the Pomodoro.
+/// Ana səhifə toolbar → "Xronometr" page: the section below on its own.
+struct TimerPageView: View {
+    var body: some View {
+        List { TimerSection() }
+            .appListStyle()
+            .navigationTitle("Xronometr")
+            .navigationBarTitleDisplayMode(.large)
+    }
+}
+
+/// "Xronometr" section: a Xronometr / Fokus switch over the free stopwatch and the Pomodoro.
 struct TimerSection: View {
     @Environment(SidebarStopwatch.self) private var stopwatch
 
@@ -27,8 +37,6 @@ struct TimerSection: View {
                 focusRow
                 durations
             }
-        } header: {
-            Text("Xronometr")
         } footer: {
             if stopwatch.mode == .focus {
                 Text("Fokus bitəndə bildiriş gəlir və fasilə öz-özünə başlayır. Fasilədən sonra növbəti raundu sən başladırsan.")
@@ -58,7 +66,7 @@ struct TimerSection: View {
         return VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .firstTextBaseline) {
                 HStack(spacing: 8) {
-                    IconTile(symbol: p.phase.symbol, color: tint, size: 24)
+                    Image(systemName: p.phase.symbol).symbolVariant(.fill)
                     Text(p.phase.longTitle)
                 }
                 .font(.subheadline.weight(.semibold))

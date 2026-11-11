@@ -15,6 +15,7 @@ enum Route: Hashable {
     case subjectStats(String)      // Statistika → one subject / Mixed / mock in detail
     case statsMetric(StatsMetric)  // Statistika → one summary card in detail
     case achievements              // Statistika → Nailiyyətlər
+    case timer                     // Ana səhifə toolbar → Xronometr / Fokus
     case settings                  // font size, theme, backup, reset
     case question(String)          // one question opened from iPhone search (Spotlight item id)
 }
@@ -70,6 +71,12 @@ final class AppRouter {
         if c == Catalog.mixedKey { push(.mixed) }
         else if c == Catalog.overallKey { push(.overall) }
         else { push(.course(c)) }
+    }
+
+    /// Xronometr / Fokus page, pushed on Ana səhifə (indicators, Live Activity, quick action).
+    func openTimer() {
+        homePath = [.timer]
+        tab = .home
     }
 
     /// Statistika → "Fənnə keç": the subject's study page on the Fənlər tab.
@@ -131,6 +138,7 @@ struct RouteView: View {
             case .subjectStats(let c): SubjectStatsView(key: c)
             case .statsMetric(let m): StatsMetricView(metric: m)
             case .achievements: AchievementsView()
+            case .timer: TimerPageView()
             case .settings: SettingsView()
             case .question(let id): QuestionDetailView(id: id)
             }

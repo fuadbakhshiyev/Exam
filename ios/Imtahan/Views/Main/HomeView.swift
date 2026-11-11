@@ -5,6 +5,7 @@ import SwiftUI
 struct HomeView: View {
     @Environment(StudyStore.self) private var store
     @Environment(AppRouter.self) private var router
+    @Environment(SidebarStopwatch.self) private var stopwatch
     @State private var showWeakTopics = false
 
     var body: some View {
@@ -36,12 +37,20 @@ struct HomeView: View {
             ToolbarItem(placement: .topBarLeading) {
                 LevelBadge(level: store.dailyLevel)
             }
-            ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                NavigationLink(value: Route.timer) {
+                    Image(systemName: timerRunning ? "stopwatch.fill" : "stopwatch")
+                        .symbolEffect(.pulse, isActive: timerRunning)
+                }
+                .accessibilityLabel(timerRunning ? "Xronometr işləyir" : "Xronometr")
                 NavigationLink(value: Route.search("")) { Image(systemName: "magnifyingglass") }
                     .accessibilityLabel("Cavab axtar")
             }
         }
     }
+
+    /// Stopwatch or a focus / break phase is counting.
+    private var timerRunning: Bool { stopwatch.isRunning || stopwatch.pomodoro.isRunning }
 
     // MARK: Today
 

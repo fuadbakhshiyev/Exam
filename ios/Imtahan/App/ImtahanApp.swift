@@ -86,7 +86,7 @@ struct ImtahanApp: App {
         case "stopwatch", "focus":
             // Live Activity / Dynamic Island tap, "Xronometr / Fokus" quick action → Profil's Xronometr.
             if url.host() == "focus" { stopwatch.mode = .focus }
-            if router.quiz == nil { router.profilePath = []; router.tab = .profile }
+            if router.quiz == nil { router.openTimer() }
         case "continue":
             // "Davam et": the Ana səhifə continue unit.
             guard router.quiz == nil else { return true }

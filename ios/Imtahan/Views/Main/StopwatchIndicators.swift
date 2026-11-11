@@ -34,8 +34,7 @@ struct StopwatchAccessory: View {
     private var stopwatchBody: some View {
         HStack(spacing: 10) {
             Button {
-                router.profilePath = []
-                router.tab = .profile
+                router.openTimer()
             } label: {
                 HStack(spacing: 8) {
                     Image(systemName: "stopwatch")
@@ -119,8 +118,7 @@ private struct FocusAccessory: View {
         HStack(spacing: 10) {
             Button {
                 stopwatch.mode = .focus
-                router.profilePath = []
-                router.tab = .profile
+                router.openTimer()
             } label: {
                 HStack(spacing: 8) {
                     Image(systemName: p.phase.symbol)
