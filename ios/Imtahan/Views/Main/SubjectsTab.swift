@@ -19,34 +19,48 @@ struct SubjectsTab: View {
                 Text("İmtahan rejimi: \(store.examModeLabel). Ayarlardan dəyişə bilərsiniz.")
             }
 
-            Section("Sınaq") {
-                NavigationLink(value: Route.pdfDashboard) {
-                    tool("Vize imtahanları", "doc.text", detail: count(QuestionBank.shared.pdfExamCount, "imtahan"))
+            Section {
+                card { router.push(.pdfDashboard) } content: {
+                    MetricCard(title: "Vize imtahanları", symbol: "doc.text.fill", tint: Theme.accent,
+                               value: "\(QuestionBank.shared.pdfExamCount)", unit: "imtahan",
+                               note: "Keçmiş illərin real sualları") { EmptyView() }
                 }
-                .appRow()
-                NavigationLink(value: Route.mixed) {
-                    tool("Mixed", "shuffle", detail: count(store.scopedMixedParts.count, "hissə"))
+                card { router.push(.mixed) } content: {
+                    let m = store.subjectStatsRow(Catalog.mixedKey)
+                    MetricCard(title: "Mixed", symbol: "shuffle", tint: .purple,
+                               value: "\(store.scopedMixedParts.count)", unit: "hissə",
+                               note: m.answered > 0 ? "\(min(m.answered, m.total))/\(m.total) işlənib · \(m.accuracy ?? 0)% düz" : "\(m.total) sual · başlanmayıb") { EmptyView() }
                 }
-                .appRow()
-                Button { router.start(.mock) } label: {
-                    tool("Böyük sınaq", "die.face.5", detail: "hər fəndən 20")
+                card { router.start(.mock) } content: {
+                    MetricCard(title: "Böyük sınaq", symbol: "die.face.5.fill", tint: Theme.warning,
+                               value: "\(Catalog.subjects.count * 20)", unit: "sual",
+                               note: "Hər fəndən 20 · dərhal başlayır") {
+                        Image(systemName: "play.circle.fill")
+                            .font(.system(size: 34)).foregroundStyle(Theme.warning)
+                    }
                 }
-                .appRow()
+            } header: {
+                Text("Sınaq")
             }
 
-            Section("Alətlər") {
-                NavigationLink(value: Route.wrong) {
-                    tool("Səhvlərim", "xmark.circle", detail: count(store.wrongTotal))
+            Section {
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: Theme.Space.s12), GridItem(.flexible())],
+                          spacing: Theme.Space.s12) {
+                    ToolCard(title: "Səhvlərim", symbol: "xmark.octagon.fill", tint: Theme.danger,
+                             value: "\(store.wrongTotal)", caption: "sual") { router.push(.wrong) }
+                    ToolCard(title: "Ən çətinlər", symbol: "flame.fill", tint: Theme.warning,
+                             value: "\(store.hardCount)", caption: "2+ səhv") { router.start(.hard) }
+                    ToolCard(title: "Seçilmişlər", symbol: "star.fill", tint: .yellow,
+                             value: "\(store.scopedMarks.count)", caption: "sual") { router.start(.bookmarks) }
+                    ToolCard(title: "Ziddiyyətli", symbol: "arrow.triangle.branch", tint: .purple,
+                             value: nil, caption: "suallar") { router.push(.conflicts) }
+                    ToolCard(title: "Axtarış", symbol: "magnifyingglass", tint: Theme.accent,
+                             value: nil, caption: "sual və cavab") { router.push(.search("")) }
                 }
-                .appRow()
-                Button { router.start(.hard) } label: { tool("Ən çətinlər", "flame") }
-                    .appRow()
-                Button { router.start(.bookmarks) } label: {
-                    tool("Seçilmişlər", "star", detail: count(store.scopedMarks.count))
-                }
-                .appRow()
-                NavigationLink(value: Route.conflicts) { tool("Ziddiyyətli suallar", "arrow.triangle.branch") }.appRow()
-                NavigationLink(value: Route.search("")) { tool("Axtarış", "magnifyingglass") }.appRow()
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(Color.clear)
+            } header: {
+                Text("Alətlər")
             }
         }
         .appListStyle()
@@ -97,21 +111,53 @@ struct SubjectsTab: View {
         }
     }
 
-    // MARK: Sınaq / Alətlər rows
+    // MARK: Sınaq / Alətlər cards
 
-    /// Settings-style row: accent glyph, title, optional trailing detail.
-    private func tool(_ title: String, _ symbol: String, detail: String? = nil) -> some View {
-        LabeledContent {
-            if let detail {
-                Text(detail).monospacedDigit().foregroundStyle(Theme.textMuted)
+    /// One Health-style card as its own clear list row (Button, so List adds no disclosure chevron).
+    private func card<C: View>(_ action: @escaping () -> Void, @ViewBuilder content: () -> C) -> some View {
+        Button(action: action, label: content)
+            .buttonStyle(.plain)
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: Theme.Space.s12, trailing: 0))
+            .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
+    }
+}
+
+/// Half-width Health card for "Alətlər": tinted title ›, then a big count (or a short caption).
+private struct ToolCard: View {
+    let title: String
+    let symbol: String
+    let tint: Color
+    let value: String?
+    let caption: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(alignment: .leading, spacing: Theme.Space.s10) {
+                HStack(spacing: 6) {
+                    Label(title, systemImage: symbol)
+                        .font(.subheadline.weight(.semibold)).foregroundStyle(tint)
+                        .lineLimit(1).minimumScaleFactor(0.8)
+                    Spacer(minLength: 4)
+                    Chevron()
+                }
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    if let value {
+                        Text(value).font(.system(size: 26, weight: .semibold, design: .rounded))
+                            .monospacedDigit().foregroundStyle(Theme.text)
+                    }
+                    Text(caption).font(value == nil ? .subheadline : .footnote).foregroundStyle(Theme.textMuted).lineLimit(1)
+                }
+                .frame(minHeight: 31, alignment: .bottomLeading)
             }
-        } label: {
-            Label {
-                Text(title).foregroundStyle(Theme.text)
-            } icon: {
-                Image(systemName: symbol).foregroundStyle(Theme.accent)
-            }
+            .padding(Theme.Space.s14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .card()
+            .contentShape(RoundedRectangle(cornerRadius: Theme.Radius.lg, style: .continuous))
         }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
     }
 }
 
