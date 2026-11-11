@@ -170,6 +170,19 @@ const firebaseConfig = {
         return JSON.stringify(sortDeep(o || {}));
     };
 
+    // raw DEFLATE + base64 (CompressionStream 'deflate-raw'; same bytes as Apple's .zlib on the iPhone)
+    const deflateB64 = async (str) => {
+        const buf = await new Response(new Blob([new TextEncoder().encode(str)]).stream().pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer();
+        const u = new Uint8Array(buf); let s = '';
+        for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000));
+        return btoa(s);
+    };
+    const inflateB64 = async (b64) => {
+        const bin = atob(b64), u = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+        return await new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text();
+    };
+
     let auth = null, db = null, user = null;
     let applying = false, dirty = false, saving = false, lastPull = 0, mode = null;
     let quickTimer = null, unlisten = null, status = { ok: null, at: 0, err: '' };
@@ -261,7 +274,7 @@ const firebaseConfig = {
         readCloud: async function () {
             if (!mode) mode = ls.getItem('fb_sync_mode') || 'doc';
             try {
-                return this.decode(await this.ref().get());
+                return await this.decode(await this.ref().get());
             } catch (e) {
                 if (e.code === 'permission-denied' && mode === 'doc') {
                     mode = 'field';
@@ -272,20 +285,23 @@ const firebaseConfig = {
             }
         },
 
-        // The data is stored as one JSON text: Firestore then has no keys to check or index
-        // (question texts as map keys broke it with "invalid-argument")
-        decode: function (d) {
+        // The data is stored as one compressed JSON text (v3: z = base64(deflate-raw(json))): Firestore then has
+        // no keys to check or index (question texts as map keys broke it with "invalid-argument"), and the
+        // users/{uid} document stays far below Firestore's 1 MiB limit (plain v2 JSON went over it).
+        // v2 { json } documents are still read. The iPhone app uses the same format.
+        decode: async function (d) {
             if (!d || !d.exists) return null;
             const v = mode === 'field' ? d.data()[SEMESTER] : d.data();
             if (!v) return null;
+            if (typeof v.z === 'string') { try { return JSON.parse(await inflateB64(v.z)); } catch (e) { console.error('Cloud decode error:', e); return null; } }
             if (typeof v.json === 'string') { try { return JSON.parse(v.json); } catch (e) { return null; } }
             return v;
         },
 
         writeCloud: async function (data) {
-            const json = JSON.stringify(data);
-            if (json.length > 950000) throw { code: 'çox böyük', message: 'Data ' + Math.round(json.length / 1024) + ' KB-dır (limit ~1 MB)' };
-            const value = { v: 2, ts: data.ts || 0, json };
+            const z = await deflateB64(JSON.stringify(data));
+            if (z.length > 950000) throw { code: 'çox böyük', message: 'Data ' + Math.round(z.length / 1024) + ' KB-dır (limit ~1 MB)' };
+            const value = { v: 3, ts: data.ts || 0, z };
             if (mode === 'field') {
                 // update() replaces the whole field (set with merge would keep the old broken keys)
                 try { await this.ref().update({ [SEMESTER]: value }); }
@@ -334,9 +350,9 @@ const firebaseConfig = {
         listen: function () {
             if (!user || !db || unlisten || !mode) return;
             try {
-                unlisten = this.ref().onSnapshot(d => {
+                unlisten = this.ref().onSnapshot(async d => {
                     if (d.metadata.hasPendingWrites || applying || saving) return;
-                    const cloud = this.decode(d);
+                    const cloud = await this.decode(d);
                     if (!cloud) return;
                     const local = snapshot();
                     const merged = merge(local, cloud);

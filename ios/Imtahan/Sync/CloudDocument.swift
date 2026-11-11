@@ -59,14 +59,21 @@ struct CloudDocument: Sendable {
         } catch { throw CloudError.from(error) }
     }
 
-    /// `{ v: 2, ts, json }`, as the doc itself or as field "v32" of users/{uid}.
+    /// `{ v: 3, ts, z }` where z = base64(raw DEFLATE(json UTF-8)) — the web app uses
+    /// CompressionStream('deflate-raw'), Apple's .zlib is the same raw DEFLATE. Compressed because the
+    /// users/{uid} document (field mode) hit Firestore's 1 MiB limit with plain `{ v: 2, json }`.
+    /// Stored as the doc itself or as field "v32" of users/{uid}.
     func write(json: String, ts: Double) async throws {
-        let count = json.utf16.count
-        if count > Self.sizeLimit {
-            throw CloudError(code: "çox böyük", message: "Data \(Int((Double(count) / 1024).rounded())) KB-dır (limit ~1 MB)")
+        let raw = Data(json.utf8)
+        guard let z = try? (raw as NSData).compressed(using: .zlib) as Data else {
+            throw CloudError(code: "sıxışdırma", message: "Data sıxışdırıla bilmədi")
+        }
+        let b64 = z.base64EncodedString()
+        if b64.utf8.count > Self.sizeLimit {
+            throw CloudError(code: "çox böyük", message: "Data \(Int((Double(b64.utf8.count) / 1024).rounded())) KB-dır (limit ~1 MB)")
         }
         let tsNumber: NSNumber = (ts == ts.rounded() && abs(ts) < 9e15) ? NSNumber(value: Int64(ts)) : NSNumber(value: ts)
-        let value: [String: Any] = ["v": 2, "ts": tsNumber, "json": json]
+        let value: [String: Any] = ["v": 3, "ts": tsNumber, "z": b64]
         do {
             if mode == .field {
                 // update() replaces the whole field (set with merge would keep the old broken keys)
@@ -106,6 +113,13 @@ struct CloudDocument: Sendable {
         guard raw.exists else { return nil }
         let v = mode == .field ? raw.data[js: semester] : raw.data
         guard let v, v.truthy else { return nil }
+        if case .string(let z)? = v[js: "z"] {
+            guard let data = Data(base64Encoded: z),
+                  let raw = try? (data as NSData).decompressed(using: .zlib) as Data,
+                  let json = String(data: raw, encoding: .utf8),
+                  let parsed = JSONBridge.parse(json), parsed.truthy else { return nil }
+            return parsed
+        }
         if case .string(let json)? = v[js: "json"] {
             guard let parsed = JSONBridge.parse(json), parsed.truthy else { return nil }
             return parsed

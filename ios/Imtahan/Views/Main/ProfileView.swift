@@ -1,10 +1,13 @@
 import SwiftUI
+import UIKit
 
 /// "Profil": account and cloud sync, the stopwatch and the Ayarlar link. Statistics live in their own tab.
 struct ProfileView: View {
     @Environment(StudyStore.self) private var store
     @Environment(SyncService.self) private var sync
     @Environment(SidebarStopwatch.self) private var stopwatch
+
+    @State private var showSyncError = false
 
     var body: some View {
         List {
@@ -65,6 +68,17 @@ struct ProfileView: View {
                         Text(sync.statusText).font(.caption).foregroundStyle(sync.isError ? Theme.danger : Theme.success).lineLimit(1)
                     }
                     Spacer()
+                    if sync.isError {
+                        Image(systemName: "info.circle").foregroundStyle(Theme.danger)
+                    }
+                }
+                .contentShape(Rectangle())
+                .onTapGesture { if sync.isError { showSyncError = true } }
+                .alert("Sinxronizasiya xətası", isPresented: $showSyncError) {
+                    Button("Kopyala") { UIPasteboard.general.string = sync.statusText }
+                    Button("Oldu", role: .cancel) {}
+                } message: {
+                    Text(sync.statusText)
                 }
                 .appRow()
                 Button { sync.syncNow() } label: { link("İndi sinxronlaşdır", "arrow.triangle.2.circlepath", Theme.accent) }
