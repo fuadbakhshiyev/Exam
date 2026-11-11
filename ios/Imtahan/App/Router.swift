@@ -14,6 +14,7 @@ enum Route: Hashable {
     case search(String)            // showAnswerSearch (initial query, may be "")
     case subjectStats(String)      // Statistika → one subject / Mixed / mock in detail
     case settings                  // font size, theme, backup, reset
+    case question(String)          // one question opened from iPhone search (Spotlight item id)
 }
 
 enum AppTab: Hashable { case home, subjects, exams, stats, profile }
@@ -127,6 +128,7 @@ struct RouteView: View {
             case .search(let q): AnswerSearchView(initialQuery: q)
             case .subjectStats(let c): SubjectStatsView(key: c)
             case .settings: SettingsView()
+            case .question(let id): QuestionDetailView(id: id)
             }
         }
         // Pushed pages use the native navigation bar (back button, title, toolbar items).

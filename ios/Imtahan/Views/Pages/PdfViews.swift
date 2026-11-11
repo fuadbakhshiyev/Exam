@@ -10,6 +10,7 @@ struct PdfDashboardView: View {
     var body: some View {
         let page = store.pdfDashboard()
         List {
+            SimulationEntrySection()
             Section {
                 if page.rows.isEmpty {
                     EmptyRow(title: "İmtahan tapılmadı", systemImage: "doc.text.magnifyingglass")

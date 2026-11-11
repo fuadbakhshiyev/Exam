@@ -23,6 +23,8 @@ final class StudyReminder {
     private static let goalKey = "reminder_goal"
     private static let idPrefix = "study-reminder-"
     private static let daysAhead = 7
+    private static let weeklyKey = "weekly_report_enabled"
+    private static let weeklyID = "weekly-report"
 
     var isEnabled: Bool {
         didSet { defaults.set(isEnabled, forKey: Self.enabledKey); reschedule() }
@@ -39,10 +41,16 @@ final class StudyReminder {
     }
     private(set) var authorization: UNAuthorizationStatus = .notDetermined
 
+    /// Weekly report (Sunday 20:00), on by default; scheduled only while notifications are allowed.
+    var weeklyEnabled: Bool {
+        didSet { defaults.set(weeklyEnabled, forKey: Self.weeklyKey); rescheduleWeekly() }
+    }
+
     @ObservationIgnored private let defaults = UserDefaults.standard
     @ObservationIgnored private var answeredToday = 0
     @ObservationIgnored private var answeredDay = ""
     @ObservationIgnored private var lastSignature: String?
+    @ObservationIgnored private var lastWeeklySignature: String?
 
     private init() {
         let d = UserDefaults.standard
@@ -50,6 +58,7 @@ final class StudyReminder {
         hour = d.object(forKey: Self.hourKey) as? Int ?? 20
         minute = d.object(forKey: Self.minuteKey) as? Int ?? 0
         goal = d.object(forKey: Self.goalKey) as? Int ?? 50
+        weeklyEnabled = d.object(forKey: Self.weeklyKey) as? Bool ?? true
     }
 
     var goalLevel: String { Self.goalChoices.first { $0.count == goal }?.level ?? "Amateur" }
@@ -69,6 +78,7 @@ final class StudyReminder {
     func refreshAuthorization() async {
         authorization = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
         if isEnabled && isDenied { lastSignature = nil }
+        rescheduleWeekly()
     }
 
     /// Toggle handler: asks for permission when turning on.
@@ -87,6 +97,47 @@ final class StudyReminder {
         answeredToday = answered
         answeredDay = StudySnapshot.dayKey(Date())
         reschedule()
+        rescheduleWeekly()
+    }
+
+    /// Weekly report toggle: asks for permission when turning on (if never asked).
+    func setWeeklyEnabled(_ on: Bool) async {
+        guard on else { weeklyEnabled = false; return }
+        await refreshAuthorization()
+        if authorization == .notDetermined {
+            _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
+            await refreshAuthorization()
+        }
+        weeklyEnabled = !isDenied
+    }
+
+    /// One pending "Bu həftə: …" notification for the next Sunday 20:00, with the week's numbers so far
+    /// (Monday → today). Rebuilt with the daily reminder, so it carries the latest counts.
+    private func rescheduleWeekly() {
+        let allowed = [.authorized, .provisional, .ephemeral].contains(authorization)
+        let cal = Calendar.current
+        let now = Date()
+        guard let fire = cal.nextDate(after: now, matching: DateComponents(hour: 20, minute: 0, weekday: 1),
+                                      matchingPolicy: .nextTime),
+              let weekStart = cal.date(byAdding: .day, value: -6, to: cal.startOfDay(for: fire)) else { return }
+        let w = StudyStore.shared.weeklySummary(from: weekStart, now: now)
+        let body = w.answered > 0
+            ? "Bu həftə: \(w.answered) sual, \(w.accuracy)% dəqiqlik, \(w.streak) gün ardıcıl 🔥"
+            : "Bu həftə hələ sual həll etməmisən. Yeni həftəyə güclü başla! 💪"
+        let sig = "\(weeklyEnabled)|\(allowed)|\(fire.timeIntervalSince1970)|\(body)"
+        guard sig != lastWeeklySignature else { return }
+        lastWeeklySignature = sig
+
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [Self.weeklyID])
+        guard weeklyEnabled, allowed else { return }
+        let content = UNMutableNotificationContent()
+        content.title = "Həftəlik hesabat 📊"
+        content.body = body
+        content.sound = .default
+        let comps = cal.dateComponents([.year, .month, .day, .hour, .minute], from: fire)
+        center.add(UNNotificationRequest(identifier: Self.weeklyID, content: content,
+                                         trigger: UNCalendarNotificationTrigger(dateMatching: comps, repeats: false)))
     }
 
     private func reschedule() {

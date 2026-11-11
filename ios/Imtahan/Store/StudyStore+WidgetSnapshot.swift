@@ -66,6 +66,7 @@ final class WidgetSnapshotWriter {
     func writeNow(_ store: StudyStore) {
         pending?.cancel()
         pending = nil
+        store.syncQuestionWidget()   // "Sual" widget: import its answers, refresh its deck (StudyStore+QuestionWidget)
         let snap = store.makeWidgetSnapshot()
         StudyReminder.shared.refresh(answered: snap.answered)
         // Skip identical content (timer ticks change nothing the widgets show).

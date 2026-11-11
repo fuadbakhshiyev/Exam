@@ -124,6 +124,22 @@ struct StopwatchAttributes: ActivityAttributes {
         var startDate: Date?
         var accumulated: TimeInterval
         var isRunning: Bool
+        /// Set when the activity shows the "Fokus" (Pomodoro) countdown instead of the stopwatch.
+        var focus: Focus? = nil
+
+        struct Focus: Codable, Hashable, Sendable {
+            var phase: PomodoroPhase
+            var isRunning: Bool
+            var endDate: Date?
+            var duration: TimeInterval
+            var remaining: TimeInterval
+            var isReady: Bool
+            var round: Int
+            var rounds: Int
+            /// While focus runs: the break that follows on its own, and when it ends.
+            var nextPhase: PomodoroPhase?
+            var nextEndDate: Date?
+        }
 
         /// Clock-zero moment while running.
         var anchor: Date? { isRunning ? startDate.map { $0.addingTimeInterval(-accumulated) } : nil }
@@ -131,15 +147,47 @@ struct StopwatchAttributes: ActivityAttributes {
     }
 }
 
+/// Which timer the in-app indicators and the Live Activity show: a running one first, then the
+/// one picked in Profil, then whichever still has time on it.
+enum TimerSurface {
+    static func pick(stopwatch sw: StopwatchSnapshot, pomodoro p: PomodoroSnapshot, mode: TimerMode) -> TimerMode? {
+        if p.isRunning { return .focus }
+        if sw.status == .running { return .stopwatch }
+        if mode == .focus && p.isActive { return .focus }
+        if mode == .stopwatch && sw.isActive { return .stopwatch }
+        if p.isActive { return .focus }
+        if sw.isActive { return .stopwatch }
+        return nil
+    }
+}
+
 enum StopwatchLiveActivity {
-    /// Brings Live Activities in line with the stopwatch: update, end when stopped, and (when allowed) start one.
-    static func apply(_ s: StopwatchSnapshot, allowStart: Bool) async {
+    /// The Live Activity content for the stored stopwatch / Pomodoro state (nil = nothing to show).
+    static func currentContent() -> ActivityContent<StopwatchAttributes.ContentState>? {
+        let sw = StopwatchStorage.load()
+        let settings = PomodoroStorage.loadSettings()
+        let p = PomodoroStorage.load(settings: settings)
+        switch TimerSurface.pick(stopwatch: sw, pomodoro: p, mode: PomodoroStorage.loadMode()) {
+        case .stopwatch:
+            return ActivityContent(state: sw.contentState, staleDate: nil)
+        case .focus:
+            let state = StopwatchAttributes.ContentState(startDate: nil, accumulated: 0, isRunning: p.isRunning,
+                                                         focus: p.liveState(settings))
+            // At the phase end the system re-renders the stale activity: focus → its break, break → "ready".
+            return ActivityContent(state: state, staleDate: p.endDate)
+        case nil:
+            return nil
+        }
+    }
+
+    /// Brings Live Activities in line with the stored timers: update, end when nothing runs, and
+    /// (when allowed) start one.
+    static func sync(allowStart: Bool) async {
         let activities = Activity<StopwatchAttributes>.activities
-        guard s.isActive || s.status == .running else {
+        guard let content = currentContent() else {
             for a in activities { await a.end(nil, dismissalPolicy: .immediate) }
             return
         }
-        let content = ActivityContent(state: s.contentState, staleDate: nil)
         if activities.isEmpty {
             guard allowStart, ActivityAuthorizationInfo().areActivitiesEnabled else { return }
             _ = try? Activity.request(attributes: StopwatchAttributes(), content: content, pushType: nil)

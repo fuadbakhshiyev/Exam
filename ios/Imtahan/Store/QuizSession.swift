@@ -38,6 +38,9 @@ final class QuizSession: Identifiable {
         case search(String, SearchScope)                // unified search "Test kimi işlə"
         case wrongFor(String)                           // startWrongFor (Səhvlərim card)
         case reviewMissed(questions: [Question], course: String) // reviewMissed
+        case simulation(SimulationConfig)               // "Real imtahan simulyasiyası" (Store/ExamSimulation.swift)
+        case review                                     // "Bu günün təkrarı" (Leitner, StudyStore+Review.swift)
+        case weakTopics                                 // "Zəif mövzular" (StudyStore+Plan.swift)
     }
 
     struct Option: Hashable, Sendable {
@@ -152,6 +155,8 @@ final class QuizSession: Identifiable {
     private(set) var flashcardRevealed = false
     var pagerOpen = false
     private(set) var result: Result?
+    /// Exam state of a .simulation session (no feedback, changeable answers, countdown); nil otherwise.
+    private(set) var simulation: ExamSimulation?
     /// Set when an auto-advance reached the end with unanswered questions; show the confirm, then finish().
     var pendingFinishConfirmation: String?
     private(set) var isClosed = false
@@ -187,6 +192,7 @@ final class QuizSession: Identifiable {
         } else {
             items = Self.makeItems(p.questions)
         }
+        if case .simulation(let cfg) = kind { simulation = ExamSimulation(config: cfg, items: items, store: store) }
         store.startQuizTimer(course: p.timerCourse)
         store.quizTimerOwner = id
     }
@@ -339,6 +345,18 @@ final class QuizSession: Identifiable {
         case .reviewMissed(let qs, let c):
             guard !qs.isEmpty else { throw fail("Səhv yoxdur!") }
             return special(qs, "Səhvlərin Təkrarı", c)
+        case .simulation(let cfg):
+            let qs = store.simulationQuestions(cfg)
+            guard !qs.isEmpty else { throw fail("Seçilmiş fənlər üzrə sual tapılmadı.") }
+            return special(qs, "İmtahan simulyasiyası", ExamSimulation.courseKey, category: ExamSimulation.statCategory)
+        case .review:
+            let qs = store.reviewDueQuestions()
+            guard !qs.isEmpty else { throw fail("Bu gün təkrar ediləcək sual yoxdur ✓") }
+            return special(qs, "Bu günün təkrarı", "Ağıllı təkrar")
+        case .weakTopics:
+            let qs = store.weakTopicQuestions()
+            guard !qs.isEmpty else { throw fail("Zəif mövzu tapılmadı: hər ünitədən ən azı 5 sual cavablandırın.") }
+            return special(qs, "Zəif mövzular", "Zəif mövzular")
         }
     }
 
@@ -525,6 +543,7 @@ final class QuizSession: Identifiable {
             }
             stat = (course, cat, sub)
         }
+        if let s = Self.perQuestionStat(kind, q) { stat = s }
         let cel = store.recordQuizAnswer(q, isCorrect: isCorrect, removeFromWrongWhenCorrect: isWrongMode, stat: stat)
         if isCorrect { scheduleAutoAdvance() }
         return AnswerOutcome(isCorrect: isCorrect, willAutoAdvance: isCorrect, celebration: cel)

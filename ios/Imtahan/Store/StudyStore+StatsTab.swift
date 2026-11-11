@@ -60,9 +60,10 @@ extension StudyStore {
     /// Mixed parts outside the current mode are left out; units are listed in numeric order.
     func statsLineSections(_ key: String) -> [StatsLineSection] {
         guard let s = scopedStat(key) else { return [] }
-        let order = ["units", "mixed", "mixed-only", "exams", "mock", "review"]
+        let order = ["units", "mixed", "mixed-only", "exams", "mock", "simulation", "review"]
         let titles = ["units": "Bölmələr", "mixed": "Qarışıq sınaq", "mixed-only": "Yalnız Mixed",
-                      "exams": "Keçmiş imtahanlar", "mock": "Böyük sınaq", "review": "Təkrarlar"]
+                      "exams": "Keçmiş imtahanlar", "mock": "Böyük sınaq", "simulation": "İmtahan simulyasiyası",
+                      "review": "Təkrarlar"]
         let mixedNames = key == Catalog.mixedKey
             ? Dictionary(scopedMixedParts.map { ($0.statKey, $0.name) }, uniquingKeysWith: { a, _ in a }) : [:]
         let cats = s.bd.keys.filter { $0 != "pdf-exam" }.sorted {

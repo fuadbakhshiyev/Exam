@@ -165,6 +165,7 @@ extension StudyStore {
             pausePlatformTimer()
             surpriseEngine?.sceneWillResignActive()
             flush()
+            ReviewStore.shared.flush()
         }
     }
 }

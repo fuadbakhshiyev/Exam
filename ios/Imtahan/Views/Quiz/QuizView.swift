@@ -14,6 +14,15 @@ struct QuizView: View {
     private var scale: CGFloat { CGFloat(store.fontScale) }
 
     var body: some View {
+        if let sim = session.simulation {
+            // Exam simulation: own screen (no feedback, changeable answers, countdown).
+            SimulationQuizView(session: session, sim: sim)
+        } else {
+            standardBody
+        }
+    }
+
+    private var standardBody: some View {
         NavigationStack {
             ScrollViewReader { proxy in
                 ScrollView {

@@ -43,6 +43,43 @@
 	<false/>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>play.fill</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>Son ünitəyə qayıt</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Davam et</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>az.fuadb.imtahan.continue</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>xmark.circle</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Səhvlərim</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>az.fuadb.imtahan.wrong</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>arrow.trianglehead.2.clockwise.rotate.90</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Bu günün təkrarı</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>az.fuadb.imtahan.review</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>timer</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Xronometr / Fokus</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>az.fuadb.imtahan.timer</string>
+		</dict>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UISupportedInterfaceOrientations</key>

@@ -32,6 +32,8 @@ struct SettingsView: View {
                 Text("Vize: yalnız 1–7-ci ünitələr. Final: bütün ünitələr. Bütün bölmələr, saylar və testlər seçilmiş rejimə uyğun göstərilir; məlumatlarınız silinmir.")
             }
 
+            ExamDateSection()
+
             Section {
                 Toggle(isOn: $surprise.isEnabled.animation()) {
                     Label("Sürpriz sual", systemImage: "gift.fill")
@@ -208,5 +210,27 @@ private struct ReminderSection: View {
             return "Bildiriş vaxtı: hər gün \(reminder.time.formatted(date: .omitted, time: .shortened)). Bu gün \(reminder.goal) sual həll etmisənsə, həmin günün xatırlatması göndərilmir."
         }
         return "Gündəlik hədəfə çatmamısansa, seçdiyin vaxtda xatırladırıq."
+    }
+}
+
+/// İmtahan tarixi: drives the Home countdown and daily plan. Device-local (UserDefaults "exam_date").
+private struct ExamDateSection: View {
+    @AppStorage(StudyStore.examDateKey) private var raw: Double = 0
+
+    var body: some View {
+        let date = Binding<Date>(
+            get: { raw > 0 ? Date(timeIntervalSince1970: raw) : StudyStore.defaultExamDate },
+            set: { raw = $0.timeIntervalSince1970 })
+        Section {
+            DatePicker(selection: date, displayedComponents: .date) {
+                Label("İmtahan tarixi", systemImage: "calendar")
+            }
+            .environment(\.locale, Locale(identifier: "az"))
+            .appRow()
+        } header: {
+            Text("İmtahan tarixi")
+        } footer: {
+            Text("Ana səhifədəki geri sayım və gündəlik plan bu tarixə görə hesablanır.")
+        }
     }
 }

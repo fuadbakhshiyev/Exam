@@ -64,6 +64,7 @@ private struct StatsOverviewSections: View {
         let t = store.homeTotals()
         today(t)
         overall(t)
+        AchievementsEntrySection()
 
         Section {
             DynamicsChartCard()

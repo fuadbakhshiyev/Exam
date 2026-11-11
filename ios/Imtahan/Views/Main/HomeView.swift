@@ -5,6 +5,7 @@ import SwiftUI
 struct HomeView: View {
     @Environment(StudyStore.self) private var store
     @Environment(AppRouter.self) private var router
+    @State private var showWeakTopics = false
 
     var body: some View {
         List {
@@ -14,6 +15,8 @@ struct HomeView: View {
                 continueRow(continueTarget())
                     .appRow()
             }
+
+            TodaySection { showWeakTopics = true }
 
             Section {
                 quickActions
@@ -37,6 +40,9 @@ struct HomeView: View {
         .navigationTitle("Ana səhifə")
         .navigationSubtitle("\(Self.todayTitle()) · \(store.examMode.title)")
         .navigationBarTitleDisplayMode(.large)
+        .navigationDestination(isPresented: $showWeakTopics) { WeakTopicsView() }
+        .task { store.seedReviewIfNeeded() }
+        .onChange(of: store.wrongTotal) { store.seedReviewIfNeeded() }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 LevelBadge(level: store.dailyLevel)

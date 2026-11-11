@@ -8,29 +8,51 @@ struct ImtahanWidgetsBundle: WidgetBundle {
     var body: some Widget {
         StopwatchLiveActivityWidget()
         StudyProgressWidget()
+        QuestionWidget()
     }
 }
 
 private let deepLink = URL(string: "imtahan://stopwatch")
+private let focusLink = URL(string: "imtahan://focus")
 
+/// One activity for both timers: the stopwatch, or the "Fokus" (Pomodoro) countdown when `state.focus` is set.
 struct StopwatchLiveActivityWidget: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: StopwatchAttributes.self) { context in
-            LockScreenStopwatchView(state: context.state)
-                .activityBackgroundTint(StopwatchPalette.background)
-                .activitySystemActionForegroundColor(StopwatchPalette.accent)
-                .widgetURL(deepLink)
+            Group {
+                if let f = context.state.focus {
+                    LockScreenFocusView(display: FocusDisplay(f))
+                } else {
+                    LockScreenStopwatchView(state: context.state)
+                }
+            }
+            .activityBackgroundTint(StopwatchPalette.background)
+            .activitySystemActionForegroundColor(StopwatchPalette.accent)
+            .widgetURL(context.state.focus == nil ? deepLink : focusLink)
         } dynamicIsland: { context in
             let state = context.state
+            let focus = state.focus.map { FocusDisplay($0) }
             return DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    Label("Xronometr", systemImage: "stopwatch")
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(StopwatchPalette.accent)
-                        .padding(.leading, 4)
+                    if let focus {
+                        Label(focus.phase.longTitle, systemImage: focus.phase.symbol)
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(focus.tint)
+                            .padding(.leading, 4)
+                    } else {
+                        Label("Xronometr", systemImage: "stopwatch")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(StopwatchPalette.accent)
+                            .padding(.leading, 4)
+                    }
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    if !state.isRunning {
+                    if let focus {
+                        Text(focus.note ?? focus.roundText)
+                            .font(.caption.weight(.medium))
+                            .foregroundStyle(StopwatchPalette.muted)
+                            .padding(.trailing, 4)
+                    } else if !state.isRunning {
                         Text("Dayandırılıb")
                             .font(.caption.weight(.medium))
                             .foregroundStyle(StopwatchPalette.muted)
@@ -38,33 +60,54 @@ struct StopwatchLiveActivityWidget: Widget {
                     }
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    VStack(spacing: 10) {
-                        StopwatchTimeText(state: state)
-                            .font(.system(size: 40, weight: .semibold).monospacedDigit())
-                            .foregroundStyle(state.isRunning ? .white : StopwatchPalette.muted)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        HStack(spacing: 10) {
-                            StopwatchToggleButton(isRunning: state.isRunning, showsTitle: true)
-                            StopwatchResetButton(showsTitle: true)
+                    if let focus {
+                        FocusExpandedBottom(display: focus)
+                    } else {
+                        VStack(spacing: 10) {
+                            StopwatchTimeText(state: state)
+                                .font(.system(size: 40, weight: .semibold).monospacedDigit())
+                                .foregroundStyle(state.isRunning ? .white : StopwatchPalette.muted)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            HStack(spacing: 10) {
+                                StopwatchToggleButton(isRunning: state.isRunning, showsTitle: true)
+                                StopwatchResetButton(showsTitle: true)
+                            }
                         }
+                        .padding(.horizontal, 4)
                     }
-                    .padding(.horizontal, 4)
                 }
             } compactLeading: {
-                Image(systemName: state.isRunning ? "stopwatch" : "pause.fill")
-                    .foregroundStyle(StopwatchPalette.accent)
+                if let focus {
+                    Image(systemName: focus.isRunning ? focus.phase.symbol : "pause.fill")
+                        .foregroundStyle(focus.tint)
+                } else {
+                    Image(systemName: state.isRunning ? "stopwatch" : "pause.fill")
+                        .foregroundStyle(StopwatchPalette.accent)
+                }
             } compactTrailing: {
-                StopwatchTimeText(state: state)
-                    .font(.system(size: 15, weight: .semibold).monospacedDigit())
-                    .foregroundStyle(state.isRunning ? StopwatchPalette.accent : StopwatchPalette.muted)
-                    .multilineTextAlignment(.trailing)
-                    .frame(width: 62, alignment: .trailing)
+                Group {
+                    if let focus {
+                        FocusTimeText(display: focus)
+                            .foregroundStyle(focus.isRunning ? focus.tint : StopwatchPalette.muted)
+                    } else {
+                        StopwatchTimeText(state: state)
+                            .foregroundStyle(state.isRunning ? StopwatchPalette.accent : StopwatchPalette.muted)
+                    }
+                }
+                .font(.system(size: 15, weight: .semibold).monospacedDigit())
+                .multilineTextAlignment(.trailing)
+                .frame(width: 62, alignment: .trailing)
             } minimal: {
-                Image(systemName: state.isRunning ? "stopwatch" : "pause.fill")
-                    .foregroundStyle(StopwatchPalette.accent)
+                if let focus {
+                    Image(systemName: focus.isRunning ? focus.phase.symbol : "pause.fill")
+                        .foregroundStyle(focus.tint)
+                } else {
+                    Image(systemName: state.isRunning ? "stopwatch" : "pause.fill")
+                        .foregroundStyle(StopwatchPalette.accent)
+                }
             }
-            .widgetURL(deepLink)
-            .keylineTint(StopwatchPalette.accent)
+            .widgetURL(state.focus == nil ? deepLink : focusLink)
+            .keylineTint(focus?.tint ?? StopwatchPalette.accent)
         }
     }
 }
@@ -114,7 +157,7 @@ struct StopwatchResetButton: View {
     }
 }
 
-private struct StopwatchButtonLabelStyle: LabelStyle {
+struct StopwatchButtonLabelStyle: LabelStyle {
     let showsTitle: Bool
     func makeBody(configuration: Configuration) -> some View {
         HStack(spacing: 6) {

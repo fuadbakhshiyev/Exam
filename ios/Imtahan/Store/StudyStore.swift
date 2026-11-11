@@ -400,6 +400,8 @@ final class StudyStore {
             }
             if let stat { recordStat(course: stat.course, cat: stat.cat, sub: stat.sub, isCorrect: isCorrect) }
             hit = updateDaily(increment: true)
+            recordReview(q, isCorrect: isCorrect)
+            noteAchievementAnswer(q, isCorrect: isCorrect, stat: stat)   // Nailiyyətlər (StudyStore+Achievements)
         }
         return hit
     }
@@ -408,6 +410,7 @@ final class StudyStore {
     func recordSurpriseAnswer(_ q: Question, isCorrect: Bool) {
         batch {
             recordStat(course: q.c, cat: "surprise", sub: "Sürpriz Sual", isCorrect: isCorrect)
+            recordReview(q, isCorrect: isCorrect)
             if isCorrect {
                 saveCorrect(course: q.c, q)
             } else {
@@ -415,6 +418,7 @@ final class StudyStore {
                 incrementWrongCount(q.q)
             }
             updateDaily(increment: false)
+            scheduleAchievementCheck()   // Nailiyyətlər
         }
     }
 
@@ -475,6 +479,7 @@ final class StudyStore {
     func resetAll() {
         stopQuizTimer()
         data = StudyData()
+        ReviewStore.shared.clear()
         celebration = nil
         refreshDailyGoal(notify: false)
         markChanged(quick: true)

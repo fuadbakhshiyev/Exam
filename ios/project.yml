@@ -41,6 +41,21 @@ targets:
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         ITSAppUsesNonExemptEncryption: false
         NSSupportsLiveActivities: true
+        # Home Screen quick actions (App/QuickActions.swift routes them).
+        UIApplicationShortcutItems:
+          - UIApplicationShortcutItemType: az.fuadb.imtahan.continue
+            UIApplicationShortcutItemTitle: Davam et
+            UIApplicationShortcutItemSubtitle: Son ünitəyə qayıt
+            UIApplicationShortcutItemIconSymbolName: play.fill
+          - UIApplicationShortcutItemType: az.fuadb.imtahan.wrong
+            UIApplicationShortcutItemTitle: Səhvlərim
+            UIApplicationShortcutItemIconSymbolName: xmark.circle
+          - UIApplicationShortcutItemType: az.fuadb.imtahan.review
+            UIApplicationShortcutItemTitle: Bu günün təkrarı
+            UIApplicationShortcutItemIconSymbolName: arrow.trianglehead.2.clockwise.rotate.90
+          - UIApplicationShortcutItemType: az.fuadb.imtahan.timer
+            UIApplicationShortcutItemTitle: Xronometr / Fokus
+            UIApplicationShortcutItemIconSymbolName: timer
         CFBundleURLTypes:
           - CFBundleURLName: google-signin
             CFBundleURLSchemes: [com.googleusercontent.apps.971462035893-6ldt4rs5foimh7rce0gj64t2u8q39hnl]

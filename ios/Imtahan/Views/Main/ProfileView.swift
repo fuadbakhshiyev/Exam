@@ -5,7 +5,6 @@ import UIKit
 struct ProfileView: View {
     @Environment(StudyStore.self) private var store
     @Environment(SyncService.self) private var sync
-    @Environment(SidebarStopwatch.self) private var stopwatch
 
     @State private var showSyncError = false
 
@@ -13,19 +12,7 @@ struct ProfileView: View {
         List {
             account
 
-            Section("Xronometr") {
-                HStack(spacing: 12) {
-                    Text(stopwatch.display).font(.title.weight(.semibold)).monospacedDigit().foregroundStyle(Theme.text)
-                        .contentTransition(.numericText())
-                    Spacer()
-                    Button { stopwatch.reset() } label: { Image(systemName: "arrow.counterclockwise") }
-                        .buttonStyle(.glass)
-                        .accessibilityLabel("Sıfırla")
-                    Button(stopwatch.buttonTitle) { stopwatch.toggle() }
-                        .buttonStyle(.glassProminent)
-                }
-                .appRow()
-            }
+            TimerSection()
 
             Section {
                 NavigationLink(value: Route.settings) {
