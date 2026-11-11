@@ -1,0 +1,14550 @@
+// Auto-generated from pdf_final/ (convert_final_pdfs.py)
+const pdfFinalsData = {
+  "Grafik Üretim Teknikleri": [
+    {
+      "sinavId": 133,
+      "ad": "2025-2026 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Ağaç hamurundan mekanik usullerle üretilen, çoğunlukla gazete basımında kullanılan kâğıt türünün adı nedir?",
+          "o": [
+            "Fotokopi kâğıtlar",
+            "Kuşe kâğıtlar",
+            "Birinci hamur kâğıtlar",
+            "Üçüncü hamur kâğıtlar",
+            "Pelür kâğıtlar"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Dış mekân afişi olarak tasarlanan CLP standart olarak 118 x 170 cm ölçülerinde olup aşağıdaki hangi baskı tekniğinin donanımları ile üretilebilir?",
+          "o": [
+            "Tampon baskı tekniği donanımları",
+            "Bobin beslemeli büyük format dijital baskı tekniği donanımları",
+            "Tabaka beslemeli dijital baskı tekniği donanımları",
+            "Ofis tipi masaüstü çoğaltma tekniği donanımları",
+            "Bobin beslemeli dijital baskı tekniği donanımları"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi İbrahim Müteferrika Matbaasının ikinci döneminde basılan kitaplardan biri değildir?",
+          "o": [
+            "Cihannüma",
+            "Izzî Tarihi",
+            "Fenn-i Harp",
+            "Ferheng-i Şuûrî",
+            "Fenn-i Lağım"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Hangisi serigrafi baskı tekniğinin kullanıldığı sektörlerden biri değildir?",
+          "o": [
+            "Otomotiv sanayi",
+            "Seramik ürünler",
+            "Geri dönüşüm",
+            "Sanatsal çalışmalar",
+            "Tekstil ürünleri"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisinde sıcak yaldız baskı kullanılmamaktadır?",
+          "o": [
+            "Gazete baskılarında",
+            "Ciltli kitap kapaklarında",
+            "Dergi kapaklarında",
+            "Davetiyelerde",
+            "Karton ambalajlarda"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Pigment (boya) renklerinden siyan mavi, macenta kırmızısının karışımı aşağıdaki renklerden hangisini oluşturur?",
+          "o": [
+            "Siyah",
+            "Koyu mavi",
+            "Mor",
+            "Kahverengi",
+            "Yeşil"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Flekso mürekkeplerinin içeriğinde bulunan hangi madde, mürekkep filminden uçarak hızla kurumasına neden olur?",
+          "o": [
+            "Vernik",
+            "Su",
+            "Boya",
+            "Lak",
+            "Solvent"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdaki nemlendirme sistemlerinden hangisinde baskıda mürekkep hazneye inmediği için hazne suyu kirlenmez?",
+          "o": [
+            "Konvansiyonel nemlendirme sistemi",
+            "Fırçalı nemlendirme sistemi",
+            "Tabaka ofset nemlendirme sistemi",
+            "Sürekli form nemlendirme sistemi",
+            "Dahlgren nemlendirme sistemi"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Dairesel mekanizmada iç içe olan iki diskin aynı yönde birlikte döndürülmesi ve ayna tutulmasıyla görüntülerin hareket ediyormuş gibi görünmesini sağlayan aracın adı nedir?",
+          "o": [
+            "Zoetrope",
+            "Thaumatrope",
+            "Flipbook",
+            "Phenakistoscope",
+            "Praxinoscope"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kâğıt üretiminde kullanılan hammaddelerden değildir?",
+          "o": [
+            "Atık kâğıtlar",
+            "Paçavra atıkları",
+            "Atık plastikler",
+            "Sap saman",
+            "Hazır selüloz"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi, tabaka ofset mürekkep ünitesinden biri değildir?",
+          "o": [
+            "Kalıba mürekkep veren merdaneler",
+            "Mürekkep sürme merdanesi",
+            "Vargel merdanesi",
+            "Alıcı-verici merdane",
+            "Kalıp nemlendirme merdanesi"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Esnek ambalaj tasarımlarında kullanılan beyaz rengin parsiyel olması tasarıma nasıl bir efekt etkisi katar?",
+          "o": [
+            "Sıradan",
+            "Saydamlık",
+            "Etkilemez",
+            "Parlak metalik bir efekt",
+            "Matlık"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Düşük kaliteli kâğıda yüksek hızlarda baskı yapıldığında mürekkep yayılmasının önüne geçmek için yazı tipleri üzerinde uygulanan teknik aşağıdakilerden hangisidir?",
+          "o": [
+            "Boya Sıvılaştırma",
+            "Boya Yoğunlaştırma",
+            "Mürekkep Kapanları",
+            "Mürekkep Sıvılaştırma",
+            "Mürekkep Kurutması"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Renklerin üst üste basılmaları sonrasında formlar arasında oluşan beyaz çizgilerin ayarlanmasına ne ad verilir?",
+          "o": [
+            "Renk çubuğu",
+            "Renk ayarı",
+            "Renk baskı ayarı",
+            "Renk şişirme",
+            "Renk kontrolü"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Metal üzerine yapılmış ilk çukur baskı çalışması hangi yüzyıla aittir?",
+          "o": [
+            "15. yüzyıla",
+            "13. yüzyıla",
+            "14. yüzyıla",
+            "16. yüzyıla",
+            "17. yüzyıla"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Temel özelliği mürekkep tabakasının kalınlığının (miktarının) ayarlanmasına yardımcı olan merdanedir. Yukarıda belirtilen tanıma göre flekso baskı tekniğinde kullanılan merdanenin adı nedir?",
+          "o": [
+            "Krom Merdane",
+            "Seramik Merdane",
+            "Aniloks Merdane",
+            "Plastik Merdane",
+            "Çelik Merdane"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Dijital Baskı Teknikleri”nin “Geleneksel Baskı Teknikleri” ile kıyaslanması durumunda karşımıza çıkan belirgin avantajlarından değildir?",
+          "o": [
+            "Kişiselleştirilmiş içerik ve değişken veri baskısı uygulanabilmesi",
+            "Daha çok baskı kalıbı kullanımı",
+            "Daha az fire oranı",
+            "Daha hızlı kuruma imkânı",
+            "Daha az kimyasal kullanımı"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Hareketli grafik tasarımı esnasında tasarımcı aşağıdaki sorulardan hangisine cevap aramaz?",
+          "o": [
+            "Bir görüntüden sonraki görüntüye ne zaman ve ne şekilde geçiş yapmalıdır?",
+            "Görüntülerin sıralaması nasıl olmalıdır?",
+            "Tasarlanan kurgu iletilmek istenen mesajı aktarabiliyor mu?",
+            "Tasarlanan kurgu, seyircinin duygularını harekete geçirebiliyor mu?",
+            "Görüntüler editörün beğenisini alır mı?"
+          ],
+          "a": 4
+        },
+        {
+          "q": "“……….. renk modeli temel olarak insan gözünün retina katmanında bulunan ışık algılayıcı koni hücrelerinin (foto reseptörlerin) duyarlı olduğu üç farklı dalga boyundaki renkler üzerine kurulmuştur.” ifadesinde noktalı yere aşağıdakilerden hangisi gelmelidir?”",
+          "o": [
+            "RGB",
+            "HLS",
+            "HSV",
+            "CMYK",
+            "CMY"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Şimşir, gürgen, meşe ve karaağaç gibi sert ağaçların kullanılabildiği enine kesilmiş ağaç baskının en önemli ustası kimdir?",
+          "o": [
+            "Raoul Dufy",
+            "Andre Derain",
+            "Adolf Menzel",
+            "Paul Gauguin",
+            "Thomas Bewick"
+          ],
+          "a": 4
+        }
+      ]
+    },
+    {
+      "sinavId": 119,
+      "ad": "2025-2026 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "RGB renk modelindeki birincil renkler aşağıdakilerden hangisidir?",
+          "o": [
+            "Mavi –Yeşil – Magenta",
+            "Yeşil – Siyah – Mavi",
+            "Kırmızı – Yeşil – Mavi",
+            "Kırmızı – Yeşil – Siyah",
+            "Camgöbeği – Yeşil – Kırmızı"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Bir reklam kampanyası medya planlaması doğrultusunda açıkhava şehir mobilyaları için talep edilen grafik tasarım ürünleri ve baskı adetleri: CLP; 100 adet (CLP kâğıdı) Billboard; 100 adet (Blueback / Billboard kâğıdı) Megaboard: 12 adet (Işıklı vinil branda) Teslim Süresi: Baskı dökümü teslimi (PDF) sonrası 3 iş günü Yukarıda teknik özellikleri sunulan grafik ürün, aşağıdaki hangi baskı tekniğinin donanımları ile ekonomik olarak üretilebilir?",
+          "o": [
+            "Web ofset baskı tekniği donanımları",
+            "Ofset baskı tekniği donanımları",
+            "Tabaka beslemeli dijital baskı tekniği donanımları",
+            "Bobin beslemeli büyük format dijital baskı tekniği donanımları",
+            "Flekso baskı tekniği donanımları"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Hizmet ürettiğiniz müşterilerinizden biri, pazara yeni sunacağı sınırlı sayıdaki (3 çeşit, 25 000'er adet, 6 renk) kurutulmuş dondurma ürünü için ambalaj (koruyucu kilitli esnek ambalaj) üretim takibi ile kalite kontrol sorumluluğunu size verdiğinde, aşağıdaki hangi baskı tekniğinin donanımları ile kısa sürede ve adedine göre ekonomik üretim yaptırabilirsiniz?",
+          "o": [
+            "Büyük format inkjet dijital baskı tekniği donanımları",
+            "Ofis tipi masaüstü çoğaltma tekniği donanımları",
+            "Bobin beslemeli dijital baskı tekniği donanımları",
+            "Web ofset baskı tekniği donanımları",
+            "Tabaka beslemeli dijital baskı tekniği donanımları"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Hareketli grafikte duyulara doğrudan hitap edebilen, bir ekran içinde sınırlanmış görsel içeriğe nazaran, seyirciyi daha fazla etkisi altına alma özelliğine sahip öge aşağıdakilerden hangisidir?",
+          "o": [
+            "Ses",
+            "Kurgu",
+            "Zaman",
+            "Değişim",
+            "Tipografi"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Elektromekanik gravür kazıma makinelerinin kafası, kazıma işlemi sırasında uç olarak aşağıdakilerden hangisini kullanır?",
+          "o": [
+            "İğne",
+            "Gümüş",
+            "Altın",
+            "Lazer",
+            "Elmas"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdaki baskı tekniklerinden hangisi kullanılacak malzemenin çeşitliliği ve kolay uygulanabilirliği nedeni ile sanat kurumlarında en çok tercih edilen yüksek baskı tekniğidir?",
+          "o": [
+            "Linol baskı",
+            "Ağaç baskı",
+            "Litografi",
+            "Mono baskı",
+            "Elek baskı"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Değişken veri baskısı uygulaması gerektiren bir grafik tasarım ürünü, aşağıdaki hangi baskı tekniği ile kısa sürede, kaliteli ve ekonomik olarak üretilebilir?",
+          "o": [
+            "Tampon baskı tekniği donanımları",
+            "Flekso baskı tekniği donanımları",
+            "Dijital baskı tekniği donanımları",
+            "Tifdruk baskı tekniği donanımları",
+            "Serigrafi baskı tekniği donanımları"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Esnek ambalajda kullanılan programlardan Artpro, Atrpro+ ve Hybrid Packs programları hangi aşamada kullanılır?",
+          "o": [
+            "Sadece silindir montajı",
+            "Tasarım",
+            "Ambalajlama aşaması",
+            "Repro hazırlığı ve silindir ya da klişe montaj çalışma",
+            "Baskı öncesi tasarım hazırlığı"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangileri birbirlerinin “Tamamlayıcı Renkler”idir?",
+          "o": [
+            "Sarı, mavi",
+            "Siyah, mavi, mor",
+            "Macenta, yeşil",
+            "Yeşil, mavi",
+            "Sarı, kırmızı"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi asitli oyma tekniği değildir?",
+          "o": [
+            "Aquatintalı mezotinta tekniği ile oyma",
+            "Derin oyma",
+            "Aquatinta (tozlama, reçine)",
+            "Viskozite (tek plakalı renkli çukur baskı )",
+            "Kalburlama, noktalama (crible) ile oyma"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdaki baskı sistemlerinin hangisinde baskıda kalıpla kâğıt yüz yüze gelmez?",
+          "o": [
+            "Tipo baskı",
+            "Serigrafi baskı",
+            "Flekso baskı",
+            "Ofset baskı",
+            "Tifdruk baskı"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdaki araç gereçlerden hangisi serigrafi baskıda kullanılmaz?",
+          "o": [
+            "İpek",
+            "Emülsiyon",
+            "Rakle",
+            "Çerçeve",
+            "Pres"
+          ],
+          "a": 4
+        },
+        {
+          "q": "240 g/m2 ifadesi kâğıdın hangi özelliğini gösterir?",
+          "o": [
+            "Gramajını",
+            "Kâğıdın kalınlığını",
+            "Kâğıdın ebadını",
+            "Bir tabakanın ağırlığını",
+            "Kâğıdın opaklığını"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi basmayan malzemelerden biri değildir?",
+          "o": [
+            "Kadratlar",
+            "Hurufatlar",
+            "Esbaslar",
+            "Garnitürler",
+            "Anterlinler"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Dış mekân grafik tasarım ürünlerinin üretimi ile ilgili ticari işletmelerin kendilerini aşağıdakilerden hangisi ile tanımladığı görülmektedir?",
+          "o": [
+            "Reklam Ajansı",
+            "Tam Hizmet Reklam Ajansı",
+            "Grafik Atölye",
+            "Tanıtım Hizmetleri",
+            "Açıkhava Reklam"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi hareketli grafik tasarımı alanını ve tanımını özetleyen cümle değildir?",
+          "o": [
+            "Animasyon, illüstrasyon, tipografi, fotoğraf, müzik, film ve video yapımı gibi alanların birleşimi nedeniyle çoklu disipline dayalıdır.",
+            "Hareketli grafik ürünleri televizyondan, sinema, internet gibi etkileşimli medyaya kadar birçok ortamda gösterime girmektedir.",
+            "Hareketli grafik tasarımı bilgilendirmek üzere bir fikri, mesajı iletmek için animasyon ve grafik tasarımı birleştiren bir alandır.",
+            "Hareketli grafik ürünleri sadece televizyon ve sinemaya hizmet eden bir alandır.",
+            "Görsel ögelere hayat veren bir alandır."
+          ],
+          "a": 3
+        },
+        {
+          "q": "Üretimde özel mürekkepler kullanıldığında kendiliğinden ışık yayarak parlak bir görünüm oluşturan renklere ne ad verilir?",
+          "o": [
+            "Floresan renkler",
+            "Işık renleri",
+            "Metalik renkler",
+            "Canlı renkler",
+            "Parlak renkler"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Harfler, sayılar, semboller ve şekiller gibi sayısal veya baskıdaki yazı tiplerinde bir karakter kodunu temsil etmek için kullanılan bir şekiller aşağıdaki terimlerden hangisi ile ifade edilir?",
+          "o": [
+            "Gutter",
+            "Glyph",
+            "Widow",
+            "Halftone",
+            "Orphan"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Osmanlı Devleti'nde ilk matbaa hangi yıl kurulmuştur?",
+          "o": [
+            "1650",
+            "1493",
+            "1710",
+            "1554",
+            "1360"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Yüzeyi kaolin, tebeşir ve kazein gibi maddelerle düzeltilip parlatılan beyaz renkli kâğıtlara ne ad verilir?",
+          "o": [
+            "Otokopi kâğıtlar",
+            "Kuşe kâğıtları",
+            "Pelur kâğıtlar",
+            "Birinci hamur kâğıtlar",
+            "Ozalit kâğıtlar"
+          ],
+          "a": 1
+        }
+      ]
+    },
+    {
+      "sinavId": 117,
+      "ad": "2025-2026 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Dış mekân afişi olarak tasarlanan CLP standart olarak 118 x 170 cm ölçülerinde olup aşağıdaki hangi baskı tekniğinin donanımları ile üretilebilir?",
+          "o": [
+            "Bobin beslemeli dijital baskı tekniği donanımları",
+            "Ofis tipi masaüstü çoğaltma tekniği donanımları",
+            "Bobin beslemeli büyük format dijital baskı tekniği donanımları",
+            "Tabaka beslemeli dijital baskı tekniği donanımları",
+            "Tampon baskı tekniği donanımları"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Çoklu ortam içerikleri reklam, sanat, eğlence, eğitim, mühendislik, tıp, bilimsel araştırma ve iş dünyası gibi birçok alana yayılmış durumdadır. Bu gibi alanlarda içeriğin ilgi çekici olması, hatta izleyicinin etkileşim içine girebilmesi de amaçlanmaktadır. Bu amaç doğrultusunda aşağıdaki tasarım türünün hangisinden yararlanılmaktadır?",
+          "o": [
+            "Hareketli grafik tasarımından",
+            "Yeni medyadan",
+            "Jeneriklerden",
+            "Broşür tasarımlarından",
+            "Afiş tasarımlarından"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi serigrafi baskı makinesi değildir?",
+          "o": [
+            "Manuel serigrafi baskı tezgâhı",
+            "Çevirmeli serigrafi baskı makinası",
+            "Otomatik serigrafi baskı makinası",
+            "Yarı otomatik serigrafi tezgâhı",
+            "Silindirik yüzey baskı makinası"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Mürekkebi oluşturan aşağıdaki maddelerden hangisi mürekkebin ışık haslığını belirler?",
+          "o": [
+            "Bağlayıcılar",
+            "İncelticiler",
+            "Kurumayı geciktiriciler",
+            "Pigmentler",
+            "Kurumayı hızlandırıcılar"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi İbrahim Müteferrika Matbaasının ikinci döneminde basılan resimli kitaplardan biridir?",
+          "o": [
+            "Fenni Lağım",
+            "Tarih-i Çelebizade",
+            "Cihannüma",
+            "Izzi Tarihi",
+            "Tarih-i Hind-i Garbi"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Arka yüzlerine yapışma özelliği kazandırılmış birinci hamur, kuşe, kromelüks, metalize yaldız ve şeffaf cinsleri olan kâğıtlara ne ad verilir?",
+          "o": [
+            "Ozalit kâğıtları",
+            "Bristol kâğıtlar",
+            "Pelür kâğıtlar",
+            "Çıkartma kâğıtları",
+            "Fantezi kâğıtlar"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdaki baskı tekniklerinden hangisi 1890'da Waltan Als Baden Belag tarafından İngiltere'de bir baskı türü olarak uygulanmıştır?",
+          "o": [
+            "Gravür baskı",
+            "Taşbaskı",
+            "Linol baskı",
+            "Ağaç baskı",
+            "İpek baskı"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi genel olarak CNC Router makineleri tarafından işlem yapılabilen malzemelerden biri değildir?",
+          "o": [
+            "Security Cam",
+            "Masif Ahşap",
+            "Dekota",
+            "Alüminyum Kompozit",
+            "Pleksiglass"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Müşterilerinizden biri, pazara yeni sunacağı 500 g kahve ambalajı için (koruyucu kilitli esnek ambalaj, 2 çeşit, 25 000'er adet, 7 renk) üretim takibi ile kalite kontrol sorumluluğunu size verdiğinde, aşağıdaki hangi baskı tekniğinin donanımları ile kısa sürede ve adedine göre ekonomik üretim yaptırabilirsiniz?",
+          "o": [
+            "Büyük format inkjet dijital baskı tekniği donanımları",
+            "Bobin beslemeli dijital baskı tekniği donanımları",
+            "Web ofset baskı tekniği donanımları",
+            "Tabaka beslemeli dijital baskı tekniği donanımları",
+            "Ofis tipi masaüstü çoğaltma tekniği donanımları"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Beşik gibi şekli ve çok sayıda sivri ucu ile çukur baskı yapılan Mezotinta Tekniği ilk hangi sanatçı tarafından uygulanmıştır?",
+          "o": [
+            "Rembrandt",
+            "Prince Rupert",
+            "Francisco Goya",
+            "Ludwig von Siegen",
+            "Hercules Segers"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Johannes Gutenberg'in 1440'lı yıllarda geliştirdiği baskı sisteminin adı nedir?",
+          "o": [
+            "Dijital baskı",
+            "Tipo baskı",
+            "Serigrafi baskı",
+            "Ofset baskı",
+            "Tifdruk baskı"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi serigrafide kullanılan bir dokuma türü değildir?",
+          "o": [
+            "Çelik",
+            "Sentetik",
+            "Doğal ipek",
+            "Pamuk",
+            "Polyester"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Sayfanın hedef ölçü sınırının ötesine de kasten devam ettirilen grafik, arka plan veya metin alanını ifade eden terim aşağıdakilerden hangisidir?",
+          "o": [
+            "Bitmap",
+            "Condensed",
+            "Gutter",
+            "Glyph",
+            "Bleed"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Büyük (geniş) Format Dijital Baskı Teknikleri” ile ilgili donanımların genel özellikleri arasında yer almaz?",
+          "o": [
+            "Büyük ebat iç ve dış cephe giydirmelerinde tek parça, yüksek kalitede baskı yapabilmekte",
+            "Bobinden bobine üretim yapabilme özelliği ile esnek ambalaj uygulamaları yapabilir",
+            "Tabaka ve bobin baskı altı malzemesi kullanılabilmekte",
+            "Kâğıt dâhil, kumaş, branda, plastik, metal, ahşap ve cam gibi çok çeşitli baskı altı malzemesine baskı yapabilmekte",
+            "İç ve dış mekânlarda solmayan UV ve su bazlı mürekkep kullanabilmekte"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tipo baskı sisteminin avantajlarından biri değildir?",
+          "o": [
+            "Kalıpların kurşun ağırlıklı olması",
+            "Hurufat ve klişelerle kalıbın hızlı yapılıyor olması",
+            "Son anda kalıpta düzeltme imkânı",
+            "Baskı maliyetinin ucuz olması",
+            "Baskıda çok yönlülük"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Kâğıt hamuruna katılan dolgu maddeleri aşağıdaki hangi faydayı sağlamaz?",
+          "o": [
+            "Kâğıdın opaklığını artırır.",
+            "Baskı kalitesini artırır.",
+            "Lifler arasındaki boşlukları doldurur.",
+            "Kâğıdın yüzeyini düzgünleştirir.",
+            "Kâğıdın düzgün katlanmasını sağlar."
+          ],
+          "a": 4
+        },
+        {
+          "q": "Esnek ambalaj üreticilerine grafik tasarımcılar tasarımlarında kullandıkları yazıları nasıl göndermelidir?",
+          "o": [
+            "Fontlu",
+            "Resim",
+            "Fontsuz (convert edilmiş) vektörel hâli ile",
+            "Photoshop üzerinden",
+            "Yazısız"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Üretimde özel mürekkepler kullanıldığında kendiliğinden ışık yayarak parlak bir görünüm oluşturan renklere ne ad verilir?",
+          "o": [
+            "Işık renleri",
+            "Metalik renkler",
+            "Canlı renkler",
+            "Parlak renkler",
+            "Floresan renkler"
+          ],
+          "a": 4
+        },
+        {
+          "q": "İlk yazıyı bulan medeniyet aşağıdakilerden hangisidir?",
+          "o": [
+            "İyonlar",
+            "Asurlular",
+            "Sümerler",
+            "Hititler",
+            "Lidyalılar"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Gravür baskı yani tifdruk baskının en önemli tercih nedeni aşağıdakilerden hangisidir?",
+          "o": [
+            "İstenilen metraj baskısı",
+            "Kısa metrajlı baskı yapılabilmesi",
+            "Hızlı baskı yapılması",
+            "Yavaş baskı yapılması",
+            "Uzun metrajlı baskı yapılabilmesi"
+          ],
+          "a": 4
+        }
+      ]
+    },
+    {
+      "sinavId": 99,
+      "ad": "2024-2025 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi basmayan malzemelerden biri değildir?",
+          "o": [
+            "Kadratlar",
+            "Hurufatlar",
+            "Esbaslar",
+            "Anterlinler",
+            "Garnitürler"
+          ],
+          "a": 1
+        },
+        {
+          "q": "II. Abdülhamit Dönemi'nde yaşayan ve Türk taşbaskı sanatının en önemli ismi aşağıdakilerden hangisidir?",
+          "o": [
+            "Mehmet Hulusi",
+            "Kazancı İbrahim",
+            "Malik Aksel",
+            "Ahmet Efendi",
+            "İbrahim Müteferrika"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi flekso baskıda kullanılan mürekkeplerin özelliklerinden biri değildir?",
+          "o": [
+            "Solventlerden dolayı uçucu",
+            "Plastik boya",
+            "Çabuk kuruyan",
+            "Vizkozitesi düşük",
+            "Rotogravür mürekkepler"
+          ],
+          "a": 1
+        },
+        {
+          "q": "İki sütun veya metin bloğu arasındaki boşluk veya sütun oluğu veya sütun marjini olarak da bilinen terim aşağıdakilerden hangisidir?",
+          "o": [
+            "Condensed",
+            "HTML",
+            "Halftone",
+            "Alley",
+            "Glyph"
+          ],
+          "a": 3
+        },
+        {
+          "q": "48 adet 60 x 80 cm ölçüsünde masanın ahşap üzeri beyaz akrilik boyalı tablası üzerine tasarım görseli, aşağıdaki hangi baskı tekniğinin donanımları ile ekonomik ve kısa sürede uygulanır?",
+          "o": [
+            "Ofset baskı tekniği donanımları",
+            "Ofis tipi masaüstü çoğaltma tekniği donanımları",
+            "Flekso baskı tekniği donanımları",
+            "Tabaka beslemeli dijital baskı tekniği donanımları",
+            "Düz yataklı (tabaka / fladbed) dijital baskı tekniği donanımları"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Müşteri tarafından bir bayi toplantısında kullanılmak üzere talep edilen 6 adet iç mekân x banner (80 x 200 cm) için kumaş üzeri baskı, aşağıdaki hangi baskı tekniğinin donanımları ile üretilebilir?",
+          "o": [
+            "Büyük format inkjet dijital baskı tekniği donanımları",
+            "Bobin beslemeli dijital baskı tekniği donanımları",
+            "Tifdruk baskı tekniği donanımları",
+            "Flekso baskı tekniği donanımları",
+            "Web ofset baskı tekniği donanımları"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Tipoda keski ile ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "Keski baskı kalıpları için katmanlı suntalar kullanılır.",
+            "Karton ambalajlar ofsette basıldıktan sonra, tipoda kesimi yapılır.",
+            "Kesim kalıbının üzerinde sadece kesim için bıçak bulunur.",
+            "Keski işlemi kazanlı ve maşalı makinelerde yapılır.",
+            "Tipoda kesim işleminden sonra ayıklama elle yapılır."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Matbaanın icat edilmesi ve kullanılmasıyla aşağıdakilerden hangisi arasında direkt bağlantı yoktur?",
+          "o": [
+            "Rönesans'ın doğması ve gelişmesi",
+            "Monarşiyle yönetenlerin güç kazanması",
+            "Okuma-yazma bilen vatandaşların artması",
+            "Reform hareketlerinin yaygınlaşması",
+            "Haber ve yayınların daha da hızlı yayılması"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdaki malzemelerden hangisi gaze / ipek üretiminde kullanılmaz?",
+          "o": [
+            "Polyaster",
+            "Polyamid",
+            "Pamuk",
+            "Metal",
+            "Organik ipek"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi serigrafi baskı makinesi değildir?",
+          "o": [
+            "Manuel serigrafi baskı tezgâhı",
+            "Çevirmeli serigrafi baskı makinası",
+            "Yarı otomatik serigrafi tezgâhı",
+            "Otomatik serigrafi baskı makinası",
+            "Silindirik yüzey baskı makinası"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdaki baskı tekniklerinden hangisi kullanılacak malzemenin çeşitliliği ve kolay uygulanabilirliği nedeni ile sanat kurumlarında en çok tercih edilen yüksek baskı tekniğidir?",
+          "o": [
+            "Elek baskı",
+            "Ağaç baskı",
+            "Litografi",
+            "Mono baskı",
+            "Linol baskı"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Gözde hangi renklere duyarlı alıcılar vardır?",
+          "o": [
+            "Turuncu, yeşil, mor",
+            "Kırmızı, mavi, sarı",
+            "Kırmızı, yeşil, mavi",
+            "San, mor, turuncu",
+            "Bütün renkler"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi yırtılmayan kâğıtların özelliklerinden biri değildir?",
+          "o": [
+            "Bu kâğıtlar perfore edilebilir, dikilip yapıştırılabilir.",
+            "Her türlü tipo, ofset, flekso ve serigrafi baskı sistemleriyle basılabilir.",
+            "Bu kâğıtlar doğada yok olabilir, çevre kirliliğine neden olmaz.",
+            "Bu kâğıtlar yırtılmaya ve delinmeye karşı çok dayanıklıdır.",
+            "Bu kâğıtların emiciliği yüksek olduğundan mürekkepler daha hızlı kurur."
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi çukur baskının tanımında yer almaz?",
+          "o": [
+            "Gravür kâğıdından yararlanılır.",
+            "Çukur baskıda delici veya oyucu aletler kullanılır.",
+            "Çukur baskı, çinko, bakır, saç gibi metal ve düz yüzeyli metallerden yararlanılır.",
+            "Ahşap gibi maddelerden yararlanılır.",
+            "Linol, serfloor gibi naylonumsu nesnelerden yararlanılır."
+          ],
+          "a": 3
+        },
+        {
+          "q": "Taşıtın üzerindeki tampon, ayna, kapı, taşıt tavanına geçiş kıvrımının durumu gibi taşıt tasarımının genel hatları göz önüne alınarak değerlendirildiğinde uygulama yapılacak zemindeki kıvrımlar çok ve keskin ise hangi baskı altı malzemesinin kullanılması tercih edilir?",
+          "o": [
+            "Pleksiglass",
+            "EPS Strafor",
+            "Cast Folyo",
+            "CLP kâğıdı",
+            "Blueback kâğıt"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangileri “sıcak renkler” dir?",
+          "o": [
+            "Mor, turuncu, yeşil",
+            "Macenta, kırmızı, mavi",
+            "Kımızı, sarı, siyan mavi",
+            "Siyan mavi, yeşil, lacivert",
+            "Macenta, sarı, turuncu"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi çukur baskı tekniklerindendir?",
+          "o": [
+            "Elek baskı",
+            "Linol baskı",
+            "Litografi",
+            "Gravür",
+            "Ağaç baskı"
+          ],
+          "a": 3
+        },
+        {
+          "q": "İzleyiciye bir sahnenin perspektifinin görsel olarak anlatılması ve şekillendirilmesi amacıyla gerekli olan seçenek aşağıdakilerden hangisidir?",
+          "o": [
+            "Kamera hareketliliği",
+            "Geniş açı",
+            "Işık",
+            "Dar açı",
+            "Odaklanma"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Tasarımlarda özel renk uygulaması var ise baskıya gönderirken renk ne olarak tanımlanmalıdır?",
+          "o": [
+            "Renk Kodu",
+            "Baskı Kodu",
+            "Rakam Kodu",
+            "Pantone Kodu",
+            "CMYK Kodu"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi web ofsetin ünitelerinden biri değildir?",
+          "o": [
+            "Kâğıt istif asansörü",
+            "Kurutma ünitesi",
+            "Katlama ve kesim ünitesi",
+            "Baskı ünitesi",
+            "Bobin standı"
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 96,
+      "ad": "2024-2025 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdaki grafik türlerinden hangisinde ölçek bağımsızdır?",
+          "o": [
+            "Vektör Grafikler",
+            "Bitmap Grafikler",
+            "BMP Grafikler",
+            "Biteşlem Grafikler",
+            "Raster Grafikler"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Stanley William Hayter'in kurduğu atölye aşağıdakilerden hangisidir?",
+          "o": [
+            "Der Blau Reiter",
+            "Bauhaus Okulu",
+            "Atölye 27",
+            "Atölye 17",
+            "Atölye 37"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi İbrahim Müteferrika Matbaasının ikinci döneminde basılan kitaplardan biri değildir?",
+          "o": [
+            "Cihannüma",
+            "Ferheng-i Şuûrî",
+            "Fenn-i Harp",
+            "Fenn-i Lağım",
+            "Izzî Tarihi"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Elek tekrar kullanılmak istenirse yüzeyindeki emülsiyon hangi malzeme ile temizlenir?",
+          "o": [
+            "Hızlandırıcı tiner",
+            "Geciktirici tiner",
+            "Çamaşır suyu",
+            "Sentetik tiner",
+            "Yumuşak bez"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Tipo baskı sisteminde, hurufat kasasından kumpasa dizgi yapan elemana ne ad verilir?",
+          "o": [
+            "Dizgici",
+            "Operatör",
+            "Linotipci",
+            "Daktilocu",
+            "Mürettip"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Dört renk veya altı renk baskılarda bir görselin basılabilmesi için her rengin farklı açılara karşılık hangi eylemin yapılması gerekir?",
+          "o": [
+            "Renk çubuğu",
+            "Tramlama",
+            "Renk şişirme",
+            "Renk kontrolü",
+            "Renk ayarı"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Kâğıdın ilk biçimi olarak kabul edilen papirüs kâğıdını ilk olarak aşağıdakilerden hangisi bulmuş ve kullanmıştır?",
+          "o": [
+            "Uygurlar",
+            "Çinliler",
+            "Eski Mısırlılar",
+            "Sümerler",
+            "Finikeliler"
+          ],
+          "a": 2
+        },
+        {
+          "q": "MS 869'da Wang Chienh tarafından Çin'de basılan “Diamont – Sutra” adlı kitapta hangi baskı tekniği kullanılmıştır?",
+          "o": [
+            "Taş baskı/Litografi",
+            "Gravür baskı",
+            "Serigrafi baskı",
+            "Linol baskı",
+            "Tahta/Ağaç baskı"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Konvansiyonel nemlendirme ünitesinde aldığı suyu, plaka nemlendirme merdanelerine veren merdane aşağıdakilerden hangisidir?",
+          "o": [
+            "Taşıyıcı su merdanesi",
+            "Hazne merdanesi",
+            "Ölçü merdanesi",
+            "Vargel merdanesi",
+            "Kalıp nemlendirme merdanesi"
+          ],
+          "a": 3
+        },
+        {
+          "q": "“Görüntüleri, sesi, hareketi ve öyküyü birleştirerek film jenerikleri, müzik videosu, web, televizyon, etkileşimli medya ve taşınabilir telefonlar için ardışık canlandırma sahneleri oluşturur.” tanımı aşağıdakilerden hangisine aittir?",
+          "o": [
+            "Hareketli grafik tasarımı",
+            "Yeni medya",
+            "Gösterme biçimi",
+            "Görsel, işitsel kombinasyon",
+            "Reklam tasarımı"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Esnek ambalaj üreticileri renk yönetim sisteminde aşağıdakilerden hangisini oluştururlar?",
+          "o": [
+            "Silindir açılarını",
+            "Tasarım renk ölçümlerini",
+            "Baskı CMYK profillerini",
+            "Tasarım renklerini",
+            "Baskı Set-up sürelerini"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Tasarım hizmeti verilen bir müşteri araç filosuna yeni katığı tırı için dorse çadırına imaj tasarımı istemektedir. Yapılacak tasarım aşağıda sunulan hangi teknik donanım ile basılabilir?",
+          "o": [
+            "Bobin beslemeli Büyük format dijital baskı tekniği donanımları",
+            "Tabaka beslemeli dijital baskı tekniği donanımları",
+            "Ofis tipi masaüstü çoğaltma tekniği donanımları",
+            "Bobin beslemeli dijital baskı tekniği donanımları",
+            "Web ofset baskı tekniği donanımları"
+          ],
+          "a": 0
+        },
+        {
+          "q": "CMYK renk modelindeki “K” harfi aşağıdakilerden hangisini temsil etmektedir?",
+          "o": [
+            "Kırmızı",
+            "Yeşil",
+            "Mavi",
+            "Siyah",
+            "Beyaz"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi gravür silindiri hazırlamak için işlem aşamalarından biri değildir?",
+          "o": [
+            "Elektro kaplama",
+            "Test baskısı",
+            "Çelik kaplama",
+            "Krom tabakanın çıkarılması",
+            "Krom kaplama"
+          ],
+          "a": 2
+        },
+        {
+          "q": "I. Bayrak ve flamalarda kullanılan kumaş türevi baskı altı malzemelerine baskılar II. Billboard ve clp gibi şehir mobilyalarında kullanılan çok farklı özellikteki kâğıt türevi baskı altı malzemelerine baskılar III. Renkli gazete ve dergilerde tam sayfa reklam için yapılan baskılar Yukarıdakilerden hangisi ya da hangileri bobin beslemeli büyük format dijital baskı teknikleri ile yapılabilen baskılardır?",
+          "o": [
+            "II ve III",
+            "Yalnız III",
+            "Yalnız II",
+            "I ve II",
+            "I, II ve III"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Esnek ambalaj tasarımlarında kullanılan şişirme tekniği ne amaç ile yapılmaktadır?",
+          "o": [
+            "Görsel etkiyi artırmak için",
+            "Baskıda oluşacak ayar kayıklıklarının önüne geçmek için",
+            "Renk tonlaması oluşturmak için",
+            "Renk kombinasyonu yaratmak için",
+            "Renklerin daha düzgün çıkması için"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Bobin Beslemeli Dijital Baskı Tekniği” ile ilgili donanımların genel özellikleri arasında yer almaz?",
+          "o": [
+            "Az tirajlı, yüksek kaliteli baskı sunma avantajı ile sezonluk tasarım yeniliklerine imkân sunar.",
+            "Talebe yönelik özel baskı altı malzemesi kullanabilir.",
+            "Bobinden bobine üretim yapabilme özelliği ile esnek ambalaj uygulamaları yapabilir.",
+            "Üreticileri ve hizmet alan marka sahiplerini, tedarik zinciri ve stok maliyet risklerinden kurtarır.",
+            "Üç boyutlu objelere direkt baskı yapılabilir."
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Büyük (geniş) Format Dijital Baskı Teknikleri” ile ilgili donanımların genel özellikleri arasında yer almaz?",
+          "o": [
+            "Büyük ebat iç ve dış cephe giydirmelerinde tek parça, yüksek kalitede baskı yapabilir.",
+            "İç ve dış mekanlarda solamayan UV ve su bazlı mürekkep kullanabilir.",
+            "Kâğıt dahil, kumaş, branda, plastik, metal, ahşap ve cam gibi çok çeşitli baskı altı malzemesine baskı yapabilir",
+            "Tabaka ve bobin baskı altı malzemesi kullanılabilir",
+            "Tarama ve faks işlevlerine sahip “hepsi bir arada” yazıcı özelliği ile birçok problemi kısa sürede çözebilir"
+          ],
+          "a": 4
+        },
+        {
+          "q": "İnsanlığın hayatına girmiş olan akıllı telefonlar, tabletler, kablosuz uzaktan veri aktarımını sağlayabilen teknolojik aletler hangi kapsamda değerlendirilmektedir?",
+          "o": [
+            "Multimedya",
+            "Medya",
+            "Çoklu ortam",
+            "Yeni teknoloji",
+            "Yeni medya"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Kâğıt hamuru tabaka hâlinde döküldüğü sırada liflerin izlediği yön kâğıdın hangi özelliğini belirtir?",
+          "o": [
+            "Kâğıdın yoğunluğunu",
+            "Kâğıdın su yönünü",
+            "Kâğıdın opaklığını",
+            "Kâğıdın yüzey yapısını",
+            "Kâğıdın dayanıklılığını"
+          ],
+          "a": 1
+        }
+      ]
+    },
+    {
+      "sinavId": 88,
+      "ad": "2023-2024 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Caprishos (Kaprisler) adlı aquatinta tekniği ile yapılan çukur baskılar aşağıdaki sanatçılardan hangisine aittir?",
+          "o": [
+            "Francisco Goya",
+            "Gustave Dore",
+            "Jacques Villon",
+            "Ludwig von Siegen",
+            "Giovanni-Battista Piranesi"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi İbrahim Müteferrika Matbaasının ikinci döneminde basılan kitaplardan biri değildir?",
+          "o": [
+            "Fen-ni Lağım",
+            "Fen-ni Harp",
+            "Izzii Tarihi",
+            "Ferheng-i Şuûrî",
+            "Cihannüma"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Tipo baskı sisteminde, hurufat kasasından kumpasa dizgi yapan elemana ne ad verilir?",
+          "o": [
+            "Operatör",
+            "Linotipci",
+            "Daktilocu",
+            "Mürettip",
+            "Dizgici"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Metal oyma baskıları ile tanınan Dürer hangi ülke vatandaşıdır?",
+          "o": [
+            "Fransa",
+            "İtalya",
+            "Almanya",
+            "Hollanda",
+            "İngiltere"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Sümerlerin uygarlık tarihine en önemli katkısı aşağıdakilerden hangisidir?",
+          "o": [
+            "İlk edebiyat eserlerini vermeleri",
+            "Yazıyı icat etmeleri",
+            "Kili, yazı malzemesi olarak kullanmaları",
+            "İlk takvimi bulmaları",
+            "İlk hukuk ve adalet düşüncesini getirmeleri"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Televizyonlardan bilgisayarlara, fotoğraf makinaları, tabletler, cep telefonları ve dış mekân ekranlarına kadar tüm elektronik renkli ekranlar renk üretimini hangi renk modelini kullanarak elde eder?",
+          "o": [
+            "RGB renk modeli",
+            "CMYK0G renk modeli",
+            "CMYK renk modeli",
+            "RGBK renk modeli",
+            "CMY renk modeli"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Baskıya giren kâğıtların yana doğru çekilerek, yan düzgünlüğünü sağlayan aparata ne ad verilir?",
+          "o": [
+            "Kâğıt düzeltme tertibatı",
+            "Aparat tablası",
+            "Poza tertibatı",
+            "Salıngaç makası",
+            "Emniyet tertibatı"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Sayfa açıklama dili olarak tanımlanan PostScript yazılımı hangi firma tarafından piyasaya sürülmüştür?",
+          "o": [
+            "Palo Alto Araştırma Merkezi",
+            "IBM",
+            "CERN",
+            "Adobe Systems",
+            "Corel Enterprise"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Düz Yataklı Dijital Baskı Tekniği” donanımlarının diğer baskı tekniklerine göre avantajlı genel özellikleri arasında yer alır?",
+          "o": [
+            "Bobin cast folyo üzeri basar ve keser.",
+            "Bobin ışıklı vinil branda üzerine basar ve keser.",
+            "Yüksekliği 200 mm olan üç boyutlu objelere direkt baskı yapılabilir.",
+            "Bobin kumaşı vektörel olarak hazırlanmış çizim referansı ile keser.",
+            "Bobinden bobine üretim yapabilme özelliği ile esnek ambalaj uygulamaları yapabilir."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Flekso baskı tekniğinde alkol bazlı mürekkep kullanılması durumunda viskozite değeri aşağıdaki hangi aralıklar arasında kullanılır?",
+          "o": [
+            "15”-17”",
+            "25”-30”",
+            "12”-16”",
+            "14”-18”",
+            "20”-22”"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdaki baskı tekniklerinden hangisi kullanılacak malzemenin çeşitliliği ve kolay uygulanabilirliği nedeni ile sanat kurumlarında en çok tercih edilen yüksek baskı tekniğidir?",
+          "o": [
+            "Litografi",
+            "Linol baskı",
+            "Mono baskı",
+            "Ağaç baskı",
+            "Elek baskı"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Tipografinin planlanmış hareket biçimleri ve boyutları ile oluşturulan duygular, grafik etki olarak iletilir. Çoğu durumda yazı artık metin olarak okunmaz, ancak ............. ... ............. yoluyla karmaşık göstergebilim deneyimleri oluşturan fiziksel şekil olarak algılanır. Cümlede boş bırakılan yerlere aşağıdakilerden hangileri getirilmelidir?",
+          "o": [
+            "gösterge ve metafor",
+            "metafor ve semiyoloji",
+            "hareket ve semiyoloji",
+            "semiyoloji ve gösterge",
+            "metafor ve hareket"
+          ],
+          "a": 4
+        },
+        {
+          "q": "64 cm x 90 cm ebadında bir tabaka kâğıt firesiz olarak 9 eşit parçaya kesilirse ebadı ne olur?",
+          "o": [
+            "21,3 cm x 30 cm",
+            "25 cm x 30 cm",
+            "23 cm x 32 cm",
+            "17,5 cm x 25 cm",
+            "20,5 cm x 28,5 cm"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Talep edilmesi durumunda, grafik üretim teknikleri dersi kapsamında hazırlayacağınız yaklaşık 64 sayfalık (A4) baskısı yapılacak ödeviniz / proje raporunuz aşağıdaki hangi baskı tekniğinin donanımları ile üretilebilir?",
+          "o": [
+            "Flekso baskı tekniği donanımları ile",
+            "Bobin beslemeli dijital baskı tekniği donanımları ile",
+            "Ofis tipi masaüstü çoğaltma tekniği donanımları ile",
+            "Ofset baskı tekniği donanımları ile",
+            "Web ofset baskı tekniği donanımları ile"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi yırtılmayan kâğıtların özelliklerinden biri değildir?",
+          "o": [
+            "Bu kâğıtlar yırtılmaya ve delinmeye karşı çok dayanıklıdır.",
+            "Bu kâğıtlar doğada yok olabilir, çevre kirliliğine neden olmaz.",
+            "Bu kâğıtlar perfore edilebilir, dikilip yapıştırılabilir.",
+            "Her türlü tipo, ofset, flekso ve serigrafi baskı sistemleriyle basılabilir.",
+            "Bu kâğıtların emiciliği yüksek olduğundan mürekkepler daha hızlı kurur."
+          ],
+          "a": 4
+        },
+        {
+          "q": "Kişiselleştirilmiş içerik ve değişken veri baskısı uygulaması gerektiren bir grafik tasarım ürünü, aşağıdaki hangi baskı tekniği donanımları ile kısa sürede, kaliteli ve ekonomik olarak üretilebilir?",
+          "o": [
+            "Serigrafi baskı tekniği donanımları",
+            "Tifdruk baskı tekniği donanımları",
+            "Ofset baskı tekniği donanımları",
+            "Dijital baskı tekniği donanımları",
+            "Flekso baskı tekniği donanımları"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Esnek ambalaj tasarımlarında grafik tasarımcı hazırladığı bir tasarımı overprint uygulaması kontrolünü ne için yapar?",
+          "o": [
+            "Baskı kontrolü",
+            "Renk ayrım, şişirme ve overprint kontrolü",
+            "Renk tonlama kontrolü",
+            "Renk sayı kontrolü",
+            "Renk uyum kontrolü"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Durgun hâldeki mürekkep katıdır ve kolay akmaz. Biraz karıştırınca akmaya başlar. Mürekkebin bu özelliğine ne ad verilir?",
+          "o": [
+            "Tiksotropi",
+            "Akıcılık",
+            "Viskozite",
+            "Kalınlık",
+            "Tack"
+          ],
+          "a": 0
+        },
+        {
+          "q": "İpek gerilmiş çerçeveye emülsiyon uygulama işleminde atölyede ortam nasıl olmalıdır?",
+          "o": [
+            "Direkt ışık alan bir mekân olması",
+            "İşlemin yapılacağın ortamın açık alanda olması",
+            "Doğal ışık alan bir ortam olması",
+            "Yandan ışık alan bir yer olması",
+            "Direkt ışık almayan karartılmış bir mekân olması"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Flekso baskı klişesinin pozlandırma aşamalarının doğru sıralaması aşağıdakilerden hangisidir?",
+          "o": [
+            "İlk Pozlandırma - Negatif ile temas – Orta pozlandırma – Son Poz",
+            "Sırt Pozlandırma - Negatif ile temas – Ön pozlandırma – Yıkama – Son Poz",
+            "Dış Pozlandırma - Pozitif ile temas – İlk pozlandırma – Yıkama – Son Poz",
+            "Sırt Pozlandırma - Pozitif ile temas – Pozlandırma – Yıkama",
+            "Pozlandırma - Son pozlandırma – Yıkama – Son Poz"
+          ],
+          "a": 1
+        }
+      ]
+    },
+    {
+      "sinavId": 72,
+      "ad": "2023-2024 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Kâğıt hamuru tabaka hâlinde döküldüğü sırada liflerin izlediği yön kâğıdın hangi özelliğini belirtir?",
+          "o": [
+            "Kâğıdın dayanıklılığını",
+            "Kâğıdın su yönünü",
+            "Kâğıdın yoğunluğunu",
+            "Kâğıdın opaklığını",
+            "Kâğıdın yüzey yapısını"
+          ],
+          "a": 1,
+          "u": 11
+        },
+        {
+          "q": "Serigrafi baskı için kullanılan isim aşağıdakilerden hangisidir?",
+          "o": [
+            "Linol Baskı",
+            "Gravür",
+            "Elek Baskı",
+            "Pad Baskı",
+            "Litografi"
+          ],
+          "a": 2,
+          "u": 4
+        },
+        {
+          "q": "Tarihin ilk dönemlerinden kalmış çok bacaklı hayvan resimleri günümüzün hangi tasarım alanını çağrıştırmaktadır?",
+          "o": [
+            "İnsanların avlamak üzere tercih ettikleri hayvanları çağrıştırmaktadır.",
+            "Hareketli görüntüyü çağrıştırmaktadır.",
+            "Korkmuş bir hayvanı çağrıştırmaktadır.",
+            "Çift başlı kartalları çağrıştırmaktadır.",
+            "Renkli fotoğrafları çağrıştırmaktadır."
+          ],
+          "a": 1,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdakilerden hangisi dış mekân grafik tasarım ürünleri uygulama/yayınlama mecralarından biri değildir?",
+          "o": [
+            "Billboard",
+            "Giantboard",
+            "Gazete",
+            "Megalight",
+            "Megaboard"
+          ],
+          "a": 2,
+          "u": 13
+        },
+        {
+          "q": "..................., film veya programın anlatım sürecine katkı yaparken kanalların görsel kimliğini destekleyici, tamamlayıcı rol üstlenirler. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Film yorumları",
+            "Grafik tasarımlar",
+            "Reklamlar",
+            "Jenerikler",
+            "Fragmanlar"
+          ],
+          "a": 3,
+          "u": 14
+        },
+        {
+          "q": "24 sayfa A4 ölçüsünde 80 g beyaz kâğıda baskı talep edilen bir proje raporu, aşağıdaki hangi baskı tekniğinin donanımları ile kısa sürede ve ekonomik üretilebilir?",
+          "o": [
+            "Flekso baskı tekniği donanımları",
+            "Bobin beslemeli dijital baskı tekniği donanımları",
+            "Ofis tipi masaüstü çoğaltma tekniği donanımları",
+            "Serigrafi baskı tekniği donanımları",
+            "Ofset baskı tekniği donanımları"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Tasarımlarda kullanılan yazı ve logo büyüklükleri aşağıdakilerden hangisine göre uyumlu olmalıdır?",
+          "o": [
+            "Birleşmiş Milletler tüzüklerine",
+            "Türk Gıda Kodeksi Tüzüklerine",
+            "Esnek ambalaj üretici kurallarına",
+            "Avrupa kurallarına",
+            "Grafik tasarım kurallarına"
+          ],
+          "a": 1,
+          "u": 8
+        },
+        {
+          "q": "Pigment (boya) renklerinden siyan mavisinin tamamlayıcısı aşağıdaki renklerden hangisidir?",
+          "o": [
+            "Yeşil",
+            "Macenta kırmızısı",
+            "Mor",
+            "Kırmızı",
+            "Turuncu"
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kodeks formatındaki kitaplarda sayfanın ön yüzü, bir diğer deyişle yerleşimdeki sağ sayfa anlamına gelmektedir?",
+          "o": [
+            "Serif",
+            "Recto",
+            "Verso",
+            "Sans Serif",
+            "Torso"
+          ],
+          "a": 1,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi yüksek baskı tekniğinin temel prensiplerinden biridir?",
+          "o": [
+            "Su ve yağın birbirini itmesi prensibine dayalı bir baskıdır.",
+            "Oyma işlemlerinin elle ya da asit aşındırma yöntemi ile yapılan baskıdır.",
+            "Şablonun elek gözlerinden boyanın geçirilerek basılması prensibine dayalı bir baskıdır.",
+            "Yalnızca bir kez basılabilme prensibine dayalı bir baskıdır.",
+            "Kalıp yüzeyinde basılacak alanların yüksek olması ilkesine dayalı bir baskıdır."
+          ],
+          "a": 4,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tabaka ofsetin ünitelerinden biri değildir?",
+          "o": [
+            "Poza tertibatı",
+            "Kâğıt verici asansör",
+            "Hazne suyu sistemi",
+            "Bobin standı",
+            "Mürekkep ünitesi"
+          ],
+          "a": 3,
+          "u": 6
+        },
+        {
+          "q": "Bir fuar stant tasarımı projenizde ahşap, cam ve kumaş baskı altı malzemeleri kullanarak çeşitli görsellere ihtiyacınız olması durumunda, aşağıdaki hangi baskı tekniğinin donanımları ile üretim yaptırabilirsiniz?",
+          "o": [
+            "Bobin beslemeli dijital baskı tekniği donanımları",
+            "Tabaka beslemeli dijital baskı tekniği donanımları",
+            "Flekso baskı tekniği donanımları",
+            "Ofis tipi masaüstü çoğaltma tekniği donanımları",
+            "Büyük format inkjet dijital baskı tekniği donanımları"
+          ],
+          "a": 4,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tifdruk baskı tekniğinin Türkçe karşılığıdır?",
+          "o": [
+            "Yüksek Baskı",
+            "Düz Baskı",
+            "Çukur Baskı",
+            "Sonsuz Baskı",
+            "Derin Baskı"
+          ],
+          "a": 2,
+          "u": 7
+        },
+        {
+          "q": "Lale Devri'nde matbaada basılan Türkçe ilk kitap aşağıdakilerden hangisidir?",
+          "o": [
+            "Cihannüma",
+            "Terceme-i Sıhâh-ı Cevherî",
+            "Usulü'l- Hikemi fi-Nizamil Ümem",
+            "Tarih-i Hind-i Garbi",
+            "Vankulu Lügatı"
+          ],
+          "a": 4,
+          "u": 1
+        },
+        {
+          "q": "Sayfa açıklama dili olarak tanımlanan PostScript yazılımı hangi firma tarafından piyasaya sürülmüştür?",
+          "o": [
+            "Palo Alto Araştırma Merkezi",
+            "Corel Enterprise",
+            "IBM",
+            "Adobe Systems",
+            "CERN"
+          ],
+          "a": 3,
+          "u": 10
+        },
+        {
+          "q": "Taşıtın üzerindeki tampon, ayna, kapı, taşıt tavanına geçiş kıvrımının durumu gibi taşıt tasarımının genel hatları göz önüne alınarak değerlendirildiğinde uygulama yapılacak zemindeki kıvrımlar çok ve keskin ise hangi baskı altı malzemesinin kullanılması tercih edilir?",
+          "o": [
+            "EPS Strafor",
+            "Blueback Kâğıt",
+            "Cast Folyo",
+            "Pleksiglass",
+            "CLP Kâğıdı"
+          ],
+          "a": 2,
+          "u": 13
+        },
+        {
+          "q": "Gamut, belirli bir model, araç veya işlemin üretebileceği ................. ifade eder. Yukarıdaki boşluğa aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Renk tayfını",
+            "Renk özünü",
+            "Renk kombinasyonlarını",
+            "Renk doygunluğunu",
+            "Renk modelini"
+          ],
+          "a": 0,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi 1970'li yıllardan önce kitap, dergi, gazete gibi işlerin basımında yaygın olarak kullanılan tipo baskının, günümüzde yerini ofset baskıya bırakmasının nedenlerinden biri değildir?",
+          "o": [
+            "Ofset baskının süresinin hızlı olması",
+            "Ofset baskının kaliteli olması",
+            "Ofset baskıda baskı öncesinin bilgisayarda yapılıyor olması",
+            "Ofset baskının maliyetinin düşük olması",
+            "Ofset baskıda yağ bazlı mürekkep kullanılması"
+          ],
+          "a": 4,
+          "u": 5
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kendinden karbonlu (otokopi) kâğıtların özelliklerinden biri değildir?",
+          "o": [
+            "Otokopi kâğıtlar, fotokopi kâğıtları olarak da kullanılır.",
+            "Birinci nüsha kâğıtların arka yüzü, içinde (renksiz olan) renklendirici çözeltiler bulunan mikro kapsüllerle sıvalıdır.",
+            "Çok nüshalı makbuz, fatura gibi işlerde otokopi kâğıtları kullanılır.",
+            "Ortadaki nüshaların arka yüzü mikro kapsüllerle kaplıdır.",
+            "Alıcı nüshanın ön yüzü aktifleştirilmiş kil tozuyla kaplıdır."
+          ],
+          "a": 0,
+          "u": 11
+        },
+        {
+          "q": "Esnek ambalaj tasarımlarında grafik tasarımcı hazırladığı bir tasarımı, renk ayrımı olarak Illustrator programında nereden inceleyebilir?",
+          "o": [
+            "Üst Menü – window – seperations preview",
+            "Renk Katmanı",
+            "Üst Menü",
+            "Renk Skalası",
+            "Layer"
+          ],
+          "a": 0,
+          "u": 8
+        }
+      ]
+    },
+    {
+      "sinavId": 70,
+      "ad": "2023-2024 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi esnek ambalaj baskı tekniklerinden biri değildir?",
+          "o": [
+            "Flexible Ambalaj Baskı",
+            "Dijital Baskı",
+            "Flekso Baskı",
+            "Tifdruk Baskı",
+            "Gravür Baskı"
+          ],
+          "a": 1,
+          "u": 7
+        },
+        {
+          "q": "Kartonların kolay ve düzgün katlanması için özel bir bıçakla iz açma işlemine ne ad verilir?",
+          "o": [
+            "Çizme",
+            "Pilyaj",
+            "Kırma",
+            "Gofraj",
+            "Perforaj"
+          ],
+          "a": 1,
+          "u": 5
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Büyük (geniş) Format Dijital Baskı Teknikleri” ile ilgili donanımların genel özellikleri arasında yer almaz?",
+          "o": [
+            "Kâğıt dâhil, kumaş, branda, plastik, metal, ahşap ve cam gibi çok çeşitli baskı altı malzemesine baskı yapabilmekte",
+            "İç ve dış mekânlarda solmayan UV ve su bazlı mürekkep kullanabilmekte",
+            "Büyük ebat iç ve dış cephe giydirmelerinde tek parça, yüksek kalitede baskı yapabilmekte",
+            "Tabaka ve bobin baskı altı malzemesi kullanılabilmekte",
+            "Bobinden bobine üretim yapabilme özelliği ile esnek ambalaj uygulamaları yapabilir"
+          ],
+          "a": 4,
+          "u": 9
+        },
+        {
+          "q": "Gün ışığında çalışılabilen, gümüş halojenür emülsiyonlu, bilgisayardan kalıba sistemiyle pozlanan kalıp türü aşağıdakilerden hangisidir?",
+          "o": [
+            "Tif kalıplar",
+            "Ozasol kalıplar",
+            "Termal kalıplar",
+            "Violet kalıplar",
+            "Çok metalli kalıplar"
+          ],
+          "a": 3,
+          "u": 6
+        },
+        {
+          "q": "Tasarımın Türk Gıda Kodeksi'ne göre uygun olması için aşağıdakilerden hangisine dikkat edilmelidir?",
+          "o": [
+            "Yazının hizasına",
+            "Yazı büyüklüğü ve yüksekliğine",
+            "Yazı rengine",
+            "Yazının karakterine",
+            "Yazının konumuna"
+          ],
+          "a": 1,
+          "u": 8
+        },
+        {
+          "q": "Dış mekân grafik tasarım ürünlerinin üretimi ile ilgili ticari işletmelerin kendilerini aşağıdakilerden hangisi ile tanımladığı görülmektedir?",
+          "o": [
+            "Tam Hizmet Reklam Ajansı",
+            "Grafik Atölye",
+            "Tanıtım Hizmetleri",
+            "Reklam Ajansı",
+            "Açıkhava Reklam"
+          ],
+          "a": 4,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdaki baskı tekniklerinden hangisi kullanılacak malzemenin çeşitliliği ve kolay uygulanabilirliği nedeni ile sanat kurumlarında en çok tercih edilen yüksek baskı tekniğidir?",
+          "o": [
+            "Litografi",
+            "Mono baskı",
+            "Ağaç baskı",
+            "Elek baskı",
+            "Linol baskı"
+          ],
+          "a": 4,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “CNC Router Makinaları” tarafından işlem yapılan malzemelerden biri değildir?",
+          "o": [
+            "Alüminyum levha",
+            "MDF lam",
+            "Polikarbon",
+            "Cam",
+            "Plastik"
+          ],
+          "a": 3,
+          "u": 13
+        },
+        {
+          "q": "Bugün kullanmakta olduğumuz kâğıdın ilk örnekleri nerede üretilmiştir?",
+          "o": [
+            "Fransa",
+            "Çin",
+            "İtalya",
+            "Mısır",
+            "Arabistan"
+          ],
+          "a": 1,
+          "u": 11
+        },
+        {
+          "q": "Esnek ambalaj baskı tekniğinde grafik tasarımcılar aşağıdaki programlardan hangisini kullanmazlar?",
+          "o": [
+            "Indesign",
+            "Artpro",
+            "Hybrid Packs",
+            "Adobe Illustrator",
+            "Adobe Photoshop"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "Döndürüldükçe hareket ediyormuş izlenimi oluşturan antik buluntu aşağıdakilerden hangisidir?",
+          "o": [
+            "Çömlek",
+            "Phenakistoscope",
+            "Kolon",
+            "Zoetrope",
+            "Mağara resmi"
+          ],
+          "a": 0,
+          "u": 14
+        },
+        {
+          "q": "Talep edilmesi durumunda, grafik üretim teknikleri dersi kapsamında hazırlayacağınız yaklaşık 64 sayfalık (A4) baskısı yapılacak ödeviniz / proje raporunuz aşağıdaki hangi baskı tekniğinin donanımları ile üretilebilir?",
+          "o": [
+            "Bobin beslemeli dijital baskı tekniği donanımları ile",
+            "Flekso baskı tekniği donanımları ile",
+            "Ofis tipi masaüstü çoğaltma tekniği donanımları ile",
+            "Web ofset baskı tekniği donanımları ile",
+            "Ofset baskı tekniği donanımları ile"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi hareketli grafik ürünlerin kullanım alanı değildir?",
+          "o": [
+            "Basılı yayınlar",
+            "Televizyon",
+            "Bilgisayar ve konsol oyunları",
+            "Sinema",
+            "Web siteleri"
+          ],
+          "a": 0,
+          "u": 14
+        },
+        {
+          "q": "Tayfta (spektrumda) birbirine en güçlü zıtlık oluşturan renkler aşağıdakilerden hangisidir?",
+          "o": [
+            "Sıcak renkler",
+            "Siyah – beyaz",
+            "Soğuk renkler",
+            "Tamamlayıcı renkler",
+            "Açık koyu renkler"
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi İbrahim Müteferrika tarafından basılan önemli haritalardan biridir?",
+          "o": [
+            "Karadeniz Haritası",
+            "Büyük Okyanus Haritası",
+            "Dünya Haritası",
+            "Ege Haritası",
+            "Hazar haritası"
+          ],
+          "a": 0,
+          "u": 1
+        },
+        {
+          "q": "64 cm x 90 cm ebadında bir tabaka kâğıt firesiz olarak 9 eşit parçaya kesilirse ebadı ne olur?",
+          "o": [
+            "17,5 cm x 25 cm",
+            "20,5 cm x 28,5 cm",
+            "21,3 cm x 30 cm",
+            "23 cm x 32 cm",
+            "25 cm x 30 cm"
+          ],
+          "a": 2,
+          "u": 11
+        },
+        {
+          "q": "İki sütun veya metin bloğu arasındaki boşluk veya sütun oluğu veya sütun marjini olarak da bilinen terim aşağıdakilerden hangisidir?",
+          "o": [
+            "HTML",
+            "Glyph",
+            "Alley",
+            "Condensed",
+            "Halftone"
+          ],
+          "a": 2,
+          "u": 10
+        },
+        {
+          "q": "Matematiksel formüllere dayalı eğriler ve bu eğrilerden oluşan kapalı alanlardan oluşan nesne yönelimli (odaklı) grafiklerin türü aşağıdakilerden hangisidir?",
+          "o": [
+            "Raster Grafikler",
+            "BMP Grafikler",
+            "Bitmap Grafikler",
+            "Biteşlem Grafikler",
+            "Vektör Grafikler"
+          ],
+          "a": 4,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi serigrafi baskı makinesi değildir?",
+          "o": [
+            "Silindirik yüzey baskı makinası",
+            "Manuel serigrafi baskı tezgâhı",
+            "Çevirmeli serigrafi baskı makinası",
+            "Yarı otomatik serigrafi tezgâhı",
+            "Otomatik serigrafi baskı makinası"
+          ],
+          "a": 2,
+          "u": 4
+        },
+        {
+          "q": "Caprishos (Kaprisler) adlı aquatinta tekniği ile yapılan çukur baskılar aşağıdaki sanatçılardan hangisine aittir?",
+          "o": [
+            "Gustave Dore",
+            "Jacques Villon",
+            "Ludwig von Siegen",
+            "Francisco Goya",
+            "Giovanni-Battista Piranesi"
+          ],
+          "a": 3,
+          "u": 3
+        }
+      ]
+    },
+    {
+      "sinavId": 67,
+      "ad": "2022-2023 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "İlk olarak 15. yüzyılda Almanya'da uygulanmaya başlanan ve özellikle esnek (flexible) ambalaj sektöründe aktif olarak kullanılan baskı türü aşağıdakilerden hangisidir?",
+          "o": [
+            "Flekso Baskı",
+            "Ofset Baskı",
+            "Dijital Baskı",
+            "Tifdruk Baskı",
+            "Krom Baskı"
+          ],
+          "a": 3,
+          "u": 7
+        },
+        {
+          "q": "Yüzeyi kaolin, tebeşir ve kazein gibi maddelerle düzeltilip parlatılan beyaz renkli kâğıtlara ne ad verilir?",
+          "o": [
+            "Birinci hamur kâğıtlar",
+            "Pelur kâğıtlar",
+            "Kuşe kâğıtları",
+            "Ozalit kâğıtlar",
+            "Otokopi kâğıtlar"
+          ],
+          "a": 2,
+          "u": 11
+        },
+        {
+          "q": "Durgun hâldeki mürekkep katıdır ve kolay akmaz. Biraz karıştırınca akmaya başlar. Mürekkebin bu özelliğine ne ad verilir?",
+          "o": [
+            "Tiksotropi",
+            "Tack",
+            "Viskozite",
+            "Kalınlık",
+            "Akıcılık"
+          ],
+          "a": 0,
+          "u": 6
+        },
+        {
+          "q": "Aşağıdaki ifadelerden hangisi kendinden karbonlu (otokopi ) kâğıtların özelliklerinden biri değildir?",
+          "o": [
+            "Otokopi kâğıtlar, fotokopi kâğıtları olarak da kullanılır.",
+            "Çok nüshalı makbuz, fatura gibi işlerde otokopi kâğıtları kullanılır.",
+            "Birinci nüsha kâğıtların arka yüzü, içinde (renksiz olan) renklendirici çözeltiler bulunan mikro kapsüllerle sıvalıdır.",
+            "Alıcı nüshanın ön yüzü aktifleştirilmiş kil tozuyla kaplıdır.",
+            "Ortadaki nüshaların arka yüzü mikro kapsüllerle kaplıdır."
+          ],
+          "a": 0,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdaki yüksek baskı kalıplarından hangisi lifli bir yapıya sahiptir?",
+          "o": [
+            "Linol baskı kalıbı",
+            "Ağaç baskı kalıbı",
+            "Litografi baskı kalıbı",
+            "Elek baskı kalıbı",
+            "Gravür baskı kalıbı"
+          ],
+          "a": 1,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi 1970'li yıllardan önce kitap, dergi, gazete gibi işlerin basımında yaygın olarak kullanılan tipo baskının, günümüzde yerini ofset baskıya bırakmasının nedenlerinden biri değildir?",
+          "o": [
+            "Ofset baskının kaliteli olması",
+            "Ofset baskının süresinin hızlı olması",
+            "Ofset baskıda yağ bazlı mürekkep kullanılması",
+            "Ofset baskının maliyetinin düşük olması",
+            "Ofset baskıda baskı öncesinin bilgisayarda yapılıyor olması"
+          ],
+          "a": 2,
+          "u": 5
+        },
+        {
+          "q": "Kâğıda basılması gereken bütün görsel unsurları, baskı kalıbında basmayan bölümlere göre daha yüksek olan baskı sistemi aşağıdakilerden hangisidir?",
+          "o": [
+            "Tipo Baskı",
+            "Tabaka Ofset Baskı",
+            "Web Ofset Baskı",
+            "Serigrafi Baskı",
+            "Dijital Baskı"
+          ],
+          "a": 0,
+          "u": 5
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Eklemeli Karışım Teorisi”nin saf ana renkleridir?",
+          "o": [
+            "Kırmızı, yeşil, koyu mavi",
+            "Yeşil, kırmızı, sarı",
+            "Sarı, mavi, yeşil",
+            "Sarı, kırmızı, mavi",
+            "Turuncu, mor, yeşil"
+          ],
+          "a": 0,
+          "u": 12
+        },
+        {
+          "q": "I. Ofset II. Flekso III. Tifdruk Yukarıdakilerden hangisi ya da hangileri matbaacılıkta kullanılan baskı tekniklerindendir?",
+          "o": [
+            "Yalnız I",
+            "Yalnız II",
+            "I ve II",
+            "II ve III",
+            "I, II ve III"
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi masaüstü yayıncılık alanında kullanılan bir yazılım değildir?",
+          "o": [
+            "Adobe InDesign",
+            "QuarkXPress",
+            "Microsoft Publisher",
+            "Scribus",
+            "Visual Basic"
+          ],
+          "a": 4,
+          "u": 10
+        },
+        {
+          "q": "Çok çeşitli ölçülerde, iç ve dış mekânlarda diğer mürekkep türlerine göre daha dayanıklı, solmayan UV ve su bazlı mürekkep kullanabilen baskı tekniğinin donanımları aşağıdakilerden hangisidir?",
+          "o": [
+            "Ofset baskı tekniği donanımları",
+            "Flekso baskı tekniği donanımları",
+            "Ofis tipi masaüstü çoğaltma tekniği donanımları",
+            "Düz yataklı dijital baskı tekniği donanımları",
+            "Bobin beslemeli büyük format dijital baskı tekniği donanımları"
+          ],
+          "a": 3,
+          "u": 13
+        },
+        {
+          "q": "Serigrafi baskı için kullanılan isim aşağıdakilerden hangisidir?",
+          "o": [
+            "Linol Baskı",
+            "Elek Baskı",
+            "Litografi",
+            "Gravür",
+            "Pad Baskı"
+          ],
+          "a": 1,
+          "u": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Kutu Harf ve Üç Boyutlu Simge Üretim Teknikleri” ile ilgili yaygın olarak kullanılan donanımlar arasında yer almaz?",
+          "o": [
+            "3D CNC Router Kesim Makinaları",
+            "Kutu Harf Bükme Makinaları",
+            "Metal Lazer Kesim Makinaları",
+            "Punto Kaynak Makinaları",
+            "Etriye Büküm Kuşgözü Delme Makinaları"
+          ],
+          "a": 4,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi hareketli grafiği oluşturan unsurlardan biri değildir?",
+          "o": [
+            "Görüntü",
+            "Tipografi",
+            "Duygu",
+            "Zaman",
+            "Kurgu"
+          ],
+          "a": 2,
+          "u": 14
+        },
+        {
+          "q": "Aquatinta Tekniği'ni sanatta ilk kullanan sanatçı aşağıdakilerden hangisidir?",
+          "o": [
+            "Rembrant",
+            "G. B. Piranesi",
+            "Francisco Goya",
+            "Albert Dürer",
+            "Gustave Dore"
+          ],
+          "a": 2,
+          "u": 3
+        },
+        {
+          "q": "Kâğıt hangi ülkede keşfedilmiştir?",
+          "o": [
+            "Çin",
+            "Amerika",
+            "İran",
+            "İngiltere",
+            "Almanya"
+          ],
+          "a": 0,
+          "u": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Dijital Baskı Teknikleri”nin “Geleneksel Baskı Teknikleri” ile kıyaslanması durumunda karşımıza çıkan belirgin avantajlarından biri değildir?",
+          "o": [
+            "Daha az kimyasal kullanımı",
+            "Daha az fire oranı",
+            "Daha az baskı kalıbı kullanımı",
+            "Daha hızlı kuruma imkânı",
+            "Kişiselleştirilmiş içerik ve değişken veri baskısı uygulanabilmesi"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdaki araç gereçlerden hangisi serigrafi baskıda kullanılmaz?",
+          "o": [
+            "Çerçeve",
+            "İpek",
+            "Rakle",
+            "Pres",
+            "Emülsiyon"
+          ],
+          "a": 3,
+          "u": 4
+        },
+        {
+          "q": "Esnek ambalaj tasarımlarında grafik tasarımcı hazırladığı bir tasarımı renk ayrımı olarak Illustrator programında nereden inceleyebilir?",
+          "o": [
+            "Layer",
+            "Renk Katmanı",
+            "Üst Menü – window – seperations preview",
+            "Renk Skalası",
+            "Üst Menü"
+          ],
+          "a": 2,
+          "u": 8
+        },
+        {
+          "q": "Mürekkebi oluşturan aşağıdaki maddelerden hangisi mürekkebin ışık haslığını belirler?",
+          "o": [
+            "Bağlayıcılar",
+            "İncelticiler",
+            "Pigmentler",
+            "Kurumayı hızlandırıcılar",
+            "Kurumayı geciktiriciler"
+          ],
+          "a": 2,
+          "u": 6
+        }
+      ]
+    },
+    {
+      "sinavId": 56,
+      "ad": "2022-2023 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi tifdruk ya da flekso baskı ambalaj türüne verilen isimdir?",
+          "o": [
+            "Rotogravür Ambalaj",
+            "Esnek Ambalaj",
+            "Ofset Ambalaj",
+            "Flekso Ambalaj",
+            "Plastik ambalaj"
+          ],
+          "a": 1,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi hareketli grafik tasarımı alanını ve tanımını özetleyen cümle olamaz?",
+          "o": [
+            "Görsel ögelere hayat veren bir alandır.",
+            "Animasyon, illüstrasyon, tipografi, fotoğraf, müzik, film ve video yapımı gibi alanların birleşimi nedeniyle çoklu disipline dayalıdır.",
+            "Hareketli grafik ürünleri sadece televizyon ve sinemaya hizmet eden bir alandır.",
+            "Hareketli grafik ürünleri televizyondan, sinema, internet gibi etkileşimli medyaya kadar birçok ortamda gösterime girmektedir.",
+            "Hareketli grafik tasarımı bilgilendirmek üzere bir fikri, mesajı iletmek için animasyon ve grafik tasarımı birleştiren bir alandır."
+          ],
+          "a": 2,
+          "u": 14
+        },
+        {
+          "q": "Bilgisayar belleğinde bir ızgara düzenindeki satır ve sütun halinde dizilmiş noktalardan oluşan görüntüye ne ad verilir?",
+          "o": [
+            "Alley",
+            "Gutter",
+            "Bitmap",
+            "Bleed",
+            "Blueprint"
+          ],
+          "a": 2,
+          "u": 10
+        },
+        {
+          "q": "Müşteri tarafından bir bayi toplantısında kullanılmak üzere talep edilen 6 adet iç mekân x banner (80 x 200 cm) için kumaş üzeri baskı, aşağıdaki hangi baskı tekniğinin donanımları ile üretilebilir?",
+          "o": [
+            "Web ofset baskı tekniği donanımları",
+            "Tifdruk baskı tekniği donanımları",
+            "Büyük format inkjet dijital baskı tekniği donanımları",
+            "Bobin beslemeli dijital baskı tekniği donanımları",
+            "Flekso baskı tekniği donanımları"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Esnek ambalaj tasarımlarında grafik tasarımcı hazırladığı bir tasarımı overprint uygulaması kontrolünü ne için yapar?",
+          "o": [
+            "Renk ayrım, şişirme ve overprint kontrolü",
+            "Baskı kontrolü",
+            "Renk sayı kontrolü",
+            "Renk uyum kontrolü",
+            "Renk tonlama kontrolü"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "Ultraviyole ve enfraruj ışık enerjileri yardımıyla mürekkebin baskı yüzeyinde kurumasına ne ad verilir?",
+          "o": [
+            "Evaporasyon kuruma",
+            "Oksidasyon kuruma",
+            "Kimyasal kuruma",
+            "Radyasyon kuruma",
+            "Penetrasyon kuruma"
+          ],
+          "a": 3,
+          "u": 6
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Serigrafi Baskı için kullanılan bir isim değildir?",
+          "o": [
+            "Elek baskı",
+            "İpek baskı",
+            "Delikli baskı",
+            "Şablon baskı",
+            "Pad baskı"
+          ],
+          "a": 4,
+          "u": 4
+        },
+        {
+          "q": "Kişiselleştirilmiş içerik ve değişken veri baskısı uygulaması gerektiren bir grafik tasarım ürünü, aşağıdaki hangi baskı tekniği donanımları ile kısa sürede, kaliteli ve ekonomik olarak üretilebilir?",
+          "o": [
+            "Ofset baskı tekniği donanımları",
+            "Flekso baskı tekniği donanımları",
+            "Tifdruk baskı tekniği donanımları",
+            "Dijital baskı tekniği donanımları",
+            "Serigrafi baskı tekniği donanımları"
+          ],
+          "a": 3,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi hareketli grafik ürünlerin kullanım alanı değildir?",
+          "o": [
+            "Bilgisayar ve konsol oyunları",
+            "Basılı yayınlar",
+            "Sinema",
+            "Televizyon",
+            "Web siteleri"
+          ],
+          "a": 1,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tipo baskı sisteminin avantajlarından biri değildir?",
+          "o": [
+            "Kalıpların kurşun ağırlıklı olması",
+            "Hurufat ve klişelerle kalıbın hızlı yapılıyor olması",
+            "Baskı maliyetinin ucuz olması",
+            "Son anda kalıpta düzeltme imkânı",
+            "Baskıda çok yönlülük"
+          ],
+          "a": 0,
+          "u": 5
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Düz Yataklı Dijital Baskı Tekniği” donanımlarının diğer baskı tekniklerine göre avantajlı genel özellikleri arasında yer alır?",
+          "o": [
+            "Bobin ışıklı vinil branda üzerine basar ve keser.",
+            "Bobinden bobine üretim yapabilme özelliği ile esnek ambalaj uygulamaları yapabilir.",
+            "Yüksekliği 200 mm olan üç boyutlu objelere direkt baskı yapılabilir.",
+            "Bobin kumaşı vektörel olarak hazırlanmış çizim referansı ile keser.",
+            "Bobin cast folyo üzeri basar ve keser."
+          ],
+          "a": 2,
+          "u": 13
+        },
+        {
+          "q": "Sümerlerin uygarlık tarihine en önemli katkısı aşağıdakilerden hangisidir?",
+          "o": [
+            "Yazıyı icat etmeleri",
+            "İlk edebiyat eserlerini vermeleri",
+            "İlk hukuk ve adalet düşüncesini getirmeleri",
+            "İlk takvimi bulmaları",
+            "Kili, yazı malzemesi olarak kullanmaları"
+          ],
+          "a": 0,
+          "u": 1
+        },
+        {
+          "q": "Gamut, belirli bir model, araç veya işlemin üretebileceği neyi ifade eder?",
+          "o": [
+            "Renk modelini",
+            "Renk özünü",
+            "Renk tayfını",
+            "Renk doygunluğunu",
+            "Renk kombinasyonlarını"
+          ],
+          "a": 2,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi sanal sayfaların hedefidir?",
+          "o": [
+            "Baskı",
+            "Çevrimiçi Broşür",
+            "Dijital Dağıtım",
+            "Dijital Dolaşım",
+            "WEB Arayüzleri"
+          ],
+          "a": 0,
+          "u": 10
+        },
+        {
+          "q": "I. Sırt pozlandırması II. Negatif ile temas III. Ön pozlandırma Yukarıdakilerden hangisi ya da hangileri flekso baskı klişesinin pozlandırılma aşamaları arasında yer alır?",
+          "o": [
+            "Yalnız I",
+            "Yalnız II",
+            "I ve II",
+            "II ve III",
+            "I, II ve III"
+          ],
+          "a": 4,
+          "u": 7
+        },
+        {
+          "q": "Aşağıdakilerden hangisi yırtılmayan kâğıtların özelliklerinden biri değildir?",
+          "o": [
+            "Her türlü tipo, ofset, flekso ve serigrafi baskı sistemleriyle basılabilir.",
+            "Bu kâğıtların emiciliği yüksek olduğundan mürekkepler daha hızlı kurur.",
+            "Bu kâğıtlar perfore edilebilir, dikilip yapıştırılabilir.",
+            "Bu kâğıtlar doğada yok olabilir, çevre kirliliğine neden olmaz.",
+            "Bu kâğıtlar yırtılmaya ve delinmeye karşı çok dayanıklıdır."
+          ],
+          "a": 1,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdaki baskı tekniklerinden hangisi kullanılacak malzemenin çeşitliliği ve kolay uygulanabilirliği nedeni ile sanat kurumlarında en çok tercih edilen yüksek baskı tekniğidir?",
+          "o": [
+            "Litografi",
+            "Elek baskı",
+            "Ağaç baskı",
+            "Mono baskı",
+            "Linol baskı"
+          ],
+          "a": 4,
+          "u": 2
+        },
+        {
+          "q": "Üretimi yapılacak işin kenarına basılarak matbaacının üründeki renk tutarlılığını ölçmek üzere standart eklemeli ve çıkarmalı renk modellerinde bulunan renklerin ve onların tram ton değerlerinin bulunduğu ögeye ne denir?",
+          "o": [
+            "Renk kontrol çubuğu",
+            "Renk baskı sırası",
+            "Renk ayarı",
+            "Renk tonu",
+            "Renk şişirme"
+          ],
+          "a": 0,
+          "u": 12
+        },
+        {
+          "q": "Metal oyma baskıları ile tanınan Dürer hangi ülke vatandaşıdır?",
+          "o": [
+            "Fransa",
+            "İtalya",
+            "Hollanda",
+            "Almanya",
+            "İngiltere"
+          ],
+          "a": 3,
+          "u": 3
+        },
+        {
+          "q": "Dış mekân grafik tasarım ürünlerinin üretimi ile ilgili ticari işletmelerin kendilerini aşağıdakilerden hangisi ile tanımladığı görülmektedir?",
+          "o": [
+            "Grafik Atölye",
+            "Açıkhava Reklam",
+            "Açıkhava Reklam Ajansı",
+            "Açıkhava Reklam Hizmetleri",
+            "Tam Hizmet Reklam Ajansı"
+          ],
+          "a": 1,
+          "u": 13
+        }
+      ]
+    }
+  ],
+  "Özgün Baskı Teknikleri": [
+    {
+      "sinavId": 133,
+      "ad": "2025-2026 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Avrupa’da kitap çoğaltma işi hangi yüzyılda başlamıştır?",
+          "o": [
+            "12.-15. Yüzyıl",
+            "10.- 9. Yüzyıl",
+            "8.-9 yüzyıl",
+            "7.-8. Yüzyıl",
+            "4.-5. yüzyıl"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Ukiyo-e en büyük popülerliğini ne zaman kazanmıştır?",
+          "o": [
+            "Budist öğretileri yaymak amacıyla kullanıldığında",
+            "Kabuki tiyatro oyuncularının resimleri yapıldığında",
+            "Tek başına baskı sayfaları olarak yayınlandığında",
+            "Resimli kitaplar olarak yayınlandığında",
+            "Güzel kadın resimleri yapılmaya başlanınca"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Türkiye’nin ilk Çağdaş baskıresim müzesi hangisidir?",
+          "o": [
+            "Pera",
+            "İMOGA",
+            "İstanbul Modern",
+            "Sabancı",
+            "Resim ve Heykel Müzesi"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Geleneksel yöntem olan el ile baskıda kâğıt seçimi nasıl olmalıdır?",
+          "o": [
+            "Kalın, dokusuz ve kuru",
+            "Kalın, dokulu ve kuru",
+            "İnce, dokusuz ve nemli",
+            "İnce, dokusuz ve kuru",
+            "Kalın, dokulu ve nemli"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Chine collé, baskı makinesinin hangi malzeme üzerine baskı yapmasını mümkün kılar?",
+          "o": [
+            "Plexiglas gibi alternatif yüzeylere",
+            "Japon kağıdı veya keten gibi hassas bir yüzeye",
+            "Ağaç gibi sert yüzeye",
+            "Metal plakaya",
+            "Cam gibi kırılgan yüzeylere"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Baskıresim alanında profesyonelleşme kaçıncı yüzyılda görülmüştür?",
+          "o": [
+            "18.yy.",
+            "15.yy.",
+            "16.yy.",
+            "20.yy.",
+            "19.yy."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Metalin baskı esnasında kağıda ve keçeye zarar vermesini engellemek için yapılan işleme ne ad verilir?",
+          "o": [
+            "Çizme",
+            "Kazıma",
+            "Parlatma",
+            "Düzleme",
+            "Pahlama"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Léopold Lévy’nin gelişimine katkı sağladığı sanatçılardan biri değildir?",
+          "o": [
+            "Nuri İyem",
+            "Avni Arbaş",
+            "Selim Turan",
+            "İbrahim Çallı",
+            "Nejad Melih Devrim"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Günümüzde ekslibris tasarımı, özgün baskı tekniklerinin yanında hangi yöntem ile yapılmaktadır?",
+          "o": [
+            "Bilgi teknolojisi",
+            "Dijital teknikler",
+            "Üretim teknolojisi",
+            "Özel baskı teknikleri",
+            "İmalat teknikleri"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Toulouse Lautrec afiş tasarımlarında hangi renkleri kullanmayı tercih etmiştir?",
+          "o": [
+            "Kırmızı- mavi -yeşil",
+            "Sarı-mavi- yeşil",
+            "Sarı-mavi-kırmızı",
+            "Mavi-kırmızı-turuncu",
+            "Yeşil-mavi-mor"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Metal plakayı aside karşı koruyan malzemelere genel anlamda ne denilmektedir?",
+          "o": [
+            "Kapatıcı",
+            "Cila",
+            "Pahlama",
+            "Vernik",
+            "Mürekkep"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Zemin görevi gören ışığa duyarlı film kullanılarak uygulanan tekniğin adı nedir?",
+          "o": [
+            "Aquatint",
+            "Fotogravür",
+            "Litografi",
+            "Mezzotint",
+            "Gravür"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Dişi ve erkek kalıp kullanarak yapılan baskı türü hangisidir?",
+          "o": [
+            "Ofset",
+            "Taş",
+            "Gravür",
+            "Şablon",
+            "Ağaç"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Deniz Tanrılarının Savaşı aşağıdakilerden hangi sanatçıya aittir?",
+          "o": [
+            "Martin Schongauer",
+            "Giorgi Ghisi",
+            "Marcantonio Raimondi",
+            "El Greco",
+            "Andrea Mantegna"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Japonya’da baskı sanatının 12.yüzyıldan 16. yüzyıla kadar gelişmemesinin nedenleri arasında sayılmaz?",
+          "o": [
+            "Japonya’ya mürekkep getirilmemesi",
+            "Klanlar arası iç savaşlar",
+            "Moğol baskınları",
+            "Savaşlar",
+            "İmparatorluk baskınları"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Empresyonizmin kurallarının bazılarına karşı çıktıkları için post-empresyonist (yeni izlenimciler) olarak tanımlanan ressamlar aşağıdakilerden hangisidir?",
+          "o": [
+            "Kandinsky, Michelangelo, Salvador Dali",
+            "Leonardo Da Vinci, Rembrandt, Diego Velázquez",
+            "Paul Cezanne, Georges Seurat, Vincent Van Gogh",
+            "Claude Monet, Raffaello, Caravaggio",
+            "William Turner, Albrecht Dürer, Henri Matisse"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Mumlama tekniğinde, yağından arıtılmış olan plakanın üzerine balmumu sürülmeden önce plaka kaç derecede ısıtılır?",
+          "o": [
+            "65 C°",
+            "80 C°",
+            "75 F°",
+            "70 C°",
+            "65 F°"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Baskı uygulamasının nasıl yapılacağına göre, kâğıt seçiminde neye dikkat edilmelidir?",
+          "o": [
+            "Baskı pres makinesi ile yapılacaksa ince ve dokusuz kâğıt seçilmelidir.",
+            "Baskı el ile yapılacaksa dokulu ve kalın kâğıt seçilmelidir.",
+            "Baskı el ile yapılacaksa grenli kâğıt seçilmelidir.",
+            "Baskı pres makinesiyle yapılacaksa grenli kâğıt seçilmelidir.",
+            "Baskı el ile yapılacaksa ince ve dokusuz kâğıt seçilmelidir."
+          ],
+          "a": 4
+        },
+        {
+          "q": "1980 ve 1990’lı yılların baskıresminin en belirgin özelliği nedir?",
+          "o": [
+            "Savaş, siyaset ve ırkçı söylemler gibi politik meseleler eserlerin konusu olmaya başlamıştır.",
+            "Daha özgün olabilmek adına sanatçılar; duygu, zekâ ve soyutlama alanlarını derin bir şekilde irdelemişlerdir.",
+            "Bazen baskı kalıpları bazen de cam, ipek, vinil ve pleksiglas gibi malzemeler sergilenmiştir.",
+            "Siyah-beyaz gravür teknikleri birçok sanatçının eserlerinde kullandığı yöntemlerden biri olmuştur.",
+            "Sanatçılar, tanınabilirliklerini artırmak adına baskıresim çalışmalarına ağırlık vermişlerdir."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi modern sanatın özelliklerinden biri değildir?",
+          "o": [
+            "Natüralist bir anlayışla dışsal olanın temel bir ölçüt kabul edildiği geleneksel bir anlayış hakimdir.",
+            "Modern kelimesi, Latince’de “tam şimdi” anlamında kullanılan “modo” ve bu sözcükten türetilen “modernus” kelimesinden ortaya çıkmaktadır.",
+            "Geleneksel aldığı tavırla bilinen Modernizmde “Avangard” kavramı yönlendirici bir özelliğe sahiptir.",
+            "İlerleme düşüncesinin hüküm sürdüğü kendi içsel ölçütlerine yanıt veren “soyut bir fikir-düşün”nün önem kazandığı bir duruma karşılık gelir.",
+            "Modernizmin kökeni, bilgiye akılla ulaşıldığı Aydınlanma Çağı’na dayanmaktadır."
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 119,
+      "ad": "2025-2026 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Aquatinta tekniğinde, asitle indirgeme için kullanılan test kalıbı, asitte ne kadar kalmalıdır?",
+          "o": [
+            "En az 10 dakika",
+            "1 saat",
+            "Yarım saat",
+            "30 saniye ile 5 dakika arasında",
+            "5-10 dakika arasında"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Hangi yazı sistemi, sesler için işaretler geliştirerek bunların oluşturduğu dizinler ile sözcükler yazmaya odaklanmıştır?",
+          "o": [
+            "Hiyeroglif",
+            "Fenike Alfabesi",
+            "Çin Yazısı",
+            "Sümer Çivi Yazısı",
+            "Göktürkçe"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Türk baskı sanatında ilk olarak kullanılan baskı tekniği aşağıdakilerden hangisidir?",
+          "o": [
+            "Ofset",
+            "Linol",
+            "Elek baskı(serigrafi)",
+            "Taşbaskı(litografi)",
+            "Gravür"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Ukiyo-e çok renkli baskıları aşağıdaki seçeneklerden hangisinde doğru verilmiştir?",
+          "o": [
+            "Beni-e",
+            "Nishiki-e",
+            "Sumizuri-e",
+            "Tan-e",
+            "Showa-e"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Marilyn Monroe, Elvis Presley ve Elizabeth Taylor'ın renkli ve canlı imgelerini birçok defa tekrarlayarak seri hâlde serigrafi baskılar üreten sanatçı aşağıdakilerden hangisidir?",
+          "o": [
+            "Roy Lichtenstein",
+            "Käthe Kollwitz",
+            "Andy Warhol",
+            "Rene Magritte",
+            "Richard Hamilton"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Osmanlı saraylarında korunarak günümüze gelen gravürlerde hangi halk sınıfları ve bölümler tasvir edilmiştir?",
+          "o": [
+            "Yalnızca sarayın içindeki harem halkı tasvir edilmiştir çünkü onlar en gizemli ve ilgi çekici grup olarak kabul edilmiştir.",
+            "Gravürlerde sadece sarayın bahçeleri ve manzaraları tasvir edilmiştir çünkü doğal güzellikler öne çıkarılmıştır.",
+            "Enderun halkı ve harem halkı gravürlerdeki ana figürlerdir çünkü onlar sarayın günlük yaşamını yansıtır.",
+            "Birun halkı ve harem halkı ağırlıklı olarak tasvir edilmiştir çünkü bu gruplar sarayın emirler sınıfını oluşturmuştur.",
+            "Sadece sarayın dış cepheleri gravürlerde yer almıştır çünkü mimari detaylar önemlidir."
+          ],
+          "a": 3
+        },
+        {
+          "q": "Osmanlı Dönemi'nde kitapların aidiyetini belirtmek için ne tür nesneler kullanılmıştır?",
+          "o": [
+            "El yazması notlar",
+            "Ekslibrisler",
+            "Mühürler",
+            "Kitap etiketleri",
+            "İmzalar"
+          ],
+          "a": 2
+        },
+        {
+          "q": "“Maniyerizm” hangi ülkede gelişmiştir?",
+          "o": [
+            "Yunanistan",
+            "İtalya",
+            "Fransa",
+            "Almanya",
+            "İspanya"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir İstanbul gravürü kategorisi değildir?",
+          "o": [
+            "Ürün gravürleri",
+            "Pitoresk seyahat gravürleri",
+            "Haber görselleri",
+            "Kıyafet albümleri",
+            "Sokak hayvanları"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Kitabın tarihi aşağıdakilerden hangisinin bulunuşuyla başlar?",
+          "o": [
+            "Söz",
+            "Kâğıt",
+            "Dokuma",
+            "Yazı",
+            "Matbaa"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerinden hangisi şablon baskının temel yöntemlerindendir?",
+          "o": [
+            "Asitle Yedirme Tekniği",
+            "Yalnızca karton kullanarak baskı işleminin yapılması",
+            "Yalnızca metal levhadan kesilerek şablon parçalarının kullanılması",
+            "Dişi ve erkek kalıp kullanılması",
+            "Oyma Tekniği"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisinde özgün baskı teknikleri üç ana grupta verilmiştir?",
+          "o": [
+            "Elek Baskı/ Şablon Baskı/ Düz Baskı",
+            "Ofset Baskı/ İpek Baskı/ Taş Baskı",
+            "Yüksek Baskı/ Çukur Baskı/ Düz Baskı",
+            "Ağaç Baskı/ Linolyum Baskı/ Şablon Baskı",
+            "Alüminyum Baskı/ Bilgisayarda Tasarım/ Fotoğraf"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Taş baskı (Litografi) tekniğini ilk kim bulmuştur?",
+          "o": [
+            "Andy Warhol",
+            "Giovanni Benedetto Castiglione",
+            "Johannes Gutenberg",
+            "Robert Rauschenberg",
+            "Alois Senefelder"
+          ],
+          "a": 4
+        },
+        {
+          "q": "“Kaya Meşeleri” isimli tablo aşağıdakilerden hangisine aittir?",
+          "o": [
+            "Picasso",
+            "Rembrandt",
+            "Theodore Rousseau",
+            "Van Gogh",
+            "Daumier"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Hangi gravür ustası ilk kez asite yedirme ve kuru kazı tekniklerini kullanarak gravüre yeni bir boyut kazandırmıştır?",
+          "o": [
+            "Albrecht Dürer",
+            "Leonardo da Vinci",
+            "Michelangelo",
+            "Martin Schongauer",
+            "Rafael"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Genelde çok kalabalık kompozisyonlar, belirli bir naif kalite ve yoğun bir dinî duygu ile yaklaşık yetmiş üç plaka üretmiş olan Fransız baskı sanatçısı aşağıdakilerden hangisidir?",
+          "o": [
+            "Andre Mantegna",
+            "Hans Baldung Grien",
+            "Lucas van Leyden",
+            "Albrecht Dürer",
+            "Jean Duvet"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Baskı uygulamalarının gelişimini etkileyen kâğıt üretimi nerede başlayıp nereye yayılmıştır?",
+          "o": [
+            "Çin'de başlayıp Avrupa'ya yayılmıştır.",
+            "Avrupa'da başlayıp Asya'ya yayılmıştır.",
+            "Afrika'da başlayıp Avrupa'ya yayılmıştır.",
+            "Çin'de başlayıp Afrika'ya yayılmıştır.",
+            "Osmanlı'da başlayıp Asya'ya yayılmıştır."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Monotip baskıda eklemeli yaklaşımın diğer adı nedir?",
+          "o": [
+            "Pahlama",
+            "Silisyum karbür",
+            "Chine collé",
+            "Cellocut",
+            "Maniere noire"
+          ],
+          "a": 4
+        },
+        {
+          "q": "İsmi kolaj ve grafik kelimelerinin birleşiminden oluşan baskı tekniği aşağıdakilerden hangisidir?",
+          "o": [
+            "Kollagraf",
+            "Cellocut",
+            "Chine collé",
+            "Karborundum",
+            "Fotogravür"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Baskı tekniğinin ilk kez aşağıdakilerden hangisi tarafından yapıldığı bilinmektedir?",
+          "o": [
+            "Çinli demirci Pi Sheng",
+            "Tokugawa Shogun Ailesi",
+            "Chonin Sınıfı",
+            "Hishikawa Moronobu",
+            "Katushika Hokusai"
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 117,
+      "ad": "2025-2026 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "“Köylüler Savaşı” adlı serisiyle kapitalist sistemin dayatığı zorlu çalışma koşullarını eserlerine yansıtan sanatçı kimdir?",
+          "o": [
+            "Wassily Kandinsky",
+            "Hans Jean Arp",
+            "Picasso",
+            "Akiha Yamakami",
+            "Käthe Kollwitz"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Çukur Baskı Tekniği aşağıdakilerden hangisi ile açıklanır?",
+          "o": [
+            "Metal levhanın yüksek kısımlarının temizlenip pres aracılığıyla kâğıda aktarılması işlemidir.",
+            "Metal levhanın kazınarak düz hâle getirilmesi ve kâğıda aktarılması işlemidir.",
+            "Metal levhanın boyanarak renkli baskı yapılması işlemidir.",
+            "Metal levhanın her iki yüzeyinin eşit şekilde baskı için kullanılması işlemidir.",
+            "Metal levhanın yüksek kısımlarına boya verilmesi ve baskıyı yapan metalin çukur yüzeyleridir."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Başta Claude Monet (1840- 1926) olmak üzere bir grup genç ressam, gün ışığında gördüklerini ve ışığın nesneler üzerinde bıraktığı anlık izleri hızlıca yakalamaya çalışarak tuvallerine aktarmışlardır. Hayatı gördükleri gibi yansıtmaya çalışan bu ressamlar, Japon ağaç baskılarının sade ve düz renklerinden ve günlük hayattan sahneler yansıtmasından etkilenerek kendilerine özgü tarzlarını oluşturmuşlardır. Verilen bilgilere göre sanatçının ışığın etkisini kullanarak oluşturduğu resimler aşağıdakilerden hangisine aittir?",
+          "o": [
+            "Klasizim",
+            "Barok",
+            "Fütürizm",
+            "Realizm",
+            "Empresyonizm"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ekslibrisin işlevlerinden biri değildir?",
+          "o": [
+            "Kitabı ödünç alan şahsa, onu iade etmesi için uyarıda bulunup aidiyetini belgeleme işlevine sahiptir.",
+            "Kitapların satışını artıran bir işleve sahiptir.",
+            "Kitap hırsızlığına karşı koruma sağlayan işleve sahiptir.",
+            "Kitabın aidiyetini belirttiği için kaybolduğunda sahibine ulaştırılmasına yardımcı işleve sahiptir.",
+            "Estetik kaygı ile yapıldığından sanatsal nesne olma işlevine sahiptir."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Rönesans Dönemi'nde sanattaki üslubu belirleyen aşağıdakilerden hangisi olmuştur?",
+          "o": [
+            "Sanatçılar",
+            "Zanaatkârlar",
+            "Politikacılar",
+            "Oyma ustaları",
+            "Bilim adamları"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aquatint Tekniği'nde reçinenin plaka yüzeyine yapışması için hangi işlem uygulanır?",
+          "o": [
+            "Reçine plaka yüzeyine sıvı hâlde sürülür.",
+            "Toz reçine serpilmiş plaka ısı kaynağının üzerine yerleştirilir.",
+            "Plaka soğuk suya sokulur.",
+            "Plaka sıcak suyla yıkanır.",
+            "Reçine sürülecek yüzey temizlenir."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Afiş tasarımında renkli basım kolaylığı sağlayan hangi baskı resim tekniği sıklıkla tercih edilmiştir?",
+          "o": [
+            "Linol baskı",
+            "Gravür",
+            "Ahşap oyma",
+            "Serigrafi",
+            "Litografi"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Ukiyo-e baskılarının amacı aşağıdakilerden hangisinde doğru verilmiştir?",
+          "o": [
+            "Gündelik dünyanın zevk ve eğlencesini göstermek",
+            "Japonya'daki savaşları yansıtmak",
+            "İmparatorluk ailesinin günlük yaşamını yansıtmak",
+            "Budizm dininin öğretilerini yaymak",
+            "Güzel kadınların resimlerini çoğaltmak"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Silindir mühürlerin kullanımında aşağıdakilerden hangisi tercih edilmiştir?",
+          "o": [
+            "Ezme Yöntemi",
+            "Döndürme Yöntemi",
+            "Sıvama Yöntemi",
+            "Kazıma Yöntemi",
+            "Basma Yöntemi"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Çukur baskı için hangi kâğıtlar tercih edilmelidir?",
+          "o": [
+            "Lifli ve içinde su tutabilen baskı kâğıtları",
+            "Bristol kâğıt",
+            "Aydınger kâğıdı",
+            "Gazete kâğıdı",
+            "Resim kâğıdı"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Baskı tekniği, kâğıdın bulunmasıyla ilişkili olarak hangi ülkelerde ortaya çıkmıştır?",
+          "o": [
+            "Japonya-Çin",
+            "Çin-Kore",
+            "İngiltere-Fransa",
+            "Türkiye-Çin",
+            "İsviçre-İngiltere"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Kızılderili atalarının sosyo-kültürel bağlamdaki mitlerini eserlerinde ele alan sanatçı aşağıdakilerden hangisidir?",
+          "o": [
+            "Andy Warhol",
+            "Pablo Picasso",
+            "Jasper Johns",
+            "Paul Cezanne",
+            "Jaune Quick-to-See Smith"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi sanatın demokratikleşmesi aşamasında önemli bir adım olmuştur?",
+          "o": [
+            "Dijital baskı",
+            "Gravür",
+            "Ofset baskı",
+            "Litografi (taş baskı)",
+            "Serigrafi"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Bartolommeo Coriolano'ya ait Bakire ve Çocuk isimli baskı resim hangi teknikte basılmıştır?",
+          "o": [
+            "Sfumato",
+            "Cantiante",
+            "Chiaroscuro",
+            "Aquatinte",
+            "Unione"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Demir teller, çiviler, demir tozları gibi malzemelerin, lehim ya da yapıştırıcı vasıtasıyla plakaya sabitlendiği baskı tekniği aşağıdakilerden hangisidir?",
+          "o": [
+            "Taş baskı",
+            "Ağaç gravür",
+            "Linol baskı",
+            "Metal baskı",
+            "Fotogravür"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Ağaç baskıda gerçek bir tahta oyma için ağaç kesimi nasıl olmalıdır?",
+          "o": [
+            "Yatay",
+            "Kesitsel",
+            "Enine ya da kılıcına",
+            "Dikine",
+            "Diyagonal"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi alternatif baskı tekniklerinden biri değildir?",
+          "o": [
+            "Fotogravür",
+            "Kollagrafi",
+            "Monobaskı",
+            "Kuru kazıma",
+            "Cellocut"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Ağaç, taş ya da metal üstüne yüzeysel oyma yapan kişiye ne ad verilir?",
+          "o": [
+            "Oymacı",
+            "Hattat",
+            "Hakkak",
+            "Nakkaş",
+            "Kaşıkçı"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Romantizm öncesi hangi düşünsel yapı toplumda değişim meydana getirmiştir?",
+          "o": [
+            "Orta Çağ",
+            "Barok",
+            "Yeni Çağ",
+            "Rönesans",
+            "Antik Çağ"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Kâğıda çift taraflı yapılan baskıya ne ad verilir?",
+          "o": [
+            "Anopistografish",
+            "Tipografi",
+            "Opisthografische",
+            "Ksilografi",
+            "Typoxylografische"
+          ],
+          "a": 2
+        }
+      ]
+    },
+    {
+      "sinavId": 99,
+      "ad": "2024-2025 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Baskı sanatının Budizm bilgisini yaymak amacıyla geliştiği ülke aşağıdakilerden hangisidir?",
+          "o": [
+            "Hindistan",
+            "Japonya",
+            "Rusya",
+            "Almanya",
+            "Hollanda"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Ağaç baskıda gerçek bir tahta oyma için ağaç kesimi nasıl olmalıdır?",
+          "o": [
+            "Dikine",
+            "Kesitsel",
+            "Yatay",
+            "Enine ya da kılıcına",
+            "Diyagonal"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi baskı türlerinden biri değildir?",
+          "o": [
+            "Düz",
+            "Rölyef",
+            "Elek",
+            "Yüksek",
+            "Çukur"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Bakır levha yüzeyinin, çeşitli araçlarla tırtıklanarak ya da pürüzlendirilerek yapılan Çukur Baskı Tekniği aşağıdakilerden hangisidir?",
+          "o": [
+            "Drypoint",
+            "Aquatint",
+            "Crible",
+            "Mezotint",
+            "Engraving"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi çukur baskıda kullanılan metal plakalardan biri değildir?",
+          "o": [
+            "Bakır",
+            "Çinko",
+            "Pirinç",
+            "Çelik",
+            "Gümüş"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi asitle indirme tekniklerinden biri değildir?",
+          "o": [
+            "Gofre ve rölyef",
+            "Mezotint",
+            "Fırça ile asitleme",
+            "Aquatinta",
+            "Şekerli mürekkep"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Sabri Berkel'in yönetimindeki baskı atölyesinde hangi baskı teknikleri kullanılmıştır ve bu atölyede ne tür çalışmalar üretilmiştir?",
+          "o": [
+            "İpek baskı ve monotip teknikleri kullanılmış, litografi üretilmiştir.",
+            "Sadece linolyum tekniği kullanılmış, heykeller üretilmiştir.",
+            "Sadece taş baskı tekniği kullanılmış, tablolar üretilmiştir.",
+            "Sadece metal tekniği kullanılmış, seramikler üretilmiştir.",
+            "Litografi ve gravür teknikleri kullanılmış, resimler üretilmiştir."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Silindir mühürlerin kullanımında aşağıdakilerden hangisi tercih edilmiştir?",
+          "o": [
+            "Sıvama Yöntemi",
+            "Döndürme Yöntemi",
+            "Basma Yöntemi",
+            "Kazıma Yöntemi",
+            "Ezme Yöntemi"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi fotogravürün aşamalarından biri değildir?",
+          "o": [
+            "Asetata negatif olarak desen çizilir ve negatif alanlar mürekkep ile boyanır.",
+            "Emülsiyon malzemesi karanlık ortamda tazyikli su ile temizlenir.",
+            "Asetatta oluşan görüntü pozlama makinesi ile ipek şaselere geçirilir.",
+            "Baskı kâğıdının arkasına yerleştirilmiş bir gazete kâğıdına çizim yapılır.",
+            "Emülsiyon denilen ışığa duyarlı serigrafi medyumu ile ipek şase kaplanır ve pozlandırma yapılır."
+          ],
+          "a": 3
+        },
+        {
+          "q": "Yirmi bir parçadan oluşan ve on bir metre uzunluğunda olan İstanbul panoraması gravürü aşağıdakilerden hangisine aittir?",
+          "o": [
+            "Giovan Maria Angionello",
+            "Tunuslu Hacı Ahmet",
+            "Conelis Van Bruyn",
+            "Giovanni Andrea Vavassore",
+            "Melchior Lorichs"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Japonya'da, tahta baskının belgelenmiş en eski örnekleri olan Japon selvi ağaçlarından oyulmuş nesnelere ne ad verilir?",
+          "o": [
+            "Pagoda",
+            "Shogunate",
+            "Durani",
+            "Sumizuru-e",
+            "Ukiyo-e"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Tek basım ya da tek anlamına gelen baskı türü aşağıdakilerden hangisidir?",
+          "o": [
+            "Şablon baskı",
+            "Serigrafi",
+            "Ofset baskı",
+            "Taş baskı",
+            "Mono baskı"
+          ],
+          "a": 4
+        },
+        {
+          "q": "I. Damga mühürler II. Yüzük mühürler III. Silindir mühürler IV. Silindir damga mühürler Yukarıdakilerden hangisi ya da hangileri mühür sınıflandırmalarındandır?",
+          "o": [
+            "Yalnız I",
+            "I ve II",
+            "I ve III",
+            "I, II, III ve IV",
+            "I, II ve III"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisinde Chiaroscuro gravürün açıklaması verilmiştir?",
+          "o": [
+            "Işık ve rengin yumuşak geçişi",
+            "Rengin sert kontrastı",
+            "Rengin yumuşak geçişi",
+            "Dokunun yoğun olması",
+            "Işık ve gölgenin sert kontrastı"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Rönesans Dönemi'nde Avrupa'dan sanatçıların İstanbul'a gelip Osmanlı kültürüne yönelik çalışmalar yapmasının nedenlerinden biri değildir?",
+          "o": [
+            "Avrupa'nın sanatçıları dışlaması",
+            "Osmanlı Devleti'nin güçlü ekonomisi",
+            "Osmanlı kültürünün Batı ülkelerinden farklılıklara sahip olması",
+            "Padişahların sanata değer vermesi",
+            "İstanbul'da sanatçılara sağlanan imkânlar"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Yaptığı çalışmaları genel anlamda “portreler, eller, mektup, yaratılış” gibi isimlerle sınıflandıran Türk sanatçı aşağıdakilerden hangisidir?",
+          "o": [
+            "Süleyman Saim Tekcan",
+            "Aliye Berger",
+            "Ergin İnan",
+            "Devrim Erbil",
+            "Hoca Ali Rıza"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Türkiye'de ekslibris sanatının yayılmasına büyük katkı sağlamış ve 1997 'de Ankara Ekslibris Derneği'ni kurmuştur?",
+          "o": [
+            "Hasip Pektaş",
+            "Hasan Pekmezci",
+            "Mürşide İçmeli",
+            "Süleyman Saim Tekcan",
+            "Şule Atılgan"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Ekslibris türü olmasa da onunla aynı işleve sahip olan seçenek aşağıdakilerden hangisidir?",
+          "o": [
+            "Broşür",
+            "Logo",
+            "Mühür",
+            "Kartvizit",
+            "Amblem"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Başta Claude Monet (1840- 1926 ) olmak üzere bir grup genç ressam, gün ışığında gördüklerini ve ışığın nesneler üzerinde bıraktığı anlık izleri hızlıca yakalamaya çalışarak tuvallerine aktarmışlardır. Hayatı gördükleri gibi yansıtmaya çalışan bu ressamlar, Japon ağaç baskılarının sade ve düz renklerinden ve günlük hayattan sahneler yansıtmasından etkilenerek kendilerine özgü tarzlarını oluşturmuşlardır. Verilen bilgilere göre sanatçının ışığın etkisini kullanarak oluşturduğu resimler aşağıdakilerden hangisine aittir?",
+          "o": [
+            "Realizm",
+            "Barok",
+            "Empresyonizm",
+            "Klasizim",
+            "Fütürizm"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Afiş tasarımında renkli basım kolaylığı sağlayan hangi baskı resim tekniği sıklıkla tercih edilmiştir?",
+          "o": [
+            "Serigrafi",
+            "Gravür",
+            "Litografi",
+            "Ahşap oyma",
+            "Linol baskı"
+          ],
+          "a": 2
+        }
+      ]
+    },
+    {
+      "sinavId": 96,
+      "ad": "2024-2025 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Ekslibris, hiçbir zaman tek işlevle sınırlandırılmamalıdır. Kitaba paha biçilemez bir değer katarak, sanat ve tasarım nesnesine dönüştüren ekslibrisin bir işlevi bitse diğer işlevi başlayacaktır. 19. yüzyılın sonlarına doğru ekslibris ile ilgili kuramsal çalışmalar ve araştırmalar kitap ve dergilerde yayınlanmış, ekslibris üretiminde bir canlanma yaşanmıştır. Bu bağlamda dönem; ekslibris …………….. ortaya çıkmasına ve popülerleşmesine sebep olarak, ekslibrisin ………… arasında değiş tokuşuna tanıklık etmiştir. Paragrafta boş bırakılan yerlere sırasıyla aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "derneğinin/ kursiyerler",
+            "grubunun/ arkadaşlar",
+            "koleksiyonunun/ koleksiyonerler",
+            "mesleğinin/ esnaflar",
+            "okulunun/ öğrenciler"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Klasik resim anlayışının ötesinde, hazır nesne ve atık malzemelerin kullanıldığı akım hangisidir?",
+          "o": [
+            "Dışavurumculuk",
+            "Dada",
+            "Pop Art",
+            "Sürrealizm",
+            "Kübizm"
+          ],
+          "a": 1
+        },
+        {
+          "q": "“Maniyerizm” hangi ülkede gelişmiştir?",
+          "o": [
+            "İtalya",
+            "İspanya",
+            "Fransa",
+            "Yunanistan",
+            "Almanya"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aquatint Tekniği'nde reçinenin plaka yüzeyine yapışması için hangi işlem uygulanır?",
+          "o": [
+            "Reçine sürülecek yüzey temizlenir.",
+            "Toz reçine serpilmiş plaka ısı kaynağının üzerine yerleştirilir.",
+            "Reçine plaka yüzeyine sıvı hâlde sürülür.",
+            "Plaka sıcak suyla yıkanır.",
+            "Plaka soğuk suya sokulur."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Gravürlerinde İstanbul'un en önemli camilerinden biri olan Süleymaniye Camii'ni resmeden sanatçı kimdir?",
+          "o": [
+            "Thomas Allom",
+            "Joseph Schranz",
+            "John Frederick Lewis",
+            "William Henry Bartlett",
+            "Gaspare Fossati"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Dışavurumculuk ilk olarak nerede ortaya çıkmıştır?",
+          "o": [
+            "Amerika",
+            "Almanya",
+            "Paris",
+            "Avusturya",
+            "Rusya"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Kökeni Fransızca olan ve ahşap, taş, muşamba veya metal bir levhanın oyularak bir yüzeye basılması ile elde edilen, en temel şekliyle “kazıma resim sanatı” olarak bilinen baskı tekniği aşağıdakilerden hangisidir?",
+          "o": [
+            "Ofset baskı",
+            "Gravür",
+            "Litografi",
+            "Serigrafi",
+            "Dijital baskı"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Sanayi-i Nefise'de 1892-1897 tarihleri arasında gravür bölümünde aşağıdaki isimlerden hangisi görev yapmıştır?",
+          "o": [
+            "Osman Hamdi",
+            "Leopold Levy",
+            "Hoca Ali Rıza",
+            "Sabri Berkel",
+            "Artur Napier"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Baskıresim ilk olarak aşağıdaki hangi malzemeye basılmıştır?",
+          "o": [
+            "Kâğıda",
+            "Taşa",
+            "Kile",
+            "Kumaşa",
+            "Metale"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aliye Berger, gravür tekniğinde hangi tür malzemeleri kullanarak özgün bir kimlik yaratmıştır?",
+          "o": [
+            "Yalnızca tahta levhaları kullanarak",
+            "Kasap kâğıdı, zımpara kâğıdı ve tülbent gibi malzemeleri kullanarak",
+            "Seramik ve cam malzemeleri kullanarak",
+            "Tuval ve fırça kullanarak",
+            "Sadece siyah ve beyaz renkleri kullanarak"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Düz baskı tekniklerinin en ilkeli hangisidir?",
+          "o": [
+            "Şablon baskı",
+            "Serigrafi",
+            "Monotip",
+            "Ofset baskı",
+            "Taş baskı"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Ekslibris koleksiyonculuğu kimler tarafından yapılır?",
+          "o": [
+            "Kitap ve kütüphane sahipleri",
+            "Sanat galerileri",
+            "Sanatçılar ve tasarımcılar",
+            "Çeşitli ilgi alanlarına sahip kişiler",
+            "Meslek sahipleri"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Yazı ve resimlerin aynı yüzeye oyulmasıyla oluşturulan ağaç kalıba ne ad verilir?",
+          "o": [
+            "Düz baskı",
+            "Tipo baskı",
+            "Ofset baskı",
+            "Çukur baskı",
+            "Blok baskı"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Andy Warhol'un tercih ettiği baskı tekniği hangisidir ve bu tekniği neden tercih etmiştir?",
+          "o": [
+            "Gravür baskı; büyük ebatlarda resim yapabilme özelliği nedeniyle",
+            "Monotip baskı; çoğaltılabilme yeteneği nedeniyle",
+            "Litoğrafi baskı; sınırları belli olan resimler üretebilme özelliği nedeniyle",
+            "Serigrafi baskı; lokal renkleri yansıtma özelliği nedeniyle",
+            "Şablon baskı; fotomekanik pozlama ile uyumlu olması nedeniyle"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Çukur baskı plakalarının kenarlarının 35-45 derecelik açıyla törpü, perdah kalemi veya el matkabı ile elde törpülenmesi işlemine ne denir?",
+          "o": [
+            "Çapak alma",
+            "Düzeltme",
+            "Parlatma",
+            "Törpüleme",
+            "Pahlanma"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Japonya'da Ukiyo-e sanatının ortaya çıkıp geliştiği dönem aşağıdakilerden hangisidir?",
+          "o": [
+            "Nara Dönemi",
+            "Heian Dönemi",
+            "Taisho Dönemi",
+            "Edo Dönemi",
+            "Meiji Dönemi"
+          ],
+          "a": 3
+        },
+        {
+          "q": "“Bir ağacın enine ve boyuna oyularak oluşturulan desenin kâğıda veya kumaşa basılmasıdır.” tanımı hangi baskı tekniğini ifade etmektedir?",
+          "o": [
+            "Ağaç Baskı Tekniği",
+            "Serigrafi Baskı",
+            "Linol Baskı",
+            "Gravür",
+            "Litografi (Taş Baskı)"
+          ],
+          "a": 0
+        },
+        {
+          "q": "1931 yılında Cellocut Tekniği'ni ilk uygulayan kimdir?",
+          "o": [
+            "Glen Alps",
+            "Rolf Nesch",
+            "Henri Goetz",
+            "Ernst Ludwig Kirchner",
+            "Boris Margo"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Hazırlanan kalıptan yalnızca bir tek baskı elde edilen tekniğin adı nedir?",
+          "o": [
+            "Monotip baskı",
+            "Karborundum",
+            "Litografi",
+            "Serigrafi",
+            "Cellocut"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Linol baskı, Ağaç Baskı Yöntemi'ne neden tercih edilmiştir?",
+          "o": [
+            "Linol baskı daha ince ayrıntıların oyulmasını kolaylaştırır.",
+            "Linol baskı daha renkli sonuçlar verir.",
+            "Linol baskıda plaka yüzeyi serttir.",
+            "Linol plakalar daha ucuzdur.",
+            "Linol plakalar daha dayanıklıdır."
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 88,
+      "ad": "2023-2024 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Kâğıt ilk olarak hangi ülkede bulunmuştur?",
+          "o": [
+            "Japonya",
+            "Mısır",
+            "Arabistan",
+            "Çin",
+            "Almanya"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Anadolu'da tahtayı kazıyarak, oyarak kalıp yapmak ve bu kalıbı boyayarak baskı yapmak hangi adla anılırdı?",
+          "o": [
+            "Yazmacılık",
+            "Boyacılık",
+            "Tahtacılık",
+            "Oymacılık",
+            "Basmacılık"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Kitap sahibinin ismi ile birlikte kullanılan……...…, sahiplik bildirmek için kitapların ön kapağının iç kısmına yapıştırılan etiketlerdir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "nişan",
+            "ekslibris",
+            "arma",
+            "mühür",
+            "sembol"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Käthe Kollwitz'in \"Çift Sürenler\" adlı gravürüyle ilgili aşağıdakilerden hangisi doğrudur?",
+          "o": [
+            "Kollwitz'in bu eseri Paris'te üretilmiştir.",
+            "Sanatçının çalışma koşullarını olumlu bir şekilde resmettiği bir eserdir.",
+            "Şehir yaşamını yansıtmış ve renkleri kullanmıştır.",
+            "Kapitalist sistemin olumsuz etkilerini işlemiş ve dramatik bir izlenim bırakmıştır.",
+            "Soyut bir stil kullanmış ve natüralizmden uzak durmuştur."
+          ],
+          "a": 3
+        },
+        {
+          "q": "İlk büyük Ukiyo-e sanatçısı aşağıdakilerden hangisinde doğru verilmiştir?",
+          "o": [
+            "Torii Kiyonaga",
+            "Ando Hisroshige",
+            "Kitagawa Utamaro",
+            "Suziki Harunobu",
+            "Hishikawa Moronobu"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi monotip baskının özelliklerinden biri değildir?",
+          "o": [
+            "Plaka olarak kullanılan malzeme üzerine çeşitli boyalarla çizim, resim ya da çalışma yapılır.",
+            "Mantık olarak bir yüzeydeki boyanın diğer yüzeye tek seferde aktarılmasıdır.",
+            "İpek kalıp üzerine baskı yapılır.",
+            "Yüzey ıslakken, yani boyalar kurumamışken başka bir kâğıda yapılan baskı işlemidir.",
+            "Monotip baskı tekniğinde edisyon sayısı 1'dir."
+          ],
+          "a": 2
+        },
+        {
+          "q": "XV-XVI. yüzyıllardaki ilk gravürlerin özelliği aşağıdakilerden hangisidir?",
+          "o": [
+            "Kuş bakışı görüntüler ya da uzun panoramalardır.",
+            "Kıyafet ve günlük yaşam tasvirleridir.",
+            "İki boyutlu manzaralardır.",
+            "İç mekân tasvirleridir.",
+            "Portrelerdir."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Türkçedeki karşılığı dengeleme transferi olan baskı aşağıdakilerden hangisidir?",
+          "o": [
+            "Taş baskı",
+            "Monotip baskı",
+            "Ofset baskı",
+            "Şablon baskı",
+            "Elek baskı"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Baskı boyası olarak kullanılacak olan matbaa mürekkebinin akışkanlığı yoğun (katıya yakın) ise mürekkebi açmak (inceltmek) için aşağıdakilerden hangisi kullanılmalıdır?",
+          "o": [
+            "Makine yağı",
+            "Vernik",
+            "Tiner",
+            "Su",
+            "Resim yağı"
+          ],
+          "a": 4
+        },
+        {
+          "q": "\"Fare Öldüren Adam\" hangi sanatçının eseridir?",
+          "o": [
+            "Rafael",
+            "Van Gogh",
+            "Dürer",
+            "Rembrandt",
+            "Picasso"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdaki sanatçılardan hangisi Türkiye'de ekslibris sanatının yayılmasına büyük katkı sağlamış ve 1997 'de Ankara Ekslibris Derneği'ni kurmuştur?",
+          "o": [
+            "Mürşide İçmeli",
+            "Hasan Pekmezci",
+            "Süleyman Saim Tekcan",
+            "Şule Atılgan",
+            "Hasip Pektaş"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Bakır plaka üzerine burin ile kazınarak yapılan baskı işlemine ne ad verilir?",
+          "o": [
+            "Oyma gravür",
+            "Aquatint",
+            "Kazıma",
+            "Mezotint",
+            "Kuru kazıma"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Baskı resmin gelişimini etkileyen en önemli buluş aşağıdakilerden hangisidir?",
+          "o": [
+            "İpek",
+            "Matbaa",
+            "Yazı",
+            "Mürekkep",
+            "Kâğıt"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Hangi yazı sistemi, sesler için işaretler geliştirerek bunların oluşturduğu dizinler ile sözcükler yazmaya odaklanmıştır?",
+          "o": [
+            "Çin Yazısı",
+            "Göktürkçe",
+            "Fenike Alfabesi",
+            "Sümer Çivi Yazısı",
+            "Hiyeroglif"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Hangi gravür ustası ilk kez asite yedirme ve kuru kazı tekniklerini kullanarak gravüre yeni bir boyut kazandırmıştır?",
+          "o": [
+            "Michelangelo",
+            "Rafael",
+            "Leonardo da Vinci",
+            "Albrecht Dürer",
+            "Martin Schongauer"
+          ],
+          "a": 3
+        },
+        {
+          "q": "İsmi kolaj ve grafik kelimelerinin birleşiminden oluşan baskı tekniği aşağıdakilerden hangisidir?",
+          "o": [
+            "Chine collé",
+            "Fotogravür",
+            "Kollagraf",
+            "Cellocut",
+            "Karborundum"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi asitle indirme tekniklerinden biri değildir?",
+          "o": [
+            "Mezotint",
+            "Şekerli mürekkep",
+            "Aquatinta",
+            "Gofre ve rölyef",
+            "Fırça ile asitleme"
+          ],
+          "a": 0
+        },
+        {
+          "q": "1881 yılında ilk taş baskı (Litografi) atölyesini kuran sanatçı aşağıdakilerden hangisidir?",
+          "o": [
+            "İbrahim Müteferrika",
+            "Hanri Kayol",
+            "Osman Hamdi Bey",
+            "Aliye Berger",
+            "Hoca Ali Rıza"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Goya, gravürlerinde hangi teknikleri kullanarak gölge ve renkli alanlarda lekesel değerler elde etmiştir?",
+          "o": [
+            "Litografi Tekniği",
+            "Akuatint ve Kuru İğne Teknikleri",
+            "Asitle Oyma ve Mezzotint Teknikleri",
+            "Sulu Boya Tekniği",
+            "Kuru Uç Tekniği"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Rönesans Dönemi'nde sanattaki üslubu belirleyen aşağıdakilerden hangisi olmuştur?",
+          "o": [
+            "Politikacılar",
+            "Sanatçılar",
+            "Zanaatkârlar",
+            "Oyma ustaları",
+            "Bilim adamları"
+          ],
+          "a": 1
+        }
+      ]
+    },
+    {
+      "sinavId": 72,
+      "ad": "2023-2024 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Osmanlı saraylarında korunarak günümüze gelen gravürlerde hangi halk sınıfları ve bölümler tasvir edilmiştir?",
+          "o": [
+            "Yalnızca sarayın içindeki harem halkı tasvir edilmiştir, çünkü onlar en gizemli ve ilgi çekici grup olarak kabul edilmiştir.",
+            "Birun halkı ve harem halkı ağırlıklı olarak tasvir edilmiştir, çünkü bu gruplar sarayın emirler sınıfını oluşturmuştur.",
+            "Gravürlerde sadece sarayın bahçeleri ve manzaraları tasvir edilmiştir, çünkü doğal güzellikler öne çıkarılmıştır.",
+            "Enderun halkı ve harem halkı gravürlerdeki ana figürlerdir, çünkü onlar sarayın günlük yaşamını yansıtır.",
+            "Sadece sarayın dış cepheleri gravürlerde yer almıştır, çünkü mimari detaylar önemlidir."
+          ],
+          "a": 1,
+          "u": 13
+        },
+        {
+          "q": "Türk baskı sanatında baskı ve grafik sanatının ilk uygulayıcısı aşağıdakilerden hangisidir?",
+          "o": [
+            "İbrahim Müteferrika",
+            "Mustafa Aslıer",
+            "Hoca Ali Rıza",
+            "Asım İşler",
+            "Turgut Zaim"
+          ],
+          "a": 0,
+          "u": 12
+        },
+        {
+          "q": "Baskı resmin gelişimini etkileyen en önemli buluş aşağıdakilerden hangisidir?",
+          "o": [
+            "Kâğıt",
+            "Matbaa",
+            "Yazı",
+            "Mürekkep",
+            "İpek"
+          ],
+          "a": 0,
+          "u": 2
+        },
+        {
+          "q": "Karolenj yazı sistemi aşağıdakilerden hangisidir?",
+          "o": [
+            "Futura",
+            "Helvetica",
+            "Gotik",
+            "Kufi",
+            "Barok"
+          ],
+          "a": 2,
+          "u": 1
+        },
+        {
+          "q": "Esklibris sanatının ülkemizde yayılmasına büyük katkı sağlayan ve 1997'de Ankara Ekslibris Derneği'nin (AED) kurulmasıyla Türkiye'de dönüm noktası yaşatan kişi aşağıdakilerden hangisidir?",
+          "o": [
+            "Nurdan Adıgüzel",
+            "Güler Akalan",
+            "Hasip Pektaş",
+            "Ali Tomak",
+            "Hasan Pekmezci"
+          ],
+          "a": 2,
+          "u": 14
+        },
+        {
+          "q": "1900'lü yılların başında canlı modelden çalışma olanağı bulunmayan öğrenciler için özellikle doğa görünümlerini, kır evlerini ve çeşmeleri betimlediği karakalem çizimler hazırlayıp taş baskı yöntemi ile çoğaltarak resim atölyelerine dağıtmış olan Türk ressam aşağıdakilerden hangisidir?",
+          "o": [
+            "Turgut Zaim",
+            "Tunuslu Hacı Ahmet",
+            "Cemal Tollu",
+            "Fahrelnisa Zeyd",
+            "Bedri Rahmi Eyüboğlu"
+          ],
+          "a": 2,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisinde Chiaroscuro gravürün açıklaması verilmiştir.",
+          "o": [
+            "Işık ve gölgenin sert kontrastı",
+            "Işık ve rengin yumuşak geçişi",
+            "Dokunun yoğun olması",
+            "Rengin sert kontrastı",
+            "Rengin yumuşak geçişi"
+          ],
+          "a": 0,
+          "u": 6
+        },
+        {
+          "q": "Güzel sanatlar için kullanılan linol tabaka aşağıdaki özelliklerden hangisine sahiptir?",
+          "o": [
+            "İnce çizgilerin kolay çalışılması için sert dokuya sahiptir.",
+            "Geniş çizgi oluşumu için elastik dokuya sahiptir.",
+            "İnce çizgi oluşumu için elastik dokuya sahiptir.",
+            "Üzerinde çalışmayı kolaylaştıracak yumuşak bir dokuya sahiptir.",
+            "Üzerinde çalışmayı kolaylaştıracak kırılgan dokuya sahiptir."
+          ],
+          "a": 3,
+          "u": 3
+        },
+        {
+          "q": "Osmanlı Dönemi'nde kitapların aidiyetini belirtmek için ne tür nesneler kullanılmıştır?",
+          "o": [
+            "Ekslibrisler",
+            "Kitap etiketleri",
+            "İmzalar",
+            "El yazması notlar",
+            "Mühürler"
+          ],
+          "a": 4,
+          "u": 14
+        },
+        {
+          "q": "Karışık tekniklerle yapılan baskılarda hangi faktörlerin sıralandırılması önemlidir?",
+          "o": [
+            "Kâğıdın gramajı, baskıda kullanılacak renkler ve baskı hızı",
+            "İlk baskıda kullanılan mürekkep miktarı, baskıda kullanılacak malzemeler ve baskı sıcaklığı",
+            "Sanatçının yetenekleri, baskı maliyeti ve tasarımın karmaşıklığı",
+            "Katmanlar arasındaki süre, teknik kurallar ve baskı ortamının büyüklüğü",
+            "Baskı makinesinin markası, baskı süresi ve kâğıdın renk tonu"
+          ],
+          "a": 3,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi alternatif baskı tekniklerinden biri değildir?",
+          "o": [
+            "Fotogravür",
+            "Kollagrafi",
+            "Cellocut",
+            "Monobaskı",
+            "Kuru kazıma"
+          ],
+          "a": 4,
+          "u": 9
+        },
+        {
+          "q": "Resimli kitap baskılarının büyük sanatçısı Katsushika Hokusa'nin özellikle öne çıkan iki resimli kitabından biri aşağıdakilerden hangisinde doğru verilmiştir?",
+          "o": [
+            "Fuji Dağı'nın 100 Görüntüsü (Fugaku Hyakkei)",
+            "İkkai Zeihitsu",
+            "Ormanın Binbir Görüntüsü",
+            "Ay'ın 100 Görüntüsü Serisi",
+            "Yamauha"
+          ],
+          "a": 0,
+          "u": 10
+        },
+        {
+          "q": "Japon baskısının tarihsel gelişiminde en erken dönemlerinde kullanılan teknik aşağıdakilerden hangisidir?",
+          "o": [
+            "Tan-e",
+            "Nishiki-e",
+            "Darani",
+            "Beni-e",
+            "Sumizuri-e"
+          ],
+          "a": 4,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi baskı türlerinden biri değildir?",
+          "o": [
+            "Elek",
+            "Çukur",
+            "Yüksek",
+            "Düz",
+            "Rölyef"
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "Kâğıdın baskı esnasında boyalı ya da boyasız olarak kabartılması işlemi hangi çukur baskı tekniğini tanımlar?",
+          "o": [
+            "Aquatinta",
+            "Mezotint",
+            "Gofre ve rölyef baskı",
+            "Gravür",
+            "Şekerli mürekkep"
+          ],
+          "a": 2,
+          "u": 5
+        },
+        {
+          "q": "Hangi ünlü sanatçı, Charles Philipon'un yayınları için taş baskı kullanarak gazete illüstrasyonları yapmıştır?",
+          "o": [
+            "Eugene Delacroix",
+            "Marc Chagall",
+            "Henri de Toulouse-Lautrec",
+            "Honore Daumier",
+            "Pablo Picasso"
+          ],
+          "a": 3,
+          "u": 8
+        },
+        {
+          "q": "Asit kullanılmadan yapılan çukur baskı teknikleri için en uygun plaka hangi materyaldendir?",
+          "o": [
+            "Ahşap",
+            "Bakır",
+            "Demir",
+            "Taş",
+            "Çelik"
+          ],
+          "a": 1,
+          "u": 4
+        },
+        {
+          "q": "Käthe Kollwitz'in \"Çift Sürenler\" adlı gravürüyle ilgili aşağıdakilerden hangisi doğrudur?",
+          "o": [
+            "Kollwitz'in bu eseri Paris'te üretilmiştir.",
+            "Kapitalist sistemin olumsuz etkilerini işlemiş ve dramatik bir izlenim bırakmıştır.",
+            "Şehir yaşamını yansıtmış ve renkleri kullanmıştır.",
+            "Soyut bir stil kullanmış ve natüralizmden uzak durmuştur.",
+            "Sanatçının çalışma koşullarını olumlu bir şekilde resmettiği bir eserdir."
+          ],
+          "a": 1,
+          "u": 11
+        },
+        {
+          "q": "Türkiye'de pek çok üniversitede özgün baskı atölyelerinin kurulması ve bu alanda çağdaş eğitimin başlatılmasına neden olan sanatçı kimdir?",
+          "o": [
+            "Hoca Ali Rıza",
+            "Devrim Erbil",
+            "Süleyman Saim Tekcan",
+            "Osman Hamdi Bey",
+            "Aliye Berger"
+          ],
+          "a": 2,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi sanatın demokratikleşmesi aşamasında önemli bir adım olmuştur?",
+          "o": [
+            "Gravür",
+            "Ofset baskı",
+            "Dijital baskı",
+            "Litografi (taş baskı)",
+            "Serigrafi"
+          ],
+          "a": 3,
+          "u": 7
+        }
+      ]
+    },
+    {
+      "sinavId": 70,
+      "ad": "2023-2024 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Avrupa'da ilk ekslibris örneklerine nerede ve hangi yüzyılda rastlanmıştır?",
+          "o": [
+            "13. yüzyılda Polonya'da",
+            "19. yüzyılda Fransa'da",
+            "11. yüzyılda İtalya'da",
+            "17. yüzyılda Belçika 'da",
+            "15. yüzyılda Almanya'da"
+          ],
+          "a": 4,
+          "u": 14
+        },
+        {
+          "q": "İsmi kolaj ve grafik kelimelerinin birleşiminden oluşan baskı tekniği aşağıdakilerden hangisidir?",
+          "o": [
+            "Fotogravür",
+            "Cellocut",
+            "Karborundum",
+            "Chine collé",
+            "Kollagraf"
+          ],
+          "a": 4,
+          "u": 9
+        },
+        {
+          "q": "Meiji Dönemi'ndeki önemli bir ahşap sanatçısı olarak kabul edilen ve Batılı sanattan etkilenen sanatçının adı nedir?",
+          "o": [
+            "Sharaku",
+            "Yoshitoshi",
+            "Masanobu",
+            "Harunobu",
+            "Moronobu"
+          ],
+          "a": 1,
+          "u": 10
+        },
+        {
+          "q": "Dijital baskıların tercih edilmesinin en büyük nedeni aşağıdakilerden hangisidir?",
+          "o": [
+            "Dijital baskılar geleneksel baskılara göre daha hızlı sonuç verir.",
+            "Dijital baskılar geleneksel baskılardan daha ucuzdur.",
+            "Dijital baskılar yüksek çözünürlükle çalışma imkânı sağlar.",
+            "Dijital baskılar sadece siyah beyaz tasarımlar için uygundur.",
+            "Dijital baskılar özel ve renkli kâğıtların kullanımına izin vermez."
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Warhol'un seri hâlde yaptığı baskı resimleri hangi önemli sanat akımı içinde yer almıştır ve bu akımın yayılmasına nasıl katkıda bulunmuştur?",
+          "o": [
+            "Rönesans Akımı içinde yer almış ve deneysel baskı sanatının yayılmasına katkıda bulunmuştur.",
+            "Empresyonizm Akımı içinde yer almış ve baskı türlerini popülerleştirmiştir.",
+            "Kübizm Akımı içinde yer almış ve monokrom baskı tekniklerini popüler hâle getirmiştir.",
+            "Pop Art Akımı içinde yer almış ve sanatçıların baskı türlerine daha çok yönelmelerini teşvik etmiştir.",
+            "Barok Akımı içinde yer almış ve serigrafi tekniğini geliştirmiştir."
+          ],
+          "a": 3,
+          "u": 11
+        },
+        {
+          "q": "Ekslibris sanatının doruğunu yaşadığı dönemlerin önemli isimleri arasında hangi sanatçılar bulunmaktadır?",
+          "o": [
+            "William Shakespeare ve Charles Dickens",
+            "Leonardo da Vinci ve Michelangelo",
+            "Albrecht Dürer ve Lucas Cranach",
+            "Pablo Picasso ve Salvador Dali",
+            "Vincent van Gogh ve Claude Monet"
+          ],
+          "a": 2,
+          "u": 14
+        },
+        {
+          "q": "Moronobu tarafından resmedilen temalar önemli ölçüde Edo'nun hangi bölgesinden alınmıştır/esinlenmiştir?",
+          "o": [
+            "Heian Bölgesi",
+            "Kyoto Bölgesi",
+            "Showa Bölgesi",
+            "Yoshiwara Bölgesi",
+            "Nara Bölgesi"
+          ],
+          "a": 3,
+          "u": 10
+        },
+        {
+          "q": "Sabri Berkel'in yönetimindeki baskı atölyesinde hangi baskı teknikleri kullanılmıştır ve bu atölyede ne tür çalışmalar üretilmiştir?",
+          "o": [
+            "Sadece linolyum tekniği kullanılmış, heykeller üretilmiştir.",
+            "Sadece metal tekniği kullanılmış, seramikler üretilmiştir.",
+            "Litografi ve gravür teknikleri kullanılmış, resimler üretilmiştir.",
+            "Sadece taş baskı tekniği kullanılmış, tablolar üretilmiştir.",
+            "İpek baskı ve monotip teknikleri kullanılmış, litografi üretilmiştir."
+          ],
+          "a": 4,
+          "u": 12
+        },
+        {
+          "q": "Osmanlı Dönemi'nde İstanbul izlenimlerini ağaç gravürlerle resimleyen hangi yabancı ressam Türk tarihini anlatan \"Historia Turchesca\" adlı kitabı yazmıştır?",
+          "o": [
+            "Vanmour",
+            "Conelis Van Bruyn",
+            "Giovanni Andrea Vavassore",
+            "Giovan Maria Angionello",
+            "Nikolay"
+          ],
+          "a": 3,
+          "u": 13
+        },
+        {
+          "q": "Kâğıda çift taraflı yapılan baskıya ne ad verilir?",
+          "o": [
+            "Typoxylografische",
+            "Tipografi",
+            "Anopistografish",
+            "Ksilografi",
+            "Opisthografische"
+          ],
+          "a": 4,
+          "u": 1
+        },
+        {
+          "q": "Baskı sanatının 20. yüzyılda sanatçılar tarafından tercih edilmesinin en önemli sebebi aşağıdakilerden hangisidir?",
+          "o": [
+            "Teknolojinin ortaya çıkması ile sanatçılara dijital baskı gibi yeni alternatif yöntemler sunması",
+            "Sanatçıların kendilerini özgürce ifade edebilecekleri bir alan bulmuş olmaları",
+            "Deneysel yaklaşımlara olanak tanıyan ve çoğaltılabilme özelliğinin yanı sıra birçok kişiye ulaştırılabilmesi ile de sanatçıların tanınabilirliğinin artmasını sağlaması.",
+            "Görüntüler üzerinde sonsuz sayıda oynamaların gerçekleştirilebilmesi",
+            "Savaş, siyaset ve ırkçı söylemler gibi politik meseleleri baskıresimle daha iyi ifade edebilmeleri"
+          ],
+          "a": 2,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdaki sanatçılardan hangisi ilk kuşak Türk baskı sanatçıları arasında yer almaz?",
+          "o": [
+            "Sabri Berkel",
+            "Nurullah Berk",
+            "Turgut Zaim",
+            "Mustafa Aslıer",
+            "Ercüment Kalmık"
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi asitle indirme tekniklerinden biri değildir?",
+          "o": [
+            "Gofre ve rölyef",
+            "Fırça ile asitleme",
+            "Mezotint",
+            "Şekerli mürekkep",
+            "Aquatinta"
+          ],
+          "a": 2,
+          "u": 5
+        },
+        {
+          "q": "Aşağıdakilerden hangisi baskı plakasına mürekkep verilmesi işlemiyle ilgili değildir?",
+          "o": [
+            "Boya verme işlemi bittikten sonra, gazete kâğıdı ile boyanın kabası plaka üzerinden alınır.",
+            "Mürekkep verilmeden önce plaka ıslatılır.",
+            "Matbaa boyası inceltilerek kullanılır.",
+            "Mürekkep verilmeden önce plaka ısıtılır.",
+            "Mürekkep, bir tampon ya da bez parçası kullanılarak plaka yüzeyinin tümüne, çapakların içi dolacak şekilde sürülür."
+          ],
+          "a": 1,
+          "u": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi sanatın demokratikleşmesi aşamasında önemli bir adım olmuştur?",
+          "o": [
+            "Litografi (taş baskı)",
+            "Ofset baskı",
+            "Dijital baskı",
+            "Litografi (taş baskı)",
+            "Serigrafi"
+          ],
+          "a": 0,
+          "u": 7
+        },
+        {
+          "q": "Cihannüma adlı eser hangi konuları kapsamaktadır ve hangi Osmanlı şahsiyeti tarafından eklemeler yapılmıştır?",
+          "o": [
+            "Sadece Osmanlı İmparatorluğu'nun sınırlarını açıklar ve eklemeler I. Ahmed tarafından yapılmıştır.",
+            "Kıtalar, ülkeler, akarsular ve denizler hakkında bilgi verir ve eklemeler İbrahim Müteferrika tarafından yapılmıştır.",
+            "Sadece İslam'ın yayılması hakkında bilgiler içerir ve eklemeler I. Süleyman tarafından yapılmıştır.",
+            "Yalnızca coğrafi bilgileri kapsar ve eklemeler II. Mahmud tarafından yapılmıştır.",
+            "Yalnızca tarihî olayları kapsar ve eklemeler III. Selim tarafından yapılmıştır."
+          ],
+          "a": 1,
+          "u": 13
+        },
+        {
+          "q": "Baskıresim aşağıdakilerden hangisidir?",
+          "o": [
+            "Sanat biçimidir.",
+            "Yaratıcılıktır.",
+            "Malzemedir.",
+            "Tekniktir.",
+            "Kalıptır."
+          ],
+          "a": 0,
+          "u": 2
+        },
+        {
+          "q": "Sanatçının hiçbir katkısı olmadan tamamen mekanik yöntemlerle sanat yapıtlarının basılması işlemi aşağıdakilerden hangisidir?",
+          "o": [
+            "Prova baskısı",
+            "Tıpkıbasım (reprodüksiyon)",
+            "Baskıcı baskısı",
+            "Tekrar basım",
+            "Deneme baskısı"
+          ],
+          "a": 1,
+          "u": 3
+        },
+        {
+          "q": "Türkçedeki karşılığı dengeleme transferi olan baskı aşağıdakilerden hangisidir?",
+          "o": [
+            "Ofset baskı",
+            "Monotip baskı",
+            "Taş baskı",
+            "Şablon baskı",
+            "Elek baskı"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "Baskıresim alanında Çukur Baskı Tekniği olarak bilinen yöntem ilk kez hangi ülkelerde kullanılmıştır?",
+          "o": [
+            "Almanya-İtalya",
+            "Rusya-İtalya",
+            "Çin-Japonya",
+            "Fransa-İtalya",
+            "Almanya-Fransa"
+          ],
+          "a": 0,
+          "u": 6
+        }
+      ]
+    },
+    {
+      "sinavId": 67,
+      "ad": "2022-2023 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi sanat kavramına ilişkin köklerin oluştuğu dönemdir?",
+          "o": [
+            "Orta Çağ",
+            "Rönesans",
+            "Yeni Çağ",
+            "Antik Çağ",
+            "Romantizm"
+          ],
+          "a": 1,
+          "u": 6
+        },
+        {
+          "q": "Kireç taşı üzerine çizilerek yapılan baskı aşağıdakilerden hangisidir?",
+          "o": [
+            "Serigrafi",
+            "Ofset",
+            "Ağaç",
+            "Monotip",
+            "Taş Baskı"
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "18 ve 19. yüzyıl, dünya tarihi açısından büyük değişimlerin; sosyal, ekonomik, siyasal ve sanatsal gelişme alanlarında yeniliklerin yaşandığı bir dönem olmuştur. Bu dönemde yaşanan en önemli gelişmeler aşağıdakilerden hangisidir?",
+          "o": [
+            "Renk Devrimi / Sanat Devrimi",
+            "Fransız Devrimi / Sanayi Devrimi",
+            "Toplum Devrimi / Milliyetçilik Devrimi",
+            "Ülkeler Arası Devrim / Ulaşım Devrimi",
+            "Ulus Devrimi / Fransız Devrimi"
+          ],
+          "a": 1,
+          "u": 7
+        },
+        {
+          "q": "Tosusai Sharaku hangi konularda eserler üretmiştir?",
+          "o": [
+            "Doğa",
+            "Günlük yaşam",
+            "Aktör portreleri",
+            "Deniz manzaraları",
+            "Çiçek"
+          ],
+          "a": 2,
+          "u": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi fotogravürün aşamalarından biri değildir?",
+          "o": [
+            "Asetata negatif olarak desen çizilir ve negatif alanlar mürekkep ile boyanır.",
+            "Asetatta oluşan görüntü pozlama makinesi ile ipek şaselere geçirilir.",
+            "Emülsiyon denilen ışığa duyarlı serigrafi medyumu ile ipek şase kaplanır ve pozlandırma yapılır.",
+            "Baskı kağıdının arkasına yerleştirilmiş bir gazete kağıdına çizim yapılır.",
+            "Emülsiyon malzemesi karanlık ortamda tazyikli su ile temizlenir."
+          ],
+          "a": 3,
+          "u": 9
+        },
+        {
+          "q": "Genelde çok kalabalık kompozisyonlar, belirli bir naif kalite ve yoğun bir dinî duygu ile yaklaşık yetmiş üç plaka üretmiş olan Fransız baskı sanatçısı aşağıdakilerden hangisidir?",
+          "o": [
+            "Andre Mantegna",
+            "Lucas van Leyden",
+            "Albrecht Dürer",
+            "Jean Duvet",
+            "Hans Baldung Grien"
+          ],
+          "a": 3,
+          "u": 4
+        },
+        {
+          "q": "Ukiyo-e Japonya'da hangi sınıf arasında popüler hâle gelmiştir?",
+          "o": [
+            "Alt sınıf",
+            "Bi-jinga",
+            "Orta sınıf (Chonin)",
+            "Samuraylar",
+            "İmparatorluk ve ailesi"
+          ],
+          "a": 2,
+          "u": 10
+        },
+        {
+          "q": "Aubrey Beardsley hangi sanat akımını temsil etmektedir?",
+          "o": [
+            "Romantik Akım",
+            "Empresyonizm",
+            "Dadaizm",
+            "Art Nouveau",
+            "Soyut Sanat"
+          ],
+          "a": 3,
+          "u": 2
+        },
+        {
+          "q": "“Atalier 17” baskı atölyesini kuran sanatçı aşağıdakilerden hangisidir?",
+          "o": [
+            "Leopold Levy",
+            "W. S. Hayter",
+            "Hoca Ali Rıza",
+            "Akiha Yamakami",
+            "Osman Hamdi Bey"
+          ],
+          "a": 1,
+          "u": 11
+        },
+        {
+          "q": "Japonya'da ağaç baskılar ilk kez hangi amaçla yapılmıştır?",
+          "o": [
+            "Tokugawa Shogun ailesinin şanını yansıtmak",
+            "Çin Hanedanlığı'nın baskısını azaltmak",
+            "Ülkenin güzelliklerini diğer ülkelere göstermek",
+            "Günlük hayatın zevk ve eğlencesini göstermek",
+            "Budizm bilgisini yaymak"
+          ],
+          "a": 4,
+          "u": 10
+        },
+        {
+          "q": "Gravür sanatçıları olan William Henry Bartlett, Thomas Allom ve Henri Cayol, hangi Osmanlı padişahı zamanında İstanbul'da çalışmalar yapmıştır?",
+          "o": [
+            "II. Mahmut",
+            "IV. Murat",
+            "Fatih Sultan Mehmet",
+            "Kanuni Sultan Süleyman",
+            "III. Selim"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ekslibrisin tanımıdır?",
+          "o": [
+            "Kitapların çoğaltılması için kullanılan bir yöntemdir.",
+            "Sahiplik bildirmek için kitapların ön kapağının iç kısmına yapıştırılan etiketlerdir.",
+            "Kütüphanelerde raflara yapıştırılan etiketlerdir.",
+            "Soyluların değerli eşyalarını korumak için kutuların üzerine yapıştırdıkları etiketlerdir.",
+            "Yeni alınan defterin kaybolmaması için üzerine yapılan resimlerdir."
+          ],
+          "a": 1,
+          "u": 14
+        },
+        {
+          "q": "Anadolu'da tahtayı kazıyarak, oyarak kalıp yapmak ve bu kalıbı boyayarak baskı yapmak hangi adla anılırdı?",
+          "o": [
+            "Basmacılık",
+            "Yazmacılık",
+            "Oymacılık",
+            "Tahtacılık",
+            "Boyacılık"
+          ],
+          "a": 1,
+          "u": 13
+        },
+        {
+          "q": "1960'larda Pop Art akımı içerisinde \"Fabrika\" diye adlandırdığı atölyesinde seri baskılar yapan sanatçı aşağıdakilerden hangisidir?",
+          "o": [
+            "Andy Warhol",
+            "Robert Rauschenberg",
+            "Roy Lichtenstein",
+            "Pauline Boty",
+            "Edward Munch"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "Asidin, aquatint içine işlerken, kalıbın artık mürekkep alamaz duruma gelmesine ne ad verilir?",
+          "o": [
+            "Pahlanma",
+            "Burin",
+            "Creve",
+            "Rölyef",
+            "Gofre"
+          ],
+          "a": 2,
+          "u": 5
+        },
+        {
+          "q": "Karolenj yazı sistemi aşağıdakilerden hangisidir?",
+          "o": [
+            "Barok",
+            "Helvetica",
+            "Gotik",
+            "Kufi",
+            "Futura"
+          ],
+          "a": 2,
+          "u": 1
+        },
+        {
+          "q": "Türk baskı sanatında baskı ve grafik sanatının ilk uygulayıcısı aşağıdakilerden hangisidir?",
+          "o": [
+            "İbrahim Müteferrika",
+            "Hoca Ali Rıza",
+            "Asım İşler",
+            "Mustafa Aslıer",
+            "Turgut Zaim"
+          ],
+          "a": 0,
+          "u": 12
+        },
+        {
+          "q": "1950'lerin başında, renkli çalışmalarında tek kalıp üzerinden baskı alan ve tek kalıpla çalışmaya yenilikler katan ressam aşağıdakilerden hangisidir?",
+          "o": [
+            "Matisse",
+            "Picasso",
+            "Dürer",
+            "Munch",
+            "Dali"
+          ],
+          "a": 1,
+          "u": 3
+        },
+        {
+          "q": "1881 yılında ilk taş baskı (Litografi) atölyesini kuran sanatçı aşağıdakilerden hangisidir?",
+          "o": [
+            "Aliye Berger",
+            "İbrahim Müteferrika",
+            "Hoca Ali Rıza",
+            "Osman Hamdi Bey",
+            "Hanri Kayol"
+          ],
+          "a": 4,
+          "u": 12
+        },
+        {
+          "q": "Eksiltmeli teknikler için ideal plaka hangi malzemedir?",
+          "o": [
+            "Linolyum",
+            "Çinko",
+            "Bakır",
+            "Ahşap",
+            "Saydam akrilik"
+          ],
+          "a": 4,
+          "u": 9
+        }
+      ]
+    },
+    {
+      "sinavId": 56,
+      "ad": "2022-2023 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi İstanbul gravürlerinde resmedilen mekânlardan biri değildir?",
+          "o": [
+            "Savaş meydanları",
+            "Hamamlar",
+            "Haliç manzarası",
+            "Kahvehaneler",
+            "Harem"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Der Blue Reiter akımı için afiş tasarlayıp bu afişi ağaç baskı tekniğiyle yaparak çoğaltan sanatçı kimdir?",
+          "o": [
+            "Hans Jean Arp",
+            "Wassily Kandisky",
+            "Henri Matisse",
+            "Franz Marc",
+            "Andre Derain"
+          ],
+          "a": 1,
+          "u": 11
+        },
+        {
+          "q": "Ağaç baskıda gerçek bir tahta oyma için ağaç kesimi nasıl olmalıdır?",
+          "o": [
+            "Enine ya da kılıcına",
+            "Diyagonal",
+            "Kesitsel",
+            "Dikine",
+            "Yatay"
+          ],
+          "a": 0,
+          "u": 3
+        },
+        {
+          "q": "“Özgün Baskı Resim” terimini kullanan ilk sanatçı aşağıdakilerden hangisidir?",
+          "o": [
+            "Mürşide İçmeli",
+            "Mustafa Aslıer",
+            "İbrahim Müteferrika",
+            "Aliye Berger",
+            "Bedri Rahmi Eyüboğlu"
+          ],
+          "a": 1,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi 1960 sonrası baskı resminin özelliklerinden biri değildir?",
+          "o": [
+            "Ağaç baskı, litografi, taş baskı, çukur baskı veya linol baskı gibi yaygın olarak bilinen baskı tekniklerinin yanı sıra deneysel baskılar da popülerlik kazanmaya başlamıştır.",
+            "Sanatçılar, bilgisayarda çalışmalar üretmeye başlamış ve dijital baskı ortaya çıkmıştır.",
+            "Baskı resim; zamanla “sanatsal, politik, protest ve eğitsel” bir araç bağlamında kullanılmaya başlanmıştır.",
+            "Modernizmin de içine yerleşen farklı deneme yolları bu anlamda ön plana çıkmakta ve bu sayede sanatçıların sıklıkla başvurdukları bir yöntem olarak yerini almaktadır.",
+            "Dijital baskı, geneleksel baskı resme oranla daha fazla kişiye ulaşılabilirliği sağlamıştır."
+          ],
+          "a": 3,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdakilerden hangisi alternatif baskı tekniklerinden biri değildir?",
+          "o": [
+            "Monobaskı",
+            "Kuru kazıma",
+            "Kollagrafi",
+            "Cellocut",
+            "Fotogravür"
+          ],
+          "a": 1,
+          "u": 9
+        },
+        {
+          "q": "Baskı sanatının Budizm bilgisini yaymak amacıyla geliştiği ülke aşağıdakilerden hangisidir?",
+          "o": [
+            "Japonya",
+            "Hollanda",
+            "Hindistan",
+            "Rusya",
+            "Almanya"
+          ],
+          "a": 0,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi düz baskı tekniğidir?",
+          "o": [
+            "Ağaç Baskı",
+            "Gravür",
+            "Çukur Baskı",
+            "Litografi",
+            "Linol baskı"
+          ],
+          "a": 3,
+          "u": 8
+        },
+        {
+          "q": "İşlevsel yönüyle özgün grafik tasarım ürünü olan ekslibrislerde özellikle hangi konular işlenmektedir?",
+          "o": [
+            "Sanal gerçeklik, yazılım, bilişim vb.",
+            "Mitoloji, din, tarih, müzik, doğa, aile, kadın, meslek vb.",
+            "Otomobil, teknoloji, endüstri vb.",
+            "Kaya, taş, ağaç, toprak vb.",
+            "Spor, yarışma, konser vb."
+          ],
+          "a": 1,
+          "u": 14
+        },
+        {
+          "q": "Yumuşak vernik baskıda, geleneksel yumuşak zemin hangi malzemeden oluşmaktadır?",
+          "o": [
+            "Linolyum",
+            "Yağ veya don yağı katılarak macun haline getirilmiş balmumu",
+            "Kauçuk",
+            "Parafin",
+            "Sünger"
+          ],
+          "a": 1,
+          "u": 5
+        },
+        {
+          "q": "Çalışmalarında pastel ve monotip baskıyı birlikte kullanan ressam kimdir?",
+          "o": [
+            "Giovanni Benedetto Castiglione",
+            "William Blake",
+            "Albrecht Dürer",
+            "Edgar Degas",
+            "Vincent van Gogh"
+          ],
+          "a": 3,
+          "u": 9
+        },
+        {
+          "q": "Baskı resmin gelişimini etkileyen en önemli gelişme aşağıdakilerden hangisidir?",
+          "o": [
+            "Matbaa",
+            "Yazı",
+            "Kâğıt",
+            "İpek",
+            "Mürekkep"
+          ],
+          "a": 2,
+          "u": 2
+        },
+        {
+          "q": "Baskı tekniğinin ilk kez aşağıdakilerden hangisi tarafından yapıldığı bilinmektedir?",
+          "o": [
+            "Hishikawa Moronobu",
+            "Katushika Hokusai",
+            "Çinli demirci Pi Sheng",
+            "Chonin Sınıfı",
+            "Tokugawa Shogun Ailesi"
+          ],
+          "a": 2,
+          "u": 10
+        },
+        {
+          "q": "Türkçedeki karşılığı dengeleme transferi olan baskı aşağıdakilerden hangisidir?",
+          "o": [
+            "Monotip baskı",
+            "Taş baskı",
+            "Şablon baskı",
+            "Ofset baskı",
+            "Elek baskı"
+          ],
+          "a": 3,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi sanatın demokratikleşmesi aşamasında önemli bir adım olmuştur?",
+          "o": [
+            "Gravür",
+            "Ofset baskı",
+            "Dijital baskı",
+            "Litografi (taş baskı)",
+            "Serigrafi"
+          ],
+          "a": 3,
+          "u": 7
+        },
+        {
+          "q": "1900’lü yılların başında canlı modelden çalışma olanağı bulunmayan öğrenciler için özellikle doğa görünümlerini, kır evlerini ve çeşmeleri betimlediği karakalem çizimler hazırlayıp taş baskı yöntemi ile çoğaltarak resim atölyelerine dağıtmış olan Türk ressam aşağıdakilerden hangisidir?",
+          "o": [
+            "Hoca Ali Rıza",
+            "Aliye Berger",
+            "Fahrelnisa Zeyd",
+            "Tunuslu Hacı Ahmet",
+            "Osman Hamdi Bey"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Röprodüksiyon baskıların ilk örnekleri hangi sanatçının atölyesinde yapılmıştır?",
+          "o": [
+            "Albrecht Dürer",
+            "Andrea Mantegna",
+            "Lucas Cranach",
+            "Tiziano",
+            "Rafaello"
+          ],
+          "a": 1,
+          "u": 6
+        },
+        {
+          "q": "“Ekslibris, kitabın kartviziti ya da tapusudur.” ifadesi kime aittir?",
+          "o": [
+            "Mürşide İçmeli",
+            "Hasip Pektaş",
+            "Salih Denli",
+            "Süleyman Saim Tekcan",
+            "Tezcan Bahar"
+          ],
+          "a": 1,
+          "u": 14
+        },
+        {
+          "q": "Plaka yüzeyinde büyüteç altında yuvarlak görünen küçük oluklar açılarak yapılan çukur baskı tekniğine ne ad verilir?",
+          "o": [
+            "Gravür",
+            "Noktalama",
+            "Mezotint",
+            "Drypoint",
+            "Kalburlama"
+          ],
+          "a": 1,
+          "u": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi matbaanın icadını yapan kişidir?",
+          "o": [
+            "Johannes Gutenberg",
+            "Albrecht Dürer",
+            "Rambrant Harmenszoon van Rijn",
+            "Andrea Mantegna",
+            "Caravagio"
+          ],
+          "a": 0,
+          "u": 1
+        }
+      ]
+    }
+  ],
+  "Reklam Grafiği": [
+    {
+      "sinavId": 133,
+      "ad": "2025-2026 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Reklamda mesaj testine göre hangi madde hedef kitleden beklenen yanıt değildir?",
+          "o": [
+            "Reklamın hissettirdikleri",
+            "Reklamın ulaşması için en uygun yer",
+            "Reklamın işlevselliği",
+            "Reklamcılığa katkıları",
+            "Ana mesaj"
+          ],
+          "a": 3
+        },
+        {
+          "q": "1941 yılında reklamlarında animasyon kullanan ilk şirket aşağıdakilerden hangisidir?",
+          "o": [
+            "Botany Lambs giyim firması",
+            "Ford otomobil firması",
+            "Benetton giyim firması",
+            "BMW otomobil ve motor firması",
+            "Starbucks kahve firması"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Reklam metninin anlatım biçimi ve dili ile ilgili aşağıdakilerden hangisi söylenemez?",
+          "o": [
+            "Metinde günlük konuşma dili tercih edilmelidir",
+            "Metinde kullanılan dil sade ve anlaşılır olmalıdır",
+            "Metinde gereksiz ve işlevsiz bilgiye yer verilmemelidir",
+            "Metinde edebi süslemeler ve uzun betimlemelere yer verilmelidir",
+            "Metinde kısa cümleler ve basit bir anlatım kullanılmalıdır"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Afiş tasarımı aşağıdakilerden hangi buluş ve icatla gerçek kimliğine kavuşmuştur?",
+          "o": [
+            "Bilgisayar",
+            "Kâğıt",
+            "Kalem",
+            "Mürekkep",
+            "Matbaa"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Ambalaj hangi amaca hizmet eder?",
+          "o": [
+            "Dikkat çekmeye",
+            "Duygusal etkiye",
+            "Ürünün satışına",
+            "Kolay taşınabilirliğe",
+            "Korumaya"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi raflardan bağımsız sergilenmektedir?",
+          "o": [
+            "Wobbler",
+            "Dön kart",
+            "Raf etiketi",
+            "Raf şeridi",
+            "Raf kart"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam metnin özgünlük özelliğine uygun düşmez?",
+          "o": [
+            "Reklam metni, geçmişteki başarılı örneklere öykünmelidir",
+            "Reklam metni, benzerlikten uzak olmalıdır",
+            "Reklam metni, taklitten uzak olmalıdır",
+            "Reklam metni, kendine mahsus bir orijinallik taşımalıdır",
+            "Reklam metni, daha önce kullanılmış veri içermemelidir"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Başarılı reklam grafiklerinde yer alan başlık nasıl olmalıdır?",
+          "o": [
+            "Kalın yazılı",
+            "Kısa olmalı",
+            "Küçük puntolu",
+            "Büyük puntolu",
+            "Altı çizili"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Tipografik sıradüzen aşağıda sıralanan hangi nedenlerden dolayı oluşturuluyor olamaz?",
+          "o": [
+            "Algıyı yönlendirmek",
+            "Reklam stratejisine hizmet etmek",
+            "Bilgiyi düzenlemek",
+            "Seçiciliği artırmak",
+            "Talebi artırmak"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi gazete seri ilan reklam grafiğini özellikleri arasında yer almaz?",
+          "o": [
+            "Metin haricinde ikonlarda tasarımda kullanılır.",
+            "Okunaklığı yüksek fontlar kullanılır.",
+            "Tasarımlarda yüksek çözünürlüklü, bol fotoğraf kullanılır.",
+            "Bir grafik tasarım elamanı olan çizgi ilanları birbirinden ayırmak için sıklıkla tercih edilir.",
+            "Kısa metinler tercih edilir."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklamın amaçları ve özellikleri arasında yer almaz?",
+          "o": [
+            "İşletmenin karlılığını belirlemek",
+            "Hedef alınan tüketici kitlesinin düşüncelerini etkilemek",
+            "Alışkanlıkları etkilemek",
+            "Hedef alınan tüketici kitlesi üzerinde etki yaratmak",
+            "Satın almaya yönlendirmek"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi anlamına göre gösterge türlerinden biridir?",
+          "o": [
+            "Nitel göstergeler",
+            "Tikel göstergeler",
+            "Kural göstergeler",
+            "Sav göstergeler",
+            "Görüntüsel göstergeler"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi fotoğrafların yazıya göre üstünlüklerinden biri değildir?",
+          "o": [
+            "Fotoğrafların yazıya göre daha hızlı üretilebiliyor olması tercih sebeplerin başında gelir",
+            "Yazılı bir metnin tam anlamıyla anlaşılabilmesi için ayrıntılı bir şekilde okunması gerekir. Buna karşın, İyi tasarlanmış bir fotoğraf ile bilgi çok daha hızlı bir şekilde aktarılabilir",
+            "Aktarılmak istenen bilgiyi bütünleyen küçük bir fotoğraf, satırlarla anlatılmak istenilen bilgiyi, hızlı bir şekilde aktarabilir",
+            "Fotoğraf içerdiği bilginin hatırlanmasını kolaylaştırıcı özelliğe sahiptir. İnsan gördüğünü okuduğu yazıdan daha iyi aklında tutar ve daha kolay hatırlar",
+            "Fotoğraf anlam yoğunluğu bakımından yazıdan çok daha üstündür"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam grafiklerinde yaratıcılığa katkı sağlamaktadır?",
+          "o": [
+            "Görselin iyi çözünürlükte olması",
+            "Uygun tipografinin kullanılması",
+            "İlginç olması",
+            "Firmanın logosu",
+            "Güçlü bir slogan"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ambalajın işlevlerinden değildir?",
+          "o": [
+            "Üretim işlevi",
+            "Reklam pazarlama işlevi",
+            "Kantite işlevi",
+            "Ürünü koruma işlevi",
+            "Taşıma işlevi"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Reklam ortamının seçiminde aşağıdakilerden hangisi dikkate alınmaz?",
+          "o": [
+            "Ürün ya da hizmetin niteliği",
+            "Firmanın faaliyet alanı",
+            "Reklamın amacı",
+            "Reklam bütçesi",
+            "Hedef kitlenin özellikleri"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Herhangi bir mal ya da hizmetin, bedeli kim tarafından ödendiği belli olacak şekilde, kitle iletişim araçlarından yer ve zaman satın alarak halka tanıtılmasına yönelik uygulamalara ne ad verilir?",
+          "o": [
+            "Tasarım",
+            "Duyuru",
+            "Reklam",
+            "Grafik",
+            "İlan"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi afişlerin en önemli özelliğidir?",
+          "o": [
+            "Slogan olması",
+            "Fark edilir olması",
+            "Biçimsel olmasıdır",
+            "Ekonomik olması",
+            "Hangi teknikle yapıldığı"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Genellikle ışık ve şeffaflık ile ilişkilendirilen ve saflığı, temizliği çağrıştıran fakat özellikle Doğu Asya’da ölüm ve matem rengi olan renk aşağıdakilerden hangisidir?",
+          "o": [
+            "Siyah",
+            "Gri",
+            "Yeşil",
+            "Beyaz",
+            "Turuncu"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklamın fonksiyonları arasında yer almaz?",
+          "o": [
+            "Arz ve talebi buluşturma",
+            "Piyasayı dinamik tutma",
+            "Fiyat ve ürün çeşitliliğine yol açma",
+            "Ürün kalitesini artırma",
+            "Çalışan memnuniyeti yaratma"
+          ],
+          "a": 4
+        }
+      ]
+    },
+    {
+      "sinavId": 119,
+      "ad": "2025-2026 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi reklamın temel fonksiyonlarından değildir?",
+          "o": [
+            "Değer katma",
+            "İkna etme",
+            "Hatırlatma",
+            "Bilgilendirme",
+            "Örgütleme"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Sanayi Devrimi ile birlikte bulunuşu gerçekleşen, görsel kültürü oluşturan ve görsel mesajı doğrudan ve hızlı bir şekilde ileten araç aşağıdakilerden hangisidir?",
+          "o": [
+            "Pozometre",
+            "Vizör",
+            "Fotoğraf",
+            "Sensör",
+            "Bakaç"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam grafiğinde kullanılan metinlerde bulunması gereken özelliklerden biri değildir?",
+          "o": [
+            "İkna etmeli",
+            "Süslü olmalı",
+            "Özgün olmalı",
+            "Basit olmalı",
+            "Dikkat çekmeli"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdaki iç mekân ürünlerinden hangisi büyük boyutlu tasarıma dayanır?",
+          "o": [
+            "Promosyon çanta",
+            "Shelf talker",
+            "Pop up stand",
+            "Lightbox",
+            "Kiosk"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi açıkhava reklamlarının dezavantajlarından biridir?",
+          "o": [
+            "Malzemeler kalıcıdır.",
+            "Genellikle akılda kalıcı değillerdir.",
+            "Ardışık olarak sergilenebilir.",
+            "Kentin merkezî noktalarında konumlanabilir.",
+            "Geniş bir izleyici kitlesi tarafından görülebilir."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Sanayi Devrimi'nden önce grafik tasarım uygulamalarının her aşaması aşağıdakilerden hangisi tarafından yapılmıştır?",
+          "o": [
+            "Mücellitler",
+            "Fotoğrafçılar",
+            "Litograflar",
+            "Ressamlar",
+            "Zanaatkârlar"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Reklam kelimesi dilimize hangi yabancı dilden geçmiştir?",
+          "o": [
+            "Fransızca",
+            "İtalyanca",
+            "İngilizce",
+            "Hintce",
+            "Almanca"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam metninde ürün/hizmet özelliklerini ifade edebilmek için cevabı aranacak sorulardan değildir?",
+          "o": [
+            "İnsanlar bu ürün ya da hizmeti neden almalı?",
+            "Ürün ya da hizmetin üretim maliyeti ne kadar?",
+            "İnsanlar ürün ya da hizmeti alırken neden bu marka veya firmayı tercih etmeli?",
+            "Ürün ya da hizmetle ilgili ne anlatılacak?",
+            "Hedef kitleye sunulan ürün ya da hizmet nedir?"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi marka/logonun görevlerinden biri değildir?",
+          "o": [
+            "Ürün bilgisi verir.",
+            "Firma adını tanımlar.",
+            "İmza niteliği taşır.",
+            "Marka bağlılığını artırır.",
+            "Tat duygusunu artırır."
+          ],
+          "a": 4
+        },
+        {
+          "q": "Türkiye’de bugünkü anlamda reklam afişi yapan ilk grafik tasarımcı aşağıdakilerden hangisidir?",
+          "o": [
+            "Yurdaer Altıntaş",
+            "Mengü Ertel",
+            "Emin Barın",
+            "İhap Hulusi Görey",
+            "Kenan Temizan"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Kurum adı tırnaklı bir yazı karakteri ile tasarlanmış şirket aşağıdakilerden hangisinin özelliğini taşır?",
+          "o": [
+            "Köklü bir kurum olduğu",
+            "Özgür bir kurum olduğu",
+            "Rahat bir kurum olduğu",
+            "Sürprizli bir kurum olduğu",
+            "Eğlenceli bir kurum olduğu"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdaki promosyon ürünlerinden hangisi kırtasiye kategorisinde yer almaz?",
+          "o": [
+            "Kalem",
+            "Ajanda",
+            "Defter",
+            "Bloknot",
+            "Termos"
+          ],
+          "a": 4
+        },
+        {
+          "q": "“Reklam afişindeki metin aynı olsa dahi farklı illüstratörler kendi öz ve üsluplarını kattıkları ……… yaratımların estetik tadı izleyicinin reklam illüstrasyonundaki sanatsal yanı fark etmesi ve ….......... alması ile sonuçlanmakta bu da reklamın başarısına katkı sağlamaktadır.” Cümlede boş bırakılan yerlere sırasıyla aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "doygunluk / ton",
+            "estetik / ton",
+            "renk / özü",
+            "özgün / haz",
+            "özgün / öz"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi basılı reklam aracı değildir?",
+          "o": [
+            "Broşür",
+            "El ilanı",
+            "İnternet",
+            "Dergi",
+            "Katalog"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi dil dışı gösterge türlerinden biri değildir?",
+          "o": [
+            "Anlamına göre gösterge",
+            "Nitel gösterge",
+            "Nesnesine göre gösterge",
+            "Yorumlayıcısına göre gösterge",
+            "Kendisine göre gösterge"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Reklam grafiğinde tipografinin önemi ve yeri aşağıdaki ifadelerden hangisinde doğru ifade edilmiştir?",
+          "o": [
+            "Arz-talep arttırma",
+            "Bilgi aktarma, ilgi uyandırma ve dikkat çekme",
+            "Bilgi aktarma, ilgi uyandırma ve dikkat çekme yanında yaratıcı uygulamalar ile fark yaratma",
+            "Yaratıcı uygulamalar için fırsat sunma",
+            "Reklamları çekici kılma"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam fotoğrafının genel amaçları arasında yer alamaz?",
+          "o": [
+            "Zaman kaybını önlemek ve reklam maliyetlerini düşürmek",
+            "Sözle veya yazı ile anlatımı zor bir düşünceyi açığa çıkarmak",
+            "İlgiyi kullanılan başlık ve metine yönlendirmek",
+            "Hedef kitlenin ilgisini çekmek",
+            "Reklamın inandırıcılığını desteklemek ve ilginin sürekliliğini sağlamak"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi illüstrasyonun reklama katkılarından biri değildir?",
+          "o": [
+            "Gözü yönlendirmesi",
+            "Alıcıyı yakalayan çağrışımları kullanması",
+            "Üretiminin uzun zaman alması",
+            "İçeriğin hızlı ve doğru biçimde algılanabilmesini sağlaması",
+            "İzleyicinin bakışını yakalaması"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangi ikisi en çok tercih edilen yazılı basın reklam aracıdır?",
+          "o": [
+            "Dergi-Gazete",
+            "Gazete-Katalog",
+            "Katalog-Broşür",
+            "El ilanı-Dergi",
+            "Broşür-El ilanı"
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 117,
+      "ad": "2025-2026 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Açık hava reklamcılığıyla ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "Açık hava reklamcılığının türüne kullanım yeri, boyutu, maliyete göre karar verilir.",
+            "Açık hava reklamcılığı İngilizcede Ev dışı (Out-of-home, OOH) kelimesinden türetilmiştir.",
+            "Açık hava reklam ürünlerinin sergilendiği yerin reklamveren tarafından kullanımı ücretsizdir.",
+            "Açık hava reklam ürünlerinin dağıtımını sadece belediyeler sağlar.",
+            "Açık hava reklam alanlarının kullanımı sürelidir."
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklamın toplumsal etkileri bağlamında insanlar üzerindeki etkilerinden biri değildir?",
+          "o": [
+            "Reklamın ikna etme gücü",
+            "Reklamın estetik ve görsel boyutu",
+            "Reklamın dürüstlük ilkelerine uygunluğu",
+            "Reklamın değer yargıları ve hayat tarzıyla ilişkisi",
+            "Reklamın maliyeti ve fiyatı"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Verilmek istenen mesajı, amaca uygun düşecek biçimde iletmek üzere tasarlanan her türlü yazılı ve görsel ifade aşağıdakilerden hangisinin genel tanımı olabilir?",
+          "o": [
+            "Reklam mesajı",
+            "Brief",
+            "Reklam bilgilendirmesi",
+            "Reklam metni",
+            "Reklam sloganı"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Üreticiler, reklamla aşağıdakilerden hangisini amaçlamaz?",
+          "o": [
+            "Marka tercihi oluşturmak ya da sürdürmek",
+            "Mal ve hizmetlerin satışını artırmak",
+            "Mal ve hizmetlerin fiyat değişikliklerini ve özel satış koşullarını duyurmak",
+            "Mal ve hizmetlerin kullanım biçimini öğretmek",
+            "Ürünlere ham madde sağlamak"
+          ],
+          "a": 4
+        },
+        {
+          "q": "İnşaat alanı, restorasyon çalışmalarının yapıldığı alanların önlerinde konumlandırılan, geniş cepheli reklam ürünü aşağıdakilerden hangisidir?",
+          "o": [
+            "Mesh",
+            "Kuleboard",
+            "Parapet",
+            "Pole banner",
+            "Outdoor TV"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ambalaj tasarımı öncesi yapılan çalışmalardan biri değildir?",
+          "o": [
+            "Araştırma/Fikir",
+            "Ezkiz çalışmaları",
+            "Fizibilite",
+            "Baskı süreci",
+            "Kullanıcı deneyimleri"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerin hangisinde geleneksel reklam mecraları doğru sıralanmıştır?",
+          "o": [
+            "Televizyon-Bilgisayar-El İlanları",
+            "Akıllı Telefonlar-Gazete-Dergi",
+            "Tablet-TV-Katalog",
+            "Dijital Billboard-Broşür-Gazete",
+            "Dergi-Gazete-Radyo"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Metinlerin ve fikirlerin tasvir edilmesi ve açıklanması amacıyla uygulanan en yaygın resimleme türüdür. Bu tanım aşağıdakilerden hangisine aittir?",
+          "o": [
+            "3B animasyon",
+            "Lavi",
+            "2B animasyon",
+            "İllüstrasyon",
+            "Akrilik"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam grafiğinin tasarım ve estetik kuralı dâhilinde kullanılan ögelerden biri değildir?",
+          "o": [
+            "Görsel",
+            "Renk",
+            "Tipografi",
+            "Simge",
+            "Müşteri"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi fotoğrafın reklam dünyasında çokça tercih edilmesinin nedenlerinden biri değildir?",
+          "o": [
+            "Çabuk ve kolay okunurluğu",
+            "Maliyetinin ucuz olması",
+            "Hedef kitle ile çok hızlı iletişime geçmesi",
+            "Gerçekliği, gerçeği temsil etmesi",
+            "Ürün veya hizmeti satın almaya değecek çekicilikte yansıtılması"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Afiş tasarımı aşağıdakilerden hangi buluş ve icatla gerçek kimliğine kavuşmuştur?",
+          "o": [
+            "Mürekkep",
+            "Kâğıt",
+            "Matbaa",
+            "Bilgisayar",
+            "Kalem"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Çatı panoları, afişler, tabelalar, karton adamlar hangi reklam ortamında yer alır?",
+          "o": [
+            "Açıkhava reklamları",
+            "İnternet",
+            "Dergi",
+            "Televizyon",
+            "Fuar"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdaki kavramlardan hangisi mavi renk ile ilişkilendirilir?",
+          "o": [
+            "Enerji",
+            "Gökyüzü",
+            "Ateş",
+            "Tutku",
+            "Kan"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi dijital reklam mecralarından biri değildir?",
+          "o": [
+            "Dijital billboardlar",
+            "Sosyal medya",
+            "El ilanları",
+            "E-postalar",
+            "Web sayfaları"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi promosyon ürünlerindendir?",
+          "o": [
+            "Ajanda",
+            "Wobbler",
+            "Raf kartı",
+            "Ayaklı pano",
+            "Vinil branda"
+          ],
+          "a": 0
+        },
+        {
+          "q": "“Reklam afişindeki metin aynı olsa dahi farklı illüstratörler kendi öz ve üsluplarını katıkları ……… yaratımların estetik tadı izleyicinin reklam illüstrasyonundaki sanatsal yanı fark etmesi ve ….......... alması ile sonuçlanmakta bu da reklamın başarısına katkı sağlamaktadır.” Cümlede boş bırakılan yerlere sırasıyla aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "estetik / ton",
+            "özgün / haz",
+            "doygunluk / ton",
+            "renk / özü",
+            "özgün / öz"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdaki gösterge türlerinden hangisi \"benzerlik\" ilişkisine göre yorumlanmaktadır?",
+          "o": [
+            "Sav gösterge",
+            "Simge gösterge",
+            "Görüntüsel gösterge",
+            "Belirti gösterge",
+            "Önerme gösterge"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam metninin anlatım biçimini ve dilini etkilemez?",
+          "o": [
+            "Reklam sloganı",
+            "Ürün ya da hizmetin özellikleri",
+            "Reklam metin türü",
+            "Reklamın yayınlanacağı medya",
+            "Hedef kitlenin özellikleri"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Reklam grafiğinde tipografik tasarımda yazı tipi seçimi neye bağlı değildir?",
+          "o": [
+            "Ürün/hizmet içeriği",
+            "Müşteri talebi",
+            "Reklam stratejisi",
+            "Marka kimliği",
+            "Ürün/hizmet biçimi"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Herhangi bir ürün, marka veya hizmetin tanıtılması veya satışının sağlanması amacı ile yapılan çalışmalar için çekilen fotoğraflara ……………………… denir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "reklam fotoğrafı",
+            "portre fotoğrafı",
+            "belgesel fotoğrafı",
+            "moda fotoğrafı",
+            "sanat fotoğrafı"
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 99,
+      "ad": "2024-2025 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Bugünkü anlamda ilk afiş sanatı aşağıdaki ülkelerden hangisinde görülmüştür?",
+          "o": [
+            "Almanya",
+            "Çin",
+            "Japonya",
+            "Fransa",
+            "İtalya"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam grafiklerinde tipografinin işlevlerinden biri olarak gösterilebilir?",
+          "o": [
+            "Bilgi vermek",
+            "Tüketicinin tepkisini ölçmek",
+            "Talep-arz dengesini yaratmak",
+            "Ürün/hizmet talebini ölçmek",
+            "Potansiyel müşteri kitlesini belirlemek"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi basılı reklamlarda yer alan unsurlar arasında yer almaz?",
+          "o": [
+            "Metin",
+            "Ses",
+            "Başlık",
+            "Slogan",
+            "Görsel öge"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ambalajı oluşturan ögelerden biri değildir?",
+          "o": [
+            "Tipografi",
+            "Renk",
+            "Doku",
+            "Metin",
+            "Fotoğraf"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdaki kavramlardan hangisi mavi renk ile ilişkilendirilir?",
+          "o": [
+            "Gökyüzü",
+            "Kan",
+            "Ateş",
+            "Enerji",
+            "Tutku"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Sanayi Devrimi'nden önce grafik tasarım uygulamalarının her aşaması aşağıdakilerden hangisi tarafından yapılmıştır?",
+          "o": [
+            "Mücellitler",
+            "Fotoğrafçılar",
+            "Litograflar",
+            "Zanaatkârlar",
+            "Ressamlar"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam fotoğrafının genel amaçları arasında yer alamaz?",
+          "o": [
+            "Sözle veya yazı ile anlatımı zor bir düşünceyi açığa çıkarmak",
+            "Reklamın inandırıcılığını desteklemek ve ilginin sürekliliğini sağlamak",
+            "Hedef kitlenin ilgisini çekmek",
+            "İlgiyi kullanılan başlık ve metine yönlendirmek",
+            "Zaman kaybını önlemek ve reklam maliyetlerini düşürmek"
+          ],
+          "a": 4
+        },
+        {
+          "q": "“Sizler de aramıza katılabilirsiniz.” ya da “Bu fırsatı kaçırmayın.” şeklinde oluşturulmuş reklam metni başlıkları hangi tür başlık örnekleridir?",
+          "o": [
+            "Zorlayıcı başlık",
+            "Tavsiye/davet başlığı",
+            "Haber tarzı başlık",
+            "Seçici başlık",
+            "Durum başlığı"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi internet reklamı değildir?",
+          "o": [
+            "Pop up reklam",
+            "Profil reklam",
+            "Affiliate reklam",
+            "Banner reklam",
+            "Açık hava reklamları"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdaki promosyon ürünlerinden hangisi sürdürülebilir bir reklam ürünüdür?",
+          "o": [
+            "Balon",
+            "Plastik yemek seti",
+            "Vinil branda",
+            "Bez çanta",
+            "Plastik çanta"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi on board reklam ürünüdür?",
+          "o": [
+            "Baş üstü saklama kutusu reklamı",
+            "One way vision",
+            "Dön kart",
+            "Kiosk",
+            "Wobbler"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Üreticiler, reklamla aşağıdakilerden hangisini amaçlamaz?",
+          "o": [
+            "Mal ve hizmetlerin fiyat değişikliklerini ve özel satış koşullarını duyurmak",
+            "Mal ve hizmetlerin kullanım biçimini öğretmek",
+            "Mal ve hizmetlerin satışını artırmak",
+            "Ürünlere ham madde sağlamak",
+            "Marka tercihi oluşturmak ya da sürdürmek"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi el ilanları reklam grafiğinin özellikleri arasında yer almaz?",
+          "o": [
+            "Ulusal ve yerel kuruluşlar tarafından kullanılan bir reklam aracıdır.",
+            "El ilanları daha çok kampanya dönemlerinde tercih edilir.",
+            "Tek bir ürünü ya da hizmeti anlatan çok sayfalı çalışmalardır.",
+            "Diğer reklam mecralarına göre daha ekonomiktir.",
+            "El ilanları genellikle tek yapraktan oluşur."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklamın toplumsal etkileri bağlamında insanlar üzerindeki etkilerinden biri değildir?",
+          "o": [
+            "Reklamın maliyeti ve fiyatı",
+            "Reklamın ikna etme gücü",
+            "Reklamın değer yargıları ve hayat tarzıyla ilişkisi",
+            "Reklamın dürüstlük ilkelerine uygunluğu",
+            "Reklamın estetik ve görsel boyutu"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi lightbox ürünleri arasında yer almaz?",
+          "o": [
+            "Kübik",
+            "Delikli",
+            "Tek taraflı",
+            "Ayaklı",
+            "Özel büküm"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Basın-Yayın İllüstrasyonları grubundadır?",
+          "o": [
+            "Teknik illüstrasyonlar",
+            "Tıbbi illüstrasyonlar",
+            "Çocuk Kitabı illüstrasyonları",
+            "Ürün illüstrasyonları",
+            "Adli illüstrasyonlar"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Reklam grafiğinde tipografik tasarımda yazı tipi seçimi neye bağlı değildir?",
+          "o": [
+            "Ürün/hizmet biçimi",
+            "Ürün/hizmet içeriği",
+            "Reklam stratejisi",
+            "Marka kimliği",
+            "Müşteri talebi"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi sosyal medyada kullanılan iyi çözümlenmiş reklam grafiklerine örnek verilemez?",
+          "o": [
+            "İllüstrasyon",
+            "Ajans",
+            "Manipülasyon",
+            "İnfografikler",
+            "Fotoğraf"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Göstergebilimi “gösterge, gösterilen ve yorumlayıcı” açısından ele alan düşünür aşağıdakilerden hangisidir?",
+          "o": [
+            "Jean Henri Lambert",
+            "Roland Barthes",
+            "Charles Sanders Peirce",
+            "Ferdinand de Saussure",
+            "John Locke"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Ambalaj tasarımında tüketicinin dikkatini çeken en önemli faktör aşağıdakilerden hangisidir?",
+          "o": [
+            "Sağlam",
+            "Maliyetli",
+            "Üç Boyutlu",
+            "Çok Renkli",
+            "Dikkat çekici"
+          ],
+          "a": 4
+        }
+      ]
+    },
+    {
+      "sinavId": 96,
+      "ad": "2024-2025 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Çağdaş göstergebilim anlayışının temeli aşağıdaki hangi düşünürün çalışmaları ışığında atılmıştır?",
+          "o": [
+            "Charles Sanders Peirce",
+            "Roland Barthes",
+            "John Locke",
+            "Ferdinand de Saussure",
+            "Jean Henri Lambert"
+          ],
+          "a": 0
+        },
+        {
+          "q": "İnsanlar, dikkat çekme ve sürdürmede rol oynayan çizgi filmlerden hoşlanırlar; animasyon, 'deterjan yiyen lekeler' gibi ……… bir fikre biçim verebilir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Somut",
+            "Karmaşık",
+            "Detaylı",
+            "Basit",
+            "Soyut"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam afişlerinden değildir?",
+          "o": [
+            "M isimli telefon operatör afişi",
+            "G isimli şarkıcı afişi",
+            "K isimli peynir afişi",
+            "X isimli ayakkabı afişi",
+            "Ş isimli mağaza afişi"
+          ],
+          "a": 1
+        },
+        {
+          "q": "………………….; bir mal veya hizmetin sürüleceği piyasa ve bu mal veya hizmetin alıcısı olanlar tarafından tanınması için yapılacak araştırmaların, amacının, giderlerinin ve mesaj türlerinin tasarlanması, bütçesi, ne zaman yapılacağı, hangi iletişim araçlarının kullanılacağı konusundaki kararlar ve reklam grafiklerinin hazırlanması gibi faaliyetlerin bütünüdür. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Ajans",
+            "İletişim",
+            "Layout",
+            "Reklam",
+            "Tasarım"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Çağdaş afiş tasarımın ilk temsilcisi aşağıdakilerden hangisi kabul edilir?",
+          "o": [
+            "John Gutenberg",
+            "Jules Chéret",
+            "Mengü Ertel",
+            "Yurdaer Altıntaş",
+            "Leonardo Da Vinci"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdaki açıkhava reklam ürünlerinden hangisi aynı anda 6 adet posterin gösterimine olanak sağlar?",
+          "o": [
+            "Parapet",
+            "Mesh",
+            "Raket",
+            "Kuleboard",
+            "Silindir"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ambalajın üretimi aşamasında dikkat edilecek hususlardan değildir?",
+          "o": [
+            "Tasarım ve üretim kalitesi",
+            "Üretim planlaması",
+            "Uygun üretim teknolojisi",
+            "Kalite ve değer algısı",
+            "Üretim maliyetleri"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağılardakilerden hangisi reklam grafiklerinde tipografik tasarımlarda dikkat edilmesi gereken temel kurallardan biri değildir?",
+          "o": [
+            "Doğru yazı tipi seçimi",
+            "Reklam grafiğinde ürün/hizmet bilgisini önem sırasına göre belirleme",
+            "Tipografik unsurların hiyerarşik düzeni",
+            "Hizmet/ürünü temsil eden bir yazı tipi tasarlama",
+            "Okunur, okutur yazı tipi uygulamalarından uzak durma"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdaki gerilla reklamcılık örneklerinden hangisi iç mekân reklam ürünlerine dâhildir?",
+          "o": [
+            "Dizi ya da filmlere entegre edilen marka",
+            "Akıllı tasarlanmış SMS veya E-posta",
+            "Zemin reklam uygulamaları",
+            "Marka hakkında yazılan bir kitap",
+            "Konusal içerikli haber olarak medyada yer almak"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kullanılış biçimlerine göre reklam başlıklarından biri değildir?",
+          "o": [
+            "Haber tarzı başlık",
+            "Sorulu başlık",
+            "Fayda başlığı",
+            "Tavsiye/davet başlığı",
+            "Muhalif başlık"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi lightbox özelliklerindendir?",
+          "o": [
+            "Yüzeyinde kâğıt yerine yüksek kalitedeki ışıklı kumaş kullanılır.",
+            "Delikli vinil olarak bilinir.",
+            "Seri şeklinde kullanıldığında, bir noktaya ulaşmak için yönlendirme bilgisi verebilir.",
+            "Elektrik direği reklamı, direk reklamı olarak da bilinir.",
+            "Reklamın bulunduğu yüzeyin yüksekliği 10 metreyi bulabilir."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ambalajın ortaya çıkış sebebidir?",
+          "o": [
+            "Ambalajın işlevi günün koşullarına göre şekillenmesi",
+            "Gıdaların istenilen gramajlarda çeşitli porsiyonlara ayrılması",
+            "İnsanlığın yiyeceklerini koruma, saklama ve taşıma ihtiyacı duyması",
+            "Doğadaki malzemelerin kullanışsız olması",
+            "İnsanoğlunun sürekli bir yerden bir yere göçmesi"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Animasyonlar bir şirketin reklam mesajını kısa ve öz bir şekilde izleyicinin izlerken zevk alacağı görsel/işitsel çekiciliğe sahip ……………………. verebilirler. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Görüntü formatında",
+            "Basitleştirilmiş bir formda",
+            "Ses formatında",
+            "Karmaşık bir yapıda",
+            "Sofistike bir yapıda"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi dijital reklam mecralarından biri değildir?",
+          "o": [
+            "E-postalar",
+            "Dijital billboardlar",
+            "Sosyal medya",
+            "El ilanları",
+            "Web sayfaları"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kırmızı ile ilişkilendirilmez?",
+          "o": [
+            "Tehlike",
+            "Gökyüzü",
+            "Ateş",
+            "Kan",
+            "Aşk"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklamın amaçlarından biri değildir?",
+          "o": [
+            "Mal ve hizmetlerin satılması",
+            "Kurumların topluma tanıtılması",
+            "Kişilerin topluma tanıtılması",
+            "Mal ve hizmetlerin topluma tanıtılması",
+            "Fikirlerin topluma tanıtılması"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam grafikleri açısından iletişim süreçlerinden biri değildir?",
+          "o": [
+            "Yazı",
+            "İllüstrasyon",
+            "Fotoğraf",
+            "Kurum",
+            "Resim"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Araştırma hangisi hem açık havada hem iç mekânda kullanılan grafik ürünleri arasında yer almaz?",
+          "o": [
+            "Tek yön görsel (One way vision)",
+            "Delikli branda (Mesh)",
+            "Raf kart",
+            "Raket pano (CLP)",
+            "Işıklı pano (Lightbox)"
+          ],
+          "a": 2
+        },
+        {
+          "q": "''Benzerleri arasında ürün ya da hizmetlerin ayırıcı özelliklerini öne çıkararak markanın bilinirliğini ve tercih edilirliğini artırmak, tüketicilerin ürün veya markayla ilgili tutum/tercihlerini değiştirmek, tüketicileri tanıtımı yapılan ürün ya da hizmeti denemeye yönlendirmek'' şeklinde tanımlanan reklam fonksiyonu aşağıdakilerden hangisidir?",
+          "o": [
+            "İkna Etme Fonksiyonu",
+            "Örgütleme Fonksiyonu",
+            "Bilgilendirme Fonksiyonu",
+            "Değer Katma Fonksiyonu",
+            "Hatırlatma Fonksiyonu"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam grafiklerinin amaçları arasında yer almaz?",
+          "o": [
+            "Hedef kitlede dikkat uyandırmak",
+            "Yeni bir ürün tanıtmak",
+            "Çok karmaşık olmak",
+            "Var olan bir ürüne dikkat çekmek",
+            "Bir olayı vurgulamak"
+          ],
+          "a": 2
+        }
+      ]
+    },
+    {
+      "sinavId": 88,
+      "ad": "2023-2024 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdaki promosyon ürünlerinden hangisi kırtasiye kategorisinde yer almaz?",
+          "o": [
+            "Kalem",
+            "Defter",
+            "Ajanda",
+            "Termos",
+            "Bloknot"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi dergi reklam mecrasının avantajlarından biri değildir?",
+          "o": [
+            "Baskı kalitesi düşüktür.",
+            "Hedef kitle seçme noktasında reklam verenlere önemli fırsatlar sunarlar.",
+            "Baskı kalitesi yüksektir.",
+            "Sayfa sayısı fazladır.",
+            "Arşivleme özelliğine sahiptir."
+          ],
+          "a": 0
+        },
+        {
+          "q": "………………; reklam grafiklerinde yer alan metinlerin biçimsel özelliklerini ele alan bir disiplindir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Metin",
+            "Taslak",
+            "Fotoğraf",
+            "Tipografi",
+            "Layout"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisinde reklamın işlevi doğru verilmiştir?",
+          "o": [
+            "Bilgi verme, hatırlanma, fiyat ayarlama, değer katma",
+            "Bilgi verme, ikna etme, değerlendirme",
+            "Hatırlanma, fiyat ayarlama, değer katma",
+            "Hatırlanma, değerlendirme, fiyat ayarlama",
+            "Bilgi verme, hatırlanma, ikna, değer katma"
+          ],
+          "a": 4
+        },
+        {
+          "q": "I. Bilgi aktarmak II. İkna etmek III. Dikkat çekmek Yukarıdakilerden hangisi ya da hangileri reklamlarda tipografinin amaçlarındandır?",
+          "o": [
+            "I ve II",
+            "Yalnız III",
+            "I, II ve III",
+            "Yalnız I",
+            "II ve III"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Ambalaj tasarımı yaparken kullandığımız kırmızı renk kişide hangi tat duygusunu uyandırır?",
+          "o": [
+            "Tatlı",
+            "Lezzet",
+            "Acı",
+            "Tuzlu",
+            "Ekşi"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ambalaj üzerinde kullanılan sembol ve simgelerin kullanım amaçlarından biri değildir?",
+          "o": [
+            "Geri dönüşüm",
+            "Uygunluk",
+            "Güvenlik",
+            "Dikkat çekme",
+            "İletişim"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdaki açık hava reklam ürünlerinden hangisi dijital reklam ürünüdür?",
+          "o": [
+            "Raket",
+            "Outdoor TV",
+            "Parapet",
+            "Pole banner",
+            "CLP"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Bugünkü anlamda ilk afiş sanatı aşağıdaki ülkelerden hangisinde görülmüştür?",
+          "o": [
+            "Çin",
+            "İtalya",
+            "Almanya",
+            "Fransa",
+            "Japonya"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam metninin anlatım biçimini ve dilini etkilemez?",
+          "o": [
+            "Hedef kitlenin özellikleri",
+            "Reklamın yayınlanacağı medya",
+            "Reklam metin türü",
+            "Ürün ya da hizmetin özellikleri",
+            "Reklam sloganı"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Reklamın toplum üzerindeki etkilerinin olumsuz sonuçları arasında hangisi yer almaz?",
+          "o": [
+            "Reklam, insanların metayı önemsemesine neden olur.",
+            "Reklam, insanları ürün özellikleriyle ilgili bilgilendirir.",
+            "Reklam, toplumsal değerleri ihmal etmeye sebep olur.",
+            "Reklam, insanları tüketim çılgınlığına sevk eder.",
+            "Reklam, insanları ihtiyacı olmayan ürünleri satın almaya yönlendirir."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Barthes'in göstergebilim için kullandığı terimlerden biri değildir?",
+          "o": [
+            "Düz anlam",
+            "İçerik",
+            "Biçim",
+            "Yan anlam",
+            "Index"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Bir şirket veya marka için tasarlanmış tipografi veya belirli bir biçimde yazılan sözcük ya da sözcüklerden oluşan kurum, ürün veya hizmet adına ne ad verilir?",
+          "o": [
+            "Logotype",
+            "Amblem",
+            "Logo",
+            "Slogan",
+            "Şekil"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi basılı reklam aracı değildir?",
+          "o": [
+            "El ilanı",
+            "Katalog",
+            "Broşür",
+            "Dergi",
+            "İnternet"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Çocuklara yönelik reklamlarda aşağıdakilerden hangisine dikkat etmek gerekli değildir?",
+          "o": [
+            "Çocuklar konusu aile ortamının dışında geçen reklamlarda yer almamalıdır.",
+            "Reklam verileri çocuklar üzerinde baskı yaratmamalı, yoksunluk hissi yaşatmamalıdır.",
+            "Çocukların fiziki ve psikolojik sağlığını olumsuz etkileyecek dil kullanılmamalıdır.",
+            "Çocuklar tarafından anlaşılamayacak anlatım biçimi, ifade tarzı kullanılmamalıdır.",
+            "Yanlış ya da çocukların anlamakta güçlük çekebileceği mesajlar verilmemelidir."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kullanılış biçimlerine göre reklam başlıklarından biri değildir?",
+          "o": [
+            "Fayda başlığı",
+            "Muhalif başlık",
+            "Sorulu başlık",
+            "Haber tarzı başlık",
+            "Tavsiye/davet başlığı"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Başarılı bir reklam grafiği aşağıdaki özelliklerden hangisine sahiptir?",
+          "o": [
+            "Sadece slogan içerir.",
+            "Metinle uyum içinde değildir.",
+            "Karşı tarafı olumlu anlamda ikna eder.",
+            "Sadece başlık içerir.",
+            "Sadece görsel içerir."
+          ],
+          "a": 2
+        },
+        {
+          "q": "“İnsanlar, dikkat çekme ve sürdürmede rol oynayan çizgi filmlerden hoşlanırlar; animasyon, ………….. aracılığıyla benzersiz kimlikler yaratır.” İfadesinde boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Cihazlar",
+            "Markalar",
+            "Kontrast renk armonileri",
+            "Müşteriler",
+            "Tamamlayıcı renk armonileri"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi geleneksel reklamlar arasında yer almaz?",
+          "o": [
+            "Sinema reklamları",
+            "Radyo reklamları",
+            "Hedefli reklam",
+            "Fuar alanları reklamları",
+            "Televizyon reklamları"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi nesnesine göre gösterge türlerinden biri değildir?",
+          "o": [
+            "İkon göstergeler",
+            "Görüntüsel göstergeler",
+            "Önerme göstergeler",
+            "Simge göstergeler",
+            "Belirti göstergeler"
+          ],
+          "a": 2
+        }
+      ]
+    },
+    {
+      "sinavId": 72,
+      "ad": "2023-2024 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi kurumsal kimlik çalışmaları grubunda yer almaz?",
+          "o": [
+            "Antetli",
+            "Bloknot",
+            "Dosya",
+            "Logo tasarımı",
+            "Diplomat zarf"
+          ],
+          "a": 1,
+          "u": 14
+        },
+        {
+          "q": "Kurum ve kuruluşlara kimlik kazandıran, sözcük özelliği göstermeyen, soyut ya da nesnel görüntülerle ya da harflerle oluşturulan simgelere ne ad verilir?",
+          "o": [
+            "Logotype",
+            "Kurum adı",
+            "Kurum rengi",
+            "Logo",
+            "Amblem"
+          ],
+          "a": 4,
+          "u": 7
+        },
+        {
+          "q": "Aşağıdaki açık hava reklam ürünlerinden hangisi dijital reklam ürünüdür?",
+          "o": [
+            "Outdoor TV",
+            "CLP",
+            "Pole banner",
+            "Raket",
+            "Parapet"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdaki gösterge türlerinden hangisi \"benzerlik\" ilişkisine göre yorumlanmaktadır?",
+          "o": [
+            "Önerme gösterge",
+            "Sav gösterge",
+            "Belirti gösterge",
+            "Simge gösterge",
+            "Görüntüsel gösterge"
+          ],
+          "a": 4,
+          "u": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi görsel anlatımsal aktarım araçlarından biri değildir?",
+          "o": [
+            "Leke",
+            "Sayı",
+            "Ses",
+            "Çizgi",
+            "İz"
+          ],
+          "a": 2,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi geleneksel reklamlar arasında yer almaz?",
+          "o": [
+            "Radyo reklamları",
+            "Sinema reklamları",
+            "Hedefli reklam",
+            "Televizyon reklamları",
+            "Fuar alanları reklamları"
+          ],
+          "a": 2,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ambalaj üzerinde kullanılan sembol ve simgelerin kullanım amaçlarından biri değildir?",
+          "o": [
+            "Güvenlik",
+            "Dikkat çekme",
+            "İletişim",
+            "Geri dönüşüm",
+            "Uygunluk"
+          ],
+          "a": 1,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdakilerden hangisi hareketli açık hava reklamlarındandır?",
+          "o": [
+            "Elektronik panolar",
+            "Durak panoları",
+            "Karton adamlar",
+            "Dövizler",
+            "Balonlar"
+          ],
+          "a": 4,
+          "u": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam fotoğrafında tasarımın önemi için yanlıştır?",
+          "o": [
+            "Amaç, satış yapmak olduğundan ürün ya da hizmetin fotoğrafı, tüketici üzerinde satın alma isteği uyandıracak şekilde tasarlanmalıdır.",
+            "Hedef kitle göz önünde bulundurularak yapılan tasarımlar anlatımı güçlendirerek hedef kitle ile iletişimi kolaylaştırır.",
+            "En etkileyici fotoğraflar, güçlü tasarımları nedeniyle anlatımı kuvvetli olanlardır.",
+            "Karmaşık bir anlatım biçimi ürünün, markanın ya da hizmetin mesajının hedef kitleye aktarılmasına engel olur.",
+            "Reklam fotoğrafı tasarımları belli kurallar çerçevesince yapılmalıdır."
+          ],
+          "a": 4,
+          "u": 10
+        },
+        {
+          "q": "1988 yılından itibaren İtalya Vogue dergisinin kapak fotoğraflarını çeken ve fotoğraflarını bir hikâyeyle ilişkilendirerek kurgu belgesel seriler oluşturan fotoğrafçı aşağıdakilerden hangisidir?",
+          "o": [
+            "Louis Daguerre",
+            "Bert Stern",
+            "Steven Meisel",
+            "Paul Outerbridge",
+            "Guy Bourdin"
+          ],
+          "a": 2,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kioskların kullanıldığı alanlardan biri değildir?",
+          "o": [
+            "Havaalanı",
+            "Hastane",
+            "Restoran",
+            "Uçak",
+            "Banka"
+          ],
+          "a": 3,
+          "u": 14
+        },
+        {
+          "q": "Reklamın diğer ögelerinin ortaya koyduğu fikri açıklayan, ürün ya da hizmetle ilgili genel bilgilendirmenin yapıldığı, mesajın net bir şekilde aktarıldığı reklam metni ögesi hangisidir?",
+          "o": [
+            "Logo",
+            "Gövde metni",
+            "Slogan",
+            "Başlık",
+            "Alt başlık"
+          ],
+          "a": 1,
+          "u": 3
+        },
+        {
+          "q": "Reklamlar nihayetinde .........................…………….. veya korumayı hedefleyen belirli amaçları yerine getirmek için yapılırlar. Cümlede boş bırakılan yerlere sırasıyla aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "sektörü araştırmayı, beklemeyi",
+            "satışı sağlamayı, artırmayı",
+            "sunumu hazırlamayı, sunmayı",
+            "satışı durdurmayı, dondurmayı",
+            "pazarı durdurmayı, bekletmeyi"
+          ],
+          "a": 1,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklamın temel fonksiyonlarındandır?",
+          "o": [
+            "Motivasyon",
+            "Maliyeti düşürme",
+            "İkna etme",
+            "Örgütleme",
+            "Yarar sağlama"
+          ],
+          "a": 2,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi gazete teşhir reklam grafiğinin özelliklerinden biridir?",
+          "o": [
+            "Güçlü ve etkili fotoğraflar kullanılmaktadır.",
+            "Reklam çalışmalarında daha çok tek renk kullanılır.",
+            "Tam sayfa yayımlanan reklamlardır.",
+            "Reklam tasarımında şerifli (tırnaklı) fontlar kullanılır.",
+            "Maliyeti yüksek reklamlardır."
+          ],
+          "a": 0,
+          "u": 6
+        },
+        {
+          "q": "Sosyal medyada yayınlanan reklam grafiklerinin tercih edilme nedeni nedir?",
+          "o": [
+            "Daha yüksek bütçeli olması",
+            "Ölçümlenmesinin zor olması",
+            "Daha yavaş etkileşime geçebilmesi",
+            "Daha çok insana daha hızlı ulaşabilmesi",
+            "Yayınlanma sürecinin uzun olması"
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "I. Bilgi aktarmak II. İkna etmek III. Dikkat çekmek Yukarıdakilerden hangisi ya da hangileri reklamlarda tipografinin amaçlarındandır?",
+          "o": [
+            "Yalnız III",
+            "Yalnız I",
+            "II ve III",
+            "I, II ve III",
+            "I ve II"
+          ],
+          "a": 3,
+          "u": 5
+        },
+        {
+          "q": "Metinlerin ve fikirlerin tasvir edilmesi ve açıklanması amacıyla uygulanan en yaygın resimleme türüdür. Tanımı aşağıdakilerden hangisine aittir?",
+          "o": [
+            "3B animasyon",
+            "2B animasyon",
+            "Akrilik",
+            "İllüstrasyon",
+            "Lavi"
+          ],
+          "a": 3,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tabela uygulama teknikleri arasında yer almaz?",
+          "o": [
+            "Bilgilendirici",
+            "Yuvarlak yüzey",
+            "Katmanlı",
+            "Işıklı",
+            "Kabartma harfler veya görseller"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi yaratıcılığın özelliklerinden biri değildir?",
+          "o": [
+            "Kararlılık (resolvity)",
+            "Esneklik (flexibility )",
+            "Akıcılık (fluency)",
+            "Zenginleştirme (elaboration)",
+            "Orijinallik (originality)"
+          ],
+          "a": 0,
+          "u": 8
+        }
+      ]
+    },
+    {
+      "sinavId": 70,
+      "ad": "2023-2024 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Belirli ve göreceli dar kapsamlı bir konuya ilişkin, derlenmiş bilgi parçasına ne ad verilir?",
+          "o": [
+            "Bilim",
+            "İnformel Eğitim",
+            "İdea",
+            "Teknoloji",
+            "Enformasyon"
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam etiği bağlamında çokça eleştirilen konulardan biri değildir?",
+          "o": [
+            "Reklamda yanıltıcı bilgilere başvurma",
+            "Bilinçaltına hitap etme",
+            "Tüketimi ve lüksü özendirme",
+            "İstihdama katkı sağlama",
+            "Cinsel çağrışımlar kullanma"
+          ],
+          "a": 3,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi internet reklamcılığının avantajları arasında yer almaz?",
+          "o": [
+            "Yüksek bütçeli olması",
+            "Bütçeye göre yapılabilmesi",
+            "Hedefe hızlı ulaşması",
+            "Hızlı analiz edilebilmesi",
+            "Ulaşım kısıtlamasının olmaması"
+          ],
+          "a": 0,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisinde geleneksel reklam mecraları doğru sıralanmıştır?",
+          "o": [
+            "Dijital Billboard-Broşür-Gazete",
+            "Televizyon-Bilgisayar-El İlanları",
+            "Dergi-Gazete-Radyo",
+            "Tablet-TV-Katalog",
+            "Akıllı Telefonlar-Gazete-Dergi"
+          ],
+          "a": 2,
+          "u": 6
+        },
+        {
+          "q": "Aşağıdakilerden hangisi animasyonun reklam ile kurduğu farklı türdeki ilişkilerden biri değildir?",
+          "o": [
+            "Tetrad",
+            "Sponsorlu",
+            "Endüstriyel",
+            "İkna edici",
+            "Bilgilendirici"
+          ],
+          "a": 0,
+          "u": 9
+        },
+        {
+          "q": "Herkesin kolayca anlayabileceği şekilde oluşturulan, içerisinde teknik bilgi bulunmayan, son derece yalın bir şekilde ürün ya da hizmetle ilgili açıklama yapmaya veya bilgi vermeye yönelik oluşturulan reklam metin türü aşağıdakilerden hangisidir?",
+          "o": [
+            "Anlatı metni",
+            "Nedensellik metni",
+            "Açıklayıcı/Bilgilendirici metin",
+            "Bilimsel/Teknik metin",
+            "Soru soran metin"
+          ],
+          "a": 2,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdaki promosyon ürünlerinden hangisi kırtasiye kategorisinde yer almaz?",
+          "o": [
+            "Termos",
+            "Defter",
+            "Ajanda",
+            "Bloknot",
+            "Kalem"
+          ],
+          "a": 0,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarım ögelerinden biri değildir?",
+          "o": [
+            "Leke (Değer)",
+            "Form (Biçim)",
+            "Nokta",
+            "Üçgen",
+            "Çizgi"
+          ],
+          "a": 3,
+          "u": 11
+        },
+        {
+          "q": "Fotoğraflarında modelini göz kamaştırıcı bir şekilde ön plana çıkaran bir fon aydınlatması, yumuşak netliğe sahip mercekler, etkileyici ışık-gölge düzenlemeleri ve abartılı set tasarımları kullanarak kameranın karşısına geçirdiği kadınları teatral bir güzellikle fotoğraflayan reklam fotoğrafları ile sanatı buluşturan fotoğrafçı aşağıdakilerden hangisidir?",
+          "o": [
+            "Louis Daguerre",
+            "Adolph De Meyer",
+            "Thomas Barratt",
+            "David Ogilvy",
+            "Alfred Stieglitz"
+          ],
+          "a": 1,
+          "u": 10
+        },
+        {
+          "q": "Outdoor TV ile ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "Video gösterimi, slayt geçişleri gösterilebilir.",
+            "Hareketli gösterim olanağı sunar.",
+            "Dış hava koşullarına uyum sağlayabilen bir klima sistemi kullanılmaktadır.",
+            "İzleyicinin dikkati kısa bir süre ekranda kalabilir.",
+            "Genellikle koruma camlı ve metal kasalıdır."
+          ],
+          "a": 3,
+          "u": 13
+        },
+        {
+          "q": "Üreticiler reklamla aşağıdakilerden hangisini amaçlamaz?",
+          "o": [
+            "Mal ve hizmetlerin satışını artırmak",
+            "Mal ve hizmetlerin fiyat değişikliklerini ve özel satış koşullarını duyurmak",
+            "Mal ve hizmetlerin kullanım biçimini öğretmek",
+            "Marka tercihi oluşturmak ya da sürdürmek",
+            "Ürünlere ham madde sağlamak"
+          ],
+          "a": 4,
+          "u": 1
+        },
+        {
+          "q": "Outdoor TV reklamlarının hedef kitleyi etkilemek için taşıması gereken özellikler arasında yer almaz?",
+          "o": [
+            "Reklam vaadi, gösterimin sonunda tam ve açık olarak kanıtlanabilmelidir.",
+            "Gerçeği yansıtma zorunluluğu yoktur.",
+            "İzlenmesi ve anlaşılması kolay olmalıdır.",
+            "Ana fikir, gösterim biçimi ile anlatılabilir olmalıdır.",
+            "Merak uyandırıcı olmalıdır."
+          ],
+          "a": 1,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi nesnesine göre gösterge türlerinden biri değildir?",
+          "o": [
+            "Önerme göstergeler",
+            "Belirti göstergeler",
+            "İkon göstergeler",
+            "Görüntüsel göstergeler",
+            "Simge göstergeler"
+          ],
+          "a": 0,
+          "u": 4
+        },
+        {
+          "q": "Reklam kelimesi dilimize hangi yabancı dilden geçmiştir?",
+          "o": [
+            "Hintce",
+            "Fransızca",
+            "İtalyanca",
+            "Almanca",
+            "İngilizce"
+          ],
+          "a": 1,
+          "u": 12
+        },
+        {
+          "q": "Bir şirket veya marka için tasarlanmış tipografi veya belirli bir biçimde yazılan sözcük ya da sözcüklerden oluşan kurum, ürün veya hizmet adına ne ad verilir?",
+          "o": [
+            "Logo",
+            "Logotype",
+            "Slogan",
+            "Amblem",
+            "Şekil"
+          ],
+          "a": 1,
+          "u": 7
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam illüstrasyonları grubundadır?",
+          "o": [
+            "Adli illüstrasyonlar",
+            "Teknik illüstrasyonlar",
+            "Tıbbi illüstrasyonlar",
+            "Çocuk kitabı illüstrasyonları",
+            "Ürün illüstrasyonları"
+          ],
+          "a": 4,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Taylor'a göre insan yaratıcılığının beş aşamasından biri değildir?",
+          "o": [
+            "Yaratıcı",
+            "Buluşçu",
+            "Üretici",
+            "Gelişmeci",
+            "Yetenekçi"
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "Grafik tasarımcı ambalaj tasarımı yaparken aşağıdakilerden hangisine dikkat etmelidir?",
+          "o": [
+            "Formuna",
+            "Üretimine",
+            "Estetiğine",
+            "Malzemesine",
+            "Taşınmasına"
+          ],
+          "a": 2,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdakilerden hangisi fotoğrafın reklam dünyasında çokça tercih edilmesinin nedenlerinden biri değildir?",
+          "o": [
+            "Gerçekliği, gerçeği temsil etmesi",
+            "Çabuk ve kolay okunurluğu",
+            "Ürün veya hizmeti satın almaya değecek çekicilikte yansıtılması",
+            "Maliyetinin ucuz olması",
+            "Hedef kitle ile çok hızlı iletişime geçmesi"
+          ],
+          "a": 3,
+          "u": 10
+        },
+        {
+          "q": "Doğru yazı tipi seçiminin reklam grafiklerinde uygulanan tipografik tasarımdaki önemi aşağıdakilerden hangisi olamaz?",
+          "o": [
+            "Hizmet/ürün kimliğini yansıtmak",
+            "Yaratıcı fikre görsel destek sağlamak",
+            "Hizmet/ürün talebini artırmak",
+            "Alıcıya/bakan kişiye hedeflenen duygu aktarımını sağlamak",
+            "Reklam stratejisine hizmet etmek"
+          ],
+          "a": 2,
+          "u": 5
+        }
+      ]
+    },
+    {
+      "sinavId": 67,
+      "ad": "2022-2023 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Tasarım sürecinde “gazete tasarımları” aşağıdakilerden hangi taslakların gelişim evreleri içerisinde yer alır?",
+          "o": [
+            "Mondrian taslaklar",
+            "Sirk taslaklar",
+            "Rebus taslaklar",
+            "Silüet taslaklar",
+            "İmge ağırlıklı taslaklar"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarım ilkelerinden biri değildir?",
+          "o": [
+            "Boşluk",
+            "Ritim",
+            "Hiyerarşi",
+            "Denge",
+            "Uyumsuzluk"
+          ],
+          "a": 4,
+          "u": 11
+        },
+        {
+          "q": "Reklam mesajı oluşturulurken yeşil renge İslam ülkelerinde kutsaliyet atfedildiğinin, beyazın Hong Kong'da ölüm ve cenazeyi çağrıştırdığının, siyahın Anadolu'da yası temsil ettiğinin dikkate alınması aşağıdakilerden hangisiyle açıklanabilir?",
+          "o": [
+            "Reklamın etik ilkeleriyle",
+            "Reklamın uluslar arası boyutuyla",
+            "Reklam ve kültür ilişkisiyle",
+            "Reklam ve renk diliyle",
+            "Reklam ve tasarım ilişkisiyle"
+          ],
+          "a": 2,
+          "u": 2
+        },
+        {
+          "q": "“Kendisinden başka bir şeyin yerini tutan, daha doğrusu, kendi dışında bir şey gösteren” olarak tanımlanabilen kavram aşağıdakilerin hangisidir?",
+          "o": [
+            "Göstergebilim",
+            "Gösterge",
+            "Gösteren",
+            "Gösterilen",
+            "Anlam"
+          ],
+          "a": 1,
+          "u": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi gazete teşhir reklam grafiğinin özelliklerinden biridir?",
+          "o": [
+            "Güçlü ve etkili fotoğraflar kullanılmaktadır.",
+            "Reklam çalışmalarında daha çok tek renk kullanılır.",
+            "Tam sayfa yayımlanan reklamlardır.",
+            "Maliyeti yüksek reklamlardır.",
+            "Reklam tasarımında şerifli (tırnaklı) fontlar kullanılır."
+          ],
+          "a": 0,
+          "u": 6
+        },
+        {
+          "q": "1988 yılından itibaren İtalya Vogue dergisinin kapak fotoğraflarını çeken ve fotoğraflarını bir hikâyeyle ilişkilendirerek kurgu belgesel seriler oluşturan fotoğrafçı aşağıdakilerden hangisidir?",
+          "o": [
+            "Bert Stern",
+            "Steven Meisel",
+            "Guy Bourdin",
+            "Louis Daguerre",
+            "Paul Outerbridge"
+          ],
+          "a": 1,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi illüstrasyonun reklama katkılarından biri değildir?",
+          "o": [
+            "İzleyicinin bakışını yakalaması",
+            "Gözü yönlendirmesi",
+            "İçeriğin hızlı ve doğru biçimde algılanabilmesini sağlaması",
+            "Alıcıyı yakalayan çağrışımları kullanması",
+            "Üretiminin uzun zaman alması"
+          ],
+          "a": 4,
+          "u": 9
+        },
+        {
+          "q": "Üreticiler reklamla aşağıdakilerden hangisini amaçlamaz?",
+          "o": [
+            "Mal ve hizmetlerin kullanım biçimini öğretmek",
+            "Mal ve hizmetlerin fiyat değişikliklerini ve özel satış koşullarını duyurmak",
+            "Marka tercihi oluşturmak ya da sürdürmek",
+            "Mal ve hizmetlerin satışını artırmak",
+            "Ürünlere ham madde sağlamak"
+          ],
+          "a": 4,
+          "u": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam metninde ürün/hizmet özelliklerini ifade edebilmek için cevabı aranacak sorulardan değildir?",
+          "o": [
+            "Hedef kitleye sunulan ürün ya da hizmet nedir?",
+            "Ürün ya da hizmetle ilgili ne anlatılacak?",
+            "İnsanlar bu ürün ya da hizmeti neden almalı?",
+            "Ürün ya da hizmetin üretim maliyeti ne kadar?",
+            "İnsanlar ürün ya da hizmeti alırken neden bu marka veya firmayı tercih etmeli?"
+          ],
+          "a": 3,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi basılı araçlar için oluşturulmuş reklam metninin yayınına uygun değildir?",
+          "o": [
+            "Gazete",
+            "Radyo",
+            "Dergi",
+            "Billboard",
+            "Broşür"
+          ],
+          "a": 1,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tüketiciyi etkilemek için reklamlarda kullanılan uyarıcılar arasında yer almaz?",
+          "o": [
+            "Duygusal",
+            "Tehdit edici ve korku verici",
+            "Ussal",
+            "Dokunsal",
+            "Güldürü unsuru taşıyan"
+          ],
+          "a": 3,
+          "u": 14
+        },
+        {
+          "q": "I. Bilgi aktarma II. İkna etme III. Dikkat çekme Yukarıdakilerden hangisi ya da hangileri reklamlarda tipografinin temel amaçları arasında yer alır?",
+          "o": [
+            "Yalnız I",
+            "Yalnız II",
+            "I ve II",
+            "II ve III",
+            "I, II ve III"
+          ],
+          "a": 4,
+          "u": 5
+        },
+        {
+          "q": "Vinil branda olarak bilinen açıkhava reklam ürünü aşağıdakilerden hangisidir?",
+          "o": [
+            "Mesh",
+            "Pole banner",
+            "Lightbox",
+            "Megaboard",
+            "Kuleboard"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Üreticiler açısından reklamın toplumsal etkisi aşağıdakilerden hangisiyle ilgili değildir?",
+          "o": [
+            "Tatmin",
+            "Üretim",
+            "Tüketim talebi",
+            "İstihdam",
+            "Markalaşma"
+          ],
+          "a": 0,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi dijital reklam mecralarından biri değildir?",
+          "o": [
+            "El ilanları",
+            "E-postalar",
+            "Sosyal medya",
+            "Web sayfaları",
+            "Dijital billboardlar"
+          ],
+          "a": 0,
+          "u": 6
+        },
+        {
+          "q": "Çatı panoları, afişler, tabelalar, karton adamlar hangi reklam ortamında yer alır?",
+          "o": [
+            "İnternet",
+            "Dergi",
+            "Fuar",
+            "Televizyon",
+            "Açıkhava reklamları"
+          ],
+          "a": 4,
+          "u": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tabela uygulama teknikleri arasında yer almaz?",
+          "o": [
+            "Kabartma harfler veya görseller",
+            "Yuvarlak yüzey",
+            "Işıklı",
+            "Katmanlı",
+            "Bilgilendirici"
+          ],
+          "a": 4,
+          "u": 13
+        },
+        {
+          "q": "Bir kurumun her yerde aynı bir isim, renk ve aynı yazı karakteri kullandığı yani tek bir görsel kimlik oluşturduğu kurumsal kimlik türüne ne ad verilir?",
+          "o": [
+            "Onaylanmış kimlik",
+            "Tekli / monolitik kimlik",
+            "Desteklenmiş kimlik",
+            "Görsel kimlik",
+            "Değiştirilmiş kimlik"
+          ],
+          "a": 1,
+          "u": 7
+        },
+        {
+          "q": "Başarılı bir reklam grafiği aşağıdaki özelliklerden hangisine sahiptir?",
+          "o": [
+            "Metinle uyum içinde değildir.",
+            "Karşı tarafı olumlu anlamda ikna eder.",
+            "Sadece görsel içerir.",
+            "Sadece başlık içerir.",
+            "Sadece slogan içerir."
+          ],
+          "a": 1,
+          "u": 12
+        },
+        {
+          "q": "Tasarım sürecinde “dergiler” taslakların gelişim evrelerinden hangisinin içerisinde yer alır?",
+          "o": [
+            "Harf biçimli taslaklar",
+            "Tipografik taslaklar",
+            "Metin ağırlıklı taslaklar",
+            "İmge ağırlıklı taslaklar",
+            "Çerçeveli taslaklar"
+          ],
+          "a": 3,
+          "u": 8
+        }
+      ]
+    },
+    {
+      "sinavId": 56,
+      "ad": "2022-2023 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi reklam illüstrasyonları grubundadır?",
+          "o": [
+            "Çocuk kitabı illüstrasyonları",
+            "Teknik illüstrasyonlar",
+            "Tıbbi illüstrasyonlar",
+            "Adli illüstrasyonlar",
+            "Ürün illüstrasyonları"
+          ],
+          "a": 4,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarım ögelerinden biri değildir?",
+          "o": [
+            "Çizgi",
+            "Nokta",
+            "Leke (Değer)",
+            "Üçgen",
+            "Form (Biçim)"
+          ],
+          "a": 3,
+          "u": 11
+        },
+        {
+          "q": "“İnsanlar, dikkat çekme ve sürdürmede rol oynayan çizgi filmlerden hoşlanırlar; animasyon, ………….. aracılığıyla benzersiz kimlikler yaratır.” İfadesinde boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Müşteriler",
+            "Cihazlar",
+            "Markalar",
+            "Kontrast renk armonileri",
+            "Tamamlayıcı renk armonileri"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi reklam grafiklerinin amaçları arasında yer almaz?",
+          "o": [
+            "Yeni bir ürün tanıtmak",
+            "Var olan bir ürüne dikkat çekmek",
+            "Bir olayı vurgulamak",
+            "Hedef kitlede dikkat uyandırmak",
+            "Çok karmaşık olmak"
+          ],
+          "a": 4,
+          "u": 12
+        },
+        {
+          "q": "Reklam, özel yaşamı bölüp taciz eden bir uygulama olarak görüldüğünden reklamlar dikkat çekici bir özür dileme havasındadır. Belirgin bir romantizm, güzel bir manzara, hoşa gidecek bir hikâye, şiir, sükûnet, dinginlik reklamların en önemli parçalarını teşkil eder. Yukarıda özellikleri belirtilen reklam anlayışı, hangi ülkeye aittir?",
+          "o": [
+            "İngiltere",
+            "Fransa",
+            "Amerika Birleşik Devletleri",
+            "Japonya",
+            "Almanya"
+          ],
+          "a": 3,
+          "u": 2
+        },
+        {
+          "q": "Göstergebilimci Roland Barthes, fotoğrafik mesajla ilgili “Image, Music, Text” adlı eserinde fotoğrafın çeşitli anlam düzeylerinde anlaşıldığını belirtmiştir. Roland Barthes’ın bu ifadesinde vurgulamak istediği düşünce aşağıdakilerden hangisidir?",
+          "o": [
+            "Fotoğrafın tasarımın olmazsa olmazı olduğunu vurgulamaktadır.",
+            "Barthes fotoğrafın ikincil düzeyde bir yan anlam taşıdığını ifade etmektedir.",
+            "Fotoğrafın kullanım alanlarına göre sınıflandırılması gerektiğini vurgulamaktadır.",
+            "Fotoğrafın anlatım gücünün kullanılan tekniğe bağlı olduğunu ifade etmektedir.",
+            "Fotoğrafı gerçeklik ve reklamla ilişkilendirmiştir."
+          ],
+          "a": 1,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi marka/logonun görevlerinden biri değildir?",
+          "o": [
+            "Marka bağlılığını artırır.",
+            "Tat duygusu artırır.",
+            "Firma adını tanımlar.",
+            "Ürün bilgisi verir.",
+            "İmza niteliği taşır."
+          ],
+          "a": 1,
+          "u": 11
+        },
+        {
+          "q": "Açık hava reklamcılığıyla ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "Açık hava reklamcılığı İngilizcede Ev dışı (Out-of-home, OOH) kelimesinden türetilmiştir.",
+            "Açık hava reklamcılığının türüne kullanım yeri, boyutu, maliyete göre karar verilir.",
+            "Açık hava reklam ürünlerinin sergilendiği yerin reklamveren tarafından kullanımı ücretsizdir.",
+            "Açık hava reklam ürünlerinin dağıtımını sadece belediyeler sağlar.",
+            "Açık hava reklam alanlarının kullanımı sürelidir."
+          ],
+          "a": 3,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi açık hava reklam ürünlerinde kullanılan malzemelerden biri değildir?",
+          "o": [
+            "Çerçeve",
+            "Fotomontaj",
+            "Posterleri koruyan dış kasa sistemi",
+            "Işıklandırma sistemi",
+            "Hareketli kağıtların dönüşünü sağlayan afiş değiştirici sistem"
+          ],
+          "a": 1,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisinde reklam mecrası kavramı doğru tanımlanmıştır?",
+          "o": [
+            "Görsel ve yazılı unsurların düzenlendiği yerdir.",
+            "Gazetelerde sürekli sabit bir sayfada yer alan bölümdür.",
+            "Reklamların yer alabildiği ve sergilendiği bütün alanlara mecra denir.",
+            "Tek bir duyu organımıza hitap eden yerdir.",
+            "Özel sektörde firma ve kuruluşların reklamlarını yayımladığı yerdir."
+          ],
+          "a": 2,
+          "u": 6
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “taslak türlerinden” biri değildir?",
+          "o": [
+            "Serbest taslaklar",
+            "Sirk taslaklar",
+            "Harf biçimli taslaklar",
+            "Rebus taslaklar",
+            "Çerçeveli taslaklar"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "Taylor’a göre “taslaklar” insan yaratıcılığının beş aşamasından hangisi içinde yer alır?",
+          "o": [
+            "Yaratıcı",
+            "Yenilikçi",
+            "Buluşçu",
+            "Dışavurumcu",
+            "Üretici"
+          ],
+          "a": 3,
+          "u": 8
+        },
+        {
+          "q": "Tipografinin reklam grafiğindeki yeri ve önemini aşağıdakilerden hangisi en doğru şekilde aktarmaktadır?",
+          "o": [
+            "Tipografik uygulamalar, reklam grafiklerinde müşteriyi yanlış yönlendirebilir.",
+            "Tipografik uygulamalar, müşteriyi bilgilendirme, ikna etmek, dikkat çekmek amaçlı reklam grafiklerinde kullanılan diğer resim, fotoğraf gibi unsurlarla uyumlu kullanılması gereken bir unsurdur.",
+            "Tipografi geçmişten günümüze değişen uygulamaları ile reklam grafiğinde farklı şekillerde ele alınabilir.",
+            "Reklam grafiklerinde tipografik uygulamalar şok edici yönleriyle fikirde yaratıcı etkilenimler sağlayabilir.",
+            "Tipografik uygulamaların reklam grafiğinde önemi ve yeri reklam stratejisine göre değişen bir çizgidedir."
+          ],
+          "a": 4,
+          "u": 5
+        },
+        {
+          "q": "Aşağıdakilerden hangisi internet ve sosyal medyada yer alan reklam grafiklerinde kullanılan görsel iletişim unsurlarından biri değildir?",
+          "o": [
+            "Uyum",
+            "Vurgu",
+            "Bütünlük",
+            "Görsel hiyerarşi",
+            "Reklam grafiği"
+          ],
+          "a": 4,
+          "u": 12
+        },
+        {
+          "q": "Herkesin kolayca anlayabileceği şekilde oluşturulan, içerisinde teknik bilgi bulunmayan, son derece yalın bir şekilde ürün ya da hizmetle ilgili açıklama yapmaya veya bilgi vermeye yönelik oluşturulan reklam metin türü aşağıdakilerden hangisidir?",
+          "o": [
+            "Bilimsel/Teknik metin",
+            "Açıklayıcı/Bilgilendirici metin",
+            "Nedensellik metni",
+            "Soru soran metin",
+            "Anlatı metni"
+          ],
+          "a": 1,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tarihsel süreç içerisinde en eski reklam türüne örnek gösterilebilir?",
+          "o": [
+            "Piktografik resimler",
+            "Gazete reklamları",
+            "Sokak tellalları",
+            "El ilanları",
+            "Afişler"
+          ],
+          "a": 2,
+          "u": 1
+        },
+        {
+          "q": "Kurum ve kuruluşlara kimlik kazandıran, sözcük özelliği göstermeyen, soyut ya da nesnel görüntülerle ya da harflerle oluşturulan simgelere ne ad verilir?",
+          "o": [
+            "Amblem",
+            "Logo",
+            "Logotype",
+            "Kurum adı",
+            "Kurum rengi"
+          ],
+          "a": 0,
+          "u": 7
+        },
+        {
+          "q": "Aşağıdakilerden hangisi göstergebilim alanında çalışmamıştır?",
+          "o": [
+            "Aristoteles",
+            "John Locke",
+            "Jean Henri Lambert",
+            "Ferdinand de Saussure",
+            "David Hume"
+          ],
+          "a": 4,
+          "u": 4
+        },
+        {
+          "q": "Aşağıdaki promosyon ürünlerinden hangisi sürdürülebilir bir reklam ürünüdür?",
+          "o": [
+            "Balon",
+            "Bez çanta",
+            "Plastik çanta",
+            "Vinil branda",
+            "Plastik yemek seti"
+          ],
+          "a": 1,
+          "u": 14
+        },
+        {
+          "q": "Maslow’un Gereksinimler Hiyerarşisi sıralaması aşağıdakilerden hangisinde doğru olarak verilmiştir?",
+          "o": [
+            "Güvenlik gereksinimi, üyelik ve sevgi, fizyolojik gereksinmeler, saygınlık ve öz gerçekleştirme",
+            "Üyelik ve sevgi, saygınlık ve öz gerçekleştirme, fizyolojik gereksinmeler, güvenlik gereksinimi",
+            "Fizyolojik gereksinmeler, güvenlik gereksinimi, üyelik ve sevgi, saygınlık ve öz gerçekleştirme",
+            "Güvenlik gereksinimi, fizyolojik gereksinmeler, saygınlık ve öz gerçekleştirme, üyelik ve sevgi",
+            "Saygınlık ve öz gerçekleştirme, fizyolojik gereksinmeler, üyelik ve sevgi, güvenlik gereksinimi"
+          ],
+          "a": 2,
+          "u": 14
+        }
+      ]
+    }
+  ],
+  "Tasarım Okumaları": [
+    {
+      "sinavId": 133,
+      "ad": "2025-2026 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "“Hem kendimizin hem de başkalarının deneyimleri üzerinde düşünme yoludur.” Tanımı aşağıda verilen seçeneklerden hangisine aittir?",
+          "o": [
+            "Yansıtıcı Düşünme",
+            "Bütüncül Düşünme",
+            "Metabilişsel Düşünme",
+            "Analitik Düşünme",
+            "Eleştirel Düşünme"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarım temelli araştırmaların daha az kullanıldığı alanlardan biridir?",
+          "o": [
+            "Sanat",
+            "Eğitim bilimleri",
+            "Grafik tasarımı",
+            "Mimari",
+            "Ziraat"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Platon’un sanat felsefesi aşağıdakilerden hangisidir?",
+          "o": [
+            "Sanat, Tanrı mesleğidir.",
+            "Sanat, Yunan halkı için vazgeçilmezdir.",
+            "Sanatçı Tanrı'nın yaratıklarının kopyasını yapar.",
+            "Mimesis önemli bir sanatır.",
+            "Sanat, işe yarar bir meslektir."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Sanayi Devrimi tasarım estetiği açısından nasıl bir etkide bulunmuştur?",
+          "o": [
+            "Daha fazla mal üretilmiştir.",
+            "Daha estetik ürün elde edilmiştir.",
+            "Kalitesiz ürün ve tasarımlar elde edilmiştir.",
+            "Tüm ürünler aynı tasarım ve estetiğe sahiptir.",
+            "Daha kaliteli ürün çıktısı alınmıştır."
+          ],
+          "a": 3
+        },
+        {
+          "q": "Sürdürülebilir tasarım fikri, çevre hareketi ne zaman ortaya çıkmıştır?",
+          "o": [
+            "1980",
+            "1890",
+            "1970",
+            "1924",
+            "1960"
+          ],
+          "a": 4
+        },
+        {
+          "q": "İnovasyon sürecinde tasarıma verilen önemin artmasındaki neden aşağıdakilerden hangisidir?",
+          "o": [
+            "Gelenekselci bir anlayışın benimsenmesi",
+            "Müşteri odaklı olunması",
+            "Kâr odaklı olunması",
+            "Kalıplaşmış fikirler üretilmesi",
+            "İcat elde etme kaygısı"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Hangisi tekstil çalışmaları konusunda önde gelen bir Bauhaus mezunudur?",
+          "o": [
+            "MarianneBrandt",
+            "Wilhelm Wagenfeld",
+            "Josef Albers",
+            "Josef Hartvig",
+            "AnniAlbers"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi etkileşim tasarımının 5 boyutundan biri değildir?",
+          "o": [
+            "Renk",
+            "Fiziksel nesneler veya uzay/mekân",
+            "Kelimeler",
+            "Görsel Temsiller",
+            "Zaman"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Vurgu en çok hangi tasarım ilkesiyle ilgilidir?",
+          "o": [
+            "Uyum",
+            "Tekrar",
+            "Zıtlık",
+            "Denge",
+            "Armoni"
+          ],
+          "a": 2
+        },
+        {
+          "q": "“Çevre etkileşimiyle kazanılan bu kalıcı izler bir diğer ifadeyle de ……………………..., bireyde “anlamlandırma” eyleminin gerçekleşmesinde belirleyici olmaktadır.” Cümlede noktalı yere aşağıdakilerden hangisinin gelmesi uygundur?",
+          "o": [
+            "Önyargılar",
+            "Önseziler",
+            "İzlenimler",
+            "Deneyimler",
+            "İmalar"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Alexandr Rodchenko’nun sanat ve tasarım anlayışında yer almaz?",
+          "o": [
+            "Konstrüksiyon malzemenin işlevselleşmesi için modern bir gerekliliktir.",
+            "Sanat matematiğin bir koludur",
+            "Sanat güzelin yansıtılmasıdır.",
+            "Sanatın yaşam içerisinde belirli bir işlevi olmalıdır.",
+            "Çağın sanatı farkındalık, deneyim, amaç, konstrüksiyon, teknik ve matematiktir."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Tasvir edici yöntem olarak da bilinen Altı Şapka yönteminde yaratıcı ve yeni fikirlerin ortaya konmasını teşvik eden şapka rengidir?",
+          "o": [
+            "Mavi Şapka",
+            "Sarı Şapka",
+            "Kırmızı Şapka",
+            "Beyaz Şapka",
+            "Yeşil Şapka"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarım temelli araştırmaların zorluklarından biridir?",
+          "o": [
+            "Araştırmanın dış dünyadan soyut bir ortamda gerçekleşmesi",
+            "Araştırmanın çok uzun sürmesi",
+            "Veri kaynaklarının çok sınırlı olması",
+            "Araştırmada hiçbir değişken olmaması",
+            "Araştırmanın çok kısa sürmesi"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Ünlü \"Wasilly\" koltuğunu tasarlayan kimdir?",
+          "o": [
+            "Marcel Breuer",
+            "Hannes Meyer",
+            "Josef Albers",
+            "Peter Keller",
+            "Ludwig van der Rohe"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Tasarım ilkeleriyle ilgili hangisinde doğru verilmiştir?",
+          "o": [
+            "ritim, oran, hareket, tekrar, denge, uyum, çizgi, vurgu",
+            "vurgu, değer, tekrar, ritim, denge, oran, hareket, kontrast",
+            "ritim, vurgu, oran, hareket, şekil, tekrar, denge, zıtlık",
+            "vurgu, oran, hareket, uyum, tekrar, ritim, denge, kontrast",
+            "hareket, uyum, renk, oran, tekrar, zıtlık, ritim, denge"
+          ],
+          "a": 3
+        },
+        {
+          "q": "İngilizce de HCI kısaltmasıyla kullanılan “Human- Computer Interaction” ifadesi hangi çalışma alanını ifade eder?",
+          "o": [
+            "İnsan bilgisayar etkileşimi",
+            "Bilgisayar destekli tasarım",
+            "Bilgisayar tabanlı arayüz tasarımı",
+            "İnternet ve bilgisayar teknolojileri",
+            "Görsel iletişim Tasarımı"
+          ],
+          "a": 0
+        },
+        {
+          "q": "“Üretici ve kullanıcının karşılıklı yararı için, ürün, alet, nesne ve hizmetlerin işlevi, değeri ve görünümünü optimize eden profesyonel hizmet” olarak tanımlanan disiplin aşağıdakilerden hangisidir?",
+          "o": [
+            "Gastronomi",
+            "İllüstrasyon",
+            "Mimari Tasarım",
+            "Endüstriyel Tasarım",
+            "Animasyon"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Deneysel tasarım için aşağıdaki ifadelerden hangisi yanlıştır?",
+          "o": [
+            "Tasarımlar sadece üç boyutlu değil, aynı zamanda iki boyutlu ortamlar için de yapılmaktadır.",
+            "Sadece yapay zeka ve derin öğrenme teknolojilerinin desteklediği bir çalışma sahasıdır.",
+            "Tasarımcılara farklı gerçeklik türleri üzerinde çalışma yapma olanağı sağlar.",
+            "Fiziksel dünyanın dijital atmosfer ile etkileşime girdiği bir alandır.",
+            "Sanal, artırılmış, karma ve paralel gerçeklik deneysel tasarımın çalışma alanlarını oluşturur."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdaki yazılımlardan hangisi çizim tabletlerinde çizim yapmak için kullanılmaz?",
+          "o": [
+            "Infinite Painter",
+            "Corel Painter",
+            "Premier Pro",
+            "Fresco",
+            "Procreate"
+          ],
+          "a": 2
+        },
+        {
+          "q": "“Etkileşim Tasarımcıları” terimi ilk defa kim tarafından ortaya atılmıştır?",
+          "o": [
+            "West Churchman",
+            "Bill Moggridge",
+            "Lucas Otto",
+            "Arwin Dotch",
+            "Jana Laurensen"
+          ],
+          "a": 1
+        }
+      ]
+    },
+    {
+      "sinavId": 119,
+      "ad": "2025-2026 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Moda endüstrisinde 3D yazıcıların moda aksesuarlarının 3B baskısını almak, …………………………… üretmek ve sürdürülebilirlik elde edilmesi başta olmak üzere birçok pratik kullanımı mevcuttur. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "prototipler ve araçlar",
+            "şablon baskılar",
+            "dijital baskılar",
+            "VR kontrolleri",
+            "serigrafi baskılar"
+          ],
+          "a": 0
+        },
+        {
+          "q": "İnovasyondaki verimliliğin artmasını sağlayan aşağıdakilerden hangisidir?",
+          "o": [
+            "Yaratıcılık",
+            "Yetkin bilgi ve odaklanma",
+            "Yetkin bilgi",
+            "Yaratıcılık ve odaklanma",
+            "Odaklanma"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Tasvir Edici Yöntem olarak da bilinen Altı Şapka Yöntemi'nde mantıktan sıyrılarak duygulara yönelmeyi ifade eden şapka rengidir?",
+          "o": [
+            "Sarı Şapka",
+            "Yeşil Şapka",
+            "Beyaz Şapka",
+            "Kırmızı Şapka",
+            "Mavi Şapka"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdaki ifadelerden hangisi “ Etkileşim Tasarımı” kavramını doğru anlatır?",
+          "o": [
+            "Genellikle vektörel programlar kullanılarak tasarlanan arayüz tasarımlarıdır.",
+            "Bireyin temel ihtiyaçlarını karşılamak için karşısındaki diğer insanlarla kurduğu çabadır.",
+            "En az iki nesnenin ya da insanın birbirini geçici ya da kalıcı olarak değiştirdiği durumları nitelemek için kullanılan bir terimdir.",
+            "İnternetin yayıldığı dönemlerde yaşanmış olan web tasarımı ile ilgili süreçlerde yaşanan değişimleri ve düzenlemeyi anlatan ifadedir.",
+            "Kişinin kendisini değiştirmek için gösterdiği özenli çabaya verilen isimdir."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Bauhaus metal atölyesinde çalışmasına ilk defa izin verilen ve ikonik metal çaydanlıkları tasarlayan kadın öğrenci kimdir?",
+          "o": [
+            "Anni Albers",
+            "Marianne Brandt",
+            "Elsa Frieda Fleischmann",
+            "Gunta Stölzl",
+            "Otto Lindig"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Platon'un sanat felsefesi aşağıdakilerden hangisidir?",
+          "o": [
+            "Sanat, Tanrı mesleğidir.",
+            "Mimesis önemli bir sanatır.",
+            "Sanat, Yunan halkı için vazgeçilmezdir.",
+            "Sanat, işe yarar bir meslektir.",
+            "Sanatçı Tanrı'nın yaratıklarının kopyasını yapar."
+          ],
+          "a": 4
+        },
+        {
+          "q": "......................, nesnelerin, fikirlerin veya olaylar sınıfını bütünüyle temsil eden genelleştirilmiş anlama sahip bir kelime veya fikirdir. Cümlesinde boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Kavram",
+            "Model",
+            "Olgu",
+            "Hareket",
+            "Bilinç"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarım temelli araştırmanın aşamalarından biri değildir?",
+          "o": [
+            "Uygulama ve yayılma",
+            "Tasarım ve inşaa (yapılandırma)",
+            "Değerlendirme ve yansıtma",
+            "Analiz ve keşif",
+            "Toplama ve sınıflandırma"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi yapay zekâ ve derin öğrenme teknolojilerini kullanan Dall-E için doğru bir ifadedir?",
+          "o": [
+            "Sadece mobil cihazlarda kullanılabilir.",
+            "Konuşulan cümleleri analiz eder ve tasarım yapar.",
+            "Difüzyon teknolojisi ile görüntü üretir.",
+            "Tüm görüntüleri birleştirir ve yeni bir görüntü üretir.",
+            "Yapay zekâ ile en çok tercih edilen görüntüleri üretir."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi \"tekhne\" kavramının tanımlarından biridir?",
+          "o": [
+            "Taslak çizim yapma",
+            "Bir amaç gözeterek ortaya işlevsel bir şey koyma",
+            "Bir fikir doğrultusunda yazı yazma",
+            "Tasarlanan bir ürünü test etme",
+            "Bir tasarım ürününün kalite standardını belirleme"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Unity yazılımı ile aşağıdakilerden hangisi yapılabilmektedir?",
+          "o": [
+            "Video kurgu",
+            "Afiş tasarımı",
+            "Sanal gerçeklik mekân tasarımı",
+            "Mizanpaj ve dizgi",
+            "Yapay zekâ ve derin öğrenme"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Çeşitlilik ilkesinin tasarım için önemi nedir?",
+          "o": [
+            "Simetrik ve orantılı hâle getirir.",
+            "Özgün ve ilginç hâle getirir.",
+            "Sakin ve sıkıcı hâle getirir.",
+            "Sadeleştirir ve sakinleştirir.",
+            "Düzenli hâle getirir."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Sürdürülebilir ambalaj aşağıdakilerden hangisi olmalıdır?",
+          "o": [
+            "Doğadaki bitki kökenli ürünlerden ambalaj tasarlanmalıdır.",
+            "Ambalaj dayanıklı olmalıdır.",
+            "Ambalaj üretimin temel faktörüdür.",
+            "Sürekli ambalaj üretimi yapılmalıdır.",
+            "Her malzemeden ambalaj tasarlanabilir."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “İyi Tasarlanmış Bir Arayüzün Kullanılabilirlik Kriterleri” arasında bulunan “Sistem Durumunun Görünürlüğü” ifadesine güzel bir örnek sayılır?",
+          "o": [
+            "Kindle uygulamasında sayfaların fiziksel kitap okuma deneyimine benzer taklit edilmesi",
+            "Arayüzdeki menü ögelerinin gerektiğinde kolayca erişilebilir olması",
+            "Dosya silme işlemlerinde, kullanıcının hatalı işlem yapmasını önlemek için onay adımı eklenmesi",
+            "Netflix'te bir dizinin bölümü bittiğinde, bir sonraki bölüm için geri sayım ekranı görüntülenmesi",
+            "TV kanallarının logolarındaki renk seçimleri"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Sürdürülebilir tasarım fikri, çevre hareketi ne zaman ortaya çıkmıştır?",
+          "o": [
+            "1890",
+            "1924",
+            "1980",
+            "1970",
+            "1960"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi \"altıgen diyagram” içinde verilen tasarımın beş adımından biri değildir?",
+          "o": [
+            "Düşünme",
+            "Empati kurma",
+            "Ara verme",
+            "Tanımlama",
+            "Prototip"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir hareket yakalama teknolojisi değildir?",
+          "o": [
+            "Pasif Optik Sistemler",
+            "İşaretsiz Sistemler",
+            "Aktif Optik Sistemler",
+            "Doğrusal Sistemler",
+            "İnersiyal Sistemler"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Bütüncül bir tasarımın bileşenleri hangisinde doğru verilmiştir?",
+          "o": [
+            "İçerik, biçim, şekil",
+            "Form, şekil, konu",
+            "Konu, şekil, form",
+            "İçerik, form, neden",
+            "Konu, içerik, form"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Tasarım estetiğinin anlamı aşağıdakilerden hangisidir?",
+          "o": [
+            "Hoşa giden biçimler tasarlamak",
+            "Ürün elde etmek",
+            "Kaliteli ürün çıkarmak",
+            "Bir güzel resim yapmak",
+            "Dikkat çekmek"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Sorun veya duruma bakış açısını değiştirip bir açıdan diğer bir açıya geçişi ifade eden düşünce yöntemi aşağıdakilerden hangisidir?",
+          "o": [
+            "Yeniden Uygulama Yöntemi",
+            "Sentez Yöntemi",
+            "Teknik İllüstrasyonlar",
+            "Yön Değiştirme Yöntemi",
+            "Devrim Yöntemi"
+          ],
+          "a": 3
+        }
+      ]
+    },
+    {
+      "sinavId": 117,
+      "ad": "2025-2026 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Tasarım, nasıl bir süreci ifade etmektedir?",
+          "o": [
+            "Kendine ait sınırları olan",
+            "Sabit",
+            "Pasif",
+            "Aktif, sürekli kendini yenileyen",
+            "Kurallara uygun"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi 15 temel kompozisyon arketipinin içinde yer almaz?",
+          "o": [
+            "S şekil",
+            "Viyadük",
+            "U şekli",
+            "Tünel",
+            "Ters kantar"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdaki ifadelerden hangisi “ Etkileşim Tasarımı” kavramını doğru anlatır?",
+          "o": [
+            "Bireyin temel ihtiyaçlarını karşılamak için karşısındaki diğer insanlarla kurduğu çabadır.",
+            "Genellikle vektörel programlar kullanılarak tasarlanan arayüz tasarımlarıdır.",
+            "En az iki nesnenin ya da insanın birbirini geçici ya da kalıcı olarak değiştirdiği durumları nitelemek için kullanılan bir terimdir.",
+            "İnternetin yayıldığı dönemlerde yaşanmış olan web tasarımı ile ilgili süreçlerde yaşanan değişimleri ve düzenlemeyi anlatan ifadedir.",
+            "Kişinin kendisini değiştirmek için gösterdiği özenli çabaya verilen isimdir."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Çeşitliliğin elde edilmesinde kullanılan araçlar aşağıdakilerden hangisinde doğru verilmiştir?",
+          "o": [
+            "Kontrast ve değer",
+            "Şekil, detaylandırma ve kontrast",
+            "Nicelik ve detaylandırma",
+            "Zıtlık ve uyum",
+            "Kontrast ve detaylandırma"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Cumhuriyet Dönemi'nin ilk kuşak grafik tasarımcılarından biri değildir?",
+          "o": [
+            "Kenan Temizan",
+            "Emrah Yücel",
+            "Sabiha Rüştü Bozcalı",
+            "İhap Hulusi Görey",
+            "Münif Fehim Özarman"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi \"tasarım\" teriminin Türkçe karşılıklarından biri değildir?",
+          "o": [
+            "Zihinsel temsil",
+            "Plan",
+            "Zihindeki canlandırma",
+            "Aktarım",
+            "İlk taslak"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Sürdürülebilir tasarım ne demektir?",
+          "o": [
+            "Hoşa giden biçimler yaratmaktır.",
+            "Nitelikli ürün ortaya koymaktadır.",
+            "Araç gereç tasarlamaktadır.",
+            "Sanatsal çalışmalar yapmaktadır.",
+            "Doğayla barışık üretimlere ağırlık vermektir."
+          ],
+          "a": 4
+        },
+        {
+          "q": "Claude Monet'nin, Rouen Katedrali'ne aynı noktadan bakarak yaptığı tablolar aşağıdaki yaratıcı stratejilerden hangilerine örnek verilebilir?",
+          "o": [
+            "Harmanlama ve Çarpıtma",
+            "Bükme ve Uyarlama",
+            "Çarpıtma ve Parçalama",
+            "Çekme ve İtme",
+            "Parçalama ve Harmanlama"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Bauhaus'un ünlü öğrencilerinden biri değildir?",
+          "o": [
+            "Gunta Stölzl",
+            "Marianne Brandt",
+            "Josef Albers",
+            "Josef Hartwig",
+            "William Morris"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Yaratıcılık, insanın, sanat yoluyla, tarih boyunca yakalamaya çalıştığı özgünlük ve yeniliğin kaynağıdır. Bu özgünlük ve yenilik kaynağı, insanın içinde bulunan, başka bir deyişle ………………………….. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "İnsana ait bir yetidir.",
+            "Maddi çalışmalar sürecidir.",
+            "Manevi çalışmalar sürecidir.",
+            "Mekanik cihazların yeterlikleridir.",
+            "İnsanı ilgilendirmeyen."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi John Ruskin'in tasarım anlayışını aktaran bir cümledir?",
+          "o": [
+            "Tasarım, yaşamın içinden olmalıdır.",
+            "En iyi tasarımlar resim ve heykeldir.",
+            "Sadece estetik açıdan iyi tasarlanmış nesneler, değerli ve kullanışlı olabilir.",
+            "Tasarım ve sanat, geometriye dayanmaktadır.",
+            "Bir amacı olan her üretim sanatır."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Sürdürülebilirlik ne anlama gelir?",
+          "o": [
+            "Yaşamı yöneten temel bir ilkedir.",
+            "Tasarımla birlikte bir meslektir.",
+            "Dış tasarımlara ağırlık verir.",
+            "Çevresel tasarım yapar.",
+            "Toplum için vazgeçilmezdir."
+          ],
+          "a": 0
+        },
+        {
+          "q": "İnovasyon sürecinde stratejiler geliştirilirken nelere ihtiyaç vardır?",
+          "o": [
+            "Yüzeysel bakış açısı",
+            "Sabit fikir",
+            "Yüksek bilgi, farklı bakış açısıyla yaklaşabilme, keşfetme",
+            "Ayrıntılı gözlem",
+            "Teknik yeterlilik"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Antik Yunan mimari tasarımlarının özelliklerinden biri değildir?",
+          "o": [
+            "Adeta bir heykel gibi tasarlanmıştır.",
+            "Yüksek pencereleri vardır.",
+            "Sütun zemini alınlıklı bir çatı örter.",
+            "Stereometrik anlayıştadır.",
+            "Tapınaklar megaron ev tipinden geliştirilmiştir."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarım temelli araştırmanın başarılı sayılabilmesi için sunulan ölçütlerden biridir?",
+          "o": [
+            "Süreç, tasarı, karar alma, analiz ve tekrar tasarım eylemleri döngüsel olarak tekrarlanır.",
+            "Araştırmacının bakış açısı araştırmayı hiçbir şekilde etkilemez.",
+            "Başlangıçtaki araştırma planına birebir uyulmak zorundadır.",
+            "Araştırmalarda sadece nitel ya da sadece nicel yöntem kullanılmalıdır.",
+            "Araştırmalar steril bir ortamda gerçekleştirilmelidir."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Kırık (toprak) rengin en önemli özelliği nedir?",
+          "o": [
+            "Komplementer olması",
+            "Kontrast olması",
+            "Saf olması",
+            "Analog olması",
+            "Her renkle uyum sağlaması"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kompozisyonu tanımlar?",
+          "o": [
+            "Benzersizlik İlkesi'ne göre bir araya gelen parçaların yaratığı dikdörtgen",
+            "Bir çerçeveden dışarıya taşmayan parçaların tamamı",
+            "Büyük-küçük zıtlığına dayanan şekil",
+            "Belli ilişkiler içinde bir araya gelen parçaların oluşturduğu düzen",
+            "Şekilleri belirgin parçalardan oluşan büyük parça"
+          ],
+          "a": 3
+        },
+        {
+          "q": "İslam sanatında tasarım estetiği nasıl tanımlanır?",
+          "o": [
+            "Sanat yapmak ustalık ister.",
+            "Sanat önemsizdir.",
+            "Her varlık Allah'ı anıyorsa güzeldir.",
+            "Her canlı bir cemaldir.",
+            "Resim yapmak günahtır."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Moda endüstrisinde 3D Yazıcıların Moda Aksesuarlarının 3B baskısını almak, …………………………… üretmek ve sürdürülebilirlik elde edilmesi başta olmak üzere birçok pratik kullanımı mevcuttur. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "VR kontrolleri",
+            "şablon baskılar",
+            "dijital baskılar",
+            "prototipler ve araçlar",
+            "serigrafi baskılar"
+          ],
+          "a": 3
+        },
+        {
+          "q": "“İsteklendirme / güdüleme olarak da bilinen, hedefe yönelik davranışları başlatan, yönlendiren ve sürdüren süreçtir.” tanımı aşağıdakilerden hangisine aittir?",
+          "o": [
+            "Motivasyon",
+            "Olgu",
+            "Biliş",
+            "Zorunluluk",
+            "Kavram"
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 99,
+      "ad": "2024-2025 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Arts &amp; Crafts sanatçıları ilhamlarını nereden almıştır?",
+          "o": [
+            "Orta Çağ sanat eserleri ve doğadan",
+            "Figüratif resimden",
+            "Empresyonist sanatçılardan",
+            "Soyut formlardan",
+            "Grek mimarisinden"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Claude Monet'nin, Rouen Katedrali'ne aynı noktadan bakarak yaptığı tablolar aşağıdaki yaratıcı stratejilerden hangilerine örnek verilebilir?",
+          "o": [
+            "Çekme ve İtme",
+            "Parçalama ve Harmanlama",
+            "Çarpıtma ve Parçalama",
+            "Bükme ve Uyarlama",
+            "Harmanlama ve Çarpıtma"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi 15 temel kompozisyon arketipinin içinde yer almaz?",
+          "o": [
+            "Tunel",
+            "U şekli",
+            "Viyadük",
+            "S şekil",
+            "Ters kantar"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdaki yazılımlardan hangisi moda tasarımı için özel olarak üretilmiş CAD yazılımları arasında yer almaz?",
+          "o": [
+            "Marvelous Designer",
+            "C-Design Fashion",
+            "CLO 3D",
+            "TUKA 3D",
+            "Adobe Premiere"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Ludwig Miesvan der Rohe'nin tasarladığı koltuk aşağıdakilerden hangisidir?",
+          "o": [
+            "Çek",
+            "Wassily",
+            "Cesca",
+            "Brno",
+            "Nesting"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Wolcott ve arkadaşlarının ortaya koyduğu tasarım temelli araştırmanın özelliklerinden biri değildir?",
+          "o": [
+            "İş birlikçi",
+            "Yinelemeli",
+            "Pratik",
+            "Teori odaklı",
+            "Kısa süreli"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi John Ruskin'in tasarım anlayışını aktaran bir cümledir?",
+          "o": [
+            "Sadece estetik açıdan iyi tasarlanmış nesneler, değerli ve kullanışlı olabilir.",
+            "En iyi tasarımlar resim ve heykeldir.",
+            "Bir amacı olan her üretim sanatır.",
+            "Tasarım, yaşamın içinden olmalıdır.",
+            "Tasarım ve sanat, geometriye dayanmaktadır."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarım temelli araştırmalarda dikkat edilmesi gereken değişkenlerden biri değildir?",
+          "o": [
+            "Ortam",
+            "Mali gereklilikler",
+            "Araştırma sonuçlarının nasıl sunulacağı",
+            "Uygulama çizelgesi",
+            "Öğrenenlerin doğası"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi sürdürülebilir kalkınma hedefleri içinde yer alır?",
+          "o": [
+            "Toprak ve arazi yaşamını korumak",
+            "Makineleşme",
+            "Orman artıkları",
+            "Emek üretimi",
+            "İşsizliği önleme"
+          ],
+          "a": 0
+        },
+        {
+          "q": "“Var olan bir soruna birden fazla disiplinin bir araya gelerek, kendi disiplin sınırlarını aşmadan formüller üretilmesi” şeklinde tanımlanan yaklaşım aşağıdakilerden hangisidir?",
+          "o": [
+            "Yaratıcılık",
+            "Problem Çözme",
+            "Disiplinler Arasılık",
+            "Çok Disiplinlilik",
+            "Trans Disipliner"
+          ],
+          "a": 3
+        },
+        {
+          "q": "“IxD” ifadesi mecrada aşağıdakilerden hangisinin kısaltmasıdır?",
+          "o": [
+            "Deneyim Tasarımı",
+            "Etkileşim Tasarımı",
+            "Görsel İletişim Tasarımı",
+            "Arayüz Tasarımı",
+            "Endüstriyel Tasarım"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Unity yazılımı ile aşağıdakilerden hangisi yapılabilmektedir?",
+          "o": [
+            "Sanal gerçeklik mekân tasarımı",
+            "Mizanpaj ve dizgi",
+            "Yapay zekâ ve derin öğrenme",
+            "Afiş tasarımı",
+            "Video kurgu"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi İspanya'da bulunan bir mağaradır?",
+          "o": [
+            "Eller Mağarası",
+            "Altamira Mağarası",
+            "Magura Mağarası",
+            "Lascaux Mağarası",
+            "Bhimbetka Mağarası"
+          ],
+          "a": 1
+        },
+        {
+          "q": "VR ve AR teknolojilerinin harmanlanmış hâli olan teknoloji aşağıdakilerden hangisidir?",
+          "o": [
+            "Virtual Reality",
+            "Sanal Gerçeklik",
+            "Artırılmış Gerçeklik",
+            "Augmented Reality",
+            "Karma Gerçeklik"
+          ],
+          "a": 4
+        },
+        {
+          "q": "\"Tasarımın hemen hemen herkes tarafından, en azından bazı zamanlar, her yerde uygulanan bir faaliyet olduğu ve insanların bu konuda nasıl hareket ettiği hakkında genelleştirilebilir gözlemler olabileceği\" görüşünü savunan profesör aşağıdakilerden hangisidir?",
+          "o": [
+            "Jana Lauransen",
+            "Mitch Benjamin",
+            "Robert Sidemen",
+            "C. West Churchman",
+            "Lucas Otto"
+          ],
+          "a": 3
+        },
+        {
+          "q": "…………………………… amacı kendisinin dışındadır, başkası için yaşar, maddi ve çıkarcı bir yaklaşımı vardır, araştırmak, bulmak, keşfetmek bu çıkarlara uyup uymamasına bağlıdır. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "İllüstratörlerin",
+            "Yaratıcı kişiliğin",
+            "Tasarım çalışanlarının",
+            "Tıbbi illüstratörlerin",
+            "Sıradan normal ve bağımlı kişinin"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdaki Adobe yazılımlarından hangisinin temel kullanım alanı yanlış yazılmıştır?",
+          "o": [
+            "Adobe Animate / Animasyon tasarımı ve sahne üretimi",
+            "Adobe Premiere Pro / Piksel tabanlı görüntü işleme",
+            "Adobe Illustrator / Vektör resim ve illüstrasyon oluşturma",
+            "Adobe After Effects / Sinematik görsel efektler ve hareketli grafik oluşturma",
+            "Adobe InDesign / Dijital ve basılı mecralar için mizanpaj oluşturma"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Gruplandırma eğiliminin gerçekleştiği benzerlikler arasında aşağıdakilerden hangisi yer almaz?",
+          "o": [
+            "Ebat benzerliği",
+            "Uzamsal yönelim benzerliği",
+            "Duruş benzerliği",
+            "Konum benzerliği",
+            "Biçim benzerliği"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “İyi Tasarlanmış Bir Arayüzün Kullanılabilirlik Kriterleri” arasında bulunan “Sistem Durumunun Görünürlüğü” ifadesine güzel bir örnek sayılır?",
+          "o": [
+            "Kullanıcının yanlışlıkla dosyaları silmesi hâlinde hüsrana uğramalarını önlemek için, tasarımcı bu durumu ön görmeli ve eylemle devam etmeden önce kullanıcının tekrar onayını alacağı bölümleri eklemelidir.",
+            "Netflix dizinin bir bölümünü izlemeyi bitirdiğinizde, sistem size bir sonraki bölümün yüklenmesinin ne kadar süreceğini söyleyen küçük bir ekran sunar. Dilerseniz atlayabilir dilerseniz geri sayımı bekleyebilirsiniz.",
+            "Kindle uygulamasında okuduğunuzda sayfalar, fiziksel bir kitap okuma deneyimini taklit eden bir arayüze sahiptir.",
+            "TV kanallarının logolarındaki renk seçimi bu duruma örnek sayılabilir.",
+            "Arayüzdeki menü ögelerinin gerektiğinde kolayca erişilebilir olması gerekir."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Art Nouveau'nın en ünlü temsilcilerinden biridir?",
+          "o": [
+            "Frank Lloyd Wright",
+            "Zaha Hadid",
+            "Antoni Gaudi",
+            "Alexandre Vallaury",
+            "Le Corbusier"
+          ],
+          "a": 2
+        }
+      ]
+    },
+    {
+      "sinavId": 96,
+      "ad": "2024-2025 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi bir tasarımcının basılı mecrada yapacağı tasarıma başlamadan önce bilmesi gereken önemli hususlardan biri değildir?",
+          "o": [
+            "Hangi boyutta bir tasarım gerektiği",
+            "Baskı yapacak cihazın teknolojisi",
+            "Bilgisayarın performans durumu",
+            "Tasarımın sergileneceği yüzeyin bilgisi",
+            "Tasarımın hangi yüzeye uygulanacağı"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Tasarım estetiğinin anlamı aşağıdakilerden hangisidir?",
+          "o": [
+            "Ürün elde etmek",
+            "Kaliteli ürün çıkarmak",
+            "Dikkat çekmek",
+            "Hoşa giden biçimler tasarlamak",
+            "Bir güzel resim yapmak"
+          ],
+          "a": 3
+        },
+        {
+          "q": "“Mevcut bilgiden çoklu veya alternatif cevaplar üretmeyi içeren” düşünme yaklaşımı aşağıdakilerden hangisidir?",
+          "o": [
+            "Hızlı Düşünme",
+            "Spontane Düşünme",
+            "Iraksak Düşünme",
+            "Yakınsak Düşünme",
+            "Çift Düşünme"
+          ],
+          "a": 2
+        },
+        {
+          "q": "\"Zihinsel eylem ve bilgiyi elde etme ve düşünce, deneyim yoluyla anlama süreci ve duyu\" anlamına gelen tanım aşağıdakilerden hangisine aittir?",
+          "o": [
+            "Görüş",
+            "Iraksak düşünme",
+            "İçsel dürtü",
+            "Iraksak düşünce",
+            "Biliş"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Ekransız Grafik Tabletler'i ifade etmek için kullanılır?",
+          "o": [
+            "Ekranlı Tablet",
+            "Kör Tablet",
+            "Düzlem Tablet",
+            "LCD Tabletler",
+            "Düz Tablet"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi konuyu en alçak noktadan yukarı doğru bakarak gösteren kompozisyon çeşididir?",
+          "o": [
+            "Balık gözü",
+            "Kaplan gözü",
+            "Kuş bakışı",
+            "Tırtıl gözü",
+            "Solucan bakışı"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi dijital baskının bize sağlamış olduğu faydalardan biri değildir?",
+          "o": [
+            "Geleneksel baskı ile bağlantılı olması",
+            "Esneklik ve daha parlak renkler",
+            "Gerçek zamanlı prova",
+            "Yüksek maliyetler",
+            "Talep edilen miktarda baskı sayısı"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarımın tanımlarından biri değildir?",
+          "o": [
+            "Dizayn",
+            "Teknik çizim",
+            "Bilinç içeriği",
+            "Zihinde canlandırılan biçim",
+            "İlk taslak"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Tasarım estetiğinde güzel kavramı nasıl açıklanır?",
+          "o": [
+            "Sadece sanatçılar güzeli tasarlar.",
+            "Güzel ancak resimde görülür.",
+            "Güzellik göreceli bir kavramdır ve kültürlere göre değişir.",
+            "İnsanlar güzeli ararlar.",
+            "Güzellik toplumun önemli bir değeridir."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Sürdürülebilir kalkınma farkındalık toplantıları ne zaman başlamıştır?",
+          "o": [
+            "1972 yılında Stokholm'de başlamıştır.",
+            "Resimle başlamıştır.",
+            "İnsanın heykel yapımıyla başlamıştır.",
+            "İnsanın araç gereç yapımıyla başlamıştır.",
+            "Çizimle başlamıştır."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Slavin'in 2013 yılında “ne yapılacağı ve neye inanılacağı hakkında rasyonel kararlar verebilme meziyeti” olarak tanımladığı mantıksal akıl yürütme modeli aşağıdakilerden hangisidir?",
+          "o": [
+            "Analitik Düşünme",
+            "Metabilişsel Düşünme",
+            "Bütüncül Düşünme",
+            "Eleştirel Düşünme",
+            "Yansıtıcı Düşünme"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Wolcott ve arkadaşlarının tasarım temelli araştırma yapacak araştırmacılara sunduğu önerilerden biri değildir?",
+          "o": [
+            "Araştırma paydaşlarını sürece dâhil etmek",
+            "Araştırmayı sadece teorik olarak yürütmek, uygulama yapmamak",
+            "Farklı katılımcılardan oluşan bir ekip kurmak",
+            "Kullanılacak yöntemleri belirlemek",
+            "Araştırmanın her aşamasını planlamak ama yeniliğe ve değişime açık olmak ve uyum sağlamak"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Bauhaus'un, binalar ve objeler ile ilgili ilkeleri arasında yer almaz?",
+          "o": [
+            "Teknolojik olması",
+            "Ergonomik olması",
+            "Asimetrik olması",
+            "Şehir hayatıyla uyumlu olması",
+            "Süslü olması"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Geştalt Psikolojisi'ne göre algıyı etkileyen süreçler arasındadır?",
+          "o": [
+            "Parça-şekil ilişkisi",
+            "Zemin-benzerlik ilişkisi",
+            "Şekil-zemin ilişkisi",
+            "Benzersizlik ilkesi",
+            "Şekil-form ilişkisi"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Tasvir Edici Yöntem olarak da bilinen Altı Şapka Yöntemi'nde kesin bilgiyi, tarafsız olmayı simgeleyen şapka rengidir?",
+          "o": [
+            "Mavi Şapka",
+            "Yeşil Şapka",
+            "Sarı Şapka",
+            "Beyaz Şapka",
+            "Kırmızı Şapka"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Kullanıcı Arayüzü” ifadesinin Dünya genelinde kullanılan kısaltmasıdır?",
+          "o": [
+            "HCI",
+            "UX",
+            "KA",
+            "IHA",
+            "UI"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Özlem Er ve Alpay Er tarafından 2003 yılında yayımlanan makalede tasarım; \"teknoloji ve bilginin insanların kullanabileceği bir ürüne dönüştürüldüğü süreç\" olarak tanımlanmaktadır. Buna göre tasarım nasıl bir süreç olarak tanımlanmaktadır?",
+          "o": [
+            "Yenilikçi",
+            "Modern",
+            "Gelenekselci",
+            "Gelişimsel",
+            "Eleştirel"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarım sürecinde kullanılan Adobe yazılımlarından biri değildir?",
+          "o": [
+            "Photoshop",
+            "Publisher",
+            "After Effects",
+            "InDesign",
+            "Illustrator"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Türkçe literatürde hangi kavramlarla birlikte anılıyor olması inovasyonun daha çok ekonomi alanına ait bir kavram olmasını desteklemektedir?",
+          "o": [
+            "Yönetim, ürün-hizmet, kâr-zarar, satış",
+            "Kâr-zarar, grafik, icat",
+            "Renk, grafik, eskiz",
+            "ArGe, Planlama, Renk",
+            "Moda, ürün, icat"
+          ],
+          "a": 0
+        },
+        {
+          "q": "4 Eylül 2002'de Johannesburg toplantısı sonuçları aşağıdakilerden hangisidir?",
+          "o": [
+            "Biyolojik çeşitlilik kaybının durdurulması",
+            "Köye dönüşü teşvik etmek",
+            "Denizlerdeki balık avını çoğaltmak",
+            "Tarım aletlerini çoğaltmak",
+            "Petrolü daha iyi arıtmak"
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 88,
+      "ad": "2023-2024 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi kullanıcı deneyimi alanında çalışan bir tasarımcının görevlerinden biri değildir?",
+          "o": [
+            "Ürün olarak web sitesinin düğme, tasarımları ve bu tasarımlardaki metinleri oluşturmak",
+            "Tasarım kararlarını doğrulamak ve sorunları belirlemek için kullanıcı testi yapmak",
+            "Hedef kitleye/müşterilere dayalı kullanıcı kişilikleri geliştirmek",
+            "Bir ürün etkileşimiyle ilgili tüm hedefleri, ihtiyaçları, davranışları ve sorunlu noktaları belirlemek için kullanıcı profillerini araştırmak",
+            "Bir müşterinin bir ürünle nasıl etkileşime girdiğini analiz etmek için kullanıcı yolculuk haritaları oluşturmak"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Bauhaus yöneticilerinin göreve geliş sıraları aşağıdakilerin hangisinde doğru olarak verilmiştir?",
+          "o": [
+            "Meyer, Gropius, Miesvan der Rohe",
+            "Gropius, Miesvan der Rohe, Meyer",
+            "Gropius, Meyer, Miesvan der Rohe",
+            "Meyer, Miesvan der Rohe, Gropius",
+            "Miesvan der Rohe, Gropius, Meyer"
+          ],
+          "a": 2
+        },
+        {
+          "q": "3-14 Haziran 1992 tarihleri arasında, Rio de Janerio'da düzenlenen Birleşmiş Milletler Çevre ve Kalkınma Konferansı niçin toplanmıştır?",
+          "o": [
+            "Fabrikaların kapatılması",
+            "Çevreye duyarlı politikaların geliştirilmesi",
+            "Hayvanların korunması",
+            "Bitkilerin korunması",
+            "Araçların azaltılması"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Tasarım estetiğinin anlamı aşağıdakilerden hangisidir?",
+          "o": [
+            "Hoşa giden biçimler tasarlamak",
+            "Dikkat çekmek",
+            "Bir güzel resim yapmak",
+            "Ürün elde etmek",
+            "Kaliteli ürün çıkarmak"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Tasarım ile öğretim tasarımının yakınsayan alanını bularak tasarım sürecinin izini süren Rowland, tasarım ve öğretim tasarımı arasındaki ilişkileri 4 yönden inceler. Aşağıdakilerden hangisi bu dört yönden biri değildir?",
+          "o": [
+            "Tasarım sürecini etkileyen faktörler",
+            "Diğer süreçlerle ilişkiler",
+            "Tasarım eğitiminin tarihi",
+            "Tasarım sürecinin doğası",
+            "Tasarımın amaçları veya hedefi"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdaki cihazlardan hangisi dijital illüstrasyon yaparken kullanılan öncelikli araçlardan biridir?",
+          "o": [
+            "Harici bellek",
+            "Type-C soket",
+            "Google Glass",
+            "Çizim tableti",
+            "Ses donanımı"
+          ],
+          "a": 3
+        },
+        {
+          "q": "I. Yoksullukla mücadele II. Sorumlu üretim ve tüketim III. Sağlıklı yaşam Yukarıdakilerden hangisi ya da hangileri sürdürülebilir kalkınma amaçları ve hedefleri arasında yer alır?",
+          "o": [
+            "II ve III",
+            "I, II ve III",
+            "Yalnız I",
+            "Yalnız II",
+            "I ve II"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi 15 temel kompozisyon arketipinin içinde yer almaz?",
+          "o": [
+            "S şekil",
+            "Tunel",
+            "Viyadük",
+            "Ters kantar",
+            "U şekli"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Tasvir Edici Yöntem olarak da bilinen Altı Şapka Yöntemi'nde analiz eden, karar veren ve düşünme sürecini düzenlemeyi temsil eden şapka rengidir?",
+          "o": [
+            "Mavi Şapka",
+            "Sarı Şapka",
+            "Beyaz Şapka",
+            "Yeşil Şapka",
+            "Kırmızı Şapka"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Herkes tarafından aynı kabul edilen, kolayca anlaşılabilir, kanıtlanabilir ve bilimsel verilere dayanan bilgidir. Kişiden kişiye değişmez. Bu tanım aşağıdakilerden hangisine aittir?",
+          "o": [
+            "Kavram",
+            "Model",
+            "Hareket",
+            "Bilinç",
+            "Olgu"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir hareket yakalama teknolojisi değildir?",
+          "o": [
+            "İnersiyal Sistemler",
+            "İşaretsiz Sistemler",
+            "Doğrusal Sistemler",
+            "Pasif Optik Sistemler",
+            "Aktif Optik Sistemler"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Sorun veya duruma bakış açısını değiştirip bir açıdan diğer bir açıya geçişi ifade eden düşünce yöntemi aşağıdakilerden hangisidir?",
+          "o": [
+            "Yön Değiştirme Yöntemi",
+            "Devrim Yöntemi",
+            "Sentez Yöntemi",
+            "Teknik İllüstrasyonlar",
+            "Yeniden Uygulama Yöntemi"
+          ],
+          "a": 0
+        },
+        {
+          "q": "\"İnovasyon\" kavramı Türkçe literatürde hangi disiplin alanı ile bağdaştırılmıştır?",
+          "o": [
+            "Moda",
+            "Eğitim",
+            "Kamu",
+            "Sanayi",
+            "Ekonomi"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Tasvir edici yöntem olarak da bilinen Altı Şapka Yöntemi'nde kesin bilgiyi, tarafsız olmayı simgeleyen şapka rengidir?",
+          "o": [
+            "Mavi Şapka",
+            "Yeşil Şapka",
+            "Kırmızı Şapka",
+            "Beyaz Şapka",
+            "Sarı Şapka"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Nitelik kontrastı renklerin hangi özelliğine dayanır?",
+          "o": [
+            "Derinliğine",
+            "Miktarına",
+            "Açıklık değerine",
+            "Isı değerine",
+            "Kromasına"
+          ],
+          "a": 4
+        },
+        {
+          "q": "“Kişinin görsel, işitsel (bazı durumlarda dokunsal) yollarla duyu organlarına hitap ederek, fiziksel dünya yerine sayısal ortamda üretilmiş sanal dünyada olma illüzyonunu yaratan teknolojilerdir.” tanımı aşağıdaki teknolojilerden hangisine aittir?",
+          "o": [
+            "Görsel Gerçeklik",
+            "Artırılmış Gerçeklik",
+            "Azaltılmış Gerçeklik",
+            "Sanal Gerçeklik",
+            "Karma Gerçeklik"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Tasarımın tarihsel süreci aşağıdakilerden hangisiyle başlamıştır?",
+          "o": [
+            "İnsanın heykel yapımıyla başlamıştır.",
+            "İnsanın bilinçli çabalarıyla başlamıştır.",
+            "Çizimle başlamıştır.",
+            "Resimle başlamıştır.",
+            "İnsanın araç gereç yapımıyla başlamıştır."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Wolcott ve arkadaşlarının ortaya koyduğu tasarım temelli araştırmanın özelliklerinden biri değildir?",
+          "o": [
+            "Teori odaklı",
+            "Yinelemeli",
+            "Pratik",
+            "İşbirlikçi",
+            "Kısa süreli"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Endüstri Devrimi sonrasında ortaya çıkmış bir akım değildir?",
+          "o": [
+            "Konstrüktivizm",
+            "Bauhaus",
+            "Arts &amp; Crafts",
+            "Rokoko",
+            "Art Nouveau"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi konuyu en alçak noktadan yukarı doğru bakarak gösteren kompozisyon çeşididir?",
+          "o": [
+            "Kuş bakışı",
+            "Solucan bakışı",
+            "Balık gözü",
+            "Kaplan gözü",
+            "Tırtıl gözü"
+          ],
+          "a": 1
+        }
+      ]
+    },
+    {
+      "sinavId": 72,
+      "ad": "2023-2024 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdaki işlemlerden hangisi Adobe Illustrator yazılımında gerçekleştirilemez?",
+          "o": [
+            "Vektörel çizimler oluşturmak",
+            "Dijital illüstrasyon yapmak",
+            "Tipografi tasarımı",
+            "Afiş tasarımı yapmak",
+            "Ses dosyası birleştirmek"
+          ],
+          "a": 4,
+          "u": 10
+        },
+        {
+          "q": "I. Malzemeleri toplamak II. Geri dönüştürmek III. Geri dönüştürülmüş ürünleri tekrar üretime döndürerek satın almak IV. Sürekli üretim yapmak Sürdürülebilirliğin temel göstergesi olan geri dönüşüm logosundaki oklar yukarıdakilerden hangilerini temsil eder?",
+          "o": [
+            "I, II ve III",
+            "I, II, III ve IV",
+            "I ve IV",
+            "I ve II",
+            "II ve III"
+          ],
+          "a": 0,
+          "u": 12
+        },
+        {
+          "q": "“Bilgi ile yakından bağlantılı olan ve açıkça tanımlanmış bir soruya en iyi veya doğru cevabı elde etmeye yönelik” düşünme yaklaşımı aşağıdakilerden hangisidir?",
+          "o": [
+            "Spontane Düşünme",
+            "Hızlı Düşünme",
+            "Tekil Düşünme",
+            "Iraksak Düşünme",
+            "Yakınsak Düşünme"
+          ],
+          "a": 4,
+          "u": 7
+        },
+        {
+          "q": "Antik Yunan kültüründe en çok üretilen tasarımlar aşağıdakilerden hangisidir?",
+          "o": [
+            "Duvar resimleri",
+            "Mozaikler",
+            "Tanrı heykelleri",
+            "Vazolar",
+            "Yüzme havuzları"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Kompozisyonda kırık renkler nasıl kullanılır?",
+          "o": [
+            "Arka planda büyük miktarda",
+            "Arka planda çok sınırlı miktarda",
+            "Ön planda üst sağda",
+            "Orta planda alt solda",
+            "Ön planda büyük miktarda"
+          ],
+          "a": 0,
+          "u": 4
+        },
+        {
+          "q": "Vektörel tabanlı yazılımlar hakkında aşağıdaki ifadelerden hangisi doğrudur?",
+          "o": [
+            "Video kurgu için idealdir.",
+            "Çalışma alanının büyüklüğü ne olursa olsun bozulma olmaz.",
+            "Piksel tabanlı yazılımlara göre kullanımının daha kolaydır.",
+            "Daha hızlı çalışılabilir.",
+            "Daha az enerji tüketir."
+          ],
+          "a": 1,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisinde tasarım odaklı düşünme basamakları doğru sırayla verilmiştir?",
+          "o": [
+            "Empati-Özetle-Planlama-Test et-Prototip-Değerlendir",
+            "Tasarla-Prototip-Planlama-Değerlendir-Empati",
+            "Gözden geçir-Tanımlama-Planlama-Test et-Prototip- Değerlendir",
+            "Sempati-Tanımlama-Planlama-Test et-Prototip- Değerlendir",
+            "Empati-Tanımlama- Planlama- Prototip- Test et- Değerlendir"
+          ],
+          "a": 4,
+          "u": 6
+        },
+        {
+          "q": "İnsanın tasarladığı ilk ürün aşağıdakilerden hangisidir?",
+          "o": [
+            "Metal mızraklar",
+            "Tahta bıçak",
+            "Mağara duvar resimleri",
+            "Ok ve yay",
+            "Taş baltalar"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Hızlı Prototipleme (Rapid Prototyping) teknolojisinin diğer ismi aşağıdakilerden hangisidir?",
+          "o": [
+            "CTP Baskı",
+            "Ofest Baskı",
+            "Serigrafi Baskı",
+            "3B Baskı",
+            "Dijital Baskı"
+          ],
+          "a": 3,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kullanıcı deneyimi alanında çalışan bir tasarımcının görevlerinden biri değildir?",
+          "o": [
+            "Hedef kitleye/müşterilere dayalı kullanıcı kişilikleri geliştirmek",
+            "Bir müşterinin bir ürünle nasıl etkileşime girdiğini analiz etmek için kullanıcı yolculuk haritaları oluşturmak",
+            "Ürün olarak web sitesinin düğme, tasarımları ve bu tasarımlardaki metinleri oluşturmak",
+            "Tasarım kararlarını doğrulamak ve sorunları belirlemek için kullanıcı testi yapmak",
+            "Bir ürün etkileşimiyle ilgili tüm hedefleri, ihtiyaçları, davranışları ve sorunlu noktaları belirlemek için kullanıcı profillerini araştırmak"
+          ],
+          "a": 2,
+          "u": 14
+        },
+        {
+          "q": "Sürdürülebilir Tasarım ne demektir?",
+          "o": [
+            "Ürün elde etmek",
+            "Bir güzel resim yapmak",
+            "Gelecek kuşakların ihtiyacından almadan, bugünü üretmek",
+            "Hoşa giden biçimler tasarlamak",
+            "Kaliteli ürün çıkarmak"
+          ],
+          "a": 2,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarım temelli araştırma yöntemlerinden biri değildir?",
+          "o": [
+            "Tasarım araştırması",
+            "A/r/tografi",
+            "Tasarım deneyleri",
+            "Biçimlendirici araştırma",
+            "Geliştirme araştırması"
+          ],
+          "a": 1,
+          "u": 5
+        },
+        {
+          "q": "Barnett Newman'ın Kırık Obelisk heykeli ve Pablo Picasso'nun Guernica tablosu aşağıdaki yaratıcı stratejilerden hangisi ile ilişkilendirilebilir?",
+          "o": [
+            "Bükme",
+            "Harmanlama",
+            "Çarpıtma",
+            "Basitleştirme",
+            "Parçalama"
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "Bauhaus'a ilk davet edilen eğitimcilerden olan İsviçreli ressam- ekspresyonist ve eğitimci aşağıdakilerden hangisidir?",
+          "o": [
+            "WassilyWassilyevich",
+            "Klee",
+            "Meyer",
+            "Itten",
+            "Kandinsky"
+          ],
+          "a": 3,
+          "u": 2
+        },
+        {
+          "q": "Kullanıcının ne yaşadığını, ne hissedildiği de dâhil olmak üzere tüm etkileşim sürecini ifade eden ......................, bu sebeple çok kaynakta Etkileşim Tasarımı'nı da kapsar şekilde ifade edilmektedir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "UX",
+            "PSD",
+            "HCI",
+            "UI",
+            "GT"
+          ],
+          "a": 0,
+          "u": 14
+        },
+        {
+          "q": "“Kişinin görsel, işitsel (bazı durumlarda dokunsal) yollarla duyu organlarına hitap ederek, fiziksel dünya yerine sayısal ortamda üretilmiş sanal dünyada olma illüzyonunu yaratan teknolojilerdir.” tanımı aşağıdaki teknolojilerden hangisine aittir?",
+          "o": [
+            "Artırılmış Gerçeklik",
+            "Azaltılmış Gerçeklik",
+            "Görsel Gerçeklik",
+            "Sanal Gerçeklik",
+            "Karma Gerçeklik"
+          ],
+          "a": 3,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarımcının tasarımında başarılı olmasında gerekli olan unsurlardan biri değildir?",
+          "o": [
+            "Multidisipliner bir çalışma benimsemesi",
+            "Olmayanı tasarlama kaygısına sahip olması",
+            "Basit ama odaklı olması",
+            "Var olanı dönüştüre bilme yetisine sahip olması",
+            "Analiz yeteneğinin güçlü olması"
+          ],
+          "a": 1,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Endüstri Devrimi sonrasında ortaya çıkmış bir akım değildir?",
+          "o": [
+            "Konstrüktivizm",
+            "Rokoko",
+            "Art Nouveau",
+            "Bauhaus",
+            "Arts &amp; Crafts"
+          ],
+          "a": 1,
+          "u": 1
+        },
+        {
+          "q": "\"İnovasyon\" kavramı Türkçe literatürde hangi disiplin alanı ile bağdaştırılmıştır?",
+          "o": [
+            "Moda",
+            "Sanayi",
+            "Kamu",
+            "Ekonomi",
+            "Eğitim"
+          ],
+          "a": 3,
+          "u": 13
+        },
+        {
+          "q": "Üstünoğlu (2006) .......................... becerilerini eleştirel düşünme, yaratıcı düşünme, analitik düşünme, yansıtıcı düşünme ve problem çözme olarak beşe ayırmıştır. Yukarıdaki boşluğa aşağıdaki ifadelerden hangisi getirilmelidir.",
+          "o": [
+            "Aydınlatıcı Düşünme",
+            "Üst Düzey Düşünme",
+            "Motivasyonel Düşünme",
+            "Bütüncül Düşünme",
+            "Iraksak Düşünme"
+          ],
+          "a": 1,
+          "u": 8
+        }
+      ]
+    },
+    {
+      "sinavId": 70,
+      "ad": "2023-2024 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi bir hareket yakalama teknolojisi değildir?",
+          "o": [
+            "İşaretsiz Sistemler",
+            "Pasif Optik Sistemler",
+            "Doğrusal Sistemler",
+            "Aktif Optik Sistemler",
+            "İnersiyal Sistemler"
+          ],
+          "a": 2,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Dall-E yapay zekâsı kullanılarak gerçekleştirilebilir?",
+          "o": [
+            "Tasarımcıların sıklıkla kullandığı tercihlerin belirlenmesi",
+            "Ses dosyalarını analiz edip en uygun sesin üretilmesi",
+            "Detaylı cümleler ile istenilen tarzda görsel üretilmesi",
+            "Video görüntülerini birleştirip yeni bir klip üretilmesi",
+            "Fotoğraf kesme ve düzenleme işlemlerinin yapılması"
+          ],
+          "a": 2,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Bauhaus'un ünlü öğrencilerinden biri değildir?",
+          "o": [
+            "Gunta Stölzl",
+            "William Morris",
+            "Josef Hartwig",
+            "Josef Albers",
+            "Marianne Brandt"
+          ],
+          "a": 1,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kompozisyon türlerinden biri değildir?",
+          "o": [
+            "Simetrik kompozisyon",
+            "Açık kompozisyon",
+            "Kapalı kompozisyon",
+            "Kıvrımlı dağınık kitle dengeli kompozisyon",
+            "Üç boyutlu kompozisyon"
+          ],
+          "a": 3,
+          "u": 4
+        },
+        {
+          "q": "Tasarımcılar henüz olgunlaşmamış fikirlerini geliştirirken fikre dair zihinlerinde oluşturdukları çözümleri başkalarına ve kendilerine ……………….. için eskizler çizerler. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "renklendirmek",
+            "modellemek",
+            "hızlandırmak",
+            "güzelleştirmek",
+            "ifade etmek"
+          ],
+          "a": 4,
+          "u": 11
+        },
+        {
+          "q": "Yenilikçi yaklaşımların geliştirildiği tasarımda hangi düşünme metodu bir arada kullanılmaz?",
+          "o": [
+            "Mantıksal düşünme ile soyut düşünme",
+            "Yaratıcılık ile hayal gücü",
+            "Soyut düşünme ile imgesel düşünme",
+            "Sezgisel düşünme ile analitik düşünme",
+            "Iraksak düşünme ile yakınsak düşünme"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Mezopotamya kültüründe aşağıdaki tasarımlardan hangisi üretilmiştir?",
+          "o": [
+            "At arabası",
+            "Tarım aletleri ve pişmiş tuğla",
+            "Çivi",
+            "Yaba",
+            "Kağnı arabası"
+          ],
+          "a": 1,
+          "u": 9
+        },
+        {
+          "q": "Tasarımın tarihsel süreci aşağıdakilerden hangisiyle başlamıştır?",
+          "o": [
+            "İnsanın bilinçli çabalarıyla başlamıştır.",
+            "Resimle başlamıştır.",
+            "Çizimle başlamıştır.",
+            "İnsanın heykel yapımıyla başlamıştır.",
+            "İnsanın araç gereç yapımıyla başlamıştır."
+          ],
+          "a": 0,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdaki lerden hangisi Etkileşim Tasarımının 5 Boyutu ile ilgili maddeler arasında yer almaz?",
+          "o": [
+            "Görsel temsiller",
+            "Donanım",
+            "Zaman",
+            "Kelimeler",
+            "Fiziksel nesneler veya uzay/mekân"
+          ],
+          "a": 1,
+          "u": 14
+        },
+        {
+          "q": "19. yüzyılın sonunda William Morris öncülüğünde kurulan akım aşağıdakilerden hangisidir?",
+          "o": [
+            "De Stijl",
+            "Konstrüktivizm",
+            "Art &amp; Crafts",
+            "Art Nouveau",
+            "Empresyonizm"
+          ],
+          "a": 2,
+          "u": 1
+        },
+        {
+          "q": "Sürdürülebilirlik ne anlama gelir?",
+          "o": [
+            "Dış tasarımlara ağırlık verir.",
+            "Tasarımla birlikte bir meslektir.",
+            "Toplum için vazgeçilmezdir.",
+            "Yaşamı yöneten temel bir ilkedir.",
+            "Çevresel tasarım yapar."
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi yaratıcı bir strateji değildir?",
+          "o": [
+            "Basitleştirme",
+            "Çarpıtma",
+            "Harmanlama",
+            "Bükme",
+            "Parçalama"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "Sürdürülebilir tasarımın asıl amacı nedir?",
+          "o": [
+            "Rahat yaşamaktır.",
+            "Hayvan katliamına karşıdır.",
+            "Barış yanlısı bir harekettir.",
+            "Daha düşük enerji,daha az atık",
+            "Savaşa hayır demektir."
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Wolcott ve arkadaşlarının tasarım temelli araştırma yapacak araştırmacılara sunduğu önerilerden biri değildir?",
+          "o": [
+            "Kullanılacak yöntemleri belirlemek",
+            "Farklı katılımcılardan oluşan bir ekip kurmak",
+            "Araştırmayı sadece teorik olarak yürütmek, uygulama yapmamak",
+            "Araştırma paydaşlarını sürece dâhil etmek",
+            "Araştırmanın her aşamasını planlamak ama yeniliğe ve değişime açık olmak ve uyum sağlamak"
+          ],
+          "a": 2,
+          "u": 5
+        },
+        {
+          "q": "Herkes tarafından aynı kabul edilen, kolayca anlaşılabilir, kanıtlanabilir ve bilimsel verilere dayanan bilgidir. Kişiden kişiye değişmez. Bu tanım aşağıdakilerden hangisine aittir?",
+          "o": [
+            "Olgu",
+            "Hareket",
+            "Kavram",
+            "Bilinç",
+            "Model"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "“Var olan bir soruna birden fazla disiplinin bir araya gelerek, kendi disiplin sınırlarını aşmadan formüller üretilmesi” şeklinde tanımlanan yaklaşım aşağıdakilerden hangisidir?",
+          "o": [
+            "Transdisipliner",
+            "Çokdisiplinlilik",
+            "Problem Çözme",
+            "Disiplinlerarasılık",
+            "Yaratıcılık"
+          ],
+          "a": 1,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi yaratıcılığın elde edilmesinde etken olan üç tür değişkendir?",
+          "o": [
+            "Kişisel – Grupsal - Kültürel",
+            "Tarihsel – Kültürel - Çevresel",
+            "Genel – Özel - Tarihsel",
+            "Bilişsel – Kişisel - Grupsal",
+            "Çevresel – Bilişsel - Kişisel"
+          ],
+          "a": 4,
+          "u": 6
+        },
+        {
+          "q": "Aşağıdakilerden hangisi HCI olarak bilinen terimin dilimizdeki karşılığıdır?",
+          "o": [
+            "İnsan - renk etkileşimi",
+            "İnsan - teknoloji etkileşimi",
+            "İnsan – insan etkileşimi",
+            "İnsan - deneyim etkileşimi",
+            "İnsan - bilgisayar etkileşimi"
+          ],
+          "a": 4,
+          "u": 14
+        },
+        {
+          "q": "Uzamla ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "Gerçek uzamda üç boyutlu nesneler yer alır.",
+            "Uzam dekoratif veya plastik olabilir.",
+            "Dekoratif uzamda derinlik kaygısı olmaz.",
+            "Derin uzam izleyici bakışını ön planda tutar.",
+            "Plastik uzam üç boyutlu yanılsamayla ilgilidir."
+          ],
+          "a": 3,
+          "u": 3
+        },
+        {
+          "q": "\"Tasarımcının duyarlılığını ve yöntemlerini, insanların ihtiyaçlarını teknolojik olarak mümkün olan ve uygulanabilir bir iş stratejisinin müşteri değerine dönüştürebileceği şeylerle eşleştirmek için kullanan bir disiplini ve pazar fırsatıdır.” ifadesi aşağıdaki isimlerden hangisine aittir?",
+          "o": [
+            "Bill Moggridge",
+            "Mitch Benjamin",
+            "Milan Miro",
+            "Willy Croft",
+            "Tim Brown"
+          ],
+          "a": 4,
+          "u": 7
+        }
+      ]
+    },
+    {
+      "sinavId": 67,
+      "ad": "2022-2023 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi Bauhaus'un, binalar ve objeler ile ilgili ilkeleri arasında yer almaz?",
+          "o": [
+            "Ergonomik olması",
+            "Şehir hayatıyla uyumlu olması",
+            "Asimetrik olması",
+            "Teknolojik olması",
+            "Süslü olması"
+          ],
+          "a": 4,
+          "u": 2
+        },
+        {
+          "q": "Renk çarkında yan yana duran renklere ne isim verilir?",
+          "o": [
+            "Analog",
+            "Digital",
+            "Komplementer",
+            "Tamamlayıcı",
+            "Eş zamanlı"
+          ],
+          "a": 0,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kullanıcı arayüzü tasarımcısının birincil görevlerinden biri değildir?",
+          "o": [
+            "Markanın logosunu tasarlamak",
+            "Markanın telefon uygulamasındaki menüleri tasarlamak",
+            "Müşterilerin istekleri doğrultusunda web sitesi görsellerini oluşturmak",
+            "Tasarımları çalışan bir ürüne dönüştürmek için geliştiricilerle yakın çalışmak",
+            "Renk paletlerini ve yazı tiplerini seçmek"
+          ],
+          "a": 0,
+          "u": 14
+        },
+        {
+          "q": "Sanal gerçekliğin artırılmış ve karma gerçeklikten en temel farkı aşağıdakilerden hangisidir?",
+          "o": [
+            "Kullanıcının fiziksel dünyadan yalıtılıyor olmasıdır.",
+            "Kullanıcının sanal dünyadan yalıtılıyor olmasıdır.",
+            "Bilgisayarın sayısal dünyadan yalıtılıyor olmasıdır.",
+            "Kullanıcının fiziksel ve sanal dünyayı beraber görmesidir.",
+            "Kullanıcının sadece fiziksel dünyayı görmesidir."
+          ],
+          "a": 0,
+          "u": 11
+        },
+        {
+          "q": "“Taktik, teknik ve stratejileri bir araya getiren ilkelerin sistemi” diğer bir ifade ile aşağıdakilerden hangisidir?",
+          "o": [
+            "Yöntemler",
+            "Modeller",
+            "Taktikler",
+            "Yaklaşımlar",
+            "Stratejiler"
+          ],
+          "a": 1,
+          "u": 8
+        },
+        {
+          "q": "Sürdürülebilir ambalaj aşağıdakilerden hangisi olmalıdır?",
+          "o": [
+            "Sürekli ambalaj üretimi yapılmalıdır.",
+            "Ambalaj üretimin temel faktörüdür.",
+            "Doğadaki bitki kökenli ürünlerden ambalaj tasarlanmalıdır.",
+            "Her malzemeden ambalaj tasarlanabilir.",
+            "Ambalaj dayanıklı olmalıdır."
+          ],
+          "a": 2,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Tasvir Edici Yöntem olarak da bilinen Altı Şapka Yöntemi'nde analiz eden, karar veren ve düşünme sürecini düzenlemeyi temsil eden şapka rengidir?",
+          "o": [
+            "Mavi Şapka",
+            "Beyaz Şapka",
+            "Yeşil Şapka",
+            "Kırmızı Şapka",
+            "Sarı Şapka"
+          ],
+          "a": 0,
+          "u": 6
+        },
+        {
+          "q": "Aşağıdakilerden hangisi çizim tabletleri için söylenemez?",
+          "o": [
+            "Çizim sürecinde kolaylık sağlar.",
+            "Grafik tasarım ve illüstrasyon yapılabilir.",
+            "Ekranlı, ekransız ve yarı ekranlı olmak üzere üç gruba ayrılır.",
+            "Stylus adı verilen kalemler ile çizim yapılabilir.",
+            "Farklı boyutlar ve özelliklere sahip olabilir."
+          ],
+          "a": 2,
+          "u": 10
+        },
+        {
+          "q": "……………………. birbiri ardına gelen planlama faaliyetleri sonrasında bir öğretim programının ortaya çıkması gerektiğini savunmaktadır. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Geriye doğru tasarım",
+            "İleriye doğru tasarım",
+            "Anlık tasarım",
+            "Spontane tasarım",
+            "Döngülü Tasarım"
+          ],
+          "a": 0,
+          "u": 7
+        },
+        {
+          "q": "Kompozisyonun en önemli amacı aşağıdakilerden hangisidir?",
+          "o": [
+            "Objeler arasındaki ilişkilerinin güzel sunulması",
+            "Mesajın net iletilmesini sağlaması",
+            "Güzel gözükmesi",
+            "Bakışı içinde gezdirmesi",
+            "İlişkileri çözümlemesi"
+          ],
+          "a": 1,
+          "u": 4
+        },
+        {
+          "q": "Tasarımın tarihsel süreci aşağıdakilerden hangisiyle başlamıştır?",
+          "o": [
+            "Çizimle başlamıştır.",
+            "Resimle başlamıştır.",
+            "İnsanın bilinçli çabalarıyla başlamıştır.",
+            "İnsanın araç gereç yapımıyla başlamıştır.",
+            "İnsanın heykel yapımıyla başlamıştır."
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Kompozisyonda değerle ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "Degrade kademeli değişen değerlerdir.",
+            "Benzer değerler uzaktan grup gibi algılanır.",
+            "Benzer karakterli çizgiler yan yanayken birbirinden farklı değerler oluşturur.",
+            "Değerlerle mesafe ifade edilebilir.",
+            "Değerlerle vurgu yapılabilir."
+          ],
+          "a": 2,
+          "u": 4
+        },
+        {
+          "q": "Tasarım, nasıl bir süreci ifade etmektedir?",
+          "o": [
+            "Aktif, sürekli kendini yenileyen",
+            "Sabit",
+            "Pasif",
+            "Kurallara uygun",
+            "Kendine ait sınırları olan"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi çizginin fiziksel özellikleri arasında yer almaz?",
+          "o": [
+            "Yönü",
+            "Güzelliği",
+            "Türü",
+            "Konumu",
+            "Karakteri"
+          ],
+          "a": 1,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdaki yöntemlerden hangisi tasarım temelli araştırmalarda, veri toplarken daha az tercih edilir?",
+          "o": [
+            "Odak grup görüşmesi",
+            "Gözlem",
+            "Tıbbi laboratuvar deneyleri",
+            "Tasarımcı günlükleri",
+            "Tasarım taslakları"
+          ],
+          "a": 2,
+          "u": 5
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “İyi Tasarlanmış Bir Arayüzün Kullanılabilirlik Kriterleri” arasında bulunan “Sistem Görünürlüğü” ifadesine güzel bir örnek sayılır?",
+          "o": [
+            "Netflix dizinin bir bölümünü izlemeyi bitirdiğinizde, sistem size bir sonraki bölümün yüklenmesinin ne kadar süreceğini söyleyen küçük bir ekran sunar. Dilerseniz atlayabilir dilerseniz geri sayımı bekleyebilirsiniz.",
+            "Kindle uygulamasında okuduğunuzda sayfalar, fiziksel bir kitap okuma deneyimini taklit eden bir arayüze sahiptir.",
+            "Kullanıcının yanlışlıkla dosyaları silmesi hâlinde hüsrana uğramalarını önlemek için, tasarımcı bu durumu ön görmeli ve eylemle devam etmeden önce kullanıcının tekrar onayını alacağı bölümleri eklemelidir.",
+            "Arayüzdeki menü ögelerinin gerektiğinde kolayca erişilebilir olması gerekir.",
+            "TV kanallarının logolarındaki renk seçimi bu duruma örnek sayılabilir."
+          ],
+          "a": 0,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Antik Yunan mimari tasarımlarının özelliklerinden biri değildir?",
+          "o": [
+            "Adeta bir heykel gibi tasarlanmıştır.",
+            "Stereometrik anlayıştadır.",
+            "Yüksek pencereleri vardır.",
+            "Tapınaklar megaron ev tipinden geliştirilmiştir.",
+            "Sütun zemini alınlıklı bir çatı örter."
+          ],
+          "a": 2,
+          "u": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir tasarımcının basılı mecrada yapacağı tasarıma başlamadan önce bilmesi gereken önemli hususlardan biri değildir?",
+          "o": [
+            "Bilgisayarın performans durumu",
+            "Tasarımın hangi yüzeye uygulanacağı",
+            "Hangi boyutta bir tasarım gerektiği",
+            "Baskı yapacak cihazın teknolojisi",
+            "Tasarımın sergileneceği yüzeyin bilgisi"
+          ],
+          "a": 0,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Tasvir Edici Yöntem olarak da bilinen Altı Şapka Yöntemi'nde olayın sunduğu fırsatları ve avantajları değerlendirmeyi sağlayan şapka rengidir?",
+          "o": [
+            "Mavi Şapka",
+            "Beyaz Şapka",
+            "Yeşil Şapka",
+            "Kırmızı Şapka",
+            "Sarı Şapka"
+          ],
+          "a": 4,
+          "u": 6
+        },
+        {
+          "q": "Biyomimikri spiralinde aşağıdakilerden hangisi doğrudur?",
+          "o": [
+            "Sürekli yağmur yağar.",
+            "İhtiyacı kadar enerji üretir.",
+            "Sürekli güneş ışığına ihtiyaç duyar.",
+            "Tüm ürünler aynı topraktan üretilir.",
+            "Kalitesiz ürün ve tasarımları yok eder."
+          ],
+          "a": 1,
+          "u": 12
+        }
+      ]
+    },
+    {
+      "sinavId": 56,
+      "ad": "2022-2023 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Tasarımda birbiriyle alakalı olmasa dahi birbirini hatırlatmaya yardımcı kavramların birlikte kullanılması hangi düşünme metoduyla açıklanabilir?",
+          "o": [
+            "İmgesel düşünme",
+            "Analitik düşünme",
+            "Çağrışımsal düşünme",
+            "Yaratıcı düşünme",
+            "Yakınsak düşünme"
+          ],
+          "a": 2,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdaki kompozisyon türlerinden hangisi iki farklı kütleyi zıtlaştırarak dengelemeye çalışır?",
+          "o": [
+            "S şekli",
+            "U şekli",
+            "L şekli",
+            "Y şekli",
+            "Kantar"
+          ],
+          "a": 4,
+          "u": 4
+        },
+        {
+          "q": "Tasarımcılar henüz olgunlaşmamış fikirlerini geliştirirken fikre dair zihinlerinde oluşturdukları çözümleri başkalarına ve kendilerine ……………….. için eskizler çizerler. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "renklendirmek",
+            "modellemek",
+            "güzelleştirmek",
+            "hızlandırmak",
+            "ifade etmek"
+          ],
+          "a": 4,
+          "u": 11
+        },
+        {
+          "q": "Tasarım estetiğinin anlamı aşağıdakilerden hangisidir?",
+          "o": [
+            "Ürün elde etmek",
+            "Kaliteli ürün çıkarmak",
+            "Hoşa giden biçimler tasarlamak",
+            "Dikkat çekmek",
+            "Bir güzel resim yapmak"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi doku çeşitleri arasında yer almaz?",
+          "o": [
+            "Karışık doku",
+            "Soyut doku",
+            "Gerçek doku",
+            "İcat edilmiş doku",
+            "Taklit doku"
+          ],
+          "a": 0,
+          "u": 3
+        },
+        {
+          "q": "Ludwig Miesvan der Rohe'nin tasarladığı ünlü koltuk aşağıdakilerden hangisidir?",
+          "o": [
+            "Wassily",
+            "Nesting",
+            "Brno",
+            "Çek",
+            "Cesca"
+          ],
+          "a": 2,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi grafik tasarım alanında en çok tercih edilen sektör lideri yazılım firmasıdır?",
+          "o": [
+            "Corel",
+            "Adobe",
+            "Microsoft",
+            "Apple",
+            "Photomagic"
+          ],
+          "a": 3,
+          "u": 10
+        },
+        {
+          "q": "Sorun veya duruma bakış açısını değiştirip bir açıdan diğer bir açıya geçişi ifade eden düşünce yöntemi aşağıdakilerden hangisidir?",
+          "o": [
+            "Sentez Yöntemi",
+            "Teknik İllüstrasyonlar",
+            "Devrim Yöntemi",
+            "Yeniden Uygulama Yöntemi",
+            "Yön Değiştirme Yöntemi"
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "I. Yoksullukla mücadele II. Sorumlu üretim ve tüketim III. Sağlıklı yaşam Yukarıdakilerden hangisi ya da hangileri sürdürülebilir kalkınma amaçları ve hedefleri arasında yer alır?",
+          "o": [
+            "Yalnız I",
+            "Yalnız II",
+            "I ve II",
+            "II ve III",
+            "I, II ve III"
+          ],
+          "a": 4,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi dilimizde” kullanıcı deneyimi” olarak adlandırılan çalışma alanının literatürdeki yaygın kısaltmasıdır?",
+          "o": [
+            "VR",
+            "ID",
+            "HCI",
+            "UX",
+            "UI"
+          ],
+          "a": 3,
+          "u": 14
+        },
+        {
+          "q": "Yaratıcılığı etkileyen temel bilişsel değişkenler nelerdir?",
+          "o": [
+            "Zekâ -Bilgi -Teknik yetenekler -Özel yetenekler",
+            "Politik-Dinsel Faktörler -Kültürel Faktörler-Sosyoekonomik Faktörler",
+            "İçsel Motivasyon- İnanç-Yaratıcılık (kişisel özellik)",
+            "Zihinsel Süreç-Bilişsel Şema",
+            "İçsel Motivasyon- Zihinsel Süreç"
+          ],
+          "a": 0,
+          "u": 6
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tekhne kavramının tanımlarından biridir?",
+          "o": [
+            "Bir amaç gözeterek ortaya işlevsel bir şey koyma",
+            "Bir fikir doğrultusunda yazı yazma",
+            "Tasarlanan bir ürünü test etme",
+            "Bir tasarım ürününün kalite standardını belirleme",
+            "Taslak çizim yapma"
+          ],
+          "a": 0,
+          "u": 1
+        },
+        {
+          "q": "“Geleneksel olarak tasarımın kapsamı dışında kalan sorunları çözmek için belirli bir dizi tasarım yöntemini kullanmaktır.\" ifadesi aşağıdakilerden hangisinin tanımıdır?",
+          "o": [
+            "Tasarım Düşüncesi",
+            "Grafik Tasarım",
+            "Endüstriyel Tasarım",
+            "Grafik Sanatlar",
+            "Temel Tasarım İlkeleri"
+          ],
+          "a": 0,
+          "u": 7
+        },
+        {
+          "q": "Aşağıdaki hangi ikili motivasyon artırmak için kullanılabilecek yollar arasında yer almaz?",
+          "o": [
+            "Hedef belirlemek + İlerlemeyi gözden geçirmek",
+            "Sevdiğiniz işlere yönelmek + sosyal olarak desteklenmek",
+            "Pozitif çevre + bedensel egzersiz",
+            "Ödüller + hedef belirlemek",
+            "Beklemek + ertelemek"
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarım temelli araştırmaların zorluklarından biri değildir?",
+          "o": [
+            "Çok fazla veri olması",
+            "Araştırmacılara veri analizinde çok fazla iş yükü düşmesi",
+            "Araştırma konusunun bulunması",
+            "Mali yetersizlikler",
+            "Araştırmanın çok uzun olması"
+          ],
+          "a": 2,
+          "u": 5
+        },
+        {
+          "q": "Olmayanı tasarlama kaygısı tasarımcının hangi yönünü sınırlandırır?",
+          "o": [
+            "Yetenekli olmasını",
+            "Zekâsını",
+            "Bilgisini",
+            "Farklı bakış açılarıyla bakabilmesini",
+            "Estetik algısını"
+          ],
+          "a": 3,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi sürdürülebilir kalkınma hedefleri içinde yer alır?",
+          "o": [
+            "Orman artıkları",
+            "Emek üretimi",
+            "Makineleşme",
+            "İşsizliği önleme",
+            "Toprak ve arazi yaşamını korumak"
+          ],
+          "a": 4,
+          "u": 12
+        },
+        {
+          "q": "Tasarım alanında öngörülebilir hedefler için kullanılan mantıksal karar sistemi olarak …………………. kullanmak temel kararlarda tasarımcıların işini kolaylaştırır hâle gelmiştir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Sanal Gerçeklik (VR)",
+            "Yapay zekâ (AI)",
+            "Karma Gerçeklik (MR)",
+            "Sanatçı Eskizleri",
+            "Artırılmış Gerçeklik (AR)"
+          ],
+          "a": 1,
+          "u": 11
+        },
+        {
+          "q": "Göbeklitepe T taşları üzerinde en çok aşağıdaki figürlerden hangisi tasarlanmıştır?",
+          "o": [
+            "Bitkiler",
+            "Kullanım eşyaları",
+            "Hayvan figürleri",
+            "Baltalar",
+            "Teknik araç ve gereçler"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdaki Etkileşim Tasarımı'nın 5 boyutundan biri olan “Kelimeler” başlığı ile ilgili açıklamalardan hangisi yanlıştır?",
+          "o": [
+            "Kullanıcıları yönlendirmede ihtiyaç duyulan düğme ve etiketlerin üzerindeki metinlerin dikkatli seçilmesi önemlidir.",
+            "Kelimelerde büyük harf ya da küçük harf kullanımı kelimenin karşı tarafta yaşatacağı hissiyat ile ilişkilidir.",
+            "Kullanılan her eylem fiilinin belirli bir çağrışımı vardır. Diksiyonunuz kesin değilse, kullanıcılar düğmenin ne yapacağını yanlış yorumlayabilir. Bu sebeple düğme isimlendirmesinde kesin ifade kullanımı önerilir.",
+            "Kullanıcılar düğme etiketlerindeki komutlara güvenmek ve anlamak eğilimindedirler. Doğru bir ifade ile işlevi açıklanan düğme, amaçlanan eylemi gerçekleştireceğinden emin olmalarını sağlar ve bu da karar vermelerine yardımcı olur.",
+            "Düğme üzerindeki kelimenin ifadesinde özellikle kırmızı renk kullanımı yaygın ve önemlidir. Bunun sebebi kırmızının hemen her ortamda fark edilebilir olmasıdır."
+          ],
+          "a": 4,
+          "u": 14
+        }
+      ]
+    }
+  ],
+  "Web Tasarımının Temelleri": [
+    {
+      "sinavId": 133,
+      "ad": "2025-2026 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Bir butona tıklandığında belirli bir işlemi tetikleyen olay (event) hangisidir?",
+          "o": [
+            "Onsubmit",
+            "Onclick",
+            "Onchange",
+            "Onload",
+            "Onkeypress"
+          ],
+          "a": 1
+        },
+        {
+          "q": "CSS’te, vw (viewport width) ve vh (viewport height) gibi birimlerin temel özelliği nedir ve modern duyarlı (responsive) tasarımlarda neden tercih edilirler?",
+          "o": [
+            "Sabit olmaları ve her cihazda aynı sonucu vermeleri.",
+            "Geleneksel matbaa ölçüsü kullanmaları (point/pt).",
+            "Cihazın ekran genişliğine veya yüksekliğine göre orantısal olarak değişmeleri.",
+            "Yalnızca kök (html) elemanının font boyutuna göre hesaplanmaları.",
+            "Sadece metin rengini değiştirmek için kullanılmaları."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Tipografinin okunabilirliğini artırmak için aşağıdakilerden hangisi önerilir?",
+          "o": [
+            "Başlık ve alt başlıkları aynı boyutta vermek",
+            "Arka plan ile yazı rengini düşük kontrastlı seçmek",
+            "Her sayfada farklı yazı tipleri denemek",
+            "Satır uzunluğunu 50–75 karakter arasında tutmak",
+            "Ana metin için 10px puntolu serif font kullanmak"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Yapay zekâ destekli web tasarımının sunduğu avantajların yanı sıra, ünitede belirtilen sınırlılıklardan biri aşağıdakilerden hangisidir?",
+          "o": [
+            "Tasarımcının yaratıcılığını sınırlama riski ve üretilen içeriklerin özgünlüğü konusundaki tartışmalar",
+            "Yüksek maliyetli olması nedeniyle küçük projelerde kullanılamaması",
+            "Tasarım süreçlerini çok fazla yavaşlatması",
+            "Geliştirme ortamlarına entegre edilememesi",
+            "Sadece çok basit web siteleri tasarlayabilmesi"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Açık kaynaklı CMS’lerin en önemli avantajlarından biri aşağıdakilerden hangisidir?",
+          "o": [
+            "Yalnızca e-ticaret için kullanılabilmesi",
+            "Kodların sadece geliştirici tarafından görülmesi",
+            "Topluluk desteği ile sürekli geliştirilmesi",
+            "Tema ve eklenti desteğinin olmaması",
+            "Her zaman lisans ücreti gerektirmesi"
+          ],
+          "a": 2
+        },
+        {
+          "q": "JavaScript’te === operatörünün işlevi nedir?",
+          "o": [
+            "İki değerin yalnızca eşitliğini kontrol eder.",
+            "Tür dönüşümünü zorunlu kılar.",
+            "İki değeri toplar.",
+            "İki değerin türünü ve değerini kontrol eder.",
+            "İki değerin birbirine eşit olmamasını kontrol eder."
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi, web uygulamalarında veri iletiminde güvenliği sağlamak için kullanılan protokollerden biridir?",
+          "o": [
+            "SSL/TLS",
+            "DNS",
+            "HTTP",
+            "FTP",
+            "SMTP"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi demografik veri kapsamında değerlendirilir?",
+          "o": [
+            "Kullanıcının marka algısı",
+            "Kullanıcının site içi tıklama yolu",
+            "Kullanıcının hobileri",
+            "Kullanıcının satın alma motivasyonu",
+            "Kullanıcının yaş bilgisi"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Bir hücrenin yatayda birden fazla sütunu kapsamasını sağlayan öznitelik aşağıdakilerden hangisidir?",
+          "o": [
+            "spanrow",
+            "rowspan",
+            "colspan",
+            "merge",
+            "align"
+          ],
+          "a": 2
+        },
+        {
+          "q": "…………………… iki buton rengi veya iki farklı sayfa düzeni gibi iki farklı tasarım versiyonunun rastgele kullanıcı gruplarına sunulması ve performanslarının karşılaştırılmasıdır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir.",
+          "o": [
+            "A/B testi",
+            "Göz İzleme",
+            "Odak Grupları",
+            "Anketler",
+            "Isı Haritaları"
+          ],
+          "a": 0
+        },
+        {
+          "q": "CSS Grid’de grid-template-columns: repeat(3, 1fr); ne anlama gelir?",
+          "o": [
+            "3 satır oluşturur, her biri eşit yükseklikte",
+            "3 sütun oluşturur, her biri eşit genişlikte",
+            "Tüm öğeleri tek sütuna toplar",
+            "Satırları %100 genişlikte oluşturur",
+            "Sütunları otomatik olarak gizler"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Tablo gövdesini belirlemek için kullanılan etiket aşağıdakilerden hangisidir?",
+          "o": [
+            "&lt;thead&gt;",
+            "&lt;td&gt;",
+            "&lt;tfoot&gt;",
+            "&lt;tbody&gt;",
+            "&lt;th&gt;"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi jQuery’de DOM manipülasyonu için kullanılan bir fonksiyon değildir?",
+          "o": [
+            ".click()",
+            ".append()",
+            ".remove()",
+            ".text()",
+            ".css()"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Core Web Vitals metriklerinden Largest Contentful Paint (LCP) için ideal yüklenme süresi aşağıdakilerden hangisidir?",
+          "o": [
+            "3 saniyeden düşük",
+            "2,5 saniyeden düşük",
+            "5 saniyeden düşük",
+            "0,5 saniyeden düşük",
+            "1 saniyeden düşük"
+          ],
+          "a": 1
+        },
+        {
+          "q": "document.body.addEventListener(\"click\", () =&gt; console.log(\"Body\"), true); document.getElementById(\"btn\").addEventListener(\"click\" () =&gt; console.log(\"Buton\")); Yukarıdaki kod çalıştırıldığında konsolda ne yazdırılır?",
+          "o": [
+            "Sadece \"Buton\"",
+            "İkisi aynı anda",
+            "Hiçbir şey yazmaz.",
+            "Önce \"Body\", sonra \"Buton\"",
+            "Önce \"Buton\", sonra \"Body\""
+          ],
+          "a": 3
+        },
+        {
+          "q": "Backend sürecinde yaygın kullanılan dillerden biri aşağıdakilerden hangisidir?",
+          "o": [
+            "CSS",
+            "HTML",
+            "JavaScript",
+            "Bootstrap",
+            "PHP"
+          ],
+          "a": 4
+        },
+        {
+          "q": "POP3 protokolünün en belirgin özelliği aşağıdakilerden hangisidir?",
+          "o": [
+            "Sadece mobil cihazlarda çalışması",
+            "E-postaları sunucu üzerinde saklaması",
+            "Birden fazla cihazla senkronize çalışması",
+            "E-postaları şifreli aktarması",
+            "E-postaları indirip çoğunlukla sunucudan silmesi"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Özellikle bakım kolaylığı ve geniş çaplı projelerde tutarlılık sağlaması nedeniyle en çok önerilen ve CSS kurallarının ayrı bir .css uzantılı dosyada saklanıp HTML’e &lt;link&gt; etiketiyle bağlanmasını gerektiren CSS ekleme yöntemi aşağıdakilerden hangisidir?",
+          "o": [
+            "Evrensel Seçici Kullanımı",
+            "Etiket Seçici Kullanımı",
+            "Satır İçi CSS Ekleme",
+            "Sayfa İçi CSS Ekleme",
+            "Harici CSS Ekleme"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi HTML etiketleri arasında yer almaz?",
+          "o": [
+            "&lt;style type=\"text/css\"&gt; &lt;/style&gt;",
+            "&lt;content&gt;&lt;/content&gt;",
+            "&lt;header&gt; &lt;/header&gt;",
+            "&lt;footer&gt; &lt;/footer&gt;",
+            "&lt;article&gt; &lt;/article&gt;"
+          ],
+          "a": 1
+        },
+        {
+          "q": "CSS dosyasını HTML sayfasına eklemek için hangi etiket kullanılır?",
+          "o": [
+            "&lt;link rel=\"stylesheet\" href=\"stil.css\"&gt;",
+            "&lt;meta charset=\"utf-8\"&gt;",
+            "&lt;script src=\"script.js\"&gt;&lt;/script&gt;",
+            "&lt;div&gt;",
+            "&lt;style&gt;"
+          ],
+          "a": 4
+        }
+      ]
+    },
+    {
+      "sinavId": 119,
+      "ad": "2025-2026 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi SEO'nun teknik bileşenlerinden biri değildir?",
+          "o": [
+            "Mobil uyumluluk sağlama",
+            "Sosyal medya etkileşimleri",
+            "Front-End SEO ile veri transfer hızlandırma",
+            "Back-End SEO ile sunucu tarafı hız optimizasyonu",
+            "Site haritası ve yönlendirme hatası yönetimi"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Web tasarım sürecinin kavramsal tasarım ve fikir geliştirme aşamasında yapay zekâ destekli beyin fırtınası araçları hangi konuda tasarımcılara yardımcı olur?",
+          "o": [
+            "Sitenin son görsel tasarımını otomatik olarak oluşturur.",
+            "Kullanıcıların sosyal medya alışkanlıklarını belirler.",
+            "Aynı web sitesi için birden fazla konsept önerisi sunar.",
+            "Hazır kod şablonları sağlar.",
+            "Sadece teknik güvenlik analizleri sunar."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Bootstrap'te .card sınıfı hangi amaçla kullanılır?",
+          "o": [
+            "Resim, başlık ve metinleri modern bir kutu düzeninde göstermek için",
+            "Sayfadaki tüm metinleri mavi yapmak için",
+            "Menüleri kaydırma efektiyle açmak için",
+            "Tablo hücrelerini hizalamak için",
+            "Sayfayı mobil uyumlu hâle getirmek için"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdaki olaylardan hangisi bir form gönderildiğinde tetiklenir?",
+          "o": [
+            "change",
+            "load",
+            "submit",
+            "focus",
+            "input"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdaki içerik yönetim sistemlerinden hangisi eğitim kurumları için geliştirilmiş bir öğrenme yönetim sistemi (LMS) örneğidir?",
+          "o": [
+            "Magento",
+            "Moodle",
+            "Drupal",
+            "TYPO3",
+            "Ghost"
+          ],
+          "a": 1
+        },
+        {
+          "q": "jQuery'de DOM manipülasyonu için kullanılan .append() fonksiyonu ne işe yarar?",
+          "o": [
+            "Bir ögeyi gizler.",
+            "Bir ögenin metnini alır.",
+            "Bir ögenin öz niteliklerini değiştirir.",
+            "Bir ögenin sonuna yeni içerik ekler.",
+            "Bir ögenin ebeveynini seçer."
+          ],
+          "a": 3
+        },
+        {
+          "q": "Semantik HTML nedir?",
+          "o": [
+            "Yalnızca görsel ögeleri içermesi",
+            "Tasarımın estetik açıdan güzel olması",
+            "Etiketlerin yapı ve anlamına göre doğru kullanılması",
+            "Yalnızca metin içermesi",
+            "HTML'in hızlı yazılması"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi CMS'nin gelecekteki gelişim alanlarından biri olarak görülmektedir?",
+          "o": [
+            "Güncelleme gerektirmemek",
+            "Sadece masaüstü tarayıcılara odaklanmak",
+            "Açık kaynak topluluklarının kapanması",
+            "Kullanıcı katkılarının yasaklanması",
+            "Mobil uyumluluk ve duyarlı tasarım"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Boşluk (white space) kullanımının temel işlevi aşağıdakilerden hangisidir?",
+          "o": [
+            "Sayfanın daha çok reklam almasını sağlamak",
+            "Okunabilirliği azaltmak",
+            "Tasarıma daha fazla öge eklemek",
+            "Vurguyu artırmak ve karmaşayı azaltmak",
+            "Metaforları güçlendirmek"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdaki kod ifadelerinden hangisi yanlıştır?",
+          "o": [
+            "JavaScript'te değişkenler dinamik tipli olabilir.",
+            "confirm() doğru/yanlış türünde değer döndürür.",
+            "console.log() kullanıcıya uyarı mesajı kutusu açar.",
+            "alert() kullanıcıya bilgilendirme mesajı verir.",
+            "prompt() kullanıcıdan giriş alır."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Event bubbling ile ilgili aşağıdakilerden hangisi doğrudur?",
+          "o": [
+            "Olay tarayıcıda engellenemez.",
+            "Olay DOM'un kökünden hedef ögeye doğru iner.",
+            "Olay yalnızca pencere (window) nesnesinde çalışır.",
+            "Olay hedef ögeden başlayıp yukarı doğru yükselir.",
+            "Olay yalnızca hedef ögede gerçekleşir."
+          ],
+          "a": 3
+        },
+        {
+          "q": "Flexbox hangi düzenler için en uygundur?",
+          "o": [
+            "Responsive düzenler",
+            "Tek boyutlu düzenler",
+            "Tablo tabanlı düzenler",
+            "İki boyutlu düzenler",
+            "Grid sistemleri"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi SEO dostu web sitesi mimarisi için yanlıştır?",
+          "o": [
+            "Kullanıcıların erişiminin karmaşıklaştırılması",
+            "Arama motorlarının siteyi kolay tarayabilmesi",
+            "Hem kullanıcılar hem arama motorları için erişilebilir olması",
+            "SEO sonuçlarında üst sıralara çıkmaya katkı sağlaması",
+            "Site yapılarının mantıklı ve hiyerarşik olması"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Bir formda kullanıcıdan alınan verilerin gönderileceği hedef adresi belirleyen öz nitelik aşağıdakilerden hangisidir?",
+          "o": [
+            "type",
+            "id",
+            "name",
+            "action",
+            "method"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Yapay zekâ, web tasarımında erişilebilirliği artırmak için hangi alanda katkı sağlayabilir?",
+          "o": [
+            "Sadece sitenin ana menü yapısını optimize eder.",
+            "Tasarımın estetik görünümünü güçlendiren yeni yazı tipleri önerir.",
+            "Kullanıcıların sosyal medya etkileşimlerini analiz eder.",
+            "Sitenin arka planında veritabanı yönetimini otomatikleştirir.",
+            "Videolar için otomatik altyazılar üretebilir veya metinleri seslendirebilir."
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Jakob Nielsen'in 10 Kullanılabilirlik İlkesi'nden biri değildir?",
+          "o": [
+            "Sistem durumunun görünürlüğü",
+            "Filtreleme",
+            "Kullanıcı kontrolü ve özgürlüğü",
+            "Sistem ve gerçek dünya uyumu",
+            "Hata önleme"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi erişilebilir web tasarımının temel amaçlarından biridir?",
+          "o": [
+            "Sadece engelli bireylerin kullanımına uygun olmak",
+            "Sadece gelişmiş cihazlarda çalışmak",
+            "Yalnızca görsel açıdan estetik olmak",
+            "İnternet hızını artırmak",
+            "Tüm kullanıcılar için kapsayıcı ve kullanılabilir içerik sunmak"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdaki veri tiplerinden hangisi ilkel (primitive) veri tipidir?",
+          "o": [
+            "Boolean",
+            "RegExp",
+            "Function",
+            "Array",
+            "Object"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Wireframe hazırlanırken dikkat edilmesi gereken en önemli ilke nedir?",
+          "o": [
+            "Görsel estetik kaygılarını öne çıkarmak",
+            "Animasyonlu prototipler hazırlamak",
+            "Sayfa düzenini işlevsellikten bağımsız planlamak",
+            "Sunucu yapılandırmasını planlamak",
+            "Basitlik ve tutarlılığı korumak"
+          ],
+          "a": 4
+        },
+        {
+          "q": "CSS Kutu Modeli'ne göre, bir HTML ögesinin İçerik (Content) alanı ile Kenarlık (Border) alanı arasındaki boşluğu tanımlayan bileşen aşağıdakilerden hangisidir?",
+          "o": [
+            "Padding (İç boşluk)",
+            "Border (Kenarlık)",
+            "Margin (Dış boşluk)",
+            "Width (Genişlik)",
+            "Content (İçerik)"
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 117,
+      "ad": "2025-2026 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi JavaScript ’in web tasarımındaki temel rollerinden biridir?",
+          "o": [
+            "Görsel düzen sağlamak",
+            "Sayfa yapısını oluşturmak",
+            "Stil dosyalarını derlemek",
+            "Kullanıcıyla etkileşim kurmak",
+            "Veritabanı tablolarını tasarlamak"
+          ],
+          "a": 3
+        },
+        {
+          "q": "addEventListener (\"click\", fonksiyon, { once: true }) ne anlama gelir?",
+          "o": [
+            "Fonksiyon sadece bir kez çalışır.",
+            "Fonksiyon hiç çalışmaz.",
+            "Fonksiyon sürekli çalışır.",
+            "Fonksiyon sadece bubbling aşamasında çalışır.",
+            "Fonksiyon sadece capturing aşamasında çalışır."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi HTML etiketleri arasında yer almaz?",
+          "o": [
+            "&lt;header &gt; &lt;/header &gt;",
+            "&lt;content&gt;&lt;/content&gt;",
+            "&lt;style type=\"text/css\"&gt; &lt;/style&gt;",
+            "&lt;footer&gt; &lt;/footer&gt;",
+            "&lt;article &gt; &lt;/article &gt;"
+          ],
+          "a": 1
+        },
+        {
+          "q": "İstemci–sunucu modelinde istemcinin temel görevi aşağıdakilerden hangisidir?",
+          "o": [
+            "Verileri şifrelemek",
+            "Güvenlik sağlamak",
+            "Protokolleri yönetmek",
+            "Kaynak talep etmek",
+            "Dosyaları barındırmak"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi WCAG erişilebilirlik ilkelerinden biri değildir?",
+          "o": [
+            "Çalıştırılabilirlik",
+            "Estetiklik",
+            "Anlaşılabilirlik",
+            "Sağlamlık",
+            "Algılanabilirlik"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Metin biçimlendirme özelliklerinden biri olan letter -spacing, metnin hangi tipografik unsurunu kontrol eder?",
+          "o": [
+            "Metnin büyük /küçük harfe dönüştürülmesi",
+            "Paragrafın ilk satırının girintisi",
+            "Bireysel harfler arasındaki yatay boşluk",
+            "Kelimeler arasındaki boşluk",
+            "Satırlar arasındaki dikey boşluk"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Bir ögeyi 2 sütun boyunca genişletmek için doğru yazım aşağıdakilerden hangisidir?",
+          "o": [
+            "grid-column: 2;",
+            "grid-auto -flow: column;",
+            "grid-template: span 2;",
+            "grid-row: 2;",
+            "grid-column: span 2;"
+          ],
+          "a": 4
+        },
+        {
+          "q": "jQuery ’de “$(\"#buton \")” ifadesi hangi ögeyi seçer?",
+          "o": [
+            "Sınıfı “buton” olan tüm ögeleri",
+            "İlk buton etiketini",
+            "Sayfadaki tüm buton ögelerini",
+            "ID’si “buton” olan ögeyi",
+            "Görünür durumdaki butonları"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Yapay zekâ, web sitelerinde kişiselleştirmeyi sağlamak için aşağıdaki özelliklerden hangisini geliştirmek amacıyla kullanılabilir?",
+          "o": [
+            "Mobil cihazlar için farklı tasarım varyantları oluşturur.",
+            "HTML ve CSS kodlarının düzenli ve okunur olmasını sağlar.",
+            "Kullanıcıların site üzerindeki tıklama, gezinme ve etkileşim davranışlarını analiz ederek onlara özel içerik veya ürünler önerir.",
+            "Sitenin arama motoru sıralamasını artırmak için anahtar kelime analizleri yapar.",
+            "Web sitesinin sunucu altyapısını yükseltir."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Wireframe ’i en doğru şekilde tanımlar?",
+          "o": [
+            "SEO için anahtar kelime listesi",
+            "Kullanıcı testlerinden elde edilen ısı haritaları",
+            "Web sitesinin son hâline yakın, tüm görsel detayları içeren yüksek sadakatli tasarım",
+            "Sunucu yapılandırmasını gösteren teknik diyagram",
+            "Görsel tasarımdan bağımsız, sitenin iskelet yapısını gösteren düşük sadakatli çizim /diyagram"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdaki giriş türlerinden hangisi kullanıcının yalnızca sayı girmesini sağlar?",
+          "o": [
+            "&lt; input type=\"text\" /&gt;",
+            "&lt; input type=\"file\" /&gt;",
+            "&lt; input type=\"password \" /&gt;",
+            "&lt; input type=\"number \" /&gt;",
+            "&lt; input type=\"email\" /&gt;"
+          ],
+          "a": 3
+        },
+        {
+          "q": "WordPress aşağıdaki kullanım alanlarından hangisi için en yaygın tercih edilmektedir?",
+          "o": [
+            "Veritabanı sorgularının optimizasyonu",
+            "İşletim sistemi geliştirme",
+            "Dinamik web sitesi ve blog oluşturma",
+            "Kurumsal e -posta yönetimi",
+            "Ağ güvenlik duvarı yönetimi"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Bir form elemanını tanımlamak için hangi etiket kullanılır?",
+          "o": [
+            "&lt;textarea &gt;&lt;/textarea &gt;",
+            "&lt;html&gt;",
+            "&lt;input /&gt;",
+            "&lt;form&gt; &lt;/form&gt;",
+            "&lt;button &gt;&lt;/button &gt;"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Küçük etkileşimlerde kullanılan geçiş efektleri hangi özellik ile yapılır?",
+          "o": [
+            "Transform",
+            "Animation",
+            "transition",
+            "Keyframes",
+            "@media"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Alan adlarının IP adreslerine dönüştürülmesini sağlayan sistem aşağıdakilerden hangisidir?",
+          "o": [
+            "URI",
+            "SMTP",
+            "URL",
+            "FTP",
+            "DNS"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Tema kavramı CMS ’lerde hangi işlevi ifade eder?",
+          "o": [
+            "Veritabanı yönetimini kolaylaştırmak",
+            "Sitenin görsel tasarımını ve düzenini belirlemek",
+            "Kullanıcı girişlerinin güvenliğini sağlamak",
+            "İnternet hızını artırmak",
+            "İçeriğin arama motorlarına kaydedilmesini sağlamak"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Görsel optimizasyonunda Lazy Loading tekniğinin temel faydası aşağıdakilerden hangisidir?",
+          "o": [
+            "Görsellerin yüklenmesini erteleyerek sayfa yüklenme süresini azaltır.",
+            "Görsellerin dosya formatını değiştirir.",
+            "Görselleri tamamen kaldırır.",
+            "Görsellerin çözünürlüğünü artırır.",
+            "Tüm görsellerin aynı anda yüklenmesini sağlar."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Web tasarımında storyboard ’un temel katkısı aşağıdakilerden hangisidir?",
+          "o": [
+            "Sitenin renk şemasını belirlemek",
+            "Veritabanı bağlantılarını test etmek",
+            "Alan adı seçim sürecini kolaylaştırmak",
+            "Hosting seçeneklerini karşılaştırmak",
+            "Kullanıcı yolculuğunu sahne sahne görselleştirmek"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Bir web sayfasının ana içeriğini belirtmek için kullanılan semantik HTML 5 etiketi aşağıdakilerden hangisidir?",
+          "o": [
+            "&lt; main&gt; &lt; /main&gt;",
+            "&lt; footer&gt; &lt; /footer&gt;",
+            "&lt; header &gt; &lt; /header &gt;",
+            "&lt; section&gt; &lt; /section&gt;",
+            "&lt; article &gt; &lt; /article &gt;"
+          ],
+          "a": 0
+        },
+        {
+          "q": "SEO’nun temel amacı aşağıdakilerden hangisidir?",
+          "o": [
+            "Arama motorlarının algoritmalarına uygun site yapısı oluşturarak organik trafiği artırmak",
+            "Web sitesinin sadece görsel tasarımını geliştirmek",
+            "Reklam harcamalarını azaltmak",
+            "Web sitesinin sadece hızını artırmak",
+            "Sosyal medya paylaşımlarını engellemek"
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 99,
+      "ad": "2024-2025 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi bir tablonun satır ve sütunlarına kenarlık eklemek için kullanılan özelliktir?",
+          "o": [
+            "bordered",
+            "cell-bordered",
+            "col-bordered",
+            "table-bordered",
+            "row-bordered"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdaki CSS (Cascading Style Sheets - Basamaklı Stil Sayfaları) özelliklerinden hangisi ögenin dört tarafındaki kenar boşluğunu ayarlamak için kullanılır?",
+          "o": [
+            "margin-left",
+            "border-color",
+            "font-size",
+            "background-image",
+            "margin"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi web tarayıcılarla ilgili olarak yanlıştır?",
+          "o": [
+            "Kullanıcılar ile web sitesi arasında bağlantı kurar.",
+            "Web sitelerinin görüntülenmesi için kullanılır.",
+            "Görsel ve metinsel ögeleri görüntüler.",
+            "Sadece bilgisayarlar üzerinde kullanılır.",
+            "Dosya indirme yapılabilir."
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdaki HTML kod bloklarından hangisi doğru yazılmıştır?",
+          "o": [
+            "&lt;html&gt;&lt;head&gt;&lt; /body&gt;&lt;/html&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;",
+            "&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;",
+            "&lt;title&gt;&lt;head &gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt; /body&gt;&lt;/html&gt;&lt;html&gt;",
+            "&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/head&gt;&lt;body&gt;&lt; /html&gt;&lt;/title&gt;&lt;/body&gt;",
+            "&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;/html&gt;&lt;/body&gt;"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ekran genişliğinin 250px altında olması hâlinde arka plan rengini sarı yapan koddur?",
+          "o": [
+            "@media only screen and (max-with: 250px) {body {background-color:yellow;}}",
+            "@media only screen and (max-with: 250px) {body {background-color:red;}}",
+            "@media only screen and (min-with: 250px) {body {background-color:yellow;}}",
+            "screen and (max-with: 250px) {body {background- color:yellow;}}",
+            "@media only screen and (max-with: 250px)"
+          ],
+          "a": 0
+        },
+        {
+          "q": "CSS (Cascading Style Sheets- Basamaklı Stil Sayfaları) tablo özelliklerinden olan caption-side'ın açıklaması aşağıdakilerden hangisinde verilmiştir?",
+          "o": [
+            "Tablo başlığının yazı fontunu ayarlar.",
+            "Tablo başlığının konumunu ayarlar.",
+            "Tablo başlığının rengini ayarlar.",
+            "Tablo başlığının kalınlığını ayarlar.",
+            "Tablo başlığının büyüklüğünü ayarlar."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi prototip hazırlamanın avantajlarından biri değildir?",
+          "o": [
+            "Geliştirme sürecini taleplere uygun şekilde planlar.",
+            "Hata tespiti yapar.",
+            "Tasarım maliyetini azaltır.",
+            "Ortak çalışma verimliliğini artırır.",
+            "Çalışmanın tamamının gözden geçirilmesine imkân sağlar."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Transitions Metodu'na ait özelliklerden biri değildir?",
+          "o": [
+            "Transition-property",
+            "Transition-delay",
+            "Transition-duration",
+            "Transition-timed-function",
+            "Transition-timing-function"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi front-end ve back-end kavramlarıyla ilgili yanlış bir ifadedir?",
+          "o": [
+            "Back-end bölümünde ASP, PHP gibi yazılım dilleri kullanılır.",
+            "Front-end bölümünde Oracle, MS SQL Server gibi veri tabanı yönetim sistemleri kullanılır.",
+            "Front-end teknolojileriyle kullanıcı arayüzü oluşturulur.",
+            "Back-end teknolojileri front-end teknolojilerine alt yapı sağlar.",
+            "Kullanıcıların etkileşime girdiği tüm bileşenler front-end olarak anılır."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Form Validation (Doğrulama)” işlemi için form elementinin class tanımına eklenmesi gereken ifadedir?",
+          "o": [
+            "novalidate",
+            "validate-form",
+            "needs-validation",
+            "form-validate",
+            "form-valid"
+          ],
+          "a": 2
+        },
+        {
+          "q": "HTML 5 ile yeni gelen API (Application Programming Interface)' lerden “websocket”in görevi aşağıdakilerden hangisidir?",
+          "o": [
+            "Sayfa içindeki nesnelere sürükle-bırak tanımlar.",
+            "Sunucu, istemci arasındaki çift yönlü bağlantıyı tanımlar.",
+            "İstemci bilgisayarına veri depolamayı tanımlar.",
+            "Konum bilgisini tanımlar.",
+            "Yazdırma desteği sağlar."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi CSS (Cascading Style Sheets- Basamaklı Stil Sayfaları)'de Flexbox özellikleri arasında yer alır?",
+          "o": [
+            "center",
+            "stretch",
+            "flex-basis",
+            "baseline",
+            "auto"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Resim ve çizim gibi bağımsız yapılar için aşağıdaki etiketlerden hangisi kullanılır?",
+          "o": [
+            "summary",
+            "article",
+            "nav",
+            "aside",
+            "figure"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi dünyada en çok kullanılan tarayıcılardan biri değildir?",
+          "o": [
+            "Xcode",
+            "Firefox",
+            "Opera",
+            "Internet Explorer",
+            "Chrome"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Tasarlanan web sitelerinin mobil uyumlu olduğunu test etmek için aşağıdaki işlemlerden hangisi yapılır?",
+          "o": [
+            "Tasarımlarda logonun büyüklüğü her zaman 70px altında ise site mobil uyumludur.",
+            "Tasarımlarda H5 gibi küçük başlık stilleri kullanılabilir.",
+            "Tasarımlarda 50x50 px'i geçmeyecek şekilde resimler kullanılabilir.",
+            "Mobil uyumluluk test siteleri kullanılabilir.",
+            "Masaüstü tasarımları kontrol edilebilir."
+          ],
+          "a": 3
+        },
+        {
+          "q": "................. kullanıcının tarayıcısında girdiği web sayfasının kapladığı alandır. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Refresh",
+            "Robots",
+            "Viewport",
+            "Charset",
+            "Author"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi W3C (World Wide Web ) konsorsiyumunun temel amaçları arasında yer alır?",
+          "o": [
+            "Teknoloji firmaları arasındaki rekabeti artırmak",
+            "Büyük teknolojik firmaları korumak",
+            "Yeni yazılım dili oluşturmak",
+            "İnterneti dünyaya yaymak",
+            "Web alanında standartlar oluşturmak"
+          ],
+          "a": 4
+        },
+        {
+          "q": "HTML özel karakterleri ile “&lt; &gt;” ifadesini elde etmek için aşağıdaki kodlardan hangisi kullanılmalıdır?",
+          "o": [
+            "&amp; lt; &amp; gt;",
+            "&amp; gt; &amp; lt;",
+            "&amp;# 160; &amp;# 62;",
+            "&amp; lt; &amp; rt;",
+            "&amp; nbsp; &amp; amp;"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Flexbox özelliklerinden order özelliğinin işlevi ile ilgili olarak aşağıdakilerden hangisi doğrudur?",
+          "o": [
+            "Esnek bir uzunluğun bileşenlerini belirtir.",
+            "Ögenin, esnek kutu içindeki diğer ögelere göre nasıl küçüleceğini belirtir.",
+            "Esnek kapsayıcı içindeki esnek kutu ögelerinin çapraz eksende hizalamasını ayarlar.",
+            "Ögelerin yönünü belirtir.",
+            "Esnek kapsayıcı içindeki ögelerin kaçıncı sırada görünmesi gerektiğini belirler."
+          ],
+          "a": 4
+        },
+        {
+          "q": "Front-end için yapılan kodlamalar aşağıdakilerden hangisi üzerinde çalışır?",
+          "o": [
+            "Son kullanıcıların kullandığı web tarayıcıları",
+            "Sunucular",
+            "IDE'ler",
+            "Veri tabanları",
+            "Back-End"
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 96,
+      "ad": "2024-2025 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "…………………………, satır (row) ve sütunlardan (col) oluşan bir ızgara (Grid) yapısı içerisinde elementlerin alt alta dizilerek konumlandırılmasıyla ortaya çıkan form şeklidir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Legend Form",
+            "Vertical Form",
+            "Fieldset",
+            "Inline Form",
+            "Horizontal Form"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Tek bir site ve içerik ile ekran boyutuna göre ideal görüntüleme deneyimini sağlayan tasarımlara ne ad verilir?",
+          "o": [
+            "Tek sayfalı tasarım",
+            "Görsel tasarım",
+            "Masaüstü tasarım",
+            "Duyarlı web tasarımı",
+            "Uyarlanabilir tasarım"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir nesnenin x ve y eksenindeki eğimini artırıp azaltmak için kullanılır?",
+          "o": [
+            "Scale",
+            "Translate",
+            "Skew",
+            "SkewY",
+            "SkewX"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi sayfa dilini belirlemek için &lt;html&gt; etiketine eklenen bir özelliktir?",
+          "o": [
+            "meta",
+            "charset",
+            "doctype",
+            "lang",
+            "language"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir resim galerisine responsive özelliği kazandırmak için kullanılır?",
+          "o": [
+            "Media Query",
+            "CSS Grid",
+            "CSS Container",
+            "JavaScript",
+            "JQuery"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi mouse (fare) imlecinin üzerinde bulunduğu satırı renklendirmek için kullanılan tablo yapısıdır?",
+          "o": [
+            "table-pointer",
+            "table-mouseover",
+            "table-hover",
+            "table-cursor",
+            "table-responsive"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Flexbox kapsamında kullanılan özellikler arasında yer almaz?",
+          "o": [
+            "border",
+            "align-items",
+            "align-self",
+            "align-content",
+            "flex"
+          ],
+          "a": 0
+        },
+        {
+          "q": "CSS Flexbox flex-wrap özelliği hangi işlem için kullanılır?",
+          "o": [
+            "Esnek kutu düzeninde dikey hizalama için",
+            "Esnek kutu düzeninde yatay hizalama için",
+            "Esnek kutu düzeninde birden çok satıra yaymak için",
+            "Esnek kutu düzenin rengini değişmek için",
+            "Esnek kutu düzeninde ki metinleri büyütmek için"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Mock-Up hazırlama ortamlarından biri değildir?",
+          "o": [
+            "MockPlus",
+            "Mockup Builder",
+            "Moqups",
+            "Origami Studio",
+            "Mockminus"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Mobil uyumlu web site kütüphanelerinden birisi aşağıdakilerden hangisidir?",
+          "o": [
+            "Unification",
+            "Digitalize",
+            "Performance",
+            "Foundation",
+            "Summarize"
+          ],
+          "a": 3
+        },
+        {
+          "q": "I. Kullanıcı memnuniyeti II. Arayüz tasarımı III. Veri tabanı işlemleri Yukarıdakilerden hangisi ya da hangileri bir web sitesinde front- end geliştiricinin ilgilendiği konular arasında yer alır?",
+          "o": [
+            "I ve II",
+            "Yalnız III",
+            "Yalnız II",
+            "Yalnız I",
+            "I, II ve III"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi oluşturduğunuz prototipi size html, css ve ilişkili javascript kodları ile tamamlanmış bir web sitesi şeklinde hazır getirebilir?",
+          "o": [
+            "Balsamiq",
+            "Sketch",
+            "InDesign",
+            "Adobe XD",
+            "webFlow"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi API test araçlarından biri değildir?",
+          "o": [
+            "Geolocation",
+            "Postman",
+            "Apigee",
+            "Karate DSL",
+            "Jmeter"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi HTML özel karakterlerinden biri değildir?",
+          "o": [
+            "&amp; amp;",
+            "&amp;# 160;",
+            "&amp;# apos;",
+            "&amp; quot;",
+            "&amp; nbsp;"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir sitede tüm sayfalarda ortak bulunan telif hakkı bilgisi ve hızlı erişim linki gibi alanların yer aldığı alt bölümü belirten bir etikettir?",
+          "o": [
+            "audio",
+            "footer",
+            "time",
+            "section",
+            "header"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi HTML'nin güncel versiyonu olan HTML5'in sunduğu yeniliklerden biri değildir?",
+          "o": [
+            "Dâhilî ses/video oynatabilme",
+            "Mobil optimizasyon",
+            "Çapraz tarayıcı uyumluluğu",
+            "Metinsel ifadeleri barındırma",
+            "Çevrim dışı önbelleğe alma"
+          ],
+          "a": 3
+        },
+        {
+          "q": "CSS ve JavaScript kodlarının farklı tarayıcılarda geçerli olup olmadığını kontrol eden çapraz tarayıcı uyumluluğu test parçası aşağıdakilerden hangisidir?",
+          "o": [
+            "Performans uyumluluğu",
+            "Kod uyumluluğu",
+            "Ara yüz uyumluluğu",
+            "Mobil uyumluluk",
+            "Davranış uyumluluğu"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Boostrap v5 versiyonu, windows masaüstü ortamında aşağıdaki internet tarayıcılarından hangisi tarafından desteklenmez?",
+          "o": [
+            "Firefox",
+            "Microsoft Edge",
+            "Chrome",
+            "Opera",
+            "Safari"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Bir form elementinin sunucuya hiçbir şekilde veri göndermemesi için kullanılan özellik aşağıdakilerden hangisidir?",
+          "o": [
+            "form-disabled",
+            "disabled",
+            "form-readonly",
+            "readonly",
+            "closed"
+          ],
+          "a": 1
+        },
+        {
+          "q": "CSS ile ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "Web sayfaları için etkileşimli görsel ögeler CSS ile tasarlanabilir.",
+            "CSS ilk kez 2010'lu yıllarda önerilmiş ve kullanılmaya başlanmıştır.",
+            "CSS, İngilizce Cascade Style Sheet kelimelerinin kısaltılmasıdır.",
+            "CSS, bir internet sitesinin tasarımsal açıdan daha etkileyici görünmesini kolaylaştıran bir işaretleme dilidir.",
+            "HTML büyük ölçüde metin içeriğini belirlerken CSS görsel yapıyı, düzeni ve estetiği belirler."
+          ],
+          "a": 1
+        }
+      ]
+    },
+    {
+      "sinavId": 88,
+      "ad": "2023-2024 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Türkçe hazırlamış olduğunuz HTML5 dokümanında karakter problemi yaşayabilirsiniz. Bu durumda &lt;.........................&gt; ibaresini &lt;head&gt; etiketlerinin arasında belirtebilirsiniz. Paragrafta boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "charset=”türkçe”",
+            "lang=\"tr\"",
+            "!DOCTYPE HTML",
+            "meta=”türkçe”",
+            "meta charset=”utf 8”"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi \"çapraz tarayıcı uyumluluğu sorununun yaygın nedenleri\" arasında yer almaz?",
+          "o": [
+            "Tarayıcıya özel CSS kullanımı",
+            "Yeni tarayıcı algılama",
+            "DOCTYPE kullanımı",
+            "Eski tarayıcı algılama",
+            "CSS sıfırlama"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Front-end programlamada kullanılan teknolojilerle ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "CSS ve Javascript kodları doğrudan HTML dosyası içine yazılamaz.",
+            "Yaygın olarak bir web projesinin front-end kısmı kendi içinde HTML, CSS ve Javascript olarak üç katmana ayrılır.",
+            "HTML web tarayıcılarının okuyup yorumlayabildiği bir etiket yapısına sahiptir.",
+            "Tim Berners-Lee tarafında geliştirilen HTML, 1991 yılında genel kullanıma açılmıştır.",
+            "JAVASCRİPT dosyaları “js” uzantısına, CSS dosyaları ise “CSS” uzantısına sahiptir."
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi API kullanmanın avantajlarından biri değildir?",
+          "o": [
+            "Yazılımcının işini her zaman kolaylaştırır.",
+            "Zor ve karmaşık görünen projelerin, içeriğinin iyi bir dilde tasarlanmasını ve uygulanmasını sağlar.",
+            "Entegrasyon yoluyla oluşturulan projelerin başarılı olma olasılığı daha düşüktür.",
+            "Kullanıcı ve müşteri dostu kolaylıklar sağlanabilir.",
+            "Projede daha fazla fonksiyon için fırsatlar sağlar."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Web sitesinin en başında yer alır ve basit HTML kodlarındandır. Web sitesi hakkında bilgi vermek, içerik ve başlıkları belirtmek gibi çeşitli amaçlarla kullanılabilir. İfade edilen HTML kodu aşağıdakilerden hangisidir?",
+          "o": [
+            "Meta etiketi",
+            "Body etiketi",
+            "Özel karakter",
+            "Arama motoru optimizasyonu",
+            "İndexleme"
+          ],
+          "a": 0
+        },
+        {
+          "q": "HTML5'te, *.css ve *.js uzantılı dosyaları HTML dokümanı içerisinde çağırırken sırasıyla hangi etiketler kullanılır?",
+          "o": [
+            "&lt; figure &gt; ve &lt; figcaption &gt;",
+            "&lt; link &gt; ve &lt; script &gt;",
+            "&lt; article &gt; ve &lt; section &gt;",
+            "&lt; details &gt; ve &lt; summary &gt;",
+            "&lt; meter &gt; ve &lt; progress &gt;"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdaki alan adı uzantıları ve kullanım alanı eşleştirmelerinden hangisi yanlıştır?",
+          "o": [
+            "Gov – Hükûmet kurumları tarafından kullanılır.",
+            "Aero - Hava endüstrisi tarafından kullanılır.",
+            "Org – Organizasyonlar için kullanılır.",
+            "Edu – Eğitim kurumları tarafından kullanılır.",
+            "Com – Network altyapılarında kullanılır."
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Microsoft tarafından hizmete sunulan IDE'dir?",
+          "o": [
+            "Rj TextEd",
+            "Visual Studio Code",
+            "Materialize",
+            "NetBeans",
+            "NotePad++"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdaki HTML kod bloklarından hangisi doğru yazılmıştır?",
+          "o": [
+            "&lt;html&gt;&lt;head&gt;&lt; title&gt;&lt;/head&gt;&lt;body&gt;&lt; /html&gt;&lt;/title&gt;&lt;/body&gt;",
+            "&lt;title&gt;&lt;head&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt; /body&gt;&lt;/html&gt;&lt;html&gt;",
+            "&lt;html&gt;&lt;head&gt;&lt;/body&gt;&lt;/html&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;",
+            "&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;/html&gt;&lt;/body&gt;",
+            "&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;"
+          ],
+          "a": 4
+        },
+        {
+          "q": "I. rect II. strokeRect III. fillRect IV. measureText Yukarıdakilerden hangisi ya da hangileri Canvas ile dörtgen çizmek için kullanılan yöntemlerden biri değildir?",
+          "o": [
+            "Yalnız IV",
+            "II, III ve IV",
+            "I, II, III ve IV",
+            "Yalnız I",
+            "I, III ve IV"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Justify Content değeri ve açıklaması ile ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "space-around: İlk ve son öge dışındaki ögelerin arasında eşit boşluklar bırakılır.",
+            "flex-start: Ögeleri sola dayar ve soldan sağa hizalar.",
+            "space-between: İlk öge sola, son öğe sağa olacak şekilde ögeler eşit olarak hizalanır.",
+            "center: Ögeler sola hizalanır.",
+            "flex-end: Ögeler sağa dayalı (bitiş noktası) olarak hizalanır."
+          ],
+          "a": 3
+        },
+        {
+          "q": "Flexbox özelliklerinden order özelliğinin işlevi ile ilgili olarak aşağıdakilerden hangisi doğrudur?",
+          "o": [
+            "Esnek bir uzunluğun bileşenlerini belirtir.",
+            "Ögenin, esnek kutu içindeki diğer ögelere göre nasıl küçüleceğini belirtir.",
+            "Esnek kapsayıcı içindeki ögelerin kaçıncı sırada görünmesi gerektiğini belirler.",
+            "Esnek kapsayıcı içindeki esnek kutu ögelerinin çapraz eksende hizalamasını ayarlar.",
+            "Ögelerin yönünü belirtir."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Form Validation (Doğrulama)” işlemi için form elementine eklenmesi gereken bir özelliktir?",
+          "o": [
+            "novalidate",
+            "validate-form",
+            "form-validate",
+            "form-valid",
+            "needs-validation"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi mobil uyumluluk testi için kullanılan sitelerden biri değildir?",
+          "o": [
+            "responsivetesttool.com/",
+            "google.com/userfriendly",
+            "search.google.com/test/mobile-friendly",
+            "ami.responsivedesign .is/",
+            "responsivedesignchecker.com"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi prototip çalışmalarının amaçlarından biri değildir?",
+          "o": [
+            "Ürünün sözel olarak anlatılması zor olan özelliklerini de içeren bir sunum olarak da kullanmak",
+            "Web sitesi ve kullanıcı arasındaki etkileşim eksikliklerini ve hatalarını keşfetmek",
+            "Geliştirilen web sitesinde bulunması gereken özellikleri belirlemek",
+            "Kullanıcılara fikrin kolay aktarılabilmesi sebebiyle geri bildirim toplamayı kolaylaştırmak",
+            "Farklı tasarım fikirlerini kolayca karşılaştırabilmek"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Çapraz tarayıcı uyumluluğunda aşağıdaki ifadelerden hangisi davranış uyumluluğunu ifade eder?",
+          "o": [
+            "Responsive tasarımdaki sitenin farklı mobil cihazlarda farklı çözünürlükteki görünümünü kontrol eder. Ayrıca mobil cihazın yatay veya dikey çevrilmesi sonucundaki oluşacak görüntüyü de kontrol eder.",
+            "CSS ve JavaScript kodlarının farklı tarayıcılarda geçerli olup olmadığını kontrol eder.",
+            "Sitenin farklı tarayıcılardaki performansına bakarak performansların yakın olup olmadığını kontrol eder.",
+            "Web sitesinin istenilen şekilde görünüp görünmediğini kontrol eder.",
+            "Web sitesinin istenildiği gibi davranıp davranmadığını kontrol eder. Örneğin sitede bir butona tıklandığında yeni pencerede bir sayfa açılıyorsa bu işlemin bütün tarayıcılarda gerçekleşip gerçekleşmediğini kontrol eder."
+          ],
+          "a": 4
+        },
+        {
+          "q": "CSS dilinde içeriğin (metnin) altına, üstüne veya üzerine çizgi çekmeyi belirten özellik aşağıdakilerden hangisidir?",
+          "o": [
+            "Text-shadow",
+            "Text-indent",
+            "Text-align",
+            "Text-decoration",
+            "Text-overflow"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi animasyon sırasında çeşitli noktalarda animasyon özellikleri için değerleri belirtir?",
+          "o": [
+            "animation-duration",
+            "animation-timing-function",
+            "@keyframes",
+            "animation-iteration-count",
+            "animation-name"
+          ],
+          "a": 2
+        },
+        {
+          "q": "……………….. x ve y ekseni bir uzayda html elementlerinin yerini değiştirme, döndürmek, ölçeklendirmek ve çarpıtmak için kullanılır. Cümledeki boşluğa aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "2D Skew",
+            "2D Rotate",
+            "2D Translate",
+            "2D Transform",
+            "2D Scale"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Grid sistemi ile ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "Satıları tanımlamak için row, sütunları tanımlamak için ise col class tanımı kullanılır.",
+            "Sütunlar farklı oranlarla birleştirilerek veya kaydırılarak kullanılabilir.",
+            "Satır ve sütunlardan oluşan flexbox ile geliştirilmiş Layout sisteminin bir parçasıdır.",
+            "Her bir satırda toplam 20 adet sütun bulunmaktadır.",
+            "Container yapısı altında çalışmaktadır."
+          ],
+          "a": 3
+        }
+      ]
+    },
+    {
+      "sinavId": 72,
+      "ad": "2023-2024 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi geçiş(transition) özellikleri arasında yer almaz?",
+          "o": [
+            "ease-in-out",
+            "transition-property",
+            "directional",
+            "transition-delay",
+            "ease-in"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi @media etiketinde kullanılan medya tipleri arasında yer almaz?",
+          "o": [
+            "Tv",
+            "Bootstrap",
+            "Projection",
+            "Screen",
+            "Tty"
+          ],
+          "a": 1,
+          "u": 12
+        },
+        {
+          "q": "Form yapısına hem estetik bir görünüm hem de her türlü cihaz ve ekran boyutuna duyarlı olma özelliği kazandıran web uygulaması aşağıdakilerden hangisidir?",
+          "o": [
+            "Img",
+            "Input",
+            "Bootstrap",
+            "Table",
+            "Button"
+          ],
+          "a": 2,
+          "u": 11
+        },
+        {
+          "q": "UX tasarımcıları tarafından kullanılan ve bir web sitesi, uygulama veya ürün için tasarımlarının bilgi hiyerarşisini tanımlamalarına ve planlamalarına olanak tanıyan uygulama aşağıdakilerden hangisidir?",
+          "o": [
+            "WireFrame",
+            "Prototiper",
+            "Tipografi",
+            "Ürün",
+            "Mockup"
+          ],
+          "a": 0,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Bootstrap v5 tarafından desteklenen internet tarayıcılar arasında yer almaz?",
+          "o": [
+            "Firefox",
+            "Microsoft Edge",
+            "Internet Explorer",
+            "Opera",
+            "Chrome"
+          ],
+          "a": 2,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdaki uygulamalardan hangisi Geolocation API ile birlikte kullanıcının konumunu bulmak için kullanılmaktadır?",
+          "o": [
+            "Gmail",
+            "Adobe Reader",
+            "Google Maps",
+            "Teamviewer",
+            "Postman"
+          ],
+          "a": 2,
+          "u": 5
+        },
+        {
+          "q": "Aşağıdakilerden hangisinde CSS söz dizimi doğru verilmiştir?",
+          "o": [
+            "color:yellow;",
+            "color;red:",
+            ".icerik(color:red;)",
+            "İçerik(color:red);",
+            "#baslik{ color:red; }"
+          ],
+          "a": 4,
+          "u": 7
+        },
+        {
+          "q": "Meta description etiketine yazılması önerilen en fazla karakter sayısı aşağıdakilerden hangisidir?",
+          "o": [
+            "220",
+            "160",
+            "130",
+            "100",
+            "190"
+          ],
+          "a": 1,
+          "u": 6
+        },
+        {
+          "q": "Blog sitesi tasarladığınızı düşünün. Bu blog sitesinde, blog yazısı bölümü için en uygun etiket aşağıdakilerden hangisidir?",
+          "o": [
+            "&lt;aside&gt;",
+            "&lt;article&gt;",
+            "&lt;header&gt;",
+            "&lt;p&gt;",
+            "&lt;footer&gt;"
+          ],
+          "a": 1,
+          "u": 4
+        },
+        {
+          "q": "Flexbox özelliklerinden order özelliğinin işlevi ile ilgili olarak aşağıdakilerden hangisi doğrudur?",
+          "o": [
+            "Esnek kapsayıcı içindeki esnek kutu ögelerinin çapraz eksende hizalamasını ayarlar.",
+            "Ögenin, esnek kutu içindeki diğer ögelere göre nasıl küçüleceğini belirtir.",
+            "Esnek bir uzunluğun bileşenlerini belirtir.",
+            "Ögelerin yönünü belirtir.",
+            "Esnek kapsayıcı içindeki ögelerin kaçıncı sırada görünmesi gerektiğini belirler."
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "Google bünyesinde çalışan Misko Hevery tarafından 2008 yılında kişisel amaçlı geliştirilmiş olan bir Javascript kütüphanesi aşağıdakilerden hangisidir?",
+          "o": [
+            "Angular",
+            "React",
+            "JQuery",
+            "Vue",
+            ".Net"
+          ],
+          "a": 0,
+          "u": 2
+        },
+        {
+          "q": "Bir web sitesinin tasarım aşamaları sırasıyla aşağıdakilerden hangisinde doğru olarak verilmiştir?",
+          "o": [
+            "Wireframe - MockUp - Prototip",
+            "Prototip - MockUp - Wireframe",
+            "Wireframe - Prototip - MockUp",
+            "MockUp - Wireframe - Prototip",
+            "MockUp - Prototip - Wireframe"
+          ],
+          "a": 0,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir HTML tabloya Hoverable özelliği kazandırmak için kullanılır?",
+          "o": [
+            "table-hover",
+            "responsive",
+            "table-bordered",
+            "table-responsive",
+            "table-striped"
+          ],
+          "a": 0,
+          "u": 10
+        },
+        {
+          "q": "CSS kodlarının sıfırdan yazılması yerine hazır CSS kütüphaneleri kullanılmaktadır. Aşağıdakilerden hangisi CSS kütüphanesine örnek değildir?",
+          "o": [
+            "Materialize",
+            "Semantic - UI",
+            "Foundation",
+            "Bootstrap",
+            "HTML"
+          ],
+          "a": 4,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdaki HTML etiketi ve kullanım amacı eşleştirmelerinden hangisi yanlıştır?",
+          "o": [
+            "&lt; a &gt; - Sayfa içinde bir tablo oluşturmak için kullanılır.",
+            "&lt; ul &gt; - Sırasız bir liste oluşturmak için kullanılır.",
+            "&lt; ol &gt; - Sıralı bir liste oluşturmak için kullanılır.",
+            "&lt; br &gt; - Alt satıra geçilmesini sağlar.",
+            "&lt; li &gt; - Listenin elemanlarını ayrı ayrı oluşturmak için kullanılır."
+          ],
+          "a": 0,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi CSS Flexbox özelliklerinden justify- content'in değerleri arasında yer alır?",
+          "o": [
+            "animation-direction",
+            "transition",
+            "perspective",
+            "caption-side",
+            "center"
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi geçiş işleminin hız eğrisini belirlemek için kullanılır?",
+          "o": [
+            "transition-property",
+            "transition-timing-function",
+            "transition-delay",
+            "linear",
+            "transition-duration"
+          ],
+          "a": 1,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kullanıcının var olan seçenekler arasından en az bir adet seçim yapması istendiği durumda kullanılan form kontrolüdür?",
+          "o": [
+            "selectbox",
+            "inputbox",
+            "radio",
+            "checkbox",
+            "dropbox"
+          ],
+          "a": 3,
+          "u": 11
+        },
+        {
+          "q": "Kod uyumluluğu testi ile ilgili olarak aşağıdakilerden hangisi doğrudur?",
+          "o": [
+            "Web sitesinin istenilen şekilde görünüp görünmediğini kontrol eder.",
+            "Responsive tasarımdaki sitenin farklı mobil cihazlarda farklı çözünürlükteki görünümünü kontrol eder.",
+            "Sitenin farklı tarayıcılardaki performansına bakarak performansların yakın olup olmadığını kontrol eder.",
+            "CSS ve JavaScript kodlarının farklı tarayıcılarda geçerli olup olmadığını kontrol eder.",
+            "Web sitesinin istenildiği gibi davranıp davranmadığını kontrol eder."
+          ],
+          "a": 3,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi çapraz tarayıcı uyumluluğu ile alakalı değildir?",
+          "o": [
+            "PHP",
+            "JavaScript",
+            "CSS",
+            "HTML",
+            "CSS3"
+          ],
+          "a": 0,
+          "u": 13
+        }
+      ]
+    },
+    {
+      "sinavId": 70,
+      "ad": "2023-2024 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "…………. bir web sitesinin herhangi bir tarayıcıda beklendiği gibi çalışıp çalışmadığı anlamına gelir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Yazılım dili",
+            "Çapraz tarayıcı uyumluluğu",
+            "HTML5",
+            "CSS3",
+            "JavaScript"
+          ],
+          "a": 1,
+          "u": 13
+        },
+        {
+          "q": "HTML'de form tasarlarken girişin zorunlu olduğu durumlarda kullanılan CSS seçici aşağıdakilerden hangisidir?",
+          "o": [
+            "Invalid",
+            "Valid",
+            "Required",
+            "Enabled",
+            "Read-Only"
+          ],
+          "a": 2,
+          "u": 7
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Windows işletim sistemi tarafından desteklenen internet tarayıcıları arasında yer almaz?",
+          "o": [
+            "Microsoft Edge",
+            "Firefox",
+            "Safari",
+            "Chrome",
+            "Opera"
+          ],
+          "a": 2,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi web tasarımında API (Application Programming Interface) kullanımının avantajlarından biri değildir?",
+          "o": [
+            "HTML5 ile oluşturulmuş web sayfalarının yüklenmeleri hızlanır.",
+            "Projede daha fazla fonksiyon için fırsatlar sağlar.",
+            "API kullanımı ile kullanıcı ve müşteri dostu kolaylıklar sağlanabilir.",
+            "Görünüşte zor ve karmaşık görünen projelerin, içeriğinin iyi bir dilde tasarlanmasını ve uygulanmasını sağlar.",
+            "Entegrasyon yoluyla oluşturulan projelerin başarılı olma olasılığı daha yüksektir."
+          ],
+          "a": 0
+        },
+        {
+          "q": "I. Semantic – UI II. Foundation III. Materialize IV. UI Kit Yukarıdakilerden hangisi ya da hangileri CSS Framework kütüphaneleri arasında yer alır?",
+          "o": [
+            "I, II, III ve IV",
+            "II, III ve IV",
+            "I, III ve IV",
+            "I, II ve III",
+            "I, II ve IV"
+          ],
+          "a": 0,
+          "u": 12
+        },
+        {
+          "q": "Blog sayfası tasarladığınızı düşünün. Bu sayfada blog yazısının sağ kısmına anahtar kelimeler, yazı kategorisi ve yazar adı eklemek için kullanılan etiket aşağıdakilerden hangisidir?",
+          "o": [
+            "&lt; p &gt;",
+            "&lt; aside &gt;",
+            "&lt; footer &gt;",
+            "&lt; header &gt;",
+            "&lt; article &gt;"
+          ],
+          "a": 1,
+          "u": 4
+        },
+        {
+          "q": "Boostrap v5 versiyonu windows masaüstü ortamında aşağıdaki hangi internet tarayıcısı tarafından desteklenmemektedir?",
+          "o": [
+            "Firefox",
+            "Chrome",
+            "Opera",
+            "Safari",
+            "Microsoft Edge"
+          ],
+          "a": 3,
+          "u": 10
+        },
+        {
+          "q": "Tarayıcıya dokümanın tip bilgisini sunmak için kullanılan etiket aşağıdakilerden hangisidir?",
+          "o": [
+            "TestComplate",
+            "Html",
+            "Ghostlab",
+            "Doctype",
+            "Browserling"
+          ],
+          "a": 3,
+          "u": 13
+        },
+        {
+          "q": "Justify Content değeri ve açıklaması ile ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "flex-end: Ögeler sağa dayalı (bitiş noktası ) olarak hizalanır.",
+            "space-between: İlk öge sola, son öğe sağa olacak şekilde ögeler eşit olarak hizalanır.",
+            "flex-start: Ögeleri sola dayar ve soldan sağa hizalar.",
+            "space-around: İlk ve son öge dışındaki ögelerin arasında eşit boşluklar bırakılır.",
+            "center: Ögeler sola hizalanır."
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Mock-Up hazırlama ortamlarından biri değildir?",
+          "o": [
+            "Origami Studio",
+            "MockPlus",
+            "Mockminus",
+            "Mockup Builder",
+            "Moqups"
+          ],
+          "a": 2,
+          "u": 14
+        },
+        {
+          "q": "......... esnek ögelerin yerleştirildiği yönü belirler. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Align-content",
+            "Flex-basis",
+            "Flex-direction",
+            "Align-items",
+            "Flex"
+          ],
+          "a": 2,
+          "u": 8
+        },
+        {
+          "q": "Sayfada gösterilecek resmin dosya yolunu belirtmek için hangi özellik kullanılır?",
+          "o": [
+            "title",
+            "href",
+            "alt",
+            "src",
+            "class"
+          ],
+          "a": 3,
+          "u": 3
+        },
+        {
+          "q": "Front-end programlamada kullanılan teknolojilerle ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "Yaygın olarak bir web projesinin front-end kısmı kendi içinde HTML, CSS ve Javascript olarak üç katmana ayrılır.",
+            "HTML web tarayıcılarının okuyup yorumlayabildiği bir etiket yapısına sahiptir.",
+            "Tim Berners-Lee tarafında geliştirilen HTML, 1991 yılında genel kullanıma açılmıştır.",
+            "JAVASCRİPT dosyaları “js” uzantısına, CSS dosyaları ise “CSS” uzantısına sahiptir.",
+            "CSS ve Javascript kodları doğrudan HTML dosyası içine yazılamaz."
+          ],
+          "a": 4,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi yatay gezinme çubuğuna ait elemanlar arasında yatay bir düzen oluşturmak için kullanılan stil tanımıdır?",
+          "o": [
+            "float",
+            "pull",
+            "padding",
+            "offset",
+            "margin"
+          ],
+          "a": 0,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi başarılı bir işlem sonucunu “Alert” bileşeni ile görüntülemek için kullanılması gereken en uygun class tanımıdır?",
+          "o": [
+            "alert-danger",
+            "alert-primary",
+            "alert-dark",
+            "alert-success",
+            "alert-light"
+          ],
+          "a": 3,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdakilerden hangisi prototip hazırlamanın avantajlarından biri değildir?",
+          "o": [
+            "Ortak çalışma verimliliğini artırır.",
+            "Hata tespiti yapar.",
+            "Çalışmanın tamamının gözden geçirilmesine imkân sağlar.",
+            "Geliştirme süreci taleplere uygun şekilde planlar.",
+            "Tasarım maliyetini azaltır."
+          ],
+          "a": 4,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Meta etiketinin özelliklerinden biri değildir?",
+          "o": [
+            "Web sayfası ekranında görülür.",
+            "Küresel alanda Meta Tag olarak isimlendirilir.",
+            "Basit HTML kodlarındandır.",
+            "Web sitesinin en başında yer alır.",
+            "Web sitesi hakkında bilgi vermek, içerik ve başlıkları belirtmek gibi çeşitli amaçlarla kullanılabilir."
+          ],
+          "a": 0,
+          "u": 6
+        },
+        {
+          "q": "....... web sayfası üzerindeki menü ya da gezinme çubuğu olarak adlandırılabilir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "2D Transform",
+            "Transitions",
+            "Image Gallery",
+            "Scale",
+            "Navbar"
+          ],
+          "a": 4,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “www” ile ilgili yanlış bir ifadedir?",
+          "o": [
+            "Her web sitesinin bir adresi vardır.",
+            "İnternet ile “www” kavramları aynı anlama gelir.",
+            "Üzerinde görüntülenen dosyalar web sayfalarını temsil eder.",
+            "Dünya çapında büyük bir ağdır.",
+            "Ses, görüntü ve veri paylaşımına olanak tanır."
+          ],
+          "a": 1,
+          "u": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi mobil uyumlu web sitesini tanımlamaktadır?",
+          "o": [
+            "Alan adının sonunda sadece “alanadi.com/m” olan siteler mobil uyumlu sitelerdir.",
+            "Farklı çözünürlük ve boyutlardaki cihazlarda ideal görüntülenmesi için tasarlanan web sayfalarıdır.",
+            "Tek ekran üzerinden çalışılıp paylaşılan web sayfalarıdır.",
+            "Alan adının önünde sadece “m.alanadi.com” olan siteler mobil uyumlu sitelerdir.",
+            "Masaüstü tasarımı olarak ayarlanıp kullanıcıların mobil cihazları ile giriş yaptığı tüm siteler mobil uyumlu web sitelerdir."
+          ],
+          "a": 1,
+          "u": 12
+        }
+      ]
+    },
+    {
+      "sinavId": 67,
+      "ad": "2022-2023 Yaz Okulu ve Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi bir nesneyi saat yönünde veya saat yönünün tersine yönde döndürmek için kullanılır?",
+          "o": [
+            "Translate",
+            "Rotate",
+            "Scale",
+            "ScaleX",
+            "ScaleY"
+          ],
+          "a": 1,
+          "u": 9
+        },
+        {
+          "q": "Genellikle doğayı ve sürdürülebilirliği çağrıştıran renk aşağıdakilerden hangisidir?",
+          "o": [
+            "Turuncu",
+            "Mavi",
+            "Yeşil",
+            "Kahverengi",
+            "Kırmızı"
+          ],
+          "a": 2,
+          "u": 14
+        },
+        {
+          "q": "Herhangi bir etiket aşağıdaki karakterlerden hangisi ile biter?",
+          "o": [
+            "&lt;",
+            "&gt;",
+            "[",
+            "(",
+            "}"
+          ],
+          "a": 3,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi mobil uyumluluk testi için kullanılan sitelerden biri değildir?",
+          "o": [
+            "search.google.com/test/mobile-friendly",
+            "responsivedesignchecker.com",
+            "ami.responsivedesign.is/",
+            "responsivetesttool.com/",
+            "google.com/userfriendly"
+          ],
+          "a": 4,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdaki Breakpoints (Kesme Noktaları) ile ilgili ifadelerden hangisi yanlıştır?",
+          "o": [
+            "12'lik ızgara yapısından oluşur.",
+            "Cihaza ait ekran ölçüsünü tespit ederek hangi kategoriye ait olduğunu belirler.",
+            "X-Small ekran boyutu için “xs” class tanımı kullanılır.",
+            "Small ekran boyutu için “sm” class tanımı kullanılır.",
+            "Medium ekran boyutu için “md” class tanımı kullanılır."
+          ],
+          "a": 2,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi çapraz tarayıcı uyumluluğundaki etkenlerden biridir?",
+          "o": [
+            "Kullanıcının işlemcisi",
+            "Kullanıcının ana kartı",
+            "Kullanıcının ekran kartı",
+            "Sunucunun işlemcisi",
+            "Kullanıcının işletim sistemi"
+          ],
+          "a": 4,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi CSS (Cascade Style Sheet) metin özellikleri arasında yer almaz?",
+          "o": [
+            "font-size",
+            "direction",
+            "tab-size",
+            "text-align",
+            "letter-spacing"
+          ],
+          "a": 0,
+          "u": 7
+        },
+        {
+          "q": "Web tarayıcıya ekranı hangi genişlikte görüntüleyeceğini bildiren ifade aşağıdakilerden hangisidir?",
+          "o": [
+            "Meta charset",
+            "Meta robot",
+            "Meta keywords",
+            "Meta title",
+            "Meta viewport"
+          ],
+          "a": 4,
+          "u": 6
+        },
+        {
+          "q": "Veri tabanı ile ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "Verilerin elektronik ortamda saklanması anlamına gelir.",
+            "Veri tabanı yönetim sistemleri tarafından yönetilir.",
+            "Kullanıcıların verileri organize etmelerine olanak tanır.",
+            "Ses ve video dosyalarını saklayamaz.",
+            "Kullanım amacına göre birçok veri tabanı türü vardır."
+          ],
+          "a": 3,
+          "u": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir web sitesinde front-end geliştiricinin ilgilendiği konulardan biri değildir?",
+          "o": [
+            "Kullanıcı memnuniyeti",
+            "Arayüz Tasarımı",
+            "Görsel Elementler",
+            "Veri Tabanı işlemleri",
+            "Kullanıcı deneyimi"
+          ],
+          "a": 3,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi HTML özel karakterlerinden biri değildir?",
+          "o": [
+            "&amp; nbsp;",
+            "&amp;# 160;",
+            "&amp; amp;",
+            "&amp; quot;",
+            "&amp;# apos;"
+          ],
+          "a": 4,
+          "u": 6
+        },
+        {
+          "q": "I. Etiketler yan yana yazılabilse de alt alta yazılması tercih edilir. II. HTML kodları yazılırken genellikle büyük harfler tercih edilir. III. En son yazılan etiket en son kapatılır. Yukarıdakilerden hangisi ya da hangileri etiketlerin kullanımları arasında yer alır?",
+          "o": [
+            "Yalnız I",
+            "Yalnız II",
+            "I ve II",
+            "II ve III",
+            "I, II ve III"
+          ],
+          "a": 0,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi web tasarımında API (Application Programming Interface) kullanımının avantajlarından biri değildir?",
+          "o": [
+            "Görünüşte zor ve karmaşık görünen projelerin, içeriğinin iyi bir dilde tasarlanmasını ve uygulanmasını sağlar.",
+            "Projede daha fazla fonksiyon için fırsatlar sağlar.",
+            "API kullanımı ile kullanıcı ve müşteri dostu kolaylıklar sağlanabilir.",
+            "Entegrasyon yoluyla oluşturulan projelerin başarılı olma olasılığı daha yüksektir.",
+            "HTML5 ile oluşturulmuş web sayfalarının yüklenmeleri hızlanır."
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi sayfaya genişliği 300 yüksekliği 300 olan bir tuval eklememizi sağlar?",
+          "o": [
+            "&lt;canvas&gt;&lt;/canvas&gt;",
+            "&lt;canvas height=\"\"”300”\"\" width=\"\"”300”\"\"&gt;",
+            "&lt;img /&gt;",
+            "&lt;figure&gt; &lt;/figure&gt;",
+            "&lt;svg&gt;&lt;/svg&gt;"
+          ],
+          "a": 1,
+          "u": 4
+        },
+        {
+          "q": "CSS Flexbox özelliklerinden order varsayılan aşağıdaki hangi değeri alır?",
+          "o": [
+            "-1",
+            "0 (sıfır)",
+            "1",
+            "2",
+            "10"
+          ],
+          "a": 1,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdaki uygulamalardan hangisi Geolocation API ile birlikte kullanıcının konumunu bulmak için kullanılmaktadır?",
+          "o": [
+            "Gmail",
+            "Google Maps",
+            "Adobe Reader",
+            "Teamviewer",
+            "Postman"
+          ],
+          "a": 1,
+          "u": 5
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kullanıcının var olan seçenekler arasından en az bir adet seçim yapması istendiği durumda kullanılan form kontrolüdür?",
+          "o": [
+            "checkbox",
+            "radio",
+            "selectbox",
+            "inputbox",
+            "dropbox"
+          ],
+          "a": 0,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir HTML tablodaki satırları bir açık bir koyu renkte olacak şekilde renklendirir?",
+          "o": [
+            "table-colored",
+            "row-colored",
+            "table-striped",
+            "row-striped",
+            "table-bordered"
+          ],
+          "a": 2,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdaki alan adı uzantıları ve kullanım alanı eşleştirmelerinden hangisi yanlıştır?",
+          "o": [
+            ".com - Eğitim kurumları tarafından kullanılır.",
+            ".biz - İş ile ilgili konularda kullanılır.",
+            ".org - Organizasyonlar için kullanılır.",
+            ".gov - Hükûmet kurumları tarafından kullanılır.",
+            ".net - Network altyapılarında kullanılır."
+          ],
+          "a": 0,
+          "u": 1
+        },
+        {
+          "q": "CSS kodlarının sıfırdan yazılması yerine hazır CSS kütüphaneleri kullanılmaktadır. Aşağıdakilerden hangisi CSS kütüphanesine örnek değildir?",
+          "o": [
+            "HTML",
+            "Bootstrap",
+            "Semantic - UI",
+            "Foundation",
+            "Materialize"
+          ],
+          "a": 0,
+          "u": 12
+        }
+      ]
+    },
+    {
+      "sinavId": 56,
+      "ad": "2022-2023 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi internet kavramı için kullanılamaz?",
+          "o": [
+            "Bilgisayar sistemlerini birbirine bağlar.",
+            "İnternet ile “www” kavramları farklı anlama gelir.",
+            "1993 yılında kamunun kullanabileceği hâle gelmiştir.",
+            "Sadece web sitelerine girmek için kullanılır.",
+            "İlk yıllarında e-posta uygulaması yaygınlaşmıştır."
+          ],
+          "a": 3,
+          "u": 1
+        },
+        {
+          "q": "Harici bir CSS stil dosyasını web sayfasına entegre etmek için aşağıdaki HTML etiketlerinden hangisi kullanılır?",
+          "o": [
+            "script",
+            "bady",
+            "head",
+            "link",
+            "div"
+          ],
+          "a": 3,
+          "u": 7
+        },
+        {
+          "q": "Çapraz tarayıcı uyumluluğunda aşağıdaki ifadelerden hangisi kod uyumluluğunu ifade eder?",
+          "o": [
+            "Web sitesinin istenilen şekilde görünüp görünmediğini kontrol eder.",
+            "CSS ve JavaScript kodlarının farklı tarayıcılarda geçerli olup olmadığını kontrol eder.",
+            "Responsive tasarımdaki sitenin farklı mobil cihazlarda farklı çözünürlükteki görünümünü kontrol eder.",
+            "Sitenin farklı tarayıcılardaki performansına bakarak performansların yakın olup olmadığını kontrol eder.",
+            "Web sitesinin istenildiği gibi davranıp davranmadığını kontrol eder."
+          ],
+          "a": 1,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi HTML5’in yenilikleri arasında yer almaz?",
+          "o": [
+            "Önceki sürümleri desteklemesi",
+            "Kısa DOCTYPE tanımlaması",
+            "Birçok yeni yapısal ve içerik etiketlerin olması",
+            "Sadece çevrimiçi çalışabilmesi",
+            "Charset özelliğinin eklenmesi"
+          ],
+          "a": 3,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi prototip çalışmalarının amaçlarından biridir?",
+          "o": [
+            "Arka plan resimleri, simgeler ve diğer dekoratif ögelerin seçimlerini yapmak",
+            "Web sitesi ve kullanıcı arasındaki etkileşim eksikliklerini ve hatalarını keşfetmek",
+            "Web sitesi için oluşturulmuş olan yönlendirmelerin nasıl görüneceğini belirlemek",
+            "Web sitesinde bulunması gereken özellikleri belirlemek",
+            "Sayfalar arasındaki geçişleri belirlemek"
+          ],
+          "a": 1,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Form Validation (Doğrulama)” işlemi için form elementinin class tanımına eklenmesi gereken ifadedir?",
+          "o": [
+            "novalidate",
+            "validate-form",
+            "form-validate",
+            "form-valid",
+            "needs-validation"
+          ],
+          "a": 4,
+          "u": 11
+        },
+        {
+          "q": "Front-end programlamada kullanılan teknolojilerle ilgili aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "CSS ve Javascript kodları doğrudan HTML dosyası içine yazılamaz.",
+            "HTML web tarayıcılarının okuyup yorumlayabildiği bir etiket yapısına sahiptir.",
+            "JAVASCRİPT dosyaları “js” uzantısına, CSS dosyaları ise “CSS” uzantısına sahiptir.",
+            "Tim Berners-Lee tarafında geliştirilen HTML, 1991 yılında genel kullanıma açılmıştır.",
+            "Yaygın olarak bir web projesinin front-end kısmı kendi içinde HTML, CSS ve Javascript olarak üç katmana ayrılır."
+          ],
+          "a": 0,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir form elementinin responsive özelliği kazanabilmesi için alabileceği class tanımlarından biridir?",
+          "o": [
+            "form-label-check",
+            "form-responsive",
+            "form-control",
+            "form-element",
+            "form-adaptive"
+          ],
+          "a": 2,
+          "u": 11
+        },
+        {
+          "q": "CSS Flexbox’ta birden çok satıra yaymak için hangi özellik kullanılır?",
+          "o": [
+            "column",
+            "Align-item",
+            "Align-content",
+            "Flex-wrap",
+            "Flex-grow"
+          ],
+          "a": 3,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kullanılan cihaz ya da ekranı tamamen kapsayan \"container\" tanımıdır?",
+          "o": [
+            "container",
+            "container-fluid",
+            "container-sm",
+            "container-full",
+            "container-xxl"
+          ],
+          "a": 1,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi mobil uyumlu web siteyi tanımlamaktadır?",
+          "o": [
+            "Tek ekran üzerinden çalışılıp paylaşılan web sayfalarıdır.",
+            "Masaüstü tasarımı olarak ayarlanıp kullanıcıların mobil cihazları ile giriş yaptığı tüm siteler mobil uyumlu web sitelerdir.",
+            "Alan adının önünde sadece “m.alanadi.com” olan siteler mobil uyumlu sitelerdir.",
+            "Farklı çözünürlük ve boyutlardaki cihazlarda ideal görüntülenmesi için tasarlanan web sayfalarıdır.",
+            "Alan adının sonunda sadece “alanadi.com/m” olan siteler mobil uyumlu sitelerdir."
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "................. kullanıcının tarayıcısında girdiği web sayfasının kapladığı alandır. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Robots",
+            "Viewport",
+            "Refresh",
+            "Author",
+            "Charset"
+          ],
+          "a": 1,
+          "u": 6
+        },
+        {
+          "q": "Aşağıdakilerden hangisi uyarlanabilir tasarım özelliklerinden biridir?",
+          "o": [
+            "JavaScript kodları, uyarlanabilir tasarımlarda web site bileşenlerini kontrol etmek için kullanılabilir.",
+            "Duyarlı tasarım farklı cihazlarda benzer bir tasarım düzeni sunmaktadır.",
+            "Farklı ekranlara göre farklı düzenlemeler yapılamaz.",
+            "Belirli bir hedef kitlesi yoktur.",
+            "Uyarlanabilir tasarımda farklı ekranların site bileşenlerinin boyut ve davranışları özelleştirilemez."
+          ],
+          "a": 0,
+          "u": 12
+        },
+        {
+          "q": "…………. bir web sitesinin herhangi bir tarayıcıda beklendiği gibi çalışıp çalışmadığı anlamına gelir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Çapraz tarayıcı uyumluluğu",
+            "Yazılım dili",
+            "JavaScript",
+            "CSS3",
+            "HTML5"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Az yoğunlukta ve genellikle tek sayfadan veya ekrandan oluşan çalışmalarda insan gözünün hareket ettiği yolu açıklamaya çalışan tasarım modeli aşağıdakilerden hangisidir?",
+          "o": [
+            "Z-Deseni",
+            "Gutenberg",
+            "F-Deseni",
+            "N-Deseni",
+            "V-Deseni"
+          ],
+          "a": 1,
+          "u": 14
+        },
+        {
+          "q": "HTML 5 ile yeni gelen API ’lerden “websocket”in görevi aşağıdakilerden hangisidir?",
+          "o": [
+            "Konum bilgisini tanımlar.",
+            "Sayfa içindeki nesnelere sürükle-bırak tanımlar.",
+            "Yazdırma desteği sağlar.",
+            "İstemci bilgisayarına veri depolamayı tanımlar.",
+            "Sunucu, istemci arasındaki çift yönlü bağlantıyı tanımlar."
+          ],
+          "a": 4,
+          "u": 5
+        },
+        {
+          "q": "Çok satırlı yapılarda ögeleri çapraz eksende (dikey) hizalamak için kullanılan align-content değerlerinden biri aşağıdakilerden hangisidir?",
+          "o": [
+            "space-around",
+            "order",
+            "flex-wrap",
+            "flex-grow",
+            "flex-direction"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "I. Breakpoints (Kesme Noktaları) II. Containers (Kapsayıcılar) III. Grid (Izgara) IV. Tables (Tablolar) Yukarıdakilerden hangisi ya da hangileri Layout (Düzen) Sistemi'nin bileşenleri arasında yer alır?",
+          "o": [
+            "Yalnız I",
+            "Yalnız III",
+            "I ve II",
+            "I, II ve III",
+            "I, II ve IV"
+          ],
+          "a": 3,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi yatay gezinme çubuğuna ait elemanlar arasında yatay bir düzen oluşturmak için kullanılan stil tanımıdır?",
+          "o": [
+            "pull",
+            "offset",
+            "float",
+            "margin",
+            "padding"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi 2 boyutlu dönüştürme yöntemlerinden biri değildir?",
+          "o": [
+            "rotate",
+            "grow",
+            "scaleY",
+            "skewX",
+            "matrix"
+          ],
+          "a": 1,
+          "u": 9
+        }
+      ]
+    },
+    {
+      "sinavId": 52,
+      "ad": "2021-2022 Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "CSS ile ilgili olarak aşağıdaki ifadelerden hangisi yanlıştır?",
+          "o": [
+            "HTML büyük ölçüde metin içeriğini belirlerken CSS görsel yapıyı, düzeni ve estetiği belirler.",
+            "CSS, bir internet sitesinin tasarımsal açıdan daha etkileyici görünmesini kolaylaştıran bir işaretleme dilidir.",
+            "CSS, İngilizce Cascade Style Sheet kelimelerinin kısaltılmasıdır.",
+            "Web sayfaları için etkileşimli görsel ögeler CSS ile tasarlanabilir.",
+            "CSS ilk kez 2010 'lu yıllarda önerilmiş ve kullanılmaya başlanmıştır."
+          ],
+          "a": 4,
+          "u": 7
+        },
+        {
+          "q": "…………………………, satır (row) ve sütunlardan (col) oluşan bir ızgara (Grid) yapısı içerisinde elementlerin alt alta dizilerek konumlandırılmasıyla ortaya çıkan form şeklidir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Horizontal Form",
+            "Inline Form",
+            "Vertical Form",
+            "Legend Form",
+            "Fieldset"
+          ],
+          "a": 0,
+          "u": 11
+        },
+        {
+          "q": "Çapraz tarayıcı uyumluluğunda aşağıdaki ifadelerden hangisi davranış uyumluluğunu ifade eder?",
+          "o": [
+            "Web sitesinin istenilen şekilde görünüp görünmediğini kontrol eder.",
+            "CSS ve JavaScript kodlarının farklı tarayıcılarda geçerli olup olmadığını kontrol eder.",
+            "Responsive tasarımdaki sitenin farklı mobil cihazlarda farklı çözünürlükteki görünümünü kontrol eder. Ayrıca mobil cihazın yatay veya dikey çevrilmesi sonucundaki oluşacak görüntüyü de kontrol eder.",
+            "Sitenin farklı tarayıcılardaki performansına bakarak performansların yakın olup olmadığını kontrol eder.",
+            "Web sitesinin istenildiği gibi davranıp davranmadığını kontrol eder. Örneğin sitede bir butona tıklandığında yeni pencerede bir sayfa açılıyorsa bu işlemin bütün tarayıcılarda gerçekleşip gerçekleşmediğini kontrol eder."
+          ],
+          "a": 4,
+          "u": 13
+        },
+        {
+          "q": "Google bünyesinde çalışan Misko Hevery tarafından 2008 yılında kişisel amaçlı geliştirilmiş olan bir Javascript kütüphanesi aşağıdakilerden hangisidir?",
+          "o": [
+            "Angular",
+            "React",
+            "JQuery",
+            "Vue",
+            ".Net"
+          ],
+          "a": 0,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir web tarayıcı değildir?",
+          "o": [
+            "Microsoft Access",
+            "Chrome",
+            "Mozilla Firefox",
+            "Yandex",
+            "Safari"
+          ],
+          "a": 0,
+          "u": 1
+        },
+        {
+          "q": "Meta description etiketine yazılması önerilen en fazla karakter sayısı aşağıdakilerden hangisidir?",
+          "o": [
+            "100",
+            "130",
+            "160",
+            "190",
+            "220"
+          ],
+          "a": 2,
+          "u": 6
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir form elementini kullanıcı etkileşimine kapatmak için kullanılan özelliktir?",
+          "o": [
+            "Readonly",
+            "Disabled",
+            "Closed",
+            "Form-readonly",
+            "Form-disabled"
+          ],
+          "a": 1,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdaki HTML etiketi ve kullanım amacı eşleştirmelerinden hangisi yanlıştır?",
+          "o": [
+            "&lt; a &gt; - Sayfada içinde bir tablo oluşturmak için kullanılır.",
+            "&lt; ul &gt; - Sırasız bir liste oluşturmak için kullanılır.",
+            "&lt; ol &gt; - Sıralı bir liste oluşturmak için kullanılır.",
+            "&lt; li &gt; - Listenin elemanlarını ayrı ayrı oluşturmak için kullanılır.",
+            "&lt; br &gt; - Alt satıra geçilmesini sağlar."
+          ],
+          "a": 0,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi \"çapraz tarayıcı uyumluluğu sorununun yaygın nedenleri \" arasında yer almaz?",
+          "o": [
+            "DOCTYPE kullanımı",
+            "Tarayıcıya özel CSS kullanımı",
+            "CSS sıfırlama",
+            "Yeni tarayıcı algılama",
+            "Eski tarayıcı algılama"
+          ],
+          "a": 3,
+          "u": 13
+        },
+        {
+          "q": "HTML elementler üzerinde Bootstrap özellikleri ......... tanımı ile kullanılır. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "data",
+            "style",
+            "class",
+            "head",
+            "link"
+          ],
+          "a": 2,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi geçiş (transition ) özellikleri arasında yer almaz?",
+          "o": [
+            "transition -delay",
+            "transition -property",
+            "directional",
+            "ease-in",
+            "ease-in-out"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Mock -Up hazırlama ortamlarından biri değildir?",
+          "o": [
+            "Mockminus",
+            "Moqups",
+            "Mockup Builder",
+            "Origami Studio",
+            "MockPlus"
+          ],
+          "a": 0,
+          "u": 14
+        },
+        {
+          "q": "Farklı boyutlardaki cihazlarda özel tasarımlar yapabilmeyi sağlayan esnek yapılı tasarım aşağıdakilerden hangisidir?",
+          "o": [
+            "Uyarlanabilir Tasarım",
+            "Duyarlı Tasarım",
+            "Uyarlı ve Duyarlı Tasarım",
+            "Masaüstü Görünümlü Tasarım",
+            "UX UI Tasarım"
+          ],
+          "a": 0,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi prototip hazırlamanın avantajlarından biridir?",
+          "o": [
+            "Tasarım süresini kısaltmak",
+            "Metinsel ifadelerin stillerini belirlemek",
+            "Web sitesinin özelliklerini belirlemek",
+            "Hataların tespit edilmesini kolaylaştırmak",
+            "Tasarım maliyetini azaltmak"
+          ],
+          "a": 3,
+          "u": 14
+        },
+        {
+          "q": "Web sayfası içerisinde yatay olarak oluşturulmuş gezinme çubuğu yapısına ……..…………… adı verilir. Cümledeki boşluğa aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Horizontal Navbar",
+            "Vertical Navbar",
+            "Navbar",
+            "Sticky NavBar",
+            "Fixed Navbar"
+          ],
+          "a": 0,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi web tasarımında API kullanımının avantajlarından biri değildir?",
+          "o": [
+            "Görünüşte zor ve karmaşık görünen projelerin, içeriğinin iyi bir dilde tasarlanmasını ve uygulanmasını sağlar.",
+            "Projede daha fazla fonksiyon için fırsatlar sağlar.",
+            "API kullanımı ile kullanıcı ve müşteri dostu kolaylıklar sağlanabilir.",
+            "Entegrasyon yoluyla oluşturulan projelerin başarılı olma olasılığı daha yüksektir.",
+            "HTML5 ile oluşturulmuş web sayfalarının yüklenmeleri hızlanır."
+          ],
+          "a": 4,
+          "u": 5
+        },
+        {
+          "q": "Aşağıdakilerden hangisi duyarlı web sitesi avantajlarından biridir?",
+          "o": [
+            "Duyarlı web siteleri ile CSS ve HTML kullanmadan web sitesi tasarlanabilmektedir.",
+            "Farklı ekran ölçülerine uygun özgün tasarımlar yapılabilir.",
+            "Tek HTML kodu ile tüm ekranlara tasarım yapıldığı için oluşturulması ve devamlılığı sağlamak için diğer yapılara göre daha az emek ile yapılabilmektedir.",
+            "Duyarlı web tasarımı çevre bilinci ile ilgili konuları kapsamaktadır.",
+            "Duyarlı web tasarımları işitme engelli kişiler için tasarlanmaktadır."
+          ],
+          "a": 2,
+          "u": 12
+        },
+        {
+          "q": "1400 px ölçüsünden büyük kesme noktası tipi aşağıdakilerden hangisidir?",
+          "o": [
+            "Small (Küçük )",
+            "Medium (Orta )",
+            "Large (Büyük )",
+            "Extra large (Ekstra büyük )",
+            "Extra extra large (Ekstra ekstra büyük )"
+          ],
+          "a": 4,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi HTML 5'te yer alan grafik ve medya etiketleri arasında yer almaz?",
+          "o": [
+            "&lt; canvas &gt;",
+            "&lt; header &gt;",
+            "&lt; audio &gt;",
+            "&lt; svg &gt;",
+            "&lt; source &gt;"
+          ],
+          "a": 1,
+          "u": 4
+        },
+        {
+          "q": "Aaşağıdakilerden hangisi Flexbox Modeli 'ne ait olan bir avantajdır?",
+          "o": [
+            "Bazı tarayıcılar tarafından desteklenir.",
+            "Ögelerde boyutlandırma yoktur.",
+            "Ögeler hizalanamaz.",
+            "Hemen hemen tüm tarayıcılar tarafından desteklenir.",
+            "Duyarlı ve uyarlanabilir web tasarımı sürecini zorlaştırır."
+          ],
+          "a": 3,
+          "u": 8
+        }
+      ]
+    },
+    {
+      "sinavId": 48,
+      "ad": "2021-2022 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi duyarlı web sitesi avantajlarından biridir?",
+          "o": [
+            "Duyarlı web siteleri ile CSS ve HTML kullanmadan web sitesi tasarlanabilmektedir.",
+            "Farklı ekran ölçülerine uygun özgün tasarımlar yapılabilir.",
+            "Tek HTML kodu ile tüm ekranlara tasarım yapıldığı için oluşturulması ve devamlılığı sağlamak için diğer yapılara göre daha az emek ile yapılabilmektedir.",
+            "Duyarlı web tasarımı çevre bilinci ile ilgili konuları kapsamaktadır.",
+            "Duyarlı web tasarımları işitme engelli kişiler için tasarlanmaktadır."
+          ],
+          "a": 2,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir form elementini kullanıcı etkileşimine kapatmak için kullanılan özelliktir?",
+          "o": [
+            "Readonly",
+            "Disabled",
+            "Closed",
+            "Form-readonly",
+            "Form-disabled"
+          ],
+          "a": 1,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdaki alan adı uzantıları ve kullanım alanı eşleştirmelerinden hangisi doğrudur?",
+          "o": [
+            "gov: Uluslararası organizasyonlar için ayrılmıştır.",
+            "edu: Eğitim kurumları tarafından kullanılır.",
+            "org: Kooperatifler tarafından kullanılır.",
+            "com: Seyahat acenteleri ve seyahat hizmetleri için kullanılır.",
+            "net: Organizasyonlar için kullanılır."
+          ],
+          "a": 1,
+          "u": 1
+        },
+        {
+          "q": "HTML5 ile gelen API 'ler ve görevleriyle ilgili olarak aşağıdaki eşleştirmelerden hangisi yanlıştır?",
+          "o": [
+            "geolocation - Konum bilgisini tanımlar.",
+            "drag and drop - Sayfa içindeki nesnelere sürükle -bırak tanımlar.",
+            "canvas - Ses ve görüntü oynatmayı tanımlar.",
+            "print - Yazdırma desteği sağlar.",
+            "webstorage - İstemci bilgisayarına veri depolamayı tanımlar."
+          ],
+          "a": 2,
+          "u": 5
+        },
+        {
+          "q": "CSS Flexbox ’ta flex -direction ve flex -wrap özelliklerini tek seferde tanımlamak için hangi özellik kullanılır?",
+          "o": [
+            "Justify-content",
+            "Flex-start",
+            "Flex-flow",
+            "Flex-end",
+            "space -between"
+          ],
+          "a": 2,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi HTML 'nin güncel versiyonu olan HTML5'in sunduğu yeniliklerden biri değildir?",
+          "o": [
+            "Metinsel ifadeleri barındırma",
+            "Mobil optimizasyon",
+            "Çapraz tarayıcı uyumluluğu",
+            "Çevrim dışı önbelleğe alma",
+            "Dâhilî ses /video oynatabilme"
+          ],
+          "a": 0,
+          "u": 1
+        },
+        {
+          "q": "Farklı boyutlardaki cihazlarda özel tasarımlar yapabilmeyi sağlayan esnek yapılı tasarım aşağıdakilerden hangisidir?",
+          "o": [
+            "Uyarlanabilir Tasarım",
+            "Duyarlı Tasarım",
+            "Uyarlı ve Duyarlı Tasarım",
+            "Masaüstü Görünümlü Tasarım",
+            "UX UI Tasarım"
+          ],
+          "a": 0,
+          "u": 12
+        },
+        {
+          "q": "Boostrap v 5 versiyonu windows masaüstü ortamında aşağıdaki hangi internet tarayıcısı tarafından desteklenmemektedir?",
+          "o": [
+            "Safari",
+            "Firefox",
+            "Opera",
+            "Microsoft Edge",
+            "Chrome"
+          ],
+          "a": 0,
+          "u": 10
+        },
+        {
+          "q": "Web tarayıcıya ekranı hangi genişlikte görüntüleyeceğini bildiren ifade aşağıdakilerden hangisidir?",
+          "o": [
+            "Meta charset",
+            "Meta robot",
+            "Meta keywords",
+            "Meta title",
+            "Meta viewport"
+          ],
+          "a": 4,
+          "u": 6
+        },
+        {
+          "q": "Aşağıdakilerden hangisi “Navbar” yapısı tasarlanırken kullanılabilecek elementlerden biri değildir?",
+          "o": [
+            "&lt;ul&gt; &lt;/ul&gt;",
+            "&lt;ul&gt; &lt;li&gt; &lt;/li&gt; &lt;/ul&gt;",
+            "&lt;a&gt; &lt;/a&gt;",
+            "&lt;ol&gt; &lt;/ol&gt;",
+            "&lt;row&gt; &lt;/row&gt;"
+          ],
+          "a": 4,
+          "u": 9
+        },
+        {
+          "q": "Aaşağıdakilerden hangisi Flexbox Modeli 'ne ait olan bir avantajdır?",
+          "o": [
+            "Bazı tarayıcılar tarafından desteklenir.",
+            "Ögelerde boyutlandırma yoktur.",
+            "Ögeler hizalanamaz.",
+            "Hemen hemen tüm tarayıcılar tarafından desteklenir.",
+            "Duyarlı ve uyarlanabilir web tasarımı sürecini zorlaştırır."
+          ],
+          "a": 3,
+          "u": 8
+        },
+        {
+          "q": "CSS animasyonları ile ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+          "o": [
+            "Fazladan komut dosyaları gerektirdiklerinden, CSS animasyonları sayfaları oldukça yavaşlatır.",
+            "Bir ögenin bir veya daha fazla stil özelliğindeki bir değişikliği canlandırmaya ve ayrıca animasyonun çeşitli yönlerini kontrol etmeye olanak tanıyan bir CSS özelliğidir.",
+            "CSS animasyonları ek kod (örn. JavaScript ) veya medya (örn. GIF'ler) gerektirmez, her şey HTML ve CSS ile yapılır.",
+            "CSS animasyonları, sayfaya daha fazla yük getirmeden dinamik, ilgi çekici içerik eklemek isteyen internet sayfaları için kullanılır.",
+            "Animasyonun daha fazla özelleştirmek için hız ve gecikme gibi özellikler de eklenebilir."
+          ],
+          "a": 0,
+          "u": 7
+        },
+        {
+          "q": "I. CSS, web sayfalarındaki içeriklerin konumlandırılması, yeniden boyutlandırılması, yazı boyutu ve renk gibi görsel tanımlamaların yapılması ile ilgilenir. II. Bir web sayfasının HTML kısmı içerik katmanı olarak tanımlanırsa CSS kısmı görselleştirme katmanı olarak tanımlanabilir. III. Geliştiricilerin işini kolaylaştıracak birçok Javascript kütüphanesi bulunmasına rağmen, CSS kütüphanesi bulunmamaktadır. CSS (Basamaklı Stil Şablonu - Cascading Style Sheets ) ile ilgili olarak yukarıdakilerden hangisi ya da hangileri doğrudur?",
+          "o": [
+            "Yalnız I",
+            "I ve II",
+            "Yalnız II",
+            "I, II ve III",
+            "II ve III"
+          ],
+          "a": 1,
+          "u": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi çapraz tarayıcı uyumluluğu parçalarından biri değildir?",
+          "o": [
+            "Kod uyumluluğu",
+            "İşlemci uyumluluğu",
+            "Ara yüz uyumluluğu",
+            "Davranış uyumluluğu",
+            "Mobil uyumluluk"
+          ],
+          "a": 1,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdaki HTML etiketi ve kullanım amacı eşleştirmelerinden hangisi yanlıştır?",
+          "o": [
+            "&lt; a &gt; - Sayfada içinde bir tablo oluşturmak için kullanılır.",
+            "&lt; ul &gt; - Sırasız bir liste oluşturmak için kullanılır.",
+            "&lt; ol &gt; - Sıralı bir liste oluşturmak için kullanılır.",
+            "&lt; li &gt; - Listenin elemanlarını ayrı ayrı oluşturmak için kullanılır.",
+            "&lt; br &gt; - Alt satıra geçilmesini sağlar."
+          ],
+          "a": 0,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi prototip hazırlamanın avantajlarından biridir?",
+          "o": [
+            "Tasarım süresini kısaltmak",
+            "Metinsel ifadelerin stillerini belirlemek",
+            "Web sitesinin özelliklerini belirlemek",
+            "Hataların tespit edilmesini kolaylaştırmak",
+            "Tasarım maliyetini azaltmak"
+          ],
+          "a": 3,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdakilerden hangisi geçiş (transition ) özellikleri arasında yer almaz?",
+          "o": [
+            "transition -delay",
+            "transition -property",
+            "directional",
+            "ease-in",
+            "ease-in-out"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi kullanıcının var olan seçenekler arasından en az bir adet seçim yapması istendiği durumda kullanılan form kontrolüdür?",
+          "o": [
+            "checkbox",
+            "radio",
+            "selectbox",
+            "inputbox",
+            "dropbox"
+          ],
+          "a": 0,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Wireframe kullanmanın faydaları için yanlıştır?",
+          "o": [
+            "Web siteniz veya ürününüz hakkında ön konuşmalarda çok yardımcı olur ve görülen durumların değiştirilmesini kolaylaştırır.",
+            "Wireframe çalışmasından sonra yazılıma geçmek, daha belirgin kuralları takip etmenizi sağlar.",
+            "Wireframe aşamasında yapılan değişiklikler, kodlama başladıktan sonra gerekli görülen değişikliklerden çok daha kolay ve dolayısıyla daha ucuzdur.",
+            "Taslak çalışmaların yardımı ile fikir ve tasarımın her aşamasında son kullanıcılarla test edebilirsiniz.",
+            "Bir model çerçevesinde uygulanacak alan tasarımın yüzeyde nasıl görüneceğinin belirlenmesi amacıyla kullanılır."
+          ],
+          "a": 4,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdaki tarayıcılardan hangisi CSS ’de “-moz” ön ekini kullanmaktadır?",
+          "o": [
+            "Firefox",
+            "Edge",
+            "Internet Explorer",
+            "Chrome",
+            "Opera"
+          ],
+          "a": 0,
+          "u": 13
+        }
+      ]
+    },
+    {
+      "sinavId": 47,
+      "ad": "2021-2022 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi hosting ve domain kavramlarıyla ilgili yanlış bir ifadedir?",
+          "o": [
+            "Hosting kavramı barındırma anlamına gelmektedir.",
+            "Web siteleri sadece IP adresleri kullanılarak görüntülenebilir.",
+            "Bir web sitesinin tüm içeriği bir sunucuda tutulur.",
+            "Her web sitesine ait bir IP adresi vardır.",
+            "IP adresleri dört bölümden oluşur."
+          ],
+          "a": 1
+        },
+        {
+          "q": "Web sayfası içerisinde yatay olarak oluşturulmuş gezinme çubuğu yapısına ……..…………… adı verilir. Cümledeki boşluğa aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Horizontal Navbar",
+            "Vertical Navbar",
+            "Navbar",
+            "Sticky NavBar",
+            "Fixed Navbar"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi \"çapraz tarayıcı uyumluluğu sorununun yaygın nedenleri \" arasında yer almaz?",
+          "o": [
+            "DOCTYPE kullanımı",
+            "Tarayıcıya özel CSS kullanımı",
+            "CSS sıfırlama",
+            "Yeni tarayıcı algılama",
+            "Eski tarayıcı algılama"
+          ],
+          "a": 3
+        },
+        {
+          "q": "1400 px ölçüsünden büyük kesme noktası tipi aşağıdakilerden hangisidir?",
+          "o": [
+            "Small (Küçük )",
+            "Medium (Orta )",
+            "Large (Büyük )",
+            "Extra large (Ekstra büyük )",
+            "Extra extra large (Ekstra ekstra büyük )"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Mock -Up hazırlama ortamlarından biri değildir?",
+          "o": [
+            "Mockminus",
+            "Moqups",
+            "Mockup Builder",
+            "Origami Studio",
+            "MockPlus"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Bootstrap bileşenlerinden biri değildir?",
+          "o": [
+            "Alert",
+            "Button",
+            "Square",
+            "Modal",
+            "Toast"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi meta etiketlerinden biri değildir?",
+          "o": [
+            "Title",
+            "Description",
+            "Keywords",
+            "Charset",
+            "Head"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Çapraz tarayıcı uyumluluğunda aşağıdaki ifadelerden hangisi davranış uyumluluğunu ifade eder?",
+          "o": [
+            "Web sitesinin istenilen şekilde görünüp görünmediğini kontrol eder.",
+            "CSS ve JavaScript kodlarının farklı tarayıcılarda geçerli olup olmadığını kontrol eder.",
+            "Responsive tasarımdaki sitenin farklı mobil cihazlarda farklı çözünürlükteki görünümünü kontrol eder. Ayrıca mobil cihazın yatay veya dikey çevrilmesi sonucundaki oluşacak görüntüyü de kontrol eder.",
+            "Sitenin farklı tarayıcılardaki performansına bakarak performansların yakın olup olmadığını kontrol eder.",
+            "Web sitesinin istenildiği gibi davranıp davranmadığını kontrol eder. Örneğin sitede bir butona tıklandığında yeni pencerede bir sayfa açılıyorsa bu işlemin bütün tarayıcılarda gerçekleşip gerçekleşmediğini kontrol eder."
+          ],
+          "a": 4
+        },
+        {
+          "q": "CSS ile ilgili olarak aşağıdaki ifadelerden hangisi yanlıştır?",
+          "o": [
+            "HTML büyük ölçüde metin içeriğini belirlerken CSS görsel yapıyı, düzeni ve estetiği belirler.",
+            "CSS, bir internet sitesinin tasarımsal açıdan daha etkileyici görünmesini kolaylaştıran bir işaretleme dilidir.",
+            "CSS, İngilizce Cascade Style Sheet kelimelerinin kısaltılmasıdır.",
+            "Web sayfaları için etkileşimli görsel ögeler CSS ile tasarlanabilir.",
+            "CSS ilk kez 2010 'lu yıllarda önerilmiş ve kullanılmaya başlanmıştır."
+          ],
+          "a": 4
+        },
+        {
+          "q": "HTML5'te, *.css ve *.js uzantılı dosyaları HTML dokümanı içerisinde çağırırken sırasıyla hangi etiketler kullanılır?",
+          "o": [
+            "&lt; meter &gt; ve &lt; progress &gt;",
+            "&lt; details &gt; ve &lt; summary &gt;",
+            "&lt; figure &gt; ve &lt; figcaption &gt;",
+            "&lt; article &gt; ve &lt; section &gt;",
+            "&lt; link &gt; ve &lt; script &gt;"
+          ],
+          "a": 4
+        },
+        {
+          "q": "…………………………, satır (row) ve sütunlardan (col) oluşan bir ızgara (Grid) yapısı içerisinde elementlerin alt alta dizilerek konumlandırılmasıyla ortaya çıkan form şeklidir. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "Horizontal Form",
+            "Inline Form",
+            "Vertical Form",
+            "Legend Form",
+            "Fieldset"
+          ],
+          "a": 0
+        },
+        {
+          "q": "HTML elementler üzerinde Bootstrap özellikleri ......... tanımı ile kullanılır. Cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "data",
+            "style",
+            "class",
+            "head",
+            "link"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi tasarım sürecinin etkileri arasında yer almaz?",
+          "o": [
+            "Kullanıcı deneyimini etkiler.",
+            "Front-end geliştirmede kullanılacak bileşenlerin seçimini etkiler.",
+            "Üzerinde çalışılan web projesinin amacı ve kapsamını etkiler.",
+            "Kullanıcı memnuniyet düzeyini etkiler.",
+            "Sistem performansını etkiler."
+          ],
+          "a": 2
+        },
+        {
+          "q": "Canvas API ile dikdörtgen çizerken .................. dolgu rengi için kullanılırken .................. çizgi rengi için kullanılır. Cümlede boş bırakılan yerlere sırasıyla aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "fillStyle - strokeStyle",
+            "background - font",
+            "font - color",
+            "fillRect - clearRect",
+            "fillText - textAlign"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi Flexbox kapsamında kullanılan özellikler arasında yer almaz?",
+          "o": [
+            "align -content",
+            "align -items",
+            "align -self",
+            "border",
+            "flex"
+          ],
+          "a": 3
+        },
+        {
+          "q": "CSS Flexbox ’ta birden çok satıra yaymak için hangi özellik kullanılır?",
+          "o": [
+            "column",
+            "Align-item",
+            "Align-content",
+            "Flex-wrap",
+            "Flex-grow"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi CSS ’nin dönüştürme özelliğidir?",
+          "o": [
+            "caption -side",
+            "transition",
+            "animation -direction",
+            "column -rule",
+            "perspective"
+          ],
+          "a": 4
+        },
+        {
+          "q": "……………… .. x ve y ekseni bir uzayda html elementlerinin yerini değiştirme, döndürmek, ölçeklendirmek ve çarpıtmak için kullanılır. Cümledeki boşluğa aşağıdakilerden hangisi getirilmelidir?",
+          "o": [
+            "2D Transform",
+            "2D Translate",
+            "2D Rotate",
+            "2D Scale",
+            "2D Skew"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi WireFrame hazırlama ortamlarından biri değildir?",
+          "o": [
+            "Luxery",
+            "Wireframe .cc",
+            "Balsamiq",
+            "InDesign",
+            "Axure"
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 45,
+      "ad": "2020-2021 Yaz Okulu Sınavı",
+      "questions": [
+        {
+          "q": "Bir yorumlama motoru olan V 8 aşağıdaki hangi tarayıcı tarafından kullanılmaktadır?",
+          "o": [
+            "Microsoft Internet Explorer",
+            "Mozilla FireFox",
+            "Apple Safari",
+            "Opera",
+            "Google Chrome"
+          ],
+          "a": 4,
+          "u": 14
+        },
+        {
+          "q": "En basit hâliyle bir tablo aşağıdaki hangi elementlerden meydana gelir?",
+          "o": [
+            "table – tbody – tfoot",
+            "table – tbody",
+            "table – tfoot",
+            "table – tr – td",
+            "table – td – th"
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "HTML'de sayfaya eklenen resmin herhangi bir nedenle görüntülenememesi durumunda ziyaretçiye gösterilecek yazı için kullanılan parametre aşağıdakilerden hangisidir?",
+          "o": [
+            "width",
+            "height",
+            "align",
+            "top",
+            "alt"
+          ],
+          "a": 4,
+          "u": 10
+        },
+        {
+          "q": "Tabloda sütun oluşturmak için aşağıdaki etiketlerden hangisi kullanılır?",
+          "o": [
+            "TR",
+            "TD",
+            "TH",
+            "THEAD",
+            "TBODY"
+          ],
+          "a": 1,
+          "u": 7
+        },
+        {
+          "q": ".aralik { margin -top:1px; margin -right:2px; margin -bottom:3px; margin -left:4px; } Yukarıda verilen CSS kod yapısının doğru olarak kısaltılmış hâli aşağıdakilerden hangisidir?",
+          "o": [
+            ".aralik {margin :1px 3px 4px 3px;}",
+            ".aralik {margin :1px 4px 2px 3px;}",
+            ".aralik {margin :1px 2px 3px 4px;}",
+            ".aralik {margin :3px 4px 1px 2px;}",
+            ".aralik {margin :2px 3px 4px 1px;}"
+          ],
+          "a": 2,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdakilerden hangisi güncel bir tarayıcının görevleri arasında değildir?",
+          "o": [
+            "Çoklu ortam (ses, resim ve video ) dosyalarını açmak",
+            "HTTP protokolünü desteklemek",
+            "Sık kullanılanlar listesi sunmak ve geçmiş listesi oluşturmak",
+            "Kişisel bir bilgisayara IP adresi vermek",
+            "Genel ağa dosya yükleme (upload ) ve genel ağdan dosya indirme (download ) işlemlerini yapmak"
+          ],
+          "a": 3,
+          "u": 1
+        },
+        {
+          "q": "“Bir metne ya da resme tıklandığında dokümanın bir noktasına veya farklı bir dokümanın istenilen noktasına ulaşmaya yarar” ifadesi aşağıdakilerden hangisini tarif etmektedir?",
+          "o": [
+            "E-posta",
+            "Mutlak yol",
+            "Çapa",
+            "Göreli yol",
+            "Bağlantı etiketi"
+          ],
+          "a": 2,
+          "u": 6
+        },
+        {
+          "q": "Sayfada yatay bir çizgi oluşturmak için kullanılan HTML etiketi aşağıdakilerden hangisidir?",
+          "o": [
+            "br etiketi",
+            "hr etiketi",
+            "bgcolor etiketi",
+            "p etiketi",
+            "head etiketi"
+          ],
+          "a": 1,
+          "u": 5
+        },
+        {
+          "q": "Çerçevelerden oluşmuş bir HTML sayfasında body yerine aşağıdaki elementlerden hangisi kullanılır?",
+          "o": [
+            "table",
+            "title",
+            "head",
+            "frameset",
+            "meta"
+          ],
+          "a": 3,
+          "u": 9
+        },
+        {
+          "q": "Harici bir HTML dokumanını sayfaya dahil etmek için &lt;iframe &gt; elementinin opsiyonu aşağıdaki elementlerden hangisidir?",
+          "o": [
+            "&lt;div&gt;",
+            "&lt;span &gt;",
+            "&lt;html&gt;",
+            "&lt;object &gt;",
+            "&lt;font&gt;"
+          ],
+          "a": 3,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi internetin sunduğu hizmetlerden biri değildir?",
+          "o": [
+            "e-posta",
+            "alış-veriş",
+            "ftp",
+            "örgün eğitim",
+            "sosyal medya"
+          ],
+          "a": 3,
+          "u": 1
+        },
+        {
+          "q": "Tarayıcıya HTML belgesinin başladığı ve bittiği yeri bildiren HTML etiketi aşağıdakilerden hangisidir?",
+          "o": [
+            "title",
+            "body",
+            "html",
+            "ul",
+            "head"
+          ],
+          "a": 2,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir sınıf ve /veya ID seçicisi değildir?",
+          "o": [
+            "div.kare",
+            ".mavirenk",
+            "span #bordo",
+            "#sari .mavi",
+            "font[name=”dk”]"
+          ],
+          "a": 4,
+          "u": 11
+        },
+        {
+          "q": "HTML taglarının doğru açılıp -kapatıldığı seçenek aşağıdakilerden hangisidir?",
+          "o": [
+            "&lt;meta&gt; &lt;/meta&gt;",
+            "&lt;div&gt;&lt;b&gt; &lt;/div&gt;&lt;/b&gt;",
+            "&lt;script /&gt;",
+            "&lt;em&gt;&lt;i&gt; &lt;/i&gt;&lt;/em&gt;",
+            "&lt;link /&gt;"
+          ],
+          "a": 4,
+          "u": 14
+        },
+        {
+          "q": "Bir tabloda yan yana hücreleri (sütunları) birleştirmek için aşağıdakilerden özniteliklerden hangisi kullanılır?",
+          "o": [
+            "colspan",
+            "rowspan",
+            "border",
+            "headers",
+            "width"
+          ],
+          "a": 0,
+          "u": 12
+        },
+        {
+          "q": "Sıralı listeyi belli bir değer ile (örneğin 5 sayısal ya da m alfabetik değer gibi ) başlatabilmek için aşağıdaki parametrelerden hangisi kullanılır?",
+          "o": [
+            "başla",
+            "init",
+            "start",
+            "stop",
+            "begin"
+          ],
+          "a": 2,
+          "u": 3
+        },
+        {
+          "q": "Bir tablonun arka planına resim yerleştirmek için aşağıdaki parametrelerden hangisi kullanılır?",
+          "o": [
+            "bgcolor",
+            "img",
+            "set",
+            "image",
+            "background"
+          ],
+          "a": 4,
+          "u": 7
+        },
+        {
+          "q": "Ekranda maddeler halinde yazdıralacak liste elemanlarını alt alta yazdırırken &lt;br&gt; etiketi yerine daha pratik yoldan aşağıdaki hangi etiket kullanılır?",
+          "o": [
+            "&lt;pre&gt;",
+            "&lt;blockquote &gt;",
+            "&lt;strong&gt;",
+            "&lt;sup&gt;",
+            "&lt;cite&gt;"
+          ],
+          "a": 0,
+          "u": 4
+        },
+        {
+          "q": "HTML'de bir elementi gizlemek için yazılması gereken CSS kodu aşağıdakilerden hangisidir?",
+          "o": [
+            "display :none",
+            "element:hide",
+            "fadeout :true",
+            "hover:gone",
+            "gravity :none"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdaki etiketlerden hangisi tarayıcı penceresinde yatay çizgi oluşturur?",
+          "o": [
+            "&lt;font&gt;",
+            "&lt;hr&gt;",
+            "&lt;body &gt;",
+            "&lt;br&gt;",
+            "&lt;style&gt;"
+          ],
+          "a": 1,
+          "u": 5
+        }
+      ]
+    },
+    {
+      "sinavId": 33,
+      "ad": "2020-2021 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Renk tanımlamak için kullanılan RGB teriminin açılımı aşağıdakilerden hangisidir?",
+          "o": [
+            "red-green-blue",
+            "renk-geliştirme-belirteçleri",
+            "renkli-geçmiş-bellek",
+            "renk-genişlik-büyüklük",
+            "renk-genişlik-beyazlık"
+          ],
+          "a": 0,
+          "u": 11
+        },
+        {
+          "q": "\"Meter ve progress etiketi \" tarayıcı tarafından desteklenmediği durumda aşağıdakilerden hangisi olur?",
+          "o": [
+            "Ekranda görünen çubuğun tamamı yeşil renk olarak görünür.",
+            "Ekranda hiçbir bilgi yer almaz.",
+            "Ekranda görünen çubuğun tamamı mavi renk olarak görünür.",
+            "Ekrana hata mesajı gelir.",
+            "Etiket içindeki metin değeri görüntülenir."
+          ],
+          "a": 4,
+          "u": 5
+        },
+        {
+          "q": "I. Top II. Middle III. Bottom IV. ColTop Yukarıdakilerden hangisi ya da hangileri \"valign\" parametresinin alabileceği değerler arasında bulunur?",
+          "o": [
+            "Yalnız I",
+            "Yalnız IV",
+            "I ve II",
+            "II ve III",
+            "I, II ve III"
+          ],
+          "a": 4,
+          "u": 7
+        },
+        {
+          "q": "Sayfaya &lt;audio&gt; elementi aşağıdaki hangi amaçla eklenir?",
+          "o": [
+            "Resim göstermek için",
+            "Ses dosyası çalmak için",
+            "Video oynatmak için",
+            "Metin eklemek için",
+            "Siteyi silmek için"
+          ],
+          "a": 1,
+          "u": 10
+        },
+        {
+          "q": "Bir tabloda bazı hücrelere kenarlık istenmiyorsa kullanılabilecek bağımsız değişken aşağıdakilerden hangisidir?",
+          "o": [
+            "bordercolor",
+            "bordercolorlight",
+            "frame",
+            "bordercolordark",
+            "background"
+          ],
+          "a": 2,
+          "u": 7
+        },
+        {
+          "q": "HTML'de Türkçe karakterleri destekleyen bir dil kodlamasını sayfamıza entegre edebilmek için meta etiketinin content parametresine aşağıdakilerden hangisi yazılmalıdır?",
+          "o": [
+            "content=\"text/html; charset =Turkish \"",
+            "content=\"text/html; charset =ISO -TR\"",
+            "content=\"text/html; charset =utf-8\"",
+            "content=\"text/html; charset =TR-tr\"",
+            "content=\"text/html; charset =utf-TR\""
+          ],
+          "a": 2,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdakilerden hangisi target parametresinin alabileceği değerlerden biri değildir?",
+          "o": [
+            "target=\"_blank \"",
+            "target=\"_include \"",
+            "target=\"_self\"",
+            "target=\"_top\"",
+            "target=\"_parent \""
+          ],
+          "a": 1,
+          "u": 6
+        },
+        {
+          "q": "Bir satır aşağıya inmek için aşağıdaki etiketlerden hangisi kullanılır?",
+          "o": [
+            "&lt; bl &gt;&lt; / bl &gt;",
+            "&lt; newline &gt;&lt; / newline &gt;",
+            "&lt; breaknew &gt;&lt; / breaknew &gt;",
+            "&lt; p &gt;",
+            "&lt; br /&gt;"
+          ],
+          "a": 4,
+          "u": 4
+        },
+        {
+          "q": "&lt;ul class =\"menu\"&gt; &lt;li&gt;Bir&lt;/li&gt; &lt;li&gt;İki&lt;/li&gt; &lt;li&gt;Üç&lt;/li&gt; &lt;/ul&gt; Yukarıdaki ul elementi içerisinde yer alan li elementlerinden sadece ilkinin yazı rengini değiştirmek için yazılması gereken CSS kodu hangisidir?",
+          "o": [
+            "ul.menu &gt; li{color :red;}",
+            "ul.menu &gt; li:first{color :red;}",
+            "ul.menu &gt; li:1{color :red;}",
+            "ul.menu &gt; li:0{color :red;}",
+            "ul.menu &gt; li:first-child {color :red;}"
+          ],
+          "a": 4,
+          "u": 13
+        },
+        {
+          "q": "Bağlanan doküman web sunucunuzdan tamamen ayrı bir sunucuya yerleştirilmiş ise aşağıdakilerden hangisinin kullanılması gerekir?",
+          "o": [
+            "Mutlak yol",
+            "Şartlı yol",
+            "Dolaylı yol",
+            "Göreli yol",
+            "Kök yol"
+          ],
+          "a": 0,
+          "u": 6
+        },
+        {
+          "q": "Bilgisayarları, internet hizmetlerini ya da özel ağlara bağlı kaynakları hiyerarşik olarak dağıtan alan adlandırma sistemi aşağıdakilerden hangisidir?",
+          "o": [
+            "DNS (Domain Name System )",
+            "IP (Internet Protocol )",
+            "IPv 6 Protokolü",
+            "LHS (Local Host System )",
+            "HTTP (Hyper-Text Transfer Protocol )"
+          ],
+          "a": 0,
+          "u": 1
+        },
+        {
+          "q": "I. Unicorn II. HTML III. CSS IV. İşletim Sistemi Yukarıdakilerden hangisi ya da hangileri W 3C konsorsiyumunun ücretsiz olarak çevrim içi doğrulama yöntemleri arasında yer alır?",
+          "o": [
+            "Yalnız I",
+            "Yalnız IV",
+            "I ve II",
+            "II ve III",
+            "I, II ve III"
+          ],
+          "a": 4,
+          "u": 14
+        },
+        {
+          "q": "Bir çerçeve içeriğinin bağlantı adresi aşağıdaki hangi öz nitelikte belirtilir?",
+          "o": [
+            "src",
+            "id",
+            "class",
+            "style",
+            "data"
+          ],
+          "a": 0,
+          "u": 9
+        },
+        {
+          "q": "&lt;frameset &gt; elementinde dikey alanlar aşağıdaki hangi öz nitelik ile tanımlanır?",
+          "o": [
+            "src",
+            "rows",
+            "cols",
+            "link",
+            "id"
+          ],
+          "a": 2,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir formun veri gönderme metodudur?",
+          "o": [
+            "POST",
+            "SESSION",
+            "GLOBAL",
+            "RAW",
+            "JSON"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir web sitesi adresinde yer almaz?",
+          "o": [
+            "com",
+            "ftp",
+            "http",
+            "site adı",
+            "www"
+          ],
+          "a": 1,
+          "u": 1
+        },
+        {
+          "q": "&lt;hx&gt; etiketinde x değerinin alabileceği en büyük değer aşağıdakilerden hangisidir?",
+          "o": [
+            "3",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "a": 2,
+          "u": 4
+        },
+        {
+          "q": "Bir formda onay kutusu için hangi “input” tipi kullanılır?",
+          "o": [
+            "checkbox",
+            "image",
+            "password",
+            "submit",
+            "reset"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ses dosyası için kullanılabilir formatır?",
+          "o": [
+            "png",
+            "jpg",
+            "gif",
+            "mp3",
+            "exe"
+          ],
+          "a": 3,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir menü türü değildir?",
+          "o": [
+            "Sekmeli (tab) menü",
+            "Dikey menü",
+            "Yatay menü",
+            "Dikey açılır menü",
+            "Çapraz menü"
+          ],
+          "a": 4,
+          "u": 13
+        }
+      ]
+    },
+    {
+      "sinavId": 29,
+      "ad": "2019-2020 Yaz Okulu Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi IP (Internet Protocol )'i ifade eder?",
+          "o": [
+            "Bilgisayarların iletişim kurmasını sağlayan protokoldür.",
+            "Alan adıdır.",
+            "İnternet üzerindeki bilgilere bakabilmeyi ve etkileşim kurmayı sağlayan uygulama protokolüdür.",
+            "İnternette istenilen bilgilere ulaşabilmeyi sağlayan bir arama motorudur.",
+            "ADSL"
+          ],
+          "a": 0,
+          "u": 1
+        },
+        {
+          "q": "&lt; body &gt; etiketi parametrelerinden vlink ne işe yarar?",
+          "o": [
+            "Arka planda kullanılmak istenen resmi belirler.",
+            "Linke tıklandığındaki rengi belirler.",
+            "Arka plan rengini belirler.",
+            "Daha önce ziyaret edilmiş linklerin rengini belirler.",
+            "Sayfadaki linklerin rengini belirler."
+          ],
+          "a": 3,
+          "u": 3
+        },
+        {
+          "q": "“Bağlanan doküman WEB sunucusundan tamamen ayrı bir sunucuya yerleştirilmiş .” ifadesi bağlantı yollarından hangisini tarif etmektedir?",
+          "o": [
+            "Mutlak yollar",
+            "Göreli yollar",
+            "Kök yollar",
+            "Doküman -göreli yollar",
+            "Kök-göreli yollar"
+          ],
+          "a": 0,
+          "u": 6
+        },
+        {
+          "q": "Metin olarak ekranda görünmeyen ve HTML ’in ilk bölümünü oluşturan etiket (tag) aşağıdakilerden hangisidir?",
+          "o": [
+            "&lt; title &gt; … &lt; / title &gt;",
+            "&lt; head &gt; … &lt; / head &gt;",
+            "&lt; body &gt;… &lt; / body &gt;",
+            "&lt; dl &gt; … &lt; / dl &gt;",
+            "&lt; html &gt; … &lt; / html &gt;"
+          ],
+          "a": 1,
+          "u": 3
+        },
+        {
+          "q": "İnternet tarayıcılarında görüntülenmek istenen web sitesinin adresinin yazıldığı çubuğa ne ad verilir?",
+          "o": [
+            "Durum Çubuğu",
+            "Adres Çubuğu",
+            "Başlık Çubuğu",
+            "Araç Çubuğu",
+            "Görev Çubuğu"
+          ],
+          "a": 1,
+          "u": 1
+        },
+        {
+          "q": "Çerçevelerden oluşmuş bir HTML sayfasında body yerine aşağıdaki elementlerden hangisi kullanılır?",
+          "o": [
+            "table",
+            "title",
+            "head",
+            "frameset",
+            "meta"
+          ],
+          "a": 3,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdaki etiketlerden hangisi tarayıcı penceresinde yatay çizgi oluşturur?",
+          "o": [
+            "&lt; font &gt;",
+            "&lt; hr &gt;",
+            "&lt; body &gt;",
+            "&lt; br &gt;",
+            "&lt; style &gt;"
+          ],
+          "a": 1,
+          "u": 5
+        },
+        {
+          "q": "Aşağıdaki etiketlerden hangisi ile metni eğik yapabilirsiniz?",
+          "o": [
+            "&lt; b &gt; ATAUZEM &lt; / b &gt;",
+            "&lt; small &gt; ATAUZEM &lt; / small &gt;",
+            "&lt; i &gt; ATAUZEM &lt; / i &gt;",
+            "&lt; u &gt; ATAUZEM &lt; / u &gt;",
+            "&lt; big &gt; ATAUZEM &lt; / big &gt;"
+          ],
+          "a": 2,
+          "u": 4
+        },
+        {
+          "q": "Bir yorumlama motoru olan V 8 hangi tarayıcı tarafından kullanılmaktadır?",
+          "o": [
+            "Microsoft Internet Explorer",
+            "Mozilla Firefox",
+            "Apple Safari",
+            "Opera",
+            "Google Chrome"
+          ],
+          "a": 4,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdakilerden hangisi CSS 'de \"background-repeat \" kodunun alabileceği değerlerden biri değildir?",
+          "o": [
+            "repeat",
+            "repeat-x",
+            "repeat-y",
+            "repeat-xy",
+            "no-repeat"
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "Web sitelerini dolaşarak içeriklerini en hassas bir şekilde inceleyen, bu içerikleri arama yapılabilmesi için uygun şekilde gruplayan, indeksleyen ve istendiğinde kullanıcıya sunan web tabanlı programlara ne ad verilir?",
+          "o": [
+            "Arama motoru",
+            "İndeksleyici",
+            "Sıralayıcı",
+            "Dosyalayıcı",
+            "Veri tabanı"
+          ],
+          "a": 0,
+          "u": 2
+        },
+        {
+          "q": "Tablo içinde yeni bir satır eklemek için hangi HTML etiketi kullanılır?",
+          "o": [
+            "&lt; NL &gt;",
+            "&lt; TH &gt;",
+            "&lt; Table &gt;",
+            "&lt; TD &gt;",
+            "&lt; TR &gt;"
+          ],
+          "a": 4,
+          "u": 7
+        },
+        {
+          "q": "Bir dokümana, videoya veya sıkıştırılmış bir dosyaya bağlantı oluşturmaya ne ad verilmektedir?",
+          "o": [
+            "Sayfa içi bağlantı oluşturmak",
+            "Başka bir içeriğe bağlantı oluşturmak",
+            "Çapalar ile bağlantı oluşturmak",
+            "Sayfa dışı bağlantı oluşturmak",
+            "E-posta oluşturmak"
+          ],
+          "a": 1,
+          "u": 6
+        },
+        {
+          "q": "CSS'de bir elemente iç açıklık vermek için aşağıdakilerden hangisi kullanılır?",
+          "o": [
+            "margin",
+            "padding",
+            "border",
+            "background",
+            "font"
+          ],
+          "a": 1,
+          "u": 11
+        },
+        {
+          "q": "HTML'de bir elementi gizlemek için yazılması gereken CSS kodu aşağıdakilerden hangisidir?",
+          "o": [
+            "display :none",
+            "element:hide",
+            "fadeout :true",
+            "hover:gone",
+            "gravity :none"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ile Erzurum yazısının altı çizdirilebilir?",
+          "o": [
+            "&lt; u&gt; Erzurum &lt; / u &gt;",
+            "Erzurum &lt; u &gt;",
+            "Erzu &lt; u &gt; rum &lt; / u &gt;",
+            "&lt; b &gt; Erzurum",
+            "&lt; i &gt; Erzurum"
+          ],
+          "a": 0,
+          "u": 4
+        },
+        {
+          "q": "2013 yılında en çok tercih edilen tarayıcı aşağıdakilerden hangisidir?",
+          "o": [
+            "Microsoft Internet Explorer",
+            "Mozilla Firefox",
+            "Apple Safari",
+            "Google Chrome",
+            "Opera"
+          ],
+          "a": 3,
+          "u": 14
+        },
+        {
+          "q": "Bir web sayfası tasarlanırken aşağıdaki form nesnelerinden hangisi kullanılırsa, ziyaretçinin birbiriyle alakalı bir grup öge arasından bir ya da birden fazla seçeneği seçebilmesi sağlanır?",
+          "o": [
+            "Radio",
+            "Text",
+            "Textarea",
+            "Password",
+            "Checkbox"
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir tablonun genişliğini ayarlamak için kullanılan html parametresidir?",
+          "o": [
+            "height",
+            "width",
+            "align",
+            "left",
+            "top"
+          ],
+          "a": 1,
+          "u": 7
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir videonun boyutunu (sabit diskte kapladığı alanı) belirleyen faktörler arasında yer almaz?",
+          "o": [
+            "Videonun çözünürlüğü",
+            "Videonun saniyedeki kare sayısı",
+            "Videonun süresi",
+            "Videonun hızlı oynatılması",
+            "Videonun formatı"
+          ],
+          "a": 3,
+          "u": 10
+        }
+      ]
+    },
+    {
+      "sinavId": 27,
+      "ad": "2019-2020 Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi bir çerçeve türü değildir?",
+          "o": [
+            "frameset",
+            "frame",
+            "iframe",
+            "window",
+            "object"
+          ],
+          "a": 3,
+          "u": 9
+        },
+        {
+          "q": "Bir sayfaya resim eklemek için aşağıdaki hangi HTML elementi kullanılır?",
+          "o": [
+            "&lt; medya &gt;&lt; /medya &gt;",
+            "&lt; gorsel &gt;&lt; / gorsel &gt;",
+            "&lt; resim &gt;&lt; / resim &gt;",
+            "&lt; img &gt; &lt; img / &gt;",
+            "&lt; metin &gt;&lt; / metin &gt;"
+          ],
+          "a": 3,
+          "u": 10
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir videonun boyutunu (sabit diskte kapladığı alanı) belirleyen faktörler arasında yer almaz?",
+          "o": [
+            "Videonun çözünürlüğü",
+            "Videonun saniyedeki kare sayısı",
+            "Videonun süresi",
+            "Videonun hızlı oynatılması",
+            "Videonun formatı"
+          ],
+          "a": 3,
+          "u": 10
+        },
+        {
+          "q": "Bir yorumlama motoru olan V 8 hangi tarayıcı tarafından kullanılmaktadır?",
+          "o": [
+            "Microsoft Internet Explorer",
+            "Mozilla Firefox",
+            "Apple Safari",
+            "Opera",
+            "Google Chrome"
+          ],
+          "a": 4,
+          "u": 14
+        },
+        {
+          "q": "Çerçevelerden oluşmuş bir HTML sayfasında body yerine aşağıdaki elementlerden hangisi kullanılır?",
+          "o": [
+            "table",
+            "title",
+            "head",
+            "frameset",
+            "meta"
+          ],
+          "a": 3,
+          "u": 9
+        },
+        {
+          "q": "Aşağıdakilerden hangisi CSS 'de \"background-repeat \" kodunun alabileceği değerlerden biri değildir?",
+          "o": [
+            "repeat",
+            "repeat-x",
+            "repeat-y",
+            "repeat-xy",
+            "no-repeat"
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "İnternet sitesindeki menüler hangi amaçla kullanılır?",
+          "o": [
+            "Sayfalara erişim için",
+            "Ses çalmak için",
+            "Video silmek için",
+            "Siteyi kopyalamak için",
+            "Resim oluşturmak için"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "HTML'de ziyaretçilerden alınan bilgilerin sunucu bilgisayarına gönderilmesi işlemi aşağıdakilerden hangisi kullanılarak yapılır?",
+          "o": [
+            "form",
+            "span",
+            "div",
+            "table",
+            "progress"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir arama motoru türüdür?",
+          "o": [
+            "Arama dizini (directory )",
+            "Spiders",
+            "Database",
+            "Sıralama ölçütü",
+            "Periyot"
+          ],
+          "a": 0,
+          "u": 2
+        },
+        {
+          "q": "Belirli bir olayın ilerleme durumunu izlemek için kullanılan HTML etiketi aşağıdakilerden hangisidir?",
+          "o": [
+            "span",
+            "div",
+            "progress",
+            "style",
+            "meta"
+          ],
+          "a": 2,
+          "u": 5
+        },
+        {
+          "q": "ATA-AÖF yazısının kalın (bold) yazılmasını sağlayan etiket aşağıdakilerden hangisidir?",
+          "o": [
+            "&lt; big &gt; ATA-AÖF &lt; / big &gt;",
+            "&lt; u &gt; ATA-AÖF &lt; / u &gt;",
+            "&lt; hx &gt; ATA-AÖF &lt; / hx &gt;",
+            "&lt; b &gt; ATA-AÖF &lt; / b &gt;",
+            "&lt; ı &gt; ATA-AÖF &lt; / ı &gt;"
+          ],
+          "a": 3,
+          "u": 4
+        },
+        {
+          "q": "Bağlantının yeni bir pencerede açılması için aşağıdaki parametrelerden hangisi kullanılır?",
+          "o": [
+            "target=”_blank ”",
+            "target=”_parent ”",
+            "target=”_self”",
+            "target=”_top”",
+            "target=”_çerçeve _adi ”"
+          ],
+          "a": 0,
+          "u": 6
+        },
+        {
+          "q": "Internet Explorer tarafından sunulan “Geliştirici Araçları ” klavyede hangi tuşa basıldığında aktifleşir?",
+          "o": [
+            "F10",
+            "F12",
+            "Ctrl+Enter",
+            "F1",
+            "F8"
+          ],
+          "a": 1,
+          "u": 14
+        },
+        {
+          "q": "2013 yılında en çok tercih edilen tarayıcı aşağıdakilerden hangisidir?",
+          "o": [
+            "Microsoft Internet Explorer",
+            "Mozilla Firefox",
+            "Apple Safari",
+            "Google Chrome",
+            "Opera"
+          ],
+          "a": 3,
+          "u": 14
+        },
+        {
+          "q": "CSS3 teknolojisi ile çizgisel gradyent oluşturmak için “background-image” özelliğine aşağıdakilerden hangisi yazılmalıdır?",
+          "o": [
+            "color ( #renkust, #renkalt )",
+            "gradient -line( #renkust, #renkalt )",
+            "linear -gradient ( #renkust, #renkalt )",
+            "transform ( #renkust, #renkalt )",
+            "url( #renkust, #renkalt )"
+          ],
+          "a": 2,
+          "u": 13
+        },
+        {
+          "q": "Bir web sayfası tasarlanırken aşağıdaki form nesnelerinden hangisi kullanılırsa, ziyaretçinin birbiriyle alakalı bir grup öge arasından bir ya da birden fazla seçeneği seçebilmesi sağlanır?",
+          "o": [
+            "Radio",
+            "Text",
+            "Textarea",
+            "Password",
+            "Checkbox"
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "Tarayıcı sayfasının sol üst kısmında tarayıcı ile birlikte görülen yazı hangi etiket ile elde edilir?",
+          "o": [
+            "&lt; title &gt;",
+            "&lt; head &gt;",
+            "&lt; body &gt;",
+            "&lt; html &gt;",
+            "&lt; ol &gt;"
+          ],
+          "a": 0,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi arka plan özelliği değildir?",
+          "o": [
+            "background -color",
+            "background -repeat",
+            "background -image",
+            "background -exit",
+            "background -position"
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "Aşağıdaki TD etiketinin hangi parametresi ile tablodaki hücre genişliği belirlenir?",
+          "o": [
+            "bgcolor",
+            "background",
+            "valign",
+            "height",
+            "width"
+          ],
+          "a": 4,
+          "u": 7
+        },
+        {
+          "q": "Aşağıdakilerden hangisi internet terimlerinden biri değildir?",
+          "o": [
+            "Domain",
+            "Hard Disk",
+            "Sunucu",
+            "Alan adı",
+            "www"
+          ],
+          "a": 1,
+          "u": 1
+        }
+      ]
+    },
+    {
+      "sinavId": 20,
+      "ad": "2019-2020 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "Aşağıdakilerden hangisi web programlama editörüdür?",
+          "o": [
+            "PhotoShop",
+            "Adobe",
+            "MS Windows",
+            "Linux",
+            "Dreamweaver"
+          ],
+          "a": 4,
+          "u": 2
+        },
+        {
+          "q": "Bir dokümana, videoya veya sıkıştırılmış bir dosyaya bağlantı oluşturmaya ne ad verilmektedir?",
+          "o": [
+            "Sayfa içi bağlantı oluşturmak",
+            "Sayfa dışı bağlantı oluşturmak",
+            "Çapalar ile bağlantı oluşturmak",
+            "Başka bir içeriğe bağlantı oluşturmak",
+            "E-posta oluşturmak"
+          ],
+          "a": 3,
+          "u": 6
+        },
+        {
+          "q": "Bir sayfaya resim eklemek için aşağıdaki hangi HTML elementi kullanılır?",
+          "o": [
+            "&lt; medya &gt;&lt; /medya &gt;",
+            "&lt; gorsel &gt;&lt; / gorsel &gt;",
+            "&lt; resim &gt;&lt; / resim &gt;",
+            "&lt; img / &gt;",
+            "&lt; metin &gt;&lt; / metin &gt;"
+          ],
+          "a": 3,
+          "u": 10
+        },
+        {
+          "q": "HTML etiketleri aşağıdaki sembollerden hangisi arasında yazılır?",
+          "o": [
+            "“ “",
+            "&lt; &gt;",
+            "_ _",
+            "( )",
+            "[ ]"
+          ],
+          "a": 1,
+          "u": 3
+        },
+        {
+          "q": "Hücre içinde düşey hizalama yapan parametre aşağıdakilerden hangisidir?",
+          "o": [
+            "Weight",
+            "Valign",
+            "Height",
+            "Border",
+            "Cellpadding"
+          ],
+          "a": 1,
+          "u": 7
+        },
+        {
+          "q": "“Bağlanan doküman WEB sunucusundan tamamen ayrı bir sunucuya yerleştirilmiş .” ifadesi bağlantı yollarından hangisini tarif etmektedir?",
+          "o": [
+            "Mutlak yollar",
+            "Göreli yollar",
+            "Kök yollar",
+            "Doküman -göreli yollar",
+            "Kök-göreli yollar"
+          ],
+          "a": 0,
+          "u": 6
+        },
+        {
+          "q": "I. &lt; ul &gt; II. &lt; ol &gt; III. &lt; dl &gt; HTML’de yeni bir liste yukarıdakilerden hangisi ya da hangileri ile başlayabilir?",
+          "o": [
+            "Yalnız I",
+            "Yalnız II",
+            "I ve II",
+            "II ve III",
+            "I, II ve III"
+          ],
+          "a": 4,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdaki TD etiketinin parametrelerinden hangisi ile hücrenin genişliği belirlenir?",
+          "o": [
+            "Width",
+            "Valign",
+            "Height",
+            "Bgcolor",
+            "Background"
+          ],
+          "a": 0,
+          "u": 7
+        },
+        {
+          "q": "Aşağıdakilerden hangisi arka plan özelliği değildir?",
+          "o": [
+            "background -color",
+            "background -repeat",
+            "background -image",
+            "background -exit",
+            "background -position"
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "CSS3 teknolojisi ile çizgisel gradyent oluşturmak için “background-image” özelliğine aşağıdakilerden hangisi yazılmalıdır?",
+          "o": [
+            "color ( #renkust, #renkalt )",
+            "gradient -line( #renkust, #renkalt )",
+            "linear -gradient ( #renkust, #renkalt )",
+            "transform ( #renkust, #renkalt )",
+            "url( #renkust, #renkalt )"
+          ],
+          "a": 2,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir çerçeve türü değildir?",
+          "o": [
+            "frameset",
+            "frame",
+            "iframe",
+            "window",
+            "object"
+          ],
+          "a": 3,
+          "u": 9
+        },
+        {
+          "q": "İnternet tarayıcılarında görüntülenmek istenen web sitesinin adresinin yazıldığı çubuğa ne ad verilir?",
+          "o": [
+            "Durum Çubuğu",
+            "Adres Çubuğu",
+            "Başlık Çubuğu",
+            "Araç Çubuğu",
+            "Görev Çubuğu"
+          ],
+          "a": 1,
+          "u": 1
+        },
+        {
+          "q": "Internet Explorer tarafından sunulan “Geliştirici Araçları ” klavyede hangi tuşa basıldığında aktifleşir?",
+          "o": [
+            "F10",
+            "F12",
+            "Ctrl+Enter",
+            "F1",
+            "F8"
+          ],
+          "a": 1,
+          "u": 14
+        },
+        {
+          "q": "HTML sayfasının arka zeminini sarı (yellow) yapmak için aşağıdaki hangi body parametresi kullanılır?",
+          "o": [
+            "&lt; body color = ” yellow ” &gt;",
+            "&lt; body color name = ” yellow ” &gt;",
+            "&lt; body set = ” yellow ” &gt;",
+            "&lt; body background = ” yellow ” &gt;",
+            "&lt; body bgcolor = ” yellow ” &gt;"
+          ],
+          "a": 4,
+          "u": 5
+        },
+        {
+          "q": "İnternet sitesindeki menüler hangi amaçla kullanılır?",
+          "o": [
+            "Sayfalara erişim için",
+            "Ses çalmak için",
+            "Video silmek için",
+            "Siteyi kopyalamak için",
+            "Resim oluşturmak için"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Üs alma etiketi aşağıdakilerden hangisidir?",
+          "o": [
+            "&lt; small &gt; … &lt; / small &gt;",
+            "&lt; b &gt; … &lt; / b &gt;",
+            "&lt; sup &gt; … &lt; / sup &gt;",
+            "&lt; u &gt; … &lt; / u &gt;",
+            "&lt; sub &gt; … &lt; / sub &gt;"
+          ],
+          "a": 2,
+          "u": 4
+        },
+        {
+          "q": "HTML'de ziyaretçilerden alınan bilgilerin sunucu bilgisayarına gönderilmesi işlemi aşağıdakilerden hangisi kullanılarak yapılır?",
+          "o": [
+            "form",
+            "span",
+            "div",
+            "table",
+            "progress"
+          ],
+          "a": 0,
+          "u": 8
+        },
+        {
+          "q": "Aşağıdakilerden hangisi indirilen programlarla birlikte izin almadan yüklenmeye çalışan bir arama motorudur?",
+          "o": [
+            "Bing",
+            "Infospace",
+            "Ask",
+            "Baidu",
+            "Boardreader"
+          ],
+          "a": 2,
+          "u": 2
+        },
+        {
+          "q": "Yazı büyüklüğünü 7 yapmak için aşağıdaki font etiketlerinden hangisi kullanılır?",
+          "o": [
+            "&lt; font name size = ” 7 ” &gt;",
+            "&lt; font weight = ” 7 ” &gt;",
+            "&lt; font size = ” 7 ” &gt;",
+            "&lt; font height = ” 7 ” &gt;",
+            "&lt; font name weight = ” 7 ” &gt;"
+          ],
+          "a": 2,
+          "u": 5
+        },
+        {
+          "q": "Y3 ifadesi (alt simge - indis) hangi etiketle oluşturulur?",
+          "o": [
+            "y &lt; sup &gt; 3 &lt; / sup &gt;",
+            "&lt; sub &gt; y3 &lt; / sub &gt;",
+            "Y &lt; h3 &gt; 3 &lt; / h3 &gt;",
+            "&lt; big &gt; Y3 &lt; / big &gt;",
+            "Y &lt; sub &gt; 3 &lt; / sub &gt;"
+          ],
+          "a": 4,
+          "u": 4
+        }
+      ]
+    },
+    {
+      "sinavId": 19,
+      "ad": "2019-2020 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Bir yorumlama motoru olan V 8 hangi tarayıcı tarafından kullanılmaktadır?",
+          "o": [
+            "Microsoft Internet Explorer",
+            "Mozilla Firefox",
+            "Apple Safari",
+            "Opera",
+            "Google Chrome"
+          ],
+          "a": 4,
+          "u": 14
+        },
+        {
+          "q": "Aşağıdakilerden hangisi CSS 'de \"background-repeat \" kodunun alabileceği değerlerden biri değildir?",
+          "o": [
+            "repeat",
+            "repeat-x",
+            "repeat-y",
+            "repeat-xy",
+            "no-repeat"
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "&lt; body &gt; etiketi parametrelerinden vlink ne işe yarar?",
+          "o": [
+            "Arka planda kullanılmak istenen resmi belirler.",
+            "Linke tıklandığındaki rengi belirler.",
+            "Daha önce ziyaret edilmiş linklerin rengini belirler.",
+            "Arka plan rengini belirler.",
+            "Sayfadaki linklerin rengini belirler."
+          ],
+          "a": 2,
+          "u": 3
+        },
+        {
+          "q": "Metni sayfaya göre ortalayan etiket aşağıdakilerden hangisidir?",
+          "o": [
+            "&lt; center &gt; Erzurum &lt; / center &gt;",
+            "&lt; b &gt; Erzurum &lt; / b &gt;",
+            "&lt; p &gt; Erzurum &lt; / p &gt;",
+            "&lt; i &gt; Erzurum &lt; / i &gt;",
+            "&lt; u &gt; Erzurum &lt; / u &gt;"
+          ],
+          "a": 0,
+          "u": 4
+        },
+        {
+          "q": "CSS'de ID öz niteliğini tanımlamak için kullanılan işaret aşağıdakilerden hangisidir?",
+          "o": [
+            "# (sharp )",
+            ", (virgül )",
+            "; (noktalı virgül )",
+            ": (iki nokta üst üste )",
+            "? (soru işareti )"
+          ],
+          "a": 0,
+          "u": 11
+        },
+        {
+          "q": "En basit hâliyle bir tablo aşağıdaki hangi elementlerden meydana gelir?",
+          "o": [
+            "table – tbody – tfoot",
+            "table – tbody",
+            "table – tfoot",
+            "table – tr – td",
+            "table – td – th"
+          ],
+          "a": 3,
+          "u": 12
+        },
+        {
+          "q": "Metin olarak ekranda görünmeyen ve HTML ’in ilk bölümünü oluşturan etiket (tag) aşağıdakilerden hangisidir?",
+          "o": [
+            "&lt; title &gt; … &lt; / title &gt;",
+            "&lt; head &gt; … &lt; / head &gt;",
+            "&lt; body &gt;… &lt; / body &gt;",
+            "&lt; dl &gt; … &lt; / dl &gt;",
+            "&lt; html &gt; … &lt; / html &gt;"
+          ],
+          "a": 1,
+          "u": 3
+        },
+        {
+          "q": "Aşağıdaki etiketlerden hangisi tarayıcı penceresinde yatay çizgi oluşturur?",
+          "o": [
+            "&lt; font &gt;",
+            "&lt; hr &gt;",
+            "&lt; body &gt;",
+            "&lt; br &gt;",
+            "&lt; style &gt;"
+          ],
+          "a": 1,
+          "u": 5
+        },
+        {
+          "q": "HTML'de bir elementi gizlemek için yazılması gereken CSS kodu aşağıdakilerden hangisidir?",
+          "o": [
+            "display :none",
+            "element:hide",
+            "fadeout :true",
+            "hover:gone",
+            "gravity :none"
+          ],
+          "a": 0,
+          "u": 13
+        },
+        {
+          "q": "Aşağıdakilerden hangisi IP (Internet Protocol )'i ifade eder?",
+          "o": [
+            "Bilgisayarların iletişim kurmasını sağlayan protokoldür.",
+            "Alan adıdır.",
+            "İnternet üzerindeki bilgilere bakabilmeyi ve etkileşim kurmayı sağlayan uygulama protokolüdür.",
+            "İnternette istenilen bilgilere ulaşabilmeyi sağlayan bir arama motorudur.",
+            "ADSL"
+          ],
+          "a": 0,
+          "u": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir javascript kütüphanesidir?",
+          "o": [
+            "css",
+            "jQuery",
+            "PHP",
+            "attributes",
+            "ASPX"
+          ],
+          "a": 1,
+          "u": 10
+        },
+        {
+          "q": "Bir web sayfası tasarlanırken aşağıdaki form nesnelerinden hangisi kullanılırsa, ziyaretçinin birbiriyle alakalı bir grup öge arasından bir ya da birden fazla seçeneği seçebilmesi sağlanır?",
+          "o": [
+            "Radio",
+            "Text",
+            "Textarea",
+            "Password",
+            "Checkbox"
+          ],
+          "a": 4,
+          "u": 8
+        },
+        {
+          "q": "Doküman içinde başlıkların büyüklüğünü düzenlemeyi sağlayan etiket aşağıdakilerden hangisidir?",
+          "o": [
+            "&lt; br &gt;",
+            "&lt; b &gt;",
+            "&lt; hx &gt;",
+            "&lt; i &gt;",
+            "&lt; u &gt;"
+          ],
+          "a": 2,
+          "u": 4
+        },
+        {
+          "q": "Çerçevelerden oluşmuş bir HTML sayfasında body yerine aşağıdaki elementlerden hangisi kullanılır?",
+          "o": [
+            "table",
+            "title",
+            "head",
+            "frameset",
+            "meta"
+          ],
+          "a": 3,
+          "u": 9
+        },
+        {
+          "q": "HTML'de çerçeve içerisindeki sayfa yüklendiği anda javascript kodu çalıştırılması için kullanılan olay (event ) aşağıdakilerden hangisidir?",
+          "o": [
+            "onClick",
+            "onPress",
+            "onPreLoad",
+            "onUnLoad",
+            "onLoad"
+          ],
+          "a": 4,
+          "u": 9
+        },
+        {
+          "q": "2013 yılında en çok tercih edilen tarayıcı aşağıdakilerden hangisidir?",
+          "o": [
+            "Microsoft Internet Explorer",
+            "Mozilla Firefox",
+            "Google Chrome",
+            "Apple Safari",
+            "Opera"
+          ],
+          "a": 2,
+          "u": 14
+        },
+        {
+          "q": "Bir arama motorunda Erzincan ve Erzurum kelimelerinin her ikisinin de bulunması istendiğinde aşağıdakilerden hangisi kullanılır?",
+          "o": [
+            "erz?",
+            "erz_",
+            "erz*",
+            "“erz”",
+            "erz/"
+          ],
+          "a": 2,
+          "u": 2
+        },
+        {
+          "q": "Tablo içinde yeni bir satır eklemek için hangi HTML etiketi kullanılır?",
+          "o": [
+            "&lt; NL &gt;",
+            "&lt; TR &gt;",
+            "&lt; Table &gt;",
+            "&lt; TD &gt;",
+            "&lt; TH &gt;"
+          ],
+          "a": 1,
+          "u": 7
+        },
+        {
+          "q": "Aşağıdakilerden hangisi CSS 'de kullanılan uzunluk birimlerinden biri değildir?",
+          "o": [
+            "mm (mili metre)",
+            "in (inç)",
+            "px (piksel)",
+            "pt (nokta )",
+            "dp (density piksel )"
+          ],
+          "a": 4,
+          "u": 11
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir videonun boyutunu (sabit diskte kapladığı alanı) belirleyen faktörler arasında yer almaz?",
+          "o": [
+            "Videonun çözünürlüğü",
+            "Videonun saniyedeki kare sayısı",
+            "Videonun süresi",
+            "Videonun hızlı oynatılması",
+            "Videonun formatı"
+          ],
+          "a": 3,
+          "u": 10
+        }
+      ]
+    },
+    {
+      "sinavId": 17,
+      "ad": "2018-2019 Mezuniyet Üç Ders Sınavı",
+      "questions": [
+        {
+          "q": "Metni kalın gösterirken aynı zamanda arama motorlarında önemli olduğu aşağıdaki hangi etiketle bildirilir?",
+          "o": [
+            "&lt;strong&gt;",
+            "&lt;pre&gt;",
+            "&lt;i&gt;",
+            "&lt;hx&gt;",
+            "&lt;u&gt;"
+          ],
+          "a": 0
+        },
+        {
+          "q": "ID değeri “cerceve ” olarak belirlenmiş bir iframe elementinin yükseklik değerini almak için kullanılan javascript kodu aşağıdakilerden hangidir?",
+          "o": [
+            "document .getElementsByTagName(\"cerceve \") [0].style.display",
+            "document .getElementById(“cerceve ”).height",
+            "document .getElementsByTagName(\"cerceve \").height",
+            "cerceve .height",
+            "id=\"cerceve \".height"
+          ],
+          "a": 1
+        },
+        {
+          "q": "I. strong II. li III. b IV. u Yukardaki HTML etiklerinin hangi ikisi kullanıldığında metnin kalınlaştırılması sağlanır?",
+          "o": [
+            "I ve II",
+            "II ve III",
+            "I ve IV",
+            "I ve III",
+            "III ve IV"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Bir HTML sayfasına resim ekleyip bu resme bağlantı vermek için kullanılması gereken etiketler aşağıdakilerden hangisinde bir arada verilmiştir?",
+          "o": [
+            "link - image",
+            "img - href",
+            "a - photo",
+            "a - img",
+            "href - src"
+          ],
+          "a": 3
+        },
+        {
+          "q": "I. headers II. colspan III. rowspan IV. charoff Yukarıda verilen td elementinin parametrelerinden hangisi ya da hangileri HTML5 tarafından desteklenmez?",
+          "o": [
+            "Yalnız I",
+            "I ve II",
+            "I, II ve III",
+            "III ve IV",
+            "Yalnız IV"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ile bağlantı (köprü) oluşturulur?",
+          "o": [
+            "&lt;target=\"....\"&gt;...&lt;/target&gt;",
+            "&lt;a link =\"....\"&gt;...&lt;/a&gt;",
+            "&lt;a href =\"....\"&gt;...&lt;/a&gt;",
+            "&lt;font face =\"....\"&gt;...&lt;/font&gt;",
+            "&lt;small&gt;...&lt;/small&gt;"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi HTML ’de yazı tipi boyutunu ve rengini düzenleyen etikettir?",
+          "o": [
+            "&lt;end&gt;",
+            "&lt;begin&gt;",
+            "&lt;title&gt;",
+            "&lt;font&gt;",
+            "&lt;head &gt;"
+          ],
+          "a": 3
+        },
+        {
+          "q": "I- JPG II - PNG III -GIF IV-BMP Yukarıdaki resim türlerinin hangisinde ya da hangilerinde görselde saydamlık sağlanabilir?",
+          "o": [
+            "Yalnız I",
+            "I ve II",
+            "II ve III",
+            "I, II ve III",
+            "Yalnız IV"
+          ],
+          "a": 2
+        },
+        {
+          "q": "HTML'de div elementinin üzerine fare imleci ile gelindiğinde elementin yazı rengini değiştirmek için yazılması gereken CSS kodu aşağıdakilerden hangisidir?",
+          "o": [
+            "div:cursor {color :blue}",
+            "div:hover{color :blue}",
+            "div &gt; hover{color :blue}",
+            "div &lt; cursor {color :blue}",
+            "div:float {color :blue}"
+          ],
+          "a": 1
+        },
+        {
+          "q": "HTML'de frame elementinde çerçevede görüntülenecek içeriğin bağlantı adresini belirlemek için kullanılan parametre aşağıdakilerden hangisidir?",
+          "o": [
+            "longdesc",
+            "name",
+            "src",
+            "noresize",
+            "scrolling"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilernden hangisi Crawler 'in özelliklerinden biri değildir?",
+          "o": [
+            "Derin araştırma",
+            "Description",
+            "Stop kelimeleri",
+            "Açık kaynak",
+            "Keywords"
+          ],
+          "a": 3
+        },
+        {
+          "q": "SEO (Search Engine Optimization ) açısından en önemli etiket aşağıdakilerden hangisidir?",
+          "o": [
+            "title",
+            "span",
+            "div",
+            "i",
+            "u"
+          ],
+          "a": 0
+        },
+        {
+          "q": "I- get II - post III - action IV- call V- islem.php Yukarıdakilerden hangisi ya da hangileri form elementinin method parametresi tarafından alınabilecek değerler arasındadır?",
+          "o": [
+            "Yalnız I",
+            "I ve II",
+            "I, II ve III",
+            "IV ve V",
+            "Yalnız V"
+          ],
+          "a": 1
+        },
+        {
+          "q": "CSS ile arka plan resmini sol alt köşeye taşımak için \"background-position \" değerine aşağıdakilerden hangisi yazılmalıdır?",
+          "o": [
+            "bottom left",
+            "top center",
+            "center right",
+            "bottom center",
+            "left center"
+          ],
+          "a": 0
+        },
+        {
+          "q": "&lt;ul class =\"menu\"&gt; &lt;li&gt;Bir&lt;/li&gt; &lt;li&gt;İki&lt;/li&gt; &lt;li&gt;Üç&lt;/li&gt; &lt;/ul&gt; Yukarıdaki ul elementi içerisinde yer alan li elementlerinden sadece ilkinin yazı rengini değiştirmek için yazılması gereken CSS kodu hangisidir?",
+          "o": [
+            "ul.menu &gt; li{color :red;}",
+            "ul.menu &gt; li:first{color :red;}",
+            "ul.menu &gt; li:1{color :red;}",
+            "ul.menu &gt; li:0{color :red;}",
+            "ul.menu &gt; li:first-child {color :red;}"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir site türü değildir?",
+          "o": [
+            "Yedekleme",
+            "Blog",
+            "Devlet",
+            "Ticaret",
+            "Evlenme"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Tabloya yeni bir satır eklemek için aşağıdaki hangi etiket kullanılır?",
+          "o": [
+            "&lt;NL&gt;",
+            "&lt;TH&gt;",
+            "&lt;Table&gt;",
+            "&lt;TD&gt;",
+            "&lt;TR&gt;"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi internetin sunduğu hizmetlerden biri değildir?",
+          "o": [
+            "e-posta",
+            "alış-veriş",
+            "ftp",
+            "örgün eğitim",
+            "sosyal medya"
+          ],
+          "a": 3
+        },
+        {
+          "q": "&lt;audio id =\"ses\" src=\"muzik.mp3\"&gt;&lt;/audio &gt; &lt;button onClick =\"baslat ();\"&gt;Başlat &lt;/button &gt; Yukarıdaki kodlara göre butona tıklayınca audio nesnesinde tanımlı \"muzik.mp3\" dosyasını çalıştırmak için \"baslat();\" fonksiyonunun içine aşağıdakilerden hangisi yazılmalıdır?",
+          "o": [
+            "document .getElementById(\"ses\").play ();",
+            "document .getElementsByTagName(\"ses\").play ();",
+            "document .ses.play ();",
+            "ses.ready ();",
+            "document .play ().ses"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdaki hangi font etiketi parametreleri ile yazı tipi belirlenir?",
+          "o": [
+            "face",
+            "ground",
+            "right",
+            "size",
+            "color"
+          ],
+          "a": 0
+        }
+      ]
+    },
+    {
+      "sinavId": 13,
+      "ad": "2018-2019 Güz Dönemi Bütünleme Sınavı",
+      "questions": [
+        {
+          "q": "SEO (Search Engine Optimization ) açısından en önemli etiket aşağıdakilerden hangisidir?",
+          "o": [
+            "div",
+            "span",
+            "title",
+            "i",
+            "u"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdaki hangi font etiketi parametreleri ile yazı tipi belirlenir?",
+          "o": [
+            "face",
+            "ground",
+            "right",
+            "size",
+            "color"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi internetin sunduğu hizmetlerden biri değildir?",
+          "o": [
+            "e-posta",
+            "alış-veriş",
+            "ftp",
+            "örgün eğitim",
+            "sosyal medya"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Sayfada tercih edilen dil aşağıdaki hangi temel HTML etiketi ile yapılır?",
+          "o": [
+            "&lt;html&gt;",
+            "&lt;!doctype html &gt;",
+            "&lt;head &gt;…&lt;/head &gt;",
+            "&lt;html lang = “tr”&gt;",
+            "&lt;meta charset =”utf-8”&gt;"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilernden hangisi Crawler 'in özelliklerinden biri değildir?",
+          "o": [
+            "Derin araştırma",
+            "Description",
+            "Stop kelimeleri",
+            "Açık kaynak",
+            "Keywords"
+          ],
+          "a": 3
+        },
+        {
+          "q": "&lt;ul class =\"menu\"&gt; &lt;li&gt;Bir&lt;/li&gt; &lt;li&gt;İki&lt;/li&gt; &lt;li&gt;Üç&lt;/li&gt; &lt;/ul&gt; Yukarıdaki ul elementi içerisinde yer alan li elementlerinden sadece ilkinin yazı rengini değiştirmek için yazılması gereken CSS kodu hangisidir?",
+          "o": [
+            "ul.menu &gt; li{color :red;}",
+            "ul.menu &gt; li:first{color :red;}",
+            "ul.menu &gt; li:1{color :red;}",
+            "ul.menu &gt; li:0{color :red;}",
+            "ul.menu &gt; li:first-child {color :red;}"
+          ],
+          "a": 4
+        },
+        {
+          "q": "I. headers II. colspan III. rowspan IV. charoff Yukarıda verilen td elementinin parametrelerinden hangisi ya da hangileri HTML5 tarafından desteklenmez?",
+          "o": [
+            "Yalnız I",
+            "I ve II",
+            "I, II ve III",
+            "III ve IV",
+            "Yalnız IV"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Bir HTML sayfasına resim ekleyip bu resme bağlantı vermek için kullanılması gereken etiketler aşağıdakilerden hangisinde bir arada verilmiştir?",
+          "o": [
+            "link - image",
+            "a - img",
+            "a - photo",
+            "img - href",
+            "href - src"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Tabloya yeni bir satır eklemek için aşağıdaki hangi etiket kullanılır?",
+          "o": [
+            "&lt;NL&gt;",
+            "&lt;TH&gt;",
+            "&lt;Table&gt;",
+            "&lt;TD&gt;",
+            "&lt;TR&gt;"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Frameset elementinde ekranı yatay olarak iki eşit parçaya bölmek için aşağıdakilerden hangisi kullanılmalıdır?",
+          "o": [
+            "rows=\"50%, 50%\"",
+            "rows=\"1, 1\"",
+            "cols=\"50%, 50%\"",
+            "frame=\"1, 1\"",
+            "frame=\"50%, 50%\""
+          ],
+          "a": 0
+        },
+        {
+          "q": "I- JPG II - PNG III -GIF IV-BMP Yukarıdaki resim türlerinin hangisinde ya da hangilerinde görselde saydamlık sağlanabilir?",
+          "o": [
+            "Yalnız I",
+            "I ve II",
+            "II ve III",
+            "I, II ve III",
+            "Yalnız IV"
+          ],
+          "a": 2
+        },
+        {
+          "q": "CSS'de bir elemente iç açıklık vermek için aşağıdakilerden hangisi kullanılır?",
+          "o": [
+            "margin",
+            "padding",
+            "border",
+            "background",
+            "font"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Belirli bir olayın ilerleme durumunu izlemek için kullanılan HTML etiketi aşağıdakilerden hangisidir?",
+          "o": [
+            "span",
+            "div",
+            "progress",
+            "style",
+            "meta"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Tabloları başlık ve gövde bölümlerine ayırmak için kullanılan HTML etiketleri aşağıdakilerden hangisidir?",
+          "o": [
+            "border - padding",
+            "thead - tbody",
+            "top - body",
+            "td - tr",
+            "row - col"
+          ],
+          "a": 1
+        },
+        {
+          "q": "I. strong II. li III. b IV. u Yukardaki HTML etiklerinin hangi ikisi kullanıldığında metnin kalınlaştırılması sağlanır?",
+          "o": [
+            "I ve II",
+            "II ve III",
+            "I ve IV",
+            "I ve III",
+            "III ve IV"
+          ],
+          "a": 3
+        },
+        {
+          "q": "Aşağıdakilerden hangisi teknolojik gelişmeleri öncelikli olarak uygulamasıyla bilinen bir arama motorudur?",
+          "o": [
+            "Contenko",
+            "Crawler",
+            "Info",
+            "Mywebsearch",
+            "Ixquick"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdaki bağlantılardan hangisi ile sayfa yeni bir pencerede açılır?",
+          "o": [
+            "target=”_blank ”",
+            "target=”_parent ”",
+            "target=”_self”",
+            "target=”_top”",
+            "target=”_çerçeve _adi ”"
+          ],
+          "a": 0
+        },
+        {
+          "q": "HTML'de elemente odaklanıldığı anda javascript kodunun çalıştırılması isteniyorsa aşağıdaki olaylardan (event ) hangisi kullanılır?",
+          "o": [
+            "onClick",
+            "onFocus",
+            "onKeyUp",
+            "onChange",
+            "onKeyPress"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Bir satır aşağıya inmek için aşağıdaki hangi etiket kullanılır?",
+          "o": [
+            "&lt;bl&gt;",
+            "&lt;newline&gt;",
+            "&lt;breaknew &gt;",
+            "&lt;p&gt;",
+            "&lt;br&gt;"
+          ],
+          "a": 4
+        },
+        {
+          "q": "http:// www .atauni.edu.tr web adresinde bulunan \"tr\" ifadesi aşağıdakilerden hangisini ifade eder?",
+          "o": [
+            "Site içeriğinin türünü",
+            "Bağlantıyı sağlayan protokolü",
+            "Sitenin ait olduğu ülkeyi",
+            "Sitede kullanılan teknolojiyi",
+            "Sitenin portunu"
+          ],
+          "a": 2
+        }
+      ]
+    },
+    {
+      "sinavId": 12,
+      "ad": "2018-2019 Güz Dönemi Final Sınavı",
+      "questions": [
+        {
+          "q": "Tablonun çerçeve kalınlığı aşağıdakilerden hangisi ile belirlenir?",
+          "o": [
+            "&lt;Table line =”1px”&gt;",
+            "&lt;Table format =”1px”&gt;",
+            "&lt;Table frame =”1px”&gt;",
+            "&lt;Table border =”1px”&gt;",
+            "&lt;Table kalınlık =”1px”&gt;"
+          ],
+          "a": 3
+        },
+        {
+          "q": "HTML'deki li elementlerinin yan yana listelenmesi için CSS koduna aşağıdakilerden hangisi yazılmalıdır?",
+          "o": [
+            "overflow :left",
+            "float :left",
+            "left-align :true",
+            "padding -left:20px",
+            "hover:left"
+          ],
+          "a": 1
+        },
+        {
+          "q": "CSS ile arka plan resmini sol alt köşeye taşımak için \"background-position \" değerine aşağıdakilerden hangisi yazılmalıdır?",
+          "o": [
+            "bottom center",
+            "top center",
+            "center right",
+            "bottom left",
+            "left center"
+          ],
+          "a": 3
+        },
+        {
+          "q": "&lt;audio id =\"ses\" src=\"muzik.mp3\"&gt;&lt;/audio &gt; &lt;button onClick =\"baslat ();\"&gt;Başlat &lt;/button &gt; Yukarıdaki kodlara göre butona tıklayınca audio nesnesinde tanımlı \"muzik.mp3\" dosyasını çalıştırmak için \"baslat();\" fonksiyonunun içine aşağıdakilerden hangisi yazılmalıdır?",
+          "o": [
+            "document .getElementById(\"ses\").play ();",
+            "document .getElementsByTagName(\"ses\").play ();",
+            "document .ses.play ();",
+            "ses.ready ();",
+            "document .play ().ses"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Haricî bir CSS dosyasını HTML sayfasına dâhil etmek için kullanılan etiket aşağıdakilerden hangisidir?",
+          "o": [
+            "body",
+            "file",
+            "title",
+            "inline",
+            "link"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Bir etiketin parametresi var ise ve bu parametreye bir değer atanacaksa atanacak parametre aşağıdaki hangi sembol arasında yazılır?",
+          "o": [
+            "“ “",
+            "&lt; &gt;",
+            "_ _",
+            "( )",
+            "[ ]"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Metni kalın gösterirken aynı zamanda arama motorlarında önemli olduğu aşağıdaki hangi etiketle bildirilir?",
+          "o": [
+            "&lt;strong&gt;",
+            "&lt;pre&gt;",
+            "&lt;i&gt;",
+            "&lt;hx&gt;",
+            "&lt;u&gt;"
+          ],
+          "a": 0
+        },
+        {
+          "q": "Aşağıdakilerden hangisi HTML ’de yazı tipi boyutunu ve rengini düzenleyen etikettir?",
+          "o": [
+            "&lt;end&gt;",
+            "&lt;begin&gt;",
+            "&lt;title&gt;",
+            "&lt;font&gt;",
+            "&lt;head &gt;"
+          ],
+          "a": 3
+        },
+        {
+          "q": "HTML'de sayfaya eklenen resmin herhangi bir nedenle görüntülenememesi durumunda ziyaretçiye gösterilecek yazı için kullanılan parametre aşağıdakilerden hangisidir?",
+          "o": [
+            "width",
+            "height",
+            "align",
+            "top",
+            "alt"
+          ],
+          "a": 4
+        },
+        {
+          "q": "I- get II - post III - action IV- call V- islem.php Yukarıdakilerden hangisi ya da hangileri form elementinin method parametresi tarafından alınabilecek değerler arasındadır?",
+          "o": [
+            "Yalnız I",
+            "I ve II",
+            "I, II ve III",
+            "IV ve V",
+            "Yalnız V"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Geliştirilen arayüzde Internet Explorer 9 sürümünün standartları kullanılmak isteniyorsa meta etiketinin content parametresine aşağıdakilerden hangisi yazılmalıdır?",
+          "o": [
+            "IE=9",
+            "internet explorer 9",
+            "9",
+            "X-UA-Compatible",
+            "http-equiv-9"
+          ],
+          "a": 0
+        },
+        {
+          "q": "I- decimal II - circle III - none IV- rock Yukarıdakilerden hangisi ya da hangileri CSS kodu olan \"list- style-type \" ın alabileceği değerlerdendir?",
+          "o": [
+            "Yalnız I",
+            "I ve II",
+            "I, II ve III",
+            "III ve IV",
+            "Yalnız IV"
+          ],
+          "a": 2
+        },
+        {
+          "q": "HTML'de frame elementinde çerçevede görüntülenecek içeriğin bağlantı adresini belirlemek için kullanılan parametre aşağıdakilerden hangisidir?",
+          "o": [
+            "longdesc",
+            "name",
+            "src",
+            "noresize",
+            "scrolling"
+          ],
+          "a": 2
+        },
+        {
+          "q": "ID değeri “cerceve ” olarak belirlenmiş bir iframe elementinin yükseklik değerini almak için kullanılan javascript kodu aşağıdakilerden hangidir?",
+          "o": [
+            "document .getElementsByTagName(\"cerceve \") [0].style.display",
+            "document .getElementById(“cerceve ”).height",
+            "document .getElementsByTagName(\"cerceve \").height",
+            "cerceve .height",
+            "id=\"cerceve \".height"
+          ],
+          "a": 1
+        },
+        {
+          "q": "Aşağıdakilerden hangisi ile bağlantı (köprü) oluşturulur?",
+          "o": [
+            "&lt;target=\"....\"&gt;...&lt;/target&gt;",
+            "&lt;a link =\"....\"&gt;...&lt;/a&gt;",
+            "&lt;a href =\"....\"&gt;...&lt;/a&gt;",
+            "&lt;font face =\"....\"&gt;...&lt;/font&gt;",
+            "&lt;small&gt;...&lt;/small&gt;"
+          ],
+          "a": 2
+        },
+        {
+          "q": "Aşağıdakilerden hangisi bir site türü değildir?",
+          "o": [
+            "Yedekleme",
+            "Blog",
+            "Devlet",
+            "Ticaret",
+            "Evlenme"
+          ],
+          "a": 4
+        },
+        {
+          "q": "Aşağıdakilerden hangisi site istatistiklerini raporlamaktadır?",
+          "o": [
+            "Google",
+            "Bing",
+            "TÜİK",
+            "SPSS",
+            "Alexa"
+          ],
+          "a": 4
+        },
+        {
+          "q": "HTML'de div elementinin üzerine fare imleci ile gelindiğinde elementin yazı rengini değiştirmek için yazılması gereken CSS kodu aşağıdakilerden hangisidir?",
+          "o": [
+            "div:cursor {color :blue}",
+            "div:hover{color :blue}",
+            "div &gt; hover{color :blue}",
+            "div &lt; cursor {color :blue}",
+            "div:float {color :blue}"
+          ],
+          "a": 1
+        },
+        {
+          "q": ".aralik { margin -top:1px; margin -right:2px; margin -bottom:3px; margin -left:4px; } Yukarıda verilen CSS kod yapısının doğru olarak kısaltılmış hâli aşağıdakilerden hangisidir?",
+          "o": [
+            ".aralik {margin :1px 3px 4px 3px;}",
+            ".aralik {margin :1px 4px 2px 3px;}",
+            ".aralik {margin :1px 2px 3px 4px;}",
+            ".aralik {margin :3px 4px 1px 2px;}",
+            ".aralik {margin :2px 3px 4px 1px;}"
+          ],
+          "a": 2
+        }
+      ]
+    }
+  ]
+};

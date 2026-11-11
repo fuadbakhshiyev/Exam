@@ -3,3 +3,4 @@ pdf/
 oys_*.json
 .vercel
 .env*
+pdf_final/
