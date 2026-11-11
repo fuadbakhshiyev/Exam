@@ -73,7 +73,8 @@ Program: `ataaofsoru.com/ata-aof-grafik-sanatlar-bolumu-lisans-programi-31`.
 ## 4. Yeni semestrə keçid: addımlar
 
 1. **Köhnə semestri arxivləşdirin.** Saytda Ayarlar → Ehtiyat nüsxəni ixrac edin, `arxiv/<il>-<dövr>.json` kimi saxlayın (nümunə: `arxiv/2025-2026-bahar.json`).
-2. **Yeni semestr açarı.** `firebase.js`-də `SEMESTER = 'v32'` və `PREFIX = 'qa_v32_'` dəyərlərini artırın (`v33`). `quiz.js` `DB` açarlarını da dəyişin (`qa_v32_*`). iOS-da `StudyStore` fayl adını və Sync-də `"v32"` dəyərini dəyişin. Köhnə data toxunulmaz qalır.
+2. **Buludu təmizləyin.** Firestore-da `users/{uid}` sənədi 1 MB limitlidir. 11.11.2026-da keçən semestrin köhnə sahələri (`correct`, `wrong`, `wrongCounts`, `stats`, `daily`…; 1146 KB) yeri doldurmuşdu və sinxronizasiya `invalid-argument … exceeds the maximum allowed size` xətası verirdi. Əvvəlcə sənədin nüsxəsini yükləyin (`arxiv/firestore-users-backup-*.json`, git-ə getmir), sonra köhnə semestr sahəsini (`v32` və ya köhnə sahələr) `FieldValue.delete()` ilə silin.
+2b. **Yeni semestr açarı.** `firebase.js`-də `SEMESTER = 'v32'` və `PREFIX = 'qa_v32_'` dəyərlərini artırın (`v33`). `quiz.js` `DB` açarlarını da dəyişin (`qa_v32_*`). iOS-da `StudyStore` fayl adını və Sync-də `"v32"` dəyərini dəyişin. Köhnə data toxunulmaz qalır.
 3. **Fənlər:** `config.js`-də `CONFIG` (fənn → ünitə siyahısı) və `STUDY_PERIOD`. `quiz.js`-də `COURSE_STYLES` (emoji/rəng). iOS-da `Models.swift` → `Catalog.subjects`, `unitCounts`, `styles`, `studyPeriod`.
 4. **dersId və kitapId-ləri tapın** (OYS → Geçmiş Sınavlar, yuxarıdakı üsulla).
 5. **Vize PDF-ləri:** OYS-də konsola `oys_vize_yukle.js` tipli skript yapışdırın (və ya vtakip ünvanından `curl` ilə yükləyin) → `pdf/<fənn>/` → `python3 convert_vize_pdfs.py`. **Final kitabçaları:** `pdf_final/<fənn>/` + `manifest.json` → `python3 convert_final_pdfs.py` (`pip install --user pypdf`). Skript problemli kitabçaları sonda sadalayır.

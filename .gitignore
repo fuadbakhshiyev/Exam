@@ -4,3 +4,4 @@ oys_*.json
 .vercel
 .env*
 pdf_final/
+arxiv/firestore-users-backup-*.json
