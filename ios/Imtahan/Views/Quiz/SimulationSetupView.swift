@@ -1,33 +1,33 @@
 import SwiftUI
 
-/// İmtahan tab entry: "Real imtahan simulyasiyası" row that opens the setup sheet and starts the exam.
-struct SimulationEntrySection: View {
+/// Card version of the entry for the İmtahan tab (same setup sheet).
+struct SimulationEntryCard: View {
     @Environment(AppRouter.self) private var router
     @State private var showSetup = false
     @State private var pending: SimulationConfig?
 
     var body: some View {
-        Section {
-            Button { showSetup = true } label: {
-                HStack(spacing: Theme.Space.s12) {
-                    LogoTile(symbol: "stopwatch.fill", tint: Theme.accent)
-                    VStack(alignment: .leading, spacing: 3) {
-                        Text("Real imtahan simulyasiyası").font(.body).foregroundStyle(Theme.text)
-                        Text("Bütün fənlər · vaxtla · nəticə sonda").font(.caption).foregroundStyle(Theme.textMuted)
+        Button { showSetup = true } label: {
+            CardShell(title: "Real imtahan simulyasiyası", symbol: "stopwatch.fill", tint: Theme.accent, chevron: false) {
+                HStack(alignment: .center, spacing: Theme.Space.s12) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Bütün fənlər · vaxtla · nəticə sonda")
+                            .font(.headline).foregroundStyle(Theme.text)
+                        Text("ATA AÖF formatı: 4 səhv 1 düzü aparır.")
+                            .font(.footnote).foregroundStyle(Theme.textMuted)
                     }
-                    Spacer(minLength: 4)
-                    Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(Theme.textMuted)
+                    Spacer(minLength: 8)
+                    Image(systemName: "play.fill")
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(.white)
+                        .frame(width: 44, height: 44)
+                        .background(Theme.accent, in: .circle)
                 }
-                .padding(.vertical, 2)
-                .contentShape(Rectangle())
             }
-            .buttonStyle(.plain)
-            .appRow()
-        } footer: {
-            Text("ATA AÖF formatı: düz/səhv imtahan bitəndə göstərilir, 4 səhv 1 düzü aparır.")
         }
+        .buttonStyle(.plain)
+        .accessibilityHint("Simulyasiyanın ayarlarını açır")
         .sheet(isPresented: $showSetup, onDismiss: {
-            // Start only after the sheet is gone (the quiz is a full-screen cover on the root).
             if let c = pending { pending = nil; router.start(.simulation(c)) }
         }) {
             SimulationSetupView { pending = $0; showSetup = false }
