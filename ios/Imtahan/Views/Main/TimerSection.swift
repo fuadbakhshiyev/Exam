@@ -57,10 +57,12 @@ struct TimerSection: View {
         let rounds = max(1, stopwatch.pomodoroSettings.roundsBeforeLongBreak)
         return VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .firstTextBaseline) {
-                Label(p.phase.longTitle, systemImage: p.phase.symbol)
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(tint)
-                    .contentTransition(.symbolEffect(.replace))
+                HStack(spacing: 8) {
+                    IconTile(symbol: p.phase.symbol, color: tint, size: 24)
+                    Text(p.phase.longTitle)
+                }
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(tint)
                 Spacer(minLength: 8)
                 Text("Raund \(stopwatch.pomodoroRound)/\(rounds)")
                     .font(.subheadline).monospacedDigit()

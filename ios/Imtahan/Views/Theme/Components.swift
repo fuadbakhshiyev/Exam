@@ -19,6 +19,22 @@ extension View {
     }
 }
 
+/// iOS Settings-style icon: white SF Symbol on a coloured rounded square. Used for every row / card icon.
+struct IconTile: View {
+    let symbol: String
+    var color: Color = Theme.accent
+    var size: CGFloat = 29
+
+    var body: some View {
+        Image(systemName: symbol)
+            .font(.system(size: size * 0.48, weight: .semibold))
+            .foregroundStyle(.white)
+            .frame(width: size, height: size)
+            .background(color.gradient, in: RoundedRectangle(cornerRadius: size * 0.24, style: .continuous))
+            .accessibilityHidden(true)
+    }
+}
+
 /// Rounded square with a glyph (emoji or SF Symbol) — Figma "Logo tile".
 struct LogoTile: View {
     var emoji: String? = nil

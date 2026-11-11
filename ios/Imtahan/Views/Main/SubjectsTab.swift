@@ -136,7 +136,8 @@ private struct ToolCard: View {
         Button(action: action) {
             VStack(alignment: .leading, spacing: Theme.Space.s10) {
                 HStack(spacing: 6) {
-                    Label(title, systemImage: symbol)
+                    IconTile(symbol: symbol, color: tint, size: 24)
+                    Text(title)
                         .font(.subheadline.weight(.semibold)).foregroundStyle(tint)
                         .lineLimit(1).minimumScaleFactor(0.8)
                     Spacer(minLength: 4)

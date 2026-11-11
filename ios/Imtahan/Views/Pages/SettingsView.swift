@@ -113,11 +113,7 @@ struct SettingsLabel: View {
         Label {
             Text(title).foregroundStyle(Theme.text)
         } icon: {
-            Image(systemName: symbol)
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundStyle(.white)
-                .frame(width: 29, height: 29)
-                .background(color, in: RoundedRectangle(cornerRadius: 7, style: .continuous))
+            IconTile(symbol: symbol, color: color)
         }
     }
 }

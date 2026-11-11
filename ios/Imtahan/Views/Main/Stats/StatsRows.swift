@@ -104,7 +104,7 @@ struct StatLabel: View {
         Label {
             Text(title).foregroundStyle(Theme.text).lineLimit(1)
         } icon: {
-            Image(systemName: symbol).foregroundStyle(tint)
+            IconTile(symbol: symbol, color: tint)
         }
     }
 }

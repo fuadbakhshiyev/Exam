@@ -158,10 +158,10 @@ struct SimulationSetupView: View {
                 }
 
                 Section {
-                    Label("Cavab verəndə düz/səhv göstərilmir", systemImage: "eye.slash")
-                    Label("Cavabı bitirənə qədər dəyişə bilərsiniz", systemImage: "arrow.triangle.2.circlepath")
-                    Label("Şübhəli sualları işarələyin", systemImage: "flag")
-                    Label("Nəticə: 4 səhv 1 düzü aparır", systemImage: "function")
+                    SettingsLabel("Cavab verəndə düz/səhv göstərilmir", symbol: "eye.slash.fill", color: .gray)
+                    SettingsLabel("Cavabı bitirənə qədər dəyişə bilərsiniz", symbol: "arrow.triangle.2.circlepath", color: .blue)
+                    SettingsLabel("Şübhəli sualları işarələyin", symbol: "flag.fill", color: .orange)
+                    SettingsLabel("Nəticə: 4 səhv 1 düzü aparır", symbol: "function", color: .red)
                 } header: {
                     Text("Qaydalar")
                 }

@@ -15,7 +15,7 @@ struct AchievementsEntrySection: View {
                 AchievementsView()
             } label: {
                 HStack(spacing: Theme.Space.s12) {
-                    Image(systemName: "trophy.fill").foregroundStyle(Theme.warning).frame(width: 28)
+                    IconTile(symbol: "trophy.fill", color: Theme.warning)
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Nailiyyətlər").foregroundStyle(Theme.text)
                         if let last = ach.latest {
@@ -96,13 +96,7 @@ struct AchievementTile: View {
         let a = status.achievement
         let on = status.isUnlocked
         VStack(alignment: .leading, spacing: Theme.Space.s8) {
-            ZStack {
-                Circle().fill(on ? Theme.accent.opacity(0.18) : Theme.track)
-                Image(systemName: a.symbol)
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundStyle(on ? Theme.accent : Theme.textMuted)
-            }
-            .frame(width: 40, height: 40)
+            IconTile(symbol: a.symbol, color: on ? Theme.accent : Theme.textMuted, size: 40)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(a.title).font(.subheadline.weight(.semibold))
@@ -219,12 +213,7 @@ struct AchievementToast: View {
 
     var body: some View {
         HStack(spacing: Theme.Space.s12) {
-            ZStack {
-                Circle().fill(Theme.accent.opacity(0.2))
-                Image(systemName: achievement.symbol)
-                    .font(.system(size: 18, weight: .semibold)).foregroundStyle(Theme.accent)
-            }
-            .frame(width: 40, height: 40)
+            IconTile(symbol: achievement.symbol, color: Theme.accent, size: 40)
             VStack(alignment: .leading, spacing: 1) {
                 Text("YENİ NAİLİYYƏT").font(.system(size: 11, weight: .bold)).tracking(1.2).foregroundStyle(Theme.accent)
                 Text(achievement.title).font(.headline).foregroundStyle(Theme.text).lineLimit(1)
