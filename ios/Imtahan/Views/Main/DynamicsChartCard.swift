@@ -4,7 +4,10 @@ import Charts
 /// "Fənlərin inkişaf dinamikası": per-day stacked correct/wrong bars or minutes over the study period.
 struct DynamicsChartCard: View {
     @Environment(StudyStore.self) private var store
-    @State private var mode = 0
+    @State private var mode: Int
+
+    /// 0 = questions, 1 = time spent.
+    init(initialMode: Int = 0) { _mode = State(initialValue: initialMode) }
     @State private var course = "all"
     @State private var selected: Date?
 

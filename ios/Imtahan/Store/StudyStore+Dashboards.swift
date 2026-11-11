@@ -398,7 +398,7 @@ extension StudyStore {
         let totalQ = bank.grandTotal(mode: examMode)
         let today = data.history[Self.dayKey()]
         var tq = 0, tc = 0, tw = 0, tt = 0
-        for (_, c) in today?.courses ?? [:] { tq += c.correct + c.wrong; tc += c.correct; tw += c.wrong; tt += c.time }
+        for (k, c) in today?.courses ?? [:] where historyKeyInScope(k) { tq += c.correct + c.wrong; tc += c.correct; tw += c.wrong; tt += c.time }
         let examRows = pdfSubjectsOrdered.map { ExamSubjectRow(subject: $0, examCount: bank.pdfExams[$0]?.count ?? 0) }
         return HomeTotals(subjectCount: Catalog.subjects.count, totalQuestions: totalQ, globalTime: time,
                           globalCorrect: correct, globalWrong: wrong, globalAnswered: answered,
@@ -756,7 +756,7 @@ extension StudyStore {
             let key = Self.dayKey(d)
             var c = 0, w = 0, t = 0
             for (k, v) in data.history[key]?.courses ?? [:] {
-                if sel != "all" && QuestionBank.baseCourse(k) != sel { continue }
+                if !historyKeyInScope(k) || (sel != "all" && QuestionBank.baseCourse(k) != sel) { continue }
                 c += v.correct; w += v.wrong; t += v.time
             }
             let comps = cal.dateComponents([.day, .month], from: d)
