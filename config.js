@@ -35,4 +35,4 @@ const CONFIG = {
 const SUBJECTS = Object.keys(CONFIG).filter(c => c !== "Mixed");
 
 // İnkişaf dinamikası qrafikinin göstərdiyi dövr (ilk və son gün daxil)
-const STUDY_PERIOD = { start: "2026-11-03", end: "2026-11-22" };
+const STUDY_PERIOD = { start: "2026-11-11", end: "2026-11-22" };
