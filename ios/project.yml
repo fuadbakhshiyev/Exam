@@ -1,0 +1,77 @@
+name: Imtahan
+options:
+  bundleIdPrefix: az.fuadb
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    DEVELOPMENT_TEAM: 6H7KP9534U
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+packages:
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    from: 11.0.0
+  GoogleSignIn:
+    url: https://github.com/google/GoogleSignIn-iOS
+    from: 8.0.0
+targets:
+  Imtahan:
+    type: application
+    platform: iOS
+    sources:
+      - path: Imtahan
+      - path: Shared
+    dependencies:
+      - target: ImtahanWidgets
+      - package: Firebase
+        product: FirebaseAuth
+      - package: Firebase
+        product: FirebaseFirestore
+      - package: GoogleSignIn
+        product: GoogleSignIn
+    info:
+      path: Imtahan/Info.plist
+      properties:
+        CFBundleDisplayName: İmtahan
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        ITSAppUsesNonExemptEncryption: false
+        NSSupportsLiveActivities: true
+        CFBundleURLTypes:
+          - CFBundleURLName: google-signin
+            CFBundleURLSchemes: [com.googleusercontent.apps.971462035893-6ldt4rs5foimh7rce0gj64t2u8q39hnl]
+          - CFBundleURLName: az.fuadb.imtahan
+            CFBundleURLSchemes: [imtahan]
+    entitlements:
+      path: Imtahan/Imtahan.entitlements
+      properties:
+        com.apple.security.application-groups: [group.az.fuadb.imtahan]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: az.fuadb.imtahan
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+  ImtahanWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: ImtahanWidgets
+      - path: Shared
+    info:
+      path: ImtahanWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: İmtahan
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: ImtahanWidgets/ImtahanWidgets.entitlements
+      properties:
+        com.apple.security.application-groups: [group.az.fuadb.imtahan]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: az.fuadb.imtahan.widgets
+        TARGETED_DEVICE_FAMILY: "1"
