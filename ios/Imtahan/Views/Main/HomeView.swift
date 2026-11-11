@@ -8,35 +8,24 @@ struct HomeView: View {
     @State private var showWeakTopics = false
 
     var body: some View {
-        List {
-            Section {
-                dailyGoalRow(store.dailyLevel)
-                    .appRow()
-                continueRow(continueTarget())
-                    .appRow()
-            }
+        ScrollView {
+            VStack(alignment: .leading, spacing: Theme.Space.s12) {
+                dailyGoalCard(store.dailyLevel)
+                continueCard(continueTarget())
 
-            TodaySection { showWeakTopics = true }
+                TodaySection { showWeakTopics = true }
 
-            Section {
-                quickActions
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color.clear)
-            } header: {
                 HomeSectionHeader(title: "Məşq")
-            }
+                quickActions
 
-            Section {
-                ForEach(Catalog.subjects, id: \.self) { c in
-                    NavigationLink(value: Route.course(c)) { subjectRow(c) }
-                        .appRow()
-                }
-            } header: {
                 HomeSectionHeader(title: "Fənlər", actionTitle: "Hamısı") { router.tab = .subjects }
+                subjectsCard
             }
+            .padding(.horizontal, Theme.Space.s16)
+            .padding(.bottom, Theme.Space.s24)
         }
-        .appListStyle()
-        .listSectionSpacing(.compact)
+        .scrollIndicators(.hidden)
+        .background(Theme.bg.ignoresSafeArea())
         .navigationTitle("Ana səhifə")
         .navigationSubtitle("\(Self.todayTitle()) · \(store.examMode.title)")
         .navigationBarTitleDisplayMode(.large)
@@ -56,30 +45,20 @@ struct HomeView: View {
 
     // MARK: Today
 
-    /// "Bu günkü hədəf · 12/50" with a thin bar; opens the Statistika tab.
-    private func dailyGoalRow(_ level: DailyLevel) -> some View {
+    /// "Gündəlik hədəf  12 / 50 sual" with a ring; opens the Statistika tab.
+    private func dailyGoalCard(_ level: DailyLevel) -> some View {
         Button { router.tab = .stats } label: {
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .firstTextBaseline) {
-                    Label("Bu günkü hədəf", systemImage: "target")
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(Theme.text)
-                    Spacer(minLength: 8)
-                    Text("\(level.count)/\(level.target)")
-                        .font(.subheadline).monospacedDigit().lineLimit(1).fixedSize()
-                        .foregroundStyle(Theme.textMuted)
-                        .contentTransition(.numericText())
-                    Image(systemName: "chevron.right")
-                        .font(.footnote.weight(.semibold))
-                        .foregroundStyle(Theme.textMuted)
+            MetricCard(title: "Gündəlik hədəf", symbol: "target", tint: Theme.accent, caption: level.level,
+                       value: "\(level.count)", unit: "/ \(level.target) sual",
+                       note: level.count >= level.target ? "Hədəf tamamlandı ✓" : "Qalıb: \(level.target - level.count) sual") {
+                RingDial(accent: level.progress, lineWidth: 7) {
+                    Text("\(Int((level.progress * 100).rounded()))%")
+                        .font(.caption2.weight(.semibold)).monospacedDigit().foregroundStyle(Theme.text)
                 }
-                ProgressLine(fraction: level.progress)
+                .frame(width: 52, height: 52)
             }
-            .padding(.vertical, 4)
-            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .accessibilityLabel("Bu günkü hədəf: \(level.count) / \(level.target) sual")
         .accessibilityHint("Statistikanı açır")
     }
 
@@ -132,29 +111,32 @@ struct HomeView: View {
         return make(best.course, best.index, done: done, isNew: false)
     }
 
-    private func continueRow(_ t: ContinueTarget) -> some View {
+    private func continueCard(_ t: ContinueTarget) -> some View {
         Button { router.start(.unit(course: t.course, index: t.index)) } label: {
-            HStack(spacing: 12) {
-                SubjectIcon(course: t.course, size: 40)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(t.isNew ? "Başla" : "Davam et").font(.caption.weight(.semibold)).foregroundStyle(Theme.accent)
-                        .textCase(.uppercase)
-                    Text(t.course).font(.headline).foregroundStyle(Theme.text).lineLimit(1)
-                    Text(t.total > 0 ? "\(t.unitTitle) · \(min(t.done, t.total))/\(t.total)" : t.unitTitle)
-                        .font(.subheadline).foregroundStyle(Theme.textMuted).monospacedDigit().lineLimit(1)
+            CardShell(title: t.isNew ? "Başla" : "Davam et", symbol: "play.circle.fill", tint: Theme.accent,
+                      caption: t.total > 0 ? "\(min(t.done, t.total))/\(t.total)" : nil, chevron: false) {
+                HStack(spacing: 12) {
+                    SubjectIcon(course: t.course, size: 44)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(t.course).font(.headline).foregroundStyle(Theme.text).lineLimit(1)
+                        Text(t.unitTitle).font(.subheadline).foregroundStyle(Theme.textMuted).lineLimit(1)
+                        if t.total > 0 {
+                            ProgressLine(fraction: min(1, Double(t.done) / Double(t.total)), height: 4).padding(.top, 2)
+                        }
+                    }
+                    Spacer(minLength: 8)
+                    Image(systemName: "play.fill")
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(.white)
+                        .frame(width: 44, height: 44)
+                        .background(Theme.accent, in: .circle)
                 }
-                Spacer(minLength: 8)
-                Image(systemName: "play.fill")
-                    .font(.body.weight(.semibold))
-                    .foregroundStyle(Theme.onInverse)
-                    .frame(width: 40, height: 40)
-                    .background(Theme.accent, in: .circle)
             }
-            .padding(.vertical, 4)
-            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(t.isNew ? "Başla" : "Davam et"): \(t.course), \(t.unitTitle)")
+        .accessibilityAddTraits(.isButton)
     }
 
     // MARK: Shortcuts
@@ -181,8 +163,28 @@ struct HomeView: View {
 
     // MARK: Subjects
 
-    /// Logo · name + "answered / total sual" · percent. Same anatomy for every subject; untouched
-    /// subjects say so instead of showing an empty bar.
+    /// All subjects in one card; a row opens the subject's study page.
+    private var subjectsCard: some View {
+        VStack(spacing: 0) {
+            ForEach(Array(Catalog.subjects.enumerated()), id: \.element) { i, c in
+                NavigationLink(value: Route.course(c)) {
+                    HStack(spacing: Theme.Space.s8) {
+                        subjectRow(c)
+                        Chevron()
+                    }
+                    .padding(.vertical, Theme.Space.s10)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                if i < Catalog.subjects.count - 1 { Divider().padding(.leading, 48) }
+            }
+        }
+        .padding(.horizontal, Theme.Space.s16)
+        .padding(.vertical, Theme.Space.s4)
+        .card()
+    }
+
+    /// Logo · name + "answered / total sual" · percent. Untouched subjects say so instead of an empty bar.
     private func subjectRow(_ c: String) -> some View {
         let total = store.courseTotalQuestions(c)
         let answered = min(store.courseAggregate(c).t, total)
@@ -201,7 +203,6 @@ struct HomeView: View {
                     .foregroundStyle(pct >= 100 ? Theme.success : Theme.textCaption)
             }
         }
-        .padding(.vertical, 2)
         .accessibilityElement(children: .combine)
     }
 

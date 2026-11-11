@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// "Bu gün" on Ana səhifə: the spaced-repetition review, the per-subject daily plan and the weakest
-/// units, in one list section. The header carries the exam countdown.
+/// "Bu gün" on Ana səhifə, as Health-style cards: the spaced-repetition review, the per-subject daily
+/// plan and the weakest units. The title line carries the exam countdown.
 struct TodaySection: View {
     @Environment(StudyStore.self) private var store
     @Environment(AppRouter.self) private var router
@@ -13,19 +13,10 @@ struct TodaySection: View {
         let due = store.reviewDueCount
         let plan = store.dailyPlan()
         let weak = store.weakUnits(limit: 1)
-        Section {
-            reviewRow(due).appRow()
-            ForEach(plan) { row in
-                planRow(row).appRow()
-            }
-            if let w = weak.first {
-                weakRow(w).appRow()
-            }
-        } header: {
-            header
-        } footer: {
-            Text("Plan: hər fənnin hələ cavablanmamış sualları imtahana qalan günlərə bölünür.")
-        }
+        header
+        reviewCard(due)
+        if !plan.isEmpty { planCard(plan) }
+        if let w = weak.first { weakCard(w) }
     }
 
     // MARK: Header (countdown)
@@ -36,7 +27,7 @@ struct TodaySection: View {
         let text = days > 0 ? "İmtahana \(days) gün" : (days == 0 ? "İmtahan bu gündür" : "İmtahan tarixi keçib")
         return HStack(alignment: .firstTextBaseline) {
             Text("Bu gün")
-                .font(.headline)
+                .font(.title3.weight(.bold))
                 .foregroundStyle(Theme.text)
                 .accessibilityAddTraits(.isHeader)
             Spacer()
@@ -45,51 +36,42 @@ struct TodaySection: View {
                 .foregroundStyle(days <= 3 ? Theme.warning : Theme.textMuted)
                 .labelStyle(.titleAndIcon)
         }
-        .textCase(nil)
+        .padding(.top, Theme.Space.s12)
+        .padding(.horizontal, Theme.Space.s4)
     }
 
     // MARK: Review
 
-    @ViewBuilder
-    private func reviewRow(_ due: Int) -> some View {
-        if due > 0 {
-            Button { router.start(.review) } label: {
-                HStack(spacing: 12) {
-                    Image(systemName: "arrow.trianglehead.2.clockwise")
-                        .font(.system(size: 17, weight: .semibold))
-                        .foregroundStyle(Theme.accent)
-                        .frame(width: 40, height: 40)
-                        .background(Theme.accent.opacity(0.15), in: .circle)
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Bu gün təkrar: \(due) sual")
-                            .font(.headline).foregroundStyle(Theme.text).monospacedDigit().lineLimit(1)
-                        Text(due > 50 ? "Ən gecikmişlərdən 50-si" : "Vaxtı çatmış səhvlər")
-                            .font(.subheadline).foregroundStyle(Theme.textMuted).lineLimit(1)
-                    }
-                    Spacer(minLength: 8)
-                    Image(systemName: "play.fill")
-                        .font(.footnote.weight(.semibold))
-                        .foregroundStyle(Theme.accent)
+    private func reviewCard(_ due: Int) -> some View {
+        Button { router.start(.review) } label: {
+            MetricCard(title: "Ağıllı təkrar", symbol: "arrow.trianglehead.2.clockwise", tint: .teal,
+                       value: "\(due)", unit: "sual",
+                       note: due == 0 ? "Bu gün təkrar yoxdur ✓" : (due > 50 ? "Ən gecikmişlərdən 50-si" : "Vaxtı çatmış səhvlər")) {
+                if due > 0 {
+                    Image(systemName: "play.circle.fill").font(.system(size: 34)).foregroundStyle(.teal)
                 }
-                .padding(.vertical, 4)
-                .contentShape(Rectangle())
             }
-            .buttonStyle(.plain)
-            .accessibilityLabel("Bu gün təkrar: \(due) sual")
-            .accessibilityHint("Təkrarı başladır")
-        } else {
-            HStack(spacing: 12) {
-                Image(systemName: "checkmark")
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundStyle(Theme.success)
-                    .frame(width: 40, height: 40)
-                    .background(Theme.success.opacity(0.15), in: .circle)
-                Text("Təkrar yoxdur ✓")
-                    .font(.body).foregroundStyle(Theme.textMuted)
-                Spacer()
+        }
+        .buttonStyle(.plain)
+        .disabled(due == 0)
+        .accessibilityHint(due > 0 ? "Təkrarı başladır" : "")
+    }
+
+    // MARK: Plan card
+
+    private func planCard(_ plan: [DailyPlanRow]) -> some View {
+        CardShell(title: "Günün planı", symbol: "list.bullet.clipboard.fill", tint: .indigo,
+                  caption: "\(plan.filter(\.isComplete).count)/\(plan.count) tamam", chevron: false) {
+            VStack(spacing: 0) {
+                ForEach(Array(plan.enumerated()), id: \.element.id) { i, row in
+                    planRow(row).padding(.vertical, Theme.Space.s8)
+                    if i < plan.count - 1 { Divider().padding(.leading, 40) }
+                }
+                Text("Cavablanmamış suallar imtahana qalan günlərə bölünür.")
+                    .font(.caption).foregroundStyle(Theme.textMuted)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, Theme.Space.s8)
             }
-            .padding(.vertical, 4)
-            .accessibilityElement(children: .combine)
         }
     }
 
@@ -99,7 +81,6 @@ struct TodaySection: View {
         Button { router.start(.unit(course: r.subject, index: r.nextUnit)) } label: {
             HStack(spacing: 12) {
                 SubjectIcon(course: r.subject, size: 28)
-                    .padding(.horizontal, 6)
                 Text(StudyStore.shortSubject(r.subject))
                     .font(.body).foregroundStyle(Theme.text).lineLimit(1)
                 Spacer(minLength: 8)
@@ -135,26 +116,10 @@ struct TodaySection: View {
 
     // MARK: Weak units
 
-    private func weakRow(_ w: WeakUnit) -> some View {
+    private func weakCard(_ w: WeakUnit) -> some View {
         Button(action: openWeakTopics) {
-            HStack(spacing: 12) {
-                Image(systemName: "chart.line.downtrend.xyaxis")
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundStyle(Theme.warning)
-                    .frame(width: 28, height: 28)
-                    .background(Theme.warning.opacity(0.15), in: .circle)
-                    .padding(.horizontal, 6)
-                VStack(alignment: .leading, spacing: 1) {
-                    Text("Zəif mövzular").font(.body).foregroundStyle(Theme.text)
-                    Text("\(w.title) · \(w.accuracy)%")
-                        .font(.footnote).monospacedDigit().foregroundStyle(Theme.textMuted).lineLimit(1)
-                }
-                Spacer(minLength: 8)
-                Image(systemName: "chevron.right")
-                    .font(.footnote.weight(.semibold))
-                    .foregroundStyle(Theme.textMuted)
-            }
-            .contentShape(Rectangle())
+            MetricCard(title: "Zəif mövzular", symbol: "chart.line.downtrend.xyaxis", tint: Theme.warning,
+                       value: "\(w.accuracy)", unit: "%", note: w.title) { EmptyView() }
         }
         .buttonStyle(.plain)
         .accessibilityLabel("Zəif mövzular")

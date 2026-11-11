@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Section header used on "Ana səhifə": sentence-case title, optional trailing text action.
+/// Section title on "Ana səhifə" (same as Statistika): bold title, optional trailing text action.
 struct HomeSectionHeader: View {
     let title: String
     var actionTitle: String? = nil
@@ -9,7 +9,7 @@ struct HomeSectionHeader: View {
     var body: some View {
         HStack(alignment: .firstTextBaseline) {
             Text(title)
-                .font(.headline)
+                .font(.title3.weight(.bold))
                 .foregroundStyle(Theme.text)
                 .accessibilityAddTraits(.isHeader)
             Spacer()
@@ -20,6 +20,39 @@ struct HomeSectionHeader: View {
             }
         }
         .textCase(nil)
+        .padding(.top, Theme.Space.s12)
+        .padding(.horizontal, Theme.Space.s4)
+    }
+}
+
+/// Health-style card frame: tinted "symbol title" line (+ caption, chevron), then any content.
+struct CardShell<Content: View>: View {
+    let title: String
+    let symbol: String
+    let tint: Color
+    var caption: String? = nil
+    var chevron = true
+    @ViewBuilder var content: () -> Content
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: Theme.Space.s12) {
+            HStack(spacing: 6) {
+                Label(title, systemImage: symbol)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(tint)
+                    .lineLimit(1)
+                Spacer(minLength: 8)
+                if let caption {
+                    Text(caption).font(.footnote).monospacedDigit().foregroundStyle(Theme.textMuted).lineLimit(1)
+                }
+                if chevron { Chevron() }
+            }
+            content()
+        }
+        .padding(Theme.Space.s16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .card()
+        .contentShape(RoundedRectangle(cornerRadius: Theme.Radius.lg, style: .continuous))
     }
 }
 
@@ -51,8 +84,8 @@ struct ShortcutTile: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .padding(12)
-            .background(Theme.surface, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .card()
+            .contentShape(RoundedRectangle(cornerRadius: Theme.Radius.lg, style: .continuous))
         }
         .buttonStyle(PressStyle())
         .disabled(!enabled)
