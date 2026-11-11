@@ -20,7 +20,7 @@ Son yeniləmə: 11 noyabr 2026 (2026-2027 Güz, Grafik Sanatlar 5. yarıyıl).
 
 **iOS kodunun bölmələri:** `Models/` (data kontraktı), `Data/` (QuestionBank, HTML mətn göstəricisi), `Store/` (statistika, test mühərriki, Vize/Final rejimi), `Sync/` (Firebase), `Views/` (ekranlar), `App/` (Router).
 
-**Sinxronizasiya:** sayt və iPhone eyni Firestore sənədini istifadə edir: `users/{uid}/sync/v32`, format `{v:2, ts, json}`. Data birləşdirilir, heç vaxt üzərinə yazılmır. iOS-da Google girişi `ios/Imtahan/Resources/GoogleService-Info.plist` ilə işləyir (Firebase-də iOS app `az.fuadb.imtahan` qeydiyyatdadır; URL scheme `project.yml` → `CFBundleURLTypes`).
+**Sinxronizasiya:** sayt və iPhone eyni Firestore sənədini istifadə edir: `users/{uid}/sync/v32`, format `{v:3, ts, z}` (z = base64(deflate-raw(JSON)), 1 MB limitinə görə sıxışdırılır; köhnə `{v:2, json}` də oxunur). Data birləşdirilir, heç vaxt üzərinə yazılmır. iOS-da Google girişi `ios/Imtahan/Resources/GoogleService-Info.plist` ilə işləyir (Firebase-də iOS app `az.fuadb.imtahan` qeydiyyatdadır; URL scheme `project.yml` → `CFBundleURLTypes`).
 
 ## 2. Telefona yükləmək
 
