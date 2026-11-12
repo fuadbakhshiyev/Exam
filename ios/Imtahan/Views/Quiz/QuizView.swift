@@ -55,9 +55,11 @@ struct QuizView: View {
         .sheet(item: Binding(get: { session.result.map(ResultBox.init) }, set: { _ in })) { box in
             ResultView(session: session, result: box.result)
                 .interactiveDismissDisabled()
+                .appEnvironment()
         }
         .sheet(isPresented: Binding(get: { surprise.isPresented }, set: { if !$0 { surprise.dismiss() } })) {
             SurpriseView()
+                .appEnvironment()
         }
         .alert("Sınaq yarımçıqdır", isPresented: Binding(get: { finishPrompt != nil || session.pendingFinishConfirmation != nil },
                                                         set: { if !$0 { finishPrompt = nil; session.pendingFinishConfirmation = nil } })) {
@@ -297,15 +299,15 @@ struct QuizView: View {
             }
             HStack(spacing: 10) {
                 Button { withAnimation(.snappy) { session.previous() } } label: {
-                    Label("Geri", systemImage: "chevron.left").frame(maxWidth: 90)
+                    Label("Geri", systemImage: "chevron.left").frame(maxWidth: 90, minHeight: Self.barButtonHeight)
                 }
                 .buttonStyle(.glass)
                 .disabled(session.index == 0)
                 if ans == nil {
-                    Button { next() } label: { Text(session.nextButtonTitle).frame(maxWidth: .infinity) }
+                    Button { next() } label: { Text(session.nextButtonTitle).frame(maxWidth: .infinity, minHeight: Self.barButtonHeight) }
                         .buttonStyle(.glass)
                 } else {
-                    Button { next() } label: { Text(session.nextButtonTitle).frame(maxWidth: .infinity) }
+                    Button { next() } label: { Text(session.nextButtonTitle).frame(maxWidth: .infinity, minHeight: Self.barButtonHeight) }
                         .buttonStyle(.glassProminent)
                 }
             }
@@ -368,4 +370,13 @@ final class Speech: NSObject, AVSpeechSynthesizerDelegate {
     nonisolated func speechSynthesizer(_ s: AVSpeechSynthesizer, didCancel u: AVSpeechUtterance) {
         Task { @MainActor in self.isSpeaking = false }
     }
+}
+
+extension QuizView {
+    /// Bottom bar buttons: the Mac's "large" control is much thinner than the iPhone's, so give it height.
+    #if targetEnvironment(macCatalyst)
+    static let barButtonHeight: CGFloat = 40
+    #else
+    static let barButtonHeight: CGFloat = 0
+    #endif
 }

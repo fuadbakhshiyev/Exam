@@ -52,6 +52,11 @@ struct SurpriseView: View {
             }
         }
         .presentationDetents([.large])
+        #if targetEnvironment(macCatalyst)
+        // Mac sheets default to a small form size: make room for the question and all five options.
+        .frame(minWidth: 560, idealWidth: 640, minHeight: 720, idealHeight: 780)
+        .presentationSizing(.fitted)
+        #endif
         .interactiveDismissDisabled(!engine.isAnswered)
         .sensoryFeedback(trigger: engine.feedback) { _, f in f.map { $0.isPositive ? .success : .error } }
     }

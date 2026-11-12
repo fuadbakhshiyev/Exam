@@ -7,26 +7,27 @@ struct ImtahanApp: App {
     @State private var quickActions = QuickActionCenter.shared
     @State private var store: StudyStore
     @State private var router: AppRouter
-    @State private var sync = SyncService()
+    @State private var sync: SyncService
     @State private var surprise: SurpriseEngine
-    @State private var stopwatch = SidebarStopwatch()
+    @State private var stopwatch: SidebarStopwatch
     @Environment(\.scenePhase) private var phase
 
     init() {
         let s = StudyStore.shared
+        let env = AppEnvironment(store: s, router: AppRouter(store: s), sync: SyncService(),
+                                 surprise: SurpriseEngine(store: s), stopwatch: SidebarStopwatch())
+        AppEnvironment.shared = env
         _store = State(initialValue: s)
-        _router = State(initialValue: AppRouter(store: s))
-        _surprise = State(initialValue: SurpriseEngine(store: s))
+        _router = State(initialValue: env.router)
+        _sync = State(initialValue: env.sync)
+        _surprise = State(initialValue: env.surprise)
+        _stopwatch = State(initialValue: env.stopwatch)
     }
 
     var body: some Scene {
         WindowGroup {
             RootView()
-                .environment(store)
-                .environment(router)
-                .environment(sync)
-                .environment(surprise)
-                .environment(stopwatch)
+                .appEnvironment()
                 .preferredColorScheme(colorScheme)
                 .tint(Theme.accent)
                 .onOpenURL { url in
@@ -117,5 +118,31 @@ struct ImtahanApp: App {
         case .light: .light
         case .system: nil
         }
+    }
+}
+
+/// The app-wide observable objects. Every presented sheet / full-screen cover re-injects them with
+/// `.appEnvironment()`: on Mac Catalyst presented content does not reliably inherit them, and a
+/// missing `@Environment(Type.self)` object is a crash.
+@MainActor
+struct AppEnvironment {
+    static var shared: AppEnvironment!
+
+    let store: StudyStore
+    let router: AppRouter
+    let sync: SyncService
+    let surprise: SurpriseEngine
+    let stopwatch: SidebarStopwatch
+}
+
+extension View {
+    @MainActor func appEnvironment() -> some View {
+        let e = AppEnvironment.shared!
+        return self
+            .environment(e.store)
+            .environment(e.router)
+            .environment(e.sync)
+            .environment(e.surprise)
+            .environment(e.stopwatch)
     }
 }

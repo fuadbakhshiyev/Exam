@@ -44,6 +44,7 @@ struct SimulationQuizView: View {
         .sheet(item: Binding(get: { sim.result.map(SimulationResultBox.init) }, set: { _ in })) { box in
             SimulationResultView(session: session, sim: sim, result: box.result)
                 .interactiveDismissDisabled()
+                .appEnvironment()
         }
         .alert("İmtahan bitirilsin?", isPresented: $confirmFinish) {
             Button("Bitir", role: .destructive) { submit() }

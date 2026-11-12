@@ -331,6 +331,7 @@ struct StatsMetricView: View {
         .navigationBarTitleDisplayMode(.large)
         .sheet(item: $detail) { type in
             StatDetailSheet(type: type)
+                .appEnvironment()
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)
         }

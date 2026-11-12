@@ -25,9 +25,11 @@ struct RootView: View {
         #endif
         .fullScreenCover(item: $router.quiz) { session in
             QuizView(session: session)
+                .appEnvironment()
         }
         .sheet(isPresented: Binding(get: { surprise.isPresented && router.quiz == nil }, set: { if !$0 { surprise.dismiss() } })) {
             SurpriseView()
+                .appEnvironment()
         }
         .celebrationOverlay()
         .alert("Məlumat", isPresented: Binding(get: { router.alert != nil }, set: { if !$0 { router.alert = nil } })) {
@@ -51,7 +53,7 @@ struct RootView: View {
 enum MacWindow {
     static func configure() {
         for case let scene as UIWindowScene in UIApplication.shared.connectedScenes {
-            scene.sizeRestrictions?.minimumSize = CGSize(width: 820, height: 640)
+            scene.sizeRestrictions?.minimumSize = CGSize(width: 820, height: 800)
             scene.title = "İmtahan"
         }
     }

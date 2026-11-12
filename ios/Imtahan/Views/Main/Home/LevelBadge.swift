@@ -84,6 +84,7 @@ struct LevelBadge: View {
         .accessibilityHint("Səviyyə haqqında")
         .sheet(isPresented: $showInfo) {
             LevelSheet(level: level)
+                .appEnvironment()
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)
         }

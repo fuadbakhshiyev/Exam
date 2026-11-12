@@ -31,6 +31,7 @@ struct SimulationEntryCard: View {
             if let c = pending { pending = nil; router.start(.simulation(c)) }
         }) {
             SimulationSetupView { pending = $0; showSetup = false }
+                .appEnvironment()
         }
     }
 }
