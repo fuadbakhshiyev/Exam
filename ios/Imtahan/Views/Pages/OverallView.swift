@@ -34,11 +34,6 @@ struct OverallView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Statistika", systemImage: "chart.bar.xaxis") { router.statsPath = []; router.tab = .stats }
             }
-            if page.wrongCount > 0 {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Səhvlərim \(page.wrongCount)") { router.start(.hard) }
-                }
-            }
         }
     }
 }

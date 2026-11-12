@@ -35,11 +35,6 @@ struct MixedView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Statistika", systemImage: "chart.bar.xaxis") { router.openStats(c) }
             }
-            if page.wrongCount > 0 {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Səhvlərim \(page.wrongCount)") { router.start(.courseWrong(c)) }
-                }
-            }
         }
     }
 }
