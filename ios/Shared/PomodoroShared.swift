@@ -157,6 +157,7 @@ struct PomodoroSnapshot: Codable, Equatable, Sendable {
         return r
     }
 
+    #if !targetEnvironment(macCatalyst)
     /// Live Activity state; while focus runs it also carries the break that follows.
     func liveState(_ s: PomodoroSettings) -> StopwatchAttributes.ContentState.Focus {
         var next: PomodoroPhase?
@@ -171,6 +172,7 @@ struct PomodoroSnapshot: Codable, Equatable, Sendable {
                      round: round(s), rounds: max(1, s.roundsBeforeLongBreak),
                      nextPhase: next, nextEndDate: nextEnd)
     }
+    #endif
 }
 
 enum TimerMode: String, Codable, Sendable { case stopwatch, focus }

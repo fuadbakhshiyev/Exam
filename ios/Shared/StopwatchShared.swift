@@ -46,9 +46,11 @@ struct StopwatchSnapshot: Sendable, Equatable {
 
     func toggled(at now: Date = Date()) -> StopwatchSnapshot { status == .running ? paused(at: now) : started(at: now) }
 
+    #if !targetEnvironment(macCatalyst)
     var contentState: StopwatchAttributes.ContentState {
         .init(startDate: sessionStartDate, accumulated: TimeInterval(accumulated), isRunning: status == .running)
     }
+    #endif
 
     /// "MM:SS" under an hour, then "H:MM:SS" (same shape as the Live Activity's system timer).
     static func format(_ s: Int) -> String {
@@ -117,8 +119,9 @@ enum StopwatchStorage {
     }
 }
 
-// MARK: Live Activity
+// MARK: Live Activity (iPhone only — ActivityKit does not exist on Mac Catalyst)
 
+#if !targetEnvironment(macCatalyst)
 struct StopwatchAttributes: ActivityAttributes {
     struct ContentState: Codable, Hashable, Sendable {
         var startDate: Date?
@@ -147,6 +150,8 @@ struct StopwatchAttributes: ActivityAttributes {
     }
 }
 
+#endif
+
 /// Which timer the in-app indicators and the Live Activity show: a running one first, then the
 /// one picked in Profil, then whichever still has time on it.
 enum TimerSurface {
@@ -161,6 +166,12 @@ enum TimerSurface {
     }
 }
 
+#if targetEnvironment(macCatalyst)
+/// Mac: no Live Activities; the in-app indicators are enough.
+enum StopwatchLiveActivity {
+    static func sync(allowStart: Bool) async {}
+}
+#else
 enum StopwatchLiveActivity {
     /// The Live Activity content for the stored stopwatch / Pomodoro state (nil = nothing to show).
     static func currentContent() -> ActivityContent<StopwatchAttributes.ContentState>? {
@@ -199,6 +210,8 @@ enum StopwatchLiveActivity {
         }
     }
 }
+
+#endif
 
 /// Cublya palette for surfaces that cannot use the app's Theme (widget extension).
 enum StopwatchPalette {

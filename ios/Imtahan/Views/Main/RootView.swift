@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct RootView: View {
     @Environment(StudyStore.self) private var store
@@ -16,7 +17,12 @@ struct RootView: View {
             Tab("Statistika", systemImage: "chart.bar.xaxis", value: AppTab.stats) { stack(.stats) { StatisticsView() } }
             Tab("Profil", systemImage: "person.fill", value: AppTab.profile) { stack(.profile) { ProfileView() } }
         }
+        // iPhone: the bottom tab bar. Mac (Catalyst): the tabs become a left sidebar.
+        .tabViewStyle(.sidebarAdaptable)
         .modifier(StopwatchAccessoryModifier(isEnabled: stopwatch.isActive))
+        #if targetEnvironment(macCatalyst)
+        .task { MacWindow.configure() }
+        #endif
         .fullScreenCover(item: $router.quiz) { session in
             QuizView(session: session)
         }
@@ -38,3 +44,16 @@ struct RootView: View {
         }
     }
 }
+
+#if targetEnvironment(macCatalyst)
+/// Mac window: sensible default/minimum size so cards and tests are not squeezed.
+@MainActor
+enum MacWindow {
+    static func configure() {
+        for case let scene as UIWindowScene in UIApplication.shared.connectedScenes {
+            scene.sizeRestrictions?.minimumSize = CGSize(width: 820, height: 640)
+            scene.title = "İmtahan"
+        }
+    }
+}
+#endif
