@@ -278,3 +278,15 @@ enum CompactFormat {
     /// "Xh Ym / Xh Ym" → "3 saat 40 dəq" (first part only); nil when zero.
     static func duration(fromHM text: String) -> String? { duration(seconds(fromHM: text)) }
 }
+
+extension View {
+    /// Big full-width actions. The Mac's (Catalyst) "large" control is much thinner than the iPhone's,
+    /// so it gets the next size up there.
+    func largeControl() -> some View {
+        #if targetEnvironment(macCatalyst)
+        controlSize(.extraLarge)
+        #else
+        controlSize(.large)
+        #endif
+    }
+}

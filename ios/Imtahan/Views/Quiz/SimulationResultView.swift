@@ -140,7 +140,7 @@ struct SimulationResultView: View {
                     .buttonStyle(.glass)
                 }
             }
-            .controlSize(.large)
+            .largeControl()
         }
     }
 

@@ -77,7 +77,7 @@ struct SubjectStatsView: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.glassProminent)
-                .controlSize(.large)
+                .largeControl()
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets())
             }

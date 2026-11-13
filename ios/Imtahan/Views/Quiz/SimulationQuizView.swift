@@ -299,7 +299,7 @@ struct SimulationQuizView: View {
                 .buttonStyle(.glassProminent)
             }
         }
-        .controlSize(.large)
+        .largeControl()
         .padding(.horizontal, 20)
         .padding(.top, 12)
         .padding(.bottom, 4)

@@ -187,7 +187,7 @@ struct SimulationSetupView: View {
                     .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.glassProminent)
-                .controlSize(.large)
+                .largeControl()
                 .disabled(selected.isEmpty || questionCount == 0)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 8)

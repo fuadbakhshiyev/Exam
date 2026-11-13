@@ -61,7 +61,7 @@ struct ProfileView: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.glassProminent)
-                .controlSize(.large)
+                .largeControl()
                 .disabled(!SyncService.isConfigured)
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets())

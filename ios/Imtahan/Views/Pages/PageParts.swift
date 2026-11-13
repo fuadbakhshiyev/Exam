@@ -58,7 +58,7 @@ struct MixSection: View {
                 Text("Sınağa başla").frame(maxWidth: .infinity)
             }
             .buttonStyle(.glassProminent)
-            .controlSize(.large)
+            .largeControl()
             .listRowBackground(Color.clear)
             .listRowInsets(EdgeInsets())
         }

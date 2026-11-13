@@ -28,8 +28,8 @@ struct SurpriseView: View {
                                 .foregroundStyle(f.isPositive ? Theme.success : Theme.danger)
                                 .frame(maxWidth: .infinity).padding(12)
                                 .glassEffect(.regular.tint((f.isPositive ? Theme.success : Theme.danger).opacity(0.15)), in: .rect(cornerRadius: 14))
-                            Button { engine.close() } label: { Text("Davam Et").frame(maxWidth: .infinity) }
-                                .buttonStyle(.glassProminent).controlSize(.large)
+                            Button { engine.close() } label: { Text("Davam Et").frame(maxWidth: .infinity, minHeight: QuizView.barButtonHeight) }
+                                .buttonStyle(.glassProminent).largeControl()
                         }
                     }
                 }
@@ -92,7 +92,7 @@ struct CelebrationOverlay: ViewModifier {
                         Text(c.milestoneText).font(.system(size: 15, weight: .semibold)).foregroundStyle(Theme.textCaption)
                         Text(c.quote).font(.system(size: 14)).italic().foregroundStyle(Theme.textMuted).multilineTextAlignment(.center)
                         Button { withAnimation { store.celebration = nil } } label: { Text("Davam et").frame(maxWidth: .infinity) }
-                            .buttonStyle(.glassProminent).controlSize(.large).padding(.top, 8)
+                            .buttonStyle(.glassProminent).largeControl().padding(.top, 8)
                     }
                     .padding(28)
                     .card(radius: 32)
