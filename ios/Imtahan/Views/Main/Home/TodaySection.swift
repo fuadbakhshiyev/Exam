@@ -23,8 +23,14 @@ struct TodaySection: View {
 
     private var header: some View {
         _ = examDateRaw
-        let days = StudyStore.daysUntil(store.examDate)
-        let text = days > 0 ? "İmtahana \(days) gün" : (days == 0 ? "İmtahan bu gündür" : "İmtahan tarixi keçib")
+        // Nearest subject exam (Ayarlar → İmtahan tarixləri).
+        let next = ExamDates.shared.next
+        let days = next?.days ?? -1
+        let text: String = {
+            guard let n = next else { return "İmtahanlar bitib" }
+            let name = StudyStore.shortSubject(n.subject)
+            return n.days == 0 ? "\(name): bu gün" : "\(name): \(n.days) gün"
+        }()
         return HStack(alignment: .firstTextBaseline) {
             Text("Bu gün")
                 .font(.title3.weight(.bold))

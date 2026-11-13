@@ -93,9 +93,9 @@ extension StudyStore {
     /// Per-subject plan: remaining ÷ days left (rounded up). The target is fixed for the day (snapshot in
     /// UserDefaults keyed by day, mode and exam date) so it does not shrink while you study.
     func dailyPlan() -> [DailyPlanRow] {
-        let days = max(1, Self.daysUntil(examDate))
+        let dates = ExamDates.shared
         let today = Self.dayKey()
-        let tag = "\(today)|\(examMode.rawValue)|\(Int(examDate.timeIntervalSince1970))"
+        let tag = "\(today)|\(examMode.rawValue)|\(dates.tag)"
         var snap = defaults.dictionary(forKey: Self.planSnapshotKey) as? [String: Int] ?? [:]
         let fresh = defaults.string(forKey: Self.planSnapshotKey + "_tag") != tag
         if fresh { snap = [:] }
@@ -108,7 +108,10 @@ extension StudyStore {
                 planned = p
             } else {
                 // First look today: include what was already answered today so the target stays honest.
-                planned = r.count == 0 ? 0 : Int((Double(r.count + done) / Double(days)).rounded(.up))
+                // Each subject is spread over the days left until its own exam (none after it).
+                let left = dates.daysLeft(s)
+                let days = max(1, left)
+                planned = (r.count == 0 || left < 0) ? 0 : Int((Double(r.count + done) / Double(days)).rounded(.up))
                 snap[s] = planned
                 changed = true
             }

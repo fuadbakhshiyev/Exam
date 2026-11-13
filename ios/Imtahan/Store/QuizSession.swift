@@ -42,6 +42,7 @@ final class QuizSession: Identifiable {
         case review                                     // "Bu günün təkrarı" (Leitner, StudyStore+Review.swift)
         case weakTopics                                 // "Zəif mövzular" (StudyStore+Plan.swift)
         case allQuestions(String)                       // "Bütün suallar" of a subject (StudyStore+AllQuestions.swift)
+        case unlearned(String)                          // "Öyrənilməmişlər" of a subject (Store/LearningFeatures.swift)
     }
 
     struct Option: Hashable, Sendable {
@@ -365,6 +366,10 @@ final class QuizSession: Identifiable {
             let qs = store.allSubjectQuestions(subject).shuffled()
             guard !qs.isEmpty else { throw fail("Bu fənn üçün sual tapılmadı.") }
             return special(qs, "Bütün suallar", subject, category: "all-questions")
+        case .unlearned(let subject):
+            let qs = store.unlearnedQuestions(subject).shuffled()
+            guard !qs.isEmpty else { throw fail("Bu fənnin bütün sualları öyrənilib ✓") }
+            return special(qs, "Öyrənilməmişlər", subject, category: "all-questions")
         case .weakTopics:
             let qs = store.weakTopicQuestions()
             guard !qs.isEmpty else { throw fail("Zəif mövzu tapılmadı: hər ünitədən ən azı 5 sual cavablandırın.") }
@@ -457,7 +462,7 @@ final class QuizSession: Identifiable {
 
     /// Shows the course/unit badges above the question.
     var showsMeta: Bool {
-        if case .allQuestions = kind { return true }
+        if isSubjectPool { return true }
         return isMockMode || isWrongMode || isSearchMode || category == "mixed" || category == "exams" || currentTitle == "Multi" || course == Catalog.mixedKey
     }
 
@@ -470,7 +475,7 @@ final class QuizSession: Identifiable {
             let subj = QuestionBank.baseCourse(q.c)
             return Meta(course: subj, unit: q.u >= 1 ? "Unit \(q.u)" : nil, accentHex: Catalog.styles[subj]?.accent ?? "#8b5cf6")
         }
-        if case .allQuestions = kind {
+        if isSubjectPool {
             return Meta(course: q.c, unit: q.u >= 1 ? "Unit \(q.u)" : "Keçmiş imtahan", accentHex: Catalog.styles[q.c]?.accent ?? "#8b5cf6")
         }
         // CONFIG[q.c].units[q.u - 1] is always "Unit N" for subjects; other keys fall back to the same text.
@@ -515,6 +520,7 @@ final class QuizSession: Identifiable {
     var feedbackTitle: String? {
         guard let a = currentAnswer, let q = current?.question else { return nil }
         if a.hint { return "İpucu" }
+        if a.chosen == Self.dontKnowChoice { return "Bilmirəm" }
         return a.chosen == q.a ? "Düzdür" : "Səhv"
     }
 
@@ -545,6 +551,15 @@ final class QuizSession: Identifiable {
         answers[index] = Answer(chosen: originalIndex, hint: false)
         if isCorrect { correctCount += 1 } else { wrongCount += 1 }
 
+        let stat = answerStat(q)
+        let cel = store.recordQuizAnswer(q, isCorrect: isCorrect, removeFromWrongWhenCorrect: isWrongMode, stat: stat)
+        if isCorrect { scheduleAutoAdvance() } else if requeuesWrong { requeue(item) }
+        saveProgress()
+        return AnswerOutcome(isCorrect: isCorrect, willAutoAdvance: isCorrect, celebration: cel)
+    }
+
+    /// Statistics bucket of an answer in this session.
+    private func answerStat(_ q: Question) -> (course: String, cat: String, sub: String)? {
         var stat: (course: String, cat: String, sub: String)?
         if isMockMode {
             stat = (Catalog.mockKey, "mock", "Sınaq")
@@ -561,10 +576,41 @@ final class QuizSession: Identifiable {
             stat = (course, cat, sub)
         }
         if let s = Self.perQuestionStat(kind, q) { stat = s }
-        let cel = store.recordQuizAnswer(q, isCorrect: isCorrect, removeFromWrongWhenCorrect: isWrongMode, stat: stat)
-        if isCorrect { scheduleAutoAdvance() }
+        return stat
+    }
+
+    /// "Bilmirəm": shows the answer and counts as a wrong answer (stats, wrong list, review, mastery).
+    func dontKnow() {
+        guard !isClosed, result == nil, answers[index] == nil, let item = current else { return }
+        store.noteActivity()
+        answers[index] = Answer(chosen: Self.dontKnowChoice, hint: false)
+        wrongCount += 1
+        _ = store.recordQuizAnswer(item.question, isCorrect: false, removeFromWrongWhenCorrect: false, stat: answerStat(item.question))
+        if requeuesWrong { requeue(item) }
         saveProgress()
-        return AnswerOutcome(isCorrect: isCorrect, willAutoAdvance: isCorrect, celebration: cel)
+    }
+
+    /// Answer.chosen of a "Bilmirəm".
+    static let dontKnowChoice = -2
+
+    /// Wrong answers come back at the end of the test (Ayarlar switch). Not in exams that are graded
+    /// in points, the mock exam or the simulation: there the question count is the exam.
+    var requeuesWrong: Bool {
+        LearnSettings.shared.requeueWrong && simulation == nil && !isMockMode && !isGradedExam
+    }
+
+    /// Questions added at the end by `requeue` (shown with a "Təkrar" badge).
+    func isRequeued(_ item: Item) -> Bool {
+        items.firstIndex { $0.question.q == item.question.q }.map { $0 < item.id } ?? false
+    }
+
+    private func requeue(_ item: Item) {
+        let q = item.question
+        // Once per pending copy: no new copy while an unanswered one is still waiting further on.
+        let pending = items.indices.contains { $0 > index && items[$0].question.q == q.q && answers[$0] == nil }
+        guard !pending else { return }
+        items.append(Item(id: items.count, question: q,
+                          options: q.o.enumerated().map { Option(text: $0.element, originalIndex: $0.offset) }.shuffled()))
     }
 
     /// Answers by displayed position (A = 0 …), like the 1-5 / A-E keyboard shortcuts.
@@ -727,6 +773,16 @@ extension QuizSession {
         switch kind {
         case .pdfExam, .finalExam, .mixedPart, .courseMixed: true
         case .unit(let course, _): course == Catalog.mixedKey
+        default: false
+        }
+    }
+}
+
+extension QuizSession {
+    /// "Bütün suallar" / "Öyrənilməmişlər": a subject's whole pool, every question tagged with its unit.
+    var isSubjectPool: Bool {
+        switch kind {
+        case .allQuestions, .unlearned: true
         default: false
         }
     }

@@ -401,6 +401,7 @@ final class StudyStore {
             if let stat { recordStat(course: stat.course, cat: stat.cat, sub: stat.sub, isCorrect: isCorrect) }
             hit = updateDaily(increment: true)
             recordReview(q, isCorrect: isCorrect)
+            MasteryStore.shared.record(q, isCorrect: isCorrect)
             noteAchievementAnswer(q, isCorrect: isCorrect, stat: stat)   // Nailiyyətlər (StudyStore+Achievements)
         }
         return hit
@@ -411,6 +412,7 @@ final class StudyStore {
         batch {
             recordStat(course: q.c, cat: "surprise", sub: "Sürpriz Sual", isCorrect: isCorrect)
             recordReview(q, isCorrect: isCorrect)
+            MasteryStore.shared.record(q, isCorrect: isCorrect)
             if isCorrect {
                 saveCorrect(course: q.c, q)
             } else {
@@ -481,6 +483,7 @@ final class StudyStore {
         data = StudyData()
         ReviewStore.shared.clear()
         QuizProgressStore.shared.clear()
+        MasteryStore.shared.clear()
         celebration = nil
         refreshDailyGoal(notify: false)
         markChanged(quick: true)

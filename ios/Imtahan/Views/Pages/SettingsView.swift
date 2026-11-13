@@ -6,13 +6,9 @@ import UIKit
 struct SettingsView: View {
     @Environment(StudyStore.self) private var store
     @Environment(SurpriseEngine.self) private var surprise
-    @AppStorage(StudyStore.examDateKey) private var examDateRaw: Double = 0
 
     var body: some View {
         @Bindable var store = store
-        let examDate = Binding<Date>(
-            get: { examDateRaw > 0 ? Date(timeIntervalSince1970: examDateRaw) : StudyStore.defaultExamDate },
-            set: { examDateRaw = $0.timeIntervalSince1970 })
         Form {
             Section {
                 Picker(selection: $store.examMode.animation()) {
@@ -23,10 +19,15 @@ struct SettingsView: View {
                 .pickerStyle(.menu)
                 .sensoryFeedback(.selection, trigger: store.examMode)
                 .appRow()
-                DatePicker(selection: examDate, displayedComponents: .date) {
-                    SettingsLabel("İmtahan tarixi", symbol: "calendar", color: .red)
+                NavigationLink {
+                    ExamDatesView()
+                } label: {
+                    LabeledContent {
+                        Text(nextExamText)
+                    } label: {
+                        SettingsLabel("İmtahan tarixləri", symbol: "calendar", color: .red)
+                    }
                 }
-                .environment(\.locale, Locale(identifier: "az"))
                 .appRow()
             } header: {
                 Text("İmtahan")
@@ -34,6 +35,19 @@ struct SettingsView: View {
                 Text(store.examMode == .vize
                      ? "Vize: yalnız 1–7-ci ünitələr. Geri sayım və gündəlik plan imtahan tarixinə görədir."
                      : "Final: bütün ünitələr. Geri sayım və gündəlik plan imtahan tarixinə görədir.")
+            }
+
+            Section {
+                Toggle(isOn: Binding(get: { LearnSettings.shared.requeueWrong },
+                                     set: { LearnSettings.shared.requeueWrong = $0 })) {
+                    SettingsLabel("Səhvlər sonda qayıtsın", symbol: "arrow.uturn.backward", color: .orange)
+                }
+                .tint(Theme.accent)
+                .appRow()
+            } header: {
+                Text("Öyrənmə")
+            } footer: {
+                Text("Testdə səhv etdiyin və ya \"Bilmirəm\" dediyin sual testin sonuna yenidən əlavə olunur və düz cavablayana qədər qayıdır. Balla qiymətləndirilən imtahanlarda, Böyük sınaqda və simulyasiyada işləmir.")
             }
 
             Section {
@@ -91,12 +105,55 @@ struct SettingsView: View {
         .pageTitle("Tənzimləmələr")
     }
 
+    /// "Grafik · 3 gün" — the nearest subject exam.
+    private var nextExamText: String {
+        guard let n = ExamDates.shared.next else { return "Keçib" }
+        return "\(StudyStore.shortSubject(n.subject)) · " + (n.days == 0 ? "bu gün" : "\(n.days) gün")
+    }
+
     private var notificationSummary: String {
         let r = StudyReminder.shared
         var parts: [String] = []
         if r.isEnabled { parts.append(r.time.formatted(date: .omitted, time: .shortened)) }
         if surprise.isEnabled { parts.append("Sürpriz") }
         return parts.isEmpty ? "Bağlı" : parts.joined(separator: " · ")
+    }
+}
+
+/// İmtahan tarixləri: one exam day per subject (drives the Home countdown and the daily plan).
+private struct ExamDatesView: View {
+    private let dates = ExamDates.shared
+
+    var body: some View {
+        Form {
+            Section {
+                ForEach(Catalog.subjects, id: \.self) { s in
+                    DatePicker(selection: Binding(get: { dates.date(for: s) }, set: { dates.set($0, for: s) }),
+                               displayedComponents: .date) {
+                        HStack(spacing: Theme.Space.s12) {
+                            SubjectIcon(course: s, size: 29)
+                            VStack(alignment: .leading, spacing: 1) {
+                                Text(StudyStore.shortSubject(s)).foregroundStyle(Theme.text).lineLimit(1)
+                                Text(daysText(dates.daysLeft(s))).font(.caption).monospacedDigit()
+                                    .foregroundStyle(dates.daysLeft(s) <= 2 && dates.daysLeft(s) >= 0 ? Theme.warning : Theme.textMuted)
+                            }
+                        }
+                    }
+                    .environment(\.locale, Locale(identifier: "az"))
+                    .appRow()
+                }
+            } footer: {
+                Text("Ana səhifədəki geri sayım ən yaxın imtahanı göstərir. Gündəlik plan hər fənnin qalan suallarını öz imtahan gününə qədər bölür.")
+            }
+        }
+        .appListStyle()
+        .pageTitle("İmtahan tarixləri")
+        .toolbarBackground(Theme.bg, for: .navigationBar)
+        .toolbar(.hidden, for: .tabBar)
+    }
+
+    private func daysText(_ d: Int) -> String {
+        d > 0 ? "\(d) gün qalıb" : (d == 0 ? "Bu gün" : "Keçib")
     }
 }
 

@@ -146,7 +146,7 @@ extension QuizSession {
         switch kind {
         case .review:
             return (q.c, "review", "Bu günün təkrarı")
-        case .allQuestions:
+        case .allQuestions, .unlearned:
             // Unit answers count for that unit (as on its own page); unknown-unit booklet questions go to review.
             guard Catalog.unitCounts[q.c] != nil, q.u >= 1 else { return (q.c, "review", "Bütün suallar") }
             return (q.c, "units", "Unit \(q.u)")

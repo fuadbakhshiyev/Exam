@@ -38,10 +38,12 @@ struct CourseView: View {
             AllQuestionsRow(count: store.allSubjectQuestions(course).count, mode: store.examMode) {
                 router.start(.allQuestions(course))
             }
+            let m = store.masteryProgress(course)
+            UnlearnedRow(learned: m.learned, total: m.total) { router.start(.unlearned(course)) }
         } footer: {
             Text(store.examMode == .vize
-                 ? "1–7-ci ünitələrin, Mixed-in və keçmiş vize imtahanlarının bütün sualları, təkrarsız və qarışıq."
-                 : "Bütün ünitələrin, Mixed-in və keçmiş imtahanların bütün sualları, təkrarsız və qarışıq.")
+                 ? "1–7-ci ünitələrin, Mixed-in və keçmiş vize imtahanlarının bütün sualları, təkrarsız və qarışıq. Sual 2 dəfə ardıcıl düz cavablananda öyrənilmiş sayılır."
+                 : "Bütün ünitələrin, Mixed-in və keçmiş imtahanların bütün sualları, təkrarsız və qarışıq. Sual 2 dəfə ardıcıl düz cavablananda öyrənilmiş sayılır.")
         }
         if page.multi.wrongCount > 0 || page.mixedOnlyRow != nil {
             Section {
@@ -97,5 +99,39 @@ private struct AllQuestionsRow: View {
         .disabled(count == 0)
         .appRow()
         .accessibilityLabel("Bütün suallar, \(count) sual")
+    }
+}
+
+/// "Öyrənilməmişlər  44 sual qalıb" + a learned bar (92 / 136 öyrənilib).
+private struct UnlearnedRow: View {
+    let learned: Int
+    let total: Int
+    let action: () -> Void
+
+    var body: some View {
+        let left = max(0, total - learned)
+        Button(action: action) {
+            HStack(spacing: Theme.Space.s12) {
+                IconTile(symbol: left == 0 ? "checkmark.seal.fill" : "graduationcap.fill",
+                         color: left == 0 ? Theme.success : .orange, size: 36)
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("Öyrənilməmişlər").font(.body.weight(.semibold)).foregroundStyle(Theme.text)
+                        Spacer(minLength: 4)
+                        Text(left == 0 ? "Hamısı öyrənilib ✓" : "\(left) sual qalıb")
+                            .font(.subheadline).monospacedDigit()
+                            .foregroundStyle(left == 0 ? Theme.success : Theme.textMuted)
+                    }
+                    ProgressLine(fraction: total > 0 ? Double(learned) / Double(total) : 0, height: 4)
+                    Text("\(learned) / \(total) öyrənilib").font(.caption).monospacedDigit().foregroundStyle(Theme.textMuted)
+                }
+            }
+            .padding(.vertical, 4)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .disabled(left == 0)
+        .appRow()
+        .accessibilityLabel("Öyrənilməmişlər, \(left) sual qalıb, \(learned) / \(total) öyrənilib")
     }
 }

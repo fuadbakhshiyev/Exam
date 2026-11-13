@@ -193,6 +193,12 @@ struct QuizView: View {
                             .background(Theme.surfaceInner, in: RoundedRectangle(cornerRadius: 6))
                     }
                 }
+                if session.isRequeued(item) {
+                    Label("Təkrar", systemImage: "arrow.uturn.backward")
+                        .font(.system(size: 11, weight: .semibold)).foregroundStyle(Theme.accent)
+                        .padding(.horizontal, 8).padding(.vertical, 3)
+                        .background(Theme.accent.opacity(0.14), in: RoundedRectangle(cornerRadius: 6))
+                }
                 if let n = session.hardBadgeCount {
                     let c = n >= 3 ? Theme.danger : Theme.warning
                     Text("\(n) dəfə səhv").font(.system(size: 11, weight: .semibold)).foregroundStyle(c)
@@ -280,12 +286,13 @@ struct QuizView: View {
         let ans = session.currentAnswer
         let q = session.current?.question
         let isHint = ans?.hint == true
+        let isDontKnow = ans?.chosen == QuizSession.dontKnowChoice
         let isRight = ans != nil && !isHint && ans?.chosen == q?.a
         let tint: Color = isHint ? Theme.warning : (isRight ? Theme.success : Theme.danger)
         VStack(spacing: 12) {
             if ans != nil, let title = session.feedbackTitle {
                 HStack(spacing: 10) {
-                    Image(systemName: isHint ? "lightbulb.fill" : (isRight ? "checkmark.circle.fill" : "xmark.circle.fill"))
+                    Image(systemName: isHint ? "lightbulb.fill" : (isRight ? "checkmark.circle.fill" : (isDontKnow ? "questionmark.circle.fill" : "xmark.circle.fill")))
                         .font(.title2).foregroundStyle(tint)
                     VStack(alignment: .leading, spacing: 2) {
                         Text(title).font(.headline).foregroundStyle(tint)
@@ -304,6 +311,12 @@ struct QuizView: View {
                 .buttonStyle(.glass)
                 .disabled(session.index == 0)
                 if ans == nil {
+                    // "Bilmirəm": show the answer, count it as wrong (no lucky guesses).
+                    Button { withAnimation(.snappy) { session.dontKnow() } } label: {
+                        Text("Bilmirəm").frame(maxWidth: .infinity, minHeight: Self.barButtonHeight)
+                    }
+                    .buttonStyle(.glass)
+                    .tint(Theme.warning)
                     Button { next() } label: { Text(session.nextButtonTitle).frame(maxWidth: .infinity, minHeight: Self.barButtonHeight) }
                         .buttonStyle(.glass)
                 } else {
