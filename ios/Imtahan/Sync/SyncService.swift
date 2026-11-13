@@ -222,6 +222,7 @@ final class SyncService {
                     try await CloudDocument(uid: uid, mode: mode ?? .doc).write(json: JSONBridge.stringify(merged), ts: JS.num(merged[js: "ts"]))
                 }
             }
+            await syncExtras(uid: uid)
             status = .ok(at: Date())
         } catch {
             dirty = true
@@ -230,6 +231,18 @@ final class SyncService {
         }
         saving = false
         if dirty { scheduleQuick() }
+    }
+
+    /// Exam dates and learned questions (Sync/ExtrasSync.swift). Failures never break the main sync.
+    private func syncExtras(uid: String) async {
+        let doc = ExtrasDocument(uid: uid, mode: mode ?? .doc)
+        let remote = (try? await doc.read()) ?? nil
+        let local = SyncExtras.local
+        let merged = remote.map { SyncExtras.merge(local, $0) } ?? local
+        merged.apply()
+        if merged != remote, !(merged.dates.isEmpty && merged.mastery.isEmpty) {
+            try? await doc.write(merged)
+        }
     }
 
     /// "Sıfırla": remove only this semester from the cloud.
@@ -288,6 +301,11 @@ final class SyncService {
         switch result {
         case .success(let raw):
             if raw.hasPendingWrites || applying || saving { return }
+            // Field mode: the same document carries the app extras (exam dates, learned questions).
+            if mode == .field, let extras = SyncExtras.decode(document: raw) {
+                extras.apply()
+                if SyncExtras.merge(extras, .local) != extras { dirty = true; scheduleQuick() }
+            }
             guard let cloud = CloudDocument.decode(raw, mode: mode) else { return }
             let local = codec.snapshot(store.data)
             let merged = SyncMerge.merge(local, cloud)

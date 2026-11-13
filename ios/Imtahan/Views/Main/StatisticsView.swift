@@ -16,6 +16,7 @@ struct StatisticsView: View {
                 ScopeChip()
 
                 StatsSectionTitle(text: "İmtahanlar")
+                ExamCountdownCard()
                 ExamReadinessCard()
 
                 StatsSectionTitle(text: "Bu gün")
@@ -130,6 +131,60 @@ struct StatisticsView: View {
     static func timeParts(_ s: Int) -> (value: String, unit: String) {
         let h = s / 3600, m = (s % 3600) / 60
         return h > 0 ? ("\(h)", m > 0 ? "saat \(m) dəq" : "saat") : ("\(m)", "dəq")
+    }
+}
+
+// MARK: - Countdown
+
+/// Big live countdown to the nearest exam: days · hours · minutes.
+private struct ExamCountdownCard: View {
+    var body: some View {
+        let dates = ExamDates.shared
+        TimelineView(.periodic(from: .now, by: 1)) { ctx in
+            if let n = dates.next {
+                let target = dates.date(for: n.subject)
+                let left = max(0, Int(target.timeIntervalSince(ctx.date)))
+                let d = left / 86_400, h = (left % 86_400) / 3600, m = (left % 3600) / 60
+                CardShell(title: "Geri sayım", symbol: "hourglass", tint: d <= 2 ? Theme.warning : Theme.accent, chevron: false) {
+                    VStack(alignment: .leading, spacing: Theme.Space.s12) {
+                        HStack(spacing: Theme.Space.s10) {
+                            SubjectIcon(course: n.subject, size: 32)
+                            VStack(alignment: .leading, spacing: 1) {
+                                Text(n.subject).font(.headline).foregroundStyle(Theme.text)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                Text(target.formatted(.dateTime.weekday(.wide).day().month(.wide).hour().minute()
+                                    .locale(Locale(identifier: "az"))))
+                                    .font(.subheadline).foregroundStyle(Theme.textMuted)
+                            }
+                        }
+                        HStack(spacing: Theme.Space.s8) {
+                            unit(d, "gün")
+                            unit(h, "saat")
+                            unit(m, "dəqiqə")
+                        }
+                    }
+                }
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("\(n.subject) imtahanına \(d) gün \(h) saat \(m) dəqiqə qalıb")
+            } else {
+                CardShell(title: "Geri sayım", symbol: "hourglass", tint: Theme.success, chevron: false) {
+                    Text("Bütün imtahanlar bitib 🎉").font(.headline).foregroundStyle(Theme.text)
+                }
+            }
+        }
+    }
+
+    private func unit(_ v: Int, _ label: String) -> some View {
+        VStack(spacing: 2) {
+            Text("\(v)")
+                .font(.system(size: 34, weight: .bold, design: .rounded)).monospacedDigit()
+                .foregroundStyle(Theme.text)
+                .contentTransition(.numericText(countsDown: true))
+            Text(label).font(.caption).foregroundStyle(Theme.textMuted)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, Theme.Space.s10)
+        .background(Theme.surfaceInner, in: RoundedRectangle(cornerRadius: Theme.Radius.md, style: .continuous))
     }
 }
 

@@ -1,7 +1,8 @@
 import Foundation
 import Observation
 
-// Learning helpers (device-local, never synced):
+// Learning helpers. Device-local, plus a small extra cloud field next to the semester data
+// (Sync/ExtrasSync.swift) so the phone and the Mac share exam dates and what is learned:
 // - ExamDates: one exam day and time per subject (falls back to the general exam date, 09:00).
 // - LearnSettings: "Səhvlər testin sonunda qayıtsın" switch.
 // - MasteryStore: a question is "öyrənilib" after 2 correct answers in a row; a wrong answer or
@@ -13,11 +14,34 @@ final class ExamDates {
     static let shared = ExamDates()
     private static let key = "exam_dates"
 
+    private static let updatedKey = "exam_dates_updated"
+
     /// subject → seconds since 1970.
     private(set) var raw: [String: Double]
+    /// subject → when it was last changed (sync: the newer change wins).
+    private(set) var updated: [String: Double]
 
     private init() {
         raw = UserDefaults.standard.dictionary(forKey: Self.key) as? [String: Double] ?? [:]
+        updated = UserDefaults.standard.dictionary(forKey: Self.updatedKey) as? [String: Double] ?? [:]
+    }
+
+    private func persist() {
+        UserDefaults.standard.set(raw, forKey: Self.key)
+        UserDefaults.standard.set(updated, forKey: Self.updatedKey)
+    }
+
+    /// Sync: subject → [date, updatedAt].
+    var syncValue: [String: [Double]] {
+        raw.reduce(into: [:]) { $0[$1.key] = [$1.value, updated[$1.key] ?? 0] }
+    }
+
+    func merge(_ remote: [String: [Double]]) {
+        var changed = false
+        for (s, v) in remote where v.count == 2 && v[0] > 0 && v[1] > (updated[s] ?? -1) {
+            raw[s] = v[0]; updated[s] = v[1]; changed = true
+        }
+        if changed { persist() }
     }
 
     func date(for subject: String) -> Date {
@@ -27,7 +51,9 @@ final class ExamDates {
 
     func set(_ date: Date, for subject: String) {
         raw[subject] = date.timeIntervalSince1970
-        UserDefaults.standard.set(raw, forKey: Self.key)
+        updated[subject] = Date().timeIntervalSince1970
+        persist()
+        StudyStore.shared.onLocalChange?(true)   // push to the cloud soon
     }
 
     /// Whole days left for a subject (0 = today, negative = past).
@@ -78,24 +104,34 @@ final class MasteryStore {
     /// Correct answers in a row needed to call a question learned.
     static let needed = 2
 
-    /// normalized question text → correct answers in a row.
+    /// QuestionHash of the normalized text → correct answers in a row.
     private(set) var streaks: [String: Int] = [:]
+    /// Same key → when it last changed (sync: the newer answer wins).
+    @ObservationIgnored private var stamps: [String: Double] = [:]
     @ObservationIgnored private let fileURL: URL
     @ObservationIgnored private var saveTask: Task<Void, Never>?
-    /// question text → normalized key (normalizing is regex work; lists are checked on every render).
+    /// question text → key (normalizing is regex work; lists are checked on every render).
     @ObservationIgnored private var keyCache: [String: String] = [:]
+
+    private struct FileShape: Codable { var streaks: [String: Int]; var stamps: [String: Double] }
 
     private func key(_ q: Question) -> String {
         if let k = keyCache[q.q] { return k }
-        let k = StudyStore.normalizedQuestionText(q.q)
+        let n = StudyStore.normalizedQuestionText(q.q)
+        let k = n.isEmpty ? "" : QuestionHash.hash(n)
         keyCache[q.q] = k
         return k
     }
 
     private init() {
         fileURL = StudyStore.defaultFileURL().deletingLastPathComponent().appendingPathComponent("mastery.json")
-        if let raw = try? Data(contentsOf: fileURL), let s = try? JSONDecoder().decode([String: Int].self, from: raw) {
-            streaks = s
+        guard let raw = try? Data(contentsOf: fileURL) else { return }
+        if let f = try? JSONDecoder().decode(FileShape.self, from: raw) {
+            streaks = f.streaks; stamps = f.stamps
+        } else if let old = try? JSONDecoder().decode([String: Int].self, from: raw) {
+            // First version: keyed by the normalized text itself.
+            let now = Date().timeIntervalSince1970
+            for (text, v) in old { let k = QuestionHash.hash(text); streaks[k] = v; stamps[k] = now }
         }
     }
 
@@ -103,6 +139,7 @@ final class MasteryStore {
         let key = key(q)
         guard !key.isEmpty else { return }
         streaks[key] = isCorrect ? min((streaks[key] ?? 0) + 1, Self.needed) : 0
+        stamps[key] = Date().timeIntervalSince1970
         scheduleSave()
     }
 
@@ -112,7 +149,21 @@ final class MasteryStore {
 
     func clear() {
         streaks = [:]
+        stamps = [:]
         flush()
+    }
+
+    /// Sync: key → [streak, changedAt].
+    var syncValue: [String: [Double]] {
+        streaks.reduce(into: [:]) { $0[$1.key] = [Double($1.value), stamps[$1.key] ?? 0] }
+    }
+
+    func merge(_ remote: [String: [Double]]) {
+        var changed = false
+        for (k, v) in remote where v.count == 2 && v[1] > (stamps[k] ?? -1) {
+            streaks[k] = Int(v[0]); stamps[k] = v[1]; changed = true
+        }
+        if changed { flush() }
     }
 
     private func scheduleSave() {
@@ -126,7 +177,7 @@ final class MasteryStore {
 
     func flush() {
         saveTask?.cancel(); saveTask = nil
-        guard let raw = try? JSONEncoder().encode(streaks) else { return }
+        guard let raw = try? JSONEncoder().encode(FileShape(streaks: streaks, stamps: stamps)) else { return }
         let url = fileURL
         Task.detached(priority: .utility) { try? raw.write(to: url, options: .atomic) }
     }
