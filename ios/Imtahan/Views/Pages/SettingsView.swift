@@ -129,24 +129,26 @@ private struct ExamDatesView: View {
         Form {
             Section {
                 ForEach(Catalog.subjects, id: \.self) { s in
-                    // Own row layout: a long name truncates instead of pushing the pickers to a new line.
-                    HStack(spacing: Theme.Space.s12) {
-                        SubjectIcon(course: s, size: 29)
-                        VStack(alignment: .leading, spacing: 1) {
-                            Text(StudyStore.shortSubject(s)).foregroundStyle(Theme.text)
-                                .lineLimit(1).minimumScaleFactor(0.8)
-                            Text(daysText(s)).font(.caption).monospacedDigit()
-                                .foregroundStyle(dates.daysLeft(s) <= 2 && !dates.isOver(s) ? Theme.warning : Theme.textMuted)
-                                .lineLimit(1)
+                    // Two lines: the full subject name on top, the countdown and the date / time pickers below.
+                    VStack(alignment: .leading, spacing: Theme.Space.s10) {
+                        HStack(spacing: Theme.Space.s12) {
+                            SubjectIcon(course: s, size: 29)
+                            Text(s).font(.body.weight(.medium)).foregroundStyle(Theme.text)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
-                        .layoutPriority(-1)
-                        Spacer(minLength: 4)
-                        DatePicker("\(s) imtahanı", selection: Binding(get: { dates.date(for: s) }, set: { dates.set($0, for: s) }),
-                                   displayedComponents: [.date, .hourAndMinute])
-                            .labelsHidden()
-                            .fixedSize()
-                            .environment(\.locale, Locale(identifier: "az"))
+                        HStack(spacing: Theme.Space.s8) {
+                            Text(daysText(s)).font(.subheadline).monospacedDigit()
+                                .foregroundStyle(dates.daysLeft(s) <= 2 && !dates.isOver(s) ? Theme.warning : Theme.textMuted)
+                            Spacer(minLength: 4)
+                            DatePicker("\(s) imtahanı", selection: Binding(get: { dates.date(for: s) }, set: { dates.set($0, for: s) }),
+                                       displayedComponents: [.date, .hourAndMinute])
+                                .labelsHidden()
+                                .fixedSize()
+                                .environment(\.locale, Locale(identifier: "az"))
+                        }
+                        .padding(.leading, 29 + Theme.Space.s12)
                     }
+                    .padding(.vertical, Theme.Space.s4)
                     .appRow()
                 }
             } footer: {
