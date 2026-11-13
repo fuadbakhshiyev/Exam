@@ -108,7 +108,8 @@ struct SettingsView: View {
     /// "Grafik · 3 gün" — the nearest subject exam.
     private var nextExamText: String {
         guard let n = ExamDates.shared.next else { return "Keçib" }
-        return "\(StudyStore.shortSubject(n.subject)) · " + (n.days == 0 ? "bu gün" : "\(n.days) gün")
+        let t = ExamDates.shared.timeText(n.subject)
+        return "\(StudyStore.shortSubject(n.subject)) · " + (n.days == 0 ? "bu gün \(t)" : (n.days == 1 ? "sabah \(t)" : "\(n.days) gün"))
     }
 
     private var notificationSummary: String {
@@ -129,12 +130,12 @@ private struct ExamDatesView: View {
             Section {
                 ForEach(Catalog.subjects, id: \.self) { s in
                     DatePicker(selection: Binding(get: { dates.date(for: s) }, set: { dates.set($0, for: s) }),
-                               displayedComponents: .date) {
+                               displayedComponents: [.date, .hourAndMinute]) {
                         HStack(spacing: Theme.Space.s12) {
                             SubjectIcon(course: s, size: 29)
                             VStack(alignment: .leading, spacing: 1) {
                                 Text(StudyStore.shortSubject(s)).foregroundStyle(Theme.text).lineLimit(1)
-                                Text(daysText(dates.daysLeft(s))).font(.caption).monospacedDigit()
+                                Text(daysText(s)).font(.caption).monospacedDigit()
                                     .foregroundStyle(dates.daysLeft(s) <= 2 && dates.daysLeft(s) >= 0 ? Theme.warning : Theme.textMuted)
                             }
                         }
@@ -143,7 +144,7 @@ private struct ExamDatesView: View {
                     .appRow()
                 }
             } footer: {
-                Text("Ana səhifədəki geri sayım ən yaxın imtahanı göstərir. Gündəlik plan hər fənnin qalan suallarını öz imtahan gününə qədər bölür.")
+                Text("Tarix və saatı seçin. Ana səhifədəki geri sayım ən yaxın imtahanı göstərir. Gündəlik plan hər fənnin qalan suallarını öz imtahan gününə qədər bölür.")
             }
         }
         .appListStyle()
@@ -152,8 +153,10 @@ private struct ExamDatesView: View {
         .toolbar(.hidden, for: .tabBar)
     }
 
-    private func daysText(_ d: Int) -> String {
-        d > 0 ? "\(d) gün qalıb" : (d == 0 ? "Bu gün" : "Keçib")
+    private func daysText(_ s: String) -> String {
+        if dates.isOver(s) { return "Keçib" }
+        let d = dates.daysLeft(s), t = dates.timeText(s)
+        return d == 0 ? "Bu gün, \(t)" : (d == 1 ? "Sabah, \(t)" : "\(d) gün qalıb")
     }
 }
 

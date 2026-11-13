@@ -29,7 +29,8 @@ struct TodaySection: View {
         let text: String = {
             guard let n = next else { return "İmtahanlar bitib" }
             let name = StudyStore.shortSubject(n.subject)
-            return n.days == 0 ? "\(name): bu gün" : "\(name): \(n.days) gün"
+            let time = ExamDates.shared.timeText(n.subject)
+            return n.days == 0 ? "\(name): bu gün \(time)" : (n.days == 1 ? "\(name): sabah \(time)" : "\(name): \(n.days) gün")
         }()
         return HStack(alignment: .firstTextBaseline) {
             Text("Bu gün")

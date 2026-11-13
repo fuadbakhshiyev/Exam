@@ -2,7 +2,7 @@ import Foundation
 import Observation
 
 // Learning helpers (device-local, never synced):
-// - ExamDates: one exam day per subject (falls back to the general exam date).
+// - ExamDates: one exam day and time per subject (falls back to the general exam date, 09:00).
 // - LearnSettings: "Səhvlər testin sonunda qayıtsın" switch.
 // - MasteryStore: a question is "öyrənilib" after 2 correct answers in a row; a wrong answer or
 //   "Bilmirəm" resets it. Keyed by normalized question text, so all copies of a question count together.
@@ -33,9 +33,20 @@ final class ExamDates {
     /// Whole days left for a subject (0 = today, negative = past).
     func daysLeft(_ subject: String) -> Int { StudyStore.daysUntil(date(for: subject)) }
 
-    /// The nearest exam that is today or later.
-    var next: (subject: String, days: Int)? {
-        Catalog.subjects.map { ($0, daysLeft($0)) }.filter { $0.1 >= 0 }.min { $0.1 < $1.1 }
+    /// Has the subject's exam started already (date and time passed)?
+    func isOver(_ subject: String, now: Date = Date()) -> Bool { date(for: subject) <= now }
+
+    /// The nearest exam that has not started yet.
+    var next: (subject: String, days: Int, date: Date)? {
+        let now = Date()
+        return Catalog.subjects.map { ($0, daysLeft($0), date(for: $0)) }
+            .filter { $0.2 > now }
+            .min { $0.2 < $1.2 }
+    }
+
+    /// "10:00"
+    func timeText(_ subject: String) -> String {
+        date(for: subject).formatted(date: .omitted, time: .shortened)
     }
 
     /// Changes whenever any date changes (daily plan snapshot tag).

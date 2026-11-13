@@ -111,7 +111,7 @@ extension StudyStore {
                 // Each subject is spread over the days left until its own exam (none after it).
                 let left = dates.daysLeft(s)
                 let days = max(1, left)
-                planned = (r.count == 0 || left < 0) ? 0 : Int((Double(r.count + done) / Double(days)).rounded(.up))
+                planned = (r.count == 0 || dates.isOver(s)) ? 0 : Int((Double(r.count + done) / Double(days)).rounded(.up))
                 snap[s] = planned
                 changed = true
             }
