@@ -129,18 +129,24 @@ private struct ExamDatesView: View {
         Form {
             Section {
                 ForEach(Catalog.subjects, id: \.self) { s in
-                    DatePicker(selection: Binding(get: { dates.date(for: s) }, set: { dates.set($0, for: s) }),
-                               displayedComponents: [.date, .hourAndMinute]) {
-                        HStack(spacing: Theme.Space.s12) {
-                            SubjectIcon(course: s, size: 29)
-                            VStack(alignment: .leading, spacing: 1) {
-                                Text(StudyStore.shortSubject(s)).foregroundStyle(Theme.text).lineLimit(1)
-                                Text(daysText(s)).font(.caption).monospacedDigit()
-                                    .foregroundStyle(dates.daysLeft(s) <= 2 && dates.daysLeft(s) >= 0 ? Theme.warning : Theme.textMuted)
-                            }
+                    // Own row layout: a long name truncates instead of pushing the pickers to a new line.
+                    HStack(spacing: Theme.Space.s12) {
+                        SubjectIcon(course: s, size: 29)
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(StudyStore.shortSubject(s)).foregroundStyle(Theme.text)
+                                .lineLimit(1).minimumScaleFactor(0.8)
+                            Text(daysText(s)).font(.caption).monospacedDigit()
+                                .foregroundStyle(dates.daysLeft(s) <= 2 && !dates.isOver(s) ? Theme.warning : Theme.textMuted)
+                                .lineLimit(1)
                         }
+                        .layoutPriority(-1)
+                        Spacer(minLength: 4)
+                        DatePicker("\(s) imtahanı", selection: Binding(get: { dates.date(for: s) }, set: { dates.set($0, for: s) }),
+                                   displayedComponents: [.date, .hourAndMinute])
+                            .labelsHidden()
+                            .fixedSize()
+                            .environment(\.locale, Locale(identifier: "az"))
                     }
-                    .environment(\.locale, Locale(identifier: "az"))
                     .appRow()
                 }
             } footer: {
