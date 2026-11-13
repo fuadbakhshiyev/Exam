@@ -15,6 +15,9 @@ struct StatisticsView: View {
             VStack(alignment: .leading, spacing: Theme.Space.s12) {
                 ScopeChip()
 
+                StatsSectionTitle(text: "İmtahanlar")
+                ExamReadinessCard()
+
                 StatsSectionTitle(text: "Bu gün")
                 NavigationLink(value: Route.statsMetric(.today)) {
                     MetricCard(title: "Gündəlik hədəf", symbol: "target", tint: Theme.accent, caption: level.level,
@@ -127,6 +130,75 @@ struct StatisticsView: View {
     static func timeParts(_ s: Int) -> (value: String, unit: String) {
         let h = s / 3600, m = (s % 3600) / 60
         return h > 0 ? ("\(h)", m > 0 ? "saat \(m) dəq" : "saat") : ("\(m)", "dəq")
+    }
+}
+
+// MARK: - Exam readiness
+
+/// "İmtahan hazırlığı": per subject the days / time left to its exam, how much of its question set is
+/// learned (2 correct in a row) and the answer accuracy. A row opens the subject's statistics.
+private struct ExamReadinessCard: View {
+    @Environment(StudyStore.self) private var store
+
+    var body: some View {
+        let dates = ExamDates.shared
+        let next = dates.next
+        CardShell(title: "İmtahan hazırlığı", symbol: "calendar.badge.clock", tint: .red,
+                  caption: next.map { n in
+                      "\(StudyStore.shortSubject(n.subject)): " + (n.days == 0 ? "bu gün \(dates.timeText(n.subject))"
+                                                                   : (n.days == 1 ? "sabah \(dates.timeText(n.subject))" : "\(n.days) gün"))
+                  } ?? "İmtahanlar bitib", chevron: false) {
+            VStack(spacing: 0) {
+                // Nearest exam first; finished ones at the end.
+                let order = Catalog.subjects.sorted { a, b in
+                    let oa = dates.isOver(a), ob = dates.isOver(b)
+                    return oa != ob ? !oa : dates.date(for: a) < dates.date(for: b)
+                }
+                ForEach(Array(order.enumerated()), id: \.element) { i, s in
+                    NavigationLink(value: Route.subjectStats(s)) { row(s, dates) }
+                        .buttonStyle(.plain)
+                    if i < order.count - 1 { Divider().padding(.leading, 44) }
+                }
+                Text("Hazırlıq: öyrənilmiş suallar (2 dəfə ardıcıl düz). Dəqiqlik: bütün cavabların düz faizi.")
+                    .font(.caption).foregroundStyle(Theme.textMuted)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, Theme.Space.s8)
+            }
+        }
+    }
+
+    private func row(_ s: String, _ dates: ExamDates) -> some View {
+        let m = store.masteryProgress(s)
+        let ready = m.total > 0 ? Int((Double(m.learned) / Double(m.total) * 100).rounded()) : 0
+        let acc = store.subjectStatsRow(s).accuracy
+        let over = dates.isOver(s)
+        let d = dates.daysLeft(s)
+        let when = over ? "Keçib" : (d == 0 ? "Bu gün \(dates.timeText(s))" : (d == 1 ? "Sabah \(dates.timeText(s))" : "\(d) gün"))
+        let dateText = dates.date(for: s).formatted(.dateTime.day().month(.abbreviated).hour().minute().locale(Locale(identifier: "az")))
+        return HStack(spacing: Theme.Space.s12) {
+            SubjectIcon(course: s, size: 32)
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(alignment: .firstTextBaseline) {
+                    Text(StudyStore.shortSubject(s)).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.text).lineLimit(1)
+                    Spacer(minLength: 4)
+                    Text(when).font(.subheadline.weight(.semibold)).monospacedDigit()
+                        .foregroundStyle(over ? Theme.textMuted : (d <= 2 ? Theme.warning : Theme.text))
+                }
+                ProgressLine(fraction: Double(ready) / 100, height: 4)
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Hazırlıq \(ready)% · \(m.learned)/\(m.total)")
+                    if let acc { Text("· Dəqiqlik \(acc)%").foregroundStyle(StatsFormat.tone(acc)) }
+                    Spacer(minLength: 4)
+                    Text(dateText)
+                }
+                .font(.caption).monospacedDigit().foregroundStyle(Theme.textMuted).lineLimit(1).minimumScaleFactor(0.8)
+            }
+            Chevron()
+        }
+        .padding(.vertical, Theme.Space.s10)
+        .contentShape(Rectangle())
+        .opacity(over ? 0.6 : 1)
+        .accessibilityElement(children: .combine)
     }
 }
 
