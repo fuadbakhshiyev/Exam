@@ -128,7 +128,8 @@ private struct ExamDatesView: View {
     var body: some View {
         Form {
             Section {
-                ForEach(Catalog.subjects, id: \.self) { s in
+                // Nearest exam first, finished ones last (re-sorts as soon as a date changes).
+                ForEach(sortedSubjects, id: \.self) { s in
                     // Two lines: the full subject name on top, the countdown and the date / time pickers below.
                     VStack(alignment: .leading, spacing: Theme.Space.s10) {
                         HStack(spacing: Theme.Space.s12) {
@@ -140,7 +141,8 @@ private struct ExamDatesView: View {
                             Text(daysText(s)).font(.subheadline).monospacedDigit()
                                 .foregroundStyle(dates.daysLeft(s) <= 2 && !dates.isOver(s) ? Theme.warning : Theme.textMuted)
                             Spacer(minLength: 4)
-                            DatePicker("\(s) imtahanı", selection: Binding(get: { dates.date(for: s) }, set: { dates.set($0, for: s) }),
+                            DatePicker("\(s) imtahanı", selection: Binding(get: { dates.date(for: s) },
+                                                          set: { d in withAnimation(.snappy) { dates.set(d, for: s) } }),
                                        displayedComponents: [.date, .hourAndMinute])
                                 .labelsHidden()
                                 .fixedSize()
@@ -159,6 +161,15 @@ private struct ExamDatesView: View {
         .pageTitle("İmtahan tarixləri")
         .toolbarBackground(Theme.bg, for: .navigationBar)
         .toolbar(.hidden, for: .tabBar)
+    }
+
+    private var sortedSubjects: [String] {
+        Catalog.subjects.sorted { a, b in
+            let oa = dates.isOver(a), ob = dates.isOver(b)
+            if oa != ob { return !oa }
+            let da = dates.date(for: a), db = dates.date(for: b)
+            return da != db ? da < db : Catalog.subjects.firstIndex(of: a)! < Catalog.subjects.firstIndex(of: b)!
+        }
     }
 
     private func daysText(_ s: String) -> String {
