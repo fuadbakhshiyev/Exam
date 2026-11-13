@@ -41,6 +41,7 @@ final class QuizSession: Identifiable {
         case simulation(SimulationConfig)               // "Real imtahan simulyasiyası" (Store/ExamSimulation.swift)
         case review                                     // "Bu günün təkrarı" (Leitner, StudyStore+Review.swift)
         case weakTopics                                 // "Zəif mövzular" (StudyStore+Plan.swift)
+        case allQuestions(String)                       // "Bütün suallar" of a subject (StudyStore+AllQuestions.swift)
     }
 
     struct Option: Hashable, Sendable {
@@ -55,7 +56,7 @@ final class QuizSession: Identifiable {
         let options: [Option]
     }
 
-    struct Answer: Hashable, Sendable {
+    struct Answer: Codable, Hashable, Sendable {
         /// Original option index, -1 for a hint.
         let chosen: Int
         let hint: Bool
@@ -168,7 +169,7 @@ final class QuizSession: Identifiable {
     @ObservationIgnored private var lastMissedCourse: String = ""
 
     /// Starts the session (and its timer). Throws the web's alert text when there is nothing to ask.
-    init(_ kind: Kind, store: StudyStore, bank: QuestionBank = .shared) throws {
+    init(_ kind: Kind, store: StudyStore, bank: QuestionBank = .shared, restore: QuizProgress? = nil) throws {
         self.kind = kind
         self.store = store
         self.bank = bank
@@ -191,6 +192,13 @@ final class QuizSession: Identifiable {
             loadUnit(p.selectionIndex)
         } else {
             items = Self.makeItems(p.questions)
+        }
+        if let r = restore, !r.questions.isEmpty {
+            items = Self.items(from: r)
+            answers = r.answers
+            correctCount = r.correct
+            wrongCount = r.wrong
+            index = min(max(0, r.index), items.count - 1)
         }
         if case .simulation(let cfg) = kind { simulation = ExamSimulation(config: cfg, items: items, store: store) }
         store.startQuizTimer(course: p.timerCourse)
@@ -353,6 +361,10 @@ final class QuizSession: Identifiable {
             let qs = store.reviewDueQuestions()
             guard !qs.isEmpty else { throw fail("Bu gün təkrar ediləcək sual yoxdur ✓") }
             return special(qs, "Bu günün təkrarı", "Ağıllı təkrar")
+        case .allQuestions(let subject):
+            let qs = store.allSubjectQuestions(subject).shuffled()
+            guard !qs.isEmpty else { throw fail("Bu fənn üçün sual tapılmadı.") }
+            return special(qs, "Bütün suallar", subject, category: "all-questions")
         case .weakTopics:
             let qs = store.weakTopicQuestions()
             guard !qs.isEmpty else { throw fail("Zəif mövzu tapılmadı: hər ünitədən ən azı 5 sual cavablandırın.") }
@@ -399,6 +411,7 @@ final class QuizSession: Identifiable {
     func loadUnit(_ idx: Int) {
         guard isUnitSession else { return }
         cancelAutoAdvance()
+        saveProgress()   // switching unit with the picker keeps the old one resumable
         selectionIndex = idx
         index = 0
         answers = [:]; correctCount = 0; wrongCount = 0
@@ -444,7 +457,8 @@ final class QuizSession: Identifiable {
 
     /// Shows the course/unit badges above the question.
     var showsMeta: Bool {
-        isMockMode || isWrongMode || isSearchMode || category == "mixed" || category == "exams" || currentTitle == "Multi" || course == Catalog.mixedKey
+        if case .allQuestions = kind { return true }
+        return isMockMode || isWrongMode || isSearchMode || category == "mixed" || category == "exams" || currentTitle == "Multi" || course == Catalog.mixedKey
     }
 
     func meta(for q: Question) -> Meta {
@@ -455,6 +469,9 @@ final class QuizSession: Identifiable {
         if QuestionBank.isFinalKey(q.c) {
             let subj = QuestionBank.baseCourse(q.c)
             return Meta(course: subj, unit: q.u >= 1 ? "Unit \(q.u)" : nil, accentHex: Catalog.styles[subj]?.accent ?? "#8b5cf6")
+        }
+        if case .allQuestions = kind {
+            return Meta(course: q.c, unit: q.u >= 1 ? "Unit \(q.u)" : "Keçmiş imtahan", accentHex: Catalog.styles[q.c]?.accent ?? "#8b5cf6")
         }
         // CONFIG[q.c].units[q.u - 1] is always "Unit N" for subjects; other keys fall back to the same text.
         return Meta(course: q.c, unit: "Unit \(q.u)", accentHex: Catalog.styles[q.c]?.accent ?? "#8b5cf6")
@@ -546,6 +563,7 @@ final class QuizSession: Identifiable {
         if let s = Self.perQuestionStat(kind, q) { stat = s }
         let cel = store.recordQuizAnswer(q, isCorrect: isCorrect, removeFromWrongWhenCorrect: isWrongMode, stat: stat)
         if isCorrect { scheduleAutoAdvance() }
+        saveProgress()
         return AnswerOutcome(isCorrect: isCorrect, willAutoAdvance: isCorrect, celebration: cel)
     }
 
@@ -606,6 +624,7 @@ final class QuizSession: Identifiable {
     func hint() {
         guard answers[index] == nil, current != nil else { return }
         answers[index] = Answer(chosen: -1, hint: true)
+        saveProgress()
     }
 
     func toggleFlashcard() { isFlashcard.toggle(); flashcardRevealed = false }
@@ -621,6 +640,7 @@ final class QuizSession: Identifiable {
     func reset() {
         cancelAutoAdvance()
         index = 0; answers = [:]; correctCount = 0; wrongCount = 0; result = nil
+        clearProgress()
     }
 
     // MARK: Finish (finishTest)
@@ -673,6 +693,7 @@ final class QuizSession: Identifiable {
                        elapsed: elapsed.isEmpty ? "—" : elapsed, isMock: isMockMode, mockSubjects: mock,
                        averageMockScore: avg, confetti: isMockMode ? avg >= 50 : score >= 50, missed: missed)
         result = r
+        clearProgress()
         return r
     }
 
@@ -685,6 +706,7 @@ final class QuizSession: Identifiable {
     /// Leaving the quiz (the dashboards call stopTimer).
     func close() {
         guard !isClosed else { return }
+        saveProgress()
         isClosed = true
         cancelAutoAdvance()
         if ownsTimer { store.stopQuizTimer() }
@@ -695,5 +717,17 @@ final class QuizSession: Identifiable {
         if course == Catalog.overallKey || course == Catalog.mockKey { return .overall }
         if Catalog.configKeys.contains(course) { return .course(course) }
         return .home
+    }
+}
+
+extension QuizSession {
+    /// Real exam-like sessions (past vize / final booklets, Mixed parts and the 20-question mixed exam)
+    /// are graded like ATA AÖF: 100 points over the questions, 4 wrong answers cancel 1 correct.
+    var isGradedExam: Bool {
+        switch kind {
+        case .pdfExam, .finalExam, .mixedPart, .courseMixed: true
+        case .unit(let course, _): course == Catalog.mixedKey
+        default: false
+        }
     }
 }

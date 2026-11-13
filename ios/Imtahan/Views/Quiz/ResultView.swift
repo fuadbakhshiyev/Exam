@@ -43,20 +43,40 @@ struct ResultView: View {
         .sensoryFeedback(.success, trigger: confetti)
     }
 
-    private var scoreColor: Color { result.score >= 90 ? Theme.success : (result.score >= 50 ? Theme.warning : Theme.danger) }
+    /// Exam-style sessions are graded in points (Bal): max 100, 4 wrong answers cancel 1 correct.
+    private var isGraded: Bool { session.isGradedExam }
+
+    private var scoreColor: Color {
+        let v = isGraded ? result.score : Double(result.accuracy)
+        return v >= 85 ? Theme.success : (v >= 50 ? Theme.warning : Theme.danger)
+    }
 
     private var scoreCard: some View {
         VStack(spacing: 6) {
             Image(systemName: result.confetti ? "checkmark.seal.fill" : "flag.checkered")
                 .font(.system(size: 40)).foregroundStyle(scoreColor).symbolEffect(.bounce, value: confetti)
             HStack(alignment: .firstTextBaseline, spacing: 6) {
-                Text("\(result.correct)").font(.system(size: 56, weight: .bold)).foregroundStyle(scoreColor).monospacedDigit()
-                Text("/ \(result.total) düz").font(.system(size: 20, weight: .medium)).foregroundStyle(Theme.textMuted)
+                if isGraded {
+                    Text(Self.points(result.score)).font(.system(size: 56, weight: .bold)).foregroundStyle(scoreColor).monospacedDigit()
+                    Text("/ 100 bal").font(.system(size: 20, weight: .medium)).foregroundStyle(Theme.textMuted)
+                } else {
+                    Text("\(result.correct)").font(.system(size: 56, weight: .bold)).foregroundStyle(scoreColor).monospacedDigit()
+                    Text("/ \(result.total) düz").font(.system(size: 20, weight: .medium)).foregroundStyle(Theme.textMuted)
+                }
             }
             Text("\(session.courseLabel) · \(session.title)").font(.system(size: 13)).foregroundStyle(Theme.textCaption)
                 .multilineTextAlignment(.center)
+            if isGraded {
+                Text("\(result.correct) düz · \(result.wrong) səhv · \(max(0, result.total - result.correct - result.wrong)) boş — 4 səhv 1 düzü aparır")
+                    .font(.footnote).monospacedDigit().foregroundStyle(Theme.textMuted)
+                    .multilineTextAlignment(.center)
+            }
             HStack(spacing: 8) {
-                StatTile(label: "Dəqiqlik", value: "\(result.accuracy)%")
+                if isGraded {
+                    StatTile(label: "Düz", value: "\(result.correct)/\(result.total)")
+                } else {
+                    StatTile(label: "Dəqiqlik", value: "\(result.accuracy)%")
+                }
                 StatTile(label: "Vaxt", value: result.elapsed)
                 StatTile(label: "Net", value: result.netText)
             }
@@ -65,6 +85,12 @@ struct ResultView: View {
         .padding(Theme.Space.s20)
         .frame(maxWidth: .infinity)
         .card(radius: 32)
+    }
+
+    /// 85 → "85", 81.25 → "81.25", 82.5 → "82.5".
+    static func points(_ v: Double) -> String {
+        let r = (v * 100).rounded() / 100
+        return r == r.rounded() ? String(Int(r)) : String(format: r * 10 == (r * 10).rounded() ? "%.1f" : "%.2f", r)
     }
 
     private var mockCard: some View {
@@ -103,7 +129,7 @@ struct ResultView: View {
                 .frame(maxWidth: .infinity)
             }
         }
-        .controlSize(.large)
+        .largeControl()
     }
 
     private func close() {

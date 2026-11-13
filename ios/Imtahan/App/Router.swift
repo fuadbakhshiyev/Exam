@@ -92,8 +92,33 @@ final class AppRouter {
         tab = .stats
     }
 
+    /// A half-done test the user is asked about ("Davam et" / "Yenidən başla").
+    struct PendingResume: Identifiable {
+        let id = UUID()
+        let kind: QuizSession.Kind
+        let key: String
+        let progress: QuizProgress
+    }
+    var pendingResume: PendingResume?
+
     func start(_ kind: QuizSession.Kind) {
-        do { quiz = try QuizSession(kind, store: store) }
+        if let key = QuizSession.progressKey(for: kind, mode: store.examMode),
+           let p = QuizProgressStore.shared.progress(key), p.answeredCount > 0, p.answeredCount < p.total {
+            pendingResume = PendingResume(kind: kind, key: key, progress: p)
+            return
+        }
+        launch(kind, restore: nil)
+    }
+
+    func resume(_ r: PendingResume) { launch(r.kind, restore: r.progress) }
+
+    func restart(_ r: PendingResume) {
+        QuizProgressStore.shared.remove(r.key)
+        launch(r.kind, restore: nil)
+    }
+
+    private func launch(_ kind: QuizSession.Kind, restore: QuizProgress?) {
+        do { quiz = try QuizSession(kind, store: store, restore: restore) }
         catch let e as QuizStartError { alert = e.message }
         catch { alert = error.localizedDescription }
     }

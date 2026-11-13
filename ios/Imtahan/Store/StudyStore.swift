@@ -480,6 +480,7 @@ final class StudyStore {
         stopQuizTimer()
         data = StudyData()
         ReviewStore.shared.clear()
+        QuizProgressStore.shared.clear()
         celebration = nil
         refreshDailyGoal(notify: false)
         markChanged(quick: true)

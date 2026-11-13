@@ -34,6 +34,15 @@ struct CourseView: View {
 
     /// Review rows (Səhvlərin təkrarı, Mixed-only) on top, then the numbered units.
     @ViewBuilder private func units(_ page: CoursePage) -> some View {
+        Section {
+            AllQuestionsRow(count: store.allSubjectQuestions(course).count, mode: store.examMode) {
+                router.start(.allQuestions(course))
+            }
+        } footer: {
+            Text(store.examMode == .vize
+                 ? "1–7-ci ünitələrin, Mixed-in və keçmiş vize imtahanlarının bütün sualları, təkrarsız və qarışıq."
+                 : "Bütün ünitələrin, Mixed-in və keçmiş imtahanların bütün sualları, təkrarsız və qarışıq.")
+        }
         if page.multi.wrongCount > 0 || page.mixedOnlyRow != nil {
             Section {
                 if page.multi.wrongCount > 0 {
@@ -60,5 +69,33 @@ struct CourseView: View {
     private func unitNumber(_ r: StudyListRow, fallback i: Int) -> Int {
         if case .unit(_, let idx) = r.target { return idx + 1 }
         return i + 1
+    }
+}
+
+/// "Bütün suallar  136 sual ▶" — the subject's whole question set as one shuffled test.
+private struct AllQuestionsRow: View {
+    let count: Int
+    let mode: ExamMode
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: Theme.Space.s12) {
+                IconTile(symbol: "square.stack.3d.down.right.fill", color: Theme.accent, size: 36)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Bütün suallar").font(.body.weight(.semibold)).foregroundStyle(Theme.text)
+                    Text("\(count) sual · \(mode == .vize ? "Unit 1–7" : "Unit 1–14") · qarışıq")
+                        .font(.caption).monospacedDigit().foregroundStyle(Theme.textMuted)
+                }
+                Spacer(minLength: 8)
+                Image(systemName: "play.fill").font(.footnote.weight(.semibold)).foregroundStyle(Theme.accent)
+            }
+            .padding(.vertical, 4)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .disabled(count == 0)
+        .appRow()
+        .accessibilityLabel("Bütün suallar, \(count) sual")
     }
 }

@@ -31,6 +31,15 @@ struct RootView: View {
             SurpriseView()
                 .appEnvironment()
         }
+        .confirmationDialog("Bu test yarımçıq qalıb",
+                            isPresented: Binding(get: { router.pendingResume != nil }, set: { if !$0 { router.pendingResume = nil } }),
+                            titleVisibility: .visible, presenting: router.pendingResume) { r in
+            Button("Davam et (\(r.progress.answeredCount)/\(r.progress.total))") { router.resume(r) }
+            Button("Yenidən başla", role: .destructive) { router.restart(r) }
+            Button("Ləğv et", role: .cancel) {}
+        } message: { r in
+            Text("\(r.progress.answeredCount) sual cavablanıb, \(r.progress.total - r.progress.answeredCount) sual qalıb. Qaldığın yerdən davam edək, yoxsa yenidən başlayaq?")
+        }
         .celebrationOverlay()
         .alert("Məlumat", isPresented: Binding(get: { router.alert != nil }, set: { if !$0 { router.alert = nil } })) {
             Button("Oldu", role: .cancel) { router.alert = nil }
