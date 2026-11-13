@@ -35,8 +35,9 @@ struct RootView: View {
         .alert("Bu test yarımçıq qalıb",
                isPresented: Binding(get: { router.pendingResume != nil }, set: { if !$0 { router.pendingResume = nil } }),
                presenting: router.pendingResume) { r in
+            // No .defaultAction: the prominent (filled) alert button draws its text in the app tint,
+            // blue on blue.
             Button("Davam et (\(r.progress.answeredCount)/\(r.progress.total))") { router.resume(r) }
-                .keyboardShortcut(.defaultAction)
             Button("Yenidən başla") { router.restart(r) }
             Button("Ləğv et", role: .cancel) {}
         } message: { r in
