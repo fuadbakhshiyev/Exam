@@ -31,11 +31,13 @@ struct RootView: View {
             SurpriseView()
                 .appEnvironment()
         }
-        .confirmationDialog("Bu test yarımçıq qalıb",
-                            isPresented: Binding(get: { router.pendingResume != nil }, set: { if !$0 { router.pendingResume = nil } }),
-                            titleVisibility: .visible, presenting: router.pendingResume) { r in
+        // A plain alert (not a confirmation popover): readable buttons on iPhone and Mac.
+        .alert("Bu test yarımçıq qalıb",
+               isPresented: Binding(get: { router.pendingResume != nil }, set: { if !$0 { router.pendingResume = nil } }),
+               presenting: router.pendingResume) { r in
             Button("Davam et (\(r.progress.answeredCount)/\(r.progress.total))") { router.resume(r) }
-            Button("Yenidən başla", role: .destructive) { router.restart(r) }
+                .keyboardShortcut(.defaultAction)
+            Button("Yenidən başla") { router.restart(r) }
             Button("Ləğv et", role: .cancel) {}
         } message: { r in
             Text("\(r.progress.answeredCount) sual cavablanıb, \(r.progress.total - r.progress.answeredCount) sual qalıb. Qaldığın yerdən davam edək, yoxsa yenidən başlayaq?")
