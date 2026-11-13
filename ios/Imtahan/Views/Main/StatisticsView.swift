@@ -143,18 +143,22 @@ private struct ExamCountdownCard: View {
         TimelineView(.periodic(from: .now, by: 1)) { ctx in
             if let n = dates.next {
                 let target = dates.date(for: n.subject)
+                let group = dates.nextGroup
                 let left = max(0, Int(target.timeIntervalSince(ctx.date)))
                 let d = left / 86_400, h = (left % 86_400) / 3600, m = (left % 3600) / 60
                 CardShell(title: "Geri sayım", symbol: "hourglass", tint: d <= 2 ? Theme.warning : Theme.accent, chevron: false) {
                     VStack(alignment: .leading, spacing: Theme.Space.s12) {
-                        HStack(spacing: Theme.Space.s10) {
-                            SubjectIcon(course: n.subject, size: 32)
-                            VStack(alignment: .leading, spacing: 1) {
-                                Text(n.subject).font(.headline).foregroundStyle(Theme.text)
-                                    .fixedSize(horizontal: false, vertical: true)
-                                Text(target.formatted(.dateTime.weekday(.wide).day().month(.wide).hour().minute()
-                                    .locale(Locale(identifier: "az"))))
-                                    .font(.subheadline).foregroundStyle(Theme.textMuted)
+                        Text(target.formatted(.dateTime.weekday(.wide).day().month(.wide).hour().minute()
+                            .locale(Locale(identifier: "az"))))
+                            .font(.subheadline.weight(.medium)).foregroundStyle(Theme.textMuted)
+                        // Every subject examined in this session.
+                        VStack(alignment: .leading, spacing: Theme.Space.s8) {
+                            ForEach(group, id: \.self) { s in
+                                HStack(spacing: Theme.Space.s10) {
+                                    SubjectIcon(course: s, size: 28)
+                                    Text(s).font(.headline).foregroundStyle(Theme.text)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                }
                             }
                         }
                         HStack(spacing: Theme.Space.s8) {
@@ -165,7 +169,7 @@ private struct ExamCountdownCard: View {
                     }
                 }
                 .accessibilityElement(children: .combine)
-                .accessibilityLabel("\(n.subject) imtahanına \(d) gün \(h) saat \(m) dəqiqə qalıb")
+                .accessibilityLabel("\(group.joined(separator: ", ")) imtahanına \(d) gün \(h) saat \(m) dəqiqə qalıb")
             } else {
                 CardShell(title: "Geri sayım", symbol: "hourglass", tint: Theme.success, chevron: false) {
                     Text("Bütün imtahanlar bitib 🎉").font(.headline).foregroundStyle(Theme.text)
@@ -197,12 +201,8 @@ private struct ExamReadinessCard: View {
 
     var body: some View {
         let dates = ExamDates.shared
-        let next = dates.next
         CardShell(title: "İmtahan hazırlığı", symbol: "calendar.badge.clock", tint: .red,
-                  caption: next.map { n in
-                      "\(StudyStore.shortSubject(n.subject)): " + (n.days == 0 ? "bu gün \(dates.timeText(n.subject))"
-                                                                   : (n.days == 1 ? "sabah \(dates.timeText(n.subject))" : "\(n.days) gün"))
-                  } ?? "İmtahanlar bitib", chevron: false) {
+                  caption: dates.nextSummary ?? "İmtahanlar bitib", chevron: false) {
             VStack(spacing: 0) {
                 // Nearest exam first; finished ones at the end.
                 let order = Catalog.subjects.sorted { a, b in

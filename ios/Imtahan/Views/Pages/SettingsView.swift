@@ -107,9 +107,7 @@ struct SettingsView: View {
 
     /// "Grafik · 3 gün" — the nearest subject exam.
     private var nextExamText: String {
-        guard let n = ExamDates.shared.next else { return "Keçib" }
-        let t = ExamDates.shared.timeText(n.subject)
-        return "\(StudyStore.shortSubject(n.subject)) · " + (n.days == 0 ? "bu gün \(t)" : (n.days == 1 ? "sabah \(t)" : "\(n.days) gün"))
+        ExamDates.shared.nextSummary ?? "Keçib"
     }
 
     private var notificationSummary: String {

@@ -26,12 +26,7 @@ struct TodaySection: View {
         // Nearest subject exam (Ayarlar → İmtahan tarixləri).
         let next = ExamDates.shared.next
         let days = next?.days ?? -1
-        let text: String = {
-            guard let n = next else { return "İmtahanlar bitib" }
-            let name = StudyStore.shortSubject(n.subject)
-            let time = ExamDates.shared.timeText(n.subject)
-            return n.days == 0 ? "\(name): bu gün \(time)" : (n.days == 1 ? "\(name): sabah \(time)" : "\(name): \(n.days) gün")
-        }()
+        let text = ExamDates.shared.nextSummary ?? "İmtahanlar bitib"
         return HStack(alignment: .firstTextBaseline) {
             Text("Bu gün")
                 .font(.title3.weight(.bold))

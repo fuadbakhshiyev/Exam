@@ -70,6 +70,21 @@ final class ExamDates {
             .min { $0.2 < $1.2 }
     }
 
+    /// Every subject whose exam is at the same moment as the nearest one (several exams share a session).
+    var nextGroup: [String] {
+        guard let n = next else { return [] }
+        return Catalog.subjects.filter { date(for: $0) == n.date }
+    }
+
+    /// Short label of the nearest exam session: "Grafik Üretim: 3 gün" / "3 fənn: sabah 10:30".
+    var nextSummary: String? {
+        guard let n = next else { return nil }
+        let group = nextGroup
+        let name = group.count > 1 ? "\(group.count) fənn" : StudyStore.shortSubject(n.subject)
+        let t = timeText(n.subject)
+        return "\(name): " + (n.days == 0 ? "bu gün \(t)" : (n.days == 1 ? "sabah \(t)" : "\(n.days) gün"))
+    }
+
     /// "10:00"
     func timeText(_ subject: String) -> String {
         date(for: subject).formatted(date: .omitted, time: .shortened)
