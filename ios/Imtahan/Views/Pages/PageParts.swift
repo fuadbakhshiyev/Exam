@@ -1,4 +1,5 @@
 import SwiftUI
+import Charts
 
 // Shared pieces of the study pages, built on native List rows (cp-mix, cp-list). Numbers live in Statistika.
 
@@ -406,6 +407,8 @@ struct MixedHistoryView: View {
                     StatTile(label: "Ortalama", value: ResultView.points((avg * 10).rounded() / 10))
                 }
 
+                MixedProgressChart(attempts: Array(list.reversed()))
+
                 HealthSectionTitle(text: "Sınaqlar (\(list.count))")
                 HealthGroup {
                     ForEach(list) { a in
@@ -442,4 +445,113 @@ struct MixedHistoryView: View {
     }
 
     private func tone(_ v: Double) -> Color { v >= 85 ? Theme.success : (v >= 50 ? Theme.warning : Theme.danger) }
+}
+
+/// "İnkişaf": each mixed exam's score as points on a line, the running average as a second line,
+/// and the overall average as a dashed rule. Drag to read one attempt.
+struct MixedProgressChart: View {
+    /// Oldest first.
+    let attempts: [MixedExamAttempt]
+    @State private var selected: Int?
+
+    private struct Point: Identifiable {
+        let id: Int
+        let score: Double
+        let average: Double
+        let date: Date
+    }
+
+    var body: some View {
+        let pts = points
+        let avg = pts.last?.average ?? 0
+        let first = pts.first?.average ?? 0
+        let pick = selected.flatMap { s in pts.first { $0.id == s } }
+        VStack(alignment: .leading, spacing: Theme.Space.s12) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(pick == nil ? "ORTALAMA" : "SINAQ \(pick!.id)").font(.caption.weight(.semibold)).foregroundStyle(Theme.textMuted)
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    Text(ResultView.points(((pick?.score ?? avg) * 10).rounded() / 10))
+                        .font(.system(size: 34, weight: .semibold, design: .rounded)).monospacedDigit()
+                        .foregroundStyle(Theme.text)
+                        .contentTransition(.numericText())
+                    Text("bal").font(.headline).foregroundStyle(Theme.textMuted)
+                }
+                Text(pick.map { "\($0.date.formatted(.dateTime.day().month(.wide).hour().minute().locale(Locale(identifier: "az")))) · ortalama \(ResultView.points(($0.average * 10).rounded() / 10))" }
+                     ?? trendText(first: first, avg: avg, count: pts.count))
+                    .font(.subheadline).foregroundStyle(Theme.textMuted)
+            }
+            .animation(.snappy, value: selected)
+
+            if pts.count >= 2 {
+                Chart {
+                    ForEach(pts) { p in
+                        LineMark(x: .value("Sınaq", p.id), y: .value("Bal", p.score), series: .value("Növ", "Bal"))
+                            .foregroundStyle(Theme.accent.opacity(0.45))
+                            .lineStyle(StrokeStyle(lineWidth: 1.5))
+                        PointMark(x: .value("Sınaq", p.id), y: .value("Bal", p.score))
+                            .foregroundStyle(Theme.accent)
+                            .symbolSize(pts.count > 20 ? 18 : 36)
+                        LineMark(x: .value("Sınaq", p.id), y: .value("Bal", p.average), series: .value("Növ", "Ortalama"))
+                            .foregroundStyle(Theme.success)
+                            .interpolationMethod(.monotone)
+                            .lineStyle(StrokeStyle(lineWidth: 3, lineCap: .round))
+                    }
+                    RuleMark(y: .value("Keçid", 50))
+                        .foregroundStyle(Theme.textMuted.opacity(0.5))
+                        .lineStyle(StrokeStyle(lineWidth: 1, dash: [4, 4]))
+                        .annotation(position: .top, alignment: .leading) {
+                            Text("50").font(.caption2).foregroundStyle(Theme.textMuted)
+                        }
+                    if let s = selected {
+                        RuleMark(x: .value("Seçilmiş", s)).foregroundStyle(Theme.textMuted.opacity(0.5))
+                    }
+                }
+                .chartYScale(domain: 0...100)
+                .chartXScale(domain: 1...max(pts.count, 2))
+                .chartXAxis {
+                    AxisMarks(values: .automatic(desiredCount: min(pts.count, 6))) { v in
+                        AxisGridLine().foregroundStyle(Theme.border)
+                        AxisValueLabel { if let i = v.as(Int.self) { Text("\(i)") } }
+                    }
+                }
+                .chartYAxis {
+                    AxisMarks(position: .trailing, values: [0, 25, 50, 75, 100]) { _ in
+                        AxisGridLine().foregroundStyle(Theme.border)
+                        AxisValueLabel()
+                    }
+                }
+                .chartXSelection(value: $selected)
+                .frame(height: 200)
+
+                HStack(spacing: Theme.Space.s12) {
+                    CountDot(text: "Sınaq balı", color: Theme.accent)
+                    CountDot(text: "Ortalama", color: Theme.success)
+                }
+                .font(.caption)
+            } else {
+                Text("Qrafik üçün ən azı 2 sınaq lazımdır.").font(.footnote).foregroundStyle(Theme.textMuted)
+            }
+        }
+        .padding(Theme.Space.s16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .card()
+    }
+
+    private var points: [Point] {
+        var sum = 0.0
+        return attempts.enumerated().map { i, a in
+            sum += a.score
+            return Point(id: i + 1, score: a.score, average: sum / Double(i + 1), date: a.date)
+        }
+    }
+
+    /// "İlk 3 sınaqdan bəri ortalama 12 bal artıb."
+    private func trendText(first: Double, avg: Double, count: Int) -> String {
+        guard count >= 2 else { return "\(count) sınaq" }
+        let recent = attempts.suffix(3).map(\.score).reduce(0, +) / Double(min(3, attempts.count))
+        let diff = Int((recent - avg).rounded())
+        if diff > 0 { return "\(count) sınaq · son sınaqlar ortalamadan \(diff) bal yüksəkdir" }
+        if diff < 0 { return "\(count) sınaq · son sınaqlar ortalamadan \(-diff) bal aşağıdır" }
+        return "\(count) sınaq · nəticələr sabitdir"
+    }
 }
