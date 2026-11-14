@@ -462,7 +462,7 @@ final class QuizSession: Identifiable {
 
     /// Shows the course/unit badges above the question.
     var showsMeta: Bool {
-        if isSubjectPool { return true }
+        if isSubjectPool || isCourseMixed { return true }
         return isMockMode || isWrongMode || isSearchMode || category == "mixed" || category == "exams" || currentTitle == "Multi" || course == Catalog.mixedKey
     }
 
@@ -475,7 +475,7 @@ final class QuizSession: Identifiable {
             let subj = QuestionBank.baseCourse(q.c)
             return Meta(course: subj, unit: q.u >= 1 ? "Unit \(q.u)" : nil, accentHex: Catalog.styles[subj]?.accent ?? "#8b5cf6")
         }
-        if isSubjectPool {
+        if isSubjectPool || isCourseMixed {
             return Meta(course: q.c, unit: q.u >= 1 ? "Unit \(q.u)" : "Keçmiş imtahan", accentHex: Catalog.styles[q.c]?.accent ?? "#8b5cf6")
         }
         // CONFIG[q.c].units[q.u - 1] is always "Unit N" for subjects; other keys fall back to the same text.
@@ -788,5 +788,10 @@ extension QuizSession {
         case .allQuestions, .unlearned: true
         default: false
         }
+    }
+
+    /// A subject's "Qarışıq sınaq" (20 random questions from its units): each question shows its unit.
+    var isCourseMixed: Bool {
+        if case .courseMixed = kind { true } else { false }
     }
 }
