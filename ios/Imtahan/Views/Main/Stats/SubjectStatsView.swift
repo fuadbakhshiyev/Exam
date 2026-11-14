@@ -49,13 +49,23 @@ struct SubjectStatsView: View {
                         HealthRow(title: "Düz cavablar", symbol: "checkmark.circle.fill", tint: Theme.success, value: "\(r.correct)")
                         HealthRow(title: "Səhv cavablar", symbol: "xmark.circle.fill", tint: Theme.danger, value: "\(r.wrong)")
                     } else {
-                        HealthRow(title: "Düz cavablar", symbol: "checkmark.circle.fill", tint: Theme.success, value: "\(r.correct)") {
+                        // Counts of the questions the review opens (not answers): a question answered
+                        // wrong and later right leaves the wrong list.
+                        let ok = store.subjectReviewQuestions(key, correct: true).count
+                        let bad = store.subjectReviewQuestions(key, correct: false).count
+                        HealthRow(title: "Düz cavablanan suallar", symbol: "checkmark.circle.fill", tint: Theme.success, value: "\(ok)") {
                             router.start(.reviewCourse(course: key, correct: true))
                         }
-                        HealthRow(title: "Səhv cavablar", symbol: "xmark.circle.fill", tint: Theme.danger, value: "\(r.wrong)") {
+                        .disabled(ok == 0)
+                        HealthRow(title: "Hazırda səhv olan suallar", symbol: "xmark.circle.fill", tint: Theme.danger, value: "\(bad)") {
                             router.start(.reviewCourse(course: key, correct: false))
                         }
+                        .disabled(bad == 0)
                     }
+                }
+                if !isMock {
+                    Text("Sonradan düz cavabladığınız səhv suallar səhv siyahısından çıxır. Cəmi \(r.correct) düz, \(r.wrong) səhv cavab vermisiniz.")
+                        .font(.footnote).foregroundStyle(Theme.textMuted).padding(.horizontal, Theme.Space.s4)
                 }
             }
 

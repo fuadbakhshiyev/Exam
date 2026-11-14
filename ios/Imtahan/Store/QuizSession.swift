@@ -326,7 +326,7 @@ final class QuizSession: Identifiable {
             p.selectionIndex = -4
             return p
         case .reviewCourse(let c, let correct):
-            let arr = correct ? store.scopedCorrect(c) : store.scopedWrong(c)
+            let arr = store.subjectReviewQuestions(c, correct: correct)
             guard !arr.isEmpty else {
                 throw fail(correct ? "Doğru cavablandırdığınız sual hələ ki yoxdur və ya əvvəllər yaddaşda saxlanılmayıb." : "Əla! Səhv cavablandırdığınız sual yoxdur.")
             }

@@ -249,6 +249,18 @@ extension StudyStore {
     }
 
     /// Every wrong list concatenated, in scope (Ümumi Toplam Multi / reviewAllAnswers(false)).
+    /// The questions a subject's "Düz / Səhv cavablar" review opens: its own list plus its vize (and, in
+    /// Final mode, final) booklet lists, each question once.
+    func subjectReviewQuestions(_ c: String, correct: Bool) -> [Question] {
+        let lists = correct ? data.correct : data.wrong
+        var seen = Set<String>()
+        return lists.keys
+            .filter { ($0 == c || $0.hasPrefix(c + "_pdf_") || $0.hasPrefix(c + "_final_")) && historyKeyInScope($0) }
+            .sorted(by: Self.keyOrder)
+            .flatMap { correct ? scopedCorrect($0) : scopedWrong($0) }
+            .filter { seen.insert($0.q).inserted }
+    }
+
     func allWrongQuestions() -> [Question] {
         data.wrong.keys.sorted(by: Self.keyOrder).flatMap { scopedWrong($0) }
     }

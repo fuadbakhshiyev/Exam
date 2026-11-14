@@ -589,15 +589,18 @@ struct StatsMetricView: View {
         AccuracySummaryRow(answered: t.globalAnswered, total: t.totalQuestions, correct: t.globalCorrect, wrong: t.globalWrong)
             .padding(Theme.Space.s16).frame(maxWidth: .infinity, alignment: .leading).card()
         if t.globalAnswered > 0 {
+            let ok = store.allCorrectQuestions().count, bad = store.allWrongQuestions().count
             HealthGroup {
-                HealthRow(title: "Düz cavablar", symbol: "checkmark.circle.fill", tint: Theme.success, value: "\(t.globalCorrect)") {
+                HealthRow(title: "Düz cavablanan suallar", symbol: "checkmark.circle.fill", tint: Theme.success, value: "\(ok)") {
                     router.start(.reviewAll(correct: true))
                 }
-                HealthRow(title: "Səhv cavablar", symbol: "xmark.circle.fill", tint: Theme.danger, value: "\(t.globalWrong)") {
+                .disabled(ok == 0)
+                HealthRow(title: "Hazırda səhv olan suallar", symbol: "xmark.circle.fill", tint: Theme.danger, value: "\(bad)") {
                     router.start(.reviewAll(correct: false))
                 }
+                .disabled(bad == 0)
             }
-            Text("Düz və ya səhv cavablarınızı yenidən işləmək üçün toxunun.")
+            Text("Toxunun və həmin sualları yenidən işləyin. Sonradan düz cavabladığınız səhv suallar səhv siyahısından çıxır.")
                 .font(.footnote).foregroundStyle(Theme.textMuted).padding(.horizontal, Theme.Space.s4)
         }
     }
