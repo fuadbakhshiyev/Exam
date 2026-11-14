@@ -314,18 +314,22 @@ private struct SubjectGridCard: View {
             Text(course).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.text)
                 .lineLimit(2, reservesSpace: true)
                 .fixedSize(horizontal: false, vertical: true)
-            if isOverall {
-                Text("Bütün fənlər · \(store.scopedQuestionsTotal) sual").font(.caption).foregroundStyle(Theme.textMuted)
-                    .lineLimit(2, reservesSpace: true)
-            } else {
+            // Same bottom block on every card (the overall card keeps its height with a hidden bar).
+            VStack(alignment: .leading, spacing: Theme.Space.s8) {
                 ProgressView(value: Double(p), total: 100).tint(Theme.accent)
+                    .opacity(isOverall ? 0 : 1)
                 HStack {
-                    Text("\(p)% işlənib").font(.caption).monospacedDigit().foregroundStyle(Theme.textMuted)
-                    Spacer(minLength: 4)
-                    let d = ExamDates.shared
-                    Text(d.isOver(course) ? "bitib" : "\(d.daysLeft(course)) gün")
-                        .font(.caption.weight(.medium)).monospacedDigit()
-                        .foregroundStyle(!d.isOver(course) && d.daysLeft(course) <= 3 ? Theme.warning : Theme.textMuted)
+                    if isOverall {
+                        Text("Bütün fənlər · \(store.scopedQuestionsTotal) sual").font(.caption).foregroundStyle(Theme.textMuted)
+                            .lineLimit(1)
+                    } else {
+                        Text("\(p)% işlənib").font(.caption).monospacedDigit().foregroundStyle(Theme.textMuted)
+                        Spacer(minLength: 4)
+                        let d = ExamDates.shared
+                        Text(d.isOver(course) ? "bitib" : "\(d.daysLeft(course)) gün")
+                            .font(.caption.weight(.medium)).monospacedDigit()
+                            .foregroundStyle(!d.isOver(course) && d.daysLeft(course) <= 3 ? Theme.warning : Theme.textMuted)
+                    }
                 }
             }
         }
