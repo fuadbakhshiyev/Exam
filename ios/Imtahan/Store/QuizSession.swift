@@ -741,7 +741,7 @@ final class QuizSession: Identifiable {
         result = r
         clearProgress()
         // Nailiyyətlər: graded past-exam score, a whole "Bütün suallar" pool answered to the end.
-        store.noteTestFinished(gradedScore: isGradedExam && total > 0 ? score : nil,
+        store.noteTestFinished(subject: course, gradedScore: isGradedExam && total > 0 ? score : nil,
                                finishedPool: isSubjectPool && total > 0 && c + w == total)
         return r
     }

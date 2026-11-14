@@ -70,13 +70,24 @@ struct Achievement: Identifiable, Hashable, Sendable {
     static func byID(_ id: String) -> Achievement? { all.first { $0.id == id } }
 }
 
+/// One time an achievement was earned (Apple Fitness style: repeatable awards keep every date).
+struct AchievementEarn: Codable, Hashable, Sendable {
+    let date: Date
+    /// The subject it was earned in, when there is one.
+    var subject: String?
+}
+
 /// One achievement with its progress, for the grid.
 struct AchievementStatus: Identifiable, Hashable, Sendable {
     let achievement: Achievement
     let value: Int
     let goal: Int
     let unlockedAt: Date?
+    /// Every time it was earned, newest first (at least the unlock itself once unlocked).
+    var earns: [AchievementEarn] = []
     var id: String { achievement.id }
+    var count: Int { earns.count }
+    var lastEarned: Date? { earns.first?.date ?? unlockedAt }
     var isUnlocked: Bool { unlockedAt != nil }
     var fraction: Double { goal > 0 ? min(1, Double(value) / Double(goal)) : 0 }
     /// "340/500"; nil for one-shot achievements.
@@ -109,6 +120,8 @@ final class AchievementStore {
         var bestExam: Double = 0
         /// "Bütün suallar" / "Öyrənilməmişlər" tests answered to the end.
         var poolFinishes = 0
+        /// Earn history of the repeatable achievements, by id.
+        var earns: [String: [AchievementEarn]] = [:]
 
         init() {}
 
@@ -127,6 +140,7 @@ final class AchievementStore {
             bestCombo = try c.decodeIfPresent(Int.self, forKey: .bestCombo) ?? 0
             bestExam = try c.decodeIfPresent(Double.self, forKey: .bestExam) ?? 0
             poolFinishes = try c.decodeIfPresent(Int.self, forKey: .poolFinishes) ?? 0
+            earns = try c.decodeIfPresent([String: [AchievementEarn]].self, forKey: .earns) ?? [:]
         }
     }
 
@@ -167,6 +181,18 @@ final class AchievementStore {
         AchievementToastPresenter.shared.kick()
     }
 
+    /// Records one more time `id` was earned (and unlocks it the first time). `oncePerDay` keeps a single
+    /// entry per day (and subject); `announce` shows the toast only for the first unlock.
+    func earn(_ id: String, subject: String? = nil, oncePerDay: Bool = false, at date: Date = Date(), announce: Bool = true) {
+        guard let a = Achievement.byID(id) else { return }
+        let list = file.earns[id] ?? []
+        if oncePerDay, list.contains(where: { Calendar.current.isDate($0.date, inSameDayAs: date) && $0.subject == subject }) {
+            return
+        }
+        mutate { $0.earns[id, default: []].append(AchievementEarn(date: date, subject: subject)) }
+        unlock(a, at: date, announce: announce && file.initialized)
+    }
+
     private func scheduleSave() {
         saveTask?.cancel()
         saveTask = Task { [weak self] in
@@ -205,6 +231,10 @@ struct AchievementMetrics: Sendable {
     var subjectsWith50 = 0
     var surpriseCorrect = 0
     /// Learned questions (MasteryStore) over all subjects, and the best subject's learned/total.
+    /// Answers per day key (in history), for the repeatable daily goals.
+    var dayTotals: [String: Int] = [:]
+    /// Subjects meeting each per-subject achievement.
+    var qualifyingSubjects: [String: [String]] = [:]
     var learnedTotal = 0
     var subjectLearned = 0
     var subjectLearnedTotal = 0
@@ -229,8 +259,9 @@ extension StudyStore {
         let ach = achievements
         let now = Date()
         let hour = Calendar.current.component(.hour, from: now)
-        if hour < 7, let a = Achievement.byID("early-bird") { ach.unlock(a, announce: ach.file.initialized) }
-        if hour >= 23, let a = Achievement.byID("night-owl") { ach.unlock(a, announce: ach.file.initialized) }
+        let subject = stat.map { QuestionBank.baseCourse($0.course) } ?? QuestionBank.baseCourse(q.c)
+        if hour < 7 { ach.earn("early-bird", oncePerDay: true, at: now) }
+        if hour >= 23 { ach.earn("night-owl", oncePerDay: true, at: now) }
 
         // A test = consecutive answers of one category/sub with < 30 min between them.
         let key = stat.map { "\($0.cat)|\($0.sub)" } ?? "plain|\(q.c)"
@@ -249,16 +280,21 @@ extension StudyStore {
                 let ok = f.run.filter { $0 }.count
                 hit90 = Double(ok) >= Double(Self.achievementRunLength) * 0.9
                 hit100 = ok == Self.achievementRunLength
+                if hit90 { f.run = [] }   // the next award needs 20 new answers
             }
         }
-        if hit90, let a = Achievement.byID("sharp-20") { ach.unlock(a, announce: true) }
-        if hit100, let a = Achievement.byID("perfect-20") { ach.unlock(a, announce: true) }
+        if hit90 { ach.earn("sharp-20", subject: subject, at: now) }
+        if hit100 { ach.earn("perfect-20", subject: subject, at: now) }
+        for goal in [10, 25, 50] where isCorrect && ach.file.combo == goal {
+            ach.earn("combo-\(goal)", subject: subject, at: now)
+        }
 
         // "Bu günün təkrarı" emptied (counted once a day).
         if stat?.sub == Self.reviewSub {
             let today = Self.dayKey(now)
             if ach.file.lastReviewClearDay != today && reviewDueCount == 0 {
                 ach.mutate { $0.reviewClears += 1; $0.lastReviewClearDay = today }
+                ach.earn("review-1", at: now)
             }
         }
         scheduleAchievementCheck()
@@ -267,15 +303,21 @@ extension StudyStore {
     /// Simulation handed in (ExamSimulation.submit).
     func noteSimulationFinished(average: Double) {
         if average > achievements.file.bestSimulation { achievements.mutate { $0.bestSimulation = average } }
+        if average >= 70 { achievements.earn("sim-70") }
+        if average >= 90 { achievements.earn("sim-90") }
         scheduleAchievementCheck()
     }
 
     /// A finished test (QuizSession.finish): graded past-exam score, whole-pool tests.
-    func noteTestFinished(gradedScore: Double?, finishedPool: Bool) {
+    func noteTestFinished(subject: String, gradedScore: Double?, finishedPool: Bool) {
+        let subject = QuestionBank.baseCourse(subject)
         achievements.mutate { f in
             if let g = gradedScore, g > f.bestExam { f.bestExam = g }
             if finishedPool { f.poolFinishes += 1 }
         }
+        if let g = gradedScore, g >= 80 { achievements.earn("exam-80", subject: subject) }
+        if let g = gradedScore, g >= 100 { achievements.earn("exam-100", subject: subject) }
+        if finishedPool { achievements.earn("pool-done", subject: subject) }
         scheduleAchievementCheck()
     }
 
@@ -300,6 +342,12 @@ extension StudyStore {
         for s in achievementStatuses(m) where !s.isUnlocked && s.value >= s.goal && s.goal > 0 {
             ach.unlock(s.achievement, at: derivedUnlockDate(s.achievement.id, m) ?? Date(), announce: announce && !first)
         }
+        // Per-subject awards: remember when each new subject qualified.
+        for (id, subjects) in m.qualifyingSubjects {
+            for subject in subjects where !(ach.file.earns[id] ?? []).contains(where: { $0.subject == subject }) {
+                ach.earn(id, subject: subject, at: first ? (ach.file.unlocked[id] ?? Date()) : Date(), announce: announce && !first)
+            }
+        }
         if first { ach.mutate { $0.initialized = true } }
     }
 
@@ -309,7 +357,8 @@ extension StudyStore {
         let f = achievements.file
         return Achievement.all.map { a in
             let (value, goal) = progress(a.id, m, f)
-            return AchievementStatus(achievement: a, value: value, goal: goal, unlockedAt: f.unlocked[a.id])
+            return AchievementStatus(achievement: a, value: value, goal: goal, unlockedAt: f.unlocked[a.id],
+                                     earns: achievementEarns(a.id, m, f))
         }
     }
 
@@ -351,6 +400,28 @@ extension StudyStore {
         }
     }
 
+    /// Every time an achievement was earned, newest first. Daily goals come from the history, subject
+    /// goals list each qualifying subject, the rest from the recorded events; one-time milestones (and
+    /// awards from before the history was kept) fall back to the unlock date.
+    private func achievementEarns(_ id: String, _ m: AchievementMetrics, _ f: AchievementStore.FileShape) -> [AchievementEarn] {
+        var list: [AchievementEarn]
+        switch id {
+        case "marathon-100", "marathon-300":
+            let goal = id == "marathon-100" ? 100 : 300
+            list = m.dayTotals.filter { $0.value >= goal }.compactMap { k, _ in
+                Self.date(fromDayKey: k).map { AchievementEarn(date: $0) }
+            }
+        case "subject-complete", "subject-80", "subject-learned":
+            let subjects = m.qualifyingSubjects[id] ?? []
+            let first = f.unlocked[id] ?? Date()
+            list = subjects.map { s in AchievementEarn(date: f.earns[id]?.first { $0.subject == s }?.date ?? first, subject: s) }
+        default:
+            list = f.earns[id] ?? []
+        }
+        if list.isEmpty, let d = f.unlocked[id] { list = [AchievementEarn(date: d)] }
+        return list.sorted { $0.date > $1.date }
+    }
+
     /// When a derived achievement was really earned (answer counts, best day, streaks); nil = now.
     private func derivedUnlockDate(_ id: String, _ m: AchievementMetrics) -> Date? {
         let parts = id.split(separator: "-")
@@ -377,6 +448,7 @@ extension StudyStore {
         for key in data.history.keys.sorted() {
             let n = data.history[key]?.courses.values.reduce(0) { $0 + $1.correct + $1.wrong } ?? 0
             guard n > 0 else { continue }
+            m.dayTotals[key] = n
             let date = Self.date(fromDayKey: key)
             let before = cumulative
             cumulative += n
@@ -412,8 +484,13 @@ extension StudyStore {
                     m.subjectTotal = qs.count
                 }
             }
+            if !qs.isEmpty {
+                let seen = Set((data.correct[subject] ?? []).map(\.q)).union((data.wrong[subject] ?? []).map(\.q))
+                if qs.allSatisfy({ seen.contains($0.q) }) { m.qualifyingSubjects["subject-complete", default: []].append(subject) }
+            }
             let mp = masteryProgress(subject)
             m.learnedTotal += mp.learned
+            if mp.total > 0 && mp.learned >= mp.total { m.qualifyingSubjects["subject-learned", default: []].append(subject) }
             if mp.total > 0, m.subjectLearnedTotal == 0
                 || Double(mp.learned) / Double(mp.total) > Double(m.subjectLearned) / Double(m.subjectLearnedTotal) {
                 m.subjectLearned = mp.learned
@@ -424,6 +501,7 @@ extension StudyStore {
             if agg.t >= 50 { m.subjectsWith50 += 1 }
             let acc = agg.t > 0 ? Double(agg.c) / Double(agg.t) : 0
             m.masteryValue = max(m.masteryValue, acc >= 0.8 ? min(agg.t, 100) : min(agg.t, 99))
+            if acc >= 0.8 && agg.t >= 100 { m.qualifyingSubjects["subject-80", default: []].append(subject) }
 
             // Final units (8+), each fully worked through once (unit stats ≥ its question count).
             let units = data.stats[subject]?.bd["units"] ?? [:]

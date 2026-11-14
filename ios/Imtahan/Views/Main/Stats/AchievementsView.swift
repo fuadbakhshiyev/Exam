@@ -33,7 +33,7 @@ struct AchievementsEntrySection: View {
     }
 }
 
-/// Grid of every achievement plus the current / best streak.
+/// Grid of every achievement plus the current / best streak (Apple Fitness awards style).
 struct AchievementsView: View {
     @Environment(StudyStore.self) private var store
     @State private var weekly = StudyReminder.shared.weeklyEnabled
@@ -44,48 +44,141 @@ struct AchievementsView: View {
         let statuses = store.achievementStatuses()
         let m = store.achievementMetrics()
         let unlocked = statuses.filter(\.isUnlocked).count
-        List {
-            Section {
-                HStack(spacing: Theme.Space.s12) {
-                    StatTile(label: "Açılıb", value: "\(unlocked) / \(statuses.count)", tone: Theme.accent)
-                    StatTile(label: "Ardıcıl", value: "\(m.currentStreak) gün", tone: m.currentStreak > 0 ? Theme.warning : Theme.text)
-                    StatTile(label: "Ən uzun", value: "\(m.bestStreak) gün")
-                }
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
+        let earned = statuses.reduce(0) { $0 + $1.count }
+        HealthPage {
+            HStack(spacing: Theme.Space.s8) {
+                StatTile(label: "Açılıb", value: "\(unlocked) / \(statuses.count)", tone: Theme.accent)
+                StatTile(label: "Cəmi qazanılıb", value: "\(earned)", tone: .yellow)
+                StatTile(label: "Ardıcıl", value: "\(m.currentStreak) gün", tone: m.currentStreak > 0 ? Theme.warning : Theme.text)
             }
 
             ForEach(AchievementGroup.allCases) { group in
-                Section(group.title) {
-                    LazyVGrid(columns: columns, spacing: Theme.Space.s12) {
-                        ForEach(statuses.filter { $0.achievement.group == group }) { AchievementTile(status: $0) }
+                HealthSectionTitle(text: group.title)
+                LazyVGrid(columns: columns, spacing: Theme.Space.s12) {
+                    ForEach(statuses.filter { $0.achievement.group == group }) { st in
+                        NavigationLink { AchievementDetailView(id: st.id) } label: { AchievementTile(status: st) }
+                            .buttonStyle(.plain)
                     }
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color.clear)
                 }
             }
 
-            Section {
+            HealthSectionTitle(text: "Bildiriş")
+            HealthGroup {
                 Toggle(isOn: $weekly) {
-                    StatLabel(title: "Həftəlik hesabat", symbol: "calendar.badge.clock")
+                    HStack(spacing: Theme.Space.s12) {
+                        IconTile(symbol: "calendar.badge.clock", color: Theme.accent)
+                        Text("Həftəlik hesabat").foregroundStyle(Theme.text)
+                    }
                 }
-                .appRow()
+                .padding(.vertical, Theme.Space.s10)
                 .onChange(of: weekly) { _, on in
                     Task {
                         await StudyReminder.shared.setWeeklyEnabled(on)
                         weekly = StudyReminder.shared.weeklyEnabled
                     }
                 }
-            } footer: {
-                Text(StudyReminder.shared.isDenied
-                     ? "Bildirişlər Ayarlarda bağlıdır."
-                     : "Bazar günləri 20:00-da: həftənin sual sayı, dəqiqlik və ardıcıl günlər.")
             }
+            Text(StudyReminder.shared.isDenied
+                 ? "Bildirişlər Ayarlarda bağlıdır."
+                 : "Bazar günləri 20:00-da: həftənin sual sayı, dəqiqlik və ardıcıl günlər.")
+                .font(.footnote).foregroundStyle(Theme.textMuted).padding(.horizontal, Theme.Space.s4)
         }
-        .appListStyle()
         .navigationTitle("Nailiyyətlər")
         .navigationBarTitleDisplayMode(.large)
         .task { store.evaluateAchievements(announce: true) }
+    }
+}
+
+/// One award: big badge, how many times and when (and in which subject) it was earned.
+struct AchievementDetailView: View {
+    let id: String
+    @Environment(StudyStore.self) private var store
+
+    var body: some View {
+        if let st = store.achievementStatuses().first(where: { $0.id == id }) {
+            let a = st.achievement
+            HealthPage {
+                VStack(spacing: Theme.Space.s12) {
+                    IconTile(symbol: a.symbol, color: st.isUnlocked ? Theme.accent : Theme.textMuted, size: 96)
+                        .overlay(alignment: .topTrailing) { CountBadge(count: st.count, large: true) }
+                        .padding(.top, Theme.Space.s8)
+                    Text(a.title).font(.title2.weight(.bold)).foregroundStyle(Theme.text)
+                    Text(a.detail).font(.body).foregroundStyle(Theme.textMuted).multilineTextAlignment(.center)
+                    if st.isUnlocked {
+                        Text(st.count > 1 ? "\(st.count) dəfə qazanılıb" : "Qazanılıb")
+                            .font(.headline).foregroundStyle(Theme.accent)
+                    } else if let p = st.progressText {
+                        ProgressView(value: st.fraction).tint(Theme.accent).frame(maxWidth: 220)
+                        Text(p).font(.subheadline).monospacedDigit().foregroundStyle(Theme.textMuted)
+                    } else {
+                        Label("Hələ qazanılmayıb", systemImage: "lock.fill").font(.subheadline).foregroundStyle(Theme.textMuted)
+                    }
+                }
+                .padding(Theme.Space.s20)
+                .frame(maxWidth: .infinity)
+                .card()
+
+                if !st.earns.isEmpty {
+                    HealthSectionTitle(text: "Tarixçə")
+                    HealthGroup {
+                        ForEach(Array(st.earns.enumerated()), id: \.offset) { _, e in
+                            HStack(spacing: Theme.Space.s12) {
+                                if let s = e.subject, Catalog.subjects.contains(s) {
+                                    SubjectIcon(course: s, size: 28)
+                                } else {
+                                    IconTile(symbol: "checkmark.seal.fill", color: Theme.accent, size: 28)
+                                }
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(e.date.formatted(.dateTime.day().month(.wide).year().locale(Locale(identifier: "az"))))
+                                        .foregroundStyle(Theme.text)
+                                    if let s = e.subject {
+                                        Text(StatsFormat.title(s)).font(.footnote).foregroundStyle(Theme.textMuted).lineLimit(2)
+                                    }
+                                }
+                                Spacer(minLength: 8)
+                                Text(e.date.formatted(.dateTime.hour().minute().locale(Locale(identifier: "az"))))
+                                    .font(.footnote).monospacedDigit().foregroundStyle(Theme.textMuted)
+                            }
+                            .padding(.vertical, Theme.Space.s10)
+                        }
+                    }
+                    let bySubject = Dictionary(grouping: st.earns.compactMap(\.subject), by: { $0 })
+                    if bySubject.count > 1 {
+                        HealthSectionTitle(text: "Fənlər üzrə")
+                        HealthGroup {
+                            ForEach(bySubject.keys.sorted { bySubject[$0]!.count > bySubject[$1]!.count }, id: \.self) { s in
+                                HStack(spacing: Theme.Space.s12) {
+                                    SubjectIcon(course: s, size: 28)
+                                    Text(StatsFormat.title(s)).foregroundStyle(Theme.text).lineLimit(2)
+                                    Spacer(minLength: 8)
+                                    Text("\(bySubject[s]!.count) dəfə").monospacedDigit().foregroundStyle(Theme.textMuted)
+                                }
+                                .padding(.vertical, Theme.Space.s10)
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationTitle(a.title)
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+}
+
+/// "3" on the corner of a badge, like Apple Fitness awards earned more than once.
+struct CountBadge: View {
+    let count: Int
+    var large = false
+    var body: some View {
+        if count > 1 {
+            Text("\(count)")
+                .font((large ? Font.headline : .caption).weight(.bold)).monospacedDigit()
+                .foregroundStyle(Theme.onInverse)
+                .padding(.horizontal, large ? 9 : 6).padding(.vertical, large ? 3 : 2)
+                .background(Theme.inverse, in: .capsule)
+                .offset(x: large ? 10 : 7, y: large ? -8 : -6)
+                .accessibilityLabel("\(count) dəfə")
+        }
     }
 }
 
@@ -97,6 +190,7 @@ struct AchievementTile: View {
         let on = status.isUnlocked
         VStack(alignment: .leading, spacing: Theme.Space.s8) {
             IconTile(symbol: a.symbol, color: on ? Theme.accent : Theme.textMuted, size: 40)
+                .overlay(alignment: .topTrailing) { CountBadge(count: status.count) }
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(a.title).font(.subheadline.weight(.semibold))
@@ -119,22 +213,23 @@ struct AchievementTile: View {
         .card(radius: Theme.Radius.md, fill: Theme.surface)
         .opacity(on ? 1 : 0.75)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(a.title), \(a.detail), \(on ? "açılıb" : (status.progressText ?? "bağlı"))")
+        .accessibilityLabel("\(a.title), \(a.detail), \(on ? "açılıb, \(status.count) dəfə" : (status.progressText ?? "bağlı"))")
     }
 
     @ViewBuilder private var statusLine: some View {
-            if let date = status.unlockedAt {
-                Label(date.formatted(.dateTime.day().month(.abbreviated).year().locale(Locale(identifier: "az"))),
-                      systemImage: "checkmark.seal.fill")
-                    .font(.caption2.weight(.medium)).foregroundStyle(Theme.accent).lineLimit(1)
-            } else if let p = status.progressText {
-                VStack(alignment: .leading, spacing: 4) {
-                    ProgressView(value: status.fraction).tint(Theme.textMuted)
-                    Text(p).font(.caption2).monospacedDigit().foregroundStyle(Theme.textMuted)
-                }
-            } else {
-                Label("Bağlı", systemImage: "lock.fill").font(.caption2).foregroundStyle(Theme.textMuted)
+        if let date = status.lastEarned {
+            // The latest time it was earned.
+            Label(date.formatted(.dateTime.day().month(.abbreviated).year().locale(Locale(identifier: "az"))),
+                  systemImage: "checkmark.seal.fill")
+                .font(.caption2.weight(.medium)).foregroundStyle(Theme.accent).lineLimit(1)
+        } else if let p = status.progressText {
+            VStack(alignment: .leading, spacing: 4) {
+                ProgressView(value: status.fraction).tint(Theme.textMuted)
+                Text(p).font(.caption2).monospacedDigit().foregroundStyle(Theme.textMuted)
             }
+        } else {
+            Label("Bağlı", systemImage: "lock.fill").font(.caption2).foregroundStyle(Theme.textMuted)
+        }
     }
 }
 
