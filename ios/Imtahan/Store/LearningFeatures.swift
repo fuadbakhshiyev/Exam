@@ -158,6 +158,16 @@ final class MasteryStore {
         scheduleSave()
     }
 
+    /// The last answer to this question anywhere (true = correct); nil when never answered since tracking began.
+    func lastResult(_ q: Question) -> Bool? {
+        let k = key(q)
+        guard stamps[k] != nil else { return nil }
+        return (streaks[k] ?? 0) > 0
+    }
+
+    /// Hash key of a question's text (shared by every copy of it: unit, Mixed, booklets).
+    func textKey(_ q: Question) -> String { key(q) }
+
     func isLearned(_ q: Question) -> Bool {
         (streaks[key(q)] ?? 0) >= Self.needed
     }
@@ -256,5 +266,43 @@ final class MixedExamHistory {
         guard let raw = try? JSONEncoder().encode(attempts) else { return }
         let url = fileURL
         Task.detached(priority: .utility) { try? raw.write(to: url, options: .atomic) }
+    }
+}
+
+// MARK: - Per-unit status
+
+/// One unit of a subject counted per question (not per answer): every source counts — unit tests,
+/// Mixed, the subject's mixed exam, vize booklets, reviews — by the question's text.
+struct UnitStatus: Identifiable, Hashable, Sendable {
+    var id: Int { unit }
+    let unit: Int
+    let total: Int
+    /// Questions whose last answer was correct / wrong.
+    let correct: Int
+    let wrong: Int
+    var answered: Int { correct + wrong }
+    var unanswered: Int { max(0, total - answered) }
+}
+
+extension StudyStore {
+    func unitStatuses(_ subject: String) -> [UnitStatus] {
+        let m = MasteryStore.shared
+        // Older answers (before per-question tracking): the wrong / correct lists of every key.
+        var wrongKeys = Set<String>(), correctKeys = Set<String>()
+        for list in data.wrong.values { for q in list { wrongKeys.insert(m.textKey(q)) } }
+        for list in data.correct.values { for q in list { correctKeys.insert(m.textKey(q)) } }
+        return (1...max(scopedUnitCount(subject), 1)).compactMap { u in
+            let qs = bank.unitQuestions(course: subject, unit: u)
+            guard !qs.isEmpty else { return nil }
+            var c = 0, w = 0, seen = Set<String>()
+            for q in qs {
+                let k = m.textKey(q)
+                guard seen.insert(k).inserted else { continue }
+                if let last = m.lastResult(q) { if last { c += 1 } else { w += 1 } }
+                else if wrongKeys.contains(k) { w += 1 }
+                else if correctKeys.contains(k) { c += 1 }
+            }
+            return UnitStatus(unit: u, total: seen.count, correct: c, wrong: w)
+        }
     }
 }
