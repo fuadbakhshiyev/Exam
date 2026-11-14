@@ -265,7 +265,7 @@ final class AchievementToastPresenter {
             guard showWindow() else { return }
             let a = ach.toastQueue.removeFirst()
             withAnimation(.spring(duration: 0.45, bounce: 0.25)) { current = a }
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            if Haptics.enabled { UINotificationFeedbackGenerator().notificationOccurred(.success) }
             UIAccessibility.post(notification: .announcement, argument: "Yeni nailiyyət: \(a.title)")
             try? await Task.sleep(for: .seconds(3))
             withAnimation(.easeIn(duration: 0.25)) { current = nil }

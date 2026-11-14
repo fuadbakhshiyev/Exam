@@ -73,7 +73,7 @@ struct QuizView: View {
         }
         .celebrationOverlay()
         .onDisappear { speech.stop() }
-        .sensoryFeedback(trigger: session.answers.count) { _, _ in
+        .appHaptic(trigger: session.answers.count) { _, _ in
             guard let a = session.currentAnswer, let q = session.current?.question, !a.hint else { return nil }
             return a.chosen == q.a ? .success : .error
         }
@@ -93,7 +93,7 @@ struct QuizView: View {
             }
             .tint(session.isCurrentBookmarked ? Theme.warning : nil)
             .accessibilityLabel("İşarələ")
-            .sensoryFeedback(.selection, trigger: session.isCurrentBookmarked)
+            .appHaptic(.selection, trigger: session.isCurrentBookmarked)
             Menu {
                 Button { speak() } label: { Label(speech.isSpeaking ? "Dayandır" : "Səsləndir", systemImage: "speaker.wave.2") }
                 Toggle(isOn: Binding(get: { session.isFlashcard }, set: { _ in session.toggleFlashcard() })) {

@@ -40,7 +40,7 @@ struct ResultView: View {
         }
         .presentationBackground(Theme.bg)
                 .onAppear { if result.confetti { confetti = true } }
-        .sensoryFeedback(.success, trigger: confetti)
+        .appHaptic(.success, trigger: confetti)
     }
 
     /// Exam-style sessions are graded in points (Bal): max 100, 4 wrong answers cancel 1 correct.

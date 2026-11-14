@@ -67,8 +67,8 @@ struct SimulationQuizView: View {
             sim.stop()
             surprise.start()
         }
-        .sensoryFeedback(.selection, trigger: sim.selections)
-        .sensoryFeedback(.warning, trigger: sim.isLowTime) { _, low in low && sim.result == nil }
+        .appHaptic(.selection, trigger: sim.selections)
+        .appHaptic(.warning, trigger: sim.isLowTime) { _, low in low && sim.result == nil }
     }
 
     private var finishMessage: String {
@@ -288,7 +288,7 @@ struct SimulationQuizView: View {
             }
             .buttonStyle(.glass)
             .tint(flagged ? Theme.warning : nil)
-            .sensoryFeedback(.selection, trigger: flagged)
+            .appHaptic(.selection, trigger: flagged)
             if session.isLast {
                 Button { requestFinish() } label: { Text("Bitir").frame(maxWidth: .infinity) }
                     .buttonStyle(.glassProminent)

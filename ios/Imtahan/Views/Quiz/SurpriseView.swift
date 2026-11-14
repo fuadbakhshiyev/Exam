@@ -58,7 +58,7 @@ struct SurpriseView: View {
         .presentationSizing(.fitted)
         #endif
         .interactiveDismissDisabled(!engine.isAnswered)
-        .sensoryFeedback(trigger: engine.feedback) { _, f in f.map { $0.isPositive ? .success : .error } }
+        .appHaptic(trigger: engine.feedback) { _, f in f.map { $0.isPositive ? .success : .error } }
     }
 
     private func row(_ i: Int, _ html: String, _ q: Question) -> some View {
@@ -99,7 +99,7 @@ struct CelebrationOverlay: ViewModifier {
                     .padding(24)
                     .transition(.scale(scale: 0.85).combined(with: .opacity))
                 }
-                .sensoryFeedback(.success, trigger: c.milestone)
+                .appHaptic(.success, trigger: c.milestone)
             }
         }
         .animation(.spring(duration: 0.4, bounce: 0.3), value: store.celebration)

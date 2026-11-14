@@ -100,7 +100,7 @@ struct TimerSection: View {
         }
         .padding(.vertical, 4)
         .animation(.snappy, value: p.phase)
-        .sensoryFeedback(.impact(weight: .medium), trigger: p.phase)
+        .appHaptic(.impact(weight: .medium), trigger: p.phase)
         .accessibilityElement(children: .contain)
         .listRowSeparator(.hidden, edges: [.top, .bottom])
         .appRow()

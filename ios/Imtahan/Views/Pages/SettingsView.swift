@@ -6,6 +6,8 @@ import UIKit
 struct SettingsView: View {
     @Environment(StudyStore.self) private var store
     @Environment(SurpriseEngine.self) private var surprise
+    /// Taps, correct / wrong answers, timer phases (Haptics).
+    @AppStorage(Haptics.key) private var haptics = true
 
     var body: some View {
         @Bindable var store = store
@@ -17,7 +19,7 @@ struct SettingsView: View {
                     SettingsLabel("Rejim", symbol: "graduationcap.fill", color: .blue)
                 }
                 .pickerStyle(.menu)
-                .sensoryFeedback(.selection, trigger: store.examMode)
+                .appHaptic(.selection, trigger: store.examMode)
                 .appRow()
                 NavigationLink {
                     ExamDatesView()
@@ -79,6 +81,10 @@ struct SettingsView: View {
                     SettingsLabel("Tema", symbol: "circle.lefthalf.filled", color: .gray)
                 }
                 .pickerStyle(.menu)
+                .appRow()
+                Toggle(isOn: $haptics) {
+                    SettingsLabel("Vibrasiya", symbol: "iphone.radiowaves.left.and.right", color: .pink)
+                }
                 .appRow()
             } header: {
                 Text("Görünüş")
@@ -260,7 +266,7 @@ private struct BackupSettingsView: View {
                 } label: {
                     SettingsLabel(copied ? "Kopyalandı ✓" : "Kopyala", symbol: copied ? "checkmark" : "doc.on.doc.fill", color: .gray)
                 }
-                .sensoryFeedback(.success, trigger: copied) { _, new in new }
+                .appHaptic(.success, trigger: copied) { _, new in new }
                 .appRow()
             } header: {
                 Text("İxrac")

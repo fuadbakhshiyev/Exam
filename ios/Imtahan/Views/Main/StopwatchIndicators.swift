@@ -72,7 +72,7 @@ struct StopwatchAccessory: View {
             .accessibilityLabel(stopwatch.isRunning ? "Dayandır" : "Davam et")
         }
         .padding(.horizontal, 16)
-        .sensoryFeedback(.impact(weight: .light), trigger: stopwatch.status)
+        .appHaptic(.impact(weight: .light), trigger: stopwatch.status)
     }
 }
 
@@ -98,7 +98,7 @@ struct QuizStopwatchCapsule: View {
                 .contentShape(Capsule())
             }
             .buttonStyle(.plain)
-            .sensoryFeedback(.impact(weight: .light), trigger: stopwatch.status)
+            .appHaptic(.impact(weight: .light), trigger: stopwatch.status)
             .accessibilityLabel("Xronometr \(stopwatch.display)")
             .accessibilityHint(stopwatch.isRunning ? "Dayandırmaq üçün toxun" : "Davam etmək üçün toxun")
             .transition(.opacity.combined(with: .scale(scale: 0.9)))
@@ -158,8 +158,8 @@ private struct FocusAccessory: View {
             .accessibilityLabel(p.isRunning ? "Dayandır" : "Davam et")
         }
         .padding(.horizontal, 16)
-        .sensoryFeedback(.impact(weight: .light), trigger: p.status)
-        .sensoryFeedback(.impact(weight: .medium), trigger: p.phase)
+        .appHaptic(.impact(weight: .light), trigger: p.status)
+        .appHaptic(.impact(weight: .medium), trigger: p.phase)
     }
 
     private func statusText(_ p: PomodoroSnapshot) -> String {
@@ -188,7 +188,7 @@ private struct QuizFocusCapsule: View {
             .contentShape(Capsule())
         }
         .buttonStyle(.plain)
-        .sensoryFeedback(.impact(weight: .light), trigger: p.status)
+        .appHaptic(.impact(weight: .light), trigger: p.status)
         .accessibilityLabel("\(p.phase.longTitle) \(stopwatch.pomodoroDisplay)")
         .accessibilityHint(p.isRunning ? "Dayandırmaq üçün toxun" : "Davam etmək üçün toxun")
         .transition(.opacity.combined(with: .scale(scale: 0.9)))

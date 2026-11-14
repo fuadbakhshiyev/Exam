@@ -49,7 +49,7 @@ struct SimulationResultView: View {
             }
         }
         .presentationBackground(Theme.bg)
-        .sensoryFeedback(.success, trigger: result.average >= 50)
+        .appHaptic(.success, trigger: result.average >= 50)
     }
 
     // MARK: Summary
