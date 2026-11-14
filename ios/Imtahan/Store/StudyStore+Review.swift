@@ -132,6 +132,19 @@ extension StudyStore {
         return Array(review.due(where: { inScope($0) }).prefix(limit)).map(\.question)
     }
 
+    /// Due in-scope questions of one subject (its booklet questions included), most overdue first.
+    func reviewDueQuestions(subject: String, limit: Int = 50) -> [Question] {
+        review.seedIfNeeded(from: data.wrong)
+        return Array(review.due(where: { inScope($0) && QuestionBank.baseCourse($0.c) == subject }).prefix(limit)).map(\.question)
+    }
+
+    /// Due counts per subject (Catalog order; only subjects with questions due first, then the rest).
+    func reviewDueBySubject() -> [(subject: String, count: Int)] {
+        var counts: [String: Int] = [:]
+        for e in review.due(where: { inScope($0) }) { counts[QuestionBank.baseCourse(e.question.c), default: 0] += 1 }
+        return Catalog.subjects.map { ($0, counts[$0] ?? 0) }
+    }
+
     /// Number of due in-scope questions (uncapped). Read-only: call seedReviewIfNeeded() outside view updates.
     var reviewDueCount: Int { review.due(where: { inScope($0) }).count }
 
@@ -144,7 +157,7 @@ extension QuizSession {
     /// ranking reacts to practice.
     static func perQuestionStat(_ kind: Kind, _ q: Question) -> (course: String, cat: String, sub: String)? {
         switch kind {
-        case .review:
+        case .review, .reviewSubject:
             return (q.c, "review", "Bu günün təkrarı")
         case .allQuestions, .unlearned:
             // Unit answers count for that unit (as on its own page); unknown-unit booklet questions go to review.

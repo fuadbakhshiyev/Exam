@@ -16,6 +16,7 @@ enum Route: Hashable {
     case statsMetric(StatsMetric)  // Statistika → one summary card in detail
     case achievements              // Statistika → Nailiyyətlər
     case timer                     // Ana səhifə toolbar → Xronometr / Fokus
+    case reviewHub                 // Ana səhifə → Ağıllı təkrar: due questions per subject
     case settings                  // font size, theme, backup, reset
     case question(String)          // one question opened from iPhone search (Spotlight item id)
 }
@@ -164,6 +165,7 @@ struct RouteView: View {
             case .statsMetric(let m): StatsMetricView(metric: m)
             case .achievements: AchievementsView()
             case .timer: TimerPageView()
+            case .reviewHub: ReviewHubView()
             case .settings: SettingsView()
             case .question(let id): QuestionDetailView(id: id)
             }

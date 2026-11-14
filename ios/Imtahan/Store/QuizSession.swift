@@ -40,6 +40,7 @@ final class QuizSession: Identifiable {
         case reviewMissed(questions: [Question], course: String) // reviewMissed
         case simulation(SimulationConfig)               // "Real imtahan simulyasiyası" (Store/ExamSimulation.swift)
         case review                                     // "Bu günün təkrarı" (Leitner, StudyStore+Review.swift)
+        case reviewSubject(String)                      // the same, one subject only (Ağıllı təkrar page)
         case weakTopics                                 // "Zəif mövzular" (StudyStore+Plan.swift)
         case allQuestions(String)                       // "Bütün suallar" of a subject (StudyStore+AllQuestions.swift)
         case unlearned(String)                          // "Öyrənilməmişlər" of a subject (Store/LearningFeatures.swift)
@@ -362,6 +363,10 @@ final class QuizSession: Identifiable {
             let qs = store.reviewDueQuestions()
             guard !qs.isEmpty else { throw fail("Bu gün təkrar ediləcək sual yoxdur ✓") }
             return special(qs, "Bu günün təkrarı", "Ağıllı təkrar")
+        case .reviewSubject(let subject):
+            let qs = store.reviewDueQuestions(subject: subject)
+            guard !qs.isEmpty else { throw fail("Bu fəndən bu gün təkrar ediləcək sual yoxdur ✓") }
+            return special(qs, "Bu günün təkrarı", subject)
         case .allQuestions(let subject):
             let qs = store.allSubjectQuestions(subject).shuffled()
             guard !qs.isEmpty else { throw fail("Bu fənn üçün sual tapılmadı.") }

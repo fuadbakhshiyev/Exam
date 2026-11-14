@@ -45,7 +45,7 @@ struct TodaySection: View {
     // MARK: Review
 
     private func reviewCard(_ due: Int) -> some View {
-        Button { router.start(.review) } label: {
+        Button { router.push(.reviewHub) } label: {
             MetricCard(title: "Ağıllı təkrar", symbol: "arrow.trianglehead.2.clockwise", tint: .teal,
                        value: "\(due)", unit: "sual",
                        note: due == 0 ? "Bu gün təkrar yoxdur ✓" : (due > 50 ? "Ən gecikmişlərdən 50-si" : "Vaxtı çatmış səhvlər")) {
@@ -55,8 +55,7 @@ struct TodaySection: View {
             }
         }
         .buttonStyle(.plain)
-        .disabled(due == 0)
-        .accessibilityHint(due > 0 ? "Təkrarı başladır" : "")
+        .accessibilityHint("Fənlər üzrə təkrarı açır")
     }
 
     // MARK: Plan card
@@ -198,5 +197,70 @@ struct WeakTopicsView: View {
         .pageTitle("Zəif mövzular")
         .toolbarBackground(Theme.bg, for: .navigationBar)
         .toolbar(.hidden, for: .tabBar)
+    }
+}
+
+/// "Ağıllı təkrar": what is due today per subject, each startable, plus everything at once.
+struct ReviewHubView: View {
+    @Environment(StudyStore.self) private var store
+    @Environment(AppRouter.self) private var router
+
+    var body: some View {
+        let rows = store.reviewDueBySubject()
+        let total = store.reviewDueCount
+        HealthPage {
+            VStack(alignment: .leading, spacing: Theme.Space.s12) {
+                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                    Text("\(total)").font(.system(size: 44, weight: .bold, design: .rounded)).monospacedDigit()
+                        .foregroundStyle(Theme.text)
+                    Text("sual bu gün").font(.headline).foregroundStyle(Theme.textMuted)
+                }
+                Text(total == 0 ? "Bu gün təkrar yoxdur ✓" : "Səhv etdiyiniz suallar artan aralıqlarla yenidən soruşulur: düz cavab verdikcə gec, səhv etdikcə tez qayıdır.")
+                    .font(.subheadline).foregroundStyle(Theme.textMuted)
+                if total > 0 {
+                    Button { router.start(.review) } label: {
+                        Label(total > 50 ? "Hamısını başlat (ən gecikmiş 50)" : "Hamısını başlat", systemImage: "play.fill")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.glassProminent)
+                    .tint(.teal)
+                    .largeControl()
+                }
+            }
+            .padding(Theme.Space.s16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .card()
+
+            HealthSectionTitle(text: "Fənlər üzrə")
+            HealthGroup {
+                ForEach(rows.sorted { $0.count > $1.count }, id: \.subject) { r in
+                    Button { router.start(.reviewSubject(r.subject)) } label: {
+                        HStack(spacing: Theme.Space.s12) {
+                            SubjectIcon(course: r.subject, size: 36)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(r.subject).foregroundStyle(Theme.text).lineLimit(2)
+                                Text(r.count == 0 ? "Təkrar yoxdur ✓" : "\(r.count) sual" + (r.count > 50 ? " · ən gecikmiş 50-si" : ""))
+                                    .font(.footnote).monospacedDigit()
+                                    .foregroundStyle(r.count == 0 ? Theme.success : Theme.textMuted)
+                            }
+                            Spacer(minLength: 8)
+                            if r.count > 0 {
+                                Image(systemName: "play.circle.fill").font(.title2).foregroundStyle(.teal)
+                            }
+                        }
+                        .padding(.vertical, Theme.Space.s10)
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(r.count == 0)
+                    .accessibilityHint(r.count > 0 ? "Bu fənnin təkrarını başladır" : "")
+                }
+            }
+            Text("Ən çox təkrarı olan fənn yuxarıdadır. Bir dəfədə ən çox 50 sual verilir.")
+                .font(.footnote).foregroundStyle(Theme.textMuted).padding(.horizontal, Theme.Space.s4)
+        }
+        .navigationTitle("Ağıllı təkrar")
+        .navigationBarTitleDisplayMode(.large)
+        .task { store.seedReviewIfNeeded() }
     }
 }
