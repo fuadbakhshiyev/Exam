@@ -49,7 +49,14 @@ struct MixSection: View {
             LabeledContent("Mənbə", value: info.sources).appRow()
             LabeledContent("Hələ işlənməmiş sual", value: "\(info.notYetAnswered)").appRow()
             if let last = info.last {
-                LabeledContent("Son sınaq", value: last).appRow()
+                if let subject = info.historySubject {
+                    NavigationLink { MixedHistoryView(subject: subject) } label: {
+                        LabeledContent("Son sınaq", value: last)
+                    }
+                    .appRow()
+                } else {
+                    LabeledContent("Son sınaq", value: last).appRow()
+                }
             }
         } header: {
             Text(title)
@@ -376,4 +383,63 @@ struct ResetStatsButton: View {
             resetting = false
         }
     }
+}
+
+/// "Son sınaq" → every finished mixed exam of a subject: best / average score and each attempt.
+struct MixedHistoryView: View {
+    let subject: String
+    @Environment(StudyStore.self) private var store
+    @Environment(AppRouter.self) private var router
+
+    var body: some View {
+        let list = MixedExamHistory.shared.attempts(for: subject)
+        HealthPage {
+            if list.isEmpty {
+                ContentUnavailableView("Hələ bal yoxdur", systemImage: "list.number",
+                                       description: Text("Qarışıq sınağı bitirəndə nəticəsi burada saxlanacaq. Əvvəlki sınaqların balı yazılmayıb."))
+            } else {
+                let best = list.map(\.score).max() ?? 0
+                let avg = list.map(\.score).reduce(0, +) / Double(list.count)
+                HStack(spacing: Theme.Space.s8) {
+                    StatTile(label: "Son", value: ResultView.points(list[0].score), tone: tone(list[0].score))
+                    StatTile(label: "Ən yaxşı", value: ResultView.points(best), tone: tone(best))
+                    StatTile(label: "Ortalama", value: ResultView.points((avg * 10).rounded() / 10))
+                }
+
+                HealthSectionTitle(text: "Sınaqlar (\(list.count))")
+                HealthGroup {
+                    ForEach(list) { a in
+                        HStack(spacing: Theme.Space.s12) {
+                            Text(ResultView.points(a.score))
+                                .font(.title3.weight(.bold)).monospacedDigit().foregroundStyle(tone(a.score))
+                                .frame(minWidth: 52, alignment: .leading)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(a.date.formatted(.dateTime.day().month(.wide).hour().minute().locale(Locale(identifier: "az"))))
+                                    .foregroundStyle(Theme.text)
+                                Text("\(a.correct) düz · \(a.wrong) səhv · \(a.blank) boş" + (a.seconds > 0 ? " · \(StatsFormat.duration(a.seconds))" : ""))
+                                    .font(.footnote).monospacedDigit().foregroundStyle(Theme.textMuted)
+                            }
+                            Spacer(minLength: 0)
+                        }
+                        .padding(.vertical, Theme.Space.s10)
+                        .accessibilityElement(children: .combine)
+                    }
+                }
+                Text("Bal: 100 üzərindən, 4 səhv 1 düzü aparır.")
+                    .font(.footnote).foregroundStyle(Theme.textMuted).padding(.horizontal, Theme.Space.s4)
+            }
+
+            Button { router.start(.courseMixed(subject)) } label: {
+                Label("Yeni sınaq", systemImage: "play.fill").frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.glassProminent)
+            .largeControl()
+            .padding(.top, Theme.Space.s12)
+        }
+        .navigationTitle("Qarışıq sınaq")
+        .navigationSubtitle(subject)
+        .navigationBarTitleDisplayMode(.large)
+    }
+
+    private func tone(_ v: Double) -> Color { v >= 85 ? Theme.success : (v >= 50 ? Theme.warning : Theme.danger) }
 }

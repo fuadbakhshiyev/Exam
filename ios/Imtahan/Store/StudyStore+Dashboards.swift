@@ -70,6 +70,8 @@ struct MixTabInfo: Hashable, Sendable {
     let notYetAnswered: Int
     /// "Son sınaq" line (when and how the last mixed exam went); nil before the first one.
     var last: String? = nil
+    /// Subject whose mixed-exam history "Son sınaq" opens.
+    var historySubject: String? = nil
 }
 
 struct HomeTotals: Hashable, Sendable {
@@ -472,7 +474,7 @@ extension StudyStore {
             mixedOnlyCount: mixedOnly.count, mixedOnlyRow: moRow, units: units, worstUnit: Self.worstIndex(units),
             examCount: exams.count,
             mixTab: MixTabInfo(questionCount: "20", sources: "\(units.filter { $0.total > 0 }.count) bölmə",
-                               notYetAnswered: unansweredQuestions(c).count, last: mixedLast(s)))
+                               notYetAnswered: unansweredQuestions(c).count, last: mixedLast(c, s), historySubject: c))
     }
 
     // MARK: Mixed page (renderMixedPage)
@@ -789,7 +791,10 @@ extension StudyStore {
     }
 
     /// "14 noy · 52 düz, 8 səhv" for the subject's "Qarışıq Sınaq" stat.
-    func mixedLast(_ s: CourseStat) -> String? {
+    func mixedLast(_ c: String, _ s: CourseStat) -> String? {
+        if let a = MixedExamHistory.shared.attempts(for: c).first {
+            return "\(ResultView.points(a.score)) bal · \(Self.formatLastTested(Int64(a.date.timeIntervalSince1970 * 1000), hasData: true))"
+        }
         guard let m = s.bd["mixed"]?["Qarışıq Sınaq"], m.t > 0 else { return nil }
         return "\(Self.formatLastTested(m.last, hasData: true)) · cəmi \(m.c) düz, \(m.w) səhv"
     }

@@ -457,7 +457,13 @@ final class QuizSession: Identifiable {
     }
 
     /// Timer is shown only in mock and pdf exam sessions.
-    var showsTimer: Bool { isMockMode || course.contains("_pdf_") || QuestionBank.isFinalKey(course) }
+    var showsTimer: Bool { isMockMode || isCourseMixed || course.contains("_pdf_") || QuestionBank.isFinalKey(course) }
+
+    /// Graded sessions: points so far (100 over all questions, 4 wrong cancel 1 correct).
+    var liveScore: Double {
+        guard !items.isEmpty else { return 0 }
+        return max(0, (Double(correctCount) - Double(wrongCount) / 4) / Double(items.count) * 100)
+    }
     var timerText: String { store.quizTimerText }
 
     /// Shows the course/unit badges above the question.
@@ -705,6 +711,7 @@ final class QuizSession: Identifiable {
         cancelAutoAdvance()
         pendingFinishConfirmation = nil
         let elapsed = ownsTimer ? store.quizTimerText : ""
+        let elapsedSeconds = ownsTimer ? store.quizElapsedSeconds : 0
         if ownsTimer { store.stopQuizTimer() }
         var c = 0, w = 0
         var order: [String] = []
@@ -741,6 +748,10 @@ final class QuizSession: Identifiable {
         result = r
         clearProgress()
         // Nailiyyətlər: graded past-exam score, a whole "Bütün suallar" pool answered to the end.
+        if isCourseMixed && c + w > 0 {
+            MixedExamHistory.shared.add(MixedExamAttempt(subject: course, date: Date(), correct: c, wrong: w,
+                                                         total: total, score: score, seconds: elapsedSeconds))
+        }
         store.noteTestFinished(subject: course, gradedScore: isGradedExam && total > 0 ? score : nil,
                                finishedPool: isSubjectPool && total > 0 && c + w == total)
         return r

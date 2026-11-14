@@ -212,3 +212,49 @@ extension StudyStore {
         return (all.filter { m.isLearned($0) }.count, all.count)
     }
 }
+
+// MARK: - Qarışıq sınaq history
+
+/// One finished "Qarışıq sınaq" of a subject.
+struct MixedExamAttempt: Codable, Hashable, Identifiable, Sendable {
+    var id: Date { date }
+    let subject: String
+    let date: Date
+    let correct: Int
+    let wrong: Int
+    let total: Int
+    /// Bal, 0…100 (4 wrong cancel 1 correct).
+    let score: Double
+    let seconds: Int
+    var blank: Int { max(0, total - correct - wrong) }
+}
+
+/// Device-local list of finished mixed exams (Application Support/Imtahan/mixed_history.json).
+@MainActor
+@Observable
+final class MixedExamHistory {
+    static let shared = MixedExamHistory()
+    private(set) var attempts: [MixedExamAttempt] = []
+    @ObservationIgnored private let fileURL: URL
+
+    private init() {
+        fileURL = StudyStore.defaultFileURL().deletingLastPathComponent().appendingPathComponent("mixed_history.json")
+        if let raw = try? Data(contentsOf: fileURL),
+           let list = try? JSONDecoder().decode([MixedExamAttempt].self, from: raw) {
+            attempts = list
+        }
+    }
+
+    /// Newest first.
+    func attempts(for subject: String) -> [MixedExamAttempt] {
+        attempts.filter { $0.subject == subject }.sorted { $0.date > $1.date }
+    }
+
+    func add(_ a: MixedExamAttempt) {
+        attempts.append(a)
+        if attempts.count > 500 { attempts.removeFirst(attempts.count - 500) }
+        guard let raw = try? JSONEncoder().encode(attempts) else { return }
+        let url = fileURL
+        Task.detached(priority: .utility) { try? raw.write(to: url, options: .atomic) }
+    }
+}

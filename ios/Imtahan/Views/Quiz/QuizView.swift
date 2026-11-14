@@ -135,6 +135,14 @@ struct QuizView: View {
                         Label(session.timerText, systemImage: "timer").font(.footnote.weight(.semibold)).monospacedDigit()
                             .foregroundStyle(Theme.text)
                     }
+                    if session.isGradedExam && !session.isMockMode {
+                        // Points so far (100 max, 4 wrong cancel 1 correct).
+                        Label("\(ResultView.points(session.liveScore)) bal", systemImage: "star.fill")
+                            .font(.footnote.weight(.semibold)).monospacedDigit()
+                            .foregroundStyle(Theme.accent)
+                            .contentTransition(.numericText())
+                            .accessibilityLabel("Bal: \(ResultView.points(session.liveScore))")
+                    }
                     Image(systemName: session.pagerOpen ? "chevron.up" : "square.grid.3x3").font(.footnote).foregroundStyle(Theme.textMuted)
                 }
                 .padding(.vertical, 8)
