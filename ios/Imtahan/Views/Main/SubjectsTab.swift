@@ -34,12 +34,11 @@ struct SubjectsTab: View {
                 if layout == "grid" {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: Theme.Space.s12)], spacing: Theme.Space.s12) {
                         ForEach(subjects, id: \.self) { c in
-                            NavigationLink(value: Route.course(c)) { SubjectGridCard(course: c) }.buttonStyle(.plain)
+                            // Buttons, not NavigationLinks: inside a List row a link adds its own disclosure arrow.
+                            Button { router.push(.course(c)) } label: { SubjectGridCard(course: c) }.buttonStyle(.plain)
                         }
-                        NavigationLink(value: Route.overall) {
-                            SubjectGridCard(course: Catalog.overallKey)
-                        }
-                        .buttonStyle(.plain)
+                        Button { router.push(.overall) } label: { SubjectGridCard(course: Catalog.overallKey) }
+                            .buttonStyle(.plain)
                     }
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
@@ -311,7 +310,6 @@ private struct SubjectGridCard: View {
             HStack(alignment: .top) {
                 SubjectIcon(course: course, size: 40)
                 Spacer(minLength: 4)
-                if !isOverall { Chevron() }
             }
             Text(course).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.text)
                 .lineLimit(2, reservesSpace: true)
