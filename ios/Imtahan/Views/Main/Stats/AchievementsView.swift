@@ -104,6 +104,25 @@ struct AchievementTile: View {
                 Text(a.detail).font(.caption).foregroundStyle(Theme.textMuted).lineLimit(2, reservesSpace: true)
             }
 
+            // Every tile reserves the progress block's height so locked/unlocked tiles match.
+            ZStack(alignment: .bottomLeading) {
+                VStack(alignment: .leading, spacing: 4) {
+                    ProgressView(value: 0)
+                    Text("0/0").font(.caption2)
+                }
+                .hidden()
+                statusLine
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(Theme.Space.s12)
+        .card(radius: Theme.Radius.md, fill: Theme.surface)
+        .opacity(on ? 1 : 0.75)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(a.title), \(a.detail), \(on ? "açılıb" : (status.progressText ?? "bağlı"))")
+    }
+
+    @ViewBuilder private var statusLine: some View {
             if let date = status.unlockedAt {
                 Label(date.formatted(.dateTime.day().month(.abbreviated).year().locale(Locale(identifier: "az"))),
                       systemImage: "checkmark.seal.fill")
@@ -116,13 +135,6 @@ struct AchievementTile: View {
             } else {
                 Label("Bağlı", systemImage: "lock.fill").font(.caption2).foregroundStyle(Theme.textMuted)
             }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(Theme.Space.s12)
-        .card(radius: Theme.Radius.md, fill: Theme.surface)
-        .opacity(on ? 1 : 0.75)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(a.title), \(a.detail), \(on ? "açılıb" : (status.progressText ?? "bağlı"))")
     }
 }
 
