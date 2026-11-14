@@ -413,6 +413,7 @@ enum StatsMetric: String, Hashable, Sendable {
     }
 }
 
+/// A Statistika card's own page, Apple Health style: chart with range picker, highlights, details.
 struct StatsMetricView: View {
     let metric: StatsMetric
     @Environment(StudyStore.self) private var store
@@ -421,38 +422,26 @@ struct StatsMetricView: View {
 
     var body: some View {
         let t = store.homeTotals()
-        List {
+        HealthPage {
             switch metric {
             case .today: today(t)
             case .accuracy: accuracy(t)
-            case .questions:
-                chartSection(mode: 0)
+            case .questions: questions(t)
             case .time: time(t)
-            case .wrong: StatsWrongSections()
+            case .wrong: wrong()
             }
 
             if !metric.rankings.isEmpty {
-                Section {
+                HealthSectionTitle(text: "Sıralama")
+                HealthGroup {
                     ForEach(metric.rankings) { type in
-                        Button { detail = type } label: {
-                            HStack {
-                                StatLabel(title: type.rowTitle, symbol: type.symbol, tint: type.tint)
-                                Spacer()
-                                Chevron()
-                            }
-                            .contentShape(Rectangle())
-                        }
-                        .buttonStyle(.plain)
-                        .appRow()
+                        HealthRow(title: type.rowTitle, symbol: type.symbol, tint: type.tint) { detail = type }
                     }
-                } header: {
-                    Text("Sıralama")
-                } footer: {
-                    Text("Bütün fənn, sınaq və imtahanlar bu göstəriciyə görə.")
                 }
+                Text("Bütün fənn, sınaq və imtahanlar bu göstəriciyə görə.")
+                    .font(.footnote).foregroundStyle(Theme.textMuted).padding(.horizontal, Theme.Space.s4)
             }
         }
-        .appListStyle()
         .navigationTitle(metric.title)
         .navigationSubtitle(store.examModeLabel)
         .navigationBarTitleDisplayMode(.large)
@@ -464,144 +453,145 @@ struct StatsMetricView: View {
         }
     }
 
-    private func chartSection(mode: Int) -> some View {
-        Section {
-            DynamicsChartCard(initialMode: mode)
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
-        } header: {
-            Text("İmtahan dövrü")
+    @ViewBuilder private func highlights(_ series: StatsSeries) -> some View {
+        let items = store.statsHighlights(series)
+        if !items.isEmpty {
+            HealthSectionTitle(text: "Əsas məqamlar")
+            ForEach(items) { HighlightCard(item: $0) }
         }
     }
+
+    // MARK: Bu gün
 
     @ViewBuilder private func today(_ t: HomeTotals) -> some View {
         let level = store.dailyLevel
         let target = Double(max(level.target, 1))
         let okFrac = min(1, Double(t.todayCorrect) / target)
         let badFrac = min(1 - okFrac, Double(t.todayWrong) / target)
-        Section {
-            HStack(spacing: Theme.Space.s16) {
-                RingDial(accent: okFrac, danger: badFrac, lineWidth: 8) {
-                    VStack(spacing: 0) {
-                        Text("\(Int((level.progress * 100).rounded()))%")
-                            .font(.subheadline.weight(.semibold)).monospacedDigit().foregroundStyle(Theme.text)
-                        Text("hədəf").font(.system(size: 9)).foregroundStyle(Theme.textMuted)
-                    }
+        VStack(spacing: Theme.Space.s16) {
+            RingDial(accent: okFrac, danger: badFrac, lineWidth: 16) {
+                VStack(spacing: 0) {
+                    Text("\(level.count)").font(.system(size: 40, weight: .bold, design: .rounded)).monospacedDigit()
+                        .foregroundStyle(Theme.text)
+                    Text("/ \(level.target) sual").font(.subheadline).foregroundStyle(Theme.textMuted)
                 }
-                .frame(width: 68, height: 68)
-
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        Text("\(level.count)").font(.title2.weight(.bold)).foregroundStyle(Theme.text)
-                        Text("/ \(level.target) sual").font(.subheadline).foregroundStyle(Theme.textMuted)
-                    }
-                    .monospacedDigit()
-                    Text("Hədəf: \(level.level)").font(.footnote).foregroundStyle(Theme.textMuted)
-                    if t.todayCorrect + t.todayWrong > 0 {
-                        HStack(spacing: Theme.Space.s12) {
-                            CountDot(text: "\(t.todayCorrect) düz", color: Theme.success)
-                            CountDot(text: "\(t.todayWrong) səhv", color: Theme.danger)
-                        }
-                        .font(.footnote)
-                    } else {
-                        Text("Hələ sual işlənməyib").font(.footnote).foregroundStyle(Theme.textMuted)
-                    }
-                }
-                Spacer(minLength: 0)
             }
-            .padding(.vertical, Theme.Space.s4)
-            .accessibilityElement(children: .combine)
-            .appRow()
-
-            ValueRow(title: "Platformada", symbol: "iphone", value: StatsFormat.duration(t.todayPlatformTime))
-                .appRow()
-            ValueRow(title: "Testlərdə", symbol: "timer", value: StatsFormat.duration(t.todayTestTime))
-                .appRow()
+            .frame(width: 180, height: 180)
+            Text(level.level).font(.headline).foregroundStyle(Theme.text)
+            HStack(spacing: Theme.Space.s8) {
+                StatTile(label: "Düz", value: "\(t.todayCorrect)", tone: Theme.success)
+                StatTile(label: "Səhv", value: "\(t.todayWrong)", tone: Theme.danger)
+                StatTile(label: "Hədəf", value: "\(Int((level.progress * 100).rounded()))%")
+            }
         }
-        chartSection(mode: 0)
+        .padding(Theme.Space.s16)
+        .frame(maxWidth: .infinity)
+        .card()
+        .accessibilityElement(children: .combine)
+
+        HealthGroup {
+            HealthRow(title: "Platformada", symbol: "iphone", tint: Theme.warning, value: StatsFormat.duration(t.todayPlatformTime))
+            HealthRow(title: "Testlərdə", symbol: "timer", tint: Theme.warning, value: StatsFormat.duration(t.todayTestTime))
+        }
+
+        HealthSectionTitle(text: "Günlər")
+        HealthChartCard(series: .answers, tint: Theme.accent)
+        highlights(.answers)
     }
 
+    // MARK: Dəqiqlik
+
     @ViewBuilder private func accuracy(_ t: HomeTotals) -> some View {
-        Section {
-            AccuracySummaryRow(answered: t.globalAnswered, total: t.totalQuestions, correct: t.globalCorrect, wrong: t.globalWrong)
-                .appRow()
-            if t.globalAnswered > 0 {
-                ReviewCountRow(title: "Düz cavablar", count: t.globalCorrect, symbol: "checkmark.circle.fill", tint: Theme.success) {
+        HealthChartCard(series: .accuracy, tint: Theme.success)
+        highlights(.accuracy)
+
+        HealthSectionTitle(text: "Ümumi")
+        AccuracySummaryRow(answered: t.globalAnswered, total: t.totalQuestions, correct: t.globalCorrect, wrong: t.globalWrong)
+            .padding(Theme.Space.s16).frame(maxWidth: .infinity, alignment: .leading).card()
+        if t.globalAnswered > 0 {
+            HealthGroup {
+                HealthRow(title: "Düz cavablar", symbol: "checkmark.circle.fill", tint: Theme.success, value: "\(t.globalCorrect)") {
                     router.start(.reviewAll(correct: true))
                 }
-                ReviewCountRow(title: "Səhv cavablar", count: t.globalWrong, symbol: "xmark.circle.fill", tint: Theme.danger) {
+                HealthRow(title: "Səhv cavablar", symbol: "xmark.circle.fill", tint: Theme.danger, value: "\(t.globalWrong)") {
                     router.start(.reviewAll(correct: false))
                 }
             }
-        } footer: {
-            if t.globalAnswered > 0 { Text("Düz və ya səhv cavablarınızı yenidən işləmək üçün toxunun.") }
+            Text("Düz və ya səhv cavablarınızı yenidən işləmək üçün toxunun.")
+                .font(.footnote).foregroundStyle(Theme.textMuted).padding(.horizontal, Theme.Space.s4)
         }
     }
+
+    // MARK: İşlənən suallar
+
+    @ViewBuilder private func questions(_ t: HomeTotals) -> some View {
+        HealthChartCard(series: .answers, tint: .indigo)
+        highlights(.answers)
+
+        HealthSectionTitle(text: "Ümumi")
+        AccuracySummaryRow(answered: t.globalAnswered, total: t.totalQuestions, correct: t.globalCorrect, wrong: t.globalWrong)
+            .padding(Theme.Space.s16).frame(maxWidth: .infinity, alignment: .leading).card()
+        HealthSectionTitle(text: "Fənlər")
+        subjectsCard
+    }
+
+    /// Every subject's answered share, opening its page.
+    private var subjectsCard: some View {
+        let rows = store.subjectStatsRows()
+        return HealthGroup {
+            ForEach(rows) { r in
+                NavigationLink(value: Route.subjectStats(r.key)) {
+                    HStack(spacing: Theme.Space.s8) {
+                        SubjectStatsRowView(row: r)
+                        Chevron()
+                    }
+                    .padding(.vertical, Theme.Space.s10)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+            }
+        }
+    }
+
+    // MARK: Vaxt
 
     @ViewBuilder private func time(_ t: HomeTotals) -> some View {
-        Section {
-            ValueRow(title: "Ümumi sərf edilən vaxt", symbol: "clock", value: StatsFormat.duration(t.globalTime), tint: Theme.warning)
-                .appRow()
-            ValueRow(title: "Bu gün platformada", symbol: "iphone", value: StatsFormat.duration(t.todayPlatformTime), tint: Theme.warning)
-                .appRow()
-            ValueRow(title: "Bu gün testlərdə", symbol: "timer", value: StatsFormat.duration(t.todayTestTime), tint: Theme.warning)
-                .appRow()
+        HealthChartCard(series: .minutes, tint: Theme.warning)
+        highlights(.minutes)
+
+        HealthSectionTitle(text: "Ümumi")
+        HealthGroup {
+            HealthRow(title: "Ümumi sərf edilən vaxt", symbol: "clock.fill", tint: Theme.warning, value: StatsFormat.duration(t.globalTime))
+            HealthRow(title: "Bu gün platformada", symbol: "iphone", tint: Theme.warning, value: StatsFormat.duration(t.todayPlatformTime))
+            HealthRow(title: "Bu gün testlərdə", symbol: "timer", tint: Theme.warning, value: StatsFormat.duration(t.todayTestTime))
         }
-        chartSection(mode: 1)
     }
-}
 
-// MARK: - Səhvlər
+    // MARK: Səhvlər
 
-struct StatsWrongSections: View {
-    @Environment(StudyStore.self) private var store
-    @Environment(AppRouter.self) private var router
-
-    var body: some View {
+    @ViewBuilder private func wrong() -> some View {
         let total = store.wrongTotal
-        if total == 0 {
-            Section {
-                ContentUnavailableView("Səhv sual yoxdur", systemImage: "checkmark.seal",
-                                       description: Text("Testlərdə səhv etdiyiniz suallar burada toplanacaq."))
-                    .listRowBackground(Color.clear)
-            }
-        }
+        HealthChartCard(series: .wrong, tint: Theme.danger)
+        highlights(.wrong)
 
-        Section {
+        HealthSectionTitle(text: "Səhv suallar")
+        HealthGroup {
             NavigationLink(value: Route.wrong) {
-                HStack {
-                    StatLabel(title: "Səhv suallar", symbol: "xmark.octagon.fill", tint: Theme.danger)
-                    Spacer(minLength: 8)
-                    if total > 0 { Text("\(total)").monospacedDigit().foregroundStyle(Theme.textMuted) }
-                }
+                HealthRow(title: "Bütün səhv suallar", symbol: "xmark.octagon.fill", tint: Theme.danger, value: "\(total)", chevron: true)
             }
-            .appRow()
-        } footer: {
-            Text("Səhv etdiyiniz bütün suallar, mənbələrə görə.")
+            .buttonStyle(.plain)
+            HealthRow(title: "Çətin (2+ səhv)", symbol: "flame", tint: Theme.warning, value: "\(store.hardCount)")
+            HealthRow(title: "Çox çətin (3+ səhv)", symbol: "flame.fill", tint: Theme.warning, value: "\(store.veryHardCount)")
         }
-
-        if total > 0 {
-            Section {
-                ValueRow(title: "Çətin (2+ səhv)", symbol: "flame", value: "\(store.hardCount)", tint: Theme.warning)
-                    .appRow()
-                ValueRow(title: "Çox çətin (3+ səhv)", symbol: "flame.fill", value: "\(store.veryHardCount)", tint: Theme.warning)
-                    .appRow()
-            } header: {
-                Text("Çətinlik")
-            } footer: {
-                Text("Bir neçə dəfə səhv etdiyiniz suallar.")
+        if store.hardCount > 0 {
+            Button { router.start(.hard) } label: {
+                Label("Ən çətinləri işlə", systemImage: "play.fill").frame(maxWidth: .infinity)
             }
-
-            Section {
-                Button { router.start(.hard) } label: {
-                    Label("Ən çətinləri işlə", systemImage: "play.fill")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.glassProminent)
-                .largeControl()
-                .listRowBackground(Color.clear)
-                .listRowInsets(EdgeInsets())
-            }
+            .buttonStyle(.glassProminent)
+            .largeControl()
+            .padding(.top, Theme.Space.s8)
         }
+        HealthAbout(text: "Səhv etdiyiniz hər sual burada toplanır. Bir sualı neçə dəfə səhv etsəniz, o qədər çətin sayılır; Ağıllı təkrar onları vaxtı çatdıqca yenidən göstərir.")
+            .padding(.top, Theme.Space.s8)
     }
 }

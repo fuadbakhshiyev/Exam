@@ -1,88 +1,98 @@
 import SwiftUI
 
-/// One subject (its pdf exams included), Mixed or the mock exam in detail:
-/// summary → answers to review → breakdown per unit / part / exam → open the subject.
+/// One subject (its pdf exams included), Mixed or the mock exam, Apple Health style:
+/// summary → daily chart → highlights → answers to review → breakdown cards → open the subject.
 struct SubjectStatsView: View {
     let key: String
     @Environment(StudyStore.self) private var store
     @Environment(AppRouter.self) private var router
 
     private var isMock: Bool { key == Catalog.mockKey }
+    private var isSubject: Bool { Catalog.subjects.contains(key) }
 
     var body: some View {
         let r = store.subjectStatsRow(key)
         let sections = store.statsLineSections(key)
         let pdfRows = isMock ? [] : store.pdfExamRows(key).filter { if case .pdfFrequent = $0.target { false } else { true } }
-        List {
-            // Summary
-            Section {
-                AccuracySummaryRow(answered: r.answered, total: r.total, correct: r.correct, wrong: r.wrong)
-                    .appRow()
-                ValueRow(title: "Sərf edilən vaxt", symbol: "clock", value: StatsFormat.duration(r.time))
-                    .appRow()
-                ValueRow(title: "Son test", symbol: "calendar",
-                         value: StudyStore.formatLastTested(r.lastTested, hasData: r.answered > 0))
-                    .appRow()
+        HealthPage {
+            AccuracySummaryRow(answered: r.answered, total: r.total, correct: r.correct, wrong: r.wrong)
+                .padding(Theme.Space.s16).frame(maxWidth: .infinity, alignment: .leading).card()
+
+            HealthGroup {
+                if isSubject {
+                    let dates = ExamDates.shared
+                    let m = store.masteryProgress(key)
+                    HealthRow(title: "İmtahan", symbol: "calendar", tint: .pink,
+                              value: dates.isOver(key) ? "Bitib" : "\(dates.timeText(key)) · \(dates.daysLeft(key)) gün")
+                    HealthRow(title: "Öyrənilib", symbol: "brain.head.profile.fill", tint: .purple,
+                              value: "\(m.learned)/\(m.total)")
+                }
+                HealthRow(title: "Sərf edilən vaxt", symbol: "clock.fill", tint: Theme.warning, value: StatsFormat.duration(r.time))
+                HealthRow(title: "Son test", symbol: "clock.arrow.circlepath", tint: .teal,
+                          value: StudyStore.formatLastTested(r.lastTested, hasData: r.answered > 0))
             }
 
-            // Answers (tap to review; the mock exam has no review list)
-            if r.answered > 0 {
-                Section {
-                    if isMock {
-                        ValueRow(title: "Düz cavablar", symbol: "checkmark.circle.fill", value: "\(r.correct)", tint: Theme.success)
-                            .appRow()
-                        ValueRow(title: "Səhv cavablar", symbol: "xmark.circle.fill", value: "\(r.wrong)", tint: Theme.danger)
-                            .appRow()
-                    } else {
-                        ReviewCountRow(title: "Düz cavablar", count: r.correct, symbol: "checkmark.circle.fill", tint: Theme.success) {
-                            router.start(.reviewCourse(course: key, correct: true))
-                        }
-                        ReviewCountRow(title: "Səhv cavablar", count: r.wrong, symbol: "xmark.circle.fill", tint: Theme.danger) {
-                            router.start(.reviewCourse(course: key, correct: false))
-                        }
-                    }
-                } header: {
-                    Text("Cavablar")
-                } footer: {
-                    if !isMock { Text("Cavabları yenidən işləmək üçün toxunun.") }
+            if !isMock {
+                HealthSectionTitle(text: "Günlər")
+                HealthChartCard(series: .answers, tint: Theme.accent, course: key)
+                let items = store.statsHighlights(.answers, course: key)
+                if !items.isEmpty {
+                    HealthSectionTitle(text: "Əsas məqamlar")
+                    ForEach(items) { HighlightCard(item: $0) }
                 }
             }
 
-            // Breakdown
+            if r.answered > 0 {
+                HealthSectionTitle(text: "Cavablar")
+                HealthGroup {
+                    if isMock {
+                        HealthRow(title: "Düz cavablar", symbol: "checkmark.circle.fill", tint: Theme.success, value: "\(r.correct)")
+                        HealthRow(title: "Səhv cavablar", symbol: "xmark.circle.fill", tint: Theme.danger, value: "\(r.wrong)")
+                    } else {
+                        HealthRow(title: "Düz cavablar", symbol: "checkmark.circle.fill", tint: Theme.success, value: "\(r.correct)") {
+                            router.start(.reviewCourse(course: key, correct: true))
+                        }
+                        HealthRow(title: "Səhv cavablar", symbol: "xmark.circle.fill", tint: Theme.danger, value: "\(r.wrong)") {
+                            router.start(.reviewCourse(course: key, correct: false))
+                        }
+                    }
+                }
+            }
+
             ForEach(sections) { s in
-                Section(s.title) {
+                HealthSectionTitle(text: s.title)
+                HealthGroup {
                     ForEach(s.lines) { l in
-                        StatsLineRow(title: l.title, correct: l.correct, wrong: l.wrong,
-                                     total: l.answered, detail: StudyStore.formatLastTested(l.last, hasData: l.answered > 0))
-                            .appRow()
+                        StatsLineRow(title: l.title, correct: l.correct, wrong: l.wrong, total: l.answered,
+                                     detail: StudyStore.formatLastTested(l.last, hasData: l.answered > 0))
+                            .padding(.vertical, Theme.Space.s8)
                     }
                 }
             }
 
             if !pdfRows.isEmpty {
-                Section("Vize imtahanları") {
+                HealthSectionTitle(text: "Vize imtahanları")
+                HealthGroup {
                     ForEach(pdfRows) { p in
                         StatsLineRow(title: p.name, correct: p.ok, wrong: p.bad, total: max(p.total, p.done),
                                      detail: p.done > 0 ? "\(min(p.done, p.total))/\(p.total) · \(p.lastStr)" : "\(p.total) sual · işlənməyib")
-                            .appRow()
+                            .padding(.vertical, Theme.Space.s8)
                     }
                 }
             }
 
-            Section {
-                Button {
-                    if isMock { router.start(.mock) } else { router.openSubjectPage(key) }
-                } label: {
-                    Label(isMock ? "Böyük sınağa başla" : "Fənnə keç", systemImage: isMock ? "play.fill" : "arrow.right.circle.fill")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.glassProminent)
-                .largeControl()
-                .listRowBackground(Color.clear)
-                .listRowInsets(EdgeInsets())
+            Button {
+                if isMock { router.start(.mock) } else { router.openSubjectPage(key) }
+            } label: {
+                Label(isMock ? "Böyük sınağa başla" : "Fənnə keç", systemImage: isMock ? "play.fill" : "arrow.right.circle.fill")
+                    .frame(maxWidth: .infinity)
             }
+            .buttonStyle(.glassProminent)
+            .largeControl()
+            .padding(.top, Theme.Space.s12)
         }
-        .appListStyle()
-        .pageTitle(StatsFormat.title(key), subtitle: "\(store.examMode.title) rejimi")
+        .navigationTitle(StatsFormat.title(key))
+        .navigationSubtitle("\(store.examMode.title) rejimi")
+        .navigationBarTitleDisplayMode(.large)
     }
 }
