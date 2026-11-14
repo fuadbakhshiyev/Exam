@@ -5,14 +5,50 @@ import SwiftUI
 struct SubjectsTab: View {
     @Environment(StudyStore.self) private var store
     @Environment(AppRouter.self) private var router
+    /// "list" or "grid".
+    @AppStorage("subjects_layout") private var layout = "list"
+    /// "custom", "exam", "name", "progress".
+    @AppStorage("subjects_sort") private var sort = "custom"
+    /// The user's own order, subjects joined by "|".
+    @AppStorage("subjects_order") private var orderRaw = ""
+    @State private var reordering = false
+
+    /// Subjects in the chosen order (new subjects go to the end of a custom order).
+    private var subjects: [String] {
+        switch sort {
+        case "exam":
+            let d = ExamDates.shared
+            return Catalog.subjects.sorted { (d.isOver($0) ? 1 : 0, d.date(for: $0)) < (d.isOver($1) ? 1 : 0, d.date(for: $1)) }
+        case "name":
+            return Catalog.subjects.sorted { $0.localizedCompare($1) == .orderedAscending }
+        case "progress":
+            return Catalog.subjects.sorted { store.navProgress($0) > store.navProgress($1) }
+        default:
+            return SubjectOrder.apply(orderRaw)
+        }
+    }
 
     var body: some View {
         List {
             Section {
-                ForEach(Catalog.subjects, id: \.self) { c in
-                    NavigationLink(value: Route.course(c)) { subjectRow(c) }.appRow()
+                if layout == "grid" {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: Theme.Space.s12)], spacing: Theme.Space.s12) {
+                        ForEach(subjects, id: \.self) { c in
+                            NavigationLink(value: Route.course(c)) { SubjectGridCard(course: c) }.buttonStyle(.plain)
+                        }
+                        NavigationLink(value: Route.overall) {
+                            SubjectGridCard(course: Catalog.overallKey)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
+                } else {
+                    ForEach(subjects, id: \.self) { c in
+                        NavigationLink(value: Route.course(c)) { subjectRow(c) }.appRow()
+                    }
+                    NavigationLink(value: Route.overall) { overallRow }.appRow()
                 }
-                NavigationLink(value: Route.overall) { overallRow }.appRow()
             } header: {
                 Text("Fənlər")
             } footer: {
@@ -66,6 +102,30 @@ struct SubjectsTab: View {
         .appListStyle()
         .navigationTitle("Fənlər")
         .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Picker("Görünüş", selection: $layout.animation(.snappy)) {
+                        Label("Siyahı", systemImage: "list.bullet").tag("list")
+                        Label("Kartlar", systemImage: "square.grid.2x2").tag("grid")
+                    }
+                    Picker("Sıralama", selection: $sort.animation(.snappy)) {
+                        Label("Öz sıram", systemImage: "hand.draw").tag("custom")
+                        Label("Ən yaxın imtahan", systemImage: "calendar").tag("exam")
+                        Label("İrəliləyiş", systemImage: "chart.bar.fill").tag("progress")
+                        Label("Ad", systemImage: "textformat").tag("name")
+                    }
+                    Divider()
+                    Button { reordering = true } label: { Label("Sıranı dəyiş…", systemImage: "arrow.up.arrow.down") }
+                } label: {
+                    Label("Görünüş", systemImage: layout == "grid" ? "square.grid.2x2" : "list.bullet")
+                }
+            }
+        }
+        .sheet(isPresented: $reordering) {
+            SubjectOrderSheet(orderRaw: $orderRaw) { sort = "custom" }
+                .appEnvironment()
+        }
     }
 
     /// "12 imtahan" / "12" when > 0, nil otherwise (no zero counts on the page).
@@ -183,5 +243,98 @@ private struct ProgressBadge: View {
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("\(percent) faiz işlənib")
         }
+    }
+}
+
+// MARK: - Order
+
+enum SubjectOrder {
+    static func apply(_ raw: String) -> [String] {
+        let saved = raw.split(separator: "|").map(String.init).filter { Catalog.subjects.contains($0) }
+        return saved + Catalog.subjects.filter { !saved.contains($0) }
+    }
+}
+
+/// "Sıranı dəyiş": drag the subjects into the order the Fənlər page should use.
+private struct SubjectOrderSheet: View {
+    @Binding var orderRaw: String
+    let onSave: () -> Void
+    @Environment(\.dismiss) private var dismiss
+    @State private var items: [String] = []
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    ForEach(items, id: \.self) { c in
+                        HStack(spacing: Theme.Space.s12) {
+                            SubjectIcon(course: c, size: 32)
+                            Text(c).foregroundStyle(Theme.text).lineLimit(2)
+                        }
+                        .appRow()
+                    }
+                    .onMove { items.move(fromOffsets: $0, toOffset: $1) }
+                } footer: {
+                    Text("Fənni sağdakı tutacaqdan sürüşdürün. Ən yuxarıdakı birinci görünəcək.")
+                }
+            }
+            .appListStyle()
+            .environment(\.editMode, .constant(.active))
+            .navigationTitle("Fənlərin sırası")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Sıfırla") { withAnimation { items = Catalog.subjects } }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Hazır") {
+                        orderRaw = items.joined(separator: "|")
+                        onSave()
+                        dismiss()
+                    }
+                }
+            }
+        }
+        .onAppear { items = SubjectOrder.apply(orderRaw) }
+    }
+}
+
+/// Grid card of a subject: icon, full name, progress and the exam countdown.
+private struct SubjectGridCard: View {
+    let course: String
+    @Environment(StudyStore.self) private var store
+
+    var body: some View {
+        let isOverall = course == Catalog.overallKey
+        let p = isOverall ? 0 : store.navProgress(course)
+        VStack(alignment: .leading, spacing: Theme.Space.s8) {
+            HStack(alignment: .top) {
+                SubjectIcon(course: course, size: 40)
+                Spacer(minLength: 4)
+                if !isOverall { Chevron() }
+            }
+            Text(course).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.text)
+                .lineLimit(2, reservesSpace: true)
+                .fixedSize(horizontal: false, vertical: true)
+            if isOverall {
+                Text("Bütün fənlər · \(store.scopedQuestionsTotal) sual").font(.caption).foregroundStyle(Theme.textMuted)
+                    .lineLimit(2, reservesSpace: true)
+            } else {
+                ProgressView(value: Double(p), total: 100).tint(Theme.accent)
+                HStack {
+                    Text("\(p)% işlənib").font(.caption).monospacedDigit().foregroundStyle(Theme.textMuted)
+                    Spacer(minLength: 4)
+                    let d = ExamDates.shared
+                    Text(d.isOver(course) ? "bitib" : "\(d.daysLeft(course)) gün")
+                        .font(.caption.weight(.medium)).monospacedDigit()
+                        .foregroundStyle(!d.isOver(course) && d.daysLeft(course) <= 3 ? Theme.warning : Theme.textMuted)
+                }
+            }
+        }
+        .padding(Theme.Space.s12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .card(radius: Theme.Radius.md, fill: Theme.surface)
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
     }
 }
