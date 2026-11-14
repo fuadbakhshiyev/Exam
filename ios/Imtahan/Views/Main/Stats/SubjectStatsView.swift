@@ -72,12 +72,12 @@ struct SubjectStatsView: View {
             if isSubject {
                 let units = store.unitStatuses(key)
                 HealthSectionTitle(text: "Ünitələr üzrə")
-                HealthGroup {
+                HealthGroup(dividers: false) {
                     ForEach(units) { u in
-                        UnitStatusRow(status: u).padding(.vertical, Theme.Space.s8)
+                        UnitStatusRow(status: u).padding(.vertical, 5)
                     }
                 }
-                Text("Hər sual bir dəfə sayılır, son cavabına görə: ünitə testi, Mixed, qarışıq sınaq, vize imtahanları və təkrarlar daxil.")
+                Text("İşlənən / ünitədəki sual · düz faizi. Yaşıl düz, qırmızı səhv; hər sual son cavabına görə bir dəfə sayılır (bütün test növləri daxil).")
                     .font(.footnote).foregroundStyle(Theme.textMuted).padding(.horizontal, Theme.Space.s4)
             }
 
@@ -119,35 +119,24 @@ struct SubjectStatsView: View {
     }
 }
 
-/// "Unit 3   75%" · "15 düz · 5 səhv · 10 işlənməyib / 30" · a three-part bar.
+/// One compact line: "U3" · three-part bar · "20/30" · "75%".
 struct UnitStatusRow: View {
     let status: UnitStatus
 
     var body: some View {
         let s = status
-        VStack(alignment: .leading, spacing: 4) {
-            HStack(alignment: .firstTextBaseline) {
-                Text("Unit \(s.unit)").font(.body).foregroundStyle(Theme.text)
-                Spacer(minLength: 4)
-                if s.answered > 0 {
-                    let acc = StudyStore.pct(s.correct, s.answered)
-                    Text("\(acc)%").font(.subheadline.weight(.semibold)).monospacedDigit().foregroundStyle(StatsFormat.tone(acc))
-                } else {
-                    Text("başlanmayıb").font(.subheadline).foregroundStyle(Theme.textMuted)
-                }
-            }
-            HStack(spacing: Theme.Space.s8) {
-                CountDot(text: "\(s.correct) düz", color: Theme.success)
-                CountDot(text: "\(s.wrong) səhv", color: Theme.danger)
-                CountDot(text: "\(s.unanswered) işlənməyib", color: Theme.border)
-                Spacer(minLength: 4)
-                Text("\(s.total) sual").foregroundStyle(Theme.textMuted)
-            }
-            .font(.caption)
-            .lineLimit(1)
-            .minimumScaleFactor(0.8)
-            SplitBar(total: max(s.total, 1), ok: s.correct, bad: s.wrong, height: 4).padding(.top, 2)
+        HStack(spacing: Theme.Space.s10) {
+            Text("U\(s.unit)").font(.subheadline.weight(.semibold)).monospacedDigit()
+                .foregroundStyle(Theme.text).frame(width: 30, alignment: .leading)
+            SplitBar(total: max(s.total, 1), ok: s.correct, bad: s.wrong, height: 6)
+            Text("\(s.answered)/\(s.total)").font(.caption).monospacedDigit().foregroundStyle(Theme.textMuted)
+                .frame(minWidth: 44, alignment: .trailing)
+            Text(s.answered > 0 ? "\(StudyStore.pct(s.correct, s.answered))%" : "—")
+                .font(.subheadline.weight(.semibold)).monospacedDigit()
+                .foregroundStyle(s.answered > 0 ? StatsFormat.tone(StudyStore.pct(s.correct, s.answered)) : Theme.textMuted)
+                .frame(minWidth: 40, alignment: .trailing)
         }
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Unit \(s.unit): \(s.correct) düz, \(s.wrong) səhv, \(s.unanswered) işlənməyib, \(s.total) sualdan")
     }
 }

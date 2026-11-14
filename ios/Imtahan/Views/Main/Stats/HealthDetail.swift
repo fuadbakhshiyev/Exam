@@ -326,16 +326,19 @@ extension StudyStore {
 
 /// A Health-style group: rows separated by inset dividers inside one card.
 struct HealthGroup<Content: View>: View {
+    /// false: a tight list without dividers (compact rows).
+    var dividers = true
     @ViewBuilder var content: () -> Content
     var body: some View {
         VStack(spacing: 0) {
             Group(subviews: content()) { subviews in
                 ForEach(Array(subviews.enumerated()), id: \.offset) { i, v in
                     v
-                    if i < subviews.count - 1 { Divider().padding(.leading, 52) }
+                    if dividers && i < subviews.count - 1 { Divider().padding(.leading, 52) }
                 }
             }
         }
+        .padding(.vertical, dividers ? 0 : Theme.Space.s8)
         .padding(.horizontal, Theme.Space.s16)
         .card()
     }
