@@ -740,6 +740,9 @@ final class QuizSession: Identifiable {
                        averageMockScore: avg, confetti: isMockMode ? avg >= 50 : score >= 50, missed: missed)
         result = r
         clearProgress()
+        // Nailiyyətlər: graded past-exam score, a whole "Bütün suallar" pool answered to the end.
+        store.noteTestFinished(gradedScore: isGradedExam && total > 0 ? score : nil,
+                               finishedPool: isSubjectPool && total > 0 && c + w == total)
         return r
     }
 

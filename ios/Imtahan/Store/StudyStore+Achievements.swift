@@ -34,21 +34,35 @@ struct Achievement: Identifiable, Hashable, Sendable {
         .init(id: "answers-500", group: .answers, symbol: "checklist", title: "Yarım min", detail: "500 sual"),
         .init(id: "answers-1000", group: .answers, symbol: "square.stack.3d.up.fill", title: "Min sual", detail: "1000 sual"),
         .init(id: "answers-2500", group: .answers, symbol: "books.vertical.fill", title: "Sual ustası", detail: "2500 sual"),
+        .init(id: "answers-5000", group: .answers, symbol: "building.columns.fill", title: "Beş min", detail: "5000 sual"),
+        .init(id: "marathon-100", group: .answers, symbol: "bolt", title: "Məhsuldar gün", detail: "Bir gündə 100 sual"),
         .init(id: "marathon-300", group: .answers, symbol: "bolt.fill", title: "Maraton günü", detail: "Bir gündə 300 sual"),
         .init(id: "streak-3", group: .streak, symbol: "flame", title: "Başlanğıc", detail: "3 gün ardıcıl"),
         .init(id: "streak-7", group: .streak, symbol: "flame.fill", title: "Bir həftə", detail: "7 gün ardıcıl"),
         .init(id: "streak-14", group: .streak, symbol: "calendar.badge.checkmark", title: "İki həftə", detail: "14 gün ardıcıl"),
+        .init(id: "streak-21", group: .streak, symbol: "calendar", title: "Üç həftə", detail: "21 gün ardıcıl"),
         .init(id: "streak-30", group: .streak, symbol: "crown.fill", title: "Bir ay", detail: "30 gün ardıcıl"),
         .init(id: "sharp-20", group: .accuracy, symbol: "scope", title: "Dəqiq atıcı", detail: "Testdə 20 sualdan ≥90%"),
         .init(id: "perfect-20", group: .accuracy, symbol: "star.fill", title: "Mükəmməl 20", detail: "Testdə 20/20 düz"),
+        .init(id: "combo-10", group: .accuracy, symbol: "bolt.heart.fill", title: "Seriya", detail: "10 sual ardıcıl düz"),
+        .init(id: "combo-25", group: .accuracy, symbol: "flame.circle.fill", title: "Alovlu seriya", detail: "25 sual ardıcıl düz"),
+        .init(id: "combo-50", group: .accuracy, symbol: "sparkle", title: "Səhvsiz", detail: "50 sual ardıcıl düz"),
         .init(id: "sim-70", group: .accuracy, symbol: "graduationcap.fill", title: "İmtahana hazır", detail: "Simulyasiyada ≥70 bal"),
+        .init(id: "sim-90", group: .accuracy, symbol: "trophy.fill", title: "Əla simulyasiya", detail: "Simulyasiyada ≥90 bal"),
+        .init(id: "exam-80", group: .accuracy, symbol: "doc.text.fill", title: "Yüksək bal", detail: "Keçmiş imtahanda ≥80 bal"),
+        .init(id: "exam-100", group: .accuracy, symbol: "checkmark.seal.fill", title: "Tam bal", detail: "Keçmiş imtahanda 100 bal"),
         .init(id: "subject-complete", group: .subjects, symbol: "rosette", title: "Fənn ustası", detail: "Bir fənnin bütün sualları"),
         .init(id: "subject-80", group: .subjects, symbol: "medal.fill", title: "Fənn bilicisi", detail: "Fəndə ≥80% (100+ cavab)"),
         .init(id: "all-subjects", group: .subjects, symbol: "square.grid.2x2.fill", title: "Hamısına toxun", detail: "Hər fəndən 50+ sual"),
+        .init(id: "learned-100", group: .subjects, symbol: "brain.head.profile.fill", title: "Yaddaşda", detail: "100 sual öyrənildi"),
+        .init(id: "learned-500", group: .subjects, symbol: "brain.fill", title: "Bilik xəzinəsi", detail: "500 sual öyrənildi"),
+        .init(id: "subject-learned", group: .subjects, symbol: "graduationcap.circle.fill", title: "Fənni bitirdim", detail: "Bir fənnin bütün sualları öyrənildi"),
         .init(id: "final-units", group: .subjects, symbol: "flag.checkered", title: "Final hazırlığı", detail: "8–14-cü ünitələr tam"),
         .init(id: "review-1", group: .habits, symbol: "arrow.triangle.2.circlepath", title: "Təkrar günü", detail: "Günün təkrarını bitir"),
         .init(id: "review-10", group: .habits, symbol: "repeat.circle.fill", title: "Təkrar ustası", detail: "Təkrarı 10 dəfə bitir"),
+        .init(id: "pool-done", group: .habits, symbol: "square.stack.fill", title: "Hamısını keçdim", detail: "Bütün suallar testini sona çatdır"),
         .init(id: "surprise-10", group: .habits, symbol: "sparkles", title: "Sürprizə hazır", detail: "10 sürpriz sual düz"),
+        .init(id: "surprise-50", group: .habits, symbol: "wand.and.stars", title: "Sürpriz ustası", detail: "50 sürpriz sual düz"),
         .init(id: "early-bird", group: .habits, symbol: "sunrise.fill", title: "Erkən quş", detail: "07:00-dan əvvəl sual"),
         .init(id: "night-owl", group: .habits, symbol: "moon.stars.fill", title: "Gecə bayquşu", detail: "23:00-dan sonra sual"),
     ]
@@ -88,6 +102,32 @@ final class AchievementStore {
         var runLast: Date?
         /// False until the first evaluation (which unlocks existing progress without toasts).
         var initialized = false
+        /// Correct answers in a row (any test) and the best such run.
+        var combo = 0
+        var bestCombo = 0
+        /// Best graded past-exam score (Bal, 0…100).
+        var bestExam: Double = 0
+        /// "Bütün suallar" / "Öyrənilməmişlər" tests answered to the end.
+        var poolFinishes = 0
+
+        init() {}
+
+        /// Missing keys keep their defaults, so adding a counter never drops the saved unlocks.
+        init(from decoder: Decoder) throws {
+            let c = try decoder.container(keyedBy: CodingKeys.self)
+            unlocked = try c.decodeIfPresent([String: Date].self, forKey: .unlocked) ?? [:]
+            reviewClears = try c.decodeIfPresent(Int.self, forKey: .reviewClears) ?? 0
+            lastReviewClearDay = try c.decodeIfPresent(String.self, forKey: .lastReviewClearDay)
+            bestSimulation = try c.decodeIfPresent(Double.self, forKey: .bestSimulation) ?? 0
+            runKey = try c.decodeIfPresent(String.self, forKey: .runKey) ?? ""
+            run = try c.decodeIfPresent([Bool].self, forKey: .run) ?? []
+            runLast = try c.decodeIfPresent(Date.self, forKey: .runLast)
+            initialized = try c.decodeIfPresent(Bool.self, forKey: .initialized) ?? false
+            combo = try c.decodeIfPresent(Int.self, forKey: .combo) ?? 0
+            bestCombo = try c.decodeIfPresent(Int.self, forKey: .bestCombo) ?? 0
+            bestExam = try c.decodeIfPresent(Double.self, forKey: .bestExam) ?? 0
+            poolFinishes = try c.decodeIfPresent(Int.self, forKey: .poolFinishes) ?? 0
+        }
     }
 
     private(set) var file = FileShape()
@@ -152,6 +192,7 @@ struct AchievementMetrics: Sendable {
     var answerDates: [Int: Date] = [:]
     var bestDay = 0
     var bestDayDate: Date?
+    var bestDay100Date: Date?
     var bestStreak = 0
     /// Day each streak length was first reached.
     var streakDates: [Int: Date] = [:]
@@ -163,6 +204,10 @@ struct AchievementMetrics: Sendable {
     var masteryValue = 0
     var subjectsWith50 = 0
     var surpriseCorrect = 0
+    /// Learned questions (MasteryStore) over all subjects, and the best subject's learned/total.
+    var learnedTotal = 0
+    var subjectLearned = 0
+    var subjectLearnedTotal = 0
     var finalUnitsDone = 0
     var finalUnitsTotal = 0
 }
@@ -170,8 +215,8 @@ struct AchievementMetrics: Sendable {
 extension StudyStore {
     var achievements: AchievementStore { AchievementStore.shared }
 
-    static let achievementAnswerGoals = [100, 500, 1000, 2500]
-    static let achievementStreakGoals = [3, 7, 14, 30]
+    static let achievementAnswerGoals = [100, 500, 1000, 2500, 5000]
+    static let achievementStreakGoals = [3, 7, 14, 21, 30]
     static let achievementRunLength = 20
     static let reviewSub = "Bu günün təkrarı"
 
@@ -196,6 +241,8 @@ extension StudyStore {
                 f.run = []
             }
             f.runLast = now
+            f.combo = isCorrect ? f.combo + 1 : 0
+            f.bestCombo = max(f.bestCombo, f.combo)
             f.run.append(isCorrect)
             if f.run.count > Self.achievementRunLength { f.run.removeFirst(f.run.count - Self.achievementRunLength) }
             if f.run.count == Self.achievementRunLength {
@@ -220,6 +267,15 @@ extension StudyStore {
     /// Simulation handed in (ExamSimulation.submit).
     func noteSimulationFinished(average: Double) {
         if average > achievements.file.bestSimulation { achievements.mutate { $0.bestSimulation = average } }
+        scheduleAchievementCheck()
+    }
+
+    /// A finished test (QuizSession.finish): graded past-exam score, whole-pool tests.
+    func noteTestFinished(gradedScore: Double?, finishedPool: Bool) {
+        achievements.mutate { f in
+            if let g = gradedScore, g > f.bestExam { f.bestExam = g }
+            if finishedPool { f.poolFinishes += 1 }
+        }
         scheduleAchievementCheck()
     }
 
@@ -264,12 +320,25 @@ extension StudyStore {
         case "answers-500": return (m.totalAnswered, 500)
         case "answers-1000": return (m.totalAnswered, 1000)
         case "answers-2500": return (m.totalAnswered, 2500)
+        case "answers-5000": return (m.totalAnswered, 5000)
+        case "marathon-100": return (m.bestDay, 100)
         case "marathon-300": return (m.bestDay, 300)
         case "streak-3": return (m.bestStreak, 3)
         case "streak-7": return (m.bestStreak, 7)
         case "streak-14": return (m.bestStreak, 14)
+        case "streak-21": return (m.bestStreak, 21)
         case "streak-30": return (m.bestStreak, 30)
+        case "combo-10": return (f.bestCombo, 10)
+        case "combo-25": return (f.bestCombo, 25)
+        case "combo-50": return (f.bestCombo, 50)
         case "sim-70": return (Int(f.bestSimulation.rounded(.down)), 70)
+        case "sim-90": return (Int(f.bestSimulation.rounded(.down)), 90)
+        case "exam-80": return (Int(f.bestExam.rounded(.down)), 80)
+        case "exam-100": return (Int(f.bestExam.rounded(.down)), 100)
+        case "learned-100": return (m.learnedTotal, 100)
+        case "learned-500": return (m.learnedTotal, 500)
+        case "subject-learned": return (m.subjectLearned, max(m.subjectLearnedTotal, 1))
+        case "pool-done": return (f.poolFinishes, 1)
         case "subject-complete": return (m.subjectDone, max(m.subjectTotal, 1))
         case "subject-80": return (m.masteryValue, 100)
         case "all-subjects": return (m.subjectsWith50, Catalog.subjects.count)
@@ -277,6 +346,7 @@ extension StudyStore {
         case "review-1": return (f.reviewClears, 1)
         case "review-10": return (f.reviewClears, 10)
         case "surprise-10": return (m.surpriseCorrect, 10)
+        case "surprise-50": return (m.surpriseCorrect, 50)
         default: return (unlocked ? 1 : 0, 1)   // event-based one-shots (sharp/perfect/early/night)
         }
     }
@@ -289,7 +359,7 @@ extension StudyStore {
         switch parts[0] {
         case "answers": date = m.answerDates[n]
         case "streak": date = m.streakDates[n]
-        case "marathon": date = m.bestDayDate
+        case "marathon": date = n == 100 ? m.bestDay100Date : m.bestDayDate
         default: date = nil
         }
         // Earned today → the actual moment.
@@ -313,6 +383,7 @@ extension StudyStore {
             for g in Self.achievementAnswerGoals where before < g && cumulative >= g { m.answerDates[g] = date }
             if n > m.bestDay {
                 if m.bestDay < 300 && n >= 300 { m.bestDayDate = date }
+                if m.bestDay < 100 && n >= 100 { m.bestDay100Date = date }
                 m.bestDay = n
             }
             if let prevKey, let d = date, let p = Self.date(fromDayKey: prevKey),
@@ -341,6 +412,14 @@ extension StudyStore {
                     m.subjectTotal = qs.count
                 }
             }
+            let mp = masteryProgress(subject)
+            m.learnedTotal += mp.learned
+            if mp.total > 0, m.subjectLearnedTotal == 0
+                || Double(mp.learned) / Double(mp.total) > Double(m.subjectLearned) / Double(m.subjectLearnedTotal) {
+                m.subjectLearned = mp.learned
+                m.subjectLearnedTotal = mp.total
+            }
+
             let agg = courseAggregate(subject)
             if agg.t >= 50 { m.subjectsWith50 += 1 }
             let acc = agg.t > 0 ? Double(agg.c) / Double(agg.t) : 0
