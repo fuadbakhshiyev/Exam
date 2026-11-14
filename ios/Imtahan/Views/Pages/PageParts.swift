@@ -47,7 +47,10 @@ struct MixSection: View {
         Section {
             LabeledContent(countLabel, value: info.questionCount).appRow()
             LabeledContent("Mənbə", value: info.sources).appRow()
-            LabeledContent("Hələ işlənməyib", value: "\(info.notYetAnswered)").appRow()
+            LabeledContent("Hələ işlənməmiş sual", value: "\(info.notYetAnswered)").appRow()
+            if let last = info.last {
+                LabeledContent("Son sınaq", value: last).appRow()
+            }
         } header: {
             Text(title)
         } footer: {

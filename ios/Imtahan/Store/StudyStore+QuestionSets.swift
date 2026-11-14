@@ -261,7 +261,13 @@ extension StudyStore {
     func hardPool() -> [Question] { Array(allWrongQuestions().shuffled().prefix(20)) }
 
     /// startCourseMixedExam: 20 random questions of the course.
-    func courseMixedPool(_ c: String) -> [Question] { Array(scopedQuestions(course: c).shuffled().prefix(20)) }
+    /// 20 random questions, never-answered ones first (so "Hələ işlənməyib" keeps going down).
+    func courseMixedPool(_ c: String) -> [Question] {
+        let fresh = unansweredQuestions(c).shuffled()
+        let freshIDs = Set(fresh.map(\.q))
+        let rest = scopedQuestions(course: c).filter { !freshIDs.contains($0.q) }.shuffled()
+        return Array((fresh + rest).prefix(20))
+    }
 
     /// startPdfSubjectAllWrQs: wrong answers of all the subject's pdf exams (c/u set to the exam).
     func pdfSubjectAllWrong(_ subject: String) -> [Question] {

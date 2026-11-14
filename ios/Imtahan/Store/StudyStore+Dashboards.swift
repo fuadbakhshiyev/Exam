@@ -68,6 +68,8 @@ struct MixTabInfo: Hashable, Sendable {
     let questionCount: String   // "20" or "20 sual"
     let sources: String         // "5 bölmə" / "5 fənn"
     let notYetAnswered: Int
+    /// "Son sınaq" line (when and how the last mixed exam went); nil before the first one.
+    var last: String? = nil
 }
 
 struct HomeTotals: Hashable, Sendable {
@@ -469,7 +471,8 @@ extension StudyStore {
             advice: Self.courseAdvice(s, totalQ: totalQ), wrongCount: wr.count, multi: multi,
             mixedOnlyCount: mixedOnly.count, mixedOnlyRow: moRow, units: units, worstUnit: Self.worstIndex(units),
             examCount: exams.count,
-            mixTab: MixTabInfo(questionCount: "20", sources: "\(units.filter { $0.total > 0 }.count) bölmə", notYetAnswered: max(0, totalQ - a.t)))
+            mixTab: MixTabInfo(questionCount: "20", sources: "\(units.filter { $0.total > 0 }.count) bölmə",
+                               notYetAnswered: unansweredQuestions(c).count, last: mixedLast(s)))
     }
 
     // MARK: Mixed page (renderMixedPage)
@@ -777,5 +780,17 @@ extension StudyStore {
     /// Chart filter options: ("all", "Hamısı") + every CONFIG key.
     nonisolated static var dynamicsFilters: [(value: String, label: String)] {
         [("all", "Hamısı")] + Catalog.configKeys.map { ($0, $0) }
+    }
+
+    /// In-scope questions of a subject never answered (neither in the correct nor the wrong list).
+    func unansweredQuestions(_ c: String) -> [Question] {
+        let seen = Set((data.correct[c] ?? []).map(\.q)).union((data.wrong[c] ?? []).map(\.q))
+        return scopedQuestions(course: c).filter { !seen.contains($0.q) }
+    }
+
+    /// "14 noy · 52 düz, 8 səhv" for the subject's "Qarışıq Sınaq" stat.
+    func mixedLast(_ s: CourseStat) -> String? {
+        guard let m = s.bd["mixed"]?["Qarışıq Sınaq"], m.t > 0 else { return nil }
+        return "\(Self.formatLastTested(m.last, hasData: true)) · cəmi \(m.c) düz, \(m.w) səhv"
     }
 }
