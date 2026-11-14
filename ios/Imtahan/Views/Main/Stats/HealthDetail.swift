@@ -179,10 +179,14 @@ struct HealthChartCard: View {
         .chartLegend(position: .bottom, alignment: .leading)
         .chartYScale(domain: series == .accuracy ? 0...100 : 0...max(yMax(days), 4))
         .chartXAxis {
-            AxisMarks(values: .stride(by: .day, count: xStride(days.count))) { _ in
+            AxisMarks(values: .stride(by: .day, count: xStride(days.count))) { value in
                 AxisGridLine().foregroundStyle(Theme.border)
-                AxisValueLabel(format: days.count <= 7 ? .dateTime.weekday(.abbreviated) : .dateTime.day().month(.abbreviated),
-                               centered: days.count <= 7)
+                AxisValueLabel(centered: days.count <= 7) {
+                    if let d = value.as(Date.self) {
+                        // Explicit az locale: the chart's own formatter follows the system language (English on the Mac).
+                        Text(days.count <= 7 ? Self.weekday(d) : d.formatted(.dateTime.day().month(.abbreviated).locale(Self.az)))
+                    }
+                }
             }
         }
         .chartYAxis {
@@ -207,6 +211,13 @@ struct HealthChartCard: View {
     }
 
     private func xStride(_ n: Int) -> Int { n <= 7 ? 1 : n <= 31 ? 7 : max(n / 5, 7) }
+
+    static let az = Locale(identifier: "az")
+
+    /// "B.e", "Ç.a", "Ç", "C.a", "C", "Ş", "B" — Azerbaijani short weekdays.
+    static func weekday(_ d: Date) -> String {
+        ["B", "B.e", "Ç.a", "Ç", "C.a", "C", "Ş"][Calendar(identifier: .gregorian).component(.weekday, from: d) - 1]
+    }
 
     static func dayText(_ d: Date) -> String {
         d.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(Locale(identifier: "az")))
