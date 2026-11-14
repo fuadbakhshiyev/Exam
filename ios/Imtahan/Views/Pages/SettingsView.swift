@@ -226,12 +226,21 @@ private struct NotificationSettingsView: View {
                     }
                     .pickerStyle(.menu)
                     .appRow()
+                    NavigationLink { SurpriseSubjectsView() } label: {
+                        LabeledContent {
+                            Text(surprise.subjects.isEmpty || surprise.activeSubjects.count == Catalog.subjects.count
+                                 ? "Hamısı" : "\(surprise.activeSubjects.count) fənn")
+                        } label: {
+                            SettingsLabel("Fənlər", symbol: "books.vertical.fill", color: .blue)
+                        }
+                    }
+                    .appRow()
                 }
             } header: {
                 Text("Sürpriz sual")
             } footer: {
                 Text(surprise.isEnabled
-                     ? "Hər \(surprise.intervalMinutes) dəqiqədən bir təsadüfi sual çıxır, cavab üçün 30 saniyə verilir."
+                     ? "Hər \(surprise.intervalMinutes) dəqiqədən bir seçdiyiniz fənlərdən təsadüfi sual çıxır, cavab üçün 30 saniyə verilir."
                      : "Sürpriz suallar bağlıdır.")
             }
         }
@@ -389,5 +398,45 @@ private struct ReminderSection: View {
             return "Bildiriş vaxtı: hər gün \(reminder.time.formatted(date: .omitted, time: .shortened)). Bu gün \(reminder.goal) sual həll etmisənsə, həmin günün xatırlatması göndərilmir."
         }
         return "Gündəlik hədəfə çatmamısansa, seçdiyin vaxtda xatırladırıq."
+    }
+}
+
+/// Sürpriz sual → Fənlər: which subjects the questions come from (at least one stays on).
+private struct SurpriseSubjectsView: View {
+    @Environment(SurpriseEngine.self) private var surprise
+
+    var body: some View {
+        let active = Set(surprise.activeSubjects)
+        Form {
+            Section {
+                ForEach(Catalog.subjects, id: \.self) { s in
+                    Toggle(isOn: Binding(
+                        get: { active.contains(s) },
+                        set: { on in
+                            var next = active
+                            if on { next.insert(s) } else { next.remove(s) }
+                            guard !next.isEmpty else { return }   // keep at least one
+                            surprise.subjects = next.count == Catalog.subjects.count ? [] : next
+                        })) {
+                        HStack(spacing: Theme.Space.s12) {
+                            SubjectIcon(course: s, size: 30)
+                            Text(s).foregroundStyle(Theme.text).lineLimit(2)
+                        }
+                    }
+                    .tint(Theme.accent)
+                    .disabled(active.count == 1 && active.contains(s))
+                    .appRow()
+                }
+            } footer: {
+                Text("Sürpriz suallar yalnız seçilmiş fənlərdən gələcək. Ən azı bir fənn seçili qalmalıdır.")
+            }
+            Section {
+                Button("Hamısını seç") { surprise.subjects = [] }
+                    .disabled(active.count == Catalog.subjects.count)
+                    .appRow()
+            }
+        }
+        .appListStyle()
+        .pageTitle("Sürpriz sual fənləri")
     }
 }

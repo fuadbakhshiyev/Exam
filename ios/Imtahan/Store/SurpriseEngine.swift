@@ -57,6 +57,7 @@ final class SurpriseEngine {
 
     static let enabledKey = "surprise_enabled"
     static let intervalKey = "surprise_interval_min"
+    static let subjectsKey = "surprise_subjects"
     /// Interval choices in minutes for the Settings picker.
     static let intervalChoices = [1, 3, 5, 10, 15, 30]
 
@@ -77,6 +78,17 @@ final class SurpriseEngine {
             UserDefaults.standard.set(intervalMinutes, forKey: Self.intervalKey)
             if isEnabled { start() }   // restart the cycle with the new interval
         }
+    }
+
+    /// Subjects surprise questions come from; empty = every subject.
+    var subjects: Set<String> = Set(UserDefaults.standard.stringArray(forKey: SurpriseEngine.subjectsKey) ?? []) {
+        didSet { UserDefaults.standard.set(Array(subjects).sorted(), forKey: Self.subjectsKey) }
+    }
+
+    /// The chosen subjects that still exist (every subject when none is chosen).
+    var activeSubjects: [String] {
+        let chosen = Catalog.subjects.filter { subjects.contains($0) }
+        return chosen.isEmpty ? Catalog.subjects : chosen
     }
 
     /// initSurpriseTimer: a question every `intervalMinutes` while none is open (only when enabled).
@@ -101,7 +113,10 @@ final class SurpriseEngine {
 
     /// triggerSurpriseQuestion: pauses the quiz timer and opens a random non-Mixed question.
     func trigger() {
-        let pool = bank.all.filter { $0.c != Catalog.mixedKey && store.inScope($0) }
+        let allowed = Set(activeSubjects)
+        let pool = bank.all.filter {
+            $0.c != Catalog.mixedKey && store.inScope($0) && allowed.contains(QuestionBank.baseCourse($0.c))
+        }
         guard let q = pool.randomElement() else { return }
         store.pauseQuizTimer()
         question = q
