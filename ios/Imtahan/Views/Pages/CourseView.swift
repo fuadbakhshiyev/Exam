@@ -17,7 +17,7 @@ struct CourseView: View {
             case .units: units(page)
             case .mixed:
                 MixSection(title: "Qarışıq sınaq",
-                           description: "Fənnin bütün bölmələrindən qarışıq 20 suallıq sürətli sınaq. Başlamaq üçün düyməyə basın.",
+                           description: "Fənnin ünitələrindən 20 qarışıq sual, əvvəlcə hələ işlənməmiş suallar. İmtahan kimi qiymətləndirilir: 100 bal, 4 səhv 1 düzü aparır; taymer işləyir.",
                            info: page.mixTab) { router.start(.courseMixed(course)) }
             case .exams:
                 PdfExamsSection(subject: course, title: "Vize imtahanları")

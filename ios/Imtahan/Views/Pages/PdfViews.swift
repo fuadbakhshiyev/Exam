@@ -130,10 +130,21 @@ struct PdfSubjectView: View {
     @Environment(StudyStore.self) private var store
     @Environment(AppRouter.self) private var router
 
+    enum Tab: Hashable { case past, mixed }
+    @State private var tab: Tab = .past
+
     var body: some View {
         let page = store.pdfExamListPage(subject)
         List {
-            PdfExamsSection(subject: subject)
+            SegmentedSection(items: [(Tab.past, "Keçmiş imtahanlar"), (.mixed, "Qarışıq sınaq")], selection: $tab)
+            switch tab {
+            case .past:
+                PdfExamsSection(subject: subject)
+            case .mixed:
+                MixSection(title: "Qarışıq sınaq",
+                           description: "Fənnin ünitələrindən 20 qarışıq sual, əvvəlcə hələ işlənməmiş suallar. İmtahan kimi qiymətləndirilir: 100 bal, 4 səhv 1 düzü aparır; taymer işləyir.",
+                           info: store.coursePage(subject).mixTab) { router.start(.courseMixed(subject)) }
+            }
         }
         .appListStyle()
         .pageTitle(subject, subtitle: page.subtitle)
