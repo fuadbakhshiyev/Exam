@@ -3,6 +3,9 @@ import SwiftUI
 /// Sürpriz Sual: every 3 minutes, 30 seconds to answer; first tap selects, second tap confirms.
 struct SurpriseView: View {
     @Environment(SurpriseEngine.self) private var engine
+    @Environment(StudyStore.self) private var store
+    /// Şrift ölçüsü (like the quiz).
+    private var scale: CGFloat { CGFloat(store.fontScale) }
 
     var body: some View {
         NavigationStack {
@@ -10,7 +13,7 @@ struct SurpriseView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     if let q = engine.question {
                         Text(engine.metaText.uppercased()).font(.caption.weight(.bold)).foregroundStyle(Theme.textMuted)
-                        RichTextView(q.q, font: .system(size: 17, weight: .semibold)).foregroundStyle(Theme.text)
+                        RichTextView(q.q, font: .system(size: 17 * scale, weight: .semibold)).foregroundStyle(Theme.text)
                         VStack(spacing: 10) {
                             ForEach(Array(q.o.enumerated()), id: \.offset) { i, o in
                                 Button { withAnimation(.snappy) { engine.tap(i) } } label: { row(i, o, q) }
@@ -67,7 +70,7 @@ struct SurpriseView: View {
         let isWrong = answered && engine.chosen == i && i != q.a
         let isSel = !answered && engine.selected == i
         let stroke: Color = isCorrect ? Theme.success : isWrong ? Theme.danger : isSel ? Theme.accent : Theme.border
-        return RichTextView(html, font: .system(size: 15))
+        return RichTextView(html, font: .system(size: 15 * scale))
             .foregroundStyle(Theme.text)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(14)

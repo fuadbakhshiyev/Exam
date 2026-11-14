@@ -139,10 +139,17 @@ extension View {
     @MainActor func appEnvironment() -> some View {
         let e = AppEnvironment.shared!
         return self
+            .modifier(AppTextSize(store: e.store))
             .environment(e.store)
             .environment(e.router)
             .environment(e.sync)
             .environment(e.surprise)
             .environment(e.stopwatch)
     }
+}
+
+/// Applies Tənzimləmələr → Şrift ölçüsü to everything below (re-renders when it changes).
+private struct AppTextSize: ViewModifier {
+    let store: StudyStore
+    func body(content: Content) -> some View { content.dynamicTypeSize(store.dynamicTypeSize) }
 }

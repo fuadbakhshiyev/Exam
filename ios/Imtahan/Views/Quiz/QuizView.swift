@@ -231,7 +231,7 @@ struct QuizView: View {
         Button { withAnimation(.snappy) { session.revealFlashcard() } } label: {
             VStack(spacing: 8) {
                 Image(systemName: "rectangle.on.rectangle.angled").font(.system(size: 28)).foregroundStyle(Theme.accent)
-                Text("Toxun və Gör").font(.system(size: 17, weight: .semibold)).foregroundStyle(Theme.text)
+                Text("Toxun və Gör").font(.system(size: 17 * scale, weight: .semibold)).foregroundStyle(Theme.text)
             }
             .frame(maxWidth: .infinity).padding(.vertical, 40)
             .background(RoundedRectangle(cornerRadius: 20).strokeBorder(Theme.border, style: StrokeStyle(lineWidth: 2, dash: [6])))
@@ -305,7 +305,7 @@ struct QuizView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(title).font(.headline).foregroundStyle(tint)
                         if !isRight, let line = session.correctLine {
-                            Text("Düzgün cavab: " + RichText.plain(line)).font(.footnote).foregroundStyle(Theme.textCaption).lineLimit(2)
+                            Text("Düzgün cavab: " + RichText.plain(line)).font(.system(size: 13 * scale)).foregroundStyle(Theme.textCaption).lineLimit(2)
                         }
                     }
                     Spacer(minLength: 0)

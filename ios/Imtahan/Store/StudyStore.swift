@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 import Observation
 import os
 
@@ -472,7 +473,20 @@ final class StudyStore {
         }
     }
 
-    static let fontScales: [(label: String, value: Double)] = [("Kiçik", 0.9), ("Orta", 1), ("Böyük", 1.15)]
+    static let fontScales: [(label: String, value: Double)] = [
+        ("Çox kiçik", 0.8), ("Kiçik", 0.9), ("Orta", 1), ("Böyük", 1.15), ("Çox böyük", 1.3),
+    ]
+
+    /// The whole app's text size for the Şrift ölçüsü setting (quiz texts multiply by fontScale instead).
+    var dynamicTypeSize: DynamicTypeSize {
+        switch fontScale {
+        case ..<0.85: .xSmall
+        case ..<0.95: .small
+        case ..<1.05: .large
+        case ..<1.2: .xLarge
+        default: .xxLarge
+        }
+    }
 
     // MARK: Reset
 
