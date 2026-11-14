@@ -29,6 +29,12 @@ struct StatisticsView: View {
                 }
                 .buttonStyle(.plain)
 
+                HStack(spacing: Theme.Space.s12) {
+                    streakCard
+                    NavigationLink(value: Route.statsMetric(.learning)) { learningCard }
+                        .buttonStyle(.plain)
+                }
+
                 StatsSectionTitle(text: "Göstəricilər")
                 NavigationLink(value: Route.statsMetric(.accuracy)) {
                     MetricCard(title: "Dəqiqlik", symbol: "checkmark.seal.fill", tint: Theme.success, caption: "Son 7 gün",
@@ -70,20 +76,20 @@ struct StatisticsView: View {
                 NavigationLink(value: Route.achievements) {
                     MetricCard(title: "Nailiyyətlər", symbol: "trophy.fill", tint: .yellow,
                                value: "\(ach.unlockedCount)", unit: "/ \(Achievement.all.count)",
-                               note: ach.latest.map { "Son: \($0.title)" }) { EmptyView() }
+                               note: ach.latest.map { "Son: \($0.title)" }) { recentBadges }
                 }
                 .buttonStyle(.plain)
 
                 StatsSectionTitle(text: "Fənlər")
                 subjects
 
-                ResetStatsButton()
-                    .padding(.horizontal, Theme.Space.s16)
-                    .padding(.vertical, Theme.Space.s14)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .card()
-                    .padding(.top, Theme.Space.s20)
+                Text("Statistikanı sıfırlamaq: Tənzimləmələr səhifəsinin sonunda.")
+                    .font(.footnote).foregroundStyle(Theme.textMuted)
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, Theme.Space.s12)
             }
+            .frame(maxWidth: 820)
+            .frame(maxWidth: .infinity)
             .padding(.horizontal, Theme.Space.s16)
             .padding(.bottom, Theme.Space.s24)
         }
@@ -107,7 +113,8 @@ struct StatisticsView: View {
 
     /// Subjects in one card, each row opening its statistics page.
     private var subjects: some View {
-        let rows = store.subjectStatsRows()
+        let order = SubjectOrder.apply(UserDefaults.standard.string(forKey: "subjects_order") ?? "")
+        let rows = store.subjectStatsRows().sorted { (order.firstIndex(of: $0.key) ?? 99) < (order.firstIndex(of: $1.key) ?? 99) }
         return VStack(spacing: 0) {
             ForEach(Array(rows.enumerated()), id: \.element.id) { i, r in
                 NavigationLink(value: Route.subjectStats(r.key)) {
@@ -125,6 +132,77 @@ struct StatisticsView: View {
         .padding(.horizontal, Theme.Space.s16)
         .padding(.vertical, Theme.Space.s4)
         .card()
+    }
+
+    // MARK: Small cards
+
+    /// Ardıcıl günlər with the last 7 days as dots.
+    private var streakCard: some View {
+        let s = store.studyStreak()
+        let best = store.achievementMetrics().bestStreak
+        let days = store.recentStatsDays(7)
+        return VStack(alignment: .leading, spacing: Theme.Space.s8) {
+            Label("Ardıcıllıq", systemImage: "flame.fill")
+                .font(.subheadline.weight(.semibold)).foregroundStyle(.orange)
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
+                Text("\(s.days)").font(.system(size: 30, weight: .semibold, design: .rounded)).monospacedDigit()
+                    .foregroundStyle(Theme.text)
+                Text("gün").font(.subheadline.weight(.medium)).foregroundStyle(Theme.textMuted)
+            }
+            HStack(spacing: 5) {
+                ForEach(days) { d in
+                    Circle()
+                        .fill(d.answered > 0 ? AnyShapeStyle(.orange) : AnyShapeStyle(Theme.border))
+                        .frame(width: 10, height: 10)
+                }
+            }
+            Text("Ən uzun: \(best) gün").font(.footnote).foregroundStyle(Theme.textMuted).lineLimit(1)
+        }
+        .padding(Theme.Space.s16)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .card()
+        .accessibilityElement(children: .combine)
+    }
+
+    /// Öyrənilmiş suallar (2 düz ardıcıl) over every subject.
+    private var learningCard: some View {
+        let p = Catalog.subjects.map { store.masteryProgress($0) }
+        let learned = p.reduce(0) { $0 + $1.learned }, total = p.reduce(0) { $0 + $1.total }
+        return VStack(alignment: .leading, spacing: Theme.Space.s8) {
+            HStack(spacing: 4) {
+                Label("Öyrənilib", systemImage: "brain.head.profile.fill")
+                    .font(.subheadline.weight(.semibold)).foregroundStyle(.purple).lineLimit(1)
+                Spacer(minLength: 0)
+                Chevron()
+            }
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
+                Text("\(learned)").font(.system(size: 30, weight: .semibold, design: .rounded)).monospacedDigit()
+                    .foregroundStyle(Theme.text)
+                Text("/ \(total)").font(.subheadline.weight(.medium)).foregroundStyle(Theme.textMuted)
+            }
+            .lineLimit(1).minimumScaleFactor(0.7)
+            ProgressView(value: Double(learned), total: Double(max(total, 1))).tint(.purple)
+                .frame(height: 10)
+            Text("\(StudyStore.pct(learned, max(total, 1)))% hazır").font(.footnote).foregroundStyle(Theme.textMuted).lineLimit(1)
+        }
+        .padding(Theme.Space.s16)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .card()
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
+    }
+
+    /// The three latest earned awards as small badges.
+    private var recentBadges: some View {
+        let recent = store.achievementStatuses().filter { $0.lastEarned != nil }
+            .sorted { $0.lastEarned! > $1.lastEarned! }.prefix(3)
+        return HStack(spacing: -6) {
+            ForEach(Array(recent)) { st in
+                IconTile(symbol: st.achievement.symbol, color: .yellow, size: 30)
+                    .overlay(RoundedRectangle(cornerRadius: 9, style: .continuous).stroke(Theme.surface, lineWidth: 2))
+            }
+        }
+        .accessibilityHidden(true)
     }
 
     /// 13 500 s → ("3", "saat 45 dəq"); under an hour → ("45", "dəq").
@@ -390,7 +468,7 @@ struct MiniLine: View {
 // MARK: - Detail pages
 
 enum StatsMetric: String, Hashable, Sendable {
-    case today, accuracy, questions, time, wrong
+    case today, accuracy, questions, time, wrong, learning
 
     var title: String {
         switch self {
@@ -399,6 +477,7 @@ enum StatsMetric: String, Hashable, Sendable {
         case .questions: "İşlənən suallar"
         case .time: "Vaxt"
         case .wrong: "Səhv suallar"
+        case .learning: "Öyrənilmiş suallar"
         }
     }
 
@@ -408,7 +487,7 @@ enum StatsMetric: String, Hashable, Sendable {
         case .accuracy: [.accuracy, .correct, .wrong]
         case .questions: [.total]
         case .time: [.time]
-        case .today, .wrong: []
+        case .today, .wrong, .learning: []
         }
     }
 }
@@ -429,6 +508,7 @@ struct StatsMetricView: View {
             case .questions: questions(t)
             case .time: time(t)
             case .wrong: wrong()
+            case .learning: learning()
             }
 
             if !metric.rankings.isEmpty {
@@ -565,6 +645,53 @@ struct StatsMetricView: View {
             HealthRow(title: "Bu gün platformada", symbol: "iphone", tint: Theme.warning, value: StatsFormat.duration(t.todayPlatformTime))
             HealthRow(title: "Bu gün testlərdə", symbol: "timer", tint: Theme.warning, value: StatsFormat.duration(t.todayTestTime))
         }
+    }
+
+    // MARK: Öyrənmə
+
+    @ViewBuilder private func learning() -> some View {
+        let rows = Catalog.subjects.map { ($0, store.masteryProgress($0)) }
+            .sorted { Double($0.1.learned) / Double(max($0.1.total, 1)) < Double($1.1.learned) / Double(max($1.1.total, 1)) }
+        let learned = rows.reduce(0) { $0 + $1.1.learned }, total = rows.reduce(0) { $0 + $1.1.total }
+        VStack(spacing: Theme.Space.s12) {
+            RingDial(accent: Double(learned) / Double(max(total, 1)), danger: 0, lineWidth: 16) {
+                VStack(spacing: 0) {
+                    Text("\(StudyStore.pct(learned, max(total, 1)))%").font(.system(size: 36, weight: .bold, design: .rounded))
+                        .monospacedDigit().foregroundStyle(Theme.text)
+                    Text("\(learned) / \(total)").font(.subheadline).monospacedDigit().foregroundStyle(Theme.textMuted)
+                }
+            }
+            .frame(width: 170, height: 170)
+            Text("Bir sual ardıcıl 2 dəfə düz cavablananda öyrənilmiş sayılır.")
+                .font(.footnote).foregroundStyle(Theme.textMuted).multilineTextAlignment(.center)
+        }
+        .padding(Theme.Space.s20)
+        .frame(maxWidth: .infinity)
+        .card()
+
+        HealthSectionTitle(text: "Fənlər")
+        HealthGroup {
+            ForEach(rows, id: \.0) { subject, p in
+                Button { router.start(.unlearned(subject)) } label: {
+                    HStack(spacing: Theme.Space.s12) {
+                        SubjectIcon(course: subject, size: 36)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(subject).foregroundStyle(Theme.text).lineLimit(2)
+                            ProgressView(value: Double(p.learned), total: Double(max(p.total, 1))).tint(.purple)
+                            Text("\(p.learned)/\(p.total) · \(p.total - p.learned) qalıb")
+                                .font(.caption).monospacedDigit().foregroundStyle(Theme.textMuted)
+                        }
+                        Image(systemName: "play.circle.fill").font(.title2).foregroundStyle(.purple)
+                    }
+                    .padding(.vertical, Theme.Space.s10)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .disabled(p.learned >= p.total)
+            }
+        }
+        Text("Toxunun: o fənnin öyrənilməmiş sualları başlayır. Ən az hazır olan fənn yuxarıdadır.")
+            .font(.footnote).foregroundStyle(Theme.textMuted).padding(.horizontal, Theme.Space.s4)
     }
 
     // MARK: Səhvlər
