@@ -123,6 +123,8 @@ struct SyncPref: Codable, Equatable, Sendable {
         "requeue_wrong", "quiz_list_mode", "quiz_reveal_at_end",
         // Sürpriz sual
         "surprise_enabled", "surprise_interval_min", "surprise_subjects",
+        // Kilid ekranında sual (on/off stays per device, so the Mac and the phone don't both ring)
+        "lockq_interval_min", "lockq_start_hour", "lockq_end_hour",
         // Bildirişlər
         "reminder_enabled", "reminder_hour", "reminder_minute", "reminder_goal", "weekly_report_enabled",
     ]

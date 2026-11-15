@@ -121,6 +121,7 @@ struct SettingsView: View {
         var parts: [String] = []
         if r.isEnabled { parts.append(r.time.formatted(date: .omitted, time: .shortened)) }
         if surprise.isEnabled { parts.append("Sürpriz") }
+        if LockScreenQuestions.shared.isEnabled { parts.append("Kilid ekranı") }
         return parts.isEmpty ? "Bağlı" : parts.joined(separator: " · ")
     }
 }
@@ -243,6 +244,8 @@ private struct NotificationSettingsView: View {
                      ? "Hər \(surprise.intervalMinutes) dəqiqədən bir seçdiyiniz fənlərdən təsadüfi sual çıxır, cavab üçün 30 saniyə verilir."
                      : "Sürpriz suallar bağlıdır.")
             }
+
+            LockQuestionSection()
         }
         .appListStyle()
         .pageTitle("Bildirişlər")
@@ -398,6 +401,75 @@ private struct ReminderSection: View {
             return "Bildiriş vaxtı: hər gün \(reminder.time.formatted(date: .omitted, time: .shortened)). Bu gün \(reminder.goal) sual həll etmisənsə, həmin günün xatırlatması göndərilmir."
         }
         return "Gündəlik hədəfə çatmamısansa, seçdiyin vaxtda xatırladırıq."
+    }
+}
+
+/// Kilid ekranında sual: a question notification every N minutes, answered from the notification itself.
+private struct LockQuestionSection: View {
+    @State private var lock = LockScreenQuestions.shared
+    @Environment(\.scenePhase) private var phase
+
+    var body: some View {
+        Section {
+            Toggle(isOn: Binding(get: { lock.isEnabled },
+                                 set: { on in Task { await lock.setEnabled(on) } }).animation()) {
+                SettingsLabel("Kilid ekranında sual", symbol: "lock.iphone", color: .indigo)
+            }
+            .tint(Theme.accent)
+            .disabled(lock.isDenied && !lock.isEnabled)
+            .appRow()
+            if lock.isEnabled {
+                Picker(selection: Binding(get: { lock.intervalMinutes }, set: { lock.intervalMinutes = $0 })) {
+                    ForEach(LockScreenQuestions.intervalChoices, id: \.self) { m in
+                        Text(m == 60 ? "Hər saat" : "Hər \(m) dəqiqədən bir").tag(m)
+                    }
+                } label: {
+                    SettingsLabel("Gəlmə aralığı", symbol: "clock.fill", color: .orange)
+                }
+                .pickerStyle(.menu)
+                .appRow()
+                Picker(selection: Binding(get: { lock.startHour }, set: { lock.startHour = $0 })) {
+                    ForEach(0..<24, id: \.self) { h in Text(String(format: "%02d:00", h)).tag(h) }
+                } label: {
+                    SettingsLabel("Başlama", symbol: "sunrise.fill", color: .yellow)
+                }
+                .pickerStyle(.menu)
+                .appRow()
+                Picker(selection: Binding(get: { lock.endHour }, set: { lock.endHour = $0 })) {
+                    ForEach(0..<24, id: \.self) { h in Text(String(format: "%02d:00", h)).tag(h) }
+                } label: {
+                    SettingsLabel("Bitmə", symbol: "moon.fill", color: .purple)
+                }
+                .pickerStyle(.menu)
+                .appRow()
+            }
+            if lock.isDenied {
+                Button("Bildiriş icazəsini aç", systemImage: "gear") {
+                    if let url = URL(string: UIApplication.openNotificationSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+                .appRow()
+            }
+        } header: {
+            Text("Kilid ekranında sual")
+        } footer: {
+            Text(footer)
+        }
+        .task { await lock.refreshAuthorization() }
+        .onChange(of: phase) { _, p in
+            if p == .active { Task { await lock.refreshAuthorization() } }
+        }
+    }
+
+    private var footer: String {
+        if lock.isDenied {
+            return "Bildirişlərə icazə verilməyib. Ayarlar → İmtahan → Bildirişlər bölməsində icazəni aktiv edin."
+        }
+        if lock.isEnabled {
+            return "\(lock.hoursText) arası hər \(lock.intervalMinutes) dəqiqədən bir Sürpriz sual fənlərindən sual gəlir. Bildirişi basıb saxlayın (və ya aşağı çəkin) və variantı seçin: tətbiqi açmadan cavab qeyd olunur, nəticə dərhal bildirilir. Əvvəlcə təkrar vaxtı çatan və səhv etdiyiniz suallar gəlir. Bu ayar hər cihazda ayrıca açılır."
+        }
+        return "Kilid ekranına bildiriş kimi sual gəlir, cavabı bildirişin özündən seçirsiniz."
     }
 }
 

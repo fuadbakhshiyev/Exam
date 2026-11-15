@@ -54,12 +54,22 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
     }
 
     // Pomodoro phase ends also show while the app is open; other notifications keep the default (hidden).
+    // Kilid ekranında sual also shows while the app is open, unless a test is running.
     nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter,
                                             willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
-        notification.request.identifier.hasPrefix(PomodoroNotifications.idPrefix) ? [.banner, .list, .sound] : []
+        let id = notification.request.identifier
+        if id.hasPrefix(PomodoroNotifications.idPrefix) { return [.banner, .list, .sound] }
+        if LockScreenQuestions.owns(id) {
+            let inQuiz = await MainActor.run { AppEnvironment.shared?.router.quiz != nil }
+            return inQuiz && id != LockScreenQuestions.resultID ? [.list] : [.banner, .list, .sound]
+        }
+        return []
     }
 
     nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        let action = response.actionIdentifier
+        nonisolated(unsafe) let info = response.notification.request.content.userInfo
+        if await LockScreenQuestions.shared.handle(actionID: action, userInfo: info) { return }
         guard let s = response.notification.request.content.userInfo["url"] as? String, let url = URL(string: s) else { return }
         await MainActor.run { QuickActionCenter.shared.pendingURL = url }
     }

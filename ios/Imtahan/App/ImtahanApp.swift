@@ -59,6 +59,8 @@ struct ImtahanApp: App {
                     store.writeWidgetSnapshotNow()
                     QuestionSpotlight.indexIfNeeded()
                     await StudyReminder.shared.refreshAuthorization()
+                    await LockScreenQuestions.shared.refreshAuthorization()
+                    LockScreenQuestions.shared.appDidBecomeActive()
                 }
                 // Home Screen quick actions (cold launch: already set before the first frame) and
                 // Pomodoro notification taps.
@@ -70,6 +72,7 @@ struct ImtahanApp: App {
                     if active { sync.appDidBecomeActive() } else { sync.appWillResignActive() }
                     if active { stopwatch.reload(); stopwatch.syncLiveActivity() }
                     if p == .background { store.writeWidgetSnapshotNow() }
+                    if active { LockScreenQuestions.shared.appDidBecomeActive() }
                 }
         }
     }
