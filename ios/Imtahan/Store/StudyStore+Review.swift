@@ -12,6 +12,33 @@ struct ReviewEntry: Codable, Hashable, Sendable {
     var box: Int
     /// Local "YYYY-MM-DD" (StudyStore.dayKey); due when ≤ today.
     var due: String
+    /// When it last changed (ms since 1970; sync: the newer one wins). nil for older files.
+    var t: Double? = nil
+}
+
+/// Ağıllı təkrar on the wire: box, due day and change time per question text (the question itself is
+/// looked up in the bank), plus the questions dropped as mastered and when.
+struct ReviewSync: Codable, Equatable, Sendable {
+    struct Box: Codable, Equatable, Sendable { var b: Int; var d: String; var t: Double }
+    var boxes: [String: Box] = [:]
+    var removed: [String: Double] = [:]
+    var seeded = false
+
+    var isEmpty: Bool { boxes.isEmpty && removed.isEmpty }
+
+    static func merge(_ a: ReviewSync, _ b: ReviewSync) -> ReviewSync {
+        var out = ReviewSync(seeded: a.seeded || b.seeded)
+        let keys = Set(a.boxes.keys).union(b.boxes.keys).union(a.removed.keys).union(b.removed.keys)
+        for k in keys {
+            // Newer change wins; same time (older entries have none): the later due day, then the higher box,
+            // so both devices settle on the same entry.
+            let box = [a.boxes[k], b.boxes[k]].compactMap { $0 }.max { ($0.t, $0.d, $0.b) < ($1.t, $1.d, $1.b) }
+            let gone = [a.removed[k], b.removed[k]].compactMap { $0 }.max()
+            if let gone, gone >= (box?.t ?? 0) { out.removed[k] = gone }
+            else if let box { out.boxes[k] = box }
+        }
+        return out
+    }
 }
 
 @MainActor
@@ -29,10 +56,16 @@ final class ReviewStore {
     @ObservationIgnored private let fileURL: URL
     @ObservationIgnored private var saveTask: Task<Void, Never>?
 
+    /// Mastered questions dropped from the boxes (text → when), so another device does not bring them back.
+    @ObservationIgnored private var removed: [String: Double] = [:]
+
     private struct FileShape: Codable {
         var seeded: Bool
         var entries: [String: ReviewEntry]
+        var removed: [String: Double]?
     }
+
+    private static var now: Double { Date().timeIntervalSince1970 * 1000 }
 
     init(fileURL: URL? = nil) {
         let url = fileURL ?? StudyStore.defaultFileURL().deletingLastPathComponent().appendingPathComponent("review.json")
@@ -40,11 +73,47 @@ final class ReviewStore {
         if let raw = try? Data(contentsOf: url), let f = try? JSONDecoder().decode(FileShape.self, from: raw) {
             entries = f.entries
             seeded = f.seeded
+            removed = f.removed ?? [:]
         }
+    }
+
+    var syncValue: ReviewSync {
+        ReviewSync(boxes: entries.mapValues { .init(b: $0.box, d: $0.due, t: $0.t ?? 0) }, removed: removed, seeded: seeded)
+    }
+
+    /// Boxes changed on other devices; a question unknown to this bank is skipped.
+    func merge(_ remote: ReviewSync) {
+        let merged = ReviewSync.merge(syncValue, remote)
+        guard merged != syncValue else { return }
+        var next: [String: ReviewEntry] = [:]
+        for (k, b) in merged.boxes {
+            if let e = entries[k] { next[k] = ReviewEntry(question: e.question, box: b.b, due: b.d, t: b.t) }
+            else if let q = Self.bankQuestion(k) { next[k] = ReviewEntry(question: q, box: b.b, due: b.d, t: b.t) }
+        }
+        entries = next
+        removed = merged.removed
+        seeded = merged.seeded
+        scheduleSave()
+    }
+
+    private static var textIndex: [String: Question]?
+
+    private static func bankQuestion(_ text: String) -> Question? {
+        if textIndex == nil {
+            let b = QuestionBank.shared
+            var idx: [String: Question] = [:]
+            for q in b.all { idx[q.q] = idx[q.q] ?? q }
+            for list in b.pdfExams.values { for exam in list { for q in exam { idx[q.q] = idx[q.q] ?? q } } }
+            for list in b.pdfFinals.values { for exam in list { for q in exam.questions { idx[q.q] = idx[q.q] ?? q } } }
+            textIndex = idx
+        }
+        return textIndex?[text]
     }
 
     /// "Statistikanı sıfırla": forget every scheduled review (re-seeds from the wrong lists later).
     func clear() {
+        let t = Self.now
+        for k in entries.keys { removed[k] = t }
         entries = [:]
         seeded = false
         flush()
@@ -75,11 +144,14 @@ final class ReviewStore {
     func record(_ q: Question, isCorrect: Bool) {
         seeded = true
         if !isCorrect {
-            entries[q.q] = ReviewEntry(question: q, box: 1, due: Self.day(1))
+            entries[q.q] = ReviewEntry(question: q, box: 1, due: Self.day(1), t: Self.now)
+            removed[q.q] = nil
         } else if var e = entries[q.q], e.due <= Self.day(0) {
             e.box += 1
+            e.t = Self.now
             if e.box > Self.intervals.count {
                 entries[q.q] = nil
+                removed[q.q] = e.t
             } else {
                 e.due = Self.day(Self.intervals[e.box - 1])
                 entries[q.q] = e
@@ -111,7 +183,7 @@ final class ReviewStore {
     func flush() {
         saveTask?.cancel()
         saveTask = nil
-        guard let raw = try? JSONEncoder().encode(FileShape(seeded: seeded, entries: entries)) else { return }
+        guard let raw = try? JSONEncoder().encode(FileShape(seeded: seeded, entries: entries, removed: removed)) else { return }
         let url = fileURL
         Task.detached(priority: .utility) { try? raw.write(to: url, options: .atomic) }
     }

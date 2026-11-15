@@ -59,6 +59,24 @@ final class StudyReminder {
         minute = d.object(forKey: Self.minuteKey) as? Int ?? 0
         goal = d.object(forKey: Self.goalKey) as? Int ?? 50
         weeklyEnabled = d.object(forKey: Self.weeklyKey) as? Bool ?? true
+        NotificationCenter.default.addObserver(forName: SyncedPrefs.didApply, object: nil, queue: .main) { _ in
+            MainActor.assumeIsolated { StudyReminder.shared.reloadSyncedSettings() }
+        }
+    }
+
+    /// Settings changed on another device (notifications are rescheduled by the didSets).
+    private func reloadSyncedSettings() {
+        let d = defaults
+        let on = d.bool(forKey: Self.enabledKey)
+        if on != isEnabled { isEnabled = on }
+        let h = d.object(forKey: Self.hourKey) as? Int ?? 20
+        if h != hour { hour = h }
+        let m = d.object(forKey: Self.minuteKey) as? Int ?? 0
+        if m != minute { minute = m }
+        let g = d.object(forKey: Self.goalKey) as? Int ?? 50
+        if g != goal { goal = g }
+        let w = d.object(forKey: Self.weeklyKey) as? Bool ?? true
+        if w != weeklyEnabled { weeklyEnabled = w }
     }
 
     var goalLevel: String { Self.goalChoices.first { $0.count == goal }?.level ?? "Amateur" }

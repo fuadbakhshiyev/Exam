@@ -107,6 +107,7 @@ final class SyncService {
     /// Connects the local store: every local change marks the data for the next write.
     func attach(_ store: StudyStore) {
         self.store = store
+        SyncedPrefs.startObserving()
         store.onLocalChange = { [weak self] quick in
             guard let self else { return }
             self.dirty = true

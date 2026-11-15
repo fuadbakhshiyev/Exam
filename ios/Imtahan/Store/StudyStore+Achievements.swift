@@ -100,7 +100,7 @@ struct AchievementStatus: Identifiable, Hashable, Sendable {
 final class AchievementStore {
     static let shared = AchievementStore()
 
-    struct FileShape: Codable {
+    struct FileShape: Codable, Equatable, Sendable {
         var unlocked: [String: Date] = [:]
         /// Times "Bu günün təkrarı" was emptied (at most once a day).
         var reviewClears = 0
@@ -142,6 +142,46 @@ final class AchievementStore {
             poolFinishes = try c.decodeIfPresent(Int.self, forKey: .poolFinishes) ?? 0
             earns = try c.decodeIfPresent([String: [AchievementEarn]].self, forKey: .earns) ?? [:]
         }
+
+        /// Two devices: every unlock (earliest date), every earn, the best of each record.
+        /// The in-test runs (run, combo) stay per device.
+        static func merge(_ a: FileShape, _ b: FileShape) -> FileShape {
+            var m = a
+            m.unlocked = a.unlocked.merging(b.unlocked) { min($0, $1) }
+            m.reviewClears = max(a.reviewClears, b.reviewClears)
+            m.lastReviewClearDay = [a.lastReviewClearDay, b.lastReviewClearDay].compactMap { $0 }.max()
+            m.bestSimulation = max(a.bestSimulation, b.bestSimulation)
+            m.initialized = a.initialized || b.initialized
+            m.bestCombo = max(a.bestCombo, b.bestCombo)
+            m.bestExam = max(a.bestExam, b.bestExam)
+            m.poolFinishes = max(a.poolFinishes, b.poolFinishes)
+            m.earns = a.earns.merging(b.earns) { x, y in
+                var seen = Set<String>()
+                return (x + y).filter { seen.insert("\(Int($0.date.timeIntervalSince1970))|\($0.subject ?? "")").inserted }
+                    .sorted { $0.date < $1.date }
+            }
+            return m
+        }
+
+        /// The part worth sending (no in-test runs).
+        var shared: FileShape {
+            var s = self
+            s.runKey = ""; s.run = []; s.runLast = nil; s.combo = 0
+            return s
+        }
+    }
+
+    var syncValue: FileShape? { file.unlocked.isEmpty && file.earns.isEmpty ? nil : file.shared }
+
+    /// Unlocks and records from other devices (no toasts).
+    func merge(_ remote: FileShape) {
+        let merged = FileShape.merge(file, remote)
+        // Keep this device's in-test runs.
+        var next = merged
+        next.runKey = file.runKey; next.run = file.run; next.runLast = file.runLast; next.combo = file.combo
+        guard next != file else { return }
+        file = next
+        scheduleSave()
     }
 
     private(set) var file = FileShape()
@@ -168,8 +208,10 @@ final class AchievementStore {
     }
 
     func mutate(_ body: (inout FileShape) -> Void) {
+        let before = file.shared
         body(&file)
         scheduleSave()
+        if file.shared != before { StudyStore.shared.onLocalChange?(false) }
     }
 
     /// Records the unlock; `announce` queues the toast.

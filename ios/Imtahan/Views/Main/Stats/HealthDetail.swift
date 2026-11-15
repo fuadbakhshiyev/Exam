@@ -406,6 +406,7 @@ struct HealthPage<Content: View>: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Theme.Space.s12) { content() }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, Theme.Space.s16)
                 .padding(.bottom, Theme.Space.s24)
                 .frame(maxWidth: 820)

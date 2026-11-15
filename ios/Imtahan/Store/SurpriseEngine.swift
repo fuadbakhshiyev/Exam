@@ -51,6 +51,20 @@ final class SurpriseEngine {
         self.store = store
         self.bank = bank
         store.surpriseEngine = self
+        NotificationCenter.default.addObserver(forName: SyncedPrefs.didApply, object: nil, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated { self?.reloadSyncedSettings() }
+        }
+    }
+
+    /// Settings changed on another device.
+    private func reloadSyncedSettings() {
+        let d = UserDefaults.standard
+        let on = d.object(forKey: Self.enabledKey) as? Bool ?? true
+        if on != isEnabled { isEnabled = on }
+        let iv = d.integer(forKey: Self.intervalKey)
+        if iv > 0, iv != intervalMinutes { intervalMinutes = iv }
+        let subs = Set(d.stringArray(forKey: Self.subjectsKey) ?? [])
+        if subs != subjects { subjects = subs }
     }
 
     // MARK: Settings (device-local, UserDefaults)

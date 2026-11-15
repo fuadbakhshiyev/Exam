@@ -10,20 +10,38 @@ struct SyncExtras: Codable, Equatable, Sendable {
     var mastery: [String: [Double]] = [:]
     /// App settings shared by all devices (SyncedPrefs.keys).
     var prefs: [String: SyncPref] = [:]
+    /// Finished mixed exams and vize booklets (MixedExamHistory).
+    var history: [MixedExamAttempt] = []
+    /// Nailiyyətlər (AchievementStore).
+    var achievements: AchievementStore.FileShape? = nil
+    /// Ağıllı təkrar boxes by question text, and removals (ReviewStore).
+    var review: ReviewSync? = nil
+    /// Half-done tests (QuizProgressStore), so a test left on one device continues on the other.
+    var progress: ProgressSync? = nil
 
-    init(dates: [String: [Double]] = [:], mastery: [String: [Double]] = [:], prefs: [String: SyncPref] = [:]) {
+    init(dates: [String: [Double]] = [:], mastery: [String: [Double]] = [:], prefs: [String: SyncPref] = [:],
+         history: [MixedExamAttempt] = [], achievements: AchievementStore.FileShape? = nil, review: ReviewSync? = nil,
+         progress: ProgressSync? = nil) {
         self.dates = dates; self.mastery = mastery; self.prefs = prefs
+        self.history = history; self.achievements = achievements; self.review = review
+        self.progress = progress
     }
 
-    /// Older clouds have no "prefs" field.
+    /// Older clouds lack the newer fields.
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         dates = try c.decodeIfPresent([String: [Double]].self, forKey: .dates) ?? [:]
         mastery = try c.decodeIfPresent([String: [Double]].self, forKey: .mastery) ?? [:]
-        prefs = try c.decodeIfPresent([String: SyncPref].self, forKey: .prefs) ?? [:]
+        prefs = (try? c.decodeIfPresent([String: SyncPref].self, forKey: .prefs)) ?? [:]
+        history = (try? c.decodeIfPresent([MixedExamAttempt].self, forKey: .history)) ?? []
+        achievements = try? c.decodeIfPresent(AchievementStore.FileShape.self, forKey: .achievements)
+        review = try? c.decodeIfPresent(ReviewSync.self, forKey: .review)
+        progress = try? c.decodeIfPresent(ProgressSync.self, forKey: .progress)
     }
 
-    var isEmpty: Bool { dates.isEmpty && mastery.isEmpty && prefs.isEmpty }
+    var isEmpty: Bool {
+        dates.isEmpty && mastery.isEmpty && prefs.isEmpty && history.isEmpty && achievements == nil && (review?.isEmpty ?? true) && (progress?.isEmpty ?? true)
+    }
 
     /// Per entry, the newer change wins (index 1 is the change time).
     static func merge(_ a: SyncExtras, _ b: SyncExtras) -> SyncExtras {
@@ -31,18 +49,38 @@ struct SyncExtras: Codable, Equatable, Sendable {
             x.merging(y) { l, r in (r[safe: 1] ?? 0) > (l[safe: 1] ?? 0) ? r : l }
         }
         let prefs = a.prefs.merging(b.prefs) { l, r in r.t > l.t ? r : l }
-        return SyncExtras(dates: pick(a.dates, b.dates), mastery: pick(a.mastery, b.mastery), prefs: prefs)
+        let ach: AchievementStore.FileShape? = switch (a.achievements, b.achievements) {
+        case let (x?, y?): AchievementStore.FileShape.merge(x, y)
+        case let (x, y): x ?? y
+        }
+        let rev: ReviewSync? = switch (a.review, b.review) {
+        case let (x?, y?): ReviewSync.merge(x, y)
+        case let (x, y): x ?? y
+        }
+        let prog: ProgressSync? = switch (a.progress, b.progress) {
+        case let (x?, y?): ProgressSync.merge(x, y)
+        case let (x, y): x ?? y
+        }
+        return SyncExtras(dates: pick(a.dates, b.dates), mastery: pick(a.mastery, b.mastery), prefs: prefs,
+                          history: MixedExamAttempt.merge(a.history, b.history), achievements: ach, review: rev,
+                          progress: prog)
     }
 
     @MainActor static var local: SyncExtras {
         SyncExtras(dates: ExamDates.shared.syncValue, mastery: MasteryStore.shared.syncValue,
-                   prefs: SyncedPrefs.syncValue)
+                   prefs: SyncedPrefs.syncValue, history: MixedExamHistory.shared.syncValue,
+                   achievements: AchievementStore.shared.syncValue, review: ReviewStore.shared.syncValue,
+                   progress: QuizProgressStore.shared.syncValue)
     }
 
     @MainActor func apply() {
         ExamDates.shared.merge(dates)
         MasteryStore.shared.merge(mastery)
         SyncedPrefs.merge(prefs)
+        MixedExamHistory.shared.merge(history)
+        if let achievements { AchievementStore.shared.merge(achievements) }
+        if let review { ReviewStore.shared.merge(review) }
+        if let progress { QuizProgressStore.shared.merge(progress) }
     }
 
     // MARK: Wire
@@ -67,17 +105,58 @@ struct SyncExtras: Codable, Equatable, Sendable {
     }
 }
 
-/// One synced setting: its value and when it was last changed.
+/// One synced setting: its value (JSON of the UserDefaults object, "" = not set) and when it changed.
 struct SyncPref: Codable, Equatable, Sendable {
     var v: String
     var t: Double
 }
 
-/// UserDefaults settings that follow the user to every device (Fənlər görünüşü, sıralama, sıra).
-/// The newest change wins. Change times are kept beside the values, so @AppStorage stays as is.
+/// UserDefaults settings that follow the user to every device. The newest change wins.
+/// Change times are kept beside the values, so the settings code (@AppStorage, didSet) stays as is:
+/// any UserDefaults write is noticed, stamped and pushed.
 @MainActor enum SyncedPrefs {
-    static let keys = ["subjects_layout", "subjects_sort", "subjects_order"]
+    static let keys = [
+        // Fənlər
+        "subjects_layout", "subjects_sort", "subjects_order",
+        // Tənzimləmələr
+        "theme", "quiz_dashboard_layout", "exam_mode", "exam_date", "haptics_enabled",
+        "requeue_wrong", "quiz_list_mode", "quiz_reveal_at_end",
+        // Sürpriz sual
+        "surprise_enabled", "surprise_interval_min", "surprise_subjects",
+        // Bildirişlər
+        "reminder_enabled", "reminder_hour", "reminder_minute", "reminder_goal", "weekly_report_enabled",
+    ]
     private static let metaKey = "synced_prefs_meta"
+    /// Posted after cloud values were written, so objects holding a copy reload.
+    static let didApply = Notification.Name("SyncedPrefsDidApply")
+    private static var observer: NSObjectProtocol?
+    private static var pending: Task<Void, Never>?
+
+    /// Watches UserDefaults: a changed synced key is stamped and pushed soon.
+    static func startObserving() {
+        guard observer == nil else { return }
+        observer = NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: .main) { _ in
+            MainActor.assumeIsolated {
+                pending?.cancel()
+                pending = Task { @MainActor in
+                    try? await Task.sleep(for: .milliseconds(300))
+                    guard !Task.isCancelled else { return }
+                    noteChanged()
+                }
+            }
+        }
+    }
+
+    private static func encode(_ o: Any?) -> String {
+        guard let o, let d = try? JSONSerialization.data(withJSONObject: [o]), let s = String(data: d, encoding: .utf8) else { return "" }
+        return s
+    }
+
+    private static func decode(_ s: String) -> Any? {
+        guard !s.isEmpty, let d = s.data(using: .utf8),
+              let arr = try? JSONSerialization.jsonObject(with: d) as? [Any] else { return nil }
+        return arr.first
+    }
 
     private static func load() -> [String: SyncPref] {
         guard let d = UserDefaults.standard.data(forKey: metaKey),
@@ -95,7 +174,7 @@ struct SyncPref: Codable, Equatable, Sendable {
         var m = load()
         var changed = false
         for k in keys {
-            let v = UserDefaults.standard.string(forKey: k) ?? ""
+            let v = encode(UserDefaults.standard.object(forKey: k))
             if m[k]?.v != v {
                 m[k] = SyncPref(v: v, t: m[k] == nil && v.isEmpty ? 0 : Date().timeIntervalSince1970 * 1000)
                 changed = true
@@ -105,7 +184,7 @@ struct SyncPref: Codable, Equatable, Sendable {
         return m
     }
 
-    /// Call after the user changes one of the keys: stamps it and pushes soon.
+    /// Stamps changed keys and pushes soon.
     static func noteChanged() {
         let before = load()
         let after = syncValue
@@ -116,12 +195,13 @@ struct SyncPref: Codable, Equatable, Sendable {
         var m = syncValue
         var changed = false
         for (k, r) in remote where keys.contains(k) && r.t > (m[k]?.t ?? 0) && r.v != m[k]?.v {
-            if r.v.isEmpty { UserDefaults.standard.removeObject(forKey: k) }
-            else { UserDefaults.standard.set(r.v, forKey: k) }
             m[k] = r
+            save(m)   // before the write, so the change observer sees nothing new
+            if let o = decode(r.v) { UserDefaults.standard.set(o, forKey: k) }
+            else { UserDefaults.standard.removeObject(forKey: k) }
             changed = true
         }
-        if changed { save(m) }
+        if changed { NotificationCenter.default.post(name: didApply, object: nil) }
     }
 }
 

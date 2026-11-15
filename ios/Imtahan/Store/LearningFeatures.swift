@@ -101,6 +101,7 @@ final class ExamDates {
 final class LearnSettings {
     static let shared = LearnSettings()
     private static let requeueKey = "requeue_wrong"
+    @ObservationIgnored private var reload: NSObjectProtocol?
 
     /// Wrong / "Bilmirəm" questions come back at the end of the same test until answered correctly.
     var requeueWrong: Bool {
@@ -109,6 +110,12 @@ final class LearnSettings {
 
     private init() {
         requeueWrong = UserDefaults.standard.object(forKey: Self.requeueKey) as? Bool ?? true
+        reload = NotificationCenter.default.addObserver(forName: SyncedPrefs.didApply, object: nil, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated {
+                let v = UserDefaults.standard.object(forKey: Self.requeueKey) as? Bool ?? true
+                if self?.requeueWrong != v { self?.requeueWrong = v }
+            }
+        }
     }
 }
 
@@ -273,6 +280,21 @@ final class MixedExamHistory {
 
     func add(_ a: MixedExamAttempt) {
         attempts.append(a)
+        StudyStore.shared.onLocalChange?(true)   // push to the cloud soon
+        save()
+    }
+
+    var syncValue: [MixedExamAttempt] { attempts }
+
+    /// Attempts made on other devices.
+    func merge(_ remote: [MixedExamAttempt]) {
+        let merged = MixedExamAttempt.merge(attempts, remote)
+        guard merged.count != attempts.count else { return }
+        attempts = merged
+        save()
+    }
+
+    private func save() {
         if attempts.count > 500 { attempts.removeFirst(attempts.count - 500) }
         guard let raw = try? JSONEncoder().encode(attempts) else { return }
         let url = fileURL

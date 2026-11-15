@@ -179,6 +179,19 @@ final class StudyStore {
         // loadData → updateDaily(false): refresh the daily goal without bumping updatedAt.
         refreshDailyGoal(notify: false)
         if startTimers { startPlatformTimer() }
+        // Settings changed on another device (Sync/ExtrasSync.swift).
+        NotificationCenter.default.addObserver(forName: SyncedPrefs.didApply, object: nil, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated { self?.reloadSyncedSettings() }
+        }
+    }
+
+    private func reloadSyncedSettings() {
+        let t = ThemeMode(rawValue: defaults.string(forKey: Self.themeKey) ?? "") ?? .dark
+        if t != theme { theme = t }
+        let l: DashboardLayout = defaults.string(forKey: Self.layoutKey) == "table" ? .table : .grid
+        if l != dashboardLayout { dashboardLayout = l }
+        let m = ExamMode(rawValue: defaults.string(forKey: Self.examModeKey) ?? "") ?? .vize
+        if m != examMode { examMode = m }
     }
 
     static func defaultFileURL() -> URL {
