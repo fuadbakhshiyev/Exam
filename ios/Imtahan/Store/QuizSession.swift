@@ -155,6 +155,20 @@ final class QuizSession: Identifiable {
     private(set) var correctCount = 0
     private(set) var wrongCount = 0
     var isFlashcard = false
+    /// "Siyahı rejimi": every question on one scrolling page, no auto-advance. Remembered across tests.
+    var listMode = UserDefaults.standard.bool(forKey: QuizSession.listModeKey) {
+        didSet { UserDefaults.standard.set(listMode, forKey: Self.listModeKey); cancelAutoAdvance() }
+    }
+    static let listModeKey = "quiz_list_mode"
+    /// "Cavablar sonda": options are only picked (and can be changed); right / wrong shows after Bitir.
+    private(set) var revealAtEnd = false
+    /// Picked options of a revealAtEnd test, by question index (original option index).
+    private(set) var picks: [Int: Int] = [:]
+    /// Fresh tests of 20+ questions first ask how to see the answers.
+    var needsModeChoice = false
+    static let revealAtEndKey = "quiz_reveal_at_end"
+    /// Index of the question answered last (haptics in list mode, where it need not be `index`).
+    private(set) var lastAnswered: Int?
     private(set) var flashcardRevealed = false
     var pagerOpen = false
     private(set) var result: Result?
@@ -494,13 +508,15 @@ final class QuizSession: Identifiable {
     }
 
     var currentMeta: Meta? {
-        guard showsMeta, let q = current?.question else { return nil }
-        return meta(for: q)
+        current.flatMap { metaIfShown($0.question) }
     }
 
+    func metaIfShown(_ q: Question) -> Meta? { showsMeta ? meta(for: q) : nil }
+
     /// "N Səhv" badge after the question text (wrongCounts ≥ 2; red from 3).
-    var hardBadgeCount: Int? {
-        guard let q = current?.question else { return nil }
+    var hardBadgeCount: Int? { current.flatMap { hardBadgeCount(for: $0.question) } }
+
+    func hardBadgeCount(for q: Question) -> Int? {
         let n = store.wrongCount(q.q)
         return n >= 2 ? n : nil
     }
@@ -554,17 +570,19 @@ final class QuizSession: Identifiable {
 
     /// Answers the current question with an original option index. Returns nil if already answered.
     @discardableResult
-    func choose(_ originalIndex: Int) -> AnswerOutcome? {
-        guard !isClosed, result == nil, answers[index] == nil, let item = current else { return nil }
+    func choose(_ originalIndex: Int, at at: Int? = nil) -> AnswerOutcome? {
+        let i = at ?? index
+        guard !isClosed, result == nil, answers[i] == nil, let item = items[studySafe: i] else { return nil }
         store.noteActivity()
         let q = item.question
         let isCorrect = originalIndex == q.a
-        answers[index] = Answer(chosen: originalIndex, hint: false)
+        answers[i] = Answer(chosen: originalIndex, hint: false)
+        lastAnswered = i
         if isCorrect { correctCount += 1 } else { wrongCount += 1 }
 
         let stat = answerStat(q)
         let cel = store.recordQuizAnswer(q, isCorrect: isCorrect, removeFromWrongWhenCorrect: isWrongMode, stat: stat)
-        if isCorrect { scheduleAutoAdvance() } else if requeuesWrong { requeue(item) }
+        if isCorrect { if i == index { scheduleAutoAdvance() } } else if requeuesWrong { requeue(item, after: i) }
         saveProgress()
         return AnswerOutcome(isCorrect: isCorrect, willAutoAdvance: isCorrect, celebration: cel)
     }
@@ -591,13 +609,15 @@ final class QuizSession: Identifiable {
     }
 
     /// "Bilmirəm": shows the answer and counts as a wrong answer (stats, wrong list, review, mastery).
-    func dontKnow() {
-        guard !isClosed, result == nil, answers[index] == nil, let item = current else { return }
+    func dontKnow(at at: Int? = nil) {
+        let i = at ?? index
+        guard !isClosed, result == nil, answers[i] == nil, let item = items[studySafe: i] else { return }
         store.noteActivity()
-        answers[index] = Answer(chosen: Self.dontKnowChoice, hint: false)
+        answers[i] = Answer(chosen: Self.dontKnowChoice, hint: false)
+        lastAnswered = i
         wrongCount += 1
         _ = store.recordQuizAnswer(item.question, isCorrect: false, removeFromWrongWhenCorrect: false, stat: answerStat(item.question))
-        if requeuesWrong { requeue(item) }
+        if requeuesWrong { requeue(item, after: i) }
         saveProgress()
     }
 
@@ -615,10 +635,10 @@ final class QuizSession: Identifiable {
         items.firstIndex { $0.question.q == item.question.q }.map { $0 < item.id } ?? false
     }
 
-    private func requeue(_ item: Item) {
+    private func requeue(_ item: Item, after i: Int) {
         let q = item.question
         // Once per pending copy: no new copy while an unanswered one is still waiting further on.
-        let pending = items.indices.contains { $0 > index && items[$0].question.q == q.q && answers[$0] == nil }
+        let pending = items.indices.contains { $0 > i && items[$0].question.q == q.q && answers[$0] == nil }
         guard !pending else { return }
         items.append(Item(id: items.count, question: q,
                           options: q.o.enumerated().map { Option(text: $0.element, originalIndex: $0.offset) }.shuffled()))
@@ -633,6 +653,7 @@ final class QuizSession: Identifiable {
 
     private func scheduleAutoAdvance() {
         cancelAutoAdvance()
+        guard !listMode else { return }
         let at = index
         autoAdvanceTask = Task { [weak self] in
             try? await Task.sleep(for: .milliseconds(750))

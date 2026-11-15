@@ -10,6 +10,8 @@ struct QuizView: View {
     @State private var finishPrompt: String?
     @State private var confirmReset = false
     @State private var speech = Speech()
+    /// List mode: question to scroll to (from the question grid).
+    @State private var jump: Int?
 
     private var scale: CGFloat { CGFloat(store.fontScale) }
 
@@ -24,6 +26,28 @@ struct QuizView: View {
 
     private var standardBody: some View {
         NavigationStack {
+            Group {
+                if session.needsModeChoice { QuizModeChoice(session: session) }
+                else if session.listMode { listContent } else { singleContent }
+            }
+            .safeAreaInset(edge: .top, spacing: 0) { if !session.needsModeChoice { progressStrip } }
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                if session.needsModeChoice { EmptyView() }
+                else if session.listMode { listFooter } else { footer }
+            }
+            .background(Theme.bg.ignoresSafeArea())
+            .navigationTitle(session.title)
+            .navigationSubtitle(session.courseLabel)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarTitleMenu { titleMenu }
+            .toolbar { toolbarContent }
+        }
+        .modifier(QuizChrome(session: session, finishPrompt: $finishPrompt, confirmReset: $confirmReset))
+        .onDisappear { speech.stop() }
+    }
+
+    /// One question at a time.
+    private var singleContent: some View {
             ScrollViewReader { proxy in
                 ScrollView {
                     VStack(alignment: .leading, spacing: 16) {
@@ -43,15 +67,93 @@ struct QuizView: View {
                 .scrollIndicators(.hidden)
                 .onChange(of: session.index) { _, _ in withAnimation(.snappy) { proxy.scrollTo("top", anchor: .top) } }
             }
-            .safeAreaInset(edge: .top, spacing: 0) { progressStrip }
-            .safeAreaInset(edge: .bottom, spacing: 0) { footer }
-            .background(Theme.bg.ignoresSafeArea())
-            .navigationTitle(session.title)
-            .navigationSubtitle(session.courseLabel)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarTitleMenu { titleMenu }
-            .toolbar { toolbarContent }
+    }
+
+    /// "Siyahı rejimi": every question on one page; answer while scrolling.
+    private var listContent: some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 16) {
+                    if session.pagerOpen { pager }
+                    ForEach(session.items) { item in
+                        VStack(alignment: .leading, spacing: 12) {
+                            questionCard(item)
+                            options(item)
+                            if session.answers[item.id] == nil && !session.revealAtEnd {
+                                Button("Bilmirəm") { withAnimation(.snappy) { session.dontKnow(at: item.id) } }
+                                    .font(.subheadline.weight(.semibold))
+                                    .tint(Theme.warning)
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                            }
+                        }
+                        .padding(.bottom, 12)
+                        .id(item.id)
+                    }
+                }
+                .scrollTargetLayout()
+                .padding(.horizontal, 20)
+                .padding(.top, 12)
+                .padding(.bottom, 24)
+            }
+            .scrollIndicators(.visible)
+            // The question at the top is the "current" one: star, İpucu and Səsləndir act on it.
+            .onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.4) { ids in
+                if let first = ids.min(), first != session.index { session.index = first }
+            }
+            .onChange(of: jump) { _, j in
+                guard let j else { return }
+                withAnimation(.snappy) { proxy.scrollTo(j, anchor: .top) }
+                jump = nil
+            }
+            .onAppear {
+                let i = session.index
+                if i > 0 { DispatchQueue.main.async { proxy.scrollTo(i, anchor: .top) } }
+            }
         }
+    }
+
+    /// List mode bottom bar: answered count and Bitir.
+    private var listFooter: some View {
+        HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Cavablandırılıb").font(.caption).foregroundStyle(Theme.textMuted)
+                Text("\(session.answeredCount) / \(session.total)")
+                    .font(.headline).monospacedDigit().foregroundStyle(Theme.text)
+                    .contentTransition(.numericText())
+            }
+            Spacer(minLength: 8)
+            Button { finishFromList() } label: {
+                Label("Bitir", systemImage: "flag.checkered").frame(minWidth: 110, minHeight: Self.barButtonHeight)
+            }
+            .buttonStyle(.glassProminent)
+            .buttonBorderShape(.capsule)
+            .largeControl()
+        }
+        .padding(.horizontal, 20)
+        .padding(.top, 10)
+        .padding(.bottom, 8)
+        // Solid bar: the scrolling questions pass under it, not through it.
+        .background {
+            Theme.bg.ignoresSafeArea(edges: .bottom)
+                .overlay(alignment: .top) { Divider() }
+        }
+        .animation(.snappy, value: session.answeredCount)
+    }
+
+    private func finishFromList() {
+        if case .needsConfirmation(let m) = session.requestFinish() { finishPrompt = m }
+    }
+}
+
+/// Sheets, alerts and haptics shared by both layouts of the quiz.
+private struct QuizChrome: ViewModifier {
+    @Bindable var session: QuizSession
+    @Binding var finishPrompt: String?
+    @Binding var confirmReset: Bool
+    @Environment(SurpriseEngine.self) private var surprise
+
+    func body(content: Content) -> some View {
+        content
         .sheet(item: Binding(get: { session.result.map(ResultBox.init) }, set: { _ in })) { box in
             ResultView(session: session, result: box.result)
                 .interactiveDismissDisabled()
@@ -72,12 +174,16 @@ struct QuizView: View {
             Button("Sıfırla", role: .destructive) { session.reset() }
         }
         .celebrationOverlay()
-        .onDisappear { speech.stop() }
+        .appHaptic(.selection, trigger: session.picks)
         .appHaptic(trigger: session.answers.count) { _, _ in
-            guard let a = session.currentAnswer, let q = session.current?.question, !a.hint else { return nil }
+            guard session.result == nil, let i = session.lastAnswered, let a = session.answers[i],
+                  let q = session.items[studySafe: i]?.question, !a.hint else { return nil }
             return a.chosen == q.a ? .success : .error
         }
     }
+}
+
+extension QuizView {
 
     // MARK: Toolbar
 
@@ -96,10 +202,17 @@ struct QuizView: View {
             .appHaptic(.selection, trigger: session.isCurrentBookmarked)
             Menu {
                 Button { speak() } label: { Label(speech.isSpeaking ? "Dayandır" : "Səsləndir", systemImage: "speaker.wave.2") }
-                Toggle(isOn: Binding(get: { session.isFlashcard }, set: { _ in session.toggleFlashcard() })) {
-                    Label("Flashcard rejimi", systemImage: "rectangle.on.rectangle")
+                Toggle(isOn: Binding(get: { session.listMode }, set: { v in withAnimation(.snappy) { session.listMode = v } })) {
+                    Label("Siyahı rejimi", systemImage: "list.bullet.rectangle")
                 }
-                Button { session.hint() } label: { Label("İpucu", systemImage: "lightbulb") }.disabled(session.currentAnswer != nil)
+                if !session.listMode {
+                    Toggle(isOn: Binding(get: { session.isFlashcard }, set: { _ in session.toggleFlashcard() })) {
+                        Label("Flashcard rejimi", systemImage: "rectangle.on.rectangle")
+                    }
+                }
+                if !session.revealAtEnd {
+                    Button { session.hint() } label: { Label("İpucu", systemImage: "lightbulb") }.disabled(session.currentAnswer != nil)
+                }
                 Divider()
                 Button(role: .destructive) { confirmReset = true } label: { Label("Testi sıfırla", systemImage: "arrow.counterclockwise") }
             } label: {
@@ -130,7 +243,7 @@ struct QuizView: View {
             Button { withAnimation(.snappy) { session.pagerOpen.toggle() } } label: {
                 HStack(spacing: 12) {
                     ProgressView(value: session.progress).tint(Theme.accent)
-                    Text(session.counterText).font(.footnote.weight(.semibold)).monospacedDigit().foregroundStyle(Theme.textValue)
+                    Text(session.listMode ? "\(session.answeredCount) / \(session.total)" : session.counterText).font(.footnote.weight(.semibold)).monospacedDigit().foregroundStyle(Theme.textValue)
                     if session.showsTimer {
                         Label(session.timerText, systemImage: "timer").font(.footnote.weight(.semibold)).monospacedDigit()
                             .foregroundStyle(Theme.text)
@@ -164,9 +277,17 @@ struct QuizView: View {
         let segs = session.segments
         return LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 8), spacing: 6) {
             ForEach(segs.indices, id: \.self) { i in
-                Button { session.go(to: i); session.pagerOpen = false } label: {
+                Button {
+                    if session.listMode { jump = i } else { session.go(to: i) }
+                    session.pagerOpen = false
+                } label: {
                     Text("\(i + 1)").font(.system(size: 12, weight: .semibold)).monospacedDigit()
                         .foregroundStyle(segs[i] == .none ? (i == session.index ? Theme.onInverse : Theme.text) : Theme.onInverse)
+                        .overlay {
+                            if segs[i] != .none && i == session.index {
+                                RoundedRectangle(cornerRadius: 9).strokeBorder(Theme.text, lineWidth: 2)
+                            }
+                        }
                         .frame(maxWidth: .infinity, minHeight: 32)
                         .background(segColor(segs[i], current: i == session.index), in: RoundedRectangle(cornerRadius: 9))
                 }
@@ -191,7 +312,7 @@ struct QuizView: View {
     private func questionCard(_ item: QuizSession.Item) -> some View {
         VStack(alignment: .leading, spacing: Theme.Space.s12) {
             HStack(spacing: 6) {
-                if let m = session.currentMeta {
+                if let m = session.metaIfShown(item.question) {
                     Text(m.course).font(.system(size: 11, weight: .bold)).foregroundStyle(Theme.hex(m.accentHex))
                         .padding(.horizontal, 8).padding(.vertical, 3)
                         .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(Theme.hex(m.accentHex).opacity(0.35)))
@@ -207,7 +328,7 @@ struct QuizView: View {
                         .padding(.horizontal, 8).padding(.vertical, 3)
                         .background(Theme.accent.opacity(0.14), in: RoundedRectangle(cornerRadius: 6))
                 }
-                if let n = session.hardBadgeCount {
+                if let n = session.hardBadgeCount(for: item.question) {
                     let c = n >= 3 ? Theme.danger : Theme.warning
                     Text("\(n) dəfə səhv").font(.system(size: 11, weight: .semibold)).foregroundStyle(c)
                         .padding(.horizontal, 8).padding(.vertical, 3)
@@ -215,7 +336,7 @@ struct QuizView: View {
                 }
             }
             HStack(alignment: .firstTextBaseline, spacing: 6) {
-                Text("\(session.index + 1).").font(.system(size: 19 * scale, weight: .semibold)).foregroundStyle(Theme.textMuted)
+                Text("\(item.id + 1).").font(.system(size: 19 * scale, weight: .semibold)).foregroundStyle(Theme.textMuted)
                 RichTextView(item.question.q, font: .system(size: 19 * scale, weight: .semibold))
                     .foregroundStyle(Theme.text)
                     .frame(maxWidth: .infinity, alignment: .leading)
