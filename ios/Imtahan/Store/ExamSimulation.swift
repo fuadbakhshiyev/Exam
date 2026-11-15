@@ -286,3 +286,27 @@ extension StudyStore {
         }
     }
 }
+
+/// Subjects written in one sitting: the same exam day and time (Tənzimləmələr → imtahan tarixləri).
+struct ExamSession: Identifiable, Hashable, Sendable {
+    var id: Double { date.timeIntervalSince1970 }
+    let number: Int
+    let date: Date
+    let subjects: [String]
+}
+
+extension ExamDates {
+    /// Sittings in date order, built from the subjects whose exam date was set.
+    var sessions: [ExamSession] {
+        let groups = Dictionary(grouping: Catalog.subjects.filter { (raw[$0] ?? 0) > 0 }) { raw[$0] ?? 0 }
+        return groups.keys.sorted().enumerated().map { i, t in
+            ExamSession(number: i + 1, date: Date(timeIntervalSince1970: t), subjects: groups[t] ?? [])
+        }
+    }
+
+    /// The sitting still ahead (or under way), else the last one.
+    var nextSession: ExamSession? {
+        let s = sessions
+        return s.first { $0.date.addingTimeInterval(3 * 3600) >= Date() } ?? s.last
+    }
+}

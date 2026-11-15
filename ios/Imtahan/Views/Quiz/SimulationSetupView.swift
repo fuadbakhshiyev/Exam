@@ -11,7 +11,7 @@ struct SimulationEntryCard: View {
             CardShell(title: "Real imtahan simulyasiyası", symbol: "stopwatch.fill", tint: Theme.accent, chevron: false) {
                 HStack(alignment: .center, spacing: Theme.Space.s12) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Bütün fənlər · vaxtla · nəticə sonda")
+                        Text(ExamDates.shared.sessions.count > 1 ? "Sessiyalar üzrə · vaxtla · nəticə sonda" : "Bütün fənlər · vaxtla · nəticə sonda")
                             .font(.headline).foregroundStyle(Theme.text)
                         Text("ATA AÖF formatı: 4 səhv 1 düzü aparır.")
                             .font(.footnote).foregroundStyle(Theme.textMuted)
@@ -51,6 +51,20 @@ struct SimulationSetupView: View {
     @State private var totalMinutes = 150
     @State private var includePast = false
     @State private var poolSizes: [String: Int] = [:]
+    @State private var didPickSession = false
+
+    private var sessions: [ExamSession] { ExamDates.shared.sessions }
+
+    /// A sitting: its subjects, 20 questions each, ATA AÖF time.
+    private func apply(_ subjects: [String]) {
+        withAnimation(.snappy) {
+            selected = Set(subjects)
+            perSubject = 20
+            timingKind = .standard
+        }
+    }
+
+    private static let az = Locale(identifier: "az")
 
     private var config: SimulationConfig {
         var c = SimulationConfig()
@@ -82,6 +96,21 @@ struct SimulationSetupView: View {
     var body: some View {
         NavigationStack {
             Form {
+                if !sessions.isEmpty {
+                    Section {
+                        ForEach(sessions) { session in
+                            sessionRow(title: "\(session.number)-ci sessiya",
+                                       detail: session.date.formatted(.dateTime.day().month(.wide).hour().minute().locale(Self.az)),
+                                       subjects: session.subjects)
+                        }
+                        sessionRow(title: "Bütün fənlər", detail: nil, subjects: Catalog.subjects)
+                    } header: {
+                        Text("İmtahan sessiyası")
+                    } footer: {
+                        Text("İmtahan tarixlərindən: eyni gün və saatda olan fənlər bir sessiyadır. Sessiya seçəndə hər fəndən 20 sual və ATA AÖF vaxtı qoyulur; aşağıda istədiyini dəyişə bilərsən.")
+                    }
+                }
+
                 Section {
                     ForEach(Catalog.subjects, id: \.self) { s in
                         Toggle(isOn: Binding(get: { selected.contains(s) },
@@ -195,6 +224,41 @@ struct SimulationSetupView: View {
         }
         .presentationBackground(Theme.bg)
         .task(id: includePast) { computePools() }
+        .onAppear {
+            // Start on the coming sitting (3 subjects together, then 2, …).
+            guard !didPickSession else { return }
+            didPickSession = true
+            if let next = ExamDates.shared.nextSession { apply(next.subjects) }
+        }
+    }
+
+    private func sessionRow(title: String, detail: String?, subjects: [String]) -> some View {
+        let on = selected == Set(subjects)
+        let count = subjects.reduce(0) { $0 + min(20, poolSizes[$1] ?? 20) }
+        let minutes = count * SimulationConfig.secondsPerQuestion / 60
+        return Button { apply(subjects) } label: {
+            HStack(spacing: Theme.Space.s12) {
+                VStack(alignment: .leading, spacing: 3) {
+                    HStack(spacing: 6) {
+                        Text(title).font(.body.weight(.semibold)).foregroundStyle(Theme.text)
+                        if let detail { Text(detail).font(.subheadline).foregroundStyle(Theme.textMuted) }
+                    }
+                    Text(subjects.map(ExamSimulation.shortName).joined(separator: " · "))
+                        .font(.caption).foregroundStyle(Theme.textMuted)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Text("\(subjects.count) fənn · \(count) sual · \(CompactFormat.duration(minutes * 60) ?? "\(minutes) dəq")")
+                        .font(.caption).monospacedDigit().foregroundStyle(Theme.textCaption)
+                }
+                Spacer(minLength: 8)
+                Image(systemName: on ? "checkmark.circle.fill" : "circle")
+                    .font(.title3)
+                    .foregroundStyle(on ? Theme.accent : Theme.textCaption)
+            }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .appRow()
+        .accessibilityAddTraits(on ? .isSelected : [])
     }
 
     private func computePools() {
