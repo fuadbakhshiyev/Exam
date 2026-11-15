@@ -190,7 +190,17 @@ final class QuizSession: Identifiable {
         self.store = store
         self.bank = bank
         examMode = store.examMode
-        let p = try Self.plan(kind, store: store, bank: bank)
+        let p: Plan
+        do {
+            p = try Self.plan(kind, store: store, bank: bank)
+        } catch {
+            // Resuming: the saved questions are the test, even when a fresh start would find nothing
+            // ("Öyrənilməmişlər" after everything got learned, an empty review, …).
+            guard let r = restore, !r.questions.isEmpty else { throw error }
+            let c = r.course ?? ""
+            p = Plan(title: r.title, label: r.label ?? c, questions: r.questions, course: c, category: "review",
+                     currentTitle: r.title, timerCourse: c)
+        }
         title = p.title
         courseLabel = Self.stripPdfSuffix(p.label)
         course = p.course

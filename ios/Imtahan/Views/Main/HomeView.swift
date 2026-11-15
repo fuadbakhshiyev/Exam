@@ -12,7 +12,15 @@ struct HomeView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: Theme.Space.s12) {
                 dailyGoalCard(store.dailyLevel)
-                continueCard(continueTarget())
+                // Ağıllı təkrar has its own card below (which offers its half-done test itself).
+                let open = QuizProgressStore.shared.openTests(mode: store.examMode).filter {
+                    switch $0.kind { case .review, .reviewSubject: false; default: true }
+                }
+                if let first = open.first {
+                    openTestCard(first, others: Array(open.dropFirst().prefix(3)))
+                } else {
+                    continueCard(continueTarget())
+                }
 
                 TodaySection { showWeakTopics = true }
 
@@ -73,6 +81,96 @@ struct HomeView: View {
 
     // MARK: Continue
 
+    /// Subject (for the icon) and the two lines of a half-done test.
+    private func describe(_ o: QuizProgressStore.OpenTest) -> (subject: String?, title: String, detail: String) {
+        let p = o.progress
+        let subject = (Self.subject(of: o.kind) ?? p.course).map(QuestionBank.baseCourse)
+        let known = subject.flatMap { Catalog.configKeys.contains($0) ? $0 : nil }
+        // Subject first, then the test ("Öyrənilməmişlər", "Unit 6", "İmtahan 2", …).
+        let lines = [known, p.title, p.label].compactMap { $0 }.filter { !$0.isEmpty }
+        var seen = Set<String>()
+        let uniq = lines.filter { seen.insert($0).inserted }
+        return (known, uniq.first ?? "Test", uniq.dropFirst().first ?? (p.revealAtEnd == true ? "Cavablar sonda" : "Yarımçıq test"))
+    }
+
+    private static func subject(of k: QuizSession.Kind) -> String? {
+        switch k {
+        case .unit(let c, _), .courseWrong(let c), .courseMixed(let c), .pdfExam(let c, _), .pdfExamWrong(let c, _),
+             .pdfSubjectAllWrong(let c), .pdfFrequent(let c), .finalExam(let c, _), .finalExamWrong(let c, _),
+             .finalSubjectAllWrong(let c), .mixedOnly(let c), .reviewSubject(let c), .allQuestions(let c), .unlearned(let c),
+             .wrongFor(let c), .reviewCourse(let c, _):
+            c
+        default: nil
+        }
+    }
+
+    private func openTestCard(_ o: QuizProgressStore.OpenTest, others: [QuizProgressStore.OpenTest]) -> some View {
+        let p = o.progress
+        let d = describe(o)
+        let subject = d.subject
+        let known = subject != nil
+        let subtitle = [d.title, d.detail]
+        return VStack(spacing: Theme.Space.s8) {
+        Button {
+            router.resume(.init(kind: o.kind, key: o.key, progress: p))
+        } label: {
+            CardShell(title: "Davam et", symbol: "play.circle.fill", tint: Theme.accent,
+                      caption: "\(min(p.answeredCount, p.total))/\(p.total)", chevron: false) {
+                HStack(spacing: 12) {
+                    if known, let subject { SubjectIcon(course: subject, size: 44) }
+                    else { IconTile(symbol: "list.bullet.rectangle.fill", color: Theme.accent, size: 44) }
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(subtitle[0]).font(.headline).foregroundStyle(Theme.text).lineLimit(1)
+                        Text(subtitle[1])
+                            .font(.subheadline).foregroundStyle(Theme.textMuted).lineLimit(1)
+                        ProgressLine(fraction: p.total > 0 ? min(1, Double(p.answeredCount) / Double(p.total)) : 0, height: 4)
+                            .padding(.top, 2)
+                    }
+                    Spacer(minLength: 8)
+                    Image(systemName: "play.fill")
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(.white)
+                        .frame(width: 44, height: 44)
+                        .background(Theme.accent, in: .circle)
+                }
+            }
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Davam et: \(subtitle.joined(separator: ", ")), \(p.answeredCount)/\(p.total)")
+        .accessibilityAddTraits(.isButton)
+
+        // Other half-done tests: one line each.
+        if !others.isEmpty {
+            VStack(spacing: 0) {
+                ForEach(Array(others.enumerated()), id: \.element.id) { i, t in
+                    let od = describe(t)
+                    Button { router.resume(.init(kind: t.kind, key: t.key, progress: t.progress)) } label: {
+                        HStack(spacing: 12) {
+                            if let s = od.subject { SubjectIcon(course: s, size: 30) }
+                            else { IconTile(symbol: "list.bullet.rectangle.fill", color: Theme.accent, size: 30) }
+                            VStack(alignment: .leading, spacing: 1) {
+                                Text(od.title).font(.subheadline.weight(.semibold)).foregroundStyle(Theme.text).lineLimit(1)
+                                Text(od.detail).font(.caption).foregroundStyle(Theme.textMuted).lineLimit(1)
+                            }
+                            Spacer(minLength: 8)
+                            Text("\(min(t.progress.answeredCount, t.progress.total))/\(t.progress.total)")
+                                .font(.footnote.weight(.semibold)).monospacedDigit().foregroundStyle(Theme.textMuted)
+                            Image(systemName: "play.fill").font(.caption.weight(.bold)).foregroundStyle(Theme.accent)
+                        }
+                        .padding(.horizontal, Theme.Space.s16)
+                        .padding(.vertical, 10)
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    if i < others.count - 1 { Divider().padding(.leading, 58) }
+                }
+            }
+            .card()
+        }
+        }
+    }
+
     private struct ContinueTarget {
         let course: String
         let index: Int
@@ -112,10 +210,23 @@ struct HomeView: View {
         guard let best else { return make(Catalog.subjects[0], 0, done: 0, isNew: true) }
         let done = best.stat.c + best.stat.w
         let tot = total(best.course, best.index)
-        if tot > 0 && done >= tot && best.index + 1 < store.unitTitles(best.course).count {
-            let next = best.index + 1
-            let ns = store.data.stats[best.course]?.bd["units"]?[statKey(best.course, next)] ?? SubStat()
-            return make(best.course, next, done: ns.c + ns.w, isNew: false)
+        func doneOf(_ c: String, _ i: Int) -> Int {
+            let st = store.data.stats[c]?.bd["units"]?[statKey(c, i)] ?? SubStat()
+            return st.c + st.w
+        }
+        if tot > 0 && done >= tot {
+            // Finished: the next unfinished in-scope unit, this subject first (after it, then before it),
+            // then the other subjects in order.
+            let order = [best.course] + Catalog.configKeys.filter { $0 != best.course }
+            for c in order {
+                let n = store.unitTitles(c).count
+                let idxs = c == best.course ? Array((best.index + 1)..<max(best.index + 1, n)) + Array(0..<best.index) : Array(0..<n)
+                for i in idxs {
+                    let t = total(c, i)
+                    let d = doneOf(c, i)
+                    if t > 0 && d < t { return make(c, i, done: d, isNew: d == 0) }
+                }
+            }
         }
         return make(best.course, best.index, done: done, isNew: false)
     }

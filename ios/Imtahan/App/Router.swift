@@ -104,7 +104,7 @@ final class AppRouter {
 
     func start(_ kind: QuizSession.Kind) {
         if let key = QuizSession.progressKey(for: kind, mode: store.examMode),
-           let p = QuizProgressStore.shared.progress(key), p.answeredCount > 0, p.answeredCount < p.total {
+           let p = QuizProgressStore.shared.progress(key), p.isOpen {
             pendingResume = PendingResume(kind: kind, key: key, progress: p)
             return
         }
