@@ -93,7 +93,21 @@ struct UnitBadge: View {
     var symbolTint: Color = Theme.textCaption
     /// 0…1 share of the row's questions answered (ignored for symbols).
     var progress: Double = 0
+    /// Per-question last results of a unit: drawn as a ring (green known, red weak, grey untouched)
+    /// and the badge is tinted by how well the answered questions are known.
+    var mastery: UnitStatus? = nil
     @ScaledMetric(relativeTo: .subheadline) private var side: CGFloat = 36
+
+    private static let ringWidth: CGFloat = 3
+    private static let ringGap: CGFloat = 2
+
+    /// Answered questions known: strong ≥ 80 %, fair ≥ 50 %, weak below.
+    private var strengthTint: Color? {
+        guard let m = mastery, m.answered > 0 else { return nil }
+        let acc = Double(m.correct) / Double(m.answered)
+        return acc >= 0.8 ? Theme.success : (acc >= 0.5 ? Theme.warning : Theme.danger)
+    }
+    private var allKnown: Bool { mastery.map { $0.total > 0 && $0.correct >= $0.total } ?? false }
 
     private enum Stage { case untouched, started, done }
     private var stage: Stage {
@@ -101,14 +115,16 @@ struct UnitBadge: View {
         return progress >= 1 ? .done : (progress > 0 ? .started : .untouched)
     }
     private var fill: Color {
-        switch stage {
+        if mastery != nil { return strengthTint?.opacity(0.14) ?? Theme.surfaceInner }
+        return switch stage {
         case .untouched: Theme.surfaceInner
         case .started: Theme.accent.opacity(0.14)
         case .done: Theme.success.opacity(0.16)
         }
     }
     private var ink: Color {
-        switch stage {
+        if mastery != nil { return strengthTint ?? Theme.textCaption }
+        return switch stage {
         case .untouched: Theme.textCaption
         case .started: Theme.accent
         case .done: Theme.success
@@ -131,8 +147,12 @@ struct UnitBadge: View {
             }
         }
         .frame(width: side, height: side)
+        .overlay {
+            if let mastery { ring(mastery) }
+        }
+        .padding(mastery != nil ? Self.ringWidth + Self.ringGap : 0)
         .overlay(alignment: .bottomTrailing) {
-            if stage == .done {
+            if mastery != nil ? allKnown : stage == .done {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: side * 0.36, weight: .bold))
                     .symbolRenderingMode(.palette)
@@ -143,14 +163,31 @@ struct UnitBadge: View {
         }
         .accessibilityHidden(true)
     }
+
+    /// Concentric ring just outside the badge: correct share, then wrong share, on a faint track.
+    private func ring(_ m: UnitStatus) -> some View {
+        let outset = Self.ringGap + Self.ringWidth / 2
+        let shape = RoundedRectangle(cornerRadius: side * 0.28 + outset, style: .continuous)
+        let total = Double(max(m.total, 1))
+        let ok = min(1, Double(m.correct) / total)
+        let bad = min(1 - ok, Double(m.wrong) / total)
+        let style = StrokeStyle(lineWidth: Self.ringWidth, lineCap: .round)
+        return ZStack {
+            shape.stroke(Theme.surfaceInner, lineWidth: Self.ringWidth)
+            if ok > 0 { shape.trim(from: 0, to: ok).stroke(Theme.success, style: style) }
+            if bad > 0 { shape.trim(from: ok, to: ok + bad).stroke(Theme.danger, style: style) }
+        }
+        .padding(-outset)
+        .animation(.snappy, value: m)
+    }
 }
 
 extension RowGlyph {
-    @ViewBuilder func tile(progress: Double) -> some View {
+    @ViewBuilder func tile(progress: Double, mastery: UnitStatus? = nil) -> some View {
         switch self {
         case .emoji(let e): LogoTile(emoji: e, size: 36)
         case .subject(let c): SubjectIcon(course: c, size: 36)
-        case .number(let n): UnitBadge(number: n, progress: progress)
+        case .number(let n): UnitBadge(number: n, progress: progress, mastery: mastery)
         case .symbol(let s, let c): UnitBadge(symbol: s, symbolTint: c)
         }
     }
@@ -162,6 +199,7 @@ extension RowGlyph {
 struct StudyRowContent: View {
     let row: StudyListRow
     let glyph: RowGlyph
+    var mastery: UnitStatus? = nil
 
     private var hasData: Bool { row.done > 0 }
     private var isDone: Bool { row.total > 0 && row.done >= row.total }
@@ -182,9 +220,14 @@ struct StudyRowContent: View {
         return parts.joined(separator: " · ")
     }
 
+    private var masteryLabel: String? {
+        guard let m = mastery else { return nil }
+        return "\(m.correct) düz, \(m.wrong) səhv, \(m.unanswered) işlənməyib"
+    }
+
     var body: some View {
         HStack(spacing: Theme.Space.s12) {
-            glyph.tile(progress: fraction)
+            glyph.tile(progress: fraction, mastery: mastery)
             VStack(alignment: .leading, spacing: 3) {
                 HStack(alignment: .firstTextBaseline) {
                     Text(row.name).font(.body).foregroundStyle(Theme.text).lineLimit(1)
@@ -209,7 +252,7 @@ struct StudyRowContent: View {
         }
         .padding(.vertical, 2)
         .accessibilityElement(children: .combine)
-        .accessibilityValue(isDone ? "Tamamlanıb" : "")
+        .accessibilityValue(masteryLabel ?? (isDone ? "Tamamlanıb" : ""))
     }
 }
 
@@ -217,14 +260,15 @@ struct StudyRowContent: View {
 struct StudyRow: View {
     let row: StudyListRow
     let glyph: RowGlyph
+    var mastery: UnitStatus? = nil
     @Environment(AppRouter.self) private var router
 
     var body: some View {
         Group {
             if let route = row.target.route {
-                NavigationLink(value: route) { StudyRowContent(row: row, glyph: glyph) }
+                NavigationLink(value: route) { StudyRowContent(row: row, glyph: glyph, mastery: mastery) }
             } else {
-                Button { router.open(row.target) } label: { StudyRowContent(row: row, glyph: glyph) }
+                Button { router.open(row.target) } label: { StudyRowContent(row: row, glyph: glyph, mastery: mastery) }
                     .tint(Theme.text)
             }
         }

@@ -59,12 +59,18 @@ struct CourseView: View {
             if page.units.isEmpty {
                 EmptyRow(title: "Bölmə tapılmadı", systemImage: "list.number")
             } else {
+                let statuses = Dictionary(store.unitStatuses(course).map { ($0.unit, $0) }, uniquingKeysWith: { a, _ in a })
                 ForEach(Array(page.units.enumerated()), id: \.element.id) { i, r in
-                    StudyRow(row: r, glyph: .number(unitNumber(r, fallback: i)))
+                    let n = unitNumber(r, fallback: i)
+                    StudyRow(row: r, glyph: .number(n), mastery: statuses[n])
                 }
             }
         } header: {
             Text("Bölmələr")
+        } footer: {
+            if !page.units.isEmpty {
+                Text("Nömrənin ətrafındakı xətt: yaşıl — düz bildiyin suallar, qırmızı — səhv etdiklərin, boz — hələ işlənməyənlər. Nömrənin rəngi bildiyin payı göstərir: yaşıl yaxşı, narıncı orta, qırmızı zəif.")
+            }
         }
     }
 
