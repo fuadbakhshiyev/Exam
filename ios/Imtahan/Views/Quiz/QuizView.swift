@@ -248,7 +248,7 @@ extension QuizView {
                         Label(session.timerText, systemImage: "timer").font(.footnote.weight(.semibold)).monospacedDigit()
                             .foregroundStyle(Theme.text)
                     }
-                    if session.isGradedExam && !session.isMockMode {
+                    if session.isGradedExam && !session.isMockMode && !session.revealAtEnd {
                         // Points so far (100 max, 4 wrong cancel 1 correct).
                         Label("\(ResultView.points(session.liveScore)) bal", systemImage: "star.fill")
                             .font(.footnote.weight(.semibold)).monospacedDigit()
@@ -303,6 +303,7 @@ extension QuizView {
         switch s {
         case .done: Theme.success
         case .wrong: Theme.danger
+        case .selected: Theme.accent
         case .none: current ? Theme.inverse : Theme.surfaceInner
         }
     }
@@ -360,20 +361,33 @@ extension QuizView {
         .buttonStyle(.plain)
     }
 
-    private enum OptState { case normal, correct, wrong, dim }
+    private enum OptState { case normal, correct, wrong, dim, picked }
 
     private func options(_ item: QuizSession.Item) -> some View {
-        let ans = session.currentAnswer
+        let ans = session.answers[item.id]
+        let picked = session.picks[item.id]
         return VStack(spacing: 10) {
             ForEach(Array(item.options.enumerated()), id: \.offset) { pos, opt in
                 let st: OptState = {
-                    guard let a = ans else { return .normal }
+                    guard let a = ans else { return picked == opt.originalIndex ? .picked : .normal }
                     if opt.originalIndex == item.question.a { return .correct }
                     if opt.originalIndex == a.chosen { return .wrong }
                     return .dim
                 }()
                 Button {
-                    withAnimation(.snappy(duration: 0.25)) { _ = session.chooseDisplayed(pos) }
+                    if session.revealAtEnd {
+                        let first = picked == nil
+                        withAnimation(.snappy(duration: 0.2)) { session.pick(opt.originalIndex, at: item.id) }
+                        // One question at a time: a first pick moves on by itself (a change stays).
+                        if first && !session.listMode && item.id == session.index && !session.isLast {
+                            Task { @MainActor in
+                                try? await Task.sleep(for: .milliseconds(350))
+                                if session.index == item.id { withAnimation(.snappy) { session.nav(1) } }
+                            }
+                        }
+                    } else {
+                        withAnimation(.snappy(duration: 0.25)) { _ = session.choose(opt.originalIndex, at: item.id) }
+                    }
                 } label: { optionRow(QuizSession.letters[pos], opt.text, st) }
                 .buttonStyle(PressStyle())
                 .disabled(ans != nil)
@@ -383,12 +397,12 @@ extension QuizView {
     }
 
     private func optionRow(_ letter: String, _ html: String, _ st: OptState) -> some View {
-        let stroke: Color = st == .correct ? Theme.success : st == .wrong ? Theme.danger : Theme.border
-        let badgeBg: Color = st == .correct ? Theme.success : st == .wrong ? Theme.danger : Theme.surfaceInner
+        let stroke: Color = st == .correct ? Theme.success : st == .wrong ? Theme.danger : st == .picked ? Theme.accent : Theme.border
+        let badgeBg: Color = st == .correct ? Theme.success : st == .wrong ? Theme.danger : st == .picked ? Theme.accent : Theme.surfaceInner
         let fg: Color = st == .dim ? Theme.textMuted : Theme.text
         return HStack(spacing: 12) {
             Text(letter).font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(st == .correct || st == .wrong ? Theme.onInverse : fg)
+                .foregroundStyle(st == .correct || st == .wrong || st == .picked ? Theme.onInverse : fg)
                 .frame(width: 28, height: 28)
                 .background(badgeBg, in: RoundedRectangle(cornerRadius: 9))
             RichTextView(html, font: .system(size: 15 * scale))
@@ -403,8 +417,9 @@ extension QuizView {
         }
         .padding(14)
         .frame(minHeight: 56)
-        .background(st == .dim ? Theme.bg : Theme.surface, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).strokeBorder(stroke, lineWidth: st == .correct || st == .wrong ? 1.5 : 1))
+        .background(st == .dim ? Theme.bg : (st == .picked ? Theme.accent.opacity(0.1) : Theme.surface),
+                    in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).strokeBorder(stroke, lineWidth: st == .correct || st == .wrong || st == .picked ? 1.5 : 1))
         .contentShape(Rectangle())
     }
 
@@ -439,7 +454,11 @@ extension QuizView {
                 }
                 .buttonStyle(.glass)
                 .disabled(session.index == 0)
-                if ans == nil {
+                if session.revealAtEnd {
+                    // Cavablar sonda: no "Bilmirəm" (a blank stays blank), only move on / finish.
+                    Button { next() } label: { Text(session.nextButtonTitle).frame(maxWidth: .infinity, minHeight: Self.barButtonHeight) }
+                        .buttonStyle(.glassProminent)
+                } else if ans == nil {
                     // "Bilmirəm": show the answer, count it as wrong (no lucky guesses).
                     Button { withAnimation(.snappy) { session.dontKnow() } } label: {
                         Text("Bilmirəm").frame(maxWidth: .infinity, minHeight: Self.barButtonHeight)
@@ -521,4 +540,64 @@ extension QuizView {
     #else
     static let barButtonHeight: CGFloat = 0
     #endif
+}
+
+
+/// Start of a test with 20+ questions: see each answer right away, or only at the end (like an exam).
+private struct QuizModeChoice: View {
+    let session: QuizSession
+    @State private var lastWasEnd = UserDefaults.standard.bool(forKey: QuizSession.revealAtEndKey)
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Theme.Space.s16) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("\(session.total) sual").font(.largeTitle.weight(.bold)).monospacedDigit().foregroundStyle(Theme.text)
+                    Text("Cavabları nə vaxt görmək istəyirsən?").font(.title3).foregroundStyle(Theme.textMuted)
+                }
+                .padding(.bottom, Theme.Space.s8)
+                option(end: false, symbol: "checkmark.bubble.fill", tint: Theme.success,
+                       title: "Hər sualdan sonra",
+                       text: "Variantı seçən kimi düz və ya səhv olduğunu, düzgün cavabı görürsən. Öyrənmək üçün.")
+                option(end: true, symbol: "flag.checkered", tint: Theme.accent,
+                       title: "Testin sonunda",
+                       text: "İmtahan kimi: variantları seçirsən, istəsən dəyişirsən. Düz və səhvlər yalnız Bitir-dən sonra görünür.")
+            }
+            .padding(20)
+            .frame(maxWidth: 620)
+            .frame(maxWidth: .infinity)
+        }
+        .scrollBounceBehavior(.basedOnSize)
+    }
+
+    private func option(end: Bool, symbol: String, tint: Color, title: String, text: String) -> some View {
+        Button {
+            withAnimation(.snappy) { session.chooseMode(revealAtEnd: end) }
+        } label: {
+            HStack(alignment: .top, spacing: Theme.Space.s12) {
+                IconTile(symbol: symbol, color: tint, size: 44)
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(spacing: 6) {
+                        Text(title).font(.headline).foregroundStyle(Theme.text)
+                        if end == lastWasEnd {
+                            Text("Son seçim").font(.caption2.weight(.semibold)).foregroundStyle(tint)
+                                .padding(.horizontal, 6).padding(.vertical, 2)
+                                .background(tint.opacity(0.14), in: Capsule())
+                        }
+                    }
+                    Text(text).font(.subheadline).foregroundStyle(Theme.textMuted)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.leading)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(Theme.textCaption)
+                    .padding(.top, 4)
+            }
+            .padding(Theme.Space.s16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .card()
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(PressStyle())
+    }
 }

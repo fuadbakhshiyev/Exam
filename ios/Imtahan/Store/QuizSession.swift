@@ -78,7 +78,7 @@ final class QuizSession: Identifiable {
         let celebration: Celebration?
     }
 
-    enum SegmentState: Hashable, Sendable { case none, done, wrong }
+    enum SegmentState: Hashable, Sendable { case none, done, wrong, selected }
 
     struct MockSubjectResult: Hashable, Sendable, Identifiable {
         var id: String { subject }
@@ -215,8 +215,11 @@ final class QuizSession: Identifiable {
             correctCount = r.correct
             wrongCount = r.wrong
             index = min(max(0, r.index), items.count - 1)
+            picks = r.picks ?? [:]
+            revealAtEnd = r.revealAtEnd ?? false
         }
         if case .simulation(let cfg) = kind { simulation = ExamSimulation(config: cfg, items: items, store: store) }
+        needsModeChoice = restore == nil && simulation == nil && items.count >= Self.modeChoiceMinimum
         store.startQuizTimer(course: p.timerCourse)
         store.quizTimerOwner = id
     }
@@ -460,7 +463,33 @@ final class QuizSession: Identifiable {
     var current: Item? { items[studySafe: index] }
     var currentAnswer: Answer? { answers[index] }
     var isLast: Bool { index == items.count - 1 }
-    var answeredCount: Int { answers.count }
+    var answeredCount: Int { answers.count + picks.count }
+
+    static let modeChoiceMinimum = 20
+
+    /// The choice on the start screen; remembered as the next default.
+    func chooseMode(revealAtEnd: Bool) {
+        self.revealAtEnd = revealAtEnd
+        needsModeChoice = false
+        UserDefaults.standard.set(revealAtEnd, forKey: Self.revealAtEndKey)
+        if revealAtEnd { cancelAutoAdvance() }
+    }
+
+    /// revealAtEnd: picks an option (the same one again clears it). Nothing is recorded until Bitir.
+    func pick(_ originalIndex: Int, at i: Int) {
+        guard revealAtEnd, result == nil, items.indices.contains(i), answers[i] == nil else { return }
+        picks[i] = picks[i] == originalIndex ? nil : originalIndex
+        saveProgress()
+    }
+
+    /// Records every pick as a normal answer (statistics, wrong list, review, mastery), in question order.
+    private func commitPicks() {
+        guard revealAtEnd, !picks.isEmpty else { return }
+        let all = picks.sorted { $0.key < $1.key }
+        picks = [:]
+        for (i, o) in all { _ = choose(o, at: i) }
+        cancelAutoAdvance()
+    }
     /// "3 / 20"
     var counterText: String { "\(index + 1) / \(total)" }
     var progress: Double { total > 0 ? Double(answeredCount) / Double(total) : 0 }
@@ -470,6 +499,7 @@ final class QuizSession: Identifiable {
     /// Progress segments (≤ 40 questions): done = answered right, wrong = wrong or hint.
     var segments: [SegmentState] {
         items.indices.map { i in
+            if picks[i] != nil { return .selected }
             guard let a = answers[i] else { return .none }
             return a.chosen == items[i].question.a ? .done : .wrong
         }
@@ -553,6 +583,7 @@ final class QuizSession: Identifiable {
 
     /// "Keç" / "Bitir" before answering, "Davam" / "Nəticəyə bax" after.
     var nextButtonTitle: String {
+        if revealAtEnd { return isLast ? "Bitir" : (picks[index] == nil ? "Keç" : "Növbəti") }
         if currentAnswer == nil { return isLast ? "Bitir" : "Keç" }
         return isLast ? "Nəticəyə bax" : "Davam"
     }
@@ -627,7 +658,7 @@ final class QuizSession: Identifiable {
     /// Wrong answers come back at the end of the test (Ayarlar switch). Not in exams that are graded
     /// in points, the mock exam or the simulation: there the question count is the exam.
     var requeuesWrong: Bool {
-        LearnSettings.shared.requeueWrong && simulation == nil && !isMockMode && !isGradedExam
+        LearnSettings.shared.requeueWrong && simulation == nil && !isMockMode && !isGradedExam && !revealAtEnd
     }
 
     /// Questions added at the end by `requeue` (shown with a "Təkrar" badge).
@@ -648,6 +679,7 @@ final class QuizSession: Identifiable {
     @discardableResult
     func chooseDisplayed(_ position: Int) -> AnswerOutcome? {
         guard let opt = current?.options[studySafe: position] else { return nil }
+        if revealAtEnd { pick(opt.originalIndex, at: index); return nil }
         return choose(opt.originalIndex)
     }
 
@@ -700,7 +732,7 @@ final class QuizSession: Identifiable {
 
     /// İpucu: marks the question as a hint (shows the answer, counts as not correct in the result, no stat).
     func hint() {
-        guard answers[index] == nil, current != nil else { return }
+        guard !revealAtEnd, answers[index] == nil, current != nil else { return }
         answers[index] = Answer(chosen: -1, hint: true)
         saveProgress()
     }
@@ -717,7 +749,7 @@ final class QuizSession: Identifiable {
     /// resetUnit: start the same questions again.
     func reset() {
         cancelAutoAdvance()
-        index = 0; answers = [:]; correctCount = 0; wrongCount = 0; result = nil
+        index = 0; answers = [:]; picks = [:]; correctCount = 0; wrongCount = 0; result = nil
         clearProgress()
     }
 
@@ -734,6 +766,7 @@ final class QuizSession: Identifiable {
     @discardableResult
     func finish() -> Result {
         if let result { return result }
+        commitPicks()
         cancelAutoAdvance()
         pendingFinishConfirmation = nil
         let elapsed = ownsTimer ? store.quizTimerText : ""
