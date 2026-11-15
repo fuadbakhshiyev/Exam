@@ -240,7 +240,7 @@ final class SyncService {
         let local = SyncExtras.local
         let merged = remote.map { SyncExtras.merge(local, $0) } ?? local
         merged.apply()
-        if merged != remote, !(merged.dates.isEmpty && merged.mastery.isEmpty) {
+        if merged != remote, !merged.isEmpty {
             try? await doc.write(merged)
         }
     }

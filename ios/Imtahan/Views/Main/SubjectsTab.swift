@@ -101,6 +101,9 @@ struct SubjectsTab: View {
         .appListStyle()
         .navigationTitle("Fənlər")
         .navigationBarTitleDisplayMode(.large)
+        .onChange(of: layout) { SyncedPrefs.noteChanged() }
+        .onChange(of: sort) { SyncedPrefs.noteChanged() }
+        .onChange(of: orderRaw) { SyncedPrefs.noteChanged() }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
