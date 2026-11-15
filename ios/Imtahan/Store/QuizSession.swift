@@ -757,6 +757,11 @@ final class QuizSession: Identifiable {
             MixedExamHistory.shared.add(MixedExamAttempt(subject: course, date: Date(), correct: c, wrong: w,
                                                          total: total, score: score, seconds: elapsedSeconds))
         }
+        if case .pdfExam(let subject, let index) = kind, c + w > 0 {
+            MixedExamHistory.shared.add(MixedExamAttempt(subject: subject, date: Date(), correct: c, wrong: w,
+                                                         total: total, score: score, seconds: elapsedSeconds,
+                                                         exam: "İmtahan \(index + 1)"))
+        }
         store.noteTestFinished(subject: course, gradedScore: isGradedExam && total > 0 ? score : nil,
                                finishedPool: isSubjectPool && total > 0 && c + w == total)
         return r

@@ -236,10 +236,21 @@ struct MixedExamAttempt: Codable, Hashable, Identifiable, Sendable {
     /// Bal, 0…100 (4 wrong cancel 1 correct).
     let score: Double
     let seconds: Int
+    /// Set for a past vize booklet ("İmtahan 3"); nil for the subject's 20-question mixed exam.
+    var exam: String? = nil
     var blank: Int { max(0, total - correct - wrong) }
+
+    /// Same attempt on two devices (a finished exam is never edited).
+    var syncKey: String { "\(subject)|\(exam ?? "")|\(Int(date.timeIntervalSince1970))" }
+
+    /// Union of two lists, oldest first.
+    static func merge(_ a: [MixedExamAttempt], _ b: [MixedExamAttempt]) -> [MixedExamAttempt] {
+        var seen = Set<String>()
+        return (a + b).filter { seen.insert($0.syncKey).inserted }.sorted { $0.date < $1.date }
+    }
 }
 
-/// Device-local list of finished mixed exams (Application Support/Imtahan/mixed_history.json).
+/// Device-local list of finished mixed exams and past vize booklets (Application Support/Imtahan/mixed_history.json).
 @MainActor
 @Observable
 final class MixedExamHistory {
@@ -255,9 +266,9 @@ final class MixedExamHistory {
         }
     }
 
-    /// Newest first.
-    func attempts(for subject: String) -> [MixedExamAttempt] {
-        attempts.filter { $0.subject == subject }.sorted { $0.date > $1.date }
+    /// Newest first. `vize`: past vize booklets instead of the mixed exam.
+    func attempts(for subject: String, vize: Bool = false) -> [MixedExamAttempt] {
+        attempts.filter { $0.subject == subject && ($0.exam != nil) == vize }.sorted { $0.date > $1.date }
     }
 
     func add(_ a: MixedExamAttempt) {

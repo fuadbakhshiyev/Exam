@@ -352,10 +352,24 @@ struct PdfExamsSection: View {
     var body: some View {
         let rows = store.pdfExamRows(subject)
         let wrong = store.pdfWrongCount(subject)
+        let history = MixedExamHistory.shared.attempts(for: subject, vize: true)
         Section(title) {
             if rows.isEmpty {
                 EmptyRow(title: "İmtahan tapılmadı", systemImage: "doc.text.magnifyingglass")
             } else {
+                NavigationLink { MixedHistoryView(subject: subject, vize: true) } label: {
+                    HStack(spacing: Theme.Space.s12) {
+                        UnitBadge(symbol: "chart.line.uptrend.xyaxis", symbolTint: Theme.accent)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Nəticələr").font(.body).foregroundStyle(Theme.text)
+                            Text(history.first.map { "Son: \(ResultView.points($0.score)) bal · \(history.count) sınaq" }
+                                 ?? "Hər vizenin balı və inkişaf qrafiki")
+                                .font(.caption).monospacedDigit().foregroundStyle(Theme.textMuted)
+                        }
+                    }
+                    .padding(.vertical, 2)
+                }
+                .appRow()
                 if wrong > 0 {
                     MultiLeadRow(wrongCount: wrong, subtitle: "Bütün vize imtahanlarındakı səhvlər") {
                         router.start(.pdfSubjectAllWrong(subject))
@@ -433,15 +447,20 @@ struct ResetStatsButton: View {
 /// "Son sınaq" → every finished mixed exam of a subject: best / average score and each attempt.
 struct MixedHistoryView: View {
     let subject: String
+    /// Past vize booklets instead of the 20-question mixed exam.
+    var vize: Bool = false
     @Environment(StudyStore.self) private var store
     @Environment(AppRouter.self) private var router
 
     var body: some View {
-        let list = MixedExamHistory.shared.attempts(for: subject)
+        let list = MixedExamHistory.shared.attempts(for: subject, vize: vize)
         HealthPage {
             if list.isEmpty {
                 ContentUnavailableView("Hələ bal yoxdur", systemImage: "list.number",
-                                       description: Text("Qarışıq sınağı bitirəndə nəticəsi burada saxlanacaq. Əvvəlki sınaqların balı yazılmayıb."))
+                                       description: Text(vize
+                                           ? "Vize imtahanını bitirəndə balı burada saxlanacaq. Əvvəlki imtahanların balı yazılmayıb."
+                                           : "Qarışıq sınağı bitirəndə nəticəsi burada saxlanacaq. Əvvəlki sınaqların balı yazılmayıb."))
+                .frame(maxWidth: .infinity)
             } else {
                 let best = list.map(\.score).max() ?? 0
                 let avg = list.map(\.score).reduce(0, +) / Double(list.count)
@@ -463,6 +482,9 @@ struct MixedHistoryView: View {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(a.date.formatted(.dateTime.day().month(.wide).hour().minute().locale(Locale(identifier: "az"))))
                                     .foregroundStyle(Theme.text)
+                                if let exam = a.exam {
+                                    Text(exam).font(.footnote.weight(.semibold)).foregroundStyle(Theme.accent)
+                                }
                                 Text("\(a.correct) düz · \(a.wrong) səhv · \(a.blank) boş" + (a.seconds > 0 ? " · \(StatsFormat.duration(a.seconds))" : ""))
                                     .font(.footnote).monospacedDigit().foregroundStyle(Theme.textMuted)
                             }
@@ -476,14 +498,16 @@ struct MixedHistoryView: View {
                     .font(.footnote).foregroundStyle(Theme.textMuted).padding(.horizontal, Theme.Space.s4)
             }
 
-            Button { router.start(.courseMixed(subject)) } label: {
-                Label("Yeni sınaq", systemImage: "play.fill").frame(maxWidth: .infinity)
+            if !vize {
+                Button { router.start(.courseMixed(subject)) } label: {
+                    Label("Yeni sınaq", systemImage: "play.fill").frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.glassProminent)
+                .largeControl()
+                .padding(.top, Theme.Space.s12)
             }
-            .buttonStyle(.glassProminent)
-            .largeControl()
-            .padding(.top, Theme.Space.s12)
         }
-        .navigationTitle("Qarışıq sınaq")
+        .navigationTitle(vize ? "Vize nəticələri" : "Qarışıq sınaq")
         .navigationSubtitle(subject)
         .navigationBarTitleDisplayMode(.large)
     }
@@ -503,6 +527,7 @@ struct MixedProgressChart: View {
         let score: Double
         let average: Double
         let date: Date
+        let label: String
     }
 
     var body: some View {
@@ -512,7 +537,7 @@ struct MixedProgressChart: View {
         let pick = selected.flatMap { s in pts.first { $0.id == s } }
         VStack(alignment: .leading, spacing: Theme.Space.s12) {
             VStack(alignment: .leading, spacing: 2) {
-                Text(pick == nil ? "ORTALAMA" : "SINAQ \(pick!.id)").font(.caption.weight(.semibold)).foregroundStyle(Theme.textMuted)
+                Text(pick.map { $0.label.uppercased(with: Locale(identifier: "az")) } ?? "ORTALAMA").font(.caption.weight(.semibold)).foregroundStyle(Theme.textMuted)
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text(ResultView.points(((pick?.score ?? avg) * 10).rounded() / 10))
                         .font(.system(size: 34, weight: .semibold, design: .rounded)).monospacedDigit()
@@ -585,7 +610,8 @@ struct MixedProgressChart: View {
         var sum = 0.0
         return attempts.enumerated().map { i, a in
             sum += a.score
-            return Point(id: i + 1, score: a.score, average: sum / Double(i + 1), date: a.date)
+            return Point(id: i + 1, score: a.score, average: sum / Double(i + 1), date: a.date,
+                         label: a.exam.map { "\($0) · sınaq \(i + 1)" } ?? "Sınaq \(i + 1)")
         }
     }
 
