@@ -368,9 +368,10 @@ extension StudyStore {
 
     /// Question count of a CONFIG course plus its pdf exams (renderHomeCharts / renderCoursePage / nav ring).
     /// In-scope questions only (pdf exams are vize papers and always count; final booklets in Final mode).
+    /// A subject's distinct questions (units, Mixed copies and past booklets, duplicates merged), the
+    /// same number as "Bütün suallar"; Mixed = its own questions.
     func courseTotalQuestions(_ c: String) -> Int {
-        scopedQuestions(course: c).count + (bank.pdfExams[c] ?? []).reduce(0) { $0 + $1.count }
-            + (examMode == .final ? bank.finalQuestionCount(subject: c) : 0)
+        Catalog.subjects.contains(c) ? allSubjectQuestions(c).count : scopedQuestions(course: c).count
     }
 
     /// Sum of stats[c], stats["c_pdf_*"] and stats["c_final_*"]: (t, c, w, time), without out-of-scope
@@ -625,7 +626,7 @@ extension StudyStore {
         }
         let rows: [StudyListRow] = Catalog.configKeys.map { name in
             let cs = scopedStat(name) ?? CourseStat()
-            return StudyListRow(name: name, total: scopedQuestions(course: name).count, ok: cs.c, bad: cs.w, done: cs.t,
+            return StudyListRow(name: name, total: courseTotalQuestions(name), ok: cs.c, bad: cs.w, done: cs.t,
                            lastStr: Self.formatLastTested(getCourseLastTested(name), hasData: cs.t > 0), target: .course(name))
         }
         let rec: String
@@ -736,8 +737,8 @@ extension StudyStore {
     /// "<total> səhv sual · <n> mənbə"
     var wrongTotal: Int { data.wrong.keys.reduce(0) { $0 + scopedWrong($1).count } }
 
-    /// Non-Mixed in-scope questions of quizData (Ümumi Toplam "Cəmi sual").
-    var scopedQuestionsTotal: Int { bank.all.lazy.filter { $0.c != Catalog.mixedKey && self.inScope($0) }.count }
+    /// Every subject's distinct questions, summed (Ümumi Toplam "Cəmi sual").
+    var scopedQuestionsTotal: Int { Catalog.subjects.reduce(0) { $0 + allSubjectQuestions($1).count } }
 
     /// Questions answered wrong ≥ 2 times / ≥ 3 times, over every wrong list.
     var hardCount: Int { hardCounts(allWrongQuestions()).hard }
