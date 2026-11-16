@@ -3,7 +3,7 @@ import Foundation
 // "Bütün suallar": every distinct question of one subject for the current exam mode, shuffled, as one
 // test. Vize = units 1–7, Final = all units. Sources: the subject's unit questions, their Mixed copies
 // (real unit from mixed_units.json), the past vize booklets and (Final only) the final booklets.
-// Duplicates are merged by normalized text; a copy with a known unit wins, so every question can show
+// Duplicates are merged (QuestionDedup: same text, or the same question with small edits); a copy with a known unit wins, so every question can show
 // which unit it belongs to. Booklet-only questions whose unit is unknown keep u = 0 ("Keçmiş imtahan").
 
 extension StudyStore {
@@ -26,19 +26,21 @@ extension StudyStore {
         if let hit = AllQuestionsCache.shared.items[cacheKey] { return hit }
         var out: [Question] = []
         defer { AllQuestionsCache.shared.items[cacheKey] = out }
-        var index: [String: Int] = [:]
+        var keys: [QuestionDedup.Key] = []
+        var index: [String: Int] = [:]   // folded text → position (fast path before the fuzzy check)
 
         func add(_ q: Question, unit: Int?) {
             if let u = unit, !mode.includes(unit: u) { return }
             var item = q
             item.c = subject
             item.u = unit ?? 0
-            let key = Self.normalizedQuestionText(q.q)
-            guard !key.isEmpty else { return }
-            if let i = index[key] {
+            let key = QuestionDedup.Key(q)
+            guard !key.text.isEmpty else { return }
+            if let i = index[key.text] ?? keys.firstIndex(where: { $0.isSame(as: key) }) {
                 if out[i].u == 0, item.u > 0 { out[i] = item }
             } else {
-                index[key] = out.count
+                index[key.text] = out.count
+                keys.append(key)
                 out.append(item)
             }
         }
