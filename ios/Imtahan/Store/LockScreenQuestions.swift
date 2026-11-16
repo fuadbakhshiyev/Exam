@@ -44,6 +44,8 @@ final class LockScreenQuestions {
     var isDenied: Bool { authorization == .denied }
 
     @ObservationIgnored private let defaults = UserDefaults.standard
+    /// How the last notification answer went; shown as the next question's subtitle.
+    @ObservationIgnored private var lastResult: String?
 
     private init() {
         let d = UserDefaults.standard
@@ -97,7 +99,7 @@ final class LockScreenQuestions {
         let center = UNUserNotificationCenter.current()
         let enabled = isEnabled, interval = intervalMinutes, start = startHour, end = endHour
         do {
-            let pending = await center.pendingNotificationRequests().map(\.identifier).filter { $0.hasPrefix(Self.idPrefix) && $0 != Self.resultID }
+            let pending = await center.pendingNotificationRequests().map(\.identifier).filter { $0.hasPrefix(Self.idPrefix) && !$0.hasPrefix(Self.resultID) }
             center.removePendingNotificationRequests(withIdentifiers: pending)
             guard enabled else {
                 center.setNotificationCategories([])
@@ -113,6 +115,7 @@ final class LockScreenQuestions {
                 let catID = "\(Self.idPrefix)cat-\(i)"
                 let content = UNMutableNotificationContent()
                 content.title = "\(QuestionBank.baseCourse(q.c)) · Unit \(q.u)"
+                if i == 0, let lastResult { content.subtitle = lastResult }
                 content.body = Self.body(of: q)
                 content.sound = .default
                 content.threadIdentifier = Self.thread
@@ -222,8 +225,15 @@ final class LockScreenQuestions {
         content.sound = .default
         content.threadIdentifier = Self.thread
         let center = UNUserNotificationCenter.current()
-        center.removeDeliveredNotifications(withIdentifiers: [Self.resultID])
-        try? await center.add(UNNotificationRequest(identifier: Self.resultID, content: content, trigger: nil))
+        // Earlier results go away; the new one gets its own id (removing and re-adding the same id races,
+        // and the removal could take the new result with it).
+        let old = await center.deliveredNotifications().map(\.request.identifier).filter { $0.hasPrefix(Self.resultID) }
+        center.removeDeliveredNotifications(withIdentifiers: old)
+        let id = "\(Self.resultID)-\(Int(Date().timeIntervalSince1970 * 1000))"
+        try? await center.add(UNNotificationRequest(identifier: id, content: content,
+                                                    trigger: UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)))
+        // The next question also says how the last one went, in case the result banner was missed.
+        lastResult = correct ? "Əvvəlki: ✓ Düz" : "Əvvəlki: ✗ Səhv (düzgün: \(Self.letters[q.a]))"
         // Answering keeps the queue topped up even if the app is never opened.
         await rescheduleNow()
         return true
@@ -231,6 +241,7 @@ final class LockScreenQuestions {
 
     /// App opened: clear old unanswered questions from Notification Center and top up the queue.
     func appDidBecomeActive() {
+        lastResult = nil
         guard isEnabled else { return }
         let center = UNUserNotificationCenter.current()
         Task { @MainActor in

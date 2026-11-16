@@ -61,7 +61,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         if id.hasPrefix(PomodoroNotifications.idPrefix) { return [.banner, .list, .sound] }
         if LockScreenQuestions.owns(id) {
             let inQuiz = await MainActor.run { AppEnvironment.shared?.router.quiz != nil }
-            return inQuiz && id != LockScreenQuestions.resultID ? [.list] : [.banner, .list, .sound]
+            return inQuiz && !id.hasPrefix(LockScreenQuestions.resultID) ? [.list] : [.banner, .list, .sound]
         }
         return []
     }
