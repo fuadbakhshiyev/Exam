@@ -44,6 +44,7 @@ final class QuizSession: Identifiable {
         case weakTopics                                 // "Zəif mövzular" (StudyStore+Plan.swift)
         case allQuestions(String)                       // "Bütün suallar" of a subject (StudyStore+AllQuestions.swift)
         case unlearned(String)                          // "Öyrənilməmişlər" of a subject (Store/LearningFeatures.swift)
+        case oldExamQuestions(String, topic: String?)   // past-exam questions found in no unit, all or one topic (StudyStore+AllQuestions.swift)
     }
 
     struct Option: Hashable, Sendable {
@@ -398,6 +399,11 @@ final class QuizSession: Identifiable {
             let qs = store.allSubjectQuestions(subject).shuffled()
             guard !qs.isEmpty else { throw fail("Bu fənn üçün sual tapılmadı.") }
             return special(qs, "Bütün suallar", subject, category: "all-questions")
+        case .oldExamQuestions(let subject, let topic):
+            let all = topic.map { t in store.oldExamTopics(subject).first { $0.name == t }?.questions ?? [] } ?? store.oldExamQuestions(subject)
+            let qs = all.shuffled()
+            guard !qs.isEmpty else { throw fail("Bu fəndə ünitələrdə olmayan keçmiş imtahan sualı yoxdur.") }
+            return special(qs, topic ?? "Köhnə imtahan sualları", subject, category: "all-questions")
         case .unlearned(let subject):
             let qs = store.unlearnedQuestions(subject).shuffled()
             guard !qs.isEmpty else { throw fail("Bu fənnin bütün sualları öyrənilib ✓") }
@@ -870,7 +876,7 @@ extension QuizSession {
     /// "Bütün suallar" / "Öyrənilməmişlər": a subject's whole pool, every question tagged with its unit.
     var isSubjectPool: Bool {
         switch kind {
-        case .allQuestions, .unlearned: true
+        case .allQuestions, .unlearned, .oldExamQuestions: true
         default: false
         }
     }

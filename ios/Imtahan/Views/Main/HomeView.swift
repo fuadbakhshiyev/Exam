@@ -97,7 +97,7 @@ struct HomeView: View {
         switch k {
         case .unit(let c, _), .courseWrong(let c), .courseMixed(let c), .pdfExam(let c, _), .pdfExamWrong(let c, _),
              .pdfSubjectAllWrong(let c), .pdfFrequent(let c), .finalExam(let c, _), .finalExamWrong(let c, _),
-             .finalSubjectAllWrong(let c), .mixedOnly(let c), .reviewSubject(let c), .allQuestions(let c), .unlearned(let c),
+             .finalSubjectAllWrong(let c), .mixedOnly(let c), .reviewSubject(let c), .allQuestions(let c), .unlearned(let c), .oldExamQuestions(let c, _),
              .wrongFor(let c), .reviewCourse(let c, _):
             c
         default: nil

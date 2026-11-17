@@ -18,9 +18,28 @@ extension StudyStore {
         return parts.map { String(String.UnicodeScalarView($0)) }.joined(separator: " ")
     }
 
+    /// "Bütün suallar": the subject's distinct questions that belong to a unit (unit questions, their
+    /// Mixed copies, and booklet questions that match one of them). What there is to learn.
+    func allSubjectQuestions(_ subject: String) -> [Question] {
+        subjectPool(subject).filter { $0.u > 0 }
+    }
+
+    /// "Köhnə imtahan sualları": past-exam questions that match no unit question (mostly older books).
+    func oldExamQuestions(_ subject: String) -> [Question] {
+        subjectPool(subject).filter { $0.u == 0 }
+    }
+
+    /// "Köhnə imtahan sualları" grouped by topic, in the topic file's order; unlisted ones last as "Digər".
+    func oldExamTopics(_ subject: String) -> [(name: String, questions: [Question])] {
+        var groups: [String: [Question]] = [:]
+        for q in oldExamQuestions(subject) { groups[bank.oldExamTopic(subject: subject, q) ?? "Digər", default: []].append(q) }
+        let order = (bank.oldExamTopics[subject]?.topics ?? []) + ["Digər"]
+        return order.compactMap { n in groups[n].map { (n, $0) } }
+    }
+
     /// Distinct in-scope questions of `subject`, in a stable order (shuffle when starting).
     /// Every returned question has `c == subject` and `u` = its unit (0 when unknown).
-    func allSubjectQuestions(_ subject: String) -> [Question] {
+    private func subjectPool(_ subject: String) -> [Question] {
         let mode = examMode
         let cacheKey = "\(mode.rawValue)|\(subject)"
         if let hit = AllQuestionsCache.shared.items[cacheKey] { return hit }

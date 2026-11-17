@@ -42,8 +42,19 @@ struct CourseView: View {
             UnlearnedRow(learned: m.learned, total: m.total) { router.start(.unlearned(course)) }
         } footer: {
             Text(store.examMode == .vize
-                 ? "1–7-ci ünitələrin, Mixed-in və keçmiş vize imtahanlarının bütün sualları, təkrarsız və qarışıq. Sual 2 dəfə ardıcıl düz cavablananda öyrənilmiş sayılır."
-                 : "Bütün ünitələrin, Mixed-in və keçmiş imtahanların bütün sualları, təkrarsız və qarışıq. Sual 2 dəfə ardıcıl düz cavablananda öyrənilmiş sayılır.")
+                 ? "1–7-ci ünitələrin bütün sualları (Mixed və keçmiş vizelərdə təkrarlananlar bir dəfə), qarışıq. Sual 2 dəfə ardıcıl düz cavablananda öyrənilmiş sayılır."
+                 : "Bütün ünitələrin sualları (Mixed və keçmiş imtahanlarda təkrarlananlar bir dəfə), qarışıq. Sual 2 dəfə ardıcıl düz cavablananda öyrənilmiş sayılır.")
+        }
+        let old = store.oldExamQuestions(course).count
+        if old > 0 {
+            Section {
+                let topics = store.oldExamTopics(course).count
+                OldExamRow(count: old, topics: topics) {
+                    if topics > 1 { router.push(.oldExams(course)) } else { router.start(.oldExamQuestions(course, topic: nil)) }
+                }
+            } footer: {
+                Text("Keçmiş imtahanlarda çıxan, amma indiki ünitələrin heç birində olmayan suallar. Çoxu köhnə kitabdandır; \"Bütün suallar\"a və öyrənmə sayına daxil deyil.")
+            }
         }
         if page.multi.wrongCount > 0 || page.mixedOnlyRow != nil {
             Section {
@@ -108,6 +119,34 @@ private struct AllQuestionsRow: View {
     }
 }
 
+/// "Köhnə imtahan sualları  127 sual ▶" — past-exam questions that match no unit question.
+private struct OldExamRow: View {
+    let count: Int
+    let topics: Int
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: Theme.Space.s12) {
+                IconTile(symbol: "clock.arrow.circlepath", color: .gray, size: 36)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Köhnə imtahan sualları").font(.body.weight(.semibold)).foregroundStyle(Theme.text)
+                    Text(topics > 1 ? "\(count) sual · \(topics) mövzu · ünitələrdə yoxdur" : "\(count) sual · ünitələrdə yoxdur · qarışıq")
+                        .font(.caption).monospacedDigit().foregroundStyle(Theme.textMuted)
+                }
+                Spacer(minLength: 8)
+                Image(systemName: topics > 1 ? "chevron.right" : "play.fill").font(.footnote.weight(.semibold))
+                    .foregroundStyle(topics > 1 ? Theme.textMuted : Theme.accent)
+            }
+            .padding(.vertical, 4)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .appRow()
+        .accessibilityLabel("Köhnə imtahan sualları, \(count) sual")
+    }
+}
+
 /// "Öyrənilməmişlər  44 sual qalıb" + a learned bar (92 / 136 öyrənilib).
 private struct UnlearnedRow: View {
     let learned: Int
@@ -139,5 +178,71 @@ private struct UnlearnedRow: View {
         .disabled(left == 0)
         .appRow()
         .accessibilityLabel("Öyrənilməmişlər, \(left) sual qalıb, \(learned) / \(total) öyrənilib")
+    }
+}
+
+/// Fənn → Köhnə imtahan sualları: the past-exam questions found in no unit, by topic.
+/// "Hamısı" runs all of them; a topic row runs that topic. Each row shows how many are learned.
+struct OldExamTopicsView: View {
+    let subject: String
+    @Environment(StudyStore.self) private var store
+    @Environment(AppRouter.self) private var router
+
+    var body: some View {
+        let topics = store.oldExamTopics(subject)
+        let total = topics.reduce(0) { $0 + $1.questions.count }
+        List {
+            Section {
+                row(title: "Hamısı", symbol: "square.stack.3d.down.right.fill", color: Theme.accent,
+                    questions: topics.flatMap(\.questions)) { router.start(.oldExamQuestions(subject, topic: nil)) }
+            } footer: {
+                Text("Keçmiş imtahanlarda çıxan, amma indiki ünitələrin heç birində olmayan suallar. Çoxu köhnə kitabdandır.")
+            }
+            Section {
+                ForEach(Array(topics.enumerated()), id: \.element.name) { i, t in
+                    row(title: t.name, number: i + 1, questions: t.questions) {
+                        router.start(.oldExamQuestions(subject, topic: t.name))
+                    }
+                }
+            } header: {
+                Text("Mövzular")
+            }
+        }
+        .appListStyle()
+        .pageTitle("Köhnə imtahan sualları", subtitle: "\(subject) · \(total) sual")
+    }
+
+    @ViewBuilder
+    private func row(title: String, symbol: String? = nil, color: Color = Theme.accent, number: Int? = nil,
+                     questions: [Question], action: @escaping () -> Void) -> some View {
+        let m = MasteryStore.shared
+        let learned = questions.filter { m.isLearned($0) }.count
+        Button(action: action) {
+            HStack(spacing: Theme.Space.s12) {
+                if let symbol {
+                    IconTile(symbol: symbol, color: color, size: 36)
+                } else if let number {
+                    Text(String(format: "%02d", number))
+                        .font(.subheadline.weight(.semibold)).monospacedDigit()
+                        .foregroundStyle(Theme.textMuted)
+                        .frame(width: 36, height: 36)
+                        .background(Theme.textMuted.opacity(0.12), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                }
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title).font(.body.weight(.semibold)).foregroundStyle(Theme.text)
+                        .fixedSize(horizontal: false, vertical: true)
+                    ProgressLine(fraction: questions.isEmpty ? 0 : Double(learned) / Double(questions.count), height: 4)
+                    Text("\(questions.count) sual · \(learned) öyrənilib").font(.caption).monospacedDigit()
+                        .foregroundStyle(Theme.textMuted)
+                }
+                Spacer(minLength: 8)
+                Image(systemName: "play.fill").font(.footnote.weight(.semibold)).foregroundStyle(Theme.accent)
+            }
+            .padding(.vertical, 4)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .appRow()
+        .accessibilityLabel("\(title), \(questions.count) sual, \(learned) öyrənilib")
     }
 }

@@ -19,6 +19,7 @@ enum Route: Hashable {
     case reviewHub                 // Ana səhifə → Ağıllı təkrar: due questions per subject
     case settings                  // font size, theme, backup, reset
     case question(String)          // one question opened from iPhone search (Spotlight item id)
+    case oldExams(String)          // Fənn → Köhnə imtahan sualları: topics of past-exam questions found in no unit
 }
 
 enum AppTab: Hashable { case home, subjects, exams, stats, profile }
@@ -168,6 +169,7 @@ struct RouteView: View {
             case .reviewHub: ReviewHubView()
             case .settings: SettingsView()
             case .question(let id): QuestionDetailView(id: id)
+            case .oldExams(let s): OldExamTopicsView(subject: s)
             }
         }
         // Pushed pages use the native navigation bar (back button, title, toolbar items).

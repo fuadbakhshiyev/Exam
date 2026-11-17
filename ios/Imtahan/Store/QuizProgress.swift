@@ -244,6 +244,7 @@ extension QuizSession.Kind {
         case .weakTopics: ["weakTopics"]
         case .allQuestions(let s): ["allQuestions", s]
         case .unlearned(let s): ["unlearned", s]
+        case .oldExamQuestions(let s, let t): ["oldExamQuestions", s, t ?? ""]
         case .reviewMissed, .simulation: nil
         }
     }
@@ -281,6 +282,10 @@ extension QuizSession.Kind {
         case "weakTopics": self = .weakTopics
         case "allQuestions": guard let c = s(1) else { return nil }; self = .allQuestions(c)
         case "unlearned": guard let c = s(1) else { return nil }; self = .unlearned(c)
+        case "oldExamQuestions":
+            guard let c = s(1) else { return nil }
+            let t = s(2) ?? ""
+            self = .oldExamQuestions(c, topic: t.isEmpty ? nil : t)
         default: return nil
         }
     }

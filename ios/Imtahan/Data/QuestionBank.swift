@@ -27,6 +27,21 @@ final class QuestionBank: Sendable {
     /// Final booklets per subject, newest first.
     let pdfFinals: [String: [FinalExam]]
 
+    /// Topics of the past-exam questions found in no unit ("Köhnə imtahan sualları"), per subject
+    /// (Resources/Data/old_exam_topics.json): topic names in order + question text hash → topic index.
+    struct OldTopics: Decodable, Sendable { let topics: [String]; let map: [String: Int] }
+    let oldExamTopics: [String: OldTopics] = {
+        guard let url = Bundle.main.url(forResource: "old_exam_topics", withExtension: "json"),
+              let data = try? Data(contentsOf: url) else { return [:] }
+        return (try? JSONDecoder().decode([String: OldTopics].self, from: data)) ?? [:]
+    }()
+
+    /// The topic of an old-exam question (nil = no topic list for the subject / not listed).
+    func oldExamTopic(subject: String, _ q: Question) -> String? {
+        guard let t = oldExamTopics[subject], let i = t.map[QuestionHash.hash(q.q)], t.topics.indices.contains(i) else { return nil }
+        return t.topics[i]
+    }
+
     struct MixedPart: Sendable, Hashable {
         let name: String
         let subject: String
