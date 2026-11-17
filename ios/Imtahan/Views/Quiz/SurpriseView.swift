@@ -61,6 +61,16 @@ struct SurpriseView: View {
         .presentationSizing(.fitted)
         #endif
         .interactiveDismissDisabled(!engine.isAnswered)
+        // A–F / 1–6 select (pressing it again confirms), Return confirms or closes.
+        .quizKeys(QuizKeys.Actions(
+            option: { i in
+                guard let q = engine.question, q.o.indices.contains(i), !engine.isAnswered else { return }
+                withAnimation(.snappy) { engine.tap(i) }
+            },
+            next: {
+                if engine.isAnswered { engine.close() }
+                else if let s = engine.selected { withAnimation(.snappy) { engine.tap(s) } }
+            }))
         .appHaptic(trigger: engine.feedback) { _, f in f.map { $0.isPositive ? .success : .error } }
     }
 

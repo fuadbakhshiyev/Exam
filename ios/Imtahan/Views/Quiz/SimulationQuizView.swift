@@ -41,6 +41,16 @@ struct SimulationQuizView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { toolbarContent }
         }
+        .quizKeys(QuizKeys.Actions(
+            option: { pos in
+                guard sim.result == nil, let opt = session.current?.options[studySafe: pos] else { return }
+                withAnimation(.snappy(duration: 0.2)) { sim.select(item: session.index, originalIndex: opt.originalIndex) }
+            },
+            next: {
+                guard sim.result == nil else { return }
+                if session.isLast { requestFinish() } else { withAnimation(.snappy) { session.nav(1) } }
+            },
+            previous: { withAnimation(.snappy) { session.previous() } }))
         .sheet(item: Binding(get: { sim.result.map(SimulationResultBox.init) }, set: { _ in })) { box in
             SimulationResultView(session: session, sim: sim, result: box.result)
                 .interactiveDismissDisabled()

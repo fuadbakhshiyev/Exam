@@ -43,6 +43,7 @@ struct QuizView: View {
             .toolbar { toolbarContent }
         }
         .modifier(QuizChrome(session: session, finishPrompt: $finishPrompt, confirmReset: $confirmReset))
+        .quizKeys(quizKeys)
         .onDisappear { speech.stop() }
     }
 
@@ -374,26 +375,57 @@ extension QuizView {
                     if opt.originalIndex == a.chosen { return .wrong }
                     return .dim
                 }()
-                Button {
-                    if session.revealAtEnd {
-                        let first = picked == nil
-                        withAnimation(.snappy(duration: 0.2)) { session.pick(opt.originalIndex, at: item.id) }
-                        // One question at a time: a first pick moves on by itself (a change stays).
-                        if first && !session.listMode && item.id == session.index && !session.isLast {
-                            Task { @MainActor in
-                                try? await Task.sleep(for: .milliseconds(350))
-                                if session.index == item.id { withAnimation(.snappy) { session.nav(1) } }
-                            }
-                        }
-                    } else {
-                        withAnimation(.snappy(duration: 0.25)) { _ = session.choose(opt.originalIndex, at: item.id) }
-                    }
-                } label: { optionRow(QuizSession.letters[pos], opt.text, st) }
+                Button { tapOption(opt.originalIndex, item) } label: { optionRow(QuizSession.letters[pos], opt.text, st) }
                 .buttonStyle(PressStyle())
                 .disabled(ans != nil)
             }
         }
         .id("opts-\(item.id)")
+    }
+
+    private func tapOption(_ originalIndex: Int, _ item: QuizSession.Item) {
+        if session.revealAtEnd {
+            let first = session.picks[item.id] == nil
+            withAnimation(.snappy(duration: 0.2)) { session.pick(originalIndex, at: item.id) }
+            // One question at a time: a first pick moves on by itself (a change stays).
+            if first && !session.listMode && item.id == session.index && !session.isLast {
+                Task { @MainActor in
+                    try? await Task.sleep(for: .milliseconds(350))
+                    if session.index == item.id { withAnimation(.snappy) { session.nav(1) } }
+                }
+            }
+        } else {
+            guard session.answers[item.id] == nil else { return }
+            withAnimation(.snappy(duration: 0.25)) { _ = session.choose(originalIndex, at: item.id) }
+        }
+    }
+
+    /// Keyboard (Mac, or an iPad/iPhone keyboard): A–F / 1–6 answer the current question.
+    private func keyOption(_ pos: Int) {
+        guard let item = session.current, !session.needsModeChoice else { return }
+        if session.optionsHidden { withAnimation(.snappy) { session.revealFlashcard() }; return }
+        guard let opt = item.options[studySafe: pos] else { return }
+        tapOption(opt.originalIndex, item)
+    }
+
+    private var quizKeys: QuizKeys.Actions {
+        QuizKeys.Actions(
+            option: { keyOption($0) },
+            next: {
+                guard !session.needsModeChoice else { return }
+                if session.optionsHidden { withAnimation(.snappy) { session.revealFlashcard() } }
+                else if session.listMode { if !session.isLast { withAnimation(.snappy) { session.nav(1) }; jump = session.index } }
+                else { next() }
+            },
+            previous: {
+                guard !session.needsModeChoice else { return }
+                withAnimation(.snappy) { session.previous() }
+                if session.listMode { jump = session.index }
+            },
+            dontKnow: {
+                guard !session.needsModeChoice, !session.revealAtEnd, session.currentAnswer == nil else { return }
+                withAnimation(.snappy) { session.dontKnow(at: session.index) }
+            })
     }
 
     private func optionRow(_ letter: String, _ html: String, _ st: OptState) -> some View {
@@ -600,4 +632,46 @@ private struct QuizModeChoice: View {
         }
         .buttonStyle(PressStyle())
     }
+}
+
+/// Answering from the keyboard: A–F or 1–6 pick an option, Return / → go on, ← goes back, 0 is "Bilmirəm".
+/// Hidden buttons with shortcuts become key commands (on the Mac they work as soon as the quiz is in front).
+enum QuizKeys {
+    struct Actions {
+        var option: (Int) -> Void
+        var next: () -> Void = {}
+        var previous: () -> Void = {}
+        var dontKnow: () -> Void = {}
+    }
+}
+
+private struct QuizKeysModifier: ViewModifier {
+    let actions: QuizKeys.Actions
+
+    func body(content: Content) -> some View {
+        content.background {
+            ZStack {
+                ForEach(0..<6, id: \.self) { i in
+                    key(KeyEquivalent(Character(String(i + 1)))) { actions.option(i) }
+                    key(KeyEquivalent(Character(QuizSession.letters[i].lowercased()))) { actions.option(i) }
+                }
+                key(.return) { actions.next() }
+                key(.rightArrow) { actions.next() }
+                key(.leftArrow) { actions.previous() }
+                key("0") { actions.dontKnow() }
+            }
+            .frame(width: 0, height: 0)
+            .opacity(0)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+        }
+    }
+
+    private func key(_ k: KeyEquivalent, _ action: @escaping () -> Void) -> some View {
+        Button("", action: action).keyboardShortcut(k, modifiers: [])
+    }
+}
+
+extension View {
+    func quizKeys(_ actions: QuizKeys.Actions) -> some View { modifier(QuizKeysModifier(actions: actions)) }
 }
