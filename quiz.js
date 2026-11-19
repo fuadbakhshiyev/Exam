@@ -1047,7 +1047,10 @@ const QuizApp = {
         const addRow = (name, icon, c, w, total, onClick, isTotal) => {
             const answered = c + w;
             const acc = answered > 0 ? Math.round((c / answered) * 100) : 0;
-            const share = (n) => total > 0 ? ((n / total) * 100).toFixed(2) : 0;
+            // "Düz/Səhv" count every answer (a question answered 3 times counts 3), "Sual" counts questions:
+            // the bar shows the correct/wrong split of the answers, never wider than the row.
+            const base = Math.max(total, answered);
+            const share = (n) => base > 0 ? ((n / base) * 100).toFixed(2) : 0;
             const row = document.createElement('button');
             row.className = 'hx-tr' + (isTotal ? ' hx-total' : '');
             row.onclick = onClick;
@@ -2490,7 +2493,12 @@ const QuizApp = {
 
         const isQ = mode === 'questions';
         const top = Math.max(4, ...data.map(d => isQ ? d.c + d.w : d.m));
-        const step = top > 200 ? 50 : top > 80 ? 20 : top > 30 ? 10 : top > 12 ? 5 : top > 6 ? 2 : 1;
+        // About 5 grid lines whatever the size (1/2/5 × 10ⁿ), so big days don't crowd the axis.
+        const step = (() => {
+            const raw = top / 5, p = Math.pow(10, Math.floor(Math.log10(raw)));
+            const f = raw / p;
+            return Math.max(1, (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * p);
+        })();
         const max = Math.ceil(top / step) * step;
         const W = 720, H = 230, L = 34, B = 26, T = 8, n = data.length;
         const slot = (W - L) / n, bw = Math.min(26, slot * 0.62);

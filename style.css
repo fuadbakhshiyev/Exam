@@ -2772,7 +2772,7 @@ body:has(.quiz-a) #top-nav { display: none !important; }
 .hx-score { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 3.75rem; font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; font-variant-numeric: tabular-nums; }
 .hx-score small { font-size: 0.42em; font-weight: 700; color: var(--text-muted); letter-spacing: 0; margin-left: 2px; }
 .hx-split { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-.hx-bar { display: flex; gap: 2px; }
+.hx-bar { display: flex; gap: 2px; overflow: hidden; }
 .hx-bar i { display: block; height: 100%; border-radius: 3px; min-width: 0; }
 .hx-bar.big { height: 14px; }
 .hx-bar.seg { height: 8px; }
