@@ -211,6 +211,18 @@ extension QuizView {
                         Label("Flashcard rejimi", systemImage: "rectangle.on.rectangle")
                     }
                 }
+                if let q = session.current?.question {
+                    // Asan / Çətin mark (Fənn → Sualları çeşidlə), settable while solving too.
+                    Picker(selection: Binding(get: { DifficultyStore.shared.level(q).rawValue },
+                                              set: { DifficultyStore.shared.set(.init(rawValue: $0) ?? .none, for: q) })) {
+                        Text("Qeydsiz").tag(0)
+                        Label("Asan", systemImage: "hand.thumbsup").tag(1)
+                        Label("Çətin", systemImage: "flame").tag(2)
+                    } label: {
+                        Label("Çətinlik", systemImage: "flame")
+                    }
+                    .pickerStyle(.menu)
+                }
                 if !session.revealAtEnd {
                     Button { session.hint() } label: { Label("İpucu", systemImage: "lightbulb") }.disabled(session.currentAnswer != nil)
                 }
