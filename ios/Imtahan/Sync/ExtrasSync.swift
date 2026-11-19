@@ -18,13 +18,15 @@ struct SyncExtras: Codable, Equatable, Sendable {
     var review: ReviewSync? = nil
     /// Half-done tests (QuizProgressStore), so a test left on one device continues on the other.
     var progress: ProgressSync? = nil
+    /// Asan / Çətin marks (DifficultyStore): key → [level, changedAt].
+    var difficulty: [String: [Double]] = [:]
 
     init(dates: [String: [Double]] = [:], mastery: [String: [Double]] = [:], prefs: [String: SyncPref] = [:],
          history: [MixedExamAttempt] = [], achievements: AchievementStore.FileShape? = nil, review: ReviewSync? = nil,
-         progress: ProgressSync? = nil) {
+         progress: ProgressSync? = nil, difficulty: [String: [Double]] = [:]) {
         self.dates = dates; self.mastery = mastery; self.prefs = prefs
         self.history = history; self.achievements = achievements; self.review = review
-        self.progress = progress
+        self.progress = progress; self.difficulty = difficulty
     }
 
     /// Older clouds lack the newer fields.
@@ -37,10 +39,11 @@ struct SyncExtras: Codable, Equatable, Sendable {
         achievements = try? c.decodeIfPresent(AchievementStore.FileShape.self, forKey: .achievements)
         review = try? c.decodeIfPresent(ReviewSync.self, forKey: .review)
         progress = try? c.decodeIfPresent(ProgressSync.self, forKey: .progress)
+        difficulty = (try? c.decodeIfPresent([String: [Double]].self, forKey: .difficulty)) ?? [:]
     }
 
     var isEmpty: Bool {
-        dates.isEmpty && mastery.isEmpty && prefs.isEmpty && history.isEmpty && achievements == nil && (review?.isEmpty ?? true) && (progress?.isEmpty ?? true)
+        dates.isEmpty && mastery.isEmpty && prefs.isEmpty && history.isEmpty && achievements == nil && (review?.isEmpty ?? true) && (progress?.isEmpty ?? true) && difficulty.isEmpty
     }
 
     /// Per entry, the newer change wins (index 1 is the change time).
@@ -63,14 +66,14 @@ struct SyncExtras: Codable, Equatable, Sendable {
         }
         return SyncExtras(dates: pick(a.dates, b.dates), mastery: pick(a.mastery, b.mastery), prefs: prefs,
                           history: MixedExamAttempt.merge(a.history, b.history), achievements: ach, review: rev,
-                          progress: prog)
+                          progress: prog, difficulty: pick(a.difficulty, b.difficulty))
     }
 
     @MainActor static var local: SyncExtras {
         SyncExtras(dates: ExamDates.shared.syncValue, mastery: MasteryStore.shared.syncValue,
                    prefs: SyncedPrefs.syncValue, history: MixedExamHistory.shared.syncValue,
                    achievements: AchievementStore.shared.syncValue, review: ReviewStore.shared.syncValue,
-                   progress: QuizProgressStore.shared.syncValue)
+                   progress: QuizProgressStore.shared.syncValue, difficulty: DifficultyStore.shared.syncValue)
     }
 
     @MainActor func apply() {
@@ -81,6 +84,7 @@ struct SyncExtras: Codable, Equatable, Sendable {
         if let achievements { AchievementStore.shared.merge(achievements) }
         if let review { ReviewStore.shared.merge(review) }
         if let progress { QuizProgressStore.shared.merge(progress) }
+        DifficultyStore.shared.merge(difficulty)
     }
 
     // MARK: Wire
@@ -120,7 +124,7 @@ struct SyncPref: Codable, Equatable, Sendable {
         "subjects_layout", "subjects_sort", "subjects_order",
         // Tənzimləmələr
         "theme", "quiz_dashboard_layout", "exam_mode", "exam_date", "haptics_enabled",
-        "requeue_wrong", "quiz_list_mode", "quiz_reveal_at_end",
+        "requeue_wrong", "quiz_list_mode", "quiz_reveal_at_end", "sort_show_answer",
         // Sürpriz sual
         "surprise_enabled", "surprise_interval_min", "surprise_subjects",
         // Kilid ekranında sual (on/off stays per device, so the Mac and the phone don't both ring)
