@@ -45,6 +45,14 @@ struct CourseView: View {
                  ? "1–7-ci ünitələrin bütün sualları (Mixed və keçmiş vizelərdə təkrarlananlar bir dəfə), qarışıq. Sual 2 dəfə ardıcıl düz cavablananda öyrənilmiş sayılır."
                  : "Bütün ünitələrin sualları (Mixed və keçmiş imtahanlarda təkrarlananlar bir dəfə), qarışıq. Sual 2 dəfə ardıcıl düz cavablananda öyrənilmiş sayılır.")
         }
+        let sortable = store.sortableQuestions(course)
+        let dc = DifficultyStore.shared.counts(sortable)
+        Section {
+            SortRow(total: sortable.count, easy: dc.easy, hard: dc.hard) { router.push(.sortQuestions(course)) }
+            HardRow(hard: dc.hard) { router.start(.hardQuestions(course)) }
+        } footer: {
+            Text("Bütün suallara (köhnə imtahan sualları da daxil) cavabı ilə bax, hər birini \"Asan\" və ya \"Çətin\" kimi qeyd et. Sonra yalnız çətinləri öyrən.")
+        }
         let old = store.oldExamQuestions(course).count
         if old > 0 {
             Section {
@@ -116,6 +124,66 @@ private struct AllQuestionsRow: View {
         .disabled(count == 0)
         .appRow()
         .accessibilityLabel("Bütün suallar, \(count) sual")
+    }
+}
+
+/// "Sualları çeşidlə  40 / 215 qeyd olunub ›"
+private struct SortRow: View {
+    let total: Int
+    let easy: Int
+    let hard: Int
+    let action: () -> Void
+
+    var body: some View {
+        let marked = easy + hard
+        Button(action: action) {
+            HStack(spacing: Theme.Space.s12) {
+                IconTile(symbol: "hand.raised.fingers.spread.fill", color: Theme.warning, size: 36)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Sualları çeşidlə").font(.body.weight(.semibold)).foregroundStyle(Theme.text)
+                    ProgressLine(fraction: total > 0 ? Double(marked) / Double(total) : 0, height: 4)
+                    Text(marked == 0 ? "\(total) sual · asan və ya çətin kimi qeyd et"
+                                     : "\(marked) / \(total) qeyd olunub · \(easy) asan · \(hard) çətin")
+                        .font(.caption).monospacedDigit().foregroundStyle(Theme.textMuted)
+                }
+                Spacer(minLength: 8)
+                Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(Theme.textMuted)
+            }
+            .padding(.vertical, 4)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .disabled(total == 0)
+        .appRow()
+        .accessibilityLabel("Sualları çeşidlə, \(marked) / \(total) qeyd olunub, \(hard) çətin")
+    }
+}
+
+/// "Çətinləri öyrən  12 sual ▶" — the questions marked Çətin, shuffled.
+private struct HardRow: View {
+    let hard: Int
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: Theme.Space.s12) {
+                IconTile(symbol: "flame.fill", color: Theme.danger, size: 36)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Çətinləri öyrən").font(.body.weight(.semibold)).foregroundStyle(Theme.text)
+                    Text(hard == 0 ? "Hələ çətin kimi qeyd olunmuş sual yoxdur" : "\(hard) sual · qarışıq")
+                        .font(.caption).monospacedDigit().foregroundStyle(Theme.textMuted)
+                }
+                Spacer(minLength: 8)
+                Image(systemName: "play.fill").font(.footnote.weight(.semibold))
+                    .foregroundStyle(hard == 0 ? Theme.textCaption : Theme.accent)
+            }
+            .padding(.vertical, 4)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .disabled(hard == 0)
+        .appRow()
+        .accessibilityLabel("Çətinləri öyrən, \(hard) sual")
     }
 }
 
