@@ -27,6 +27,30 @@ struct Question: Codable, Hashable, Sendable {
         q = (try? k.decode(String.self, forKey: .q)) ?? ""
         o = (try? k.decode([String].self, forKey: .o)) ?? []
         a = (try? k.decode(Int.self, forKey: .a)) ?? Int((try? k.decode(Double.self, forKey: .a)) ?? 0)
+        // Copies saved before an answer fix (wrong / correct lists, progress, cloud) get the fixed answer too.
+        if let fix = AnswerFixes.fix(for: q), let i = o.firstIndex(where: { $0.contains(fix.answerMarker) }) { a = i }
+    }
+}
+
+/// Answers corrected after the question bank was built (2026-11-19, checked against the ATA AÖF app):
+/// the official booklet key had them wrong. Such questions carry a "Cavab yeniləndi" badge.
+/// Markers are plain ASCII parts of the text, so they match whatever entities the HTML uses.
+nonisolated enum AnswerFixes {
+    struct Fix: Sendable {
+        let questionMarker: String
+        let answerMarker: String
+        /// What the answer used to be (shown in the badge's note).
+        let old: String
+    }
+
+    static let all: [Fix] = [
+        Fix(questionMarker: "POP3 protokol", answerMarker: "sunucudan silmesi", old: "Birden fazla cihazla senkronize çalışması"),
+        Fix(questionMarker: "CSS dosyas", answerMarker: "stylesheet", old: "<style>"),
+        Fix(questionMarker: "stratejisinin temel", answerMarker: "Maliyet analizi", old: "SEO Uyumlu İçerik"),
+    ]
+
+    static func fix(for question: String) -> Fix? {
+        return all.first { question.contains($0.questionMarker) }
     }
 }
 

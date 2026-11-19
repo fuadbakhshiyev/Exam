@@ -342,6 +342,7 @@ extension QuizView {
                         .padding(.horizontal, 8).padding(.vertical, 3)
                         .background(Theme.accent.opacity(0.14), in: RoundedRectangle(cornerRadius: 6))
                 }
+                AnswerFixedBadge(question: item.question)
                 if let n = session.hardBadgeCount(for: item.question) {
                     let c = n >= 3 ? Theme.danger : Theme.warning
                     Text("\(n) dəfə səhv").font(.system(size: 11, weight: .semibold)).foregroundStyle(c)
@@ -686,4 +687,35 @@ private struct QuizKeysModifier: ViewModifier {
 
 extension View {
     func quizKeys(_ actions: QuizKeys.Actions) -> some View { modifier(QuizKeysModifier(actions: actions)) }
+}
+
+/// "Cavab yeniləndi": the question's answer was corrected after the bank was built (AnswerFixes).
+/// Tap shows what it used to be.
+struct AnswerFixedBadge: View {
+    let question: Question
+    @State private var showNote = false
+
+    var body: some View {
+        if let fix = AnswerFixes.fix(for: question.q) {
+            Button { showNote = true } label: {
+                Label("Cavab yeniləndi", systemImage: "arrow.triangle.2.circlepath")
+                    .font(.system(size: 11, weight: .semibold)).foregroundStyle(Theme.accent)
+                    .padding(.horizontal, 8).padding(.vertical, 3)
+                    .background(Theme.accent.opacity(0.14), in: RoundedRectangle(cornerRadius: 6))
+            }
+            .buttonStyle(.plain)
+            .popover(isPresented: $showNote) {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Cavab yeniləndi").font(.headline)
+                    Text("Əvvəl düzgün cavab \"\(fix.old)\" göstərilirdi. ATA AÖF tətbiqi ilə yoxlanıb düzəldildi (19 noyabr). Rəsmi imtahan kitabçasının açarında köhnə cavab ola bilər.")
+                        .font(.subheadline).foregroundStyle(Theme.textMuted)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .padding(16)
+                .frame(idealWidth: 320, maxWidth: 360)
+                .presentationCompactAdaptation(.popover)
+            }
+            .accessibilityLabel("Cavab yeniləndi, əvvəl \(fix.old)")
+        }
+    }
 }

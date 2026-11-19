@@ -138,6 +138,7 @@ struct SortQuestionsView: View {
                     if level != .none {
                         chip(level == .hard ? "Çətin" : "Asan", color: level == .hard ? Theme.danger : Theme.success, filled: false)
                     }
+                    AnswerFixedBadge(question: q)
                     if MasteryStore.shared.isLearned(q) {
                         chip("Öyrənilib", color: Theme.success, filled: false)
                     }
