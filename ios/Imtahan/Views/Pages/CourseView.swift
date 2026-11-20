@@ -34,6 +34,11 @@ struct CourseView: View {
 
     /// Review rows (Səhvlərin təkrarı, Mixed-only) on top, then the numbered units.
     @ViewBuilder private func units(_ page: CoursePage) -> some View {
+        if SubjectSummaries.summary(for: course) != nil {
+            Section {
+                SummaryRow { router.push(.summary(course)) }
+            }
+        }
         Section {
             AllQuestionsRow(count: store.allSubjectQuestions(course).count, mode: store.examMode) {
                 router.start(.allQuestions(course))
@@ -124,6 +129,30 @@ private struct AllQuestionsRow: View {
         .disabled(count == 0)
         .appRow()
         .accessibilityLabel("Bütün suallar, \(count) sual")
+    }
+}
+
+/// "Xülasə ›" — the subject's study sheet, unit by unit.
+private struct SummaryRow: View {
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: Theme.Space.s12) {
+                IconTile(symbol: "doc.text.fill", color: Theme.success, size: 36)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Xülasə").font(.body.weight(.semibold)).foregroundStyle(Theme.text)
+                    Text("Ünitələrin qısa konspekti və tələ suallar")
+                        .font(.caption).foregroundStyle(Theme.textMuted)
+                }
+                Spacer(minLength: 8)
+                Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(Theme.textMuted)
+            }
+            .padding(.vertical, 4)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .appRow()
     }
 }
 

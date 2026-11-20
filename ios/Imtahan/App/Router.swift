@@ -20,6 +20,7 @@ enum Route: Hashable {
     case settings                  // font size, theme, backup, reset
     case question(String)          // one question opened from iPhone search (Spotlight item id)
     case sortQuestions(String)     // Fənn → Sualları çeşidlə: mark every question Asan / Çətin
+    case summary(String)           // Fənn → Xülasə: per-unit study sheet
     case oldExams(String)          // Fənn → Köhnə imtahan sualları: topics of past-exam questions found in no unit
 }
 
@@ -172,6 +173,7 @@ struct RouteView: View {
             case .question(let id): QuestionDetailView(id: id)
             case .oldExams(let s): OldExamTopicsView(subject: s)
             case .sortQuestions(let s): SortQuestionsView(subject: s)
+            case .summary(let s): SummaryView(subject: s)
             }
         }
         // Pushed pages use the native navigation bar (back button, title, toolbar items).
