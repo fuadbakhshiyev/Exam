@@ -23,6 +23,10 @@ nonisolated enum SubjectSummaries {
 
     static let all: [String: SubjectSummary] = [
         "Grafik Üretim Teknikleri": grafik,
+        "Özgün Baskı Teknikleri": ozgun,
+        "Web Tasarımının Temelleri": web,
+        "Reklam Grafiği": reklam,
+        "Tasarım Okumaları": tasarim,
     ]
 
     private static let grafik = SubjectSummary(
