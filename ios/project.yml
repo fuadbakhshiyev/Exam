@@ -69,6 +69,9 @@ targets:
       path: Imtahan/Imtahan.entitlements
       properties:
         com.apple.security.application-groups: [group.az.fuadb.imtahan]
+        # Mac Catalyst: Google Sign-In / Firebase Auth keep the login in the data-protection keychain,
+        # which fails with -34018 unless the app declares its own keychain group.
+        keychain-access-groups: ["$(AppIdentifierPrefix)az.fuadb.imtahan"]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: az.fuadb.imtahan
