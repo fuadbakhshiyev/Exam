@@ -40,7 +40,7 @@ nonisolated extension SubjectSummaries {
                 .init(heading: nil, points: [
                     "Baskıresim bir **sanat biçimidir**. Ən önəmli xüsusiyyəti: **çoğaltılabilir olması**.",
                     "İlk dəfə **kumaşa** basılıb. Ən önəmli buluş: **kâğıt**.",
-                    "Çukur baskı tapıldı: **16. əsr**.",
+                    "\"Çukur baskı **hangi yüzyılda bulunmuştur**?\" → **16. əsr**. Amma \"metal üzerine **ilk** çukur baskı\" → **15. əsr**. Sualın sözünə bax.",
                     "Romantizmdən əvvəl cəmiyyəti dəyişən düşüncə: **Rönesans**.",
                     "20. əsrdə baskıresim sənətçiləri **deneysel** işlərə yönəltdi.",
                 ]),
@@ -166,6 +166,8 @@ nonisolated extension SubjectSummaries {
                     "**Romantizm**: hayal gücü, ruhun özgürlüğü, modern devrin ilk addımı. Təmsilçi: **William Turner**, **Goya**.",
                     "**Empresyonizm**: Monet, ışığın anlık izləri, Japon ağaç baskısından təsir.",
                     "**Post-empresyonist**: **Cezanne, Seurat, Van Gogh**.",
+                    "Şəkilli sual, Van Gogh: burulğanlı mavi gecə səması, sərv ağacı (**Yıldızlı Gece**).",
+                    "Şəkilli sual, gravür nümunəsi: incə nöqtə və xətlərlə işlənmiş **ağ-qara mələk (melek) uşaqlar**. Rəngli yağlı boya tablolar gravür deyil.",
                 ]),
                 .init(heading: "Adlar", points: [
                     "**Goya**: **akuatint** + **kuru iğne**. Seriyalar: Kaprisler, Savaşın Yıkımları, Boğa Güreşleri, Düşlemler.",
