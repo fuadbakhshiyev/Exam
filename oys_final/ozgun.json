@@ -1,0 +1,2589 @@
+[
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Baskı teknikleri genel olarak neye göre isimlendirilir?</strong>",
+  "o": [
+   "Kullanılan kâğıt türüne göre",
+   "Alınan baskı sayısına göre",
+   "Kullanılan mürekkebin rengine göre",
+   "Kullanılan kalıplarına göre",
+   "Baskıyı yapan sanatçının adına göre"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Genel anlamda baskının en belirgin özelliği aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yalnızca tek bir örnek üretilmesi",
+   "Sadece kâğıt üzerine uygulanabilmesi",
+   "Her zaman çok renkli olması",
+   "Yalnızca elle boyanarak yapılması",
+   "Kopyalama ve çoğaltım"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Sanat alanında baskının sanatçılar tarafından da uygulanan bir teknik olarak karşımıza çıkması hangi yüzyıla dayanır?</strong>",
+  "o": [
+   "14. yüzyıl",
+   "12. yüzyıl",
+   "16. yüzyıl",
+   "18. yüzyıl",
+   "19. yüzyıl"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Grafik ve tipografik resim veya yazıları manuel tekniklerle elde edilen kalıp yardımıyla basarak çoğaltma işlemine ne ad verilir?</strong>",
+  "o": [
+   "Dijital baskı",
+   "Özgün baskı",
+   "Web ofset baskı",
+   "Tıpkıbasım",
+   "Tabaka ofset baskı"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Kalıbı düz bir yüzeyden oluşan, çukur veya yüksek baskıda olduğu gibi kazıma veya oyma işlemi uygulanmayan baskı türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yüksek baskı",
+   "Çukur baskı",
+   "Düz baskı",
+   "Ağaç baskı",
+   "Gravür"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Aşağıdakilerden hangisi düz baskı çeşitlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Mono baskı",
+   "Şablon baskı",
+   "Litografi (taş baskı)",
+   "Ağaç gravür",
+   "Ofset litografi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Litografide desen kireçtaşı üzerine neyle çizilir?</strong>",
+  "o": [
+   "Burin ile kazınarak",
+   "Asitle yedirilerek",
+   "Oyma bıçağıyla oyularak",
+   "Karborundum tozuyla",
+   "Mum boya ya da yağlı kalemle"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Litografide taş üzerine yapılan çizim hangi karışımla sabitleştirilir?</strong>",
+  "o": [
+   "Sulu arapzamkı-nitrik asit karışımı",
+   "Bakır sülfat çözeltisi",
+   "Asetonla eritilmiş selüloit",
+   "Nişasta tozu ve su",
+   "Balmumu ve reçine karışımı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Litografi (taş baskı) tekniğinde kalıp olarak hangi malzeme kullanılır?</strong>",
+  "o": [
+   "Granit levha",
+   "Bir cins kireçtaşı",
+   "Bakır levha",
+   "Linolyum",
+   "Şimşir ağacı"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Litografi tekniğinin temel prensibi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Boyanın plakadaki çukurlarda kalması",
+   "Oyulmayan yüzeylerin boya alması",
+   "Yağ ile suyun birbirini itmesi",
+   "Asidin metal yüzeyi aşındırması",
+   "Boyanın elek gözeneklerinden geçmesi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Litografide mürekkep taşın üzerine verildiğinde hangisi gerçekleşir?</strong>",
+  "o": [
+   "Nemli boş alanlar boya alır, çizgili kısımlar boya almaz.",
+   "Taşın tüm yüzeyi eşit biçimde boya alır.",
+   "Boya yalnızca oyulmuş çukurlarda kalır.",
+   "Çizgili kısımlar boya alır, nemli boş alanlar boya almaz.",
+   "Boya taşın arka yüzüne geçer."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Litografi tekniğini bulan Aloys Senefelder'in mesleği aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Demirci",
+   "Ressam",
+   "Heykeltıraş",
+   "Küratör",
+   "Oyun yazarı"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Bilinen en eski monotip baskı resmi yapan sanatçı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Giovanni Benedetto Castiglione",
+   "Edgar Degas",
+   "Aloys Senefelder",
+   "Anthony Velonis",
+   "Carl Zigrosser"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Castiglione monotip çalışmalarını temiz bir bakır plaka üzerinde hangi yöntemle oluşturmuştur?</strong>",
+  "o": [
+   "Asit havuzunda yedirme yöntemiyle",
+   "Merdaneyle boya verip bez ve fırçalarla eksiltme yöntemiyle",
+   "Işığa duyarlı filmle pozlama yöntemiyle",
+   "Plakaya kâğıt yapıştırma (kolaj) yöntemiyle",
+   "Metal parçaları lehimleme yöntemiyle"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Castiglione'nin monotip buluşu baskı resminde neye hizmet etmiştir?</strong>",
+  "o": [
+   "Baskının endüstriyel bir değer kazanmasına",
+   "Fotoğrafik görüntülerin metale aktarılmasına",
+   "Pentür ve çizim arasındaki sınırların kalkmasına",
+   "Bir kalıptan çok sayıda baskı alınmasına",
+   "Taş kalıpların yerini metal kalıpların almasına"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>19. yüzyılda monotip tekniğiyle eserler üreterek bu tekniğin çağdaşları arasında yeniden popüler olmasını sağlayan Empresyonist sanatçı kimdir?</strong>",
+  "o": [
+   "Giovanni Benedetto Castiglione",
+   "Andy Warhol",
+   "Honoré Daumier",
+   "Edward (Edgar) Degas",
+   "Anthony Velonis"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Savaş dönemlerinde sanatçıların monotip baskıya yönelmesinin nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Çok sayıda kopya verebilmesi",
+   "Endüstriyel makine gerektirmesi",
+   "Işığa duyarlı film kullanması",
+   "Taş kalıp gerektirmesi",
+   "Düşük maliyetli olması"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Monotip baskının sanatçılar tarafından tekrar popülerliğinin arttığı dönem aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "1980'lerden sonra",
+   "1600'lerden sonra",
+   "1789'dan sonra",
+   "1890'lardan sonra",
+   "1930'lardan sonra"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Şablon baskıda şablon parçaları neyden kesilerek elde edilir?</strong>",
+  "o": [
+   "Kireçtaşından",
+   "Karton ya da metal levhadan",
+   "Linolyumdan",
+   "İpek kumaştan",
+   "Japon kâğıdından"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Şablon baskıda kalıba boya nasıl verilir?</strong>",
+  "o": [
+   "Burin ile kazınarak",
+   "Asit havuzuna daldırılarak",
+   "Merdane, tampon veya püskürtme ile",
+   "Litopres ile",
+   "Nişasta tozu ile"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Şablon baskıda baskı kalıbının dışı çıkarılarak içinin boyandığı kalıba ne ad verilir?</strong>",
+  "o": [
+   "Erkek kalıp",
+   "Ana kalıp",
+   "Taş kalıp",
+   "Dişi kalıp",
+   "Elek kalıp"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Şablon baskıda kalıbın içi çıkarılarak dışının boyandığı kalıba ne ad verilir?</strong>",
+  "o": [
+   "Dişi kalıp",
+   "Ana kalıp",
+   "Ofset kalıp",
+   "Karborundum kalıp",
+   "Erkek kalıp"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Bobin ve rulo kâğıdın kullanıldığı ofset baskı türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Web ofset baskı",
+   "Tabaka ofset baskı",
+   "Taş ofset baskı",
+   "Serigrafi",
+   "Monotip baskı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Ofset baskıda litografideki taşın yerini aşağıdakilerden hangisi almıştır?</strong>",
+  "o": [
+   "Kireçtaşı levhalar",
+   "Çinko, alüminyum, bakır gibi metal yüzeyler",
+   "İpek kumaş gerilmiş çerçeveler",
+   "Linolyum levhalar",
+   "Selüloit plakalar"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Aşağıdakilerden hangisi ofset baskı için <u>yanlış</u> bir ifadedir?</strong>",
+  "o": [
+   "Yağ ve su temeline dayanan litografinin gelişmiş bir biçimidir.",
+   "Fotoğrafik yöntemler de bu teknikte uygulanabilmektedir.",
+   "Taş kalıplar kullanılmaya devam edilir.",
+   "Taş baskıda olan kalite elde edilmez.",
+   "Şekiller metal bir kalıptan plastik bir merdaneye geçirilir."
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Serigrafide (elek baskı) mürekkep ya da boya hangi araçla sıyırtılarak sıvanır?</strong>",
+  "o": [
+   "Burin",
+   "Baren",
+   "Tahta kaşık",
+   "Kauçuk lastik",
+   "Kuru iğne"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Elek baskının \"ipek baskı\" adıyla da anılmasının nedeni nedir?</strong>",
+  "o": [
+   "İpek kâğıt üzerine basılması",
+   "Japonya'da ipek kumaş için bulunması",
+   "İpek böceğinden elde edilen boya kullanılması",
+   "Yalnızca ipek giysilere uygulanması",
+   "Bu baskıda gereç olarak uzun zaman ipek kullanılması"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Elek baskıda emülsiyon-stensil film yöntemleri hangi temele dayanır?</strong>",
+  "o": [
+   "Işıkla pozlandırma",
+   "Asitle yedirme",
+   "Yağ ile suyun itmesi",
+   "Elle tutkal sürme",
+   "Eksiltmeli oyma"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Elek baskı ilk olarak 19. yüzyılın ortalarında hangi ülkede ipekli kumaş süslemeleri için yapılmıştır?</strong>",
+  "o": [
+   "Amerika",
+   "Fransa",
+   "Japonya",
+   "Norveç",
+   "Türkiye"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>1933-36 yıllarında sanatsal amaçlı bir elek baskı atölyesi kuran kişi kimdir?</strong>",
+  "o": [
+   "Carl Zigrosser",
+   "Andy Warhol",
+   "Anthony Velonis",
+   "Aloys Senefelder",
+   "Rolf Nesch"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Elek baskıyı ticari alandan ayırarak güzel sanatlar formu olarak benimseyen baskı ve çizim küratörü kimdir?</strong>",
+  "o": [
+   "Anthony Velonis",
+   "Giovanni Benedetto Castiglione",
+   "Boris Margo",
+   "Carl Zigrosser",
+   "Charles Philipon"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Aşağıdakilerden hangisi dijital baskı için <u>yanlış</u> bir ifadedir?</strong>",
+  "o": [
+   "1960'larda sanatsal üretime dâhil olmuştur.",
+   "Ofsette kullanılan metal kalıplar yoktur.",
+   "Boyut sınırlandırmasını ortadan kaldırmıştır.",
+   "Talep edildiği anda baskı yapılabilir.",
+   "Ofset baskı yöntemlerine göre maliyeti daha düşüktür."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Honoré Daumier, Charles Philipon'un yayınları için gazete illüstrasyonlarını hangi teknikle yapmıştır?</strong>",
+  "o": [
+   "Taş baskı (litografi)",
+   "Serigrafi",
+   "Monotip",
+   "Ağaç gravür",
+   "Dijital baskı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 8,
+  "q": "<strong>Andy Warhol'un 1960'larda seri baskılar yaptığı atölyesine verdiği ad nedir?</strong>",
+  "o": [
+   "Atelier 17",
+   "Fabrika",
+   "Scriptorium",
+   "Der Blaue Reiter",
+   "İMOGA"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi deneysel (alternatif) baskı çalışmalarına örnek olarak verilen tekniklerden biridir?</strong>",
+  "o": [
+   "Kuru kazıma",
+   "Mezotint",
+   "Oyma gravür",
+   "Noktalama",
+   "Cellocut"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Özgün baskı çalışmalarının temel mantığı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sanatçının geleneksel çoğaltma tekniklerinden yararlanarak kalıp hazırlaması ve bu kalıptan numaralanmış baskılar elde etmesi",
+   "Bir eserin sanatçının payı olmadan mekanik olarak kopyalanması",
+   "Bilgisayar ortamındaki görüntünün kalıpsız olarak basılması",
+   "Tek bir kalıptan yalnızca bir baskı alınması",
+   "Baskıların numaralandırılmadan satışa sunulması"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Monobaskı (monoprint) aşağıdaki adlardan hangisiyle de anılır?</strong>",
+  "o": [
+   "Leke baskı",
+   "Ressamca baskı",
+   "Fine-Art Print",
+   "Dengeleme transferi",
+   "İpek baskı"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Monobaskıda resim pürüzsüz cam, taş ya da metal levha üzerine nasıl bir boyayla oluşturulur?</strong>",
+  "o": [
+   "Hızlı kuruyan su bazlı boyayla",
+   "Selülozik tinerle inceltilmiş matbaa boyasıyla",
+   "Yavaş kuruyan yağlı bir boyayla",
+   "Asetonla eritilmiş plastikle",
+   "Toz reçineyle"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Monotip tekniklerini geliştirerek \"çizgi monotipi\" denilen tekniği oluşturan sanatçı kimdir?</strong>",
+  "o": [
+   "Edgar Degas",
+   "William Blake",
+   "Rolf Nesch",
+   "Paul Gauguin",
+   "Boris Margo"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Edgar Degas çalışmalarında monotipi genellikle hangi teknikle aynı resimde birleştirmiştir?</strong>",
+  "o": [
+   "Fotogravür",
+   "Cellocut",
+   "Metal grafik",
+   "Karborundum",
+   "Pastel"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi monotip baskı ile ilgili çalışmalar yaptığı belirtilen sanatçılardan biri <u>değildir</u>?</strong>",
+  "o": [
+   "Boris Margo",
+   "Edgar Degas",
+   "Paul Gauguin",
+   "William Blake",
+   "Giovanni Benedetto Castiglione"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Monobaskıda düz kâğıtlar hangi tür baskıda iyi sonuç verir?</strong>",
+  "o": [
+   "Islak baskıda",
+   "Kuru baskıda",
+   "Asitli baskıda",
+   "Elek baskıda",
+   "Sıcak baskıda"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Çağdaş sanatta monobaskı nasıl kalıplar üzerinden yapılmaktadır?</strong>",
+  "o": [
+   "Yalnızca taş kalıplar",
+   "Işığa duyarlı film kalıplar",
+   "Değişebilir ve eklemeli kalıplar",
+   "Elek kalıplar",
+   "Hazır endüstriyel kalıplar"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Kollagrafi baskının temel mantığı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Plakanın ışığa duyarlı filmle pozlanması",
+   "Asetonla eritilmiş plastiğin plakaya dökülmesi",
+   "Metal objelerin plakaya lehimlenmesi",
+   "Plakaya dokulu kâğıt ve farklı malzemelerin yapıştırılıp vernikle kaplanması",
+   "Silisyum karbürün mürekkebe karıştırılması"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Kollagrafi baskıda plaka olarak hangi malzemeler kullanılabilir?</strong>",
+  "o": [
+   "Kireçtaşı",
+   "İpek gerilmiş elek",
+   "Cam levha",
+   "Pirinç levha",
+   "Mukavva veya ince ağaç plakalar"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Kollagrafi baskıda kazınan (oyulan) yerlere mürekkep nasıl verilir?</strong>",
+  "o": [
+   "Çukurları dolduracak tarzda",
+   "Hiç mürekkep verilmez",
+   "Yalnızca püskürtme ile",
+   "Elek gözeneklerinden geçirilerek",
+   "Nişasta tozu ile karıştırılarak"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Fotogravür tekniğinde plaka olarak hangi metaller tercih edilir?</strong>",
+  "o": [
+   "Alüminyum ve pirinç",
+   "Çinko ve bakır",
+   "Demir ve çelik",
+   "Kurşun ve kalay",
+   "Altın ve gümüş"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Fotogravür baskıda boya olarak ne kullanılır?</strong>",
+  "o": [
+   "Yavaş kuruyan yağlı boya",
+   "Sulu arapzamkı",
+   "Selülozik tinerle inceltilen matbaa boyası",
+   "Pastel boya",
+   "Balmumu"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Fotogravürde desenin dışında kalan yerlerdeki ışığa duyarlı madde ışıklandırıldığında ne olur?</strong>",
+  "o": [
+   "Erir",
+   "Çözülür",
+   "Buharlaşır",
+   "Sertleşir",
+   "Yumuşar"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Fotogravürler aşağıdaki tekniklerden hangisinden yararlanılarak da yapılabilmektedir?</strong>",
+  "o": [
+   "Kuru kazıma",
+   "Mezotint",
+   "Ağaç gravür",
+   "Metal grafik",
+   "Serigrafi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Aşındırıcı madde olarak kullanılan silisyum karbürün ticaretteki adı nedir?</strong>",
+  "o": [
+   "Karborundum",
+   "Lusit",
+   "Selüloit",
+   "Pleksiglas",
+   "Arapzamkı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Karborundum nasıl bir maddedir?</strong>",
+  "o": [
+   "Transparan plastik",
+   "Kuma benzer seramik birleşiği",
+   "Asetonla eritilmiş selüloit",
+   "Yağlı tebeşir",
+   "Işığa duyarlı film"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Karborundum kalıplarla ilgili aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Yalnızca bakır plaka üzerinde kullanılabilir.",
+   "Işığa duyarlı zemin görevi görür.",
+   "Mürekkep içine konularak ya da doğrudan plaka üzerine uygulanabilir.",
+   "Japon kâğıdı yapıştırılarak uygulanır.",
+   "Asetonla eritilerek plakaya dökülür."
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Chine collé tekniğinin orijinal amacı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kalıptan çok sayıda ucuz kopya almak",
+   "Metal objeleri plakaya sabitlemek",
+   "Fotoğraf etkisi uyandırmak",
+   "Kalıptan çok ince detay elde etmek için çok daha duyarlı bir yüzeye baskı yapılmasını sağlamak",
+   "Plastik plakanın dayanıklılığını artırmak"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Chine collé baskıda en kolay uygulanan yöntem aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Aseton ile baskı yapmak",
+   "Lehim ile baskı yapmak",
+   "Karborundum ile baskı yapmak",
+   "Nitrik asit ile baskı yapmak",
+   "Nişasta tozu ile baskı yapmak"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Chine collé görüntüye aşağıdakilerden hangisini sağlar?</strong>",
+  "o": [
+   "Farklı bir arka plan rengi",
+   "Kabartmalı metal yüzey",
+   "Fotoğrafik pozlama",
+   "Transparan plastik doku",
+   "Elek dokusu"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Karışık teknik içinde chine collé hangi aşamada uygulanmalıdır ve neden?</strong>",
+  "o": [
+   "İlk baskı işleminde; çünkü kâğıt henüz kurudur.",
+   "Son baskı işleminde; çünkü zamk ıslatılmış kâğıtta etkisini kaybeder ve dökülür.",
+   "Plaka hazırlanmadan önce; çünkü vernik zamkı bozar.",
+   "Asitlemeden önce; çünkü asit kâğıdı korur.",
+   "Ortadaki bir aşamada; çünkü renkler karışmaz."
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Rolf Nesch ilk \"metal baskıları\" hangi ülkede ve hangi yılda yapmıştır?</strong>",
+  "o": [
+   "Almanya, 1931",
+   "Amerika, 1933",
+   "Norveç, 1925",
+   "Fransa, 1789",
+   "Japonya, 1760"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Rolf Nesch, heykeltıraş ve baskıresimci olarak hangi sanatçının altında çalışmıştır?</strong>",
+  "o": [
+   "Boris Margo",
+   "Edgar Degas",
+   "Paul Gauguin",
+   "Ernst Ludwig Kirchner",
+   "Carl Zigrosser"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Metal grafikte burin gibi çizim araçları yerine hangi malzemeler plakaya sabitlenir?</strong>",
+  "o": [
+   "Dokulu kâğıt ve mukavva",
+   "Japon kâğıdı ve keten",
+   "Toz reçine ve balmumu",
+   "Işığa duyarlı film ve emülsiyon",
+   "Demir teller, çiviler, demir tozları"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Cellocut tekniğinde sıvı plastik elde etmek için hangi madde kullanılır?</strong>",
+  "o": [
+   "Aseton",
+   "Nitrik asit",
+   "Nişasta",
+   "Resim yağı",
+   "Arapzamkı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Günümüzde cellocut tekniğinde kullanılan lusit nedir?</strong>",
+  "o": [
+   "Silisyum karbür",
+   "Transparan plastik (akrilik reçine)",
+   "İnce Japon kâğıdı",
+   "Bir cins kireçtaşı",
+   "Işığa duyarlı film"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Karışık teknikte düz yüzey üzerinde yapılan ve fotografik görüntüye en yakın baskı teknikleri hangileridir?</strong>",
+  "o": [
+   "Ağaç baskı ve linol baskı",
+   "Kuru kazıma ve mezotint",
+   "Taş baskı ve elek baskı",
+   "Kollagrafi ve metal grafik",
+   "Cellocut ve karborundum"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 9,
+  "q": "<strong>Dijital baskı ile ilgili aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Sanatçıların bu tekniğe ilgisi yoktur.",
+   "Yalnızca küçük ebatlarda baskı alınabilir.",
+   "Sanatçı bu teknikte merkezde yer almaz.",
+   "Baskı resim alanında, sanat olup olmadığı tartışmaları süren bir tekniktir.",
+   "Fotogravür olarak da adlandırılır."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Baskı sanatının hangi gelişmeyle başladığı düşünülmektedir?</strong>",
+  "o": [
+   "M.Ö. 105 yıllarında Çin'de kâğıdın bulunmasıyla",
+   "Gutenberg'in matbaayı icat etmesiyle",
+   "Japonya'da Edo Dönemi'nin başlamasıyla",
+   "Senefelder'in litografiyi bulmasıyla",
+   "Meiji Dönemi'nde Batı resminin gelmesiyle"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Tarihte ilk baskılar hangi şekilde yapılmıştır?</strong>",
+  "o": [
+   "Çok renkli brokar resimler şeklinde",
+   "Damga/ıstampa şeklinde",
+   "Litografi şeklinde",
+   "Elek baskı şeklinde",
+   "Fotogravür şeklinde"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Çinli demirci Pi Sheng baskıda hangi yeniliği gerçekleştirmiştir?</strong>",
+  "o": [
+   "İlk çok renkli brokar resimleri basmıştır.",
+   "Pagodalara dua kâğıtları yerleştirmiştir.",
+   "İlk kez tek tek harfler dökerek baskı yapmıştır.",
+   "Taş baskıyı bulmuştur.",
+   "İlk Ukiyo-e baskılarını yapmıştır."
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Çin'deki ilk baskılarda tahta kalıplar mürekkeplenerek nelerin üzerine basılmıştır?</strong>",
+  "o": [
+   "Kireçtaşı ya da bakır",
+   "Cam ya da metal",
+   "Deri ya da keten",
+   "Kâğıt ya da ipek kumaş",
+   "Pleksiglas ya da lusit"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Japon baskısının tarihi sekizinci yüzyılda tahta kesmenin hangi amaçla kullanılmasıyla başlayan yörüngeyi takip eder?</strong>",
+  "o": [
+   "Kabuki aktörlerinin portrelerini yapmak",
+   "Gündelik eğlence hayatını göstermek",
+   "Manzara albümleri hazırlamak",
+   "Batı resmini taklit etmek",
+   "Dini metinlerin reprodüksiyonlarını üretmek"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Japon baskı sanatında \"siyah mürekkeple basılmış resimler\" anlamına gelen ve 1600 civarında gelişen baskılara ne ad verilir?</strong>",
+  "o": [
+   "Sumizuri-e",
+   "Beni-e",
+   "Tan-e",
+   "Nishiki-e",
+   "Darani"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>1720-40 döneminde kırmızı mürekkepten üretilen pembe mürekkeple hassas biçimde elle boyanan \"pembe resimler\" hangisidir?</strong>",
+  "o": [
+   "Sumizuri-e",
+   "Beni-e",
+   "Tan-e",
+   "Nishiki-e",
+   "Ukiyo-e"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Kırmızı ve yeşil pigmentler kullanılarak yapılan el boyaması Japon baskılarına ne ad verilir?</strong>",
+  "o": [
+   "Beni-e",
+   "Sumizuri-e",
+   "Tan-e",
+   "Nishiki-e",
+   "Darani"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Japon baskısında 1750'lerde baskı boyalarına üçüncü bir renk olarak hangisi eklenmiştir?</strong>",
+  "o": [
+   "Mavi",
+   "Mor",
+   "Beyaz",
+   "Sarı",
+   "Altın"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Çok renkli brokar resimler (nishiki-e) hangi şehirde üretilmeye başlanmıştır?</strong>",
+  "o": [
+   "Kyoto",
+   "Nara",
+   "Pekin",
+   "Osaka",
+   "Edo (bugünkü Tokyo)"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Japon baskısının renk bakımından gelişim sırası aşağıdakilerden hangisinde doğru verilmiştir?</strong>",
+  "o": [
+   "Sumizuri-e → Beni-e / Tan-e → Nishiki-e",
+   "Nishiki-e → Beni-e / Tan-e → Sumizuri-e",
+   "Beni-e → Sumizuri-e → Nishiki-e",
+   "Tan-e → Nishiki-e → Sumizuri-e",
+   "Nishiki-e → Sumizuri-e → Beni-e"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Japonya'da küçük pagodalara yerleştirilen, dualar içeren küçük kâğıt parçalarına ne ad verilir?</strong>",
+  "o": [
+   "Sumizuri-e",
+   "Darani",
+   "Nishiki-e",
+   "Chonin",
+   "Beni-e"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Japonya'da tahta baskının belgelenmiş en eski örneklerinin yerleştirildiği küçük pagodalar hangi ağaçtan oyulmuştur?</strong>",
+  "o": [
+   "Şimşir",
+   "Armut",
+   "Japon selvi ağacı",
+   "Kiraz",
+   "Ceviz"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Dua kâğıtları içeren küçük pagodaların çoğuna bugün ulaşmanın zor olmasının nedeni nedir?</strong>",
+  "o": [
+   "Meiji Dönemi'nde yakılmış olmaları",
+   "Moğol baskınlarında yok edilmeleri",
+   "Avrupa müzelerine taşınmaları",
+   "Çoğunun tapınak bağışçılarına satılmış ya da hediye edilmiş olması",
+   "Kâğıtların suyla çözülmüş olması"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Japonya'da 12. yüzyılın başlarından 16. yüzyılın sonlarına kadar baskı resimde öncü bir gelişim yaşanamamasının nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kâğıdın henüz bulunmamış olması",
+   "Chonin sınıfının güçlenmesi",
+   "Meiji Dönemi'nin modernleşme politikaları",
+   "Budizm'in yasaklanması",
+   "Klanlar arası iç savaşlar, imparatorluk baskıları ve Moğol baskınları"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Edo Dönemi hangi yılları kapsar?</strong>",
+  "o": [
+   "1615-1867",
+   "1600-1720",
+   "1720-1740",
+   "1760-1867",
+   "1867-1915"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Edo Dönemi'nde ülkeyi sıkı sıkıya tutan ve yabancı etkileri dışarıda tutan aile hangisidir?</strong>",
+  "o": [
+   "Hishikawa ailesi",
+   "Tokugawa Shogun ailesi",
+   "Katsushika ailesi",
+   "Kitagawa ailesi",
+   "Meiji ailesi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Edo Döneminde kent kültürü üzerine hikâye, roman ve resimli kitaplar çıkaran Chonin sınıfı kimlerden oluşur?</strong>",
+  "o": [
+   "Samuraylar ve askerler",
+   "Budist rahipler",
+   "Tüccarlar ve zanaatkârlar",
+   "İmparatorluk ailesi",
+   "Köylüler ve balıkçılar"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Chonin sınıfı ile ilgili aşağıdakilerden hangisi <u>yanlıştır</u>?</strong>",
+  "o": [
+   "Zevk ve asalet düşkünü olarak lüks bir yaşamın tadını çıkarmışlardır.",
+   "İlk başlarda oldukça alt sınıf olmuşlardır.",
+   "Kısa sürede en etkin sosyal sınıflardan biri olmuşlardır.",
+   "Samuray sınıfının Konfüçyüsçü anlayışını benimsemişlerdir.",
+   "Zenginlik ve enerjilerini \"yüzen dünya\" içinde harcamışlardır."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>\"Ukiyo-e\" teriminin anlamı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Siyah mürekkeple basılmış resimler",
+   "Pembe resimler",
+   "Çok renkli brokar resimler",
+   "Kutsal dua kâğıtları",
+   "Yüzen dünya / uçuşan dünya resimleri"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Japonya'nın modernleşme dönemi olarak bilinen dönem aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Meiji Dönemi",
+   "Edo Dönemi",
+   "Heian Dönemi",
+   "Nara Dönemi",
+   "Taisho Dönemi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi Meiji Dönemi Japon baskı sanatçılarının eğilimlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Geleneği olduğu gibi sürdürmek",
+   "Edo'yu aşan yeni bir altın çağ başlatmak",
+   "Yeni yöntemler ekleyerek hibrit bir baskı türü ortaya çıkarmak",
+   "Baskıdan tamamen uzaklaşmak",
+   "Batıdaki modern resim geleneğini takip etmek"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Japon baskı sanatı altın çağını hangi dönemde yaşamıştır?</strong>",
+  "o": [
+   "Meiji Dönemi",
+   "Heian Dönemi",
+   "Edo Dönemi",
+   "Nara Dönemi",
+   "Taisho Dönemi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>\"Fuji Dağı'nın 100 Görüntüsü\" (Fugaku Hyakkei) adlı resimli kitap hangi sanatçıya aittir?</strong>",
+  "o": [
+   "Hishikawa Moronobu",
+   "Yoshitoshi",
+   "Suzuki Harunobu",
+   "Katsushika Hokusai",
+   "Tosusai Sharaku"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Edo'nun Yoshiwara bölgesinden esinlenen temaları resmeden sanatçı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Katsushika Hokusai",
+   "Yoshitoshi",
+   "Pi Sheng",
+   "Kitagawa Utamaro",
+   "Hishikawa Moronobu"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 10,
+  "q": "<strong>Batılı sanattan etkilenen Yoshitoshi hangi dönemin önemli ahşap baskı sanatçısıdır?</strong>",
+  "o": [
+   "Meiji Dönemi",
+   "Edo Dönemi'nin başı",
+   "Heian Dönemi",
+   "Nara Dönemi",
+   "Sumizuri-e dönemi (1600)"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Käthe Kollwitz eserlerinde (\"Köylüler Savaşı\" serisi gibi) ağırlıklı olarak hangi konuyu işlemiştir?</strong>",
+  "o": [
+   "Japon kent yaşamının zevk ve eğlencesini",
+   "Kapitalist sistemin dayattığı zorlu çalışma koşullarını",
+   "İstanbul manzaralarını",
+   "Pop kültür ünlülerini",
+   "Kızılderili atalarının mitlerini"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>\"Çift Sürenler\" adlı gravür hangi sanatçıya aittir?</strong>",
+  "o": [
+   "Wassily Kandinsky",
+   "Andy Warhol",
+   "Käthe Kollwitz",
+   "W. S. Hayter",
+   "Jaune Quick-to-See Smith"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Andy Warhol, Marilyn Monroe, Elvis Presley ve Elizabeth Taylor imgelerini hangi teknikle seri hâlde üretmiştir?</strong>",
+  "o": [
+   "Litografi",
+   "Ağaç baskı",
+   "Kuru kazıma",
+   "Serigrafi",
+   "Monotip"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>W. S. Hayter'in kurduğu baskı atölyesinin adı nedir?</strong>",
+  "o": [
+   "Fabrika",
+   "Der Blaue Reiter",
+   "İMOGA",
+   "Sanayi-i Nefise",
+   "Atelier 17"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Wassily Kandinsky, Der Blaue Reiter akımı için tasarladığı afişi hangi teknikle çoğaltmıştır?</strong>",
+  "o": [
+   "Ağaç baskı",
+   "Serigrafi",
+   "Litografi",
+   "Fotogravür",
+   "Dijital baskı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Der Blaue Reiter akımı için afiş tasarlayan sanatçı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Käthe Kollwitz",
+   "Wassily Kandinsky",
+   "Andy Warhol",
+   "W. S. Hayter",
+   "Jaune Quick-to-See Smith"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Savaş, siyaset ve ırkçı söylemler gibi politik meselelerin baskıresimde eserlerin konusu olmaya başladığı dönem hangisidir?</strong>",
+  "o": [
+   "1600'lü yıllar",
+   "1760'lı yıllar",
+   "1980 ve 1990'lı yıllar",
+   "1890'lı yıllar",
+   "1920'li yıllar"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>1960 sonrası baskı resmiyle ilgili aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Deneysel baskılar tamamen terk edilmiştir.",
+   "Sanatçılar bilgisayarda çalışma üretmekten uzak durmuştur.",
+   "Dijital baskı daha az kişiye ulaşılabilirlik sağlamıştır.",
+   "Baskı resim zamanla sanatsal, politik, protest ve eğitsel bir araç bağlamında kullanılmaya başlanmıştır.",
+   "Yalnızca ağaç baskı tekniği kullanılmıştır."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>1960 sonrası ortaya çıkan ve geleneksel baskı resme oranla daha fazla kişiye ulaşılabilirliği sağlayan baskı hangisidir?</strong>",
+  "o": [
+   "Ağaç baskı",
+   "Litografi",
+   "Linol baskı",
+   "Çukur baskı",
+   "Dijital baskı"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Jaune Quick-to-See Smith eserlerinde neyi ele almıştır?</strong>",
+  "o": [
+   "Kızılderili atalarının sosyo-kültürel bağlamdaki mitlerini",
+   "Kapitalist sistemin zorlu çalışma koşullarını",
+   "Pop kültür ünlülerinin imgelerini",
+   "Edo Dönemi'nin eğlence hayatını",
+   "Osmanlı saray yaşamını"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Dada akımının belirgin özelliği aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Natüralist bir anlayışla dışsal olanın temel ölçüt kabul edilmesi",
+   "Klasik resim anlayışının ötesinde hazır nesne ve atık malzemelerin kullanılması",
+   "Işık ve gölgenin sert kontrastının kullanılması",
+   "Yüzen dünyanın zevk ve eğlencesinin resmedilmesi",
+   "Pop kültür ünlülerinin imgelerinin tekrarlanması"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>\"Modern\" kelimesi hangi sözcükten türetilmiştir?</strong>",
+  "o": [
+   "Fransızcada \"moda\" anlamına gelen \"mode\"dan",
+   "Yunancada \"yeni\" anlamına gelen bir sözcükten",
+   "Latincede \"tam şimdi\" anlamına gelen \"modo\"dan",
+   "Almancada \"çağ\" anlamına gelen bir sözcükten",
+   "İtalyancada \"ilerleme\" anlamına gelen bir sözcükten"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Modernizmin kökeni, bilgiye akılla ulaşıldığı hangi döneme dayanmaktadır?</strong>",
+  "o": [
+   "Rönesans",
+   "Edo Dönemi",
+   "Barok Dönem",
+   "Aydınlanma Çağı",
+   "Meiji Dönemi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Modernizmde yönlendirici özelliğe sahip kavram aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Natüralizm",
+   "Chiaroscuro",
+   "Röprodüksiyon",
+   "Ukiyo-e",
+   "Avangard"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Freud'a göre sanatçıları \"nevrotik\" ve \"psikotik\" kategorisinin dışında tutan nedir?</strong>",
+  "o": [
+   "Hayal dünyalarını objektif kullanımlara dönüştürerek yansıtabilmeleri",
+   "Akademik bir eğitim almış olmaları",
+   "Yalnızca doğayı taklit etmeleri",
+   "Duygularını tamamen gizlemeleri",
+   "Çoğaltılabilir eserler üretmeleri"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Modernizmin ortaya çıkmasında en büyük etkenlerden biri olarak gösterilen gelişme hangisidir?</strong>",
+  "o": [
+   "Lale Devri",
+   "Endüstri Devrimi",
+   "Edo Dönemi",
+   "Reform Hareketi",
+   "Matbaanın Osmanlı'ya gelişi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>\"Dışarının izlenimi yerine içerinin dışavurumu\"nu önemseyen akım hangisidir?</strong>",
+  "o": [
+   "Empresyonizm",
+   "Dada",
+   "Dışavurumculuk",
+   "Pop Art",
+   "Sürrealizm"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Ernst Ludwig Kirchner, Eric Heckel, Emile Nolde ve Otto Müller gibi Alman sanatçılardan oluşan dışavurumcu grup hangisidir?</strong>",
+  "o": [
+   "Fovizm",
+   "Der Blaue Reiter",
+   "Atelier 17",
+   "Die Brücke",
+   "Barbizon Okulu"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Fransa'da Fovizm akımı içinde yer alan sanatçı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Franz Marc",
+   "Ernst Ludwig Kirchner",
+   "Emile Nolde",
+   "Hans Arp",
+   "Henri Matisse"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Dışavurumcu sanatçılar resim ve baskılarında hangi olumsuz duyguları dışavurmaya çalışmışlardır?</strong>",
+  "o": [
+   "Dünya savaşlarının yıkımları, adaletsizlikler ve makineleşmenin ağır çalışma koşulları",
+   "Popüler kültür ve tüketicilik",
+   "Edo Dönemi'nin eğlence hayatı",
+   "Doğanın ışık ve renk izlenimleri",
+   "Saray yaşamının ihtişamı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Sıradan nesnelere imzasını atarak \"hazır nesne\"yi sanat eseri olarak sunan Dada sanatçısı kimdir?</strong>",
+  "o": [
+   "Hans Arp",
+   "Duchamp",
+   "Andy Warhol",
+   "Wassily Kandinsky",
+   "Henri Matisse"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Dada'nın içinde yer alan hangi anlayış Hans Arp'in baskıresimlerinde yerini almaktadır?</strong>",
+  "o": [
+   "Natüralizm",
+   "Chiaroscuro",
+   "Rastlantısallık",
+   "Doğrusal perspektif",
+   "Simetri"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>II. Dünya Savaşı'nın ardından New York'a taşınıp Hayter'in \"Atelier 17\" atölyesinde gravür eserler üreten sanatçılar hangi akımdandır?</strong>",
+  "o": [
+   "Fovizm",
+   "Die Brücke",
+   "Barbizon Okulu",
+   "Sürrealizm",
+   "Empresyonizm"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Pop Art akımı nerede ve ne zaman ortaya çıkmıştır?</strong>",
+  "o": [
+   "1910'lu yıllarda Almanya'da",
+   "1890'lı yıllarda Fransa'da",
+   "1990'lı yıllarda Japonya'da",
+   "1930'lu yıllarda İtalya'da",
+   "1950'li yıllarda İngiltere ve Amerika'da"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Pop Art aşağıdakilerden hangisine tepki olarak ortaya çıkmıştır?</strong>",
+  "o": [
+   "Popüler kültüre, tüketiciliğe ve kitle iletişim araçlarına",
+   "Burjuva değer yargılarına ve bilinçaltına",
+   "Savaşların yıkımına ve makineleşmeye",
+   "Akademik resmin renk anlayışına",
+   "Japon ağaç baskısına"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Enstalasyonlar hangi söylemin bir parçası olarak 1990'larda yaygınlık kazanmış ve baskıyı da malzemesi olarak içine almıştır?</strong>",
+  "o": [
+   "Romantik söylem",
+   "Post Modern söylem",
+   "Rönesans söylemi",
+   "Barok söylem",
+   "Maniyerist söylem"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Geleneksel sanattan ayrılan, kavramsal temelli, izleyiciyle etkileşimli baskı-enstalasyon yapıtları; baskı kalıpları, talaş ve spirallerle eser üreten sanatçı kimdir?</strong>",
+  "o": [
+   "Müjde Ayan",
+   "Ergin İnan",
+   "Hasan Kıran",
+   "Aliye Berger",
+   "Mustafa Aslıer"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Siyah-beyaz veya renkli taşbaskılarını koleksiyon oluşturarak satışa hazırlayan ve litografilerinde ton değerlerini açıktan koyuya kurgulayan sanatçı kimdir?</strong>",
+  "o": [
+   "Hasan Kıran",
+   "Ergin İnan",
+   "Aliye Berger",
+   "Müjde Ayan",
+   "Mürşide İçmeli"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 11,
+  "q": "<strong>Renkçi bir anlayışla özgün baskı eserleri üreten ve deformasyona uğrayan figürleriyle yeni bir biçim dili geliştiren sanatçı kimdir?</strong>",
+  "o": [
+   "Hasan Kıran",
+   "Müjde Ayan",
+   "Sabri Berkel",
+   "Asım İşler",
+   "Ergin İnan"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>İbrahim Müteferrika Türk baskı sanatında hangi özelliğiyle bilinir?</strong>",
+  "o": [
+   "Türkiye'nin ilk çağdaş baskıresim müzesini kurmasıyla",
+   "\"Özgün Baskı Resim\" terimini ilk kullanmasıyla",
+   "Baskı ve grafik sanatının ilk uygulayıcısı olmasıyla",
+   "1881'de ilk taş baskı atölyesini kurmasıyla",
+   "Ankara Ekslibris Derneği'ni kurmasıyla"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Hanri Kayol 1881 yılında hangi atölyeyi kurmuştur?</strong>",
+  "o": [
+   "İlk serigrafi atölyesini",
+   "İlk ofset matbaasını",
+   "İlk ekslibris atölyesini",
+   "İlk taş baskı (litografi) atölyesini",
+   "İlk dijital baskı atölyesini"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>İMOGA aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Türkiye'nin ilk güzel sanatlar akademisi",
+   "Türkiye'nin ilk taş baskı atölyesi",
+   "Ankara'daki ekslibris derneği",
+   "Osmanlı'nın ilk matbaası",
+   "Türkiye'nin ilk çağdaş baskıresim müzesi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Mustafa Aslıer'in Türk baskı sanatına katkısı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "\"Özgün Baskı Resim\" terimini ilk kullanan sanatçı olması",
+   "Baskı ve grafik sanatının ilk uygulayıcısı olması",
+   "1881'de ilk litografi atölyesini kurması",
+   "Sanayi-i Nefise'de 1892-1897 arası gravür hocalığı yapması",
+   "1997'de Ankara Ekslibris Derneği'ni kurması"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi ilk kuşak Türk baskı sanatçılarındandır?</strong>",
+  "o": [
+   "Mustafa Aslıer",
+   "Nurullah Berk",
+   "Hasip Pektaş",
+   "Ergin İnan",
+   "Süleyman Saim Tekcan"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Süleyman Saim Tekcan'ın Türk baskı sanatına en önemli katkısı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "1881'de ilk taş baskı atölyesini kurması",
+   "Baskı ve grafik sanatının ilk uygulayıcısı olması",
+   "Pek çok üniversitede özgün baskı atölyelerinin kurulmasına ve çağdaş eğitimin başlatılmasına öncülük etmesi",
+   "1997'de Ankara Ekslibris Derneği'ni kurması",
+   "\"Özgün Baskı Resim\" terimini ilk kullanması"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Artur Napier, 1892-1897 yılları arasında Sanayi-i Nefise'de hangi bölümde görev yapmıştır?</strong>",
+  "o": [
+   "Heykel bölümü",
+   "Mimarlık bölümü",
+   "Hat bölümü",
+   "Gravür bölümü",
+   "Seramik bölümü"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi Léopold Lévy'nin gelişimine katkı sağladığı sanatçılardan biridir?</strong>",
+  "o": [
+   "İbrahim Çallı",
+   "Hoca Ali Rıza",
+   "Osman Hamdi Bey",
+   "İbrahim Müteferrika",
+   "Avni Arbaş"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Gravür tekniğinde kasap kâğıdı, zımpara kâğıdı ve tülbent gibi malzemeleri kullanarak özgün bir kimlik yaratan sanatçı kimdir?</strong>",
+  "o": [
+   "Aliye Berger",
+   "Mustafa Aslıer",
+   "Ergin İnan",
+   "Hoca Ali Rıza",
+   "Hanri Kayol"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>İpek baskı ve monotip tekniklerinin kullanıldığı baskı atölyesi hangi sanatçının yönetimindeydi?</strong>",
+  "o": [
+   "Artur Napier",
+   "Sabri Berkel",
+   "Hanri Kayol",
+   "Aliye Berger",
+   "Hasip Pektaş"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Ergin İnan çalışmalarını genel anlamda hangi isimlerle sınıflandırmıştır?</strong>",
+  "o": [
+   "Doğa görünümleri, kır evleri, çeşmeler",
+   "Mitoloji, din, tarih, müzik",
+   "Portreler, eller, mektup, yaratılış",
+   "Kıtalar, ülkeler, akarsular, denizler",
+   "Kıyafet albümleri, haber görselleri, ürün gravürleri"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Anadolu'da \"yazmacılık\" ne anlama gelir?</strong>",
+  "o": [
+   "Taş üzerine yağlı kalemle çizip baskı yapmak",
+   "Kitaplara sahiplik etiketi yapıştırmak",
+   "İpek kumaş gerili elekle baskı yapmak",
+   "Tahtayı kazıyarak, oyarak kalıp yapmak ve bu kalıbı boyayarak baskı yapmak",
+   "Metal plakaya asitle desen yedirmek"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Hoca Ali Rıza, 1900'lü yılların başında canlı modelden çalışma olanağı bulunmayan öğrenciler için hazırladığı karakalem çizimleri hangi yöntemle çoğaltmıştır?</strong>",
+  "o": [
+   "Ofset baskı",
+   "Serigrafi",
+   "Dijital baskı",
+   "Ağaç gravür",
+   "Taş baskı"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Hoca Ali Rıza'nın öğrenciler için hazırlayıp çoğalttığı karakalem çizimlerinde özellikle hangi konular betimlenmiştir?</strong>",
+  "o": [
+   "Doğa görünümleri, kır evleri ve çeşmeler",
+   "Portreler, eller ve mektuplar",
+   "Pop kültür ünlüleri",
+   "Savaş ve siyaset",
+   "Saray harem halkı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Türkiye'de baskıresim sanatının başlangıcı kabul edilen, İbrahim Müteferrika'nın 1730'da bastığı kitap hangisidir?</strong>",
+  "o": [
+   "Cihannüma",
+   "Tarih-i Hind-i Garbî",
+   "Historia Turchesca",
+   "Nuhbetü't-talim",
+   "Osmanlı Kıyafet Albümü"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>İbrahim Müteferrika Tarih-i Hind-i Garbî'deki yüksek baskı kalıplarını hangi ağaca oymuştur?</strong>",
+  "o": [
+   "Elma",
+   "Japon selvisi",
+   "Şimşir",
+   "Çam",
+   "Kiraz"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Hanri Kayol'un kurduğu İstanbul'daki ilk taş baskı atölyesinde basılan askeri eğitim kitabı hangisidir?</strong>",
+  "o": [
+   "Tarih-i Hind-i Garbî",
+   "Cihannüma",
+   "Historia Turchesca",
+   "Nuhbetü't-talim",
+   "Fugaku Hyakkei"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>1836 yılında İstanbul Beyoğlu'nda bir başka taş baskı atölyesini kimler kurmuştur?</strong>",
+  "o": [
+   "Müteferrika ailesi",
+   "Berger kardeşler",
+   "Tekcan ailesi",
+   "Napier kardeşler",
+   "Kayol kardeşler"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Sanayi-i Nefise'deki gravür atölyesi 1924'te hangi gerekçeyle kapatılmıştır?</strong>",
+  "o": [
+   "Zanaat atölyesi olarak kaldığı düşüncesiyle",
+   "Öğrenci olmadığı için",
+   "Bina yandığı için",
+   "Taş baskıya geçildiği için",
+   "Hocası yurt dışına döndüğü için"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Léopold Lévy'nin öncülüğünde tekrar açılan gravür atölyesinin başına kim getirilmiştir?</strong>",
+  "o": [
+   "Artur Napier",
+   "Sabri Berkel",
+   "Mustafa Aslıer",
+   "Asım İşler",
+   "Şinasi Barutçu"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>1932'de Ankara'da eğitime başlayarak baskı atölyesi açılan ikinci kurum olan bölüm hangisidir?</strong>",
+  "o": [
+   "Tatbiki Güzel Sanatlar Yüksek Okulu",
+   "Sanayi-i Nefise Mektebi",
+   "Gazi Eğitim Enstitüsü Resim İş Bölümü",
+   "İMOGA",
+   "Osmanlı Ressamlar Cemiyeti"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>1957'de İstanbul'da açılan Tatbiki Güzel Sanatlar Yüksek Okulu'nun gravür atölyesine kim getirilmiştir?</strong>",
+  "o": [
+   "Sabri Berkel",
+   "Artur Napier",
+   "Asım İşler",
+   "Mustafa Aslıer",
+   "Aliye Berger"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>İlk Türk kadın baskıresim sanatçısı ve aynı zamanda ilk Türk kadın gravürcü kimdir?</strong>",
+  "o": [
+   "Mürşide İçmeli",
+   "Müjde Ayan",
+   "Şule Atılgan",
+   "Fahrelnisa Zeyd",
+   "Aliye Berger"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Mustafa Aslıer üniversitede kimden aldığı baskı dersleriyle monotip ve linol baskılara yönelmiştir?</strong>",
+  "o": [
+   "Şinasi Barutçu",
+   "Sabri Berkel",
+   "Léopold Lévy",
+   "Artur Napier",
+   "Asım İşler"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Eserlerinde Anadolu insanını soyut figüratif bir düzende, insan yığınlarıyla anlatan; ağaç gravür ve ağaç rölyef denemeleri yapan sanatçı kimdir?</strong>",
+  "o": [
+   "Aliye Berger",
+   "Mürşide İçmeli",
+   "Müjde Ayan",
+   "Ergin İnan",
+   "Hasan Kıran"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Süleyman Saim Tekcan'ın kurduğu IMOGA'nın kuruluş amacı nedir?</strong>",
+  "o": [
+   "Osmanlı gravürlerinin satışa sunulması",
+   "Yalnızca ekslibris koleksiyonu toplanması",
+   "Türkiye'de özgün baskının ne olduğunun bilincinin oluşturulması",
+   "Askeri eğitim kitaplarının basılması",
+   "Dijital baskının yasaklanması"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 12,
+  "q": "<strong>Paris'te Hayter'in Atelier 17 atölyesinde gravür dersleri alıp Türkiye'de viskosite ve kolaj gravür tekniğinin gelişmesini sağlayan sanatçı kimdir?</strong>",
+  "o": [
+   "Mustafa Aslıer",
+   "Sabri Berkel",
+   "Ergin İnan",
+   "Asım İşler",
+   "Hasan Kıran"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Melchior Lorichs'in İstanbul panoraması gravürü kaç parçadan oluşur ve ne uzunluktadır?</strong>",
+  "o": [
+   "11 parça, 21 metre",
+   "14 parça, 7 metre",
+   "7 parça, 14 metre",
+   "21 parça, 11 metre",
+   "100 parça, 5 metre"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Kuş bakışı görüntüler ya da uzun panoramalar hangi yüzyıllardaki ilk İstanbul gravürlerinin özelliğidir?</strong>",
+  "o": [
+   "XII-XIII. yüzyıllar",
+   "XVIII-XIX. yüzyıllar",
+   "XIX-XX. yüzyıllar",
+   "XX-XXI. yüzyıllar",
+   "XV-XVI. yüzyıllar"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>II. Mahmut döneminde İstanbul'da çalışmalar yapan gravür sanatçılarından biri aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Thomas Allom",
+   "Melchior Lorichs",
+   "Giovan Maria Angionello",
+   "Giovanni Andrea Vavassore",
+   "İbrahim Müteferrika"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi bir İstanbul gravürü kategorisidir?</strong>",
+  "o": [
+   "Sokak hayvanları",
+   "Kıyafet albümleri",
+   "Ekslibris etiketleri",
+   "Ukiyo-e baskıları",
+   "Pop Art afişleri"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>\"Hakkak\" kime denir?</strong>",
+  "o": [
+   "Kitaplara sahiplik etiketi tasarlayan kişiye",
+   "İlk taş baskı atölyesini kuran kişiye",
+   "Ağaç, taş ya da metal üstüne yüzeysel oyma yapan kişiye",
+   "İpek kumaş üzerine elek baskı yapan kişiye",
+   "Gravür koleksiyonu yapan kişiye"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Cihannüma adlı esere eklemeler yapan Osmanlı şahsiyeti kimdir?</strong>",
+  "o": [
+   "Hoca Ali Rıza",
+   "Osman Hamdi Bey",
+   "Hanri Kayol",
+   "İbrahim Müteferrika",
+   "Tunuslu Hacı Ahmet"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Cihannüma adlı eser hangi konularda bilgi verir?</strong>",
+  "o": [
+   "Yalnızca Osmanlı saray yaşamı",
+   "Japon baskı teknikleri",
+   "Ekslibris koleksiyonculuğu",
+   "Yalnızca İslam'ın yayılması",
+   "Kıtalar, ülkeler, akarsular ve denizler"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Giovan Maria Angionello'nun Türk tarihini anlatan kitabının adı nedir?</strong>",
+  "o": [
+   "Historia Turchesca",
+   "Cihannüma",
+   "Tarih-i Hind-i Garbî",
+   "Fugaku Hyakkei",
+   "Paris Gravürleri"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Giovan Maria Angionello Osmanlı Dönemi'ndeki İstanbul izlenimlerini hangi teknikle resimlemiştir?</strong>",
+  "o": [
+   "Taş baskı",
+   "Ağaç gravür",
+   "Serigrafi",
+   "Fotogravür",
+   "Dijital baskı"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi İstanbul gravürlerinde resmedilen mekânlardan biridir?</strong>",
+  "o": [
+   "Savaş meydanları",
+   "Fuji Dağı manzaraları",
+   "Kahvehaneler",
+   "Edo'nun Yoshiwara bölgesi",
+   "Notre Dame Katedrali"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Osmanlı saraylarında korunarak günümüze gelen gravürlerde Birun halkı ve harem halkının ağırlıklı olarak tasvir edilmesinin nedeni nedir?</strong>",
+  "o": [
+   "Yalnızca en gizemli grup olarak görülmeleri",
+   "Sarayın bahçelerinde yaşamaları",
+   "Gravür sanatçısı olmaları",
+   "Bu grupların sarayın emirler sınıfını oluşturması",
+   "Sarayın dış cephesinde bulunmaları"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi Rönesans Dönemi'nde Avrupalı sanatçıların İstanbul'a gelip Osmanlı kültürüne yönelik çalışmalar yapmasının nedenlerinden biridir?</strong>",
+  "o": [
+   "Avrupa'nın sanatçıları dışlaması",
+   "İstanbul'da ilk ekslibris müzesinin bulunması",
+   "İstanbul'da dijital baskı imkânlarının olması",
+   "Japon ağaç baskısının İstanbul'da üretilmesi",
+   "Padişahların sanata değer vermesi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Gravürde mürekkep kazınmış yüzeyde nereye dolar?</strong>",
+  "o": [
+   "Kazınarak oluşturulan çukurların ve çizgilerin içine",
+   "Yalnızca yüksekte kalan yüzeylere",
+   "Elek gözeneklerine",
+   "Yağlı kalemle çizilen alanlara",
+   "Kâğıdın arka yüzüne"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Gravür olarak tanımlanan baskıresimler hangi dönem aralığında Osmanlı İmparatorluğu'nu yansıtan önemli kaynaklardır?</strong>",
+  "o": [
+   "XI. yüzyıldan XIII. yüzyıla kadar",
+   "XV. yüzyıl ortalarından XIX. yüzyıl sonuna kadar",
+   "Yalnızca XX. yüzyılda",
+   "XIX. yüzyıl sonundan günümüze",
+   "Yalnızca Lale Devri'nde"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>1883'te kurulan Sanayi-i Nefise Mektebi'nin dört bölümünden biri olan gravür bölümünün adı nedir?</strong>",
+  "o": [
+   "Nakş",
+   "Hat",
+   "Hakk",
+   "Tezhip",
+   "Yazma"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Osmanlı'da Batılı resim sanatı anlayışıyla hangi padişah zamanında tanışılmıştır?</strong>",
+  "o": [
+   "II. Mahmut",
+   "III. Selim",
+   "IV. Murat",
+   "Fatih Sultan Mehmet",
+   "II. Abdülhamit"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>İstanbul halk yaşamından örnekler veren 60 ağaç gravür yapan Fransız ressam kimdir?</strong>",
+  "o": [
+   "Vanmour",
+   "Conelis Van Bruyn",
+   "Melchior Lorichs",
+   "Giovanni Andrea Vavassore",
+   "Nikolay"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Bakır plakalara kazıdığı gravürleriyle \"Osmanlı Kıyafet Albümü\"nü hazırlayan Fransız ressam kimdir?</strong>",
+  "o": [
+   "Vanmour",
+   "Nikolay",
+   "Thomas Allom",
+   "Joseph Schranz",
+   "Jean Baptiste Hilair"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>1500'lü yıllarda karşımıza çıkan ilk Osmanlıca yazılmış gravür örneği olan dünya haritası kime aittir?</strong>",
+  "o": [
+   "Kâtip Çelebi",
+   "Tunuslu Hacı Ahmet",
+   "İbrahim Müteferrika",
+   "Giovan Maria Angionello",
+   "Melchior Lorichs"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>IV. Murat döneminde, otuz sekiz çizim içeren ve gravür örnekleri görülen Cihannüma adlı eser kimindir?</strong>",
+  "o": [
+   "Giovan Maria Angionello",
+   "Tunuslu Hacı Ahmet",
+   "Kâtip Çelebi",
+   "Hoca Ali Rıza",
+   "Osman Hamdi Bey"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>İbrahim Müteferrika'nın başında olduğu matbaanın kurulduğu ve ilk Marmara deniz haritasının basıldığı dönem hangisidir?</strong>",
+  "o": [
+   "Tanzimat Dönemi",
+   "II. Mahmut Dönemi",
+   "Kuruluş Dönemi",
+   "Lale Devri",
+   "Cumhuriyet Dönemi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Kâğıthane ve Sadabad Sarayı üzerine yaptığı baskıları günümüze kadar gelen sanatçı kimdir?</strong>",
+  "o": [
+   "Jean Baptiste Hilair",
+   "Thomas Allom",
+   "Joseph Schranz",
+   "William Henry Bartlett",
+   "L'espinasse"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>Oryantalizm terimi genel olarak neyi belirtir?</strong>",
+  "o": [
+   "Batılıların İslam dünyası karşısındaki tavırlarını",
+   "Japon baskı sanatının Batı'ya etkisini",
+   "Osmanlı'nın Batı'ya bakışını",
+   "Rönesans resminin kurallarını",
+   "Fotoğrafın gravürün yerini almasını"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>XIX. yüzyılın ikinci yarısında gravürün yerini almaya başlayan ve belgesel nitelik taşıma özelliğini devralan nedir?</strong>",
+  "o": [
+   "Litografi",
+   "Fotoğraf",
+   "Yağlı boya",
+   "Serigrafi",
+   "Minyatür"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>\"Constantinople and the Scenery of the Seven Churches of Asia Minor Illustrated\" çizimleriyle tanınan ve kitabında doksan dört gravür bulunan sanatçı kimdir?</strong>",
+  "o": [
+   "William Henry Bartlett",
+   "Joseph Schranz",
+   "Thomas Allom",
+   "L'espinasse",
+   "Melchior Lorichs"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 13,
+  "q": "<strong>İstanbul panoramalarını gerçekçi biçimde çizen ve İstanbul boğazını farklı açılardan resmeden Alman ressam kimdir?</strong>",
+  "o": [
+   "Thomas Allom",
+   "Melchior Lorichs",
+   "Vanmour",
+   "Joseph Schranz",
+   "Jean Baptiste Hilair"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Hasip Pektaş'ın 1997 yılında kurduğu ve Türkiye'de ekslibris sanatı için dönüm noktası olan kuruluş hangisidir?</strong>",
+  "o": [
+   "İstanbul Ekslibris Müzesi",
+   "İMOGA",
+   "Sanayi-i Nefise",
+   "Atelier 17",
+   "Ankara Ekslibris Derneği (AED)"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>\"Ekslibris, kitabın kartviziti ya da tapusudur.\" ifadesine göre ekslibris kitap için neyi temsil eder?</strong>",
+  "o": [
+   "Kitabın sahipliğini (aidiyetini)",
+   "Kitabın fiyatını",
+   "Kitabın yazarını",
+   "Kitabın basım yılını",
+   "Kitabın yayınevini"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Ekslibris, sahiplik bildirmek için kitabın neresine yapıştırılır?</strong>",
+  "o": [
+   "Arka kapağın dış yüzüne",
+   "Ön kapağın iç kısmına",
+   "Kitabın sırtına",
+   "Son sayfanın arkasına",
+   "Kitabın kabına dışarıdan"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Ekslibris üzerinde genellikle kimin ismi yer alır?</strong>",
+  "o": [
+   "Kitabın yazarının",
+   "Kitabı basan matbaacının",
+   "Kitap sahibinin",
+   "Yayınevinin",
+   "Kitabı satan kitapçının"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi ekslibrisin işlevlerinden biridir?</strong>",
+  "o": [
+   "Kitapların satışını artırması",
+   "Kitapların çoğaltılmasını sağlaması",
+   "Kütüphane raflarını düzenlemesi",
+   "Kitap hırsızlığına karşı koruma sağlaması",
+   "Kitabın fiyatını belirtmesi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Ekslibrisin kitabı ödünç alan kişiye iade etmesi için uyarıda bulunması hangi işlevine örnektir?</strong>",
+  "o": [
+   "Satışı artırma",
+   "Kitabı çoğaltma",
+   "Kitabı sınıflandırma",
+   "Kitabın içeriğini özetleme",
+   "Aidiyeti belgeleme"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Ekslibrisin estetik kaygı ile yapılması ona hangi işlevi kazandırır?</strong>",
+  "o": [
+   "Sanatsal nesne olma işlevi",
+   "Ticari reklam işlevi",
+   "Kitabı çoğaltma işlevi",
+   "Kütüphane kataloğu işlevi",
+   "Kitabın fiyatını belirleme işlevi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Ekslibris ile ilgili kuramsal çalışmaların kitap ve dergilerde yayınlandığı ve ekslibris üretiminde canlanma yaşanan dönem hangisidir?</strong>",
+  "o": [
+   "12. yüzyıl",
+   "19. yüzyılın sonları",
+   "15. yüzyılın başı",
+   "17. yüzyılın ortası",
+   "1997 sonrası"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>19. yüzyılın sonlarında ekslibris üretiminde yaşanan canlanma aşağıdakilerden hangisine yol açmıştır?</strong>",
+  "o": [
+   "Ekslibrislerin yalnızca saraylarda kullanılmasına",
+   "Ekslibrislerin yerini mühürlerin almasına",
+   "Ekslibris koleksiyonunun ortaya çıkıp popülerleşmesine ve ekslibrislerin koleksiyonerler arasında değiş tokuşuna",
+   "Ekslibris üretiminin tamamen durmasına",
+   "Ekslibrislerin yalnızca kütüphanelerde satılmasına"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Günümüzde ekslibris tasarımı ile ilgili aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Yalnızca ağaç baskı ile yapılmaktadır.",
+   "Artık hiç üretilmemektedir.",
+   "Yalnızca mühür biçiminde yapılmaktadır.",
+   "Özgün baskı tekniklerinin yanında dijital tekniklerle de yapılmaktadır.",
+   "Yalnızca müzelerde üretilmektedir."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi ekslibris sanatının doruğunu yaşadığı dönemin önemli isimlerinden biridir?</strong>",
+  "o": [
+   "Andy Warhol",
+   "Katsushika Hokusai",
+   "Wassily Kandinsky",
+   "Hishikawa Moronobu",
+   "Lucas Cranach"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Ekslibris sanatının doruğunu yaşadığı dönemlerin önemli isimlerinden Albrecht Dürer hangi ülkenin sanatçısıdır?</strong>",
+  "o": [
+   "Almanya",
+   "İtalya",
+   "Fransa",
+   "Belçika",
+   "Polonya"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Ekslibris hakkında aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Yalnızca kitabın fiyatını gösteren bir etikettir.",
+   "Hiçbir zaman tek işlevle sınırlandırılmamalıdır; bir işlevi bitse diğer işlevi başlar.",
+   "Kitapların çoğaltılması için kullanılan bir yöntemdir.",
+   "Kütüphanelerde raflara yapıştırılan etikettir.",
+   "Yalnızca Osmanlı Dönemi'nde kullanılmıştır."
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>\"Ekslibris\" kelimesinin kökeni ve anlamı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yunanca; \"taş üzerine yazı\"",
+   "Almanca; \"kitap işareti\"",
+   "Latince; \"kitaplarından\" veya \"kütüphanesinden\"",
+   "Fransızca; \"kazıma resim\"",
+   "İngilizce; \"kitap kapağı\""
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Ekslibrisin İngilizce karşılığı hangisidir?</strong>",
+  "o": [
+   "Bücherzeichen",
+   "Bookmark",
+   "Bookcover",
+   "Bookplate",
+   "Stamp"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Araştırmacılara göre koruma ve mülkiyet bildirme işleviyle ilk ve en eski ekslibris örneği kime aittir?</strong>",
+  "o": [
+   "Asur Kralı Asurbanipal'e (M.Ö. 100)",
+   "Alman papaz Johannes Knabenberg'e (M.S. 1400)",
+   "Kanuni Sultan Süleyman'a",
+   "Brandenburg ailesine (M.Ö. 600)",
+   "Mısır Kralı III. Amenhotep'in kitaplığına (M.Ö. 1400)"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Avrupa'nın ilk ekslibris örneklerinden birinde \"kirpi\" lakabıyla tanınan ve hicivli uyarı içeren ekslibris kimin için tasarlanmıştır?</strong>",
+  "o": [
+   "Alman papaz Johannes Knabenberg",
+   "Albrecht Dürer",
+   "Brandenburg ailesi",
+   "Kraliçe II. Elizabeth",
+   "Charlie Chaplin"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Ekslibris altın çağını nerede ve hangi yüzyılda yaşamıştır?</strong>",
+  "o": [
+   "12. yüzyıl Fransa'sında",
+   "16. yüzyıl Almanya'sında",
+   "18. yüzyıl İngiltere'sinde",
+   "19. yüzyıl Türkiye'sinde",
+   "14. yüzyıl İtalya'sında"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>FISAE kısaltması neyi ifade eder?</strong>",
+  "o": [
+   "Ankara Ekslibris Derneği",
+   "İstanbul Grafik Sanatlar Müzesi",
+   "Uluslararası Ekslibris Dernekleri Federasyonu",
+   "Uluslararası Baskıresim Akademisi",
+   "Avrupa Kitap Koleksiyoncuları Birliği"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>FISAE kurallarına göre bir ekslibris en fazla hangi boyutta olmalıdır?</strong>",
+  "o": [
+   "5x5 cm",
+   "21x29,7 cm (A4)",
+   "30x30 cm",
+   "13x13 cm",
+   "50x70 cm"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi FISAE'nin belirlediği ekslibris kurallarına <u>aykırıdır</u>?</strong>",
+  "o": [
+   "Kitabın ön kapağının iç kısmına yapıştırılması",
+   "Sanatçı/tasarımcı tarafından siparişle yapılması",
+   "\"Ekslibris\" kelimesinin ya da \"EXL\" kısaltmasının yazılması",
+   "Kitap sahibinin adını ve estetik tercihlerini yansıtması",
+   "Ölen kişiler için ekslibris yapılması"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Ekslibris koleksiyonculuğu yapan kişiler için \"Ekslibris Topluluğu\" ne zaman ve nerede kurulmuştur?</strong>",
+  "o": [
+   "1891'de Londra'da",
+   "1958'de Barselona'da",
+   "1997'de Ankara'da",
+   "2008'de İstanbul'da",
+   "2002'de Frederikshavn'da"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Hasip Pektaş'ın kurduğu Ankara Ekslibris Derneği'nin (AED) günümüzdeki adı nedir?</strong>",
+  "o": [
+   "İMOGA Grafik Sanatlar Derneği",
+   "İstanbul Ekslibris Derneği",
+   "Türkiye FISAE Derneği",
+   "Ankara Baskıresim Vakfı",
+   "Özgün Baskı Derneği"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Türkiye'nin ilk ekslibris müzesi olan İstanbul Ekslibris Müzesi 2008'de hangi kurum bünyesinde kurulmuştur?</strong>",
+  "o": [
+   "Sanayi-i Nefise Mektebi",
+   "İstanbul Modern",
+   "İMOGA Grafik Sanatlar Müzesi",
+   "Pera Müzesi",
+   "Resim ve Heykel Müzesi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>FISAE simgelerine göre düz baskı teknikleri hangi harfle gösterilir?</strong>",
+  "o": [
+   "X",
+   "C",
+   "P",
+   "L",
+   "S"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Ekslibrisi resimden ayıran en önemli özelliği nedir?</strong>",
+  "o": [
+   "Renkli kâğıda basılması",
+   "Çok büyük boyutta yapılması",
+   "Tek nüsha olması",
+   "Yalnızca yağlı boya ile yapılması",
+   "Üzerinde yazının kullanılması"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Özgün Baskı Teknikleri",
+  "u": 14,
+  "q": "<strong>Art Nouveau akımının hâkim olduğu 1890-1910 yılları arasında yapılan ekslibrislerde ne görülür?</strong>",
+  "o": [
+   "Dekoratif ögeler",
+   "Gotik tarz",
+   "Barok etkiler",
+   "Rönesans etkileri",
+   "Pop Art imgeleri"
+  ],
+  "a": 0
+ }
+]
