@@ -14,6 +14,7 @@ struct ImtahanApp: App {
 
     init() {
         let s = StudyStore.shared
+        ExamDates.shared.seedFinal2027IfNeeded(store: s)
         let env = AppEnvironment(store: s, router: AppRouter(store: s), sync: SyncService(),
                                  surprise: SurpriseEngine(store: s), stopwatch: SidebarStopwatch())
         AppEnvironment.shared = env

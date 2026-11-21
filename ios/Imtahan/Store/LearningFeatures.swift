@@ -44,6 +44,35 @@ final class ExamDates {
         if changed { persist() }
     }
 
+    /// One-time switch to the 2026–27 Güz final (9 Jan 2027): every subject gets its final date and time
+    /// (09:30: Grafik Üretim, Reklam Grafiği, Tasarım Okumaları; 14:00: Özgün Baskı, Web Tasarım), the app
+    /// goes to Final mode and the "Verdim" marks are cleared (the final covers all five subjects).
+    /// v2 fixes the times of v1 (10:30 / 15:00). The change time is fixed, so a date the user sets later on
+    /// any device always wins over this seed.
+    func seedFinal2027IfNeeded(store: StudyStore) {
+        let d = UserDefaults.standard
+        let firstRun = !d.bool(forKey: "seed_final_2027")
+        guard firstRun || !d.bool(forKey: "seed_final_2027_v2") else { return }
+        d.set(true, forKey: "seed_final_2027")
+        d.set(true, forKey: "seed_final_2027_v2")
+        var dc = DateComponents(); dc.year = 2027; dc.month = 1; dc.day = 9
+        dc.timeZone = TimeZone(identifier: "Asia/Baku")
+        let seededAt = 1795273200.0   // 21 Nov 2026 19:00 (+04)
+        for s in Catalog.subjects {
+            let morning = ["Grafik Üretim Teknikleri", "Reklam Grafiği", "Tasarım Okumaları"].contains(s)
+            dc.hour = morning ? 9 : 14; dc.minute = morning ? 30 : 0
+            guard let date = Calendar(identifier: .gregorian).date(from: dc), (updated[s] ?? 0) < seededAt else { continue }
+            raw[s] = date.timeIntervalSince1970
+            updated[s] = seededAt
+        }
+        persist()
+        if firstRun {
+            store.examMode = .final
+            store.passedSubjects = []
+        }
+        store.onLocalChange?(true)
+    }
+
     func date(for subject: String) -> Date {
         if let t = raw[subject], t > 0 { return Date(timeIntervalSince1970: t) }
         return StudyStore.shared.examDate
