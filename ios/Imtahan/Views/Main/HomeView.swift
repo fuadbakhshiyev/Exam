@@ -188,7 +188,9 @@ struct HomeView: View {
         func statKey(_ c: String, _ i: Int) -> String {
             c == Catalog.mixedKey ? (store.scopedMixedParts[studySafe: i]?.statKey ?? "") : "Unit \(i + 1)"
         }
-        for c in Catalog.configKeys {
+        // Mixed parts hold every subject's questions, so they are left out once a subject is passed.
+        let keys = Catalog.configKeys.filter { store.isActiveSubject($0) && ($0 != Catalog.mixedKey || store.passedSubjects.isEmpty) }
+        for c in keys {
             for (key, st) in store.data.stats[c]?.bd["units"] ?? [:] where st.last > 0 {
                 let idx: Int
                 if c == Catalog.mixedKey {
@@ -207,7 +209,7 @@ struct HomeView: View {
             return ContinueTarget(course: c, index: i, unitTitle: titles.indices.contains(i) ? titles[i] : "Unit \(i + 1)",
                                   done: done, total: total(c, i), isNew: isNew)
         }
-        guard let best else { return make(Catalog.subjects[0], 0, done: 0, isNew: true) }
+        guard let best else { return make(store.activeSubjects[0], 0, done: 0, isNew: true) }
         let done = best.stat.c + best.stat.w
         let tot = total(best.course, best.index)
         func doneOf(_ c: String, _ i: Int) -> Int {
@@ -217,7 +219,7 @@ struct HomeView: View {
         if tot > 0 && done >= tot {
             // Finished: the next unfinished in-scope unit, this subject first (after it, then before it),
             // then the other subjects in order.
-            let order = [best.course] + Catalog.configKeys.filter { $0 != best.course }
+            let order = [best.course] + keys.filter { $0 != best.course }
             for c in order {
                 let n = store.unitTitles(c).count
                 let idxs = c == best.course ? Array((best.index + 1)..<max(best.index + 1, n)) + Array(0..<best.index) : Array(0..<n)

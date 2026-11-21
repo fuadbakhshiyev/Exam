@@ -7,7 +7,7 @@ extension StudyStore {
     func continueUnit() -> (course: String, index: Int) {
         var best: (course: String, index: Int, stat: SubStat)?
         let mixedIndex = Dictionary(scopedMixedParts.enumerated().map { ($1.statKey, $0) }, uniquingKeysWith: { a, _ in a })
-        for c in Catalog.configKeys {
+        for c in Catalog.configKeys where isActiveSubject(c) && (c != Catalog.mixedKey || passedSubjects.isEmpty) {
             for (key, st) in data.stats[c]?.bd["units"] ?? [:] where st.last > 0 {
                 let idx: Int
                 if c == Catalog.mixedKey {
@@ -20,7 +20,7 @@ extension StudyStore {
                 if best == nil || st.last > best!.stat.last { best = (c, idx, st) }
             }
         }
-        guard let best else { return (Catalog.subjects[0], 0) }
+        guard let best else { return (activeSubjects[0], 0) }
         let total = unitQuestionCount(best.course, index: best.index)
         if total > 0 && best.stat.c + best.stat.w >= total && best.index + 1 < unitTitles(best.course).count {
             return (best.course, best.index + 1)
