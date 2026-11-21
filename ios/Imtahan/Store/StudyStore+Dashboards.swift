@@ -735,7 +735,7 @@ extension StudyStore {
     }
 
     /// "<total> səhv sual · <n> mənbə"
-    var wrongTotal: Int { data.wrong.keys.reduce(0) { $0 + scopedWrong($1).count } }
+    var wrongTotal: Int { data.wrong.keys.reduce(0) { $0 + scopedWrong($1).filter(isActive).count } }
 
     /// Every subject's distinct questions, summed (Ümumi Toplam "Cəmi sual").
     var scopedQuestionsTotal: Int { Catalog.subjects.reduce(0) { $0 + allSubjectQuestions($1).count } }

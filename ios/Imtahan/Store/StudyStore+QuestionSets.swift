@@ -245,7 +245,9 @@ extension StudyStore {
 
     /// startMock: 20 random in-scope questions from each CONFIG course (Mixed included), in CONFIG order.
     func mockPool() -> [Question] {
-        Catalog.configKeys.flatMap { Array(scopedQuestions(course: $0).shuffled().prefix(20)) }
+        Catalog.configKeys.filter(isActiveSubject).flatMap {
+            Array(scopedQuestions(course: $0).filter(isActive).shuffled().prefix(20))
+        }
     }
 
     /// Every wrong list concatenated, in scope (Ümumi Toplam Multi / reviewAllAnswers(false)).
@@ -262,7 +264,7 @@ extension StudyStore {
     }
 
     func allWrongQuestions() -> [Question] {
-        data.wrong.keys.sorted(by: Self.keyOrder).flatMap { scopedWrong($0) }
+        data.wrong.keys.sorted(by: Self.keyOrder).flatMap { scopedWrong($0) }.filter(isActive)
     }
 
     func allCorrectQuestions() -> [Question] {
