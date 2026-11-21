@@ -30,6 +30,16 @@ const config = load('config.js', 'CONFIG');
 const all = quizData.slice();
 if (!all.some((q) => q.c === 'Mixed')) all.push(...ataaof);
 
+// Final units 8–14 written from the OYS unit material (oys_material.json → oys_final/*.json).
+const finalDir = path.join(root, 'oys_final');
+if (fs.existsSync(finalDir)) {
+  for (const f of fs.readdirSync(finalDir).filter((f) => f.endsWith('.json')).sort()) {
+    const extra = JSON.parse(fs.readFileSync(path.join(finalDir, f), 'utf8'));
+    all.push(...extra.filter((q) => q.c && q.u >= 1 && Array.isArray(q.o) && q.o.length === 5 && q.a >= 0 && q.a < 5));
+    console.log(`oys_final/${f}: ${extra.length} sual`);
+  }
+}
+
 const order = Object.keys(pdfExams);
 const exams = {};
 for (const s of order) exams[s] = pdfExams[s].map((exam) => exam.map(pickPdf));
