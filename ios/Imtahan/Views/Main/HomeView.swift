@@ -14,7 +14,11 @@ struct HomeView: View {
                 dailyGoalCard(store.dailyLevel)
                 // Ağıllı təkrar has its own card below (which offers its half-done test itself).
                 let open = QuizProgressStore.shared.openTests(mode: store.examMode).filter {
-                    switch $0.kind { case .review, .reviewSubject: false; default: true }
+                    switch $0.kind { case .review, .reviewSubject: return false; default: break }
+                    // Only tests of subjects still studied. A half-done test mixing subjects (sınaq, səhvlər, Mixed…)
+                    // was built before the choice and may hold passed subjects' questions, so it is not offered.
+                    if let s = describe($0).subject, s != Catalog.mixedKey { return store.isActiveSubject(s) }
+                    return store.passedSubjects.isEmpty
                 }
                 if let first = open.first {
                     openTestCard(first, others: Array(open.dropFirst().prefix(3)))
