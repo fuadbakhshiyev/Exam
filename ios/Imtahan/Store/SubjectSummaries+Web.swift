@@ -173,6 +173,187 @@ nonisolated extension SubjectSummaries {
                 "align-items yatay hizalama **deyil**, bu justify-content-dir.",
                 "@responsive və @container media query **deyil**.",
             ]),
+            .init(number: 8, title: "JavaScript-ə giriş", blocks: [
+                .init(heading: "Rolu", points: [
+                    "HTML **yapı**, CSS **görsellik**, JavaScript **etkileşim və hərəkət** verir: statik sayfa → **dinamik** uygulama.",
+                    "**İstemci tarafında** işləyir: sunucuya yük salmadan **anında geri bildirim** (məs. form xətasını dərhal yoxlamaq).",
+                    "Böyük layihələr üçün framework-lər: **React, Angular, Vue**.",
+                ]),
+                .init(heading: "Değişken, veri tipi, operatör", points: [
+                    "Değişken: **var, let, const**. let/const **blok kapsamı**, var **işlev kapsamı**.",
+                    "Veri tipləri: **sayı** (yaş), **string** (ad), **boolean** (keçdi/kəsildi), **dizi** (dərslər, notlar), **nesne** (tələbənin bütün bilgisi).",
+                    "Operatorlar: **aritmetik, atama, karşılaştırma, mantıksal** (&&, ||, !).",
+                    "**===**: həm **dəyəri**, həm **veri tipini** yoxlayır.",
+                ]),
+                .init(heading: "Etkileşim", points: [
+                    "Düyməyə tıklama: **onclick** olayı.",
+                    "**alert()** → bilgilendirme, **confirm()** → **onay**, **prompt()** → istifadəçidən **veri almaq**.",
+                    "Form doğrulama: e-posta/şifrə qaydaya uyğun deyilsə **return false;** → form **sunucuya göndərilmir**.",
+                    "Nümunələr: adı alıb salamlamaq (string + DOM), iki ədədi toplayan hesap makinesi, e-posta yoxlayan form.",
+                ]),
+            ], traps: [
+                "**def** JavaScript-də değişken açar sözü **deyil** (var, let, const var).",
+                "**console.log()** uyarı kutusu **açmır**, konsola yazır; kutunu **alert()** açır.",
+                "**==** tipə baxmır, tip+dəyər üçün **===**.",
+                "prompt() onay almır (bu confirm()-dir), veri **alır**.",
+            ]),
+            .init(number: 9, title: "DOM və olay yönetimi", blocks: [
+                .init(heading: "DOM", points: [
+                    "**DOM = Document Object Model**: HTML belgesinin **nesne tabanlı ağaç** quruluşu, hər öğe bir **düğüm**.",
+                    "Erişim: **getElementById** (**tək öğe**), getElementsByClassName, getElementsByTagName, **querySelector**, **querySelectorAll** (**NodeList**).",
+                    "İçerik: **innerHTML** (HTML işlənir), **innerText / textContent** (yalnız mətn).",
+                    "Stil: **style**, **classList** (add, **remove**, toggle). Öznitelik: **setAttribute**.",
+                    "Yaratmaq/silmək: **createElement, appendChild, insertBefore, remove, removeChild**.",
+                ]),
+                .init(heading: "Olay türleri", points: [
+                    "Fare: **click, dblclick, mouseover, mouseout**. Klavye: **keydown, keyup**.",
+                    "Form: **input, change, submit** (form göndəriləndə **submit**).",
+                    "Pencere: **load, resize, scroll**. Medya: **play, pause, ended**.",
+                    "Həm click, həm dblclick varsa: **əvvəl click**, sonra dblclick.",
+                ]),
+                .init(heading: "addEventListener və yayılım", points: [
+                    "**addEventListener**: bir öğeyə **birdən çox dinləyici**, **removeEventListener** ilə silinir.",
+                    "**{ once: true }** → funksiya **yalnız bir dəfə** işləyir.",
+                    "Yayılım 3 aşama: **capturing → target → bubbling**. Varsayılan: **bubbling** (hədəfdən **yuxarı**).",
+                    "**capture: true** (və ya 3-cü parametr **true**) → üst öğe **əvvəl** tutur (\"Body\" sonra \"Buton\").",
+                    "**event.stopPropagation()** → olayın üst öğelərə yayılmasını **dayandırır**.",
+                ]),
+            ], traps: [
+                "Bubbling yuxarıdan aşağı **deyil**, hədəfdən **yuxarı** qalxır (aşağı enən capturing-dir).",
+                "getElementById siyahı **qaytarmır**, **tək öğe** qaytarır.",
+                "innerHTML yalnız mətn **deyil**, HTML etiketlərini də işləyir.",
+                "querySelectorAll tək öğe **deyil**, **NodeList** qaytarır.",
+            ]),
+            .init(number: 10, title: "Bootstrap və jQuery", blocks: [
+                .init(heading: "Bootstrap", points: [
+                    "**Twitter** tərəfindən hazırlanmış, **açık kaynaklı CSS çerçevesi**; **mobil öncelikli**.",
+                    "İlk çıxış **2011**, **Bootstrap 5** — **2021** (ən son). Əlavə yolu: **CDN** (jsDelivr, önbellek → sürət) və ya **yerli fayllar**.",
+                    "**.container**: **sabit genişlik**, kənarlarda boşluq. **.container-fluid**: ekranın **tamamı**. Növlər: container, container-fluid, container-{breakpoint}.",
+                    "Breakpoints: **xs <576px, sm ≥576px, md ≥768px** … lg, xl, xxl (**≥1400px**).",
+                    "Düzen sistemi: **Breakpoints + Containers + Grid**. Grid: **12 sütun**, **.row** + **.col** (.col-6 = yarı, .col-md-6).",
+                ]),
+                .init(heading: "Bootstrap sınıfları", points: [
+                    "Tipografi: **.h1–.h6**, **.text-center** (ortalar), **.text-primary** (tema rəngi).",
+                    "Tablo: **.table**, **.table-striped** (zebra), **.table-hover** (fare üstündə), **.table-dark**, **.table-responsive** (kiçik ekranda kaydırma).",
+                    "Bileşenlər: **.alert** (uğur: alert-success), **.btn**, **.form-control**, **.card** (resim + başlık + mətn kutusu).",
+                    "Form doğrulama: <form>-a class **needs-validation** + **novalidate** özelliği. Açılır liste: **form-select**.",
+                ]),
+                .init(heading: "jQuery", points: [
+                    "JavaScript **kütüphanesi**: az kod, **çapraz tarayıcı uyumu**. Söz dizimi: **$(\"seçici\").aksiyon()**.",
+                    "Seçicilər: **$(\"p\")** bütün <p>-lər, **$(\"#id\")** ID, **$(\".sinif\")** class.",
+                    "Olaylar: **.click(), .hover(), .submit()**, .dblclick(), .keyup(), .change(), .focus(), .scroll().",
+                    "Efektlər: show/hide, **fadeIn** (yavaş görünür), fadeOut, slideDown/Up, toggle, **.animate()**; süre ms və ya \"slow\"/\"fast\".",
+                    "DOM: **.text(), .html(), .attr(), .css()**, add/remove/toggleClass, **.append()** (sonuna əlavə), .prepend(), .remove().",
+                    "AJAX (səhifə yenilənmədən): **.ajax(), .get(), .post(), .getJSON(), .load()**.",
+                ]),
+            ], traps: [
+                "**.click()** DOM manipülasyonu **deyil**, olaydır.",
+                ".container ekranı tam **örtmür**, tam örtən **.container-fluid**-dir.",
+                "Grid **20** deyil, **12** sütundur.",
+                "**Tables** düzen sisteminin bileşeni **deyil** (Breakpoints, Containers, Grid).",
+                "Bootstrap 5 **Internet Explorer**-i dəstəkləmir; Windows-da **Safari** yoxdur.",
+            ]),
+            .init(number: 11, title: "Performans, SEO, güvenlik", blocks: [
+                .init(heading: "Hız optimizasyonu", points: [
+                    "**Tasarım düzeyi**: kod, **görsel** (sıxışdırma, ölçü), içerik optimizasyonu.",
+                    "**Geliştirme düzeyi**: **harici kaynak** (azalt, tək faylda birləşdir), **önbellekleme**, **eşzamansız yükleme**.",
+                    "**Dağıtım düzeyi**: **yük dengeleme**, **CDN** (ən yaxın sunucudan), **sunucu** optimizasyonu.",
+                    "**Lazy Loading**: görselləri gec yükləyib **yüklenme süresini azaldır**. **LCP** ideal: **2,5 saniyədən az**.",
+                ]),
+                .init(heading: "SEO", points: [
+                    "Məqsəd: alqoritmlərə uyğun quruluşla **organik trafiği artırmaq**.",
+                    "**Sayfa içi**: başlıklar və **meta etiketlər**, **anahtar kelime** (təbii, təkrarsız), içerik yapısı.",
+                    "**Sayfa dışı**: **geri bağlantılar** (backlink), **sosyal medya sinyalleri**, **marka otoritesi**.",
+                    "**Teknik**: **URL yapısı və XML site haritası**, **mobil uyumluluk**, **site hızı və erişilebilirlik**.",
+                ]),
+                .init(heading: "Güvenlik", points: [
+                    "Başlıqlar: **Protokoller ve Standartlar**, **Politikalar ve Prensipler**, **Saldırılar ve Testler**.",
+                    "Veri iletimi: **SSL/TLS**. **Bütünlük**: verinin yetkisiz **dəyişdirilməməsi**.",
+                    "Yaygın saldırılar: **XSS, SQL (injection), CSRF**. OWASP: yazılım güncellemeleri → **yazılım ve veri bütünlüğü hataları**.",
+                ]),
+            ], traps: [
+                "**Sosyal medya** teknik SEO **deyil**, sayfa dışı SEO-dur.",
+                "Geri bağlantılar sayfa içi **deyil**, sayfa dışıdır.",
+                "SERP \"yalnız reklam səhifəsi\" **deyil**.",
+                "CDN və yük dengeleme tasarım düzeyi **deyil**, **dağıtım** düzeyidir.",
+            ]),
+            .init(number: 12, title: "İçerik Yönetim Sistemleri (CMS)", blocks: [
+                .init(heading: "Əsaslar", points: [
+                    "CMS: **kodlama bilgisi olmadan** içerik yaratmaq, düzənləmək, yayımlamaq; **çox istifadəçili** iş.",
+                    "Tarix: masaüstü HTML düzenleyicilər (**CityDesk, MarsEdit**) → sunucu tabanlı sistemlər.",
+                    "Bileşenlər: **düzenleme arayüzü, içerik deposu, yayınlama modülü, güvenlik ve erişim kontrolü**.",
+                    "İçerik = **öz** (mətn, görsel, səs, video) + **metadata** (başlık, anahtar kelime, açıklama).",
+                    "**CMS** → içerik üretimi və yayını; **DAM** → faylların **mərkəzi depolanması**.",
+                ]),
+                .init(heading: "Üstünlük / çatışmazlıq", points: [
+                    "Üstünlük: **teknik bilgi tələb etmir**, zaman qənaəti, işbirliyi, tema/eklenti esnekliyi, SEO, maliyet verimliliği.",
+                    "Açık kaynak üstünlüyü: **topluluk desteği ilə davamlı inkişaf**.",
+                    "Çatışmazlıq: populyar CMS **güvenlik riski**, çox eklenti → **performans** problemi, bakım ehtiyacı, **vendor lock-in**.",
+                    "**Tema** → sitenin **görsel tasarımı və düzəni**; **eklenti** → əlavə funksiya (SEO, güvenlik, e-ticaret).",
+                ]),
+                .init(heading: "Platformlar və gələcək", points: [
+                    "**WordPress**: ən yaygın, **dinamik sayt və blog**. **Joomla**, **Drupal** (böyük, kurumsal, yüksək güvenlik) — **açık kaynak**.",
+                    "**Craft CMS** (geliştiricilər), **DNN** (.NET), **Wix / Squarespace** (**bulut**, sürükle-bırak), **Shopify** (**e-ticaret**), **Moodle** (**LMS**, təhsil).",
+                    "**Statik** sayt: sabit HTML/CSS/JS, sürətli, güvənli. **Dinamik**: veritabanı, içerik istifadəçiyə görə **dəyişir**.",
+                    "Gələcək: **mobil uyumluluk və duyarlı tasarım** (PWA), güvenlik/güncellemeler, açık kaynak; **Headless / API-First**.",
+                ]),
+            ], traps: [
+                "Moodle e-ticaret **deyil**, **LMS**-dir; e-ticarət Shopify-dır.",
+                "Wix açık kaynak masaüstü **deyil**, **bulut tabanlı**dır.",
+                "DAM içerik yayınlamır, faylları **depolayır**.",
+                "Statik sayt veritabanından içerik **çəkmir**.",
+            ]),
+            .init(number: 13, title: "Web tasarımında yapay zekâ", blocks: [
+                .init(heading: "Rolu", points: [
+                    "Ən böyük yenilik: **rutin, təkrarlanan işləri avtomatlaşdırıb** verimliliyi artırmaq.",
+                    "Planlama: **persona** yaratmaq, **bir sayt üçün birdən çox konsept** təklif etmək.",
+                    "Arayüz: **Figma AI, Galileo AI** mətn komutundan taslak; UX üçün **menyu yerləşimi, düymə ölçüsü, gezinme yolları** təklifi.",
+                    "Kişiselleştirme: **tıklama/gezinme davranışını analiz** edib xüsusi içerik/məhsul təklif edir.",
+                    "Erişilebilirlik: videolara **avtomatik altyazı**, görsəlləri/mətni **seslendirmə**.",
+                ]),
+                .init(heading: "Araçlar", points: [
+                    "Kodlama: **GitHub Copilot, Codeium, Tabnine**. Tasarım: **Figma AI, Uizard, Galileo AI**.",
+                    "Görsel: **MidJourney, Stable Diffusion, DALL·E**. Mətn: **ChatGPT, Jasper AI, Copy.ai**.",
+                    "Səs/video: **RunwayML, Pika Labs**. SEO: **SurferSEO, MarketMuse**.",
+                    "VS Code eklentiləri: **Copilot**, Codeium, **Cline**, **Continue**; Microsoft-un **AI Toolkit**-i (Azure OpenAI, Hugging Face).",
+                ]),
+                .init(heading: "İki üsul və sınırlar", points: [
+                    "**Tarayıcı tabanlı**: ChatGPT-dən **persona, hedefler, kullanıcı akışları**, sonra HTML/CSS/JS → VS Code-a yapışdır.",
+                    "**VS Code + Copilot**: sohbet ekranında kod, **\"Insert into New File\"** (Yeni Dosyaya Ekle) ilə fayla.",
+                    "Üstünlük: süreci sürətləndirir, **maliyeti və hata oranını azaldır**.",
+                    "Sınır: **yaradıcılığı məhdudlaşdırma riski** və **içerik özgünlüğü**.",
+                ]),
+            ], traps: [
+                "RunwayML kodlama aracı **deyil**, **video** aracıdır.",
+                "MidJourney/DALL·E mətn yox, **görsel** üretir.",
+                "\"Kod içindəki güvenlik açıqlarını tapa bilməsi\" etik tartışma **deyil**.",
+                "Bütün kontrolü AI-a vermək tövsiyə **olunmur**.",
+            ]),
+            .init(number: 14, title: "Yol haritası və yayına alma", blocks: [
+                .init(heading: "Planlama və tasarım", points: [
+                    "**İlk addım**: **ihtiyaç analizi ve planlama** (amac, hedef kitle, paydaş görüşləri; Notion, Trello, Google Docs).",
+                    "**Site haritası**: **sayfalar və aralarındakı bağlantılar**, menyu düzəni.",
+                    "**Kullanıcı akışı (user flow)**: girişdən hədəfə qədər addımlar (məs. axtar → sepet → ödəniş).",
+                    "**Storyboard**: kullanıcı yolculuğunu **sahne sahne** görselləşdirir.",
+                    "**Wireframe**: iskelet, **görsel detal olmadan** düzən; estetik yox, **işlevsellik**. **Mockup**: renk, tipografi, ikon, logo ilə **son görünüşə yaxın**.",
+                    "Sıra: **Wireframe → Mockup → Prototip**. Prototip: yayımdan əvvəl **işləyən model**, **hataları tapmağı asanlaşdırır**.",
+                ]),
+                .init(heading: "Geliştirme və test", points: [
+                    "**Frontend**: HTML (iskelet), CSS (görsel), JS (etkileşim); **Bootstrap, Tailwind** — istifadəçi arayüzü, düymələr.",
+                    "**Backend**: **veritabanı, kimlik doğrulama, yetkilendirme**; **Django** (Python), **Laravel** (PHP).",
+                    "Testlər: **birim**, **entegrasyon**, **kullanılabilirlik**, **performans və güvenlik**.",
+                ]),
+                .init(heading: "Yayına alma və bakım", points: [
+                    "**Alan adı**: qısa, yadda qalan. **Hosting** → fayllar **FTP, Git, Docker** ilə.",
+                    "**DNS** alan adını sunucuya yönləndirir, **SSL** güvenli bağlantı.",
+                    "Yayın son **deyil**: güncelleme, güvenlik yamaları, **yedekleme**, **Google Analytics** ilə analiz.",
+                ]),
+            ], traps: [
+                "**Tipografi testi** test növü **deyil**.",
+                "**Sayfa düzeni (layout)** backend **deyil**, frontend-dir.",
+                "Wireframe-də renk və tipografi **yoxdur**, onlar mockup-dadır.",
+                "**Mockminus** mock-up hazırlama mühiti **deyil**.",
+            ]),
         ],
         quick: [
             "Berners-Lee → WWW · W3C → standart · DNS → IP · HTTPS → şifreli · POP3 → endirib silir",
@@ -183,6 +364,11 @@ nonisolated extension SubjectSummaries {
             "<main> · <nav> · <article> · <fieldset> – <legend> · alt",
             "Seçici – Özellik – Değer · class → nöqtə · padding içdə, margin çöldə · border-collapse",
             "Flexbox → tek boyut · justify-content · order · flex-grow · fr → esnek pay · @media · transition",
+            "=== → tip + dəyər · let/const → blok · alert / confirm → onay / prompt → veri · onclick · return false",
+            "DOM → ağac · getElementById → tək öğe · querySelectorAll → NodeList · bubbling ↑ · stopPropagation · once: true",
+            "Bootstrap → Twitter · 12 sütun · container-fluid → tam · xxl ≥1400px · table-striped · needs-validation · $(\"#id\") · .append()",
+            "SEO: sayfa içi (meta) · sayfa dışı (backlink, sosyal) · teknik (URL, site haritası, mobil) · LCP < 2,5 s · SSL/TLS",
+            "WordPress → blog · Moodle → LMS · Shopify → e-ticaret · Wix → bulut · RunwayML → video · Wireframe → Mockup → Prototip",
         ]
     )
 }

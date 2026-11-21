@@ -1,0 +1,1887 @@
+[
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>JavaScript'in istemci tarafında çalışmasının temel avantajı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Veritabanı sorgularını doğrudan sunucuda çalıştırması",
+   "Sayfanın HTML yapısını tamamen ortadan kaldırması",
+   "Yalnızca sunucu yeniden başlatıldığında çalışması",
+   "Sunucuya gereksiz yük bindirmeden hızlı geri bildirim sağlaması",
+   "Kullanıcı tarayıcısına ihtiyaç duymaması"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>Bir web sayfasında HTML yapıyı, CSS görselliği sağlarken JavaScript'in katkısı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sayfanın alan adını IP adresine çevirmek",
+   "Sayfaya etkileşim ve hareket katmak",
+   "Sayfanın iskelet yapısını tanımlamak",
+   "Sayfanın sunucuya yüklenmesini sağlamak",
+   "Yazı tiplerini sisteme kurmak"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>JavaScript'in büyük projelerde ölçeklenebilir, modüler ve yeniden kullanılabilir yapılarla kullanılmasını sağlayan framework'ler aşağıdakilerden hangisinde birlikte verilmiştir?</strong>",
+  "o": [
+   "MySQL, Oracle, MS SQL",
+   "Photoshop, Illustrator, InDesign",
+   "Apache, Nginx, IIS",
+   "FTP, DNS, SMTP",
+   "React, Angular, Vue"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>JavaScript'te let ve const ile tanımlanan değişkenler hangi kapsama sahiptir?</strong>",
+  "o": [
+   "İşlev kapsamı",
+   "Sunucu kapsamı",
+   "Blok kapsamı",
+   "Sayfa dışı kapsam",
+   "Oturum kapsamı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>JavaScript'te var ile tanımlanan değişkenin kapsamı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "İşlev kapsamı",
+   "Blok kapsamı",
+   "Yalnızca döngü kapsamı",
+   "Yalnızca koşul kapsamı",
+   "Tarayıcı geçmişi kapsamı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>Bir öğrencinin dersten başarılı olup olmadığını saklamak için en uygun veri tipi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "String",
+   "Dizi (Array)",
+   "Nesne (Object)",
+   "Boolean",
+   "Sayı (Number)"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>Bir öğrenciye ait ad, yaş, bölüm gibi tüm bilgileri tek bir yapıda toplamak için en uygun JavaScript veri tipi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Boolean",
+   "Nesne (Object)",
+   "Sayı (Number)",
+   "Tek bir string",
+   "Null"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>Bir öğrencinin aldığı dersleri ya da notları bir arada saklamak için en uygun veri tipi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Boolean",
+   "Undefined",
+   "Tek bir sayı",
+   "Mantıksal operatör",
+   "Dizi (Array)"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>Bir öğrencinin adını saklamak için kullanılması gereken veri tipi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Boolean",
+   "Dizi",
+   "String",
+   "Sayı",
+   "Null"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>Aşağıdakilerden hangisi JavaScript'te ünitede ele alınan operatör türlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Derleme operatörü",
+   "Aritmetik operatör",
+   "Atama operatörü",
+   "Karşılaştırma operatörü",
+   "Mantıksal operatör"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>JavaScript'te kullanıcıdan bir işlem için onay almak amacıyla kullanılan fonksiyon aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "alert()",
+   "prompt()",
+   "console.log()",
+   "confirm()",
+   "document.write()"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>JavaScript'te kullanıcıyı yalnızca bilgilendirmek için ekranda mesaj kutusu gösteren fonksiyon aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "confirm()",
+   "alert()",
+   "prompt()",
+   "parseInt()",
+   "getElementById()"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>Form doğrulamanın JavaScript ile istemci tarafında yapılmasının temel faydası aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Formun tasarımının otomatik olarak değişmesi",
+   "Sayfanın arama motorlarında üst sıraya çıkması",
+   "Sunucunun tamamen devre dışı kalması",
+   "Kullanıcı şifrelerinin herkese açık olması",
+   "Yanlış verilerin sunucuya gönderilmesinin engellenmesi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>Aşağıdaki ifadelerden hangisi JavaScript'te bir değişkene değer atamak için kullanılan atama operatörüdür?</strong>",
+  "o": [
+   "===",
+   "&amp;&amp;",
+   "=",
+   "!=",
+   "||"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>JavaScript'te \"5\" == 5 ifadesinin sonucu ile \"5\" === 5 ifadesinin sonucu sırasıyla aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "true, false",
+   "false, true",
+   "true, true",
+   "false, false",
+   "undefined, true"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>İki sayıyı toplayan basit bir hesap makinesi uygulaması öğrencilere öncelikle hangi konuyu göstermektedir?</strong>",
+  "o": [
+   "Sunucu yük dengelemesinin nasıl yapıldığını",
+   "CMS tema kurulumunu",
+   "SSL sertifikası yüklemeyi",
+   "Aritmetik operatörlerin ve kullanıcı girdilerinin işlenişini",
+   "Alan adı tescil sürecini"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>Kullanıcının adını alıp ekranda selamlama mesajı gösteren uygulama, öğrencilerin hangi konuları anlamasını kolaylaştırır?</strong>",
+  "o": [
+   "Veritabanı normalizasyonu",
+   "String işlemleri ve DOM manipülasyonu",
+   "Yük dengeleme ve CDN",
+   "Backlink oluşturma",
+   "Docker ile dağıtım"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>JavaScript koşul ifadeleri ve döngülerle birlikte kullanıldığında programın karar mekanizmasını şekillendiren yapı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Meta etiketler",
+   "CSS seçicileri",
+   "Alan adları",
+   "Medya sorguları",
+   "Operatörler"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>JavaScript'te const ile tanımlanan bir değişken için aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "İşlev kapsamına sahiptir",
+   "Yalnızca sayı saklayabilir",
+   "Tanımlandıktan sonra yeniden değer atanamaz",
+   "Tarayıcı kapatılsa da değerini korur",
+   "Mutlaka büyük harfle yazılır"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 8,
+  "q": "<strong>Aşağıdakilerden hangisi JavaScript'te bir karşılaştırma operatörüdür?</strong>",
+  "o": [
+   "!=",
+   "&amp;&amp;",
+   "=",
+   "+",
+   "||"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>DOM için aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Sunucuda çalışan bir veritabanı yönetim sistemidir.",
+   "Yalnızca CSS dosyalarını içeren bir klasördür.",
+   "Görselleri sıkıştıran bir optimizasyon aracıdır.",
+   "Alan adlarını IP adreslerine çeviren bir sistemdir.",
+   "Tarayıcı tarafından HTML belgesinin nesne tabanlı ağaç yapısına dönüştürülmüş hâlidir."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>DOM ağaç yapısında sayfadaki her öğe aşağıdakilerden hangisi olarak temsil edilir?</strong>",
+  "o": [
+   "Sunucu",
+   "Çerez",
+   "Düğüm (node)",
+   "Protokol",
+   "Eklenti"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>CSS seçicisine uyan ilk öğeyi döndüren DOM erişim yöntemi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "querySelector()",
+   "querySelectorAll()",
+   "getElementsByTagName()",
+   "getElementsByClassName()",
+   "createElement()"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Bir öğenin içeriğini HTML etiketlerini de yorumlayarak değiştiren özellik aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "textContent",
+   "innerText",
+   "classList",
+   "innerHTML",
+   "setAttribute"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Bir HTML öğesinin özniteliğini (örneğin src veya href) değiştirmek için kullanılan yöntem aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "appendChild()",
+   "setAttribute()",
+   "stopPropagation()",
+   "removeChild()",
+   "innerText"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>JavaScript ile sayfaya yeni bir öğe eklemek için önce öğeyi oluşturan yöntem aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "removeChild()",
+   "querySelectorAll()",
+   "getElementById()",
+   "removeEventListener()",
+   "createElement()"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Oluşturulan bir öğeyi üst öğenin sonuna ekleyen DOM yöntemi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "remove()",
+   "getElementsByTagName()",
+   "appendChild()",
+   "classList.remove()",
+   "innerText"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Bir öğeyi belirli bir öğenin önüne yerleştirmek için kullanılan DOM yöntemi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "insertBefore()",
+   "appendChild()",
+   "createElement()",
+   "querySelector()",
+   "setAttribute()"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi fare (mouse) olaylarından biri <u>değildir</u>?</strong>",
+  "o": [
+   "click",
+   "dblclick",
+   "mouseover",
+   "keyup",
+   "mouseout"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi klavye olayıdır?</strong>",
+  "o": [
+   "scroll",
+   "keydown",
+   "play",
+   "submit",
+   "mouseover"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Tarayıcı penceresinin boyutu değiştirildiğinde tetiklenen pencere olayı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "change",
+   "ended",
+   "keyup",
+   "dblclick",
+   "resize"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Bir video veya ses dosyasının oynatılması bittiğinde tetiklenen medya olayı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "pause",
+   "load",
+   "ended",
+   "input",
+   "mouseout"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi form olayları arasında yer <u>almaz</u>?</strong>",
+  "o": [
+   "resize",
+   "input",
+   "change",
+   "submit",
+   "Hiçbiri; hepsi form olayıdır"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>addEventListener metodunun eski yöntemlere göre avantajlarından biri aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yalnızca bir kez kullanılabilmesi",
+   "Sayfanın sunucuda derlenmesini sağlaması",
+   "CSS dosyalarını otomatik bağlaması",
+   "Bir öğeye birden fazla olay dinleyicisi eklenebilmesi",
+   "Olayların hiçbir zaman yayılmamasını sağlaması"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>addEventListener ile eklenmiş bir olay dinleyicisini kaldırmak için kullanılan metot aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "stopPropagation()",
+   "removeEventListener()",
+   "removeChild()",
+   "preventDefault()",
+   "classList.remove()"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Olay yayılımı (event propagation) mekanizmasının aşamaları aşağıdakilerden hangisinde doğru sırayla verilmiştir?</strong>",
+  "o": [
+   "Bubbling – Target – Capturing",
+   "Target – Capturing – Bubbling",
+   "Loading – Target – Ending",
+   "Capturing – Bubbling – Target",
+   "Capturing – Target – Bubbling"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Varsayılan olarak olaylar hangi aşamada işlenir?</strong>",
+  "o": [
+   "Capturing",
+   "Loading",
+   "Bubbling",
+   "Rendering",
+   "Parsing"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Bir olayın capturing aşamasında yakalanmasını sağlamak için addEventListener'a hangi parametre verilir?</strong>",
+  "o": [
+   "capture: true",
+   "once: true",
+   "bubbling: false",
+   "passive: true",
+   "target: true"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Kullanıcının metin kutusuna yazdığı görevleri listeye ekleyip yanındaki \"sil\" butonuyla kaldırabildiği uygulama aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Görsel galeri",
+   "Hesap makinesi",
+   "Selamlama uygulaması",
+   "Yapılacaklar listesi (to-do list)",
+   "E-posta doğrulama formu"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>İleri–geri butonlarına tıklanarak görseller arasında gezinilen uygulama hangi iki konunun birlikte kullanımını gösterir?</strong>",
+  "o": [
+   "SEO ve backlink",
+   "DOM manipülasyonu ve olay yönetimi",
+   "CMS ve DAM",
+   "Yük dengeleme ve CDN",
+   "SSL ve DNS"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi bir öğenin stilini güncellemek için kullanılan DOM özelliklerindendir?</strong>",
+  "o": [
+   "getElementsByTagName",
+   "removeEventListener",
+   "createElement",
+   "insertBefore",
+   "classList"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap'i geliştiren şirket aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Twitter",
+   "Google",
+   "Microsoft",
+   "Apple",
+   "Mozilla"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap için aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Ücretli ve kapalı kaynaklı bir veritabanıdır.",
+   "Yalnızca masaüstü ekranlar için tasarlanmıştır.",
+   "Sunucu tarafında çalışan bir programlama dilidir.",
+   "Açık kaynaklı ve mobil öncelikli bir CSS çerçevesidir.",
+   "Bir içerik yönetim sistemidir."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Ünitede Bootstrap'in en güncel sürümü olarak belirtilen Bootstrap 5 hangi yılda yayınlanmıştır?</strong>",
+  "o": [
+   "2011",
+   "2021",
+   "2015",
+   "2008",
+   "2018"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap'in projeye CDN üzerinden eklenmesinin avantajı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kodların sunucuda derlenmesini sağlaması",
+   "İnternet bağlantısı olmadan da her zaman çalışması",
+   "Grid sistemini 20 sütuna çıkarması",
+   "jQuery kullanımını engellemesi",
+   "Önbellek avantajıyla sayfa yükleme hızını artırması"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap'te ekranın tamamını kaplayan ve tam ekran tasarımlar için uygun olan kapsayıcı sınıfı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "container",
+   "row",
+   "container-fluid",
+   "col-6",
+   "table-dark"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap'te küçük (sm) kırılma noktası hangi genişlik değerinden başlar?</strong>",
+  "o": [
+   "≥576px",
+   "≥768px",
+   "≥992px",
+   "≥1400px",
+   "&lt;320px"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap Layout (Düzen) sisteminin temel bileşenleri aşağıdakilerden hangisinde doğru verilmiştir?</strong>",
+  "o": [
+   "Tables, Alerts, Cards",
+   "Header, Footer, Aside",
+   "Fonts, Colors, Icons",
+   "Breakpoints, Containers, Grid",
+   "Forms, Modals, Buttons"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap'te .col-6 sınıfına sahip bir sütun satırın ne kadarını kaplar?</strong>",
+  "o": [
+   "Tamamını",
+   "Yarısını",
+   "Üçte birini",
+   "Dörtte birini",
+   "Altıda birini"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap'te .col-md-6 gibi kırılma noktası içeren sütun sınıflarının kullanılma amacı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Tabloya zebra deseni eklemek",
+   "Metni büyük harfe çevirmek",
+   "Formu sunucuya göndermek",
+   "Sayfaya uyarı kutusu eklemek",
+   "Sütunların farklı ekran boyutlarında farklı genişlikler almasını sağlamak"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap'te koyu temalı tablo oluşturmak için kullanılan sınıf aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "table-striped",
+   "table-hover",
+   "table-dark",
+   "table-bordered",
+   "text-primary"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap'te tema rengini (örneğin mavi) metne uygulamak için kullanılan sınıf aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "text-primary",
+   "text-center",
+   "h1",
+   "btn",
+   "form-control"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap'te form giriş alanlarına standart stil kazandırmak için kullanılan sınıf aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "alert",
+   "card",
+   "table",
+   "form-control",
+   "container-fluid"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap ile form doğrulama yapmak için &lt;form&gt; etiketine eklenmesi gereken class ve özellik aşağıdakilerden hangisinde birlikte verilmiştir?</strong>",
+  "o": [
+   "form-control ve readonly",
+   "needs-validation ve novalidate",
+   "table-hover ve disabled",
+   "container ve required",
+   "form-select ve placeholder"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Bootstrap'te bir &lt;select&gt; açılır listesini iyileştirmek için eklenen sınıf aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "form-control-lg",
+   "input-group",
+   "needs-validation",
+   "table-striped",
+   "form-select"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>jQuery'nin temel söz dizimi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "#seçici{aksiyon}",
+   "&lt;seçici aksiyon&gt;",
+   "$(\"seçici\").aksiyon()",
+   "seçici-&gt;aksiyon[]",
+   "@seçici:aksiyon"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>jQuery'de $(\".sinif\") ifadesi neyi seçer?</strong>",
+  "o": [
+   "Class değeri \"sinif\" olan öğeleri",
+   "ID'si \"sinif\" olan tek öğeyi",
+   "Tüm &lt;p&gt; etiketlerini",
+   "Sayfadaki tüm formları",
+   "Yalnızca ilk &lt;div&gt; öğesini"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>jQuery'de öğeleri kaydırma efektiyle gösteren fonksiyon aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "fadeOut()",
+   "hide()",
+   "attr()",
+   "slideDown()",
+   "post()"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>jQuery'de boyut veya konum değişikliği gibi özel animasyonlar oluşturmak için kullanılan fonksiyon aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "toggleClass()",
+   "animate()",
+   "getJSON()",
+   "text()",
+   "submit()"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>jQuery'de bir öğenin src veya class gibi özniteliklerini değiştirmek için kullanılan fonksiyon aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "fadeIn()",
+   "hover()",
+   "load()",
+   "slideUp()",
+   "attr()"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>jQuery'de sayfa yenilenmeden sunucudan JSON formatında veri almak için kullanılan AJAX fonksiyonu aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "append()",
+   "css()",
+   "getJSON()",
+   "toggle()",
+   "dblclick()"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>jQuery'de sunucuya veri göndermek için kullanılan AJAX fonksiyonu aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "post()",
+   "get()",
+   "prepend()",
+   "show()",
+   "focus()"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi jQuery efekt fonksiyonlarından biri <u>değildir</u>?</strong>",
+  "o": [
+   "fadeToggle()",
+   "slideToggle()",
+   "fadeOut()",
+   "getJSON()",
+   "hide()"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Hız optimizasyonunda kod, görsel ve içerik optimizasyonu hangi düzeyde ele alınır?</strong>",
+  "o": [
+   "Dağıtım düzeyi",
+   "Tasarım düzeyi",
+   "Geliştirme düzeyi",
+   "Sunucu düzeyi",
+   "Yasal düzey"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Harici kaynak, önbellekleme ve eşzamansız yükleme optimizasyonları hız optimizasyonunun hangi düzeyinde yer alır?</strong>",
+  "o": [
+   "Tasarım düzeyi",
+   "Dağıtım düzeyi",
+   "Politika düzeyi",
+   "İçerik düzeyi",
+   "Geliştirme düzeyi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi hız optimizasyonunun dağıtım düzeyinde yer <u>almaz</u>?</strong>",
+  "o": [
+   "Yük dengeleme optimizasyonu",
+   "İçerik dağıtım ağı optimizasyonu",
+   "Görsel optimizasyonu",
+   "Sunucu optimizasyonu",
+   "Hiçbiri"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Kaynakların ana içeriği bloklamadan yüklenmesini sağlayan optimizasyon türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Eşzamansız yükleme optimizasyonu",
+   "Yük dengeleme optimizasyonu",
+   "Marka otoritesi",
+   "Geri bağlantı optimizasyonu",
+   "İçerik yapısı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Tekrar eden veri transferlerini en aza indirmeyi amaçlayan optimizasyon aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Görsel optimizasyonu",
+   "Anahtar kelime kullanımı",
+   "Yasal kapsam",
+   "Önbellekleme optimizasyonu",
+   "Sosyal medya sinyalleri"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Trafik yoğunluğu durumlarında sunucular arası yük paylaşımı yapılmasını öngören optimizasyon aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "İçerik optimizasyonu",
+   "Yük dengeleme optimizasyonu",
+   "Kod optimizasyonu",
+   "Önbellekleme optimizasyonu",
+   "Eşzamansız yükleme optimizasyonu"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>İçeriğin coğrafi olarak dağıtık sunucular üzerinden kullanıcıya en yakın kaynaktan iletilmesini sağlayan yapı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "XML site haritası",
+   "Meta etiket",
+   "CSRF",
+   "Backlink",
+   "İçerik Dağıtım Ağı (CDN)"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Görsel optimizasyonu kapsamında aşağıdakilerden hangisi yapılmalıdır?</strong>",
+  "o": [
+   "Görsellerin en yüksek çözünürlükte, sıkıştırılmadan kullanılması",
+   "Tüm görsellerin metin içine gömülmesi",
+   "Görsellerin uygun formatlarda sıkıştırılması ve çözünürlüğe göre yeniden boyutlandırılması",
+   "Görsellerin yalnızca BMP formatında kaydedilmesi",
+   "Her sayfaya aynı görselin çok kez eklenmesi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Ünitede SEO bileşenleri hangi üç ana kategori altında ele alınmıştır?</strong>",
+  "o": [
+   "Sayfa İçi SEO, Sayfa Dışı SEO, Teknik SEO",
+   "Tasarım, Geliştirme, Dağıtım",
+   "Protokoller, Politikalar, Saldırılar",
+   "Frontend, Backend, Veritabanı",
+   "Wireframe, Mockup, Prototip"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi Sayfa İçi SEO bileşenlerinden biridir?</strong>",
+  "o": [
+   "Geri bağlantılar",
+   "Sosyal medya sinyalleri",
+   "Marka otoritesi",
+   "Başlıklar ve meta etiketler",
+   "Yük dengeleme"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Kaliteli ve otoriter sitelerden gelen bağlantılar SEO'nun hangi kategorisinde yer alır?</strong>",
+  "o": [
+   "Sayfa İçi SEO",
+   "Sayfa Dışı SEO",
+   "Teknik SEO",
+   "Tasarım düzeyi",
+   "Güvenlik testleri"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi Sayfa Dışı SEO bileşenlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Geri bağlantılar",
+   "Sosyal medya sinyalleri",
+   "Marka otoritesi",
+   "Hiçbiri",
+   "URL yapısı ve site haritası"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Teknik SEO kapsamında arama motorlarını yönlendirmek için kullanılan yapı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sosyal medya paylaşımı",
+   "Marka bilinirliği",
+   "XML site haritası",
+   "Geri bağlantı",
+   "CSRF saldırısı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>SEO açısından tercih edilmesi gereken URL yapısı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Anlamlı, kısa ve anahtar kelime içeren URL'ler",
+   "Uzun ve rastgele karakterlerden oluşan URL'ler",
+   "Her ziyarette değişen URL'ler",
+   "Yalnızca sayılardan oluşan URL'ler",
+   "Anahtar kelimelerin çok kez tekrarlandığı URL'ler"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Anahtar kelime kullanımı ile ilgili aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Anahtar kelimeler mümkün olduğunca çok tekrar edilmelidir.",
+   "Anahtar kelimeler yalnızca sayfa dışında kullanılmalıdır.",
+   "Anahtar kelimelerin içerikle ilgili olması gerekmez.",
+   "Anahtar kelimeler içerikte doğal biçimde yer almalı, gereksiz tekrardan kaçınılmalıdır.",
+   "Anahtar kelimeler yalnızca görsellerin içine yazılmalıdır."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Ünitede temel güvenlik ilkeleri hangi üç ana başlık altında ele alınmıştır?</strong>",
+  "o": [
+   "Sayfa İçi; Sayfa Dışı; Teknik",
+   "Protokoller ve Standartlar; Politikalar ve Prensipler; Saldırılar ve Testler",
+   "Tasarım; Geliştirme; Dağıtım",
+   "Planlama; Kodlama; Yayın",
+   "Tema; Eklenti; Şablon"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi ünitede tanıtılan yaygın web saldırı türlerinden biridir?</strong>",
+  "o": [
+   "CDN",
+   "SEO",
+   "DNS",
+   "XML",
+   "XSS"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Yasal kapsam, güvenlik politikaları ve tasarım prensipleri güvenliğin hangi başlığı altında yer alır?</strong>",
+  "o": [
+   "Protokoller ve Standartlar",
+   "Saldırılar ve Testler",
+   "Politikalar ve Prensipler",
+   "Dağıtım düzeyi",
+   "Teknik SEO"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Güvenli veri iletimi için gelişmiş protokollerin ve çok aşamalı güçlü doğrulama yöntemlerinin kullanılması hangi güvenlik bileşenini ifade eder?</strong>",
+  "o": [
+   "Doğrulama Protokolleri",
+   "Marka Otoritesi",
+   "Küreselleşme",
+   "İçerik Yapısı",
+   "Önbellekleme"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi Teknik SEO kapsamında değerlendirilir?</strong>",
+  "o": [
+   "Geri bağlantılar",
+   "Sosyal medya sinyalleri",
+   "Marka otoritesi",
+   "Mobil uyumluluk",
+   "Influencer paylaşımları"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 11,
+  "q": "<strong>Sistemin güvenlik gereksinimlerinin karşılanması için en bilinen ve güvenilir güvenlik yazılımları ve yardımcı araçların kullanılmasını ifade eden başlık aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yasal Kapsam",
+   "Küreselleşme",
+   "Tasarım Mimarileri",
+   "İçerik Optimizasyonu",
+   "Sunucu Optimizasyonu"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>İçerik Yönetim Sistemlerinin (CMS) web tasarımını \"demokratikleştirmesinin\" temel nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yalnızca yazılımcıların kullanabilmesi",
+   "Tüm sitelerin ücretli olması",
+   "Kodlama bilgisi olmayan kullanıcıların da içerik oluşturup yayınlayabilmesi",
+   "İçeriklerin yalnızca masaüstünde düzenlenebilmesi",
+   "Tek kişiyle sınırlı çalışma imkânı sunması"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>İlk masaüstü tabanlı HTML düzenleyicilere örnek olarak verilen araçlar aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "CityDesk, MarsEdit",
+   "WordPress, Joomla",
+   "Wix, Squarespace",
+   "Shopify, Moodle",
+   "Figma, Uizard"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi bir CMS'in temel bileşenlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Düzenleme arayüzü",
+   "İçerik deposu",
+   "Yayınlama modülü",
+   "Yük dengeleyici",
+   "Güvenlik ve erişim kontrolü"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>CMS'te yönetilen içerikte başlık, anahtar kelime ve açıklama gibi bilgiler aşağıdakilerden hangisi olarak adlandırılır?</strong>",
+  "o": [
+   "Öz",
+   "Metadata",
+   "Eklenti",
+   "Tema",
+   "DAM"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>CMS ile Dijital Varlık Yönetim Sistemi (DAM) arasındaki fark için aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "DAM içerik yayınlar, CMS yalnızca dosya depolar.",
+   "İkisi tamamen aynı işlevi görür.",
+   "DAM yalnızca e-ticaret için kullanılır.",
+   "CMS yalnızca video dosyalarını yönetir.",
+   "CMS içerik üretimi ve yayınına, DAM dosyaların merkezi depolanmasına odaklanır."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi CMS kullanımının dezavantajlarından biridir?</strong>",
+  "o": [
+   "Teknik bilgi gerektirmemesi",
+   "Çok kullanıcılı çalışma imkânı",
+   "Aşırı eklenti kullanımından kaynaklanan performans sorunları",
+   "Merkezi medya yönetimi",
+   "SEO desteği"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Belirli eklentilere veya özel kodlara aşırı bağımlı kalma riski aşağıdakilerden hangisi ile ifade edilir?</strong>",
+  "o": [
+   "Vendor lock-in",
+   "Headless",
+   "Metadata",
+   "Versiyonlama",
+   "Responsive"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Yüksek güvenlik ve esneklik gerektiren büyük ölçekli ve kurumsal projeler için ideal olarak belirtilen CMS aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Wix",
+   "Ghost",
+   "Squarespace",
+   "Drupal",
+   "MarsEdit"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Microsoft .NET tabanlı kurumsal çözümler sunan CMS aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Craft CMS",
+   "DotNetNuke (DNN)",
+   "Joomla",
+   "Grav",
+   "Moodle"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>E-ticarete özel altyapısı ve güvenli ödeme sistemleriyle çevrim içi mağazalar için lider platform aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Moodle",
+   "Drupal",
+   "TYPO3",
+   "Ghost",
+   "Shopify"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Geliştiricilere yönelik esnek ve özelleştirilebilir içerik yönetimi sağlayan CMS aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Wix",
+   "Squarespace",
+   "Craft CMS",
+   "Shopify",
+   "CityDesk"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>CMS ekosisteminde eklentilerin temel işlevi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Güvenlik, SEO, sosyal medya, e-ticaret gibi ek özellikler ekleyerek işlevselliği artırmak",
+   "Sitenin alan adını belirlemek",
+   "Sunucunun işletim sistemini değiştirmek",
+   "İçeriği yalnızca PDF olarak yayınlamak",
+   "Tarayıcıyı güncellemek"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Tema ve eklenti yüklenirken dikkat edilmesi gerekenlerle ilgili aşağıdakilerden hangisi yanlıştır?</strong>",
+  "o": [
+   "Güncel ve güvenilir kaynaklar kullanılmalıdır.",
+   "Gereksiz eklentilerden kaçınılmalıdır.",
+   "CMS uyumluluğuna dikkat edilmelidir.",
+   "Mümkün olduğunca çok sayıda eklenti yüklenmelidir.",
+   "Yüklemeler düzenli olarak güncellenmelidir."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Sabit HTML, CSS ve JavaScript dosyalarından oluşan, içeriği önceden oluşturulmuş ve nadiren değişen siteler aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Dinamik web siteleri",
+   "Statik web siteleri",
+   "Headless CMS siteleri",
+   "PWA uygulamaları",
+   "LMS platformları"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Dinamik web sitelerinin dezavantajlarından biri aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "İçeriğin hiç güncellenememesi",
+   "Veritabanı kullanamaması",
+   "Ziyaretçi etkileşimi sunamaması",
+   "Yönetim paneline sahip olmaması",
+   "Daha yüksek sunucu yükü ve güvenlik riski"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Mobil cihaz kullanımının artmasıyla CMS'lerin geleceğinde önem kazanan yapı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Masaüstü HTML düzenleyiciler",
+   "Frameset yapıları",
+   "Progressive Web Uygulamaları (PWA)",
+   "Yalnızca statik sayfalar",
+   "Disket tabanlı yedekleme"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>CMS'lerin evriminde öne çıkan mimariler aşağıdakilerden hangisinde verilmiştir?</strong>",
+  "o": [
+   "Headless ve API-First",
+   "Frameset ve iframe",
+   "Monolitik ve masaüstü",
+   "Table tabanlı ve frame tabanlı",
+   "Offline ve tek kullanıcılı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi CMS seçiminde dikkate alınması gereken stratejik noktalardan biri <u>değildir</u>?</strong>",
+  "o": [
+   "Medya ve veri yönetimi kapasitesi",
+   "Güvenlik ve erişim kontrolü",
+   "Topluluk desteği ve güncellemeler",
+   "Sitenin logosundaki renk sayısı",
+   "Maliyet ve yatırımın geri dönüşü (ROI)"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Açık kaynak CMS'lerin geleceğe yönelik katkılarından biri olarak aşağıdakilerden hangisi belirtilmiştir?</strong>",
+  "o": [
+   "Lisans ücretlerini yükseltmeleri",
+   "Geliştirici deneyimini (DX) artırmaları",
+   "Topluluk katkısını engellemeleri",
+   "Yalnızca tek dilde çalışmaları",
+   "Güncelleme yapılamaması"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi modern CMS'lerin sunduğu gelişmiş işlevlerden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Çoklu dil desteği",
+   "SEO desteği",
+   "Forum ve yorum yönetimi",
+   "Analiz entegrasyonu",
+   "Donanım (işlemci) üretimi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi yapay zekâ destekli kodlama asistanlarından biridir?</strong>",
+  "o": [
+   "MidJourney",
+   "Uizard",
+   "SurferSEO",
+   "Tabnine",
+   "Pika Labs"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>\"Restoran için mobil uyumlu bir ana sayfa\" gibi bir metin komutundan saniyeler içinde arayüz tasarım önerileri sunan araçlar aşağıdakilerden hangisinde birlikte verilmiştir?</strong>",
+  "o": [
+   "SurferSEO ve MarketMuse",
+   "Figma AI ve Galileo AI",
+   "RunwayML ve Pika Labs",
+   "Tabnine ve Codeium",
+   "Jasper AI ve Copy.ai"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi görsel üretim amaçlı yapay zekâ araçlarından biridir?</strong>",
+  "o": [
+   "GitHub Copilot",
+   "MarketMuse",
+   "Codeium",
+   "Uizard",
+   "Stable Diffusion"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi SEO amaçlı yapay zekâ araçlarından biridir?</strong>",
+  "o": [
+   "DALL·E",
+   "Tabnine",
+   "SurferSEO",
+   "Galileo AI",
+   "RunwayML"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Blog yazıları veya ürün açıklamaları gibi metin içerikleri üretmek için kullanılan yapay zekâ araçları aşağıdakilerden hangisinde birlikte verilmiştir?</strong>",
+  "o": [
+   "ChatGPT, Jasper AI, Copy.ai",
+   "MidJourney, DALL·E, Stable Diffusion",
+   "Figma AI, Uizard, Galileo AI",
+   "RunwayML, Pika Labs",
+   "SurferSEO, MarketMuse"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi ses ve video alanında kullanılan yapay zekâ araçlarından biridir?</strong>",
+  "o": [
+   "Copy.ai",
+   "Tabnine",
+   "Uizard",
+   "Pika Labs",
+   "MarketMuse"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Fikir geliştirme ve planlama aşamasında yapay zekânın hedef kitleyi anlamaya yönelik katkısı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sunucuya SSL sertifikası yüklemesi",
+   "Kurgusal kullanıcı profilleri (persona) oluşturması",
+   "Alan adını tescil etmesi",
+   "Veritabanını yedeklemesi",
+   "Tarayıcı önbelleğini temizlemesi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>GitHub Copilot veya Codeium gibi kodlama asistanlarının katkılarından biri aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Görseller için özgün illüstrasyon çizmek",
+   "Videolar için müzik bestelemek",
+   "Sitenin backlink sayısını artırmak",
+   "Sunucu donanımını değiştirmek",
+   "Yazılan kodu otomatik tamamlamak ve hataları bulmak"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Arayüz tasarımında yapay zekâ kullanımıyla ilgili ünitede yapılan uyarı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yapay zekânın yalnızca renk seçiminde kullanılması",
+   "Yapay zekâ çıktılarının hiçbir zaman düzenlenmemesi",
+   "Tasarımcının yaratıcılığını kısıtlamamak için tüm kontrolün yapay zekâya bırakılmaması",
+   "Tüm tasarım kararlarının yapay zekâya bırakılması",
+   "Yapay zekânın yalnızca masaüstü sitelerde kullanılması"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Yapay zekânın içerik üretimindeki katkıları ile ilgili aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Üretilen içerikleri arama motorlarında daha görünür olacak şekilde optimize edebilir.",
+   "Yalnızca ses dosyası üretebilir.",
+   "Görsel içerik üretemez.",
+   "SEO ile hiçbir ilişkisi yoktur.",
+   "Yalnızca İngilizce metin üretebilir."
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Web geliştiricilerin sıkça kullandığı ve geniş eklenti desteği sayesinde yapay zekâ araçlarının entegrasyonunu kolaylaştıran kod editörü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Photoshop",
+   "Excel",
+   "Figma",
+   "VS Code",
+   "WordPress"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi VS Code için ücretsiz veya açık kaynaklı yapay zekâ eklenti alternatiflerinden biridir?</strong>",
+  "o": [
+   "DALL·E",
+   "Cline",
+   "Squarespace",
+   "Shopify",
+   "MarketMuse"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Tarayıcı tabanlı yöntemle yapay zekâ ile web sitesi tasarlarken ChatGPT'den üretilen HTML, CSS ve JavaScript kodları ne yapılır?</strong>",
+  "o": [
+   "Doğrudan veritabanına kaydedilir.",
+   "Sosyal medyada paylaşılır.",
+   "Yazdırılarak arşivlenir.",
+   "Görsel dosyasına dönüştürülür.",
+   "Kopyalanarak VS Code gibi bir editördeki dosyalara yapıştırılır."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>VS Code içinde Copilot ile web sitesi tasarlama yönteminde projenin planı nasıl yapılır?</strong>",
+  "o": [
+   "Kâğıda çizilip taranarak",
+   "Yalnızca Figma'da tasarlanarak",
+   "Copilot'un sohbet ekranına komutlar yazılarak",
+   "FTP ile sunucuya bağlanarak",
+   "CMS yönetim panelinden"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Ünitede yapay zekâ destekli web tasarımının avantajları arasında sayılanlar aşağıdakilerden hangisinde birlikte verilmiştir?</strong>",
+  "o": [
+   "Süreci hızlandırma, maliyetleri düşürme, hata oranını azaltma",
+   "Maliyeti artırma, süreci yavaşlatma, hata oranını artırma",
+   "Yaratıcılığı tamamen ortadan kaldırma",
+   "Tasarımcıya hiç ihtiyaç bırakmama ve özgünlüğü garanti etme",
+   "Yalnızca statik siteler üretme"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Geleneksel web tasarım süreçleri için aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Tamamen yapay zekâ tarafından yürütülür.",
+   "Hiçbir uzmanlık gerektirmez.",
+   "Saniyeler içinde tamamlanır.",
+   "Farklı uzmanların bir araya gelerek manuel olarak çalıştığı, zaman alan işlerdir.",
+   "Kod yazmayı içermez."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi üretken yapay zekâ tasarım araçlarından biri <u>değildir</u>?</strong>",
+  "o": [
+   "Figma AI",
+   "MarketMuse",
+   "Uizard",
+   "Galileo AI",
+   "Hiçbiri"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Yapay zekânın kişiselleştirme alanındaki katkısı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Tüm kullanıcılara aynı içeriği göstermek",
+   "Kullanıcı verilerini silmek",
+   "Sitenin alan adını değiştirmek",
+   "Sayfaları yalnızca tek dilde sunmak",
+   "Kullanıcı davranışlarını analiz ederek özel içerik ve ürün önermek"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Görselleri sesli olarak betimlemek yapay zekânın hangi alandaki katkısına örnektir?</strong>",
+  "o": [
+   "Yük dengeleme",
+   "Backlink oluşturma",
+   "Erişilebilirlik",
+   "Kod derleme",
+   "Alan adı yönetimi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 13,
+  "q": "<strong>Siteye uygun renk paletleri ve yazı tipleri seçmek yapay zekânın hangi aşamadaki katkıları arasında yer alır?</strong>",
+  "o": [
+   "Arayüz tasarımı ve kullanıcı deneyimi",
+   "Yayına alma",
+   "Sunucu yapılandırması",
+   "Yedekleme",
+   "Alan adı tescili"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>İhtiyaç analizi ve planlama aşamasında süreci şeffaf yönetmek için kullanılabilecek çevrim içi araçlar aşağıdakilerden hangisinde verilmiştir?</strong>",
+  "o": [
+   "Django, Laravel, Flask",
+   "FTP, Git, Docker",
+   "MidJourney, DALL·E, RunwayML",
+   "WordPress, Joomla, Drupal",
+   "Notion, Trello, Google Docs"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Bir ziyaretçinin siteye girişinden hedefe ulaşana kadar geçirdiği adımları tanımlayan yapı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Mockup",
+   "SSL sertifikası",
+   "Kullanıcı akışı (user flow)",
+   "Birim testi",
+   "Hosting"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Wireframe aşamasında ön planda olan unsur aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sayfa düzeni ve bileşenlerin yerleşimi",
+   "Renkler ve görseller",
+   "Tipografi ve logolar",
+   "Animasyonlar",
+   "Marka renkleri"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Wireframe'in görsel açıdan renkler, tipografi, ikonlar, logolar ve görseller eklenerek zenginleştirilmiş hâli aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Storyboard",
+   "Site haritası",
+   "Kullanıcı akışı",
+   "Mockup",
+   "Birim testi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Bir web sitesinin tasarım aşamaları sırasıyla aşağıdakilerden hangisinde doğru verilmiştir?</strong>",
+  "o": [
+   "Prototip – Wireframe – Mockup",
+   "Wireframe – Mockup – Prototip",
+   "Mockup – Prototip – Wireframe",
+   "Mockup – Wireframe – Prototip",
+   "Prototip – Mockup – Wireframe"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Frontend geliştirmeyi hızlandıran ve tutarlılığı artıran framework'ler aşağıdakilerden hangisinde verilmiştir?</strong>",
+  "o": [
+   "Django, Laravel",
+   "MySQL, Oracle",
+   "FTP, Docker",
+   "Notion, Trello",
+   "Bootstrap, Tailwind CSS"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Django ve Laravel framework'leri sırasıyla hangi programlama dillerine dayanır?</strong>",
+  "o": [
+   "PHP ve Python",
+   "JavaScript ve Java",
+   "Python ve PHP",
+   "Ruby ve C#",
+   "Python ve JavaScript"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Kullanıcının görmediği, sunucu tarafındaki işlemleri kapsayan geliştirme süreci aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Backend geliştirme",
+   "Frontend geliştirme",
+   "Mockup tasarımı",
+   "Storyboard hazırlığı",
+   "Wireframe çizimi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Belirli kod parçalarının doğru çalışıp çalışmadığını kontrol eden test türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Entegrasyon testi",
+   "Kullanılabilirlik testi",
+   "Performans testi",
+   "Birim testi",
+   "Güvenlik testi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Farklı modüllerin bir arada uyumlu çalışıp çalışmadığını ölçen test türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Birim testi",
+   "Entegrasyon testi",
+   "Kullanılabilirlik testi",
+   "A/B testi",
+   "Tipografi testi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Gerçek kullanıcıların deneyimlerini inceleyerek eksiklikleri ortaya çıkaran test türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Birim testi",
+   "Entegrasyon testi",
+   "Yük testi",
+   "Kod derleme testi",
+   "Kullanılabilirlik testi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Yayına alma aşamasında alan adı (domain) seçimi ile ilgili aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Mümkün olduğunca uzun olmalıdır.",
+   "Rastgele harf ve rakamlardan oluşmalıdır.",
+   "Kısa, akılda kalıcı ve amaca uygun olmalıdır.",
+   "Sitenin amacıyla ilgisiz olmalıdır.",
+   "Her ay değiştirilmelidir."
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi web sitesi dosyalarının sunucuya yüklenmesinde kullanılan yöntemlerden biri <u>değildir</u>?</strong>",
+  "o": [
+   "SEO",
+   "FTP",
+   "Git tabanlı dağıtım",
+   "Docker",
+   "Hiçbiri"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Yayına alma aşamasında alan adının sunucuya yönlendirilmesi hangi ayarlarla yapılır?</strong>",
+  "o": [
+   "CSS ayarları",
+   "SEO ayarları",
+   "Tema ayarları",
+   "DNS ayarları",
+   "Tipografi ayarları"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Sitenin güvenli çalışmasını sağlamak için yayına alma aşamasında yüklenen yapı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Wireframe",
+   "SSL sertifikası",
+   "Storyboard",
+   "Site haritası",
+   "Mockup"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Bakım ve güncelleme sürecinde kullanıcı davranışlarını analiz etmek için kullanılabilecek araç aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Trello",
+   "Laravel",
+   "Docker",
+   "Figma",
+   "Google Analytics"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Bakım sürecinin ihmal edilmesi durumunda karşılaşılabilecek sonuç aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sitenin hızının sürekli artması",
+   "Alan adının otomatik olarak yenilenmesi",
+   "Sitenin kısa sürede güvenlik açıklarına ve işlev kayıplarına maruz kalması",
+   "Kullanıcı sayısının kendiliğinden artması",
+   "SEO sıralamasının garantiyle yükselmesi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Yoğun metin içerikli sayfalarda gözün F şeklindeki hareketini temel alan içerik düzenleme yaklaşımı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "F-Deseni tasarım modeli",
+   "Z-Deseni tasarım modeli",
+   "Gutenberg diyagramı",
+   "Grid sistemi",
+   "Storyboard"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Sadece metin odaklı olmayan, içeriğe göre uzayıp kısalabilen sayfa veya ekranlarda kullanılan tasarım modeli aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "F-Deseni tasarım modeli",
+   "Wireframe",
+   "Kullanıcı akış haritası",
+   "Z-Deseni tasarım modeli",
+   "Mock-up"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Mock-up çalışmaları başlangıçta kartvizit, broşür ve katalog gibi ürünlerde hangi amaçla kullanılırdı?</strong>",
+  "o": [
+   "Veritabanı tasarlamak",
+   "Kurumsal kimlik oluşturmak",
+   "Sunucu kurmak",
+   "Kod test etmek",
+   "Alan adı almak"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Web Tasarımının Temelleri",
+  "u": 14,
+  "q": "<strong>Web sitesinin yayınlanmadan önceki son hâlinin simülasyonu olan ve işlevlerini, amacını gösteren çalışma aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Wireframe",
+   "Site haritası",
+   "Storyboard",
+   "İhtiyaç analizi",
+   "Prototip"
+  ],
+  "a": 4
+ }
+]
