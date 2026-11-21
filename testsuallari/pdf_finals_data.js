@@ -9547,7 +9547,7 @@ const pdfFinalsData = {
             "E-postaları şifreli aktarması",
             "E-postaları indirip çoğunlukla sunucudan silmesi"
           ],
-          "a": 2
+          "a": 4
         },
         {
           "q": "Özellikle bakım kolaylığı ve geniş çaplı projelerde tutarlılık sağlaması nedeniyle en çok önerilen ve CSS kurallarının ayrı bir .css uzantılı dosyada saklanıp HTML’e &lt;link&gt; etiketiyle bağlanmasını gerektiren CSS ekleme yöntemi aşağıdakilerden hangisidir?",
@@ -9580,7 +9580,7 @@ const pdfFinalsData = {
             "&lt;div&gt;",
             "&lt;style&gt;"
           ],
-          "a": 4
+          "a": 0
         }
       ]
     },
