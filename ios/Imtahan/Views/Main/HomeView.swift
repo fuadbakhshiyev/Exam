@@ -27,7 +27,7 @@ struct HomeView: View {
                 HomeSectionHeader(title: "Məşq")
                 quickActions
 
-                HomeSectionHeader(title: "Fənlər", actionTitle: "Hamısı") { router.tab = .subjects }
+                subjectsHeader
                 subjectsCard
             }
             .padding(.horizontal, Theme.Space.s16)
@@ -285,10 +285,36 @@ struct HomeView: View {
 
     // MARK: Subjects
 
-    /// All subjects in one card; a row opens the subject's study page.
+    /// "Fənlər" + the subject picker ("Seç") + "Hamısı".
+    private var subjectsHeader: some View {
+        HStack(alignment: .firstTextBaseline, spacing: Theme.Space.s16) {
+            Text("Fənlər")
+                .font(.title3.weight(.bold))
+                .foregroundStyle(Theme.text)
+                .accessibilityAddTraits(.isHeader)
+            Spacer()
+            PassedSubjectsMenu {
+                Label(store.passedSubjects.isEmpty ? "Seç" : "\(store.activeSubjects.count) fənn",
+                      systemImage: "checklist")
+                    .font(.subheadline)
+            }
+            .tint(Theme.accent)
+            .accessibilityLabel("Hazırlaşdığım fənləri seç")
+            Button("Hamısı") { router.tab = .subjects }
+                .font(.subheadline)
+                .tint(Theme.accent)
+        }
+        .padding(.top, Theme.Space.s12)
+        .padding(.horizontal, Theme.Space.s4)
+    }
+
+    /// The subjects still studied in one card; a row opens the subject's study page. Passed ones are
+    /// named in a line under it.
     private var subjectsCard: some View {
+        let list = store.activeSubjects
+        return VStack(alignment: .leading, spacing: Theme.Space.s8) {
         VStack(spacing: 0) {
-            ForEach(Array(Catalog.subjects.enumerated()), id: \.element) { i, c in
+            ForEach(Array(list.enumerated()), id: \.element) { i, c in
                 NavigationLink(value: Route.course(c)) {
                     HStack(spacing: Theme.Space.s8) {
                         subjectRow(c)
@@ -298,12 +324,20 @@ struct HomeView: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                if i < Catalog.subjects.count - 1 { Divider().padding(.leading, 48) }
+                if i < list.count - 1 { Divider().padding(.leading, 48) }
             }
         }
         .padding(.horizontal, Theme.Space.s16)
         .padding(.vertical, Theme.Space.s4)
         .card()
+            let passed = Catalog.subjects.filter(store.passedSubjects.contains)
+            if !passed.isEmpty {
+                Label("Verilib: " + passed.joined(separator: ", "), systemImage: "checkmark.seal.fill")
+                    .font(.footnote)
+                    .foregroundStyle(Theme.textMuted)
+                    .padding(.horizontal, Theme.Space.s4)
+            }
+        }
     }
 
     /// Logo · name + "answered / total sual" · percent. Untouched subjects say so instead of an empty bar.
