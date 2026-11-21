@@ -1,0 +1,2381 @@
+[
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Grafik tasarım günümüzde başka hangi adlarla anılmaktadır?</strong>",
+  "o": [
+   "İletişim tasarımı ve görsel iletişim tasarımı",
+   "Moda tasarımı ve tekstil tasarımı",
+   "Mimari tasarım ve iç mimarlık",
+   "Yazılım tasarımı ve arayüz mühendisliği",
+   "Endüstriyel tasarım ve ürün tasarımı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Sanayi Devrimi'nden önce grafik tasarım ürünlerinin uygulama ve yapımının her aşamasını kim üstlenirdi?</strong>",
+  "o": [
+   "Fotoğrafçılar",
+   "Zanaatkârlar",
+   "Sanat yönetmenleri",
+   "Reklam ajansları",
+   "Matbaa makineleri"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Grafik tasarım ürünlerinin baskı aşamasında farklı elemanların görev aldığı işler arasında aşağıdakilerden hangisi sayılmıştır?</strong>",
+  "o": [
+   "Pazarlama araştırması",
+   "Satış sonrası destek",
+   "Cilt",
+   "Dağıtım ağı",
+   "Ambalaj nakliyesi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Afişler konuları itibarıyla aşağıdaki gruplardan hangisine ayrılır?</strong>",
+  "o": [
+   "Yerel, ulusal, uluslararası",
+   "Büyük, orta, küçük boyutlu",
+   "Dijital, basılı, hareketli",
+   "Sosyal, reklam-ticari, kültürel",
+   "Siyasi, dini, askeri"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Reklam, aşağıdaki taraflardan hangilerini buluşturmayı amaçlayan bir iletişim biçimidir?</strong>",
+  "o": [
+   "Tasarımcı ve matbaayı",
+   "Ajans ve medyayı",
+   "Sanatçı ve eleştirmeni",
+   "Devlet ve vatandaşı",
+   "Üretici ve tüketiciyi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Bir ürün ya da hizmeti gıda, moda, endüstri gibi alanlarda ticari olarak tanıtan afişlere ne ad verilir?</strong>",
+  "o": [
+   "Reklam afişi",
+   "Sosyal afiş",
+   "Sinema afişi",
+   "Siyasi afiş",
+   "Kültürel afiş"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Basılı yayın tasarımlarından olan reklam afişlerinde kendini gösteren grafik öğeler aşağıdakilerden hangisinde doğru verilmiştir?</strong>",
+  "o": [
+   "Video, animasyon, ses",
+   "Tipografi, illüstrasyon, fotoğraf",
+   "Koku, doku, tat",
+   "Ses, müzik, efekt",
+   "Maliyet, fiyat, bütçe"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Reklam afişleri daha çok aşağıdaki mekânlardan hangisinde görülür?</strong>",
+  "o": [
+   "Yalnızca televizyon ekranlarında",
+   "Yalnızca radyo yayınlarında",
+   "Caddeler, garlar, metro ve otobüs durakları gibi dış mekânlarda",
+   "Yalnızca müze iç mekânlarında",
+   "Yalnızca gazete iç sayfalarında"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Reklam afişlerinin ilk yıllarında hangi görsel öğe kullanılmış ve bu afişleri genellikle kimler yapmıştır?</strong>",
+  "o": [
+   "Fotoğraf / fotoğrafçılar",
+   "Dijital grafik / yazılımcılar",
+   "Tipografi / matbaacılar",
+   "İllüstrasyon / ressamlar",
+   "Kolaj / heykeltıraşlar"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Tasarım sürecinin aşamaları aşağıdakilerin hangisinde doğru sırayla verilmiştir?</strong>",
+  "o": [
+   "Yaratıcılık, uygulama, problemin tanımı, bilgi toplama, çözüm bulma",
+   "Çözüm bulma, problemin tanımı, uygulama, yaratıcılık, bilgi toplama",
+   "Uygulama, çözüm bulma, bilgi toplama, problemin tanımı, yaratıcılık",
+   "Bilgi toplama, uygulama, problemin tanımı, çözüm bulma, yaratıcılık",
+   "Problemin tanımı, bilgi toplama, yaratıcılık ve buluş, çözüm bulma, uygulama"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Bir tasarım sürecinin ilk aşaması aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Problemin tanımlanması",
+   "Baskı",
+   "Taslak çizimi",
+   "Çözüm bulma",
+   "Uygulama"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Bir tasarım sürecinin en son aşaması aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Karalama",
+   "Uygulama",
+   "Yaratıcılık ve buluş",
+   "Bilgi toplama",
+   "Problemin tanımı"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Tasarım sürecinde problemin tanımı yapıldıktan sonra hedef kitleye göre mesaj noktasını belirlemek için ne yapılmalıdır?</strong>",
+  "o": [
+   "Bütçe tamamen harcanmalıdır",
+   "Tek bir fikir üzerinde durulmalıdır",
+   "Mümkün olduğunca çok bilgi toplanmalıdır",
+   "Hemen baskıya geçilmelidir",
+   "Alternatif çözümlerden kaçınılmalıdır"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Tasarımın farklı varyasyonlarını veya alternatiflerini ortaya koymanın tasarımcıya sağladığı temel yarar aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Hedef kitleyi belirleme ihtiyacını ortadan kaldırması",
+   "Uygulama aşamasını atlatması",
+   "Taslak aşamasını gereksiz kılması",
+   "Kabul görme olasılığını artırması",
+   "Baskı maliyetini sıfırlaması"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Grafik tasarım ürününde görünümü hakkında üretim öncesinde bilgi veren rehber çizgiler ve karalamaların olduğu ön çalışmaya ne ad verilir?</strong>",
+  "o": [
+   "Maket",
+   "Prova baskı",
+   "Mizanpaj",
+   "Ozalit",
+   "Taslak"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Tasarım sürecinin belki de en uzun tutulması gereken evresi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Taslak aşaması",
+   "Onay aşaması",
+   "Baskı aşaması",
+   "Dağıtım aşaması",
+   "Problemin tanımı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Aşağıdakilerden hangisi taslak türlerinden biridir?</strong>",
+  "o": [
+   "Dijital taslaklar",
+   "Sirk taslaklar",
+   "Kurumsal taslaklar",
+   "Ozalit taslaklar",
+   "Serbest taslaklar"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Aşağıdakilerden hangisi taslak türlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Siluet taslaklar",
+   "Harf biçimli taslaklar",
+   "Ölçekli taslaklar",
+   "Rebus taslaklar",
+   "Çok panolu taslaklar"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Aşağıdakilerden hangisi taslak türlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Tipografik taslaklar",
+   "Çerçeveli taslaklar",
+   "Metin ağırlıklı taslaklar",
+   "Perspektif taslaklar",
+   "Mondrian taslaklar"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Tasarımcı karalamalar arasından seçtiği birkaç yaratıcı fikirle ne yapar?</strong>",
+  "o": [
+   "Doğrudan baskıya gönderir",
+   "Tümünü iptal eder",
+   "Hedef kitleye dağıtır",
+   "Bilgi toplama aşamasına geri döner",
+   "Hızlı bir görselleştirmeyle daha okunaklı, ayrıntılı taslaklar yapar"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Reklam afişi tasarımının yapım aşamasında göz önüne alınması gereken görsel öğeler aşağıdakilerden hangisinde doğru verilmiştir?</strong>",
+  "o": [
+   "Çizgi, yön, doku, oran-orantı ve renk",
+   "Ses, ritim, tempo ve tını",
+   "Koku, tat, sıcaklık ve nem",
+   "Slogan, logo, fatura ve adisyon",
+   "Fiyat, bütçe, maliyet ve kâr"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Afiş tasarım uygulaması bağlamında reklam afişleri nasıl bir tasarımla yapılmalıdır?</strong>",
+  "o": [
+   "Mümkün olduğu kadar karmaşık ve kalabalık",
+   "Mümkün olduğu kadar basit ve net",
+   "Okunması zor ve şaşırtıcı",
+   "Yalnızca soyut lekelerden oluşan",
+   "Yalnızca metinden oluşan"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Reklam afişi tasarımında görsel ilkelerin yanında tasarımcının bilmesi gereken teknik bilgiler aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Firmanın hisse senedi değeri",
+   "Rakiplerin üretim maliyetleri",
+   "Kullanılacak bilgisayar programı ve baskı teknolojisi",
+   "Çalışanların maaş bilgileri",
+   "Ürünün muhasebe kayıtları"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Tasarım süreci hangi aşamaya kadar devam eder?</strong>",
+  "o": [
+   "Yalnızca müşteriyle ilk görüşmeye kadar",
+   "Yalnızca bilgi toplama aşamasına kadar",
+   "Yalnızca ilk karalamanın çizilmesine kadar",
+   "Tasarımın çoğaltılması için yayınlanma aşamasına kadar",
+   "Yalnızca problemin tanımlanmasına kadar"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Hedef kitleye belirli bir mesajı iletmek amacıyla metin ve görsellerin estetik ve işlevsel biçimde düzenlenmesi sürecine ne ad verilir?</strong>",
+  "o": [
+   "Mecra planlama",
+   "Enformasyon",
+   "Hedef kitle",
+   "Bütçeleme",
+   "Grafik tasarım"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 8,
+  "q": "<strong>Kurumun veya markanın logo, renk, yazı tipi, slogan gibi unsurlarının tutarlı biçimde tasarlanıp yönetilmesine ne ad verilir?</strong>",
+  "o": [
+   "Kurumsal kimlik tasarımı",
+   "Reklam afişi",
+   "Rebus",
+   "Taslak",
+   "Enformasyon"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Reklam endüstrisinin 1900'lü yılların başında renkli ve yüksek kalitede görselleri kullanabilmesini sağlayan baskı tekniği aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Litografi",
+   "Foto-gravür",
+   "Tipo baskı",
+   "Ofset",
+   "Serigrafi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Reklam endüstrisinin foto-gravür baskı ile birlikte benimsediği slogan aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Biçim işlevi izler",
+   "Reklam hayattır",
+   "Bir resim bin sözcüğe bedeldir",
+   "Az çoktur",
+   "Mesaj araçtır"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi illüstrasyon ve animasyonun reklam kampanyalarının vazgeçilmez parçası olmasının nedenlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Mesajı ortalama izleyicinin anlayacağı düzeyde basitleştirebilmesi",
+   "İzleyicinin dikkatini ve ilgisini yakalayabilmesi",
+   "Görsel cazibesi",
+   "Mesajı yalnızca uzmanların anlayabileceği düzeyde karmaşıklaştırması",
+   "Çağrışımları kullanabilme potansiyeli"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi reklamların amaçları arasında <u>yer almaz</u>?</strong>",
+  "o": [
+   "Alıcının ürüne dair farkındalığını sağlamak",
+   "Marka imajını ve bağımlılığını oluşturmak",
+   "Kalite garantisi ve itibar yaratmak",
+   "Alıcıda deneme arzusu yaratmak",
+   "Ürünün üretim maliyetini düşürmek"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>İllüstrasyon, ilintili olduğu metin üzerinde nasıl bir işlev görür?</strong>",
+  "o": [
+   "Metni tamamlar ve farklı anlam ve boyutlarda yeniden algılanmasına yardımcı olur",
+   "Metinle hiçbir ilişki kurmaz",
+   "Metnin yerini tamamen alarak onu gereksiz kılar",
+   "Yalnızca metnin yazı tipini belirler",
+   "Metnin anlamını gizler"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi Basın-Yayın İllüstrasyonları grubunda yer alır?</strong>",
+  "o": [
+   "Ambalaj illüstrasyonu",
+   "Editöryal illüstrasyon",
+   "Adli illüstrasyon",
+   "Fantastik illüstrasyon",
+   "Tıbbi illüstrasyon"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi Bilimsel ve Teknik İllüstrasyonlar grubunda yer alır?</strong>",
+  "o": [
+   "Çizgi roman illüstrasyonu",
+   "Ürün illüstrasyonu",
+   "Adli illüstrasyon",
+   "Moda illüstrasyonu",
+   "Çocuk kitabı illüstrasyonu"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Fantastik illüstrasyonlar hangi illüstrasyon grubunda yer alır?</strong>",
+  "o": [
+   "Basın-yayın illüstrasyonları",
+   "Moda illüstrasyonları",
+   "Reklam illüstrasyonları",
+   "Konsept sanat illüstrasyonları",
+   "Bilimsel ve teknik illüstrasyonlar"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Ambalaj illüstrasyonları hangi illüstrasyon grubunda yer alır?</strong>",
+  "o": [
+   "Konsept sanat illüstrasyonları",
+   "Bilimsel ve teknik illüstrasyonlar",
+   "Basın-yayın illüstrasyonları",
+   "Editöryal illüstrasyonlar",
+   "Reklam illüstrasyonları"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi illüstrasyon türlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Piktoryal illüstrasyon",
+   "Çizgi roman illüstrasyonu",
+   "Moda illüstrasyonu",
+   "Teknik illüstrasyon",
+   "Tıbbi illüstrasyon"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Reklam illüstrasyonlarının reklamdaki öğeler (birincil, ikincil metin vb.) arasında garanti altına aldığı şey aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kâğıt kalitesi",
+   "İzlenme sırası",
+   "Baskı maliyeti",
+   "Yayın süresi",
+   "Dağıtım ağı"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Çizimler, bilgisayar grafikleri veya statik nesnelerin fotoğraflarının ardışık bir dizi haline getirilmesi ile film yapma sanatı veya sürecine ne ad verilir?</strong>",
+  "o": [
+   "İllüstrasyon",
+   "Tipografi",
+   "Animasyon",
+   "Foto-gravür",
+   "Fotomontaj"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Animasyonun reklamdaki gücü temelde hangi iki anahtar kavrama dayanır?</strong>",
+  "o": [
+   "Yalnızca çocuklara hitap etmesi ve sessiz olması",
+   "Yüksek maliyetli olması ve uzun sürede üretilmesi",
+   "Tek renkli olması ve durağan olması",
+   "Eğlenceli bir izlence olması ve sınırsız yaratıcılığa imkân sunması",
+   "Gerçekçi olması ve ünlü oyuncu gerektirmesi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Animasyonlu reklamların sosyal medya gibi ortamlarda paylaşım yoluyla sahip olduğu yüksek potansiyel aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Telif kaybı",
+   "Yayın yasağı",
+   "Baskı hatası",
+   "Tiraj kaybı",
+   "Viral olma"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi animasyonun reklamda öne çıkan özelliklerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Yüksek maliyet",
+   "Yüksek etkileşim",
+   "Zamansızlık",
+   "Zaman tasarrufu",
+   "Hatırlanabilirlik"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi animasyonun reklamda öne çıkan özelliklerinden biridir?</strong>",
+  "o": [
+   "Zor algılanma",
+   "Basitleştirme",
+   "Kısa ömürlülük",
+   "Karmaşıklaştırma",
+   "Yaratıcılığı sınırlama"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Animasyon reklamlarındaki karakterlerin marka açısından güçlü yanlarından biri aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Marka kimliğiyle hiçbir bağ kurmaması",
+   "Reklam yıldızının kariyeriyle sınırlı olması",
+   "Başka bir marka tarafından kopyalanamaz (intihal edilemez) olması",
+   "Her kampanyada değiştirilmesi gerekmesi",
+   "Mutlaka gerçekçi olmak zorunda olması"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Animasyon karakterleriyle ilgili aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Marka tanınırlığına katkı sağlamazlar",
+   "Mutlaka gerçek bir kişiyi temsil etmelidirler",
+   "Rakip markalar tarafından kolayca kopyalanabilirler",
+   "Gerçekçi olmaları gerekmez",
+   "Yalnızca tek bir kampanyada kullanılabilirler"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Geleneksel reklam kampanyalarında film yıldızı veya ünlü sporcu kullanımının sürdürülebilirlik açısından sınırı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kâğıdın dayanıklılığı",
+   "Baskı makinesinin kapasitesi",
+   "Ambalajın raf ömrü",
+   "Animasyon yazılımının sürümü",
+   "Reklam yıldızının kariyerinin devam ettiği süre"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Soğan zarı animasyon olarak da bilinen ve her karesi yarı saydam yapraklara elle çizilen teknik aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Cel animasyon",
+   "3D animasyon",
+   "Flipbook animasyon",
+   "Hareketli grafik",
+   "Cut-Out animasyon"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Cel animasyon tekniğinde her sayfa bir önceki sayfanın üzerine nerede konularak yeniden çizilir?</strong>",
+  "o": [
+   "Karanlık odada",
+   "Işıklı masada",
+   "Tarayıcıda",
+   "Fotoğraf stüdyosunda",
+   "Baskı makinesinde"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Art arda sayfalardaki kademeli görüntülerin, sayfalar hızla çevrildikçe hareket illüzyonu yaratmasına dayanan animasyon tekniği aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Cut-Out animasyon",
+   "Kil animasyon",
+   "Flipbook animasyon",
+   "Cel animasyon",
+   "Rotoskop"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Cut-Out (kes-çıkart) animasyon tekniği hangi animasyon türünün bir çeşididir?</strong>",
+  "o": [
+   "3D animasyon",
+   "Cel animasyon",
+   "Flipbook",
+   "Stop-Motion",
+   "Hareketli grafik"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Kâğıt, karton, fotoğraf, sert kumaş, metal plaka gibi malzemelerden kesilmiş düz figürlerin bir zemin üzerinde hareket ettirilmesine dayanan teknik aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Flipbook animasyon",
+   "3D animasyon",
+   "Hareketli grafik",
+   "Cel animasyon",
+   "Cut-Out animasyon"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Sayısal üç boyutlu geometriler, iskelet sistemleri ve render motorları gibi sofistike araçlar kullanan animasyon türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Üç-boyutlu animasyon",
+   "İki-boyutlu animasyon",
+   "Flipbook animasyon",
+   "Cut-Out animasyon",
+   "Cel animasyon"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>Vücut mekaniği veya oyunculuk bilgisine ihtiyaç duyulmadan, animasyonun teknik temellerini kullanarak nesnelerin akan hareketinin illüzyonunu oluşturan tür aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Flipbook animasyon",
+   "Hareketli grafikler",
+   "Üç-boyutlu karakter animasyonu",
+   "Cut-Out animasyon",
+   "Cel animasyon"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 9,
+  "q": "<strong>İki-boyutlu animasyon yazılımları daha çok hangi tür grafiklerle çalışır?</strong>",
+  "o": [
+   "Sayısal üç boyutlu geometriler",
+   "Yağlı boya tablolar",
+   "Vektör tabanlı grafikler",
+   "Kukla figürler",
+   "Kil modeller"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Sanayi Devrimi ile birlikte bulunan ve görsel kültürü oluşturan, görsel mesajı doğrudan ve hızlı ileten araç aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Radyo",
+   "Matbaa",
+   "Telefon",
+   "Fotoğraf",
+   "Telgraf"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>İnsanların fotoğrafa baktıklarında genellikle gösterdikleri tutum aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Fotoğraf yerine metne güvenirler",
+   "Gördüklerinin tamamen kurgu olduğunu düşünürler",
+   "Fotoğraftaki bilgiyi hemen unuturlar",
+   "Fotoğrafı okumadan anlayamazlar",
+   "Gördüklerinin gerçek olduğuna inanır, çoğu zaman sorgulamazlar"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Reklam verenlerden tüketiciye doğru akan iletilerin bütünü olan ve aynı zamanda bir kitle iletişim aracı olan kavram aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Reklam",
+   "Halkla ilişkiler",
+   "Sponsorluk",
+   "Propaganda",
+   "Kişisel satış"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi reklam grafiklerinin görsel bileşenlerindendir?</strong>",
+  "o": [
+   "Slogan",
+   "Grafik tasarım",
+   "Gövde metin",
+   "Alt başlık",
+   "Ana başlık"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi reklam grafiklerinin sözel bileşenlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Tipografi",
+   "Simge ve semboller",
+   "Fotoğraf",
+   "Slogan",
+   "Metin"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Reklam grafiklerinde yazılı ve görsel ögelerden hangisinin kullanılacağına ve sınırlı alanda nasıl düzenleneceğine karar verme sürecine ne ad verilir?</strong>",
+  "o": [
+   "Fotoğraf",
+   "Alt başlık",
+   "Slogan",
+   "Grafik tasarım",
+   "Gövde metin"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Reklam grafiklerinde hedef kitlenin ilgi ve dikkatini çeken, birkaç kelime ya da çok kısa bir cümleden oluşan en önemli metin mesajı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Künye",
+   "Alt başlık",
+   "Simge",
+   "Gövde metin",
+   "Ana başlık"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Ana başlığı destekleyen, ana başlık ile metin arasında bağlantı kurulmasını sağlayan ifadelere ne ad verilir?</strong>",
+  "o": [
+   "Alt başlık",
+   "Gövde metin",
+   "Logo",
+   "Amblem",
+   "Slogan"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Diğer metinlerin dikkat çektiği ve vurgu yaptığı özellikleri hedef kitleye daha uzun olarak açıklayan ifadelere ne ad verilir?</strong>",
+  "o": [
+   "Simge",
+   "Gövde metin",
+   "Slogan",
+   "Ana başlık",
+   "Alt başlık"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Kampanyanın en dikkat çeken, akılda kalıcılığı sağlayan ve hedef kitleyi harekete geçiren öğesi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Alt başlık",
+   "Grafik tasarım",
+   "Slogan",
+   "Gövde metin",
+   "Tipografi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Reklam grafiklerinin temel amacı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Firmanın vergi yükünü azaltmak",
+   "Ürünün üretim sürecini kısaltmak",
+   "Rakip firmaların fiyatlarını belirlemek",
+   "Tüketicinin ürün, marka ya da hizmete sahip olmak istemesini ve ihtiyaç farkındalığı duymasını sağlamak",
+   "Çalışanların motivasyonunu artırmak"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Reklamın ilk ortaya çıktığı dönemlerde hazırlanan reklam grafikleri neyden ibaretti?</strong>",
+  "o": [
+   "Dijital bannerlardan",
+   "Renkli fotoğraflardan",
+   "Üç boyutlu modellerden",
+   "Hareketli animasyonlardan",
+   "Basit bir bilgilendirme metninden"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>20. yüzyılın ilk yıllarında reklam fotoğrafı alanında da izleri görülen fotoğraf akımı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Piktoryalizm",
+   "Dadaizm",
+   "Postmodernizm",
+   "Pop Art",
+   "Minimalizm"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>20. yüzyılın başında De Meyer gibi reklam fotoğrafları ile sanatı buluşturan bir yaklaşım sergileyen fotoğrafçı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Jules Chéret",
+   "Edward Steichen",
+   "Andy Warhol",
+   "Steven Meisel",
+   "Roland Barthes"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Reklam fotoğrafında satılacak ürünün tanıtımından çok ürünün estetik imajını ön plana çıkarmayı amaçlayan dönem hangi akımla ilişkilidir?</strong>",
+  "o": [
+   "Empresyonizm",
+   "Rönesans",
+   "1960'larda ortaya çıkan Pop Art ve postmodernizm",
+   "Barok",
+   "19. yüzyıl Piktoryalizmi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>1980'li yıllarla birlikte reklam fotoğrafında önem kazanan yaklaşım aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "İdealize bir güzellik tanımı",
+   "Ürünün hiç gösterilmemesi",
+   "Kusursuzluğun ön plana çıkarılması",
+   "Gündelik hayatın kendi doğallığında yeniden sunulması",
+   "Yalnızca siyah-beyaz çekim"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>1920 ve 30'lu yıllar reklam fotoğrafı açısından nasıl bir dönemdir?</strong>",
+  "o": [
+   "İnternet reklamlarının yaygınlaştığı dönem",
+   "Televizyon reklamlarının başladığı dönem",
+   "Fotoğrafın icat edildiği dönem",
+   "Pop Art akımının doğduğu dönem",
+   "Basılı yayının yükselişte olduğu dönem"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Okuduğumuz dergilerdeki ilanların ortalama ne kadarı fotoğrafik yöntemlerle çözümlenmiştir?</strong>",
+  "o": [
+   "%60",
+   "%40",
+   "%25",
+   "%90",
+   "%10"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Fotoğrafın yazıya göre üstünlüklerinden biri aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Her zaman gerçeği birebir yansıtması",
+   "İçerdiği bilginin hatırlanmasını kolaylaştırması",
+   "Mesajı yavaş iletmesi",
+   "Anlaşılması için sonuna kadar okunmasının gerekmesi",
+   "Hiçbir teknik bilgi gerektirmemesi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Reklam fotoğrafçılığının çalışma yönteminde ilk yapılan iş aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Fotoğrafın yayınlanması",
+   "Sloganın değiştirilmesi",
+   "Konunun satış analizinin yapılması",
+   "Baskı kâğıdının seçilmesi",
+   "Modelin rastgele seçilmesi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Reklam fotoğrafında kişi veya nesneler nasıl çekilir?</strong>",
+  "o": [
+   "Yalnızca uzaktan ve bulanık",
+   "Haber fotoğrafındaki gibi tamamen doğallıklarında",
+   "Ürünü arka plana atacak şekilde",
+   "Hedef kitlenin beğeneceği, etkileneceği ve satın almak isteyeceği şekilde",
+   "Belgesel fotoğraftaki gibi müdahalesiz"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi reklam fotoğrafının genel amaçlarından biridir?</strong>",
+  "o": [
+   "Ürünün önemini arka plana atmak",
+   "Hedef kitlenin ilgisini dağıtmak",
+   "Reklamın inandırıcılığını azaltmak",
+   "Mesajı geciktirerek vermek",
+   "İlgiyi kullanılan başlık ve metne yönlendirmek"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Reklam fotoğrafının mesajı en hızlı şekilde vermesi gerektiği hangi ifadeyle açıklanır?</strong>",
+  "o": [
+   "Reklamcılıkta bir ısınma süresi yoktur",
+   "Reklamın anlaşılması zaman almalıdır",
+   "Reklam fotoğrafı ürünü göstermemelidir",
+   "Reklam fotoğrafı ayrıntılarla dolu olmalıdır",
+   "Reklamcılıkta acele etmeye gerek yoktur"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi etkin bir reklam fotoğrafında bulunması gereken niteliklerden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Gereksiz unsurlardan arındırılmış olması",
+   "Dikkati başka tarafa yönlendirecek ayrıntılarla zenginleştirilmesi",
+   "Görsellerin ürünün önemini arka plana atmaması",
+   "Mesajın hızlı, net ve doğru ulaşması",
+   "Mesajın sade ve açık olması"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Reklam fotoğrafında karmaşık bir anlatım biçimi hedef kitle üzerinde ne gibi bir etki yaratabilir?</strong>",
+  "o": [
+   "Satışları mutlaka artırır",
+   "Mesajı hızlandırır",
+   "Hedef kitleyi yanıltabilir",
+   "Ürünü daha görünür kılar",
+   "Hedef kitleyi kesinlikle ikna eder"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Reklam fotoğrafının ticari bir temele dayansa da ilk örneklerden günümüze ilişkisinin açıkça görüldüğü olgu aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Dönemin vergi yasaları",
+   "Dönemin tarım politikaları",
+   "Dönemin ulaşım araçları",
+   "Dönemin sanat akımları",
+   "Dönemin spor müsabakaları"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 10,
+  "q": "<strong>Bir toplumun veya grubun paylaştığı görsel imgeler, semboller ve anlamlar bütününe ne ad verilir?</strong>",
+  "o": [
+   "Gövde metin",
+   "Görsel hiyerarşi",
+   "Slogan",
+   "Tipografi",
+   "Görsel kültür"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>İnsanoğlunun ambalaj olarak ilk kullandığı malzeme aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yaprak",
+   "Plastik",
+   "Cam",
+   "Karton",
+   "Metal"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalaj ve ambalaj tasarımında önemli dönüm noktasını oluşturan gelişme aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Fransız Devrimi",
+   "Sanayi Devrimi",
+   "Coğrafi Keşifler",
+   "Rönesans",
+   "Web 2.0"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ticaret ve rekabetin artmasıyla ambalajın ürünü koruma, tanıtma ve bilgilendirmenin yanı sıra üstlendiği görevler aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Üretim ve muhasebe görevi",
+   "Personel eğitimi görevi",
+   "Kurum kimliği ve reklam görevi",
+   "Hukuki temsil görevi",
+   "Vergi tahsilatı görevi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Tasarımı aracılığıyla tüketiciyle iletişim kuran ambalajın adeta üstlendiği rol aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Muhasebeci",
+   "Taşıyıcı firma",
+   "Üretici",
+   "Satıcı",
+   "Denetçi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Doğru tasarlanmış bir ambalajla ilgili aşağıdakilerden hangisi söylenemez?</strong>",
+  "o": [
+   "Tüketicinin zihnindeki imgeyle bağdaşabilir",
+   "Müşterinin kalbine hitap edebilir",
+   "Bilgi verir",
+   "Bir arkadaş tavsiyesi gibi satışı tetikleyebilir",
+   "Belirsizliği ve karmaşayı artırır"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalaj, illüstrasyon, tipografi, fotoğraf ve renkle birlikte hangi tür ürünlerin paketlenmesindeki en önemli tanıtım aracıdır?</strong>",
+  "o": [
+   "Üç boyutlu forma sahip ürünler",
+   "Yalnızca hizmetler",
+   "Yalnızca yazılım ürünleri",
+   "Yalnızca dijital ürünler",
+   "Yalnızca sıvı ürünler"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi günümüzde ambalaj üretiminde kullanılan malzemelerden biri olarak <u>sayılmamıştır</u>?</strong>",
+  "o": [
+   "Metal",
+   "Yaprak",
+   "Cam",
+   "Plastik",
+   "Kağıt ve karton"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Geçmişte ambalaj hangi amaçlarla kullanılmaktaydı?</strong>",
+  "o": [
+   "Eğlence ve oyun",
+   "Bilgi depolama ve arşivleme",
+   "Taşıma, koruma ve depolama",
+   "Dekorasyon ve süsleme",
+   "Reklam, tanıtım ve kurumsal kimlik"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalajın market raflarında benzerleriyle rekabete girmesini sağlayan özellik aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yalnızca gri tonlarda basılması",
+   "Diğer ambalajlarla tamamen aynı olması",
+   "Raflarda en altta yer alması",
+   "Ürüne uygun renk ve yazı karakterleriyle tasarlanmış, ilgi çekici, iyi görünümlü olması",
+   "Hiçbir bilgi içermemesi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalajın birden fazla işlevinin tamamının hedefi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Ürünü tüketiciden gizlemek",
+   "Ürünün fiyatını yükseltmek",
+   "Üretim hattını yavaşlatmak",
+   "Ürünün raf ömrünü kısaltmak",
+   "Ürünleri sağlıklı bir şekilde tüketiciye ulaştırmak"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Başarılı bir ambalajın hedef kitleyi etkileyebilmesi için tasarımın taşıması gereken özellikler aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Özgün olması ve dikkat çekmesi",
+   "Pahalı malzemeden üretilmesi",
+   "Karmaşık ve kalabalık olması",
+   "Metinsiz ve renksiz olması",
+   "Rakip ambalajı taklit etmesi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalaj tasarımının en önemli kriteri aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Her yıl değiştirilmesi",
+   "Sade, anlaşılır ve satın almaya teşvik edici olması",
+   "Yalnızca marka adını taşıması",
+   "Ayrıntılı teknik çizimler içermesi",
+   "Ağır ve büyük olması"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalajın yüzeyine yapılacak grafik tasarım çalışması aşağıdakilerden hangisinden meydana gelmez?</strong>",
+  "o": [
+   "Semboller",
+   "Metinler",
+   "Üretim bandı hızı",
+   "Marka adı ve logo",
+   "Renkler ve görseller"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi tasarım öğelerinden biridir?</strong>",
+  "o": [
+   "Denge",
+   "Vurgulama",
+   "Hiyerarşi",
+   "Leke (değer)",
+   "Ritim"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi tasarım öğelerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Nokta",
+   "Form (şekil-biçim)",
+   "Yön",
+   "Çizgi",
+   "Bütünlük"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi tasarım ilkelerinden biridir?</strong>",
+  "o": [
+   "Ritim",
+   "Leke",
+   "Nokta",
+   "Çizgi",
+   "Ölçü"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi tasarım ilkelerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Boşluk",
+   "Nokta",
+   "Desen",
+   "Uyum",
+   "Denge"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Tasarım öğelerinin bir araya gelip bağlantı kurabilmesi için bunların nasıl kullanılacağını belirleyen kurallara ne ad verilir?</strong>",
+  "o": [
+   "Baskı ayarları",
+   "Marka değerleri",
+   "Tasarım ilkeleri",
+   "Üretim standartları",
+   "Tasarım öğeleri"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalajın tüketiciler üzerindeki etkiyi artırabilmesinin en önemli bileşeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Depolama sıcaklığı",
+   "Nakliye süresi",
+   "Ağırlığı",
+   "Tasarımı",
+   "Fabrika konumu"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalaja bakan tüketicinin dikkatini öncelikle ne çeker?</strong>",
+  "o": [
+   "Ambalajın iç yüzeyi",
+   "Üretim tarihi",
+   "Taşıma koli etiketi",
+   "Barkod numarası",
+   "Resimler ve görsel marka konumlandırmasını yansıtan grafiksel çalışma"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalaj tasarımı tüketiciler üzerinde duygusal etki yaratmanın yanı sıra hangi tek amaca hizmet eder?</strong>",
+  "o": [
+   "Ambalajın içindeki ürünü sattırmak",
+   "Matbaanın reklamını yapmak",
+   "Ambalaj malzemesini tanıtmak",
+   "Ürünü tüketiciden gizlemek",
+   "Tasarımcıyı ünlü yapmak"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalajın üretiminin son aşaması olan üretim sürecinin amacı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Ambalajı satıştan kaldırmak",
+   "Ambalajın stratejik hedeflerini sonuçlandırmak ve etkinliğini artırmak",
+   "Tasarım sürecini başa döndürmek",
+   "Ürünün içeriğini değiştirmek",
+   "Hedef kitleyi yeniden belirlemek"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalaj tasarımında istenilen sonuçlara ulaşmak için tasarımcıların hangi aralıkta bilgi sahibi olması gerekir?</strong>",
+  "o": [
+   "Yalnızca ürün satıldıktan sonra",
+   "Yalnızca ilk karalama aşamasında",
+   "İlk çalışma aşamasından son baskı onayına kadar",
+   "Yalnızca fiyat belirlenirken",
+   "Yalnızca nakliye sırasında"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalaj tasarım sürecinin sonunda, baskıya hazırlama işleminden sonra üretimle ilgili tüm doküman ve sorumluluk kime devredilir?</strong>",
+  "o": [
+   "Reklam ajansına",
+   "Tüketiciye",
+   "Belediyeye",
+   "Ambalaj üreticisine",
+   "Market yöneticisine"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Ambalaj tasarım sürecinin sonunda ambalajın üretilmesi aslında neyin başlaması anlamına gelir?</strong>",
+  "o": [
+   "Ürünün piyasadan çekilmesinin",
+   "Markanın kapanmasının",
+   "Bilgi toplama aşamasının iptalinin",
+   "Tasarımcının görevinin tamamen bitmesinin",
+   "Yeni bir tasarımlama sürecinin"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 11,
+  "q": "<strong>Bir markanın tüketicilerin zihninde yarattığı imaj, değerler ve kişilik özelliklerine ne ad verilir?</strong>",
+  "o": [
+   "Marka kimliği",
+   "Tasarım ilkesi",
+   "Tasarım öğesi",
+   "Üretim süreci",
+   "Hedef kitle"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Dijital dünyayı ve internet ile sosyal medya kullanımını günlük hayatın bir parçası haline getiren gelişme aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Telgraf",
+   "Web 2.0",
+   "Foto-gravür",
+   "Sanayi Devrimi",
+   "Matbaa"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>İnternetin ve sosyal medyanın dünya genelindeki kullanıcı sayısı yaklaşık kaç milyardır?</strong>",
+  "o": [
+   "6.8",
+   "1.2",
+   "4.62",
+   "2.5",
+   "8.1"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Gelişmelerini ve kampanyalarını resmi internet siteleri ve sosyal medya hesaplarından takipçilerine hızla duyuran kuruluşlara örnek olarak aşağıdakilerden hangisi verilmiştir?</strong>",
+  "o": [
+   "TÜİK ve SGK",
+   "NATO ve OPEC",
+   "UEFA ve FIFA",
+   "TEMA ve WWF",
+   "BİK ve TRT"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>İnternette yayınlanan reklam grafikleri ile geleneksel reklam grafikleri arasındaki ilişki için aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Geleneksel reklamlar daha çok insana daha kısa sürede ulaşır",
+   "Geleneksel reklamlar tasarım kuralı gerektirmez",
+   "Dijital reklamlar daha yüksek maliyetlidir",
+   "Dijital reklamlarda beğeni ve yorum görülemez",
+   "Tasarım anlamında aralarında fark yoktur"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi dijital mecralarda yayınlanan reklamların geleneksel reklamlara göre avantajlarından biri <u>değildir</u>?</strong>",
+  "o": [
+   "Tasarım ve baskı süreçleriyle birlikte yüksek maliyetli olması",
+   "Kaç kişinin beğendiğini görebilme fırsatı sunması",
+   "Aynı anda ulaşabilmesi",
+   "Çok sayıda insana daha kısa sürede ulaşabilmesi",
+   "Basılı reklamlara göre daha düşük maliyetli olması"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi reklam grafiğini oluşturan tasarım elemanlarından biri <u>değildir</u>?</strong>",
+  "o": [
+   "Tipografi",
+   "Bütçe",
+   "Renkler",
+   "Görseller",
+   "Simgeler"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Başarılı reklam grafiklerinin mesajlarında bulunması gereken özellikler arasında aşağıdakilerden hangisi <u>yer almaz</u>?</strong>",
+  "o": [
+   "Dikkat çekmeli",
+   "Kolay algılanmalı",
+   "Yorucu olmalı",
+   "İlgi uyandırmalı",
+   "Akılda kalıcı olmalı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Başarılı reklam grafikleri hangi temel dört öğeden oluşur?</strong>",
+  "o": [
+   "Ses, müzik, video ve efekt",
+   "Kâğıt, mürekkep, cilt ve kalıp",
+   "Ajans, müşteri, medya ve kurum",
+   "Başlık, görsel, metin ve slogan",
+   "Fiyat, bütçe, maliyet ve kâr"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Reklam grafiklerinde karşı tarafın dikkatini çekmek için çalışmada en uygun şekilde konumlandırılması gereken unsurlar aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Çalışanların fotoğrafları",
+   "Matbaa bilgileri",
+   "Ürünün maliyet tablosu",
+   "Firma ortaklarının isimleri",
+   "Firma logosu, net açıklama ve slogan"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Reklam grafiklerinde başlık tasarımı ile ilgili aşağıdakilerden hangisi söylenemez?</strong>",
+  "o": [
+   "Uzun ve ayrıntılı olmalıdır",
+   "Dikkat çekmelidir",
+   "Sıkıcı olmamalıdır",
+   "İlgi uyandırmalıdır",
+   "Karşı tarafı yormamalıdır"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Reklam grafiklerinde kullanılan metinlerin özellikleri aşağıdakilerden hangisinde doğru verilmiştir?</strong>",
+  "o": [
+   "Şifreli, kısaltmalı ve belirsiz",
+   "Gerçekçi, konuşma diline yakın, sade ve anlaşılır",
+   "Süslü, edebi, uzun ve ağır",
+   "Teknik, yabancı terimli ve karmaşık",
+   "Abartılı, gerçek dışı ve resmi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Karşı tarafı hızlı bir şekilde etkisi altına alıp ikna edebilmek için konunun neyle uyum içinde olması gerekir?</strong>",
+  "o": [
+   "Yalnızca ajansın adı",
+   "Yalnızca rakip reklamlar",
+   "Görsel, metin, slogan ve yazı karakterleri",
+   "Yalnızca bütçe",
+   "Yalnızca yayın saati"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Tasarımda yaratıcılık nasıl nitelendirilmektedir?</strong>",
+  "o": [
+   "Hiçbir kurala uyulmaması",
+   "Yalnızca pahalı malzeme kullanılması",
+   "Rakip reklamların tekrar edilmesi",
+   "Daha önce yapılmamış bir düşünce ya da fikrin uygulanması",
+   "Var olan bir tasarımın aynen kopyalanması"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Yaratıcı olmayan reklam grafikleri nasıl nitelendirilir?</strong>",
+  "o": [
+   "İkna edici ve sade",
+   "Akılda kalıcı ve etkili",
+   "Özgün ve hızlı ulaşan",
+   "Başarılı ve ilginç",
+   "Tekrara düşmüş, dikkat çekmeyen"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Reklamlar kullanılacağı yerlere göre kaç gruba ayrılır?</strong>",
+  "o": [
+   "İki: geleneksel ve dijital",
+   "Dört: TV, radyo, gazete, dergi",
+   "Üç: sosyal, ticari, kültürel",
+   "Üç: geçici, yarı kalıcı, kalıcı",
+   "İki: yerel ve ulusal"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi geleneksel reklamlar arasında yer alır?</strong>",
+  "o": [
+   "Advergaming",
+   "Doğrudan postalama",
+   "Affiliate reklam",
+   "Rich media reklam",
+   "Pop up reklam"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Oyunlar içinde veya oyunlar aracılığıyla yapılan reklamlara ne ad verilir?</strong>",
+  "o": [
+   "Affiliate",
+   "Advertorial",
+   "Advergaming",
+   "Pop up",
+   "Rich media"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Geleneksel reklamlar dijital reklamlara göre nasıl bir özelliğe sahiptir?</strong>",
+  "o": [
+   "Anında beğeni ve yorum ölçümü sağlar",
+   "Zaman ve yer sınırı yoktur",
+   "Düşük maliyetli olup daha çok insana daha kısa sürede ulaşır",
+   "Yüksek maliyetli olup daha az insana daha uzun sürede ulaşır",
+   "Baskı süreci gerektirmez"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Dijital reklamların günümüzde daha çok dikkat çekmesinin nedeni olarak aşağıdakilerden hangisi belirtilmiştir?</strong>",
+  "o": [
+   "Geri bildirim almayı engellemesi",
+   "Baskı maliyetinin yüksek olması",
+   "Yalnızca gazetelerde yayınlanması",
+   "Yalnızca radyoda yayınlanması",
+   "İçinde aynı zamanda geleneksel reklamları da barındırması"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi internet reklamları başlığı altında yer alır?</strong>",
+  "o": [
+   "Arama motoru reklamları",
+   "Fuar alanı reklamları",
+   "Açık hava reklamları",
+   "Sinema reklamları",
+   "Doğrudan postalama"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi internet reklamı türlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Advertorial",
+   "Gazete ilanı",
+   "Elektronik posta reklamı",
+   "İçerik sponsorluğu",
+   "Profil reklamı"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Belirli demografik özelliklere, ilgi alanlarına veya davranışlara sahip kitlelere kullanıcı verileri ve algoritmalarla ulaşmayı amaçlayan reklam türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "El ilanı",
+   "Sinema reklamı",
+   "Hedefli reklam",
+   "Seri ilan",
+   "Kamu duyurusu"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Facebook, Instagram, Twitter gibi sosyal medya mecralarının reklamda son dönem kurum ve kişilerin gözdesi olmasının nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Reklam yayınlamanın yasak olması",
+   "Geri bildirimin hiç alınamaması",
+   "Kullanıcı sayısının çok az olması",
+   "Olumlu ve olumsuz geri dönüşlerin hızlı bir şekilde yapılması",
+   "Yalnızca basılı yayın yapılabilmesi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>İnternet reklamlarının çok dikkat çekici olmasının nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sonuçların ölçülememesi",
+   "Baskı süreci gerektirmesi",
+   "Yalnızca tek bir ülkede görülebilmesi",
+   "Yalnızca belirli saatlerde yayınlanabilmesi",
+   "Zaman ve yer sınırının olmaması, sonuçların hızlı edinilebilmesi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi dijital reklam mecralarındandır?</strong>",
+  "o": [
+   "Mobil cihaz reklamları",
+   "Televizyon reklamları",
+   "Radyo reklamları",
+   "Dergi reklamları",
+   "Sinema reklamları"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Açıkhava reklamcılığı uluslararası alanda başka hangi terimle bilinmektedir?</strong>",
+  "o": [
+   "Advergaming",
+   "Out-of-home (OOH)",
+   "Onboard advertising",
+   "Indoor advertising",
+   "Point of purchase (POP)"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Açıkhava reklamcılığının teknik özellikleri neye dayanmaktadır?</strong>",
+  "o": [
+   "Tasarım kurallarına",
+   "Yalnızca sloganın uzunluğuna",
+   "Malzeme ve uygulama bilgisine",
+   "Yalnızca bütçeye",
+   "Hedef kitle ile ürün arasındaki bağlantıya"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Açıkhava reklamcılığının görsel özellikleri neye dayanmaktadır?</strong>",
+  "o": [
+   "Kiralama sözleşmesine",
+   "Elektrik tesisatına",
+   "Belediye izinlerine",
+   "Tasarım kurallarına",
+   "Malzeme bilgisine"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Billboard reklamlarında birincil amaç aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Ürün fiyatının ayrıntılı açıklanması",
+   "Teknik bilgilerin uzun metinle verilmesi",
+   "Kupon dağıtılması",
+   "Satış sonrası hizmetin anlatılması",
+   "Marka isminin tanınması"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Standart billboard reklam alanı ölçüsü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "200x350 cm",
+   "241x324 cm",
+   "1185x1750 mm",
+   "100x70 cm",
+   "50x70 cm"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Çerçeve dışına çıkan imgeler ve yazılarla sıradışılık oluşturularak daha dikkat çekici hale getirilen billboard türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Raket",
+   "Billboard Plus",
+   "Megalight",
+   "Kuleboard",
+   "Lightbox"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>City-light-poster olarak da bilinen ve genellikle 1185x1750 mm ölçülerinde olan açık hava reklam ürünü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Mesh",
+   "Giantboard",
+   "Raket (CLP)",
+   "Megaboard",
+   "Parapet"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Büyük meydanlarda, alışveriş merkezlerinde ve caddelerde karşılaşılan, yakın ve uzak mesafeden hedef kitleye ulaşmayı amaçlayan 241x324 cm ölçülerindeki ürün aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Pole banner",
+   "Silindir",
+   "Kuleboard",
+   "Megalight",
+   "Raket"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Reklam alanları için veya dekoratif amaçlı olarak kullanılan ışıklı panellere ne ad verilir?</strong>",
+  "o": [
+   "Giantboard",
+   "Mesh",
+   "Parapet",
+   "Pole banner",
+   "Lightbox"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Birden fazla billboard'un yan yana dizilimiyle oluşturulan açık hava reklam ürünü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Giantboard",
+   "Megalight",
+   "Kuleboard",
+   "Silindir",
+   "Raket"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Meydan ve kavşaklarda konumlanan, 360 derece dönebilen, statik veya hareketli olabilen reklam ünitesi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yol panosu",
+   "Silindir",
+   "Mesh",
+   "Megaboard",
+   "Parapet"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Delikli vinil branda afiş dijital baskı olarak bilinen; dayanıklı, hafif ve üzerine dijital baskı yapılabilen ürün aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Lightbox",
+   "Raket",
+   "Mesh",
+   "One way vision",
+   "Kuleboard"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>İçten aydınlatmalı, büyük boyutlu olan ve uzak mesafeden görülmesi için genellikle dayanıklı iskelet sistemiyle yüksek bir alanda konumlandırılan ürün aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Raket",
+   "Tabela",
+   "Pole banner",
+   "Megaboard",
+   "Parapet"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Yüksekliği 10 metreyi bulan ve reklamın uzaktan görülmesini sağlamak için kullanılan açık hava reklam ürünü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Mesh",
+   "Silindir",
+   "Raket",
+   "Lightbox",
+   "Kuleboard"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Uzak mesafeden okunabilmek ve hareket halindeki araçlı yolcular tarafından fark edilmek için yüksek noktalarda konumlandırılan büyük boyutlu reklamlar aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yol panoları",
+   "Wobblerlar",
+   "Raf kartları",
+   "Alarm kılıfları",
+   "Kiosklar"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Outdoor TV'lerin dış hava koşullarına uyum sağlaması için çalışmasında kullanılan sistem aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Delikli folyo sistemi",
+   "Klima sistemi",
+   "Afiş değiştirici sistem",
+   "Konveyör sistemi",
+   "Sopalı afiş sistemi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Elektrik direği reklamı veya direk reklamı olarak da bilinen ürün aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Wobbler",
+   "Parapet",
+   "Pole banner",
+   "Roll up banner",
+   "Shelf talker"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Pole banner reklamlarının yol boyunca seyahat eden kişilerce takip edilebilmesi için ne gerekir?</strong>",
+  "o": [
+   "Tek bir direğe çok büyük afiş asılması",
+   "Reklamın yalnızca gece yayınlanması",
+   "Direklerin tamamen boyanması",
+   "Sayıca fazla direk reklamının satın alınması",
+   "Reklamın iç mekâna taşınması"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Otobüs, minibüs, vapur, metro, uçak gibi toplu taşıma araçlarının iç mekânlarında yer alan reklamlar hangi gruba dahil edilir?</strong>",
+  "o": [
+   "Açık hava reklam türlerine",
+   "Advergaming reklamlarına",
+   "Geleneksel basın reklamlarına",
+   "Kamu duyurularına",
+   "İç mekan reklam türlerine"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi havalimanlarında yer alan reklam ürünlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Parapet",
+   "Megalight",
+   "Süper pano",
+   "Konveyör üzeri pano",
+   "Alınlık panosu"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Açık hava reklamlarında kullanılan kâğıtlarla ilgili aşağıdakilerden hangisi <u>yanlıştır</u>?</strong>",
+  "o": [
+   "Sürtünmeye dayanıklıdır",
+   "Işık geçirgenliği zayıf ve kısa ömürlüdür",
+   "Özel bir kaplama kullanılır",
+   "Yırtılmaya dayanıklıdır",
+   "Geniş ebatlıdır"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi açık hava reklam ürünlerinin teknik kısmını oluşturan malzemelerden biridir?</strong>",
+  "o": [
+   "Delikli folyo",
+   "Shelf talker",
+   "Su geçirmez elektrik tesisatı",
+   "Raf şeridi",
+   "Dump bin"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Açık hava reklam alanlarının kiralanması, ürünlerin basılması, dağıtımı, temizliği, bakımı ve arızaların giderilmesi kime aittir?</strong>",
+  "o": [
+   "Yalnızca tasarımcılara",
+   "Yalnızca tüketicilere",
+   "Yalnızca reklamı yapılan ürünün perakendecisine",
+   "Alanda hizmet veren firmalara",
+   "Yalnızca belediyelere"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi açıkhava reklam alanlarındaki bir tasarımın taşıması gereken özelliklerden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Markayı pozitif yönde etkilemesi",
+   "Uygun mesafede konumlanması",
+   "İlgi çekici olması",
+   "Ürün veya hizmetin alımı için ikna edici olması",
+   "Hedef kitlenin göremeyeceği kadar küçük olması"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Billboard ve diğer açıkhava reklam türlerinin boyutları neye göre şekillenir?</strong>",
+  "o": [
+   "Reklamverenin tanıtım ihtiyacına ve ulaşacağı kitlenin bulunduğu konuma",
+   "Yalnızca tasarımcının kişisel zevkine",
+   "Yalnızca rakip reklamların rengine",
+   "Yalnızca sloganın harf sayısına",
+   "Yalnızca matbaanın kâğıt stoğuna"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 13,
+  "q": "<strong>Tabelalarda dikkat çekmek için kullanılan teknikler arasında aşağıdakilerden hangisi yer alır?</strong>",
+  "o": [
+   "Raf şeridi uygulaması",
+   "Kabartma harfler ve yüzeyden taşırma görseller",
+   "Delikli folyo ile cam kaplama",
+   "Dump bin sergileme",
+   "Uçak içi dergi yerleşimi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Webster kaç gereksinim sınıfı saptamıştır?</strong>",
+  "o": [
+   "On",
+   "Üç",
+   "Sekiz",
+   "Beş",
+   "On iki"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi Webster'ın saptadığı gereksinim sınıflarından biri <u>değildir</u>?</strong>",
+  "o": [
+   "Yemek ve içmek",
+   "Korku ve tehlikelerden uzak olma",
+   "Refah",
+   "Öz gerçekleştirme",
+   "Toplumsal olma"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Maslow'un gereksinimler hiyerarşisinde en temel basamak aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Öz gerçekleştirme",
+   "Saygınlık",
+   "Güvenlik gereksinimi",
+   "Üyelik ve sevgi",
+   "Fizyolojik gereksinmeler"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Maslow'un gereksinimler hiyerarşisinde en üst basamak aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Öz gerçekleştirme",
+   "Güvenlik gereksinimi",
+   "Fizyolojik gereksinmeler",
+   "Üyelik ve sevgi",
+   "Saygınlık"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi reklamlarda kullanılan uyarıcılardan biridir?</strong>",
+  "o": [
+   "Kokusal",
+   "Güldürü unsuru taşıyan",
+   "Dokunsal",
+   "Isısal",
+   "Tatsal"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Hedef kitleyle ilgili netleştirilmesi gereken bilgiler arasında aşağıdakilerden hangisi <u>sayılmamıştır</u>?</strong>",
+  "o": [
+   "Cinsiyet",
+   "Ekonomik durum",
+   "Kan grubu",
+   "Dil",
+   "Yaş"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi sayısal ortamda yer alan reklam ürünlerinden biridir?</strong>",
+  "o": [
+   "Adisyon",
+   "Albüm kapağı",
+   "Diplomat zarf",
+   "Elektronik posta şablon tasarımı",
+   "Kartvizit"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Kant, Mach ve Wertheimer, Koffka, Köhler'in fikirlerinin etkili olduğu, psikolojik olayların bütününe ve örgütüne dikkat çeken yaklaşım aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Davranışçılık",
+   "Piktoryalizm",
+   "Pop Art",
+   "Göstergebilim",
+   "Gestalt"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Gestalt Psikoloji Okulu'nun kurucuları aşağıdakilerin hangisinde doğru verilmiştir?</strong>",
+  "o": [
+   "Max Wertheimer, Kurt Koffka, Wolfgang Köhler",
+   "Abraham Maslow, Webster, Kurt Koffka",
+   "Roland Barthes, Charles Peirce, Max Wertheimer",
+   "Immanuel Kant, Ernst Mach, Abraham Maslow",
+   "Edward Steichen, Steven Meisel, Adolph De Meyer"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Alternatif reklamcılıkta sıklıkla tercih edilen ve iç mekan reklam uygulamalarında da başvurulan reklamcılık türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Affiliate reklamcılık",
+   "Gerilla reklamcılık",
+   "Hedefli reklamcılık",
+   "Onboard reklamcılık",
+   "Kamu duyurusu"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>İç mekan reklam ürünlerinde karşılaşılabilecek gerilla reklam uygulamaları hangi yüzeylere uygulanabilir?</strong>",
+  "o": [
+   "Yalnızca radyo frekansı",
+   "Yalnızca televizyon ekranı",
+   "Kaldırım, duvar, tavan",
+   "Yalnızca gazete sayfası",
+   "Yalnızca arama motoru"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Uçak içinde bulunan yolcuların hedef kitle olduğu reklam ürünlerini kapsayan reklamcılık türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Gerilla reklamcılık",
+   "Point of purchase",
+   "Advergaming",
+   "Onboard reklamcılık",
+   "Indoor AVM uygulaması"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi on board reklam ürünlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Uçak içi reklam programları",
+   "Tepsi masalarındaki reklamlar",
+   "Uçuş görevlilerinin ürün tanıtımı",
+   "Uçak içi dergilerdeki reklamlar",
+   "Raf şeridi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Mağaza ve restoran camekanlarında sıklıkla kullanılan, malzemesi yapışkanlı ve delikli folyo olan uygulama aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "One way vision",
+   "Foreks",
+   "Wobbler",
+   "Dump bin",
+   "Mesh"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Mağaza girişlerinde bulunan alarmları kapatmak için kullanılan pop up stand çeşidi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Shelf talker",
+   "Alarm kılıfları",
+   "Raf şeridi",
+   "Kiosk",
+   "Dönkart"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi pop up stand (açılır stand) terimi kapsamında yer almaz?</strong>",
+  "o": [
+   "Roll up banner",
+   "Örümcek stand",
+   "Kuleboard",
+   "Ayaklı broşürlük",
+   "X banner"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Müşteriyle etkileşim halinde olan bilgisayarların, yazılımların, tanıtım veya bilgi içeren tasarımların sergilendiği ürünlere ne ad verilir?</strong>",
+  "o": [
+   "Mesh",
+   "Pole banner",
+   "Lightbox",
+   "Kiosk",
+   "Wobbler"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi kullanım amaçlarına göre kiosk modellerinden biridir?</strong>",
+  "o": [
+   "Mesh kiosk",
+   "Billboard kiosk",
+   "Parapet kiosk",
+   "Wobbler kiosk",
+   "Self check-in kiosk"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Potansiyel bir müşterinin satın alma kararı verdiği, mağaza içi marka-müşteri etkileşiminin gerçekleştiği yere ne ad verilir?</strong>",
+  "o": [
+   "Satın alma noktası (Point of Purchase)",
+   "Outdoor TV",
+   "Giantboard",
+   "Onboard medya",
+   "Alternatif mecra"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi satın alma noktası (POP) ile ilgili bilinmesi gereken üç anahtar kelimeden biridir?</strong>",
+  "o": [
+   "Uzak mesafe görünürlüğü",
+   "Potansiyel müşteri",
+   "Yol boyu takip",
+   "Viral paylaşım",
+   "Baskı kalitesi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Satın alma noktası için tasarlanan reklam ürünleri kullanım sürelerine göre hangi kategorilerde incelenir?</strong>",
+  "o": [
+   "Dijital, basılı, hareketli",
+   "Yerel, ulusal, küresel",
+   "Geçici, yarı kalıcı, kalıcı",
+   "Sosyal, ticari, kültürel",
+   "Küçük, orta, büyük"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi satın alma noktaları için tasarlanan reklam ürünlerinden biridir?</strong>",
+  "o": [
+   "Giantboard",
+   "Kuleboard",
+   "Megalight",
+   "Wobbler",
+   "Parapet"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Promosyon ürünlerinin müşteriler üzerindeki temel etkisi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Rakip markanın tanıtılması",
+   "Ürünün fiyatının düşmesi",
+   "Markanın tamamen unutulması",
+   "Satış hacminin azalması",
+   "Üzerindeki logo sayesinde kullanım sırasında markanın hatırlanması"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Promosyon ürünlerinde sıklıkla kullanılan ve tasarımcılar için gittikçe önem taşıyan oluşum aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sürdürülebilirlik",
+   "Gerilla reklamcılık",
+   "Onboard medya",
+   "Piktoryalizm",
+   "Advergaming"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi hem açık havada hem iç mekanda kullanılabilen büyük boyutlu reklam grafiklerinden biridir?</strong>",
+  "o": [
+   "Wobbler",
+   "Raket (CLP)",
+   "Shelf talker",
+   "Alarm kılıfı",
+   "Raf şeridi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Reklam Grafiği",
+  "u": 14,
+  "q": "<strong>Alışveriş merkezlerinin açık alanlarında hangi tür reklam ürünleri sergilenmektedir?</strong>",
+  "o": [
+   "Yalnızca alarm kılıfları",
+   "Yalnızca raf kartları",
+   "Hava koşullarına ve güneş ışığına dayanıklı açık hava reklam ürünleri",
+   "Yalnızca uçak içi dergiler",
+   "Yalnızca kiosk yazılımları"
+  ],
+  "a": 2
+ }
+]
