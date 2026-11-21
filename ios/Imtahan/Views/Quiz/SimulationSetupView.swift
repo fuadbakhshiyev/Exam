@@ -103,7 +103,8 @@ struct SimulationSetupView: View {
                                        detail: session.date.formatted(.dateTime.day().month(.wide).hour().minute().locale(Self.az)),
                                        subjects: session.subjects)
                         }
-                        sessionRow(title: "Bütün fənlər", detail: nil, subjects: Catalog.subjects)
+                        sessionRow(title: store.passedSubjects.isEmpty ? "Bütün fənlər" : "Qalan fənlər", detail: nil,
+                                   subjects: store.activeSubjects)
                     } header: {
                         Text("İmtahan sessiyası")
                     } footer: {
@@ -228,7 +229,9 @@ struct SimulationSetupView: View {
             // Start on the coming sitting (3 subjects together, then 2, …).
             guard !didPickSession else { return }
             didPickSession = true
-            if let next = ExamDates.shared.nextSession { apply(next.subjects) }
+            // Passed subjects ("Verdim") are left out.
+            let next = ExamDates.shared.nextSession?.subjects.filter(store.activeSubjects.contains) ?? []
+            apply(next.isEmpty ? store.activeSubjects : next)
         }
     }
 
