@@ -1,0 +1,2355 @@
+[
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>“Zihinsel eylem ve bilgiyi elde etme ve düşünce, deneyim yoluyla anlama süreci ve duyu” anlamına gelen kavram aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Iraksak düşünme",
+   "Motivasyon",
+   "Biliş",
+   "İçsel dürtü",
+   "Olgu"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Düşünmenin en temel özelliği aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yalnızca duygusal güçlere dayanması",
+   "Somut bir etkinlik olması",
+   "Sembol ve fikir içermemesi",
+   "Karar verme sürecini dışlaması",
+   "Eylem içermemesi, yani harekete geçmeden önce yapılması"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Hedefe yönelik davranışları başlatan, yönlendiren ve sürdüren süreç aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Olgu",
+   "Kavram",
+   "Motivasyon",
+   "Biliş",
+   "Zorunluluk"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Motivasyonun içerdiği güçler arasında aşağıdakilerden hangisi sayılmaz?</strong>",
+  "o": [
+   "Sosyal",
+   "Mekanik",
+   "Bilişsel",
+   "Biyolojik",
+   "Duygusal"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Herhangi bir ödül ya da zorlama olmaksızın, bireyin içinden gelen ve amacı kendinden olan davranış aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Dışsal teşvik",
+   "Bilişsel esneklik",
+   "İçsel motivasyon",
+   "Dışsal motivasyon",
+   "Analitik ayrıştırma"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Para, ün veya övgü gibi dış ödüller tarafından yönlendirilen davranış aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kavramsal bütünlük",
+   "Dışsal motivasyon",
+   "Metakognitif farkındalık",
+   "Yansıtıcı düşünme",
+   "İçsel motivasyon"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Aşağıdakilerden hangisi motivasyonu artırmak için kullanılabilecek yollardan biri <u>değildir</u>?</strong>",
+  "o": [
+   "Beklemek ve ertelemek",
+   "Bedensel egzersiz",
+   "Hedef belirlemek",
+   "Sosyal olarak desteklenmek",
+   "İlerlemeyi gözden geçirmek"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Bir fikrin gelişmesi ve olgunlaşması için geçen, bilinçaltı zihnin çabasıyla probleme çözümün evrildiği süre aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Tanımlama dönemi",
+   "Devrim dönemi",
+   "Kuluçka dönemi",
+   "Sentez dönemi",
+   "Prototip dönemi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Kavramları temel alan; bilgilerin benzerlik ve farklılıklarını kavram haritası, zihin haritası gibi şemalarla haritalayan düşünme modeli aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Bütüncül düşünme",
+   "Eleştirel düşünme",
+   "Yansıtıcı düşünme",
+   "Metabilişsel düşünme",
+   "Analitik düşünme"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Kişinin kendi öğrenme yollarının farkına varması, bunları kontrol edebilmesi ve kendisi için en iyi öğrenme yolunu bulması hangi düşünme modelidir?</strong>",
+  "o": [
+   "Eleştirel düşünme",
+   "Analitik düşünme",
+   "Bütüncül düşünme",
+   "Metabilişsel düşünme",
+   "Yaratıcı düşünme"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Slavin’in 2013 yılında “ne yapılacağı ve neye inanılacağı hakkında rasyonel kararlar verebilme meziyeti” olarak tanımladığı düşünme modeli aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yansıtıcı düşünme",
+   "Eleştirel düşünme",
+   "Analitik düşünme",
+   "Bütüncül düşünme",
+   "Metabilişsel düşünme"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Bir sorunun tümden gelim yöntemi ile alt konulara ayrılıp her bilginin ayrıca değerlendirildiği düşünme becerisi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yansıtıcı düşünme",
+   "Çağrışımsal düşünme",
+   "Bütüncül düşünme",
+   "Yaratıcı düşünme",
+   "Analitik düşünme"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>“Hem kendimizin hem de başkalarının deneyimleri üzerinde düşünme yoludur.” tanımı hangi düşünme modeline aittir?</strong>",
+  "o": [
+   "Analitik düşünme",
+   "Metabilişsel düşünme",
+   "Eleştirel düşünme",
+   "Bütüncül düşünme",
+   "Yansıtıcı düşünme"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Bireyin yeni, farklı, orijinal, özgün (sentez düzeyi) ürünler ortaya koymasını ifade eden düşünme modeli aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Analitik düşünme",
+   "Yaratıcı düşünme",
+   "Metabilişsel düşünme",
+   "Bütüncül düşünme",
+   "Eleştirel düşünme"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Üstünoğlu (2006) eleştirel, yaratıcı, analitik, yansıtıcı düşünme ve problem çözmeyi hangi düşünme becerileri başlığı altında toplamıştır?</strong>",
+  "o": [
+   "Bütüncül düşünme",
+   "Üst düzey düşünme",
+   "Iraksak düşünme",
+   "Aydınlatıcı düşünme",
+   "Motivasyonel düşünme"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>“Çözülen sorunun daha iyi çözülebileceği” fikrine dayanan yaratıcı düşünmeyi geliştirme yöntemi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yeniden uygulama yöntemi",
+   "Yön değiştirme yöntemi",
+   "Sentez yöntemi",
+   "Evrim yöntemi",
+   "Devrim yöntemi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Eski ürün veya düşünceleri geliştirmek yerine, onlardan tamamen farklı işlevlere sahip yeni bir ürün üretmek hangi yöntemdir?</strong>",
+  "o": [
+   "Yeniden uygulama yöntemi",
+   "Iraksak düşünme yöntemi",
+   "Evrim yöntemi",
+   "Sentez yöntemi",
+   "Devrim yöntemi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>İki ya da daha fazla farklı şeyi bir araya getirerek yeni bir ürün elde etmek hangi yöntemle ifade edilir?</strong>",
+  "o": [
+   "Devrim yöntemi",
+   "Yön değiştirme yöntemi",
+   "Parçalama yöntemi",
+   "Sentez yöntemi",
+   "Evrim yöntemi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Bir şeyi alışılmışın dışında farklı yollarla veya amaçlarla kullanmayı denemek hangi yöntemdir?</strong>",
+  "o": [
+   "Yeniden uygulama yöntemi",
+   "Sentez yöntemi",
+   "Devrim yöntemi",
+   "Yön değiştirme yöntemi",
+   "Evrim yöntemi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Sorun veya duruma bakış açısını değiştirip bir açıdan diğer bir açıya geçişi ifade eden yöntem aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yön değiştirme yöntemi",
+   "Sentez yöntemi",
+   "Yeniden uygulama yöntemi",
+   "Teknik illüstrasyonlar",
+   "Devrim yöntemi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Bir olgunun orijinal halinin değişime uğradığı ya da biçimini kaybedecek ölçüde büküldüğü yaratıcı strateji aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sentez",
+   "Harmanlama",
+   "Bükme (çarpıtma)",
+   "Parçalama",
+   "Basitleştirme"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Bütün haldeki bir nesnenin parçalarına ayrılıp parçalardan yeni bir bütün oluşturulduğu yaratıcı strateji aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Harmanlama",
+   "Bükme",
+   "Uyarlama",
+   "Çarpıtma",
+   "Parçalama"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Beynin birbirinden farklı nesneleri yeni biçim ve yapılarda bir araya getirdiği yaratıcı strateji aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Parçalama",
+   "Basitleştirme",
+   "Bükme",
+   "Harmanlama",
+   "Yön değiştirme"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Aşağıdakilerden hangisi tasarımda yaratıcı stratejilerden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Basitleştirme",
+   "Çarpıtma",
+   "Parçalama",
+   "Harmanlama",
+   "Bükme"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Claude Monet’nin Rouen Katedrali’ne aynı noktadan bakarak yaptığı tablolar hangi yaratıcı stratejilere örnek verilebilir?</strong>",
+  "o": [
+   "Bükme ve Uyarlama",
+   "Çekme ve İtme",
+   "Parçalama ve Harmanlama",
+   "Çarpıtma ve Parçalama",
+   "Harmanlama ve Çarpıtma"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Barnett Newman’ın Kırık Obelisk heykeli ve Pablo Picasso’nun Guernica tablosu hangi yaratıcı strateji ile ilişkilendirilebilir?</strong>",
+  "o": [
+   "Çarpıtma",
+   "Basitleştirme",
+   "Parçalama",
+   "Harmanlama",
+   "Bükme"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Herkes tarafından aynı kabul edilen, kolayca anlaşılabilir, kanıtlanabilir ve bilimsel verilere dayanan, kişiden kişiye değişmeyen bilgi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Model",
+   "Kavram",
+   "Hareket",
+   "Olgu",
+   "Bilinç"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 8,
+  "q": "<strong>Nesnelerin, fikirlerin veya olaylar sınıfını bütünüyle temsil eden genelleştirilmiş anlama sahip kelime veya fikir aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Hareket",
+   "Kavram",
+   "Model",
+   "Bilinç",
+   "Olgu"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Tasarım estetiğinin anlamı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kaliteli ürün çıkarmak",
+   "Ürün elde etmek",
+   "Hoşa giden biçimler tasarlamak",
+   "Bir güzel resim yapmak",
+   "Dikkat çekmek"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Tasarım estetiği, kişinin yaşadığı hangi unsurlara göre biçimlenmiş hali olarak tanımlanabilir?</strong>",
+  "o": [
+   "Yalnızca teknolojik olanaklara",
+   "Üretim hızına",
+   "Yalnızca ekonomik koşullara",
+   "Malzeme maliyetlerine",
+   "Toplum, inanç, gelenek ve ananelere"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Tasarımın tarihsel süreci aşağıdakilerden hangisiyle başlamıştır?</strong>",
+  "o": [
+   "Çizimle",
+   "İnsanın araç gereç yapımıyla",
+   "İnsanın bilinçli çabalarıyla",
+   "İnsanın heykel yapımıyla",
+   "Resimle"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>İlk tasarım ihtiyacı örneklerinin M.Ö. 22000’de başladığı kabul edilen Altamira mağarası hangi ülkededir?</strong>",
+  "o": [
+   "Türkiye",
+   "İspanya",
+   "Fransa",
+   "Mısır",
+   "Hindistan"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>İnsanın tasarladığı ilk ürün aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Mağara duvar resimleri",
+   "Taş baltalar",
+   "Ok ve yay",
+   "Metal mızraklar",
+   "Tahta bıçak"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Şanlıurfa’da bulunan, Mısır piramitlerinden 7 bin 500 yıl önce yapılan ve bilinen ilk ibadet merkezi sayılan yapı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Hattuşa",
+   "Göbeklitepe",
+   "Nemrut",
+   "Çatalhöyük",
+   "Truva"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Göbeklitepe tasarım açısından nasıl değerlendirilmektedir?</strong>",
+  "o": [
+   "Bir savunma kalesi",
+   "Sanayi ürünü",
+   "Sanat eserinden ziyade tapınak özelliği olan bir ihtiyaç ürünü",
+   "Yalnızca dekoratif bir sanat eseri",
+   "Bir saray yapısı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Göbeklitepe T taşları üzerinde en çok aşağıdaki figürlerden hangisi tasarlanmıştır?</strong>",
+  "o": [
+   "Kullanım eşyaları",
+   "Bitkiler",
+   "Baltalar",
+   "Hayvan figürleri",
+   "Teknik araç ve gereçler"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>“Nehirler arası” anlamına gelen ve Sümer, Babil, Asur, Akad, Elam medeniyetlerinin doğduğu bölge aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Hindistan",
+   "Anadolu",
+   "Antik Yunan",
+   "Mezopotamya",
+   "Antik Mısır"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Mezopotamya kültüründe aşağıdaki tasarımlardan hangisi üretilmiştir?</strong>",
+  "o": [
+   "Çivi",
+   "Kağnı arabası",
+   "At arabası",
+   "Yaba",
+   "Tarım aletleri ve pişmiş tuğla"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>İhtiyaç tasarımı olarak hiyeroglif yazısını kullanan ve tunç eserler üreten Anadolu uygarlığı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Antik Yunan",
+   "Sümerler",
+   "Asurlar",
+   "Hititler",
+   "Antik Mısır"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Fiziksel güzelliğe son derece önem veren, inanç ritüellerini mimari, heykel ve resim sanatına aktaran ve insan başlı sfenksler yapan uygarlık hangisidir?</strong>",
+  "o": [
+   "Sümerler",
+   "Antik Yunan",
+   "Hint uygarlığı",
+   "Antik Mısır",
+   "Hititler"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Antik Yunan kültüründe en çok üretilen tasarımlar aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Mozaikler",
+   "Tanrı heykelleri",
+   "Vazolar",
+   "Yüzme havuzları",
+   "Duvar resimleri"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Antik Yunan uygarlığı en çok hangi yönetim döneminde zirveye çıkmıştır?</strong>",
+  "o": [
+   "Hammurabi",
+   "Perikles",
+   "Büyük İskender",
+   "Ramses",
+   "Sezar"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>İlk Sanayi Devrimi hangi ülkede başlamıştır?</strong>",
+  "o": [
+   "Almanya",
+   "Fransa",
+   "İtalya",
+   "İngiltere",
+   "Amerika"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Sanayi Devrimi’ne kadar el işçiliğinin ön planda olduğu üretimde hangi kavram bulunmuyordu?</strong>",
+  "o": [
+   "İhtiyaç",
+   "Üretim fazlası",
+   "Sanat eseri nesnesi",
+   "El emeği",
+   "El sanatları"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Sanayi Devrimi tasarım estetiği açısından nasıl bir etkide bulunmuştur?</strong>",
+  "o": [
+   "Seri üretim azalmıştır.",
+   "Sanat eseri nesnesi yapıtta daha çok görünmüştür.",
+   "Tüm ürünler aynı tasarım ve estetiğe sahip olmuştur.",
+   "Daha estetik ürün elde edilmiştir.",
+   "El emeği ön plana çıkmıştır."
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Bir toplumun tarihsel süreç içinde ürettiği ve kuşaktan kuşağa aktardığı her türlü maddi ve manevi değerlerin tümüne ne ad verilir?</strong>",
+  "o": [
+   "Kültür",
+   "Mimesis",
+   "Uygarlık",
+   "Biçim",
+   "Estetik"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Tasarım estetiğinde güzel kavramı nasıl açıklanır?</strong>",
+  "o": [
+   "Güzellik göreceli bir kavramdır ve kültürlere göre değişir.",
+   "Güzel ancak resimde görülür.",
+   "Sadece sanatçılar güzeli tasarlar.",
+   "Güzellik mutlak ve değişmezdir.",
+   "Güzellik yalnızca işlevle ölçülür."
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>İnsanlar bir tasarımı incelerken öncelikle neye dikkat ederler?</strong>",
+  "o": [
+   "Dış çizgilerine",
+   "Biçimine",
+   "Rengine",
+   "Fiyatına",
+   "Malzemesine"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Platon’un sanat felsefesi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sanat, Yunan halkı için vazgeçilmezdir.",
+   "Mimesis doğanın mükemmelleştirilmesidir.",
+   "Sanat, Tanrı mesleğidir.",
+   "Sanat, işe yarar bir meslektir.",
+   "Sanatçı Tanrı’nın yaratıklarının kopyasını yapar."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Sanatçı tarafından yapılan taklidi (mimesis) doğanın mükemmelliği ve yeniden biçimlenmesi olarak tanımlayan düşünür aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Aristoteles",
+   "Gazali",
+   "Kant",
+   "Hegel",
+   "Platon"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>“Estetik, eşyayı güzel yapan düşünceyi eşya içinde aramaktır.” görüşü hangi düşünüre aittir?</strong>",
+  "o": [
+   "Gazali",
+   "Aristoteles",
+   "Platon",
+   "Kant",
+   "Hegel"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>İslam sanatında tasarım estetiği nasıl tanımlanır?</strong>",
+  "o": [
+   "Sanat önemsizdir.",
+   "Güzellik yalnızca biçimdedir.",
+   "Sanat yapmak yalnızca ustalık ister.",
+   "Resim yapmak günahtır.",
+   "Her varlık Allah’ı anıyorsa güzeldir."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Yargı Yetisinin Eleştirisi adlı eserinde güzel sanat türlerini ilk defa sınıflandıran düşünür aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Aristoteles",
+   "Hegel",
+   "Gazali",
+   "Platon",
+   "Immanuel Kant"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 9,
+  "q": "<strong>Sanat alanındaki idealizm ve güzellik anlayışını sembolizm, klasizm ve romantizm üzerinden inceleyen düşünür aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Hegel",
+   "Platon",
+   "Gazali",
+   "Kant",
+   "Aristoteles"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Dijitalleşme kavramı hangi dönemden itibaren artan bir hızla yaşantımız içerisinde yer almıştır?</strong>",
+  "o": [
+   "Sanayi Devrimi’nden itibaren",
+   "1900’lü yılların başından itibaren",
+   "2000’li yılların ortasından itibaren",
+   "1900’lü yılların son çeyreğinden itibaren",
+   "1800’lü yılların başından itibaren"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi grafik tasarım alanında en çok tercih edilen sektör lideri yazılım firmasıdır?</strong>",
+  "o": [
+   "Adobe",
+   "Wacom",
+   "Microsoft",
+   "Apple",
+   "Corel"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Adobe uygulamalarının çoğu ücretli olarak hangi üyelik ile kullanılmaktadır?</strong>",
+  "o": [
+   "Office 365",
+   "iCloud",
+   "Creative Suite Free",
+   "Creative Cloud",
+   "Google Workspace"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Windows ve macOS cihazlarda piksel tabanlı görüntü ve fotoğraf işlemek için kullanılan yazılım aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Adobe InDesign",
+   "Adobe Illustrator",
+   "Adobe Photoshop",
+   "Adobe Premiere Pro",
+   "Procreate"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Adobe tarafından geliştirilen vektör işleme ve tasarım uygulaması aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Dall-E",
+   "Adobe Illustrator",
+   "Adobe Premiere Pro",
+   "SketchBook",
+   "Adobe Photoshop"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>İlk sürümü 1999 yılında masaüstü yayıncılık ve mizanpaj tasarımları için yayınlanan uygulama aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Adobe Illustrator",
+   "Procreate",
+   "Adobe Photoshop",
+   "Adobe InDesign",
+   "Adobe Premiere Pro"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Aşağıdaki Adobe yazılımlarından hangisinin temel kullanım alanı <u>yanlıştır</u>?</strong>",
+  "o": [
+   "Adobe InDesign / Mizanpaj ve masaüstü yayıncılık",
+   "Adobe Animate / Animasyon tasarımı",
+   "Adobe Photoshop / Fotoğraf rötuş ve manipülasyon",
+   "Adobe Illustrator / Vektörel çizim ve illüstrasyon",
+   "Adobe Premiere Pro / Piksel tabanlı görüntü işleme"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Aşağıdaki işlemlerden hangisi Adobe Illustrator yazılımında gerçekleştirilemez?</strong>",
+  "o": [
+   "Vektörel çizimler oluşturmak",
+   "Ses dosyası birleştirmek",
+   "Dijital illüstrasyon yapmak",
+   "Afiş tasarımı yapmak",
+   "Tipografi tasarımı"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi tasarım sürecinde kullanılan Adobe yazılımlarından biri <u>değildir</u>?</strong>",
+  "o": [
+   "Publisher",
+   "InDesign",
+   "Photoshop",
+   "Illustrator",
+   "After Effects"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Vektörel tabanlı yazılımlar hakkında aşağıdaki ifadelerden hangisi doğrudur?</strong>",
+  "o": [
+   "Yalnızca dijital mecrada kullanılır.",
+   "Piksellerden oluştuğu için büyütülünce kalite kaybeder.",
+   "Çalışma alanının büyüklüğü ne olursa olsun bozulma olmaz.",
+   "Ses katmanlarında düzenleme yapar.",
+   "Video kurgu için idealdir."
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Vektörel çizimlerde boyut fark etmeksizin keskinlik ve kalite kaybı yaşanmamasının nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yalnızca basılı mecrada kullanılmaları",
+   "Creative Cloud ile kaydedilmeleri",
+   "Yüksek piksel yoğunluğuna sahip olmaları",
+   "Bir dizi matematiksel koordinat ve değerden oluşmaları",
+   "Difüzyon teknolojisi ile üretilmeleri"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Photoshop ile tamamlanan tasarımlar genellikle hangi mecrada, InDesign ve Illustrator ile yapılanlar ise hangi mecrada tercih edilir?</strong>",
+  "o": [
+   "Photoshop basılı, InDesign ve Illustrator dijital mecrada",
+   "Photoshop dijital, InDesign ve Illustrator basılı mecrada",
+   "Photoshop video, Illustrator ses mecrasında",
+   "Hepsi yalnızca dijital mecrada",
+   "Hepsi yalnızca basılı mecrada"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>iOS işletim sistemli Apple tabletlerde çalışan ve profesyonel çizerlerce çokça tercih edilen dijital çizim uygulaması aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Procreate",
+   "Adobe InDesign",
+   "Unity",
+   "Adobe Premiere Pro",
+   "Dall-E"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Aşağıdaki yazılımlardan hangisi çizim tabletlerinde çizim yapmak için kullanılmaz?</strong>",
+  "o": [
+   "Procreate",
+   "Premiere Pro",
+   "Corel Painter",
+   "Fresco",
+   "Infinite Painter"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Unity yazılımı ile aşağıdakilerden hangisi yapılabilmektedir?</strong>",
+  "o": [
+   "Sanal gerçeklik mekân tasarımı",
+   "Afiş tasarımı",
+   "Fotoğraf rötuşu",
+   "Mizanpaj ve dizgi",
+   "Video kurgu"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi yapay zekâ ve derin öğrenme teknolojilerini kullanan Dall-E için doğru bir ifadedir?</strong>",
+  "o": [
+   "Sadece mobil cihazlarda kullanılabilir.",
+   "Yalnızca vektörel çizim yapar.",
+   "Difüzyon teknolojisi ile görüntü üretir.",
+   "Var olan görüntüleri birleştirerek yeni görüntü üretir.",
+   "Konuşulan cümleleri analiz eder ve tasarım yapar."
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Grafik tasarımcılar tarafından bir tasarımın oluşturulması, işlenmesi ve bitirilmesinde en çok kullanılan teknolojik cihaz aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Tarayıcı",
+   "Tablet",
+   "Bilgisayar",
+   "Yazıcı",
+   "Çizim kalemi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Yüksek kapasiteli donanıma (ekran kartı, işlemci, RAM) sahip bilgisayarlar genellikle hangi tasarımcılar tarafından tercih edilir?</strong>",
+  "o": [
+   "El ile eskiz çizen tasarımcılar",
+   "Yalnızca metin düzenleyen editörler",
+   "Üç boyutlu tasarım, video düzenleme ve render yapan tasarımcılar",
+   "Serigrafi baskı yapan ustalar",
+   "Yalnızca kartvizit tasarlayan tasarımcılar"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Profesyonel işlevleri sayesinde çoğunlukla çizerler tarafından tercih edilen çizim tabletlerinin üreticisi olarak hangi firma anılmaktadır?</strong>",
+  "o": [
+   "Corel",
+   "Samsung",
+   "Adobe",
+   "DICE",
+   "Wacom"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi Ekransız Grafik Tabletler’i ifade etmek için kullanılır?</strong>",
+  "o": [
+   "Düz Tablet",
+   "Düzlem Tablet",
+   "LCD Tablet",
+   "Ekranlı Tablet",
+   "Kör Tablet"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi çizim tabletleri için söylenemez?</strong>",
+  "o": [
+   "Grafik tasarım ve illüstrasyon yapılabilir.",
+   "Ekranlı, ekransız ve yarı ekranlı olmak üzere üç gruba ayrılır.",
+   "Farklı boyutlar ve özelliklere sahip olabilir.",
+   "Kalem ile çizim yapılabilir.",
+   "Çizim sürecinde kolaylık sağlar."
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Çizim tabletlerinde kullanılan kalemlerdeki en belirleyici özellik aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Pil ömrü",
+   "Ağırlığı",
+   "Uç malzemesi",
+   "Basınç hassasiyeti",
+   "Renk seçeneği"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi basılı mecra kapsamında değerlendirilen tasarımlardan biri <u>değildir</u>?</strong>",
+  "o": [
+   "İnternet sitesi açılış sayfası (landing page)",
+   "Kartvizit",
+   "Ambalaj",
+   "Broşür",
+   "Afiş"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi bir tasarımcının basılı mecrada yapacağı tasarıma başlamadan önce bilmesi gereken önemli hususlardan biri <u>değildir</u>?</strong>",
+  "o": [
+   "Bilgisayarın performans durumu",
+   "Hangi boyutta bir tasarım gerektiği",
+   "Baskı yapacak cihazın teknolojisi",
+   "Tasarımın sergileneceği yüzeyin bilgisi",
+   "Tasarımın hangi yüzeye uygulanacağı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Yapay zekâ tasarım alanında özellikle hangi konularda sıklıkla kullanılmaktadır?</strong>",
+  "o": [
+   "Ofset baskı ve ciltleme",
+   "Kâğıt üretimi ve kesim",
+   "El yazısı ve kaligrafi",
+   "Serigrafi ve gravür",
+   "Fotoğraf işleme ve akıllı tasarım"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 10,
+  "q": "<strong>Deneysel tasarım için aşağıdaki ifadelerden hangisi <u>yanlıştır</u>?</strong>",
+  "o": [
+   "Sanal, artırılmış ve karma gerçeklik çalışma alanlarıdır.",
+   "Tasarımlar üç boyutlu olduğu kadar iki boyutlu ortamlar için de yapılır.",
+   "Fiziksel dünyanın dijital atmosfer ile etkileşime girdiği alanlarda yürütülür.",
+   "Paralel gerçeklik de çalışma alanıdır.",
+   "Sadece yapay zekâ ve derin öğrenme teknolojilerinin desteklediği alanlarda yapılır."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Dijitalleşme tasarım disiplinlerini hangi iki açıdan etkilemiştir?</strong>",
+  "o": [
+   "Tasarımın fiyatı ve vergisi",
+   "Tasarımın üretilme biçimi/medyumu ve hedef mecrası",
+   "Kâğıt türü ve mürekkep rengi",
+   "Müşteri sayısı ve reklam bütçesi",
+   "Tasarımcının yaşı ve cinsiyeti"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Dijital çağın teknik imkânları tasarım yapmayı nasıl bir hale getirmiştir?</strong>",
+  "o": [
+   "Daha uzun süreli ve maliyetli",
+   "Yalnızca el işçiliğine bağlı",
+   "Yalnızca basılı mecraya özgü",
+   "Kolay, düşük maliyetli ve hızlı",
+   "Zor, pahalı ve yavaş"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Sanayi Devrimi ile birlikte 18. yüzyılda insanların yaşam tarzları hangi tür bir topluma doğru evrilmiştir?</strong>",
+  "o": [
+   "Göçebe",
+   "Zanaat odaklı",
+   "Avcı-toplayıcı",
+   "Tüketim odaklı",
+   "Tarım odaklı"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Üretken Estetik (Generative Aesthetics) ve Yapay Sanat (Artificial Art) terimleri ilk defa ne zaman ortaya atılmıştır?</strong>",
+  "o": [
+   "1900 öncesi",
+   "1923 sonrası",
+   "2000 sonrası",
+   "1965 sonrası",
+   "1990 sonrası"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Bilgisayarlarla sanat yapma sürecinde 1968 yılında ortaya çıkan sanat formu aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Ascii Sanatı",
+   "İnternet Sanatı",
+   "Sanal Gerçeklik Sanatı",
+   "Video Oyun Sanatı",
+   "Robotik Sanat"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>1973 yılında ortaya çıkan sayısal sanat formu aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yazılım Sanatı",
+   "Robotik Sanat",
+   "Ascii Sanatı",
+   "Sanal Gerçeklik Sanatı",
+   "Video Oyun Sanatı"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Bilgisayarın dijital sanat üretimindeki konumu nasıl ifade edilmektedir?</strong>",
+  "o": [
+   "Sanatla hiçbir ilişkisi olmayan bir araç",
+   "Yalnızca arşivleme cihazı",
+   "Sanatçının yerini tamamen alan tek yaratıcı",
+   "Yalnızca bir hesap makinesi konumunda",
+   "Yardımcı bir araçtan vazgeçilmez bir ortak yaratıcı konumuna"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Tasarımcılar henüz olgunlaşmamış fikirlerini geliştirirken zihinlerindeki çözümleri başkalarına ve kendilerine ……………….. için eskizler çizerler. Boşluğa hangisi getirilmelidir?</strong>",
+  "o": [
+   "modellemek",
+   "renklendirmek",
+   "ifade etmek",
+   "güzelleştirmek",
+   "hızlandırmak"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Grafik tabletler başlangıçta hangi amaçla geliştirilmiştir?</strong>",
+  "o": [
+   "Oyun oynamak için",
+   "El yazısı için",
+   "Fotoğraf baskısı için",
+   "Video kurgu için",
+   "Üç boyutlu modelleme için"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Artırılmış, Sanal ve Karma Gerçeklik ile bunların kapsamındaki teknolojileri kapsayan şemsiye terim aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Dijital Gerçeklik",
+   "Paralel Gerçeklik",
+   "Azaltılmış Gerçeklik",
+   "Görsel Gerçeklik",
+   "Genişletilmiş Gerçeklik (XR)"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Kişinin görsel, işitsel (bazı durumlarda dokunsal) yollarla duyu organlarına hitap ederek sayısal ortamda üretilmiş sanal dünyada olma illüzyonunu yaratan teknoloji hangisidir?</strong>",
+  "o": [
+   "Görsel Gerçeklik",
+   "Artırılmış Gerçeklik",
+   "Sanal Gerçeklik",
+   "Azaltılmış Gerçeklik",
+   "Karma Gerçeklik"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Sanal gerçekliğin artırılmış ve karma gerçeklikten en temel farkı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kullanıcının fiziksel ve sanal dünyayı beraber görmesi",
+   "Yalnızca mobil cihaz ekranında çalışması",
+   "Kullanıcının fiziksel dünyadan yalıtılıyor olması",
+   "Kullanıcının sanal dünyadan yalıtılıyor olması",
+   "Kullanıcının sadece fiziksel dünyayı görmesi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Çoğunlukla mobil cihaz ekranlarında bilgisayar üretimi görüntülerin fiziksel dünya görüntüsü üzerine bindirildiği teknoloji aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Fotogrametri",
+   "Hareket Yakalama",
+   "Karma Gerçeklik (MR)",
+   "Sanal Gerçeklik (VR)",
+   "Artırılmış Gerçeklik (AR)"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>VR ve AR teknolojilerinin harmanlanmış hâli olan teknoloji aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Paralel Gerçeklik",
+   "Artırılmış Gerçeklik",
+   "Azaltılmış Gerçeklik",
+   "Sanal Gerçeklik",
+   "Karma Gerçeklik"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Tasarım alanında öngörülebilir hedefler için kullanılan mantıksal karar sistemi olarak …………………. kullanmak tasarımcıların işini kolaylaştırır. Boşluğa hangisi gelmelidir?</strong>",
+  "o": [
+   "Artırılmış Gerçeklik (AR)",
+   "Karma Gerçeklik (MR)",
+   "Yapay zekâ (AI)",
+   "Sanal Gerçeklik (VR)",
+   "Sanatçı eskizleri"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi dijital baskının sağladığı faydalardan biri <u>değildir</u>?</strong>",
+  "o": [
+   "Esneklik ve daha parlak renkler",
+   "Talep edilen miktarda baskı sayısı",
+   "Gerçek zamanlı prova",
+   "Yüksek maliyetler",
+   "Değişken data baskısı"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Hızlı Prototipleme (Rapid Prototyping) teknolojisinin diğer ismi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "3B Baskı",
+   "Dijital Baskı",
+   "Ofset Baskı",
+   "CTP Baskı",
+   "Serigrafi Baskı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi 3B baskıda kullanılan teknolojilerden biri <u>değildir</u>?</strong>",
+  "o": [
+   "CMYK",
+   "SLA",
+   "Katmanlı üretim",
+   "FDM",
+   "SLS"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Moda endüstrisinde 3D yazıcıların moda aksesuarlarının baskısını almak, …………… üretmek ve sürdürülebilirlik elde edilmesi gibi kullanımları vardır. Boşluğa hangisi gelmelidir?</strong>",
+  "o": [
+   "prototipler ve araçlar",
+   "serigrafi baskılar",
+   "şablon baskılar",
+   "dijital baskılar",
+   "VR kontrolleri"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Fiziksel dünyadaki nesne, insan ve hayvanların hareketlerini kaydedip diğer yazılımlarda kullanılabilecek veri setlerine dönüştüren teknoloji hangisidir?</strong>",
+  "o": [
+   "Dijital Baskı",
+   "Artırılmış Gerçeklik",
+   "Hareket yakalama (Motion Capture)",
+   "Fotogrametri",
+   "3B Baskı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi bir hareket yakalama teknolojisi <u>değildir</u>?</strong>",
+  "o": [
+   "Aktif Optik Sistemler",
+   "Doğrusal Sistemler",
+   "İşaretsiz Sistemler",
+   "İnersiyal Sistemler",
+   "Pasif Optik Sistemler"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>İki boyutlu görüntü dizilerini kullanarak fiziksel nesneler ve çevre hakkında güvenilir üç boyutlu bilgi elde etmek için kullanılan teknoloji hangisidir?</strong>",
+  "o": [
+   "Hareket yakalama",
+   "Vektörel çizim",
+   "Dijital baskı",
+   "Fotogrametri",
+   "Sanal gerçeklik"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Fotogrametri, DICE firması tarafından Battlefield oyunundan sonra hangi oyunda mekân ve nesnelerin üretiminde yoğun biçimde kullanılmıştır?</strong>",
+  "o": [
+   "Minecraft",
+   "Pac-Man",
+   "Tetris",
+   "Super Mario",
+   "Star Wars: Battlefront"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>“Üretici ve kullanıcının karşılıklı yararı için ürün, alet, nesne ve hizmetlerin işlevi, değeri ve görünümünü optimize eden profesyonel hizmet” olarak tanımlanan disiplin hangisidir?</strong>",
+  "o": [
+   "Endüstriyel Tasarım",
+   "İllüstrasyon",
+   "Gastronomi",
+   "Mimari Tasarım",
+   "Animasyon"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Moda endüstrisinin dijital teknolojileri süreçlerine dahil etmede temkinli davranmasının temel nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Dijital tasarımın “insan dokunuşunu” sağlayamadığı inancı",
+   "Moda tasarımcılarının bilgisayar kullanamaması",
+   "Dijital baskının renkleri soldurması",
+   "Dijital teknolojilerin çok ucuz olması",
+   "Kumaşların dijital ortama aktarılamaması"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 11,
+  "q": "<strong>Aşağıdaki yazılımlardan hangisi moda tasarımı için özel olarak üretilmiş CAD yazılımları arasında yer almaz?</strong>",
+  "o": [
+   "TUKA 3D",
+   "Adobe Premiere",
+   "CLO 3D",
+   "C-Design Fashion",
+   "Marvelous Designer"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Sürdürülebilirlik kavramının temel tanımı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Üretimi sürekli artırmak",
+   "Doğal kaynakları sınırsız kullanmak",
+   "Hoşa giden biçimler tasarlamak",
+   "Gelecek nesillerin ihtiyaçlarını karşılama çabalarından ödün vermeden bugünün ihtiyaçlarını karşılamak",
+   "Yalnızca ekonomik büyümeyi hedeflemek"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Sürdürülebilirlik ne anlama gelir?</strong>",
+  "o": [
+   "Çevresel tasarım yapar.",
+   "Tasarımla birlikte bir meslektir.",
+   "Toplum için vazgeçilmez bir moda akımıdır.",
+   "Dış tasarımlara ağırlık verir.",
+   "Yaşamı yöneten temel bir ilkedir."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Sürdürülebilir tasarım ne demektir?</strong>",
+  "o": [
+   "Sanatsal çalışmalar yapmaktır.",
+   "Nitelikli ürün ortaya koymaktır.",
+   "Hoşa giden biçimler yaratmaktır.",
+   "Doğayla barışık üretimlere ağırlık vermektir.",
+   "Araç gereç tasarlamaktır."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Sürdürülebilir tasarım fikri, çevre hareketi ne zaman ortaya çıkmıştır?</strong>",
+  "o": [
+   "1890",
+   "1970",
+   "1960",
+   "1980",
+   "1924"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Sürdürülebilir kalkınma ve farkındalık toplantıları ne zaman ve nerede başlamıştır?</strong>",
+  "o": [
+   "1960 yılında Paris’te",
+   "1972 yılında Stockholm’de",
+   "1992 yılında Rio de Janeiro’da",
+   "2002 yılında Johannesburg’da",
+   "1987 yılında New York’ta"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>“Bugünün gereksinimlerini, gelecek kuşakların gereksinimlerini karşılama yeteneğinden ödün vermeden karşılayan kalkınma” tanımı hangi yıl yapılmıştır?</strong>",
+  "o": [
+   "2002",
+   "1992",
+   "1972",
+   "1987",
+   "1960"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>3-14 Haziran 1992 tarihleri arasında Rio de Janeiro’da düzenlenen BM Çevre ve Kalkınma Konferansı niçin toplanmıştır?</strong>",
+  "o": [
+   "Hayvanların korunması",
+   "Araçların azaltılması",
+   "Çevreye duyarlı politikaların geliştirilmesi",
+   "Fabrikaların kapatılması",
+   "Bitkilerin korunması"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>4 Eylül 2002’de sona eren Johannesburg toplantısının sonuçlarından biri aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Petrolü daha iyi arıtmak",
+   "Köye dönüşü teşvik etmek",
+   "Biyolojik çeşitlilik kaybının durdurulması",
+   "Denizlerdeki balık avını çoğaltmak",
+   "Tarım aletlerini çoğaltmak"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Sürdürülebilir kalkınma hedefleri kaç başlık altında toplanmıştır?</strong>",
+  "o": [
+   "10",
+   "21",
+   "6",
+   "12",
+   "17"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi sürdürülebilir kalkınma hedefleri içinde yer alır?</strong>",
+  "o": [
+   "Toprak ve arazi yaşamını korumak",
+   "Emek üretimi",
+   "Sürekli üretim",
+   "Makineleşme",
+   "Orman artıkları"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>I. Yoksullukla mücadele  II. Sorumlu üretim ve tüketim  III. Sağlıklı yaşam<br>Yukarıdakilerden hangisi ya da hangileri sürdürülebilir kalkınma hedefleri arasında yer alır?</strong>",
+  "o": [
+   "I, II ve III",
+   "Yalnız II",
+   "I ve II",
+   "Yalnız I",
+   "II ve III"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi sürdürülebilir kalkınma hedeflerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Deniz canlılarını korumak",
+   "Makineleşmenin artırılması",
+   "Kaliteli eğitim",
+   "Temiz suya ulaşma",
+   "Sıfır açlık"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>İnsan etkisi olmadan, canlı ve cansız tüm varlıkların kendi doğal dengesi içinde işleyişini sürdürdüğü sisteme ne ad verilir?</strong>",
+  "o": [
+   "Sanal çevre",
+   "Yapay çevre",
+   "Doğal çevre",
+   "Kentsel çevre",
+   "Endüstriyel çevre"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Doğanın işleyişinin taklidi olarak ifade edilen ve doğadaki hayatta kalma sistemlerinden ilham alarak teknik ve mühendislik disiplinlerine aktaran yaklaşım hangisidir?</strong>",
+  "o": [
+   "Biyomimikri",
+   "Mimesis",
+   "Fotogrametri",
+   "İşlevselcilik",
+   "Ergonomi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>İnsanlık tarihinin ilk biyomimikri örneği sayılan, ancak yanlış ve kötü bir örnek olarak da değerlendirilen uygulama aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Köpek balığı derisinden mayo üretilmesi",
+   "Kuş kanadından uçak tasarlanması",
+   "Arı peteğinden yapı tasarlanması",
+   "İpek böceğinden iplik elde edilmesi",
+   "Lotus yaprağından boya üretilmesi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi biyomimikri tasarım spiralinin 6 adımından biri <u>değildir</u>?</strong>",
+  "o": [
+   "Pazarlama",
+   "Tanımlama",
+   "Soyutlama",
+   "Gözleme",
+   "Çevirme"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Biyomimikri spiralinde aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Kalitesiz ürün ve tasarımları yok eder.",
+   "Tüm ürünler aynı topraktan üretilir.",
+   "Sürekli yağmur yağar.",
+   "Sürekli güneş ışığına ihtiyaç duyar.",
+   "İhtiyacı kadar enerji üretir."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi sürdürülebilir tasarım ve üretimin ana kriterlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Doğal ortam ve hammadde",
+   "Ürün kullanımı",
+   "Parçaların üretimi",
+   "Ürünün reklam bütçesi",
+   "Ürünün ömrü ve geri dönüşümü"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Görsel tasarımın sürdürülebilirlik açısından temel amacı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Daha çok baskı malzemesi kullanmak",
+   "Sosyal ve çevresel farkındalık yaratarak toplumun sürdürülebilirlik algılarını değiştirmek",
+   "Ürün maliyetini artırmak",
+   "Yalnızca estetik kaygıları gözetmek",
+   "Plastik ambalaj kullanımını yaygınlaştırmak"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi sürdürülebilir görsel tasarım için önemli kriterlerden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Dijital ortamlar yerine baskının tercih edilmesi",
+   "Sürdürülebilir baskı tekniklerinin seçilmesi",
+   "Elektronik ve dijital görsel ortamların seçilmesi",
+   "Çevre dostu malzemelerin düşünülmesi",
+   "Geri dönüşümlü baskı yüzeylerinin seçilmesi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Petrolün bulunmasıyla birlikte hammaddesinden elde edilen ve doğada 500 ila 1000 yıl bozulmadan kalan ambalaj türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Cam ambalaj",
+   "Naylon (plastik) ambalaj",
+   "Kâğıt ambalaj",
+   "Ahşap ambalaj",
+   "Bitki kökenli ambalaj"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Sürdürülebilir ambalaj aşağıdakilerden hangisi olmalıdır?</strong>",
+  "o": [
+   "Her malzemeden ambalaj tasarlanabilir.",
+   "Ambalaj dayanıklı olmalıdır.",
+   "Sürekli ambalaj üretimi yapılmalıdır.",
+   "Ambalaj üretimin temel faktörüdür.",
+   "Doğadaki bitki kökenli ürünlerden tasarlanmalıdır."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Tüketilen kaynakların yerine yenilerinin konulmasını savunan ve fosil kaynak kullanımıyla ihlal edilen ilke aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sürekli üretim ilkesi",
+   "Aldığını yerine koyma ilkesi",
+   "Az çoktur ilkesi",
+   "Kâr maksimizasyonu ilkesi",
+   "Biçim işlevi izler ilkesi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>Sürdürülebilir tasarımın asıl amacı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Hayvan katliamına karşı olmak",
+   "Rahat yaşamak",
+   "Barış yanlısı bir hareket olmak",
+   "Daha çok üretim, daha çok satış",
+   "Daha düşük enerji, daha az atık"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 12,
+  "q": "<strong>I. Malzemeleri toplamak  II. Geri dönüştürmek  III. Geri dönüştürülmüş ürünleri tekrar satın almak  IV. Sürekli üretim yapmak<br>Geri dönüşüm logosundaki oklar yukarıdakilerden hangilerini ifade eder?</strong>",
+  "o": [
+   "I ve IV",
+   "I, II, III ve IV",
+   "I, II ve III",
+   "II ve III",
+   "I ve II"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>21. yüzyılda hangi alanda baskın bir terim olan inovasyon, 1960’tan sonra zengin bir içeriğe sahip olmuştur?</strong>",
+  "o": [
+   "Hukuk alanında",
+   "Tarım alanında",
+   "Tıp alanında",
+   "Spor alanında",
+   "Finansal alanda"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>İnovasyon kavramı için aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Yoktan var etme ve icat yapma kaygısıdır.",
+   "Geleneksel kalıpların korunmasıdır.",
+   "Yalnızca bilim ve teknolojiye odaklanmaktır.",
+   "Yalnızca sonuç aşamasından oluşur.",
+   "Var olanın dönemin güncel değerlerine göre dönüştürülmesi ve geliştirilmesidir."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>1960’lardan itibaren daha önce çözülemeyen sorunlara odaklanan inovasyon hangi yaklaşım tarzını benimsemiştir?</strong>",
+  "o": [
+   "Taklitçi",
+   "Durağan",
+   "Kırılmaya dayalı",
+   "Gelenekselci",
+   "Tek disiplinli"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>“İnovasyon” kavramı Türkçe literatürde hangi disiplin alanı ile bağdaştırılmıştır?</strong>",
+  "o": [
+   "Ekonomi",
+   "Kamu",
+   "Eğitim",
+   "Moda",
+   "Sanayi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Türkçe literatürde hangi kavramlarla birlikte anılıyor olması inovasyonun daha çok ekonomi alanına ait olmasını destekler?</strong>",
+  "o": [
+   "Yönetim, ürün-hizmet, kâr-zarar, satış",
+   "Renk, grafik, eskiz",
+   "Kâr-zarar, grafik, icat",
+   "ArGe, planlama, renk",
+   "Moda, ürün, icat"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Özlem Er ve Alpay Er’in (2003) “teknoloji ve bilginin insanların kullanabileceği bir ürüne dönüştürüldüğü süreç” tanımına göre tasarım nasıl bir süreçtir?</strong>",
+  "o": [
+   "Yenilikçi",
+   "Gelişimsel",
+   "Eleştirel",
+   "Gelenekselci",
+   "Modern"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Tasarım nasıl bir süreci ifade etmektedir?</strong>",
+  "o": [
+   "Kendine ait sınırları olan",
+   "Aktif, sürekli kendini yenileyen",
+   "Yalnızca kurallara uygun",
+   "Sabit",
+   "Pasif"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>İnovasyon kaç aşamadan oluşur?</strong>",
+  "o": [
+   "İki",
+   "Bir",
+   "Üç",
+   "Dört",
+   "Altı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>İnovasyonun farklı disiplinlerle aktif biçimde etkileşim kurduğu ve müşterinin ihtiyaç ve sorunlarına yöneldiği aşama hangisidir?</strong>",
+  "o": [
+   "Süreç aşaması",
+   "Pazarlama aşaması",
+   "Sonuç aşaması",
+   "Satış aşaması",
+   "Değerlendirme aşaması"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Geliştirilen stratejilerin hedefine ulaşıp ulaşmadığının değerlendirildiği inovasyon aşaması hangisidir?</strong>",
+  "o": [
+   "Prototip aşaması",
+   "Keşif aşaması",
+   "Sonuç aşaması",
+   "Süreç aşaması",
+   "Tanımlama aşaması"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>İnovasyon sürecinde stratejiler geliştirilirken nelere ihtiyaç vardır?</strong>",
+  "o": [
+   "Sabit fikir",
+   "Yüksek bilgi, farklı bakış açısıyla yaklaşabilme, keşfetme",
+   "Yalnızca teknik yeterlilik",
+   "Yüzeysel bakış açısı",
+   "Kalıplaşmış fikirler"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>İnovasyon sürecinde tasarıma verilen önemin artmasındaki neden aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kalıplaşmış fikirler üretilmesi",
+   "Kâr odaklı olunması",
+   "Müşteri odaklı olunması",
+   "Gelenekselci bir anlayışın benimsenmesi",
+   "İcat elde etme kaygısı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>“Var olan bir soruna birden fazla disiplinin bir araya gelerek, kendi disiplin sınırlarını aşmadan formüller üretilmesi” şeklinde tanımlanan yaklaşım hangisidir?</strong>",
+  "o": [
+   "Problem çözme",
+   "Transdisipliner",
+   "Yaratıcılık",
+   "Disiplinlerarasılık",
+   "Çok disiplinlilik (multidisipliner çalışma)"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Tasarımın inovasyon sürecine dahil oluşu aşağıdakilerden hangisini beraberinde getirmektedir?</strong>",
+  "o": [
+   "Tek disipline odaklanmayı",
+   "İcat kaygısını",
+   "Üretimin tamamen durmasını",
+   "Sosyal gözlem ve analizleri",
+   "Müşteri ihtiyaçlarının göz ardı edilmesini"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>İnovasyondaki verimliliğin artmasını sağlayan aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yetkin bilgi",
+   "Odaklanma",
+   "Yaratıcılık ve odaklanma",
+   "Yetkin bilgi ve odaklanma",
+   "Yaratıcılık"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Matematiksel verilere ihtiyaç olmadan gözlem yoluyla kendiliğinden geliştirilen düşünce metodu aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "İmgesel düşünme",
+   "Sezgisel düşünme",
+   "Çağrışımsal düşünme",
+   "Yakınsak düşünme",
+   "Analitik düşünme"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Daha katı kuralların bulunduğu ve mantıksal bir sonucun elde edilmesinin esas alındığı düşünme metodu aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sezgisel düşünme",
+   "Iraksak düşünme",
+   "İmgesel düşünme",
+   "Hayal gücü",
+   "Analitik düşünme"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Tek bir sonuca odaklanılmadan, çözüm sayısında sınırlama olmaksızın alternatif çözümler aramayı gerektiren düşünme metodu aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Analitik düşünme",
+   "Sezgisel düşünme",
+   "Soyut düşünme",
+   "Yakınsak düşünme",
+   "Iraksak düşünme"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Bilgiyle daha çok bağlantılı olan ve doğruya en yakın bilgiye dayalı çözüm geliştirilen düşünme metodu aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Çağrışımsal düşünme",
+   "Hayal gücü",
+   "Yakınsak düşünme",
+   "İmgesel düşünme",
+   "Iraksak düşünme"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Kelimeleri imgelere dönüştüren, kavramlardan çok imgelerle düşünen düşünme metodu aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Sezgisel düşünme",
+   "Soyut düşünme",
+   "Analitik düşünme",
+   "İmgesel düşünme",
+   "Yakınsak düşünme"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Tasarımda birbiriyle alakalı olmasa dahi birbirini hatırlatmaya yardımcı kavramların birlikte kullanılması hangi düşünme metoduyla açıklanabilir?</strong>",
+  "o": [
+   "İmgesel düşünme",
+   "Yaratıcı düşünme",
+   "Yakınsak düşünme",
+   "Çağrışımsal düşünme",
+   "Analitik düşünme"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Yenilikçi yaklaşımların geliştirildiği tasarımda hangi düşünme metotları bir arada kullanılmaz?</strong>",
+  "o": [
+   "Yaratıcılık ile hayal gücü",
+   "Soyut düşünme ile imgesel düşünme",
+   "Sezgisel düşünme ile analitik düşünme",
+   "Mantıksal düşünme ile soyut düşünme",
+   "Iraksak düşünme ile yakınsak düşünme"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi tasarımcının tasarımında başarılı olmasında gerekli olan unsurlardan biri <u>değildir</u>?</strong>",
+  "o": [
+   "Multidisipliner bir çalışma benimsemesi",
+   "Basit ama odaklı olması",
+   "Olmayanı tasarlama kaygısına sahip olması",
+   "Var olanı dönüştürebilme yetisine sahip olması",
+   "Mevcut durumu kabul etmemesi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Olmayanı tasarlama kaygısı tasarımcının hangi yönünü sınırlandırır?</strong>",
+  "o": [
+   "Zekâsını",
+   "Farklı bakış açılarıyla bakabilmesini",
+   "Estetik algısını",
+   "Yetenekli olmasını",
+   "Bilgisini"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 13,
+  "q": "<strong>Tasarımda hedef kitlenin bakış açısının bilinmesi, ihtiyaç ve sorunların tespit edilmesi, başarı unsurlarından hangisi ile ilgilidir?</strong>",
+  "o": [
+   "Mevcut durumun kabul edilmemesi",
+   "Tanımlama",
+   "Hayal gücü",
+   "Basit ama odaklı olunması",
+   "Çağrışım"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Bir kişinin ya da bir şeyin başka bir varlıkta yol açtığı değişime ne ad verilir?</strong>",
+  "o": [
+   "Davranış",
+   "Arayüz",
+   "Deneyim",
+   "Etki",
+   "Etkileşim"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Türk Dil Kurumu’na göre etkileşim kavramı nasıl tanımlanmıştır?</strong>",
+  "o": [
+   "Yalnızca bilgisayar kullanımı",
+   "Tek yönlü bilgi aktarımı",
+   "Değiştirme, yeni bir form haline getirme",
+   "Sabit kalma, değişmeme",
+   "Bir ürünün görsel tasarımı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Aşağıdaki ifadelerden hangisi “Etkileşim Tasarımı” kavramını doğru anlatır?</strong>",
+  "o": [
+   "En az iki nesnenin ya da insanın birbirini geçici ya da kalıcı olarak etkilediği durumları nitelemek",
+   "Genellikle vektörel programlar kullanılarak arayüz tasarlamak",
+   "Bireyin temel ihtiyaçlarını karşılamak için karşısındakini yönlendirmek",
+   "İnternetin yayıldığı dönemde yaşanmış web tasarımı akımı",
+   "Kişinin kendisini değiştirmek için gösterdiği özenli çaba"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>İngilizcede HCI kısaltmasıyla kullanılan “Human-Computer Interaction” ifadesinin dilimizdeki karşılığı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Bilgisayar destekli tasarım",
+   "İnsan-bilgisayar etkileşimi",
+   "Görsel iletişim tasarımı",
+   "İnsan-teknoloji etkileşimi",
+   "İnsan-insan etkileşimi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Eskiden World Wide Web (WWW) olarak anılan Web için aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Yalnızca e-posta sistemidir.",
+   "Bir çizim tableti markasıdır.",
+   "Çevrimiçi oturum açıldığında görülen sayfalar/sitelerdir.",
+   "Bir donanım türüdür.",
+   "İnternet ile tamamen aynı anlama gelir."
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Bilgi akışının tek taraflı olduğu, kullanıcıların içeriklere katkı sağlayamadığı ve sadece okuma ve araştırma yaptığı dönem hangisidir?</strong>",
+  "o": [
+   "Web 1.0",
+   "Web 5.0",
+   "Web 2.0",
+   "Web 3.0",
+   "Web 4.0"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Daha kullanıcı merkezli olan ve büyüyen kitle için pek çok insanın içerik ürettiği web dönemi hangisidir?</strong>",
+  "o": [
+   "Web 4.0",
+   "Web 5.0",
+   "Web 3.0",
+   "Web 1.0",
+   "Web 2.0"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Günümüzde pek çok unsuru mevcut olmasına rağmen yaygınlaşması ve sistematik büyümesi için hâlâ zamana ihtiyacı olduğu söylenen web dönemi hangisidir?</strong>",
+  "o": [
+   "WWW",
+   "Web 2.0",
+   "HCI",
+   "Web 1.0",
+   "Web 3.0"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>“IxD” ifadesi mecrada aşağıdakilerden hangisinin kısaltmasıdır?</strong>",
+  "o": [
+   "Endüstriyel Tasarım",
+   "Arayüz Tasarımı",
+   "Deneyim Tasarımı",
+   "Etkileşim Tasarımı",
+   "Görsel İletişim Tasarımı"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Etkileşim tasarımının amacı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yalnızca ürünün maliyetini düşürmek",
+   "Ürünün yalnızca rengini belirlemek",
+   "Kullanıcının istek ve ihtiyaçlarına mümkün olan en iyi şekilde ulaşmasını sağlayan ürünler tasarlamak",
+   "Yalnızca basılı ürünler tasarlamak",
+   "Kullanıcıyı ürüne bağımlı kılmak"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>“Designing Interactions” kitabının önsözünde etkileşim tasarımının 5 boyutundan bahseden, ifadeyi ilk kullanan akademisyenlerden biri kimdir?</strong>",
+  "o": [
+   "Bill Moggridge",
+   "Allan Collins",
+   "Tim Brown",
+   "Christopher Alexander",
+   "Jakob Nielsen"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi etkileşim tasarımının 5 boyutundan biri <u>değildir</u>?</strong>",
+  "o": [
+   "Fiziksel nesneler veya uzay/mekân",
+   "Renk",
+   "Görsel temsiller",
+   "Zaman",
+   "Kelimeler"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi etkileşim tasarımının 5 boyutu arasında yer almaz?</strong>",
+  "o": [
+   "Zaman",
+   "Davranış",
+   "Donanım",
+   "Kelimeler",
+   "Görsel temsiller"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi “Kullanıcı Arayüzü” ifadesinin dünya genelinde kullanılan kısaltmasıdır?</strong>",
+  "o": [
+   "UX",
+   "IxD",
+   "HCI",
+   "KA",
+   "UI"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi dilimizde “kullanıcı deneyimi” olarak adlandırılan alanın literatürdeki yaygın kısaltmasıdır?</strong>",
+  "o": [
+   "UX",
+   "HCI",
+   "ID",
+   "VR",
+   "UI"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Bir web sitesini, uygulamayı veya elektronik cihazı kullanırken etkileşimde bulunulan ekranlar, düğmeler, geçişler ve simgeler hangi kavramla ifade edilir?</strong>",
+  "o": [
+   "Web 1.0",
+   "Kullanıcı deneyimi (UX)",
+   "İnsan-bilgisayar etkileşimi (HCI)",
+   "Kullanıcı arayüzü (UI)",
+   "Genişletilmiş gerçeklik (XR)"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Kullanıcının ne hissettiği de dahil olmak üzere bir ürünle olan tüm etkileşim sürecini ifade eden ve çoğu kaynakta Etkileşim Tasarımı’nı da kapsayan kavram hangisidir?</strong>",
+  "o": [
+   "UI",
+   "GT",
+   "HCI",
+   "UX",
+   "PSD"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>UX (kullanıcı deneyimi) tasarımcısının rolü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yalnızca marka logosu tasarlamak",
+   "Bir ürünü veya hizmeti kullanılabilir, eğlenceli ve erişilebilir kılmak",
+   "Yalnızca baskı makinelerini ayarlamak",
+   "Yalnızca video kurgusu yapmak",
+   "Yalnızca ürünün fiyatını belirlemek"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>UI ve UX kavramları ile ilgili aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "UI dijital olmayan ürünlere de uygulanır, UX yalnızca dijitaldir.",
+   "UI, UX’i kapsayan daha geniş bir kavramdır.",
+   "UX yalnızca düğme ve simgelerden oluşur.",
+   "UX dijital olmayan ürünlere de uygulanabilirken UI yalnızca dijital ürünler için geçerlidir.",
+   "UI ve UX tamamen aynı kavramdır."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi kullanıcı deneyimi (UX) alanında çalışan bir tasarımcının görevlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Web sitesinin düğme tasarımlarını ve bu tasarımlarla ilgili görsel öğeleri oluşturmak",
+   "Hedef kitleye dayalı kullanıcı kişilikleri (persona) geliştirmek",
+   "Bir ürün etkileşimiyle ilgili hedef ve ihtiyaçları belirlemek",
+   "Bir müşterinin ürünle nasıl etkileşime girdiğini analiz etmek",
+   "Tasarım kararlarını doğrulamak için test yapmak"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi kullanıcı arayüzü (UI) tasarımcısının birincil görevlerinden biri <u>değildir</u>?</strong>",
+  "o": [
+   "Web sitesi görsellerini oluşturmak",
+   "Renk paletlerini ve yazı tiplerini seçmek",
+   "Markanın logosunu tasarlamak",
+   "Tasarımları çalışan ürüne dönüştürmek için geliştiricilerle çalışmak",
+   "Markanın telefon uygulamasındaki menüleri tasarlamak"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>UI tasarımcılarının en önemli rolü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Arayüzü olabildiğince karmaşık hale getirmek",
+   "Kullanıcının ürünle etkileşime geçmek için dış yardıma ihtiyaç duymasını önlemek",
+   "Kullanıcıya her adımda yardım masası sunmak",
+   "Ürünün yalnızca basılı versiyonunu hazırlamak",
+   "Kullanıcıyı mümkün olduğunca uzun süre sayfada tutmak"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>“Etkili Arayüz Tasarımında 10 Yöntem” rehberini 1994’te oluşturan kişi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Allan Collins",
+   "Jakob Nielsen",
+   "Tim Brown",
+   "Bill Moggridge",
+   "C. West Churchman"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi “İyi Tasarlanmış Bir Arayüzün Kullanılabilirlik Kriterleri” arasındaki “Sistem Durumunun Görünürlüğü” ifadesine güzel bir örnek sayılır?</strong>",
+  "o": [
+   "Kindle’da sayfaların fiziksel kitap gibi çevrilmesi",
+   "Menü öğelerinin kolayca erişilebilir olması",
+   "Dosya silme işleminde onay istenmesi",
+   "TV kanallarının logolarındaki renk seçimleri",
+   "Netflix’te bir bölüm bittiğinde sistemin sonraki bölüm için geri sayım göstermesi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Tasarım Okumaları",
+  "u": 14,
+  "q": "<strong>Etkileşim tasarımının 5 boyutundan biri olan “Kelimeler” başlığı ile ilgili aşağıdaki açıklamalardan hangisi <u>yanlıştır</u>?</strong>",
+  "o": [
+   "Kullanılan her eylem fiilinin belirli bir çağrışımı vardır.",
+   "Kullanıcılar düğme etiketlerindeki komutlara güvenmek ve anlamak ister.",
+   "Büyük ya da küçük harf kullanımı kelimenin algısını etkiler.",
+   "Kullanıcıları yönlendirmede düğme ve etiketlerdeki kelimelere ihtiyaç duyulur.",
+   "Düğme üzerindeki kelimenin ifadesinde özellikle kırmızı renk kullanılmalıdır."
+  ],
+  "a": 4
+ }
+]
