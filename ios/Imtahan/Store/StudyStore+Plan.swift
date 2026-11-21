@@ -100,7 +100,7 @@ extension StudyStore {
         let fresh = defaults.string(forKey: Self.planSnapshotKey + "_tag") != tag
         if fresh { snap = [:] }
         var changed = fresh
-        let rows = Catalog.subjects.map { s -> DailyPlanRow in
+        let rows = activeSubjects.map { s -> DailyPlanRow in
             let r = remaining(s)
             let done = todayAnswered(s)
             let planned: Int
@@ -129,7 +129,7 @@ extension StudyStore {
     /// In-scope subject units with ≥ minAnswered answers, lowest accuracy first.
     func weakUnits(limit: Int = 5, minAnswered: Int = 5) -> [WeakUnit] {
         var out: [WeakUnit] = []
-        for s in Catalog.subjects {
+        for s in activeSubjects {
             for (key, st) in data.stats[s]?.bd["units"] ?? [:] {
                 guard key.hasPrefix("Unit "), let n = Int(key.dropFirst(5)), inScope(unit: n),
                       n <= (Catalog.unitCounts[s] ?? 0) else { continue }
