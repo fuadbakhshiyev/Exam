@@ -1193,7 +1193,9 @@ const QuizApp = {
 
         const weakTag = '<span class="cp-weak-tag">Ən çox səhv</span>';
         let content = '';
-        if (tab === 'mixed') {
+        if (tab === 'summary') {
+            content = this.buildSummaryHTML(c);
+        } else if (tab === 'mixed') {
             content = `
                 <section class="cp-mix">
                     <div>
@@ -1274,8 +1276,9 @@ const QuizApp = {
                         <button class="${tab === 'units' ? 'active' : ''}" onclick="QuizApp.setCourseTab('units')">Bölmələr <i>${units.length}</i></button>
                         <button class="${tab === 'mixed' ? 'active' : ''}" onclick="QuizApp.setCourseTab('mixed')">Qarışıq sınaq <i>20 sual</i></button>
                         <button class="${tab === 'exams' ? 'active' : ''}" onclick="QuizApp.setCourseTab('exams')">Vize imtahanları <i>${exams.length}</i></button>
+                        ${this.summaryFor(c) ? `<button class="${tab === 'summary' ? 'active' : ''}" onclick="QuizApp.setCourseTab('summary')">Xülasə <i>${this.summaryFor(c).units.length} ünitə</i></button>` : ''}
                     </span>
-                    ${tab !== 'mixed' ? `
+                    ${tab !== 'mixed' && tab !== 'summary' ? `
                     <span class="hx-tog">
                         <button class="${layout !== 'table' ? 'active' : ''}" onclick="setDashboardLayout('grid')">Kart</button>
                         <button class="${layout === 'table' ? 'active' : ''}" onclick="setDashboardLayout('table')">Cədvəl</button>
@@ -1284,6 +1287,41 @@ const QuizApp = {
                 ${content}
             </div>
         `;
+    },
+
+    // Fənn → Xülasə: the same study sheet as the iOS app (testsuallari/summaries_data.js, generated
+    // from the Swift SubjectSummaries by ios/scripts/export_summaries.sh).
+    summaryFor: function (c) {
+        return (typeof summariesData !== 'undefined' && summariesData[c]) || null;
+    },
+
+    // "**bold**" and `code` of the summary text, HTML-escaped.
+    summaryText: function (md) {
+        const esc = String(md).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return esc.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/`([^`]+)`/g, '<code>$1</code>');
+    },
+
+    buildSummaryHTML: function (c) {
+        const s = this.summaryFor(c);
+        if (!s) return '<p class="cp-advice">Bu fənn üçün xülasə yoxdur.</p>';
+        const esc = c.replace(/'/g, "\\'");
+        const t = (x) => this.summaryText(x);
+        const list = (pts) => `<ul>${pts.map(p => `<li>${t(p)}</li>`).join('')}</ul>`;
+        const block = (b) => `${b.heading ? `<h4>${t(b.heading)}</h4>` : ''}${list(b.points)}`;
+        const jump = s.units.map(u => `<a href="#sum-u${u.number}" onclick="event.preventDefault();document.getElementById('sum-u${u.number}').scrollIntoView({behavior:'smooth',block:'start'})">${u.number}</a>`).join('');
+        return `
+            <div class="sum">
+                <nav class="sum-jump" aria-label="Ünitələr">${jump}</nav>
+                ${s.intro ? `<section class="sum-card sum-intro">${block(s.intro)}</section>` : ''}
+                ${s.units.map(u => `
+                <section class="sum-card" id="sum-u${u.number}">
+                    <div class="sum-head"><span class="sum-num">${u.number}</span><h3>${t(u.title)}</h3></div>
+                    ${u.blocks.map(block).join('')}
+                    ${u.traps.length ? `<div class="sum-traps"><h4>⚠ Tələ suallar</h4>${list(u.traps)}</div>` : ''}
+                    <button class="btn sum-test" onclick="QuizApp.startUnit('${esc}', ${u.number - 1})">▶ Unit ${u.number} testini başla</button>
+                </section>`).join('')}
+                ${s.quick.length ? `<section class="sum-card sum-quick"><h3>⚡ İmtahandan əvvəl</h3>${list(s.quick)}</section>` : ''}
+            </div>`;
     },
 
     // Review the questions answered correctly or wrongly in a subject (from the stats strip)
