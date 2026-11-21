@@ -123,6 +123,9 @@ struct SubjectsTab: View {
         .onChange(of: orderRaw) { SyncedPrefs.noteChanged() }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
+                PassedSubjectsMenu { Label("Hazırlaşdığım fənlər", systemImage: "checklist") }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
                 Menu {
                     Picker("Görünüş", selection: $layout.animation(.snappy)) {
                         Label("Siyahı", systemImage: "list.bullet").tag("list")
