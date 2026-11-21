@@ -33,7 +33,7 @@ extension StudyStore {
     static let examDateKey = "exam_date"
     private static let planSnapshotKey = "daily_plan_snapshot"
 
-    /// Default exam date: the last day of Catalog.studyPeriod (2026-11-22).
+    /// Default exam date: the last day of Catalog.studyPeriod (2027-01-10).
     static var defaultExamDate: Date {
         let p = Catalog.studyPeriod.end.split(separator: "-").compactMap { Int($0) }
         var dc = DateComponents(); dc.year = p[studySafe: 0]; dc.month = p[studySafe: 1]; dc.day = p[studySafe: 2]; dc.hour = 9

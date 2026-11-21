@@ -209,7 +209,7 @@ enum Catalog {
     static let overallKey = "Ümumi Toplam"
     static let platformKey = "_platform"
     /// Dynamics chart window (inclusive).
-    static let studyPeriod = (start: "2026-11-11", end: "2026-11-22")
+    static let studyPeriod = (start: "2026-11-11", end: "2027-01-10")
 
     static let styles: [String: CourseStyle] = [
         "Grafik Üretim Teknikleri": .init(icon: "🖨️", accent: "#10b981", g1: "#10b981", g2: "#06b6d4"),
