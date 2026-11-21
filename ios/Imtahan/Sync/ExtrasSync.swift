@@ -121,7 +121,7 @@ struct SyncPref: Codable, Equatable, Sendable {
 @MainActor enum SyncedPrefs {
     static let keys = [
         // Fənlər
-        "subjects_layout", "subjects_sort", "subjects_order",
+        "subjects_layout", "subjects_sort", "subjects_order", "passed_subjects",
         // Tənzimləmələr
         "theme", "quiz_dashboard_layout", "exam_mode", "exam_date", "haptics_enabled",
         "requeue_wrong", "quiz_list_mode", "quiz_reveal_at_end", "sort_show_answer",

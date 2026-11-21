@@ -56,4 +56,28 @@ extension StudyStore {
     var examModeLabel: String {
         examMode == .vize ? "Vize · 1–7-ci ünitələr" : "Final · bütün ünitələr"
     }
+
+    // MARK: Passed subjects ("Verdim")
+
+    /// Subjects still being studied (Catalog order). Never empty: if every subject is marked, all count.
+    var activeSubjects: [String] { Catalog.activeSubjects(passed: passedSubjects) }
+
+    /// Is the subject still studied (not marked as passed)? Non-subject keys (Mixed, mock…) are active.
+    func isActiveSubject(_ s: String) -> Bool { activeSubjects.contains(s) || !Catalog.subjects.contains(s) }
+
+    /// Does the question belong to a subject still studied? Mixed questions go by their subject index.
+    func isActive(_ q: Question) -> Bool { isActiveSubject(Self.questionWidgetSubject(q)) }
+}
+
+extension Catalog {
+    /// Subjects not marked as passed; every subject when all (or none) are marked.
+    static func activeSubjects(passed: Set<String>) -> [String] {
+        let list = subjects.filter { !passed.contains($0) }
+        return list.isEmpty ? subjects : list
+    }
+
+    /// Same, read straight from UserDefaults (for code without a StudyStore: surprise, lock screen).
+    static var activeSubjects: [String] {
+        activeSubjects(passed: Set(UserDefaults.standard.stringArray(forKey: StudyStore.passedSubjectsKey) ?? []))
+    }
 }

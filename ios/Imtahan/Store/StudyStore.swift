@@ -120,6 +120,16 @@ final class StudyStore {
         }
     }
 
+    /// Subjects whose exam is already passed ("Verdim"). They leave every study pool, plan and the
+    /// Ana səhifə list; their data and statistics stay. Synced (SyncedPrefs "passed_subjects").
+    var passedSubjects: Set<String> {
+        didSet {
+            guard passedSubjects != oldValue else { return }
+            defaults.set(Array(passedSubjects).sorted(), forKey: Self.passedSubjectsKey)
+            widgetDataDidChange()
+        }
+    }
+
     /// web localStorage 'quiz_dashboard_layout' (Kart / Cədvəl).
     var dashboardLayout: DashboardLayout {
         didSet { defaults.set(dashboardLayout.rawValue, forKey: Self.layoutKey) }
@@ -161,6 +171,7 @@ final class StudyStore {
     static let themeKey = "theme"
     static let layoutKey = "quiz_dashboard_layout"
     static let examModeKey = "exam_mode"
+    nonisolated static let passedSubjectsKey = "passed_subjects"
     static let fileName = "study-data.json"
 
     init(bank: QuestionBank = .shared, defaults: UserDefaults = .standard, fileURL: URL? = nil, startTimers: Bool = true) {
@@ -176,6 +187,7 @@ final class StudyStore {
         theme = ThemeMode(rawValue: defaults.string(forKey: Self.themeKey) ?? "") ?? .dark
         dashboardLayout = defaults.string(forKey: Self.layoutKey) == "table" ? .table : .grid
         examMode = ExamMode(rawValue: defaults.string(forKey: Self.examModeKey) ?? "") ?? .vize
+        passedSubjects = Set(defaults.stringArray(forKey: Self.passedSubjectsKey) ?? [])
         // loadData → updateDaily(false): refresh the daily goal without bumping updatedAt.
         refreshDailyGoal(notify: false)
         if startTimers { startPlatformTimer() }
@@ -192,6 +204,8 @@ final class StudyStore {
         if l != dashboardLayout { dashboardLayout = l }
         let m = ExamMode(rawValue: defaults.string(forKey: Self.examModeKey) ?? "") ?? .vize
         if m != examMode { examMode = m }
+        let p = Set(defaults.stringArray(forKey: Self.passedSubjectsKey) ?? [])
+        if p != passedSubjects { passedSubjects = p }
     }
 
     static func defaultFileURL() -> URL {
