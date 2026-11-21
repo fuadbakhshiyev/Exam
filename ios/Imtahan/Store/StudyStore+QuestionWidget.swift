@@ -40,11 +40,11 @@ extension StudyStore {
     }
 
     func makeQuestionWidgetDeck(now: Date = Date()) -> WidgetQuestionDeck {
-        let subjects = Set(Catalog.subjects)
+        let subjects = Set(activeSubjects)
         let pool = bank.all.filter { q in
             (subjects.contains(q.c) || q.c == Catalog.mixedKey)
                 && q.o.count >= 2 && q.o.indices.contains(q.a)
-                && inScope(q)
+                && inScope(q) && isActive(q)
                 && RichText.imageNames(q.q).isEmpty
                 && q.o.allSatisfy { RichText.imageNames($0).isEmpty }
         }
