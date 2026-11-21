@@ -28,7 +28,8 @@ extension StudyStore {
     func scopedCorrect(_ key: String) -> [Question] { scoped(data.correct[key]) }
 
     /// Bookmarks in scope.
-    var scopedMarks: [Question] { scoped(data.marks) }
+    /// Bookmarks in scope, of subjects still studied.
+    var scopedMarks: [Question] { scoped(data.marks).filter(isActive) }
 
     private func scoped(_ list: [Question]?) -> [Question] {
         guard let list else { return [] }
