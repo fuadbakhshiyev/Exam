@@ -1,0 +1,2472 @@
+[
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Esnek ambalaj ile baskı yapan firmalar inline (laminasyon dahil) en fazla kaç renge kadar baskı yapabilmektedir?</strong>",
+  "o": [
+   "6",
+   "8",
+   "10",
+   "4",
+   "12"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Aşağıdakilerden hangisi esnek ambalajda 10 renk içinde sayılan yardımcı uygulamalardan biri değildir?</strong>",
+  "o": [
+   "Matlak",
+   "Gofre",
+   "Cold Seal",
+   "Holtmelt",
+   "Beyaz"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Esnek ambalaj baskı firmaları, özel renk skalası ile yaptıkları baskı sonucunda kendi profillerini hangi program aracılığıyla oluştururlar?</strong>",
+  "o": [
+   "GMG Epson Proof",
+   "GMG Open Color",
+   "Hybrid Packs",
+   "Adobe Acrobat Pro",
+   "Artpro+"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Aşağıdakilerden hangisi esnek ambalaj tasarımında kullanılan programlardan biri değildir?</strong>",
+  "o": [
+   "GMG Profile Editor",
+   "Adobe Photoshop",
+   "Artpro",
+   "Adobe Illustrator",
+   "CorelDRAW"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Ambalajın paketleme makinelerine takılan ve ambalajlamanın kendisine göre yapıldığı aparata ne ad verilir?</strong>",
+  "o": [
+   "Fotosel",
+   "Yaka",
+   "Bobin",
+   "Kulak",
+   "Çene"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Ambalaj tasarımında öncelikle bilinmesi gereken ve tüm tasarımın ölçülerini belirleyen iki değer aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Bobin eni ve fotosel boyu",
+   "Tram açısı ve çözünürlük",
+   "Renk sayısı ve lak türü",
+   "Yaka ve çene ölçüsü",
+   "Punto ve gramaj"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Yastık Ambalaj (Pillow Pack) A/B tipi yapışmada hangi yapışma türü uygulanır?</strong>",
+  "o": [
+   "Holtmelt ve cold seal birlikte",
+   "Yalnızca sıcak yapışma",
+   "Parsiyel cold seal ile soğuk yapışma",
+   "Yalnızca cold seal",
+   "Sıcak yapışma ve PCS birlikte"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Ürün çeşidine göre sıcak yapışma veya PCS ile soğuk yapışma yapılabilen ambalajlama biçimi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yatay Ambalaj (Follow Pack)",
+   "Doypack Ambalaj",
+   "Oturan Ambalaj (Stand-Up)",
+   "Yastık Ambalaj (Pillow Pack) A/B",
+   "Okuturya Ambalaj"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Zarf tipi ambalajlama olarak da adlandırılan ve yalnızca sıcak yapışma uygulanan ambalaj türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Doypack",
+   "Okuturya (Envelope Type)",
+   "Yatay Dolum (Pouch)",
+   "Yatay Ambalaj (Follow Pack)",
+   "Oturan Ambalaj (Stand-Up)"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Çorba, toz kahve, puding, meyveli içecek tozu gibi toz ve granül hâldeki ürünlerin ambalajlanmasında kullanılan ambalajlama tipi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yastık Ambalaj (Pillow Pack) A/A",
+   "Holtmelt Ambalaj",
+   "Okuturya Ambalaj",
+   "Sonsuz Ambalaj",
+   "Yatay Dolum Ambalaj (Pouch)"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Hazır poşet – kilitli olarak bilinen, üst çene kısımları hazır poşet olarak da kullanılabilen ambalaj türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Follow Pack",
+   "Pillow Pack",
+   "Doypack",
+   "Okuturya",
+   "Pouch"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Dikey dolum makinelerinin yaka ve çene özelliklerine göre yapabildiği körüklü ambalaj türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yatay Ambalaj (Follow Pack)",
+   "Oturan Ambalaj (Stand-Up)",
+   "Yatay Dolum Ambalaj (Pouch)",
+   "Okuturya Ambalaj",
+   "Doypack Ambalaj"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Fotosel beneği ile ilgili aşağıdaki ifadelerden hangisi yanlıştır?</strong>",
+  "o": [
+   "Fotosel beneği kanalı mutlaka boş tutulmalıdır.",
+   "Fotosel beneği olmadan ambalajlama yapılamaz.",
+   "Tek veya çift benek kullanımı üretici firmanın bilgisine göre belirlenir.",
+   "Ölçü standardı genel olarak 5 mm x 15 mm'dir.",
+   "Zemin rengine yakın, aynı tonda bir renkte kullanılmalıdır."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Fotosel beneğinin genel olarak kullanılan ölçü standardı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "2 mm x 5 mm",
+   "3 mm x 10 mm",
+   "10 mm x 20 mm",
+   "15 mm x 25 mm",
+   "5 mm x 15 mm"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Fotosel beneğinin kullanılmadığı ve yalnızca bobin eninin bilinmesinin yeterli olduğu ambalaj tasarım türüne ne ad verilir?</strong>",
+  "o": [
+   "Okuturya ambalaj tasarımı",
+   "Körüklü ambalaj tasarımı",
+   "Sonsuz ambalaj tasarımı",
+   "Parsiyel ambalaj tasarımı",
+   "Holtmelt ambalaj tasarımı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Esnek ambalajda cold seal yapışmanın parsiyel olarak kullanılmasının nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Avrupa Birliği normları ve Türk Gıda Kodeksine göre gıdaya dokunmaması gerektiği için",
+   "Renkli çıkışta görünmediği için",
+   "Baskı hızını artırmak için",
+   "Baskı maliyetini düşürmek için",
+   "Fotosel beneğinin okunmasını kolaylaştırmak için"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Holtmelt yapışma genel olarak hangi ürünlerde kullanılmaktadır?</strong>",
+  "o": [
+   "Deterjan ve sabun",
+   "Süt ve yoğurt",
+   "Toz kahve ve çorba",
+   "Şeker ve sakız",
+   "Makarna ve pirinç"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Holtmelt uygulanan alanlar ambalajlama yapıldığında ambalajın neresinde kalır?</strong>",
+  "o": [
+   "Yazılı alanların üzerinde",
+   "Ambalajın ön yüzünde",
+   "Her zaman altta kalan alanlarda",
+   "Üst çene kısmında",
+   "Fotosel beneği kanalında"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Türkiye'de kullanılan barkod sistemi kaç rakamlıdır?</strong>",
+  "o": [
+   "9",
+   "12",
+   "13",
+   "8",
+   "15"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>EAN13 barkodunda ilk 3 rakam neyi ifade eder?</strong>",
+  "o": [
+   "Ülke kodunu",
+   "Üretim tarihini",
+   "Ürün kodunu",
+   "Kontrol numarasını",
+   "Firmanın ticaret odasındaki ünvan kodunu"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>12 rakamlı olan ve yalnızca Amerika'da üretilen ürünler için kullanılan barkod sistemi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Code 39",
+   "UPC-A",
+   "EAN8",
+   "EAN13",
+   "GS1"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Esnek ambalaj tasarımında kullanılmaması gereken en küçük yazı boyutu ve en ince çizgi kalınlığı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "8 puntodan küçük yazı, 1 mm'den ince çizgi",
+   "6 puntodan küçük yazı, 0,5 mm'den ince çizgi",
+   "2 puntodan küçük yazı, 0,1 mm'den ince çizgi",
+   "5 puntodan küçük yazı, 0,3 mm'den ince çizgi",
+   "3,5 puntodan küçük yazı, 0,2 mm'den ince çizgi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Esnek ambalaj tasarımında şişirme (trap) uygulaması, uygulanacak kısmın büyüklüğüne göre hangi kalınlık aralığında yapılır?</strong>",
+  "o": [
+   "2 – 3 mm",
+   "1 – 2 mm",
+   "0,15 – 0,2 mm",
+   "0,01 – 0,05 mm",
+   "0,5 – 1 mm"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Esnek ambalaj tasarımında aşağıdaki dosya formatlarından hangisi asla kullanılamaz?</strong>",
+  "o": [
+   ".pdf",
+   ".tiff",
+   ".ai",
+   ".jpeg ya da .png",
+   ".psd"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Esnek ambalaj tasarımında kullanılan Photoshop belgeleri en az kaç dpi çözünürlükte olmalıdır?</strong>",
+  "o": [
+   "300 dpi",
+   "72 dpi",
+   "96 dpi",
+   "150 dpi",
+   "1200 dpi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Rotogravür sistemde degradelerde kazıma değerlerine göre minimum nokta değeri kaç olarak düşünülmelidir?</strong>",
+  "o": [
+   "%25",
+   "%3",
+   "%10",
+   "%40",
+   "%50"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Esnek ambalaj üretici firmalarının renkli çıkışında CMYK renklerde verdikleri uyum garantisi hangi aralıktadır?</strong>",
+  "o": [
+   "%70 – %75",
+   "%50 – %60",
+   "%30 – %40",
+   "%100",
+   "%85 – %90"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Fincan, süt, muhallebi gibi beyaz renkli öğeler esnek ambalaj baskısında nasıl hazırlanmalıdır?</strong>",
+  "o": [
+   "CMYK dört renk olarak",
+   "Tek renge ya da özel bir renge alınarak",
+   "Tüm kanallar siyaha yüklenerek",
+   "RGB formatında",
+   "%3 tram değeriyle dört renk olarak"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 8,
+  "q": "<strong>Müşterinin kâğıt üzerine alınan renkli çıkışla esnek ambalaj baskısı arasında renk farkı oluşmasının temel nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Renkli çıkış makineleri CMYK renkleri hiç gösteremez.",
+   "Kâğıt üzerine yalnızca Pantone renkler basılabilir.",
+   "Esnek ambalaj malzemeleri boyayı kâğıttan daha çok emer.",
+   "Esnek ambalajda yalnızca RGB renkler kullanılır.",
+   "Kâğıt boyayı emer, esnek ambalaj malzemeleri ise boyayı üzerinde tutar."
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Dijital baskı tekniğinin geleneksel baskı tekniklerine göre hem zamandan hem de maliyetten tasarruf sağlamasının nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yalnızca bobin kâğıt kullanması",
+   "Solvent bazlı mürekkep kullanması",
+   "Düşük çözünürlükte baskı yapması",
+   "Baskı öncesi renk ayrımı ve kalıp gibi hazırlıkların olmaması",
+   "Yalnızca tek renk baskı yapması"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Ofis tipi masaüstü çoğaltma teknikleri genellikle hangi ölçülerde baskı imkânı sunar?</strong>",
+  "o": [
+   "5 metre bobin eni",
+   "B1 ve B2",
+   "A0 ve A1",
+   "A4 ve A3",
+   "70 cm x 100 cm"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi ofis tipi masaüstü çoğaltma teknikleri kapsamında, kullanılan boya türüne göre ayrılan dijital baskı tekniklerinden biridir?</strong>",
+  "o": [
+   "Düz yataklı dijital baskı",
+   "Flekso baskı",
+   "Mürekkep püskürtmeli (inkjet) dijital baskı",
+   "Serigrafi baskı",
+   "Tifdruk baskı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Genel kullanıcılar tarafından lazer yazıcılar olarak da bilinen dijital baskı tekniği aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Büyük format inkjet dijital baskı",
+   "Düz yataklı dijital baskı",
+   "Tonerli (elektrofotografik) dijital baskı",
+   "Mürekkep püskürtmeli (inkjet) dijital baskı",
+   "Bobin beslemeli dijital baskı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Ofis tipi masaüstü çoğaltma teknikleri içinde değerlendirilen tonerli yazıcı donanımları hangi tür toner kullanır?</strong>",
+  "o": [
+   "Islak toner",
+   "Kuru toner",
+   "Lateks toner",
+   "Solvent bazlı toner",
+   "UV toner"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Tonerli dijital baskı tekniğinin avantajlarından biri olan \"harmanlı\" baskı ne anlama gelir?</strong>",
+  "o": [
+   "Arkalı önlü baskı",
+   "Renkli baskı",
+   "Laminasyonlu baskı",
+   "Tek renk baskı",
+   "Kesimli baskı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Aynı markanın kuru tonerli ve mürekkep püskürtmeli dijital baskı donanımları kıyaslandığında aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "İkisinin baskı hızı ve birim maliyeti aynıdır.",
+   "Kuru tonerlinin birim maliyeti daha düşüktür.",
+   "Kuru tonerli yalnızca siyah baskı yapabilir.",
+   "Kuru tonerli daha hızlı ve kalitelidir, ancak birim maliyeti daha yüksektir.",
+   "Mürekkep püskürtmeli daha hızlı ve birim maliyeti daha yüksektir."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Mürekkep püskürtmeli dijital baskıda ilave mürekkep doldurma yöntemiyle daha ekonomik baskı imkânı sunan sisteme ne ad verilir?</strong>",
+  "o": [
+   "Harmanlı baskı",
+   "Sonsuz tank",
+   "Değişken veri",
+   "Bobin besleme",
+   "Kuru toner"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Ofis veya evde kullanılan inkjet dijital baskı donanımları, transfer kâğıtları kullanımıyla hangi uygulama sonrası çok çeşitli grafik ürünlerin üretiminde kullanılır?</strong>",
+  "o": [
+   "Laminasyon",
+   "Folyo kesim",
+   "Ozalit pozlama",
+   "Lazer kesim",
+   "Isısal pres"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Kişiselleştirilmiş ürün ve promosyon üretiminde ürüne doğrudan baskı yapmak için kullanılan masaüstü dijital baskı donanımları hangi mürekkepleri kullanır?</strong>",
+  "o": [
+   "Alkol bazlı flekso mürekkepleri",
+   "Kuru ve ıslak toner",
+   "Yağ bazlı ofset mürekkepleri",
+   "Selülozik mürekkepler",
+   "Solmayan UV ve su bazlı mürekkepler"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Profesyonel baskı için kullanılan dijital baskı donanımları derste kullandıkları boya türünden çok neye göre sınıflandırılmıştır?</strong>",
+  "o": [
+   "Renk sayısına",
+   "Makine markasına",
+   "Baskı altı malzemesinin kullanım (besleme) şekline",
+   "Mürekkebin kuruma süresine",
+   "Baskı çözünürlüğüne"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Fotokopiciler ve gelişmiş donanımlara sahip baskı merkezleri çoğunlukla hangi dijital baskı tekniğinin donanımlarını kullanır?</strong>",
+  "o": [
+   "Tabaka beslemeli dijital baskı",
+   "Büyük format inkjet dijital baskı",
+   "Düz yataklı dijital baskı",
+   "Bobin beslemeli dijital baskı",
+   "Tifdruk baskı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Bobin beslemeli dijital baskı tekniği donanımları hangi tür mürekkep kullanmaktadır?</strong>",
+  "o": [
+   "Alkol bazlı flekso mürekkebi",
+   "Elektronik duyarlıklı özel sıvı mürekkep",
+   "Yağ bazlı ofset mürekkebi",
+   "Selülozik serigrafi mürekkebi",
+   "Kuru toner"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Bobin beslemeli dijital baskı tekniğinin rekabet ortamında geleneksel baskı sistemlerine göre en büyük avantajı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Üç boyutlu objelere doğrudan baskı yapabilmesi",
+   "Tek renk baskıda daha ucuz olması",
+   "Yalnızca A4 ve A3 ölçülerinde baskı yapması",
+   "Film ve kalıp gibi baskı öncesi hazırlık süresi olmadan en az fire oranıyla baskı alabilmesi",
+   "Yalnızca uzun tirajlı işlerde ekonomik olması"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Özelleştirilmiş yazı, grafik, barkod ve güvenlik kodlamalarını içeren değişken veri baskısı ekonomik olarak yalnızca hangi teknolojilerle mümkündür?</strong>",
+  "o": [
+   "Flekso baskı",
+   "Dijital baskı teknolojileri",
+   "Ofset baskı",
+   "Tipo baskı",
+   "Tifdruk baskı"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Aşağıdakilerden hangisi değişken veri baskısına örnektir?</strong>",
+  "o": [
+   "Aynı afişin 1000 adet basılması",
+   "Tek renk kartvizit basılması",
+   "Bir kitabın aynı kapakla basılması",
+   "Her ambalajda farklı barkod ve güvenlik kodunun basılması",
+   "Pantone rengin silindirle basılması"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Büyük format inkjet dijital baskı teknikleri başka hangi adla da tanımlanır?</strong>",
+  "o": [
+   "Masaüstü format",
+   "Tabaka format",
+   "Ofis format",
+   "Geniş format",
+   "Elektrofotografik format"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Büyük format inkjet dijital baskı tekniklerinde kullanılan boyalar hangi iki türdedir?</strong>",
+  "o": [
+   "Su bazlı ve solvent bazlı",
+   "Kuru ve ıslak toner",
+   "Yağ bazlı ve alkol bazlı",
+   "Toz ve granül",
+   "Selülozik ve plastik"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Büyük format inkjet dijital baskı donanımları kullanım ortamına göre kendi içinde hangi iki türe ayrılır?</strong>",
+  "o": [
+   "İç ve dış mekân",
+   "Toner ve kartuş",
+   "Ofis ve ev",
+   "Tabaka ve kalıp",
+   "Tifdruk ve flekso"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Dış mekân büyük format dijital baskı uygulamalarında dikkat edilmesi gereken temel unsur aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Ofis tipi yazıcı kullanılması",
+   "Baskının dayanıklılığı ve renklerin solmaması",
+   "Kuru toner kullanılması",
+   "Yakın okuma mesafesi için en yüksek çözünürlük",
+   "Harmanlı baskı yapılması"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>İç mekân büyük format baskılarda yüksek kaliteli görsellere ihtiyaç duyulmasının nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Değişken veri basılamaması",
+   "Renklerin güneşte solması",
+   "Baskının yağmura dayanıklı olması gerekmesi",
+   "Hedef kitlenin görme ve okuma mesafesinin yakın olması",
+   "Bobin eninin 5 metreyi geçmesi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Büyük format inkjet dijital baskı donanımları ağırlıkla hangi işletmelerin hizmet ürettiği sektörlerde kullanılır?</strong>",
+  "o": [
+   "Tifdruk ambalaj firmaları",
+   "Kitap yayınevleri",
+   "Gazete matbaaları",
+   "Tabelacılar ve açık hava reklamcılığı",
+   "Otokopi kâğıdı üreticileri"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Bir baskı donanımının bobin beslemeli baskı altı malzemesi kullanabilmesi neden önemlidir?</strong>",
+  "o": [
+   "Renk ayrımı gerektirdiği için",
+   "Yüksek tirajlı işlerde yüksek hızlı ve kaliteli baskı yapılabildiği anlamına geldiği için",
+   "Kalıp hazırlığını zorunlu kıldığı için",
+   "Yalnızca A3 ölçüsüne baskı yapabildiği için",
+   "Yalnızca az adetli işlere uygun olduğu için"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Tabaka beslemeli dijital baskı tekniği donanımları hangi tür baskı altı malzemelerini kullanabilir?</strong>",
+  "o": [
+   "İnce, orta ve kalın, çok çeşitli gramajda kâğıt türevi malzemeler",
+   "200 mm yüksekliğe kadar üç boyutlu objeler",
+   "Yalnızca bobin hâlindeki plastik filmler",
+   "Yalnızca cam ve metal yüzeyler",
+   "Yalnızca esnek ambalaj filmleri"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Ofis tipi masaüstü çoğaltma tekniklerinde kullanılan dijital baskı teknikleri hangi durumda kullanılamaz?</strong>",
+  "o": [
+   "Bireysel taleplerde",
+   "Az adetli yazışmalarda",
+   "Tasarım süreci ön hazırlıklarında",
+   "Yüksek tirajlı, profesyonel baskı ihtiyacı olan durumlarda",
+   "Küçük çaplı üretimlerde"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Üretilememiş, basılamamış ve hedef kitleye ulaştırılamamış bir grafik ürün hangi nitelikte kalır?</strong>",
+  "o": [
+   "Tiraj",
+   "Matbu",
+   "Prova",
+   "Kalıp",
+   "Taslak"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 9,
+  "q": "<strong>Dijital baskı tekniğinin \"esnek bir baskı tekniği\" olarak tanımlanmasının nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kauçuk klişe kullanması",
+   "Esnek ambalaj filmlerine yalnızca bu teknikle baskı yapılabilmesi",
+   "Uzun tirajlarda en ucuz teknik olması",
+   "Baskı öncesi ve sırasında anlık müdahale, değişiklik, revizyon ve değişken veri baskısı imkânı sunması",
+   "Silindir kazıma gerektirmesi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Baskı ya da elektronik dağıtım amaçlı, karmaşık ekipman ve insan çabası gerektiren yayıncılık görevlerini kişisel bir bilgisayarla gerçekleştirmeye ne ad verilir?</strong>",
+  "o": [
+   "Grafik tasarım",
+   "Repro",
+   "Ozalit",
+   "Hareketli grafik",
+   "Masaüstü yayıncılık"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Grafik tasarım ile masaüstü yayıncılık arasındaki temel fark aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Grafik tasarım yalnızca elektronik dağıtım amaçlıdır.",
+   "Masaüstü yayıncılık yalnızca baskı amaçlıdır.",
+   "Masaüstü yayıncılığı yalnızca grafik tasarımcılar yapabilir.",
+   "Grafik tasarım projenin belirli kısımlarına odaklanırken masaüstü yayıncılık ürünün tamamını oluşturmak üzere çalışır.",
+   "Grafik tasarımcılar ile yayıncılar farklı yazılımlar kullanır."
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Masaüstü yayıncılık ile ilgili aşağıdaki ifadelerden hangisi doğrudur?</strong>",
+  "o": [
+   "Masaüstü yayıncılığı tasarımcı olmayanlar da yapabilir.",
+   "Masaüstü yayıncılıkta kişisel bilgisayar kullanılmaz.",
+   "Masaüstü yayıncılık kalabalık ekipler gerektirir.",
+   "Günümüzde basılı içerikler elektronik içeriklerden daha yaygındır.",
+   "Masaüstü yayıncılık yalnızca basılı içerik üretir."
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Masaüstü yayıncılığın başlangıç noktası olarak kabul edilen kurum aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Adobe Systems",
+   "Palo Alto Araştırma Merkezi (Xerox PARC)",
+   "Apple",
+   "QuarkXPress",
+   "Microsoft"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi Xerox PARC'ın mimarı olduğu kilometre taşlarından biri değildir?</strong>",
+  "o": [
+   "WYSIWYG",
+   "Ethernet",
+   "PostScript",
+   "Smalltalk programlama dili",
+   "Lazer yazıcı teknolojisi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Masaüstü yayıncılık alanına Steve Jobs'un katkılarından biri aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "PostScript",
+   "Smalltalk programlama dili",
+   "QuarkXPress",
+   "Apple LaserWriter yazıcılar",
+   "Ethernet"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Adobe Systems firması hangi yılda kurulmuş ve ilk iş olarak PostScript yazılımını piyasaya sürmüştür?</strong>",
+  "o": [
+   "1985",
+   "1990",
+   "1979",
+   "1982",
+   "1972"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>PostScript, sayfanın bir yaprak kâğıda inç başına kaç nokta çözünürlükte oluşturulabilmesi için yazdırma verileri üretir?</strong>",
+  "o": [
+   "96",
+   "72",
+   "300",
+   "600",
+   "150"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>PostScript aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Bir yazı tipi ailesi",
+   "Bir renk yönetim programı",
+   "Bir sayfa düzeni yazılımı",
+   "Bir lazer yazıcı modeli",
+   "Cihazlardan bağımsız gelişmiş bir sayfa tanımlama (programlama) dili"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Masaüstü yayıncılıkta basılmayan ve doğrudan dijital ortamda dağıtılan sayfalara ne ad verilir?</strong>",
+  "o": [
+   "Elektronik sayfalar",
+   "Ozalit sayfalar",
+   "Sanal sayfalar",
+   "Verso sayfalar",
+   "Recto sayfalar"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Baskıda çıkacak sonucun birebir aynısını ekranda göstermeyi amaçlayan sürecin adı olan WYSIWYG neyin kısaltmasıdır?</strong>",
+  "o": [
+   "World Wide Screen In Your Graphic",
+   "What You Send Is What You Give",
+   "What You See Is What You Get",
+   "Write Your Style In Your Graphic",
+   "What You Scan Is What You Get"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>İçeriğin ekranlar aracılığıyla izleneceği elektronik sayfalarda hangi renk modeli kullanılır?</strong>",
+  "o": [
+   "Pantone",
+   "CMYKOG",
+   "CMYK",
+   "RGB",
+   "Hexachrome"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>CMYK renk modelindeki \"C\" harfi hangi rengi temsil eder?</strong>",
+  "o": [
+   "Kobalt mavisi",
+   "Krem",
+   "Kahverengi",
+   "Kırmızı",
+   "Camgöbeği (Cyan)"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>PPI ölçü birimi neyi ifade eder?</strong>",
+  "o": [
+   "Metrekare başına düşen kâğıt ağırlığını",
+   "Sayfa başına düşen satır sayısını",
+   "İnç kare başına düşen piksel yoğunluğunu",
+   "Saniyedeki kare sayısını",
+   "İnç kare başına düşen nokta yoğunluğunu"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Baskı için çözünürlük ölçü birimi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "GSM",
+   "RGB",
+   "DPI",
+   "PPI",
+   "FPS"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Baskı ve ekran hedefli içeriklerin çözünürlük ihtiyacı ile ilgili aşağıdakilerden hangisi doğrudur?</strong>",
+  "o": [
+   "Baskı için daha yüksek, ekran için daha düşük çözünürlük yeterlidir.",
+   "İkisi için de aynı çözünürlük gerekir.",
+   "Baskı çözünürlüğü PPI ile ölçülür.",
+   "Ekran için daha yüksek çözünürlük gerekir.",
+   "Ekran çözünürlüğü DPI ile ölçülür."
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Sanal sayfalar ile kâğıda baskı durumunda sayfa boyutlarını belirleyen temel ölçüt aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yazı tipinin serifli olup olmaması",
+   "Instagram ve Twitter gibi platformların standartları",
+   "Cihazların ekran oranları",
+   "Monitörün piksel yoğunluğu",
+   "Kâğıt tabakalarının en-boy oranı, boyutları ve katlanmalarıyla ortaya çıkan boyutlar"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Dijital ortamda görüntülenecek içeriklerin en-boy oranları ve boyutlarını belirleyen etken aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kâğıdın su yönü",
+   "Kâğıdın gramajı",
+   "Kâğıt tabakalarının standart ölçüleri",
+   "Cihazların ekran oranları ve platform/uygulama standartları",
+   "Baskı makinesinin bobin eni"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Yazı tiplerinde mürekkep kapanlarının (ink trap) kullanılma amacı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Köşe noktalarındaki mürekkebin kâğıda yayılarak kenar keskinliğini bozmasını engellemek",
+   "Kâğıdın su yönünü belirlemek",
+   "Ekranda harflerin piksellenmesini önlemek",
+   "Yazıyı renkli basmak",
+   "Sayfadaki yetim satırları önlemek"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Ekran ortamındaki sayısal tasarımlar için bir yazı tipinin hangi sürümü daha uygundur?</strong>",
+  "o": [
+   "Yalnızca baskı için tasarlanmış sürümü",
+   "Dokulu kâğıt için tasarlanmış sürümü",
+   "Mürekkep tuzaklı sürümü",
+   "Mürekkep tuzaksız sürümü",
+   "Yalnızca serifli sürümü"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Masaüstü yayıncılık yazılımları temel olarak dört başlık altında toplanır. Aşağıdakilerden hangisi bu başlıklardan biri değildir?</strong>",
+  "o": [
+   "Sayfa düzeni tasarımı",
+   "Grafik tasarımı",
+   "Web yayıncılığı",
+   "Video kurgu",
+   "Kelime işlem"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Microsoft'un asıl sayfa düzeni tasarım yazılımı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Microsoft Word",
+   "Microsoft Paint",
+   "Microsoft Excel",
+   "Microsoft Publisher",
+   "Microsoft PowerPoint"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Kodeks formatlı kitaplardan miras kalan ve sol sayfayı ifade eden terim aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Recto",
+   "Widow",
+   "Orphan",
+   "Verso",
+   "Serif"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Dizgi sırasında metin bloğunun sonunda veya diğer sayfa başında yalnız kalan metin parçalarını ifade eden terimler aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Serif ve Sans Serif",
+   "Bleed ve Glyph",
+   "Recto ve Verso",
+   "PPI ve DPI",
+   "Orphan (Yetim) ve Widow (Dul)"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Yazı tipinin tırnaklı veya tırnaksız olduğunu belirten terimler aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Serif ve Sans Serif",
+   "Orphan ve Widow",
+   "RGB ve CMYK",
+   "Recto ve Verso",
+   "Alley ve Bleed"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>Aşağıdakilerden hangisi endüstri seviyesinde kullanılan masaüstü yayıncılık yazılımlarından biridir?</strong>",
+  "o": [
+   "Phenakistoscope",
+   "GMG Open Color",
+   "Ethernet",
+   "Smalltalk",
+   "Scribus"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 10,
+  "q": "<strong>RGB ve CMYK renk modellerinin birbiri yerine kullanılması hangi soruna yol açabilir?</strong>",
+  "o": [
+   "Bazı renklerin yanlış görüntülenmesine veya basılmasına",
+   "Sayfa sayısının artmasına",
+   "Kâğıdın su yönünün değişmesine",
+   "Dosyanın açılamamasına",
+   "Yazı tipinin serifini kaybetmesine"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Bugün kullandığımız kâğıdın ilk örneklerini M.S. 105 yıllarında Çin'de üreten saray görevlisi kimdir?</strong>",
+  "o": [
+   "Wang Chieh",
+   "Gutenberg",
+   "Ts'ai Lun",
+   "İbrahim Müteferrika",
+   "Joseph Plateau"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Ağaçların kâğıt hamuru hâline getirilmesinde hangi yöntemlerden yararlanılır?</strong>",
+  "o": [
+   "Mekanik ve kimyasal",
+   "Manyetik ve optik",
+   "Yalnızca elektriksel",
+   "Yalnızca ısısal",
+   "Fotokimyasal ve lazer"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Kâğıt hamurunda dövme işleminin sonucu aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kâğıdın su yönü ortadan kalkar.",
+   "Lifler kabarır, hamur jelâtine benzer homojen bir kıvam alır.",
+   "Hamurdaki su tamamen buharlaşır.",
+   "Kâğıt parlaklık kazanır.",
+   "Hamur renklendirilmiş olur."
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Baskı amacıyla üretilen birçok kâğıda uygulanan zamklama işlemi ne sağlar?</strong>",
+  "o": [
+   "Kâğıdı ışığa duyarlı hâle getirir.",
+   "Lifleri bir arada tutar, kâğıdı su ve mürekkebe karşı dayanıklı hâle getirir.",
+   "Kâğıda yapışkanlık özelliği kazandırır.",
+   "Kâğıdı yarı saydam yapar.",
+   "Kâğıdın gramajını düşürür."
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Kâğıt üretiminde kâğıdın gramajı nasıl belirlenir?</strong>",
+  "o": [
+   "Zamk miktarı ile",
+   "Kâğıdın rengi ile",
+   "Kurutma merdanelerinin sıcaklığı ile",
+   "Kazandan dökülen sulu hamur miktarı ve tel süzgecin dönme hızı ayarlanarak",
+   "Bobinlerin kesim ölçüsü ile"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Kâğıt üretiminde hamur miktarı artırılıp tel süzgecin dönme hızı yavaşlatılırsa ne olur?</strong>",
+  "o": [
+   "Kâğıdın su yönü kaybolur.",
+   "Kâğıt incelir.",
+   "Kâğıdın kalınlığı ve gramajı artar.",
+   "Kâğıdın gramajı azalır.",
+   "Kâğıt parlaklaşır."
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Kurutucudan çıkan tabaka kâğıda düzgünlük ve parlaklık kazandıran aşama aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Dökme demirden yapılmış, yüzeyi parlatılmış merdanelerden geçirilmesi",
+   "Beyazlatma işlemi",
+   "Dövme işlemi",
+   "Tel süzgeç üzerine dökülmesi",
+   "Bıçakla dikey kesilmesi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Bobin kâğıtlar hangi baskı makinelerinde kullanılır?</strong>",
+  "o": [
+   "Düz yataklı dijital",
+   "Web ofset",
+   "Tabaka ofset",
+   "Ofis tipi lazer yazıcı",
+   "El pedalı tipo"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi derste verilen standart tabaka kâğıt ölçülerinden biri değildir?</strong>",
+  "o": [
+   "64 cm x 90 cm",
+   "57 cm x 82 cm",
+   "100 cm x 140 cm",
+   "70 cm x 100 cm",
+   "59,4 cm x 84 cm"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>500 tabakalık kâğıt paketine ne ad verilir?</strong>",
+  "o": [
+   "Deste",
+   "Bobin",
+   "Paket",
+   "Top",
+   "Forma"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Kâğıt yoğunluğunun en önemli göstergesi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kâğıdın su yönünde kolay katlanması",
+   "Kâğıdın standart ebadı",
+   "Kâğıdın paket adedi",
+   "Kâğıdın rengi",
+   "Baskıda mürekkep alan yüzün arka yüzü etkileyip etkilememesi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Kâğıdın beyazlığı aşağıdakilerden hangisiyle ayarlanır?</strong>",
+  "o": [
+   "Amonyak buharı",
+   "Kurutma süresi",
+   "Ağartıcı kimyasal maddeler, fosforlu boyalar ve pigmentler",
+   "Kesim bıçakları",
+   "Tel süzgecin dönme hızı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Kâğıda pürüzlü, grenli ve dalgalı bir yüzey dokusu kazandırmak için ne kullanılır?</strong>",
+  "o": [
+   "Mikro kapsüller",
+   "Giyotin",
+   "Tel süzgeç",
+   "Zamk",
+   "Özel merdaneler"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Paçavra ve selüloz hamuru ya da saf selülozdan üretilen beyaz renkli kâğıtlara ne ad verilir?</strong>",
+  "o": [
+   "Üçüncü hamur kâğıtlar",
+   "Enzo kâğıtlar",
+   "İkinci hamur kâğıtlar",
+   "Pelur kâğıtlar",
+   "Birinci hamur kâğıtlar"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Selüloz ve ağaç hamurunun karışımından üretilen, rengi birinci hamura göre daha sarımsı olan kâğıtlara ne ad verilir?</strong>",
+  "o": [
+   "Ozalit kâğıtlar",
+   "Birinci hamur kâğıtlar",
+   "Kuşe kâğıtlar",
+   "Bristol kartonlar",
+   "İkinci hamur kâğıtlar"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Roman ve kitap baskılarında kullanılan okul kitap kâğıtlarının adı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Enzo",
+   "Bristol",
+   "Ozalit",
+   "Pelur",
+   "Kromalüks"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Mat, kumlu ve yarı saydam özellikte olan ve nüshalı işlerde 2. ve 3. nüsha olarak kullanılan kâğıt aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Birinci hamur kâğıt",
+   "Çıkartma kâğıdı",
+   "Kuşe kâğıdı",
+   "Bristol karton",
+   "Pelur kâğıdı"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Soğan zarına benzeyen pelur kâğıdı türüne ne ad verilir?</strong>",
+  "o": [
+   "Zenit",
+   "Gofrepelur",
+   "Enzo",
+   "Gofre kuşe",
+   "Krome"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Aşağıdakilerden hangisi kuşe kâğıt çeşitlerinden biri değildir?</strong>",
+  "o": [
+   "Pelur kuşe",
+   "Gofre (zenit) kuşe",
+   "Parlak kuşe",
+   "Tek yüz kuşe",
+   "Mat kuşe"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Kendinden karbonlu (otokopi) kâğıtlarda ortadaki nüshaya ne ad verilir?</strong>",
+  "o": [
+   "Ana nüsha",
+   "Verici",
+   "Alıcı",
+   "Kopya",
+   "Alıcı-verici"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Kendinden karbonlu kâğıtlarda ikinci nüshanın ön yüzü hangi madde ile kaplıdır?</strong>",
+  "o": [
+   "Kaolin ve kazein",
+   "Polietilen lif",
+   "Fosforlu boya",
+   "Amonyak",
+   "Aktifleştirilmiş kil tozu (asidik alüminyum silikat)"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Mikro kapsüllü kâğıtlara baskı anında çok fazla forsa uygulanmamasının nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kâğıt yırtılmaz hâle gelir.",
+   "Yüksek forsa mikro kapsülleri patlatacağından kâğıtta yazı çıkmaz.",
+   "Kâğıdın su yönü bozulur.",
+   "Kâğıt sararır.",
+   "Mürekkep kurumaz."
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Yırtılmayan kâğıtların yapısı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Saf selüloz lifleri",
+   "Mikro kapsül kaplı selüloz",
+   "Değişik yönlere yaydırılmış polietilen lifler",
+   "Kaolin kaplı ağaç hamuru",
+   "Paçavra ve selüloz hamuru"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Yırtılmayan kâğıtlar aşağıdakilerden hangisinde kullanılır?</strong>",
+  "o": [
+   "Tekstil ve yangın söndürme cihazı etiketlerinde",
+   "Gazete baskısında",
+   "Nüshalı faturalarda 2. nüsha olarak",
+   "Roman ve kitap baskısında",
+   "Ozalit provalarında"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Ozalit kâğıtları pozlandıktan sonra kapalı bir kutu içinde hangi buhara maruz bırakılır?</strong>",
+  "o": [
+   "Su",
+   "Asit",
+   "Alkol",
+   "Amonyak",
+   "Solvent"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Bir yüzü parlak ve pürüzsüz, diğer yüzü mat ve grenli olan karton aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Bristol karton",
+   "Dosyalık karton",
+   "Kaplık karton",
+   "Pelur",
+   "Kromalüks karton"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Tebrik kartı, davetiye, dosya, takvim aynalığı gibi işlerde kullanılan beyaz renkli ve düzgün yüzeyli kâğıt kartonlara ne ad verilir?</strong>",
+  "o": [
+   "Dosyalık karton",
+   "Bristol karton",
+   "Ozalit kâğıt",
+   "Kromalüks karton",
+   "Krome karton"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 11,
+  "q": "<strong>Ülkemizde üretilmediği için ithal edilen ve maliyeti diğer kâğıtlara göre yüksek olan kâğıtlar aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Enzo kâğıtlar",
+   "Fantezi kâğıtlar",
+   "Üçüncü hamur kâğıtlar",
+   "İkinci hamur kâğıtlar",
+   "Pelur kâğıtlar"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Küçük bir yarıktan giren ışığı üçgen prizmadan geçirerek beyaz ışığı güneş tayfı renklerine ayıran bilim insanı kimdir?</strong>",
+  "o": [
+   "Goya",
+   "Thomas Young",
+   "Joseph Plateau",
+   "Newton",
+   "Hermann von Helmholtz"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>1802'de gözlerde belirli bir görünür ışık aralığına duyarlı üç tip koni hücresi olduğunu öne süren fizikçi kimdir?</strong>",
+  "o": [
+   "Thomas Young",
+   "William George",
+   "Newton",
+   "Thomas Bewick",
+   "Hermann von Helmholtz"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Young'ın üç koni teorisini 1850'de daha da geliştiren bilim insanı kimdir?</strong>",
+  "o": [
+   "Joseph Plateau",
+   "Newton",
+   "Ludwig von Siegen",
+   "Hermann von Helmholtz",
+   "Steve Jobs"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Eklemeli karışımda renkler birbiriyle karıştırıldığında oluşan renk nasıl olur?</strong>",
+  "o": [
+   "Daha gri",
+   "Daha parlak",
+   "Daha koyu",
+   "Siyah",
+   "Daha soluk"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Pigmentin saf üç ana rengi (siyan mavi, macenta, sarı) karıştırıldığında hangi renk oluşur?</strong>",
+  "o": [
+   "Gri",
+   "Siyah",
+   "Kırmızı",
+   "Yeşil",
+   "Beyaz"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Işık renklerinden kırmızı ve yeşil karıştırılırsa hangi renk oluşur?</strong>",
+  "o": [
+   "Turuncu",
+   "Beyaz",
+   "Sarı",
+   "Siyan mavi",
+   "Macenta"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Işık renklerinden yeşil ve koyu mavi karıştırılırsa hangi renk oluşur?</strong>",
+  "o": [
+   "Mor",
+   "Sarı",
+   "Siyan mavi",
+   "Macenta",
+   "Kırmızı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Işık renklerinden koyu mavi ve kırmızı karıştırılırsa hangi renk oluşur?</strong>",
+  "o": [
+   "Macenta",
+   "Yeşil",
+   "Sarı",
+   "Turuncu",
+   "Siyan mavi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Pigment renklerinden macenta ve sarı karıştırılırsa hangi renk oluşur?</strong>",
+  "o": [
+   "Mor",
+   "Siyah",
+   "Kırmızı",
+   "Koyu mavi",
+   "Yeşil"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Pigment renklerinden sarı ve siyan mavi karıştırılırsa hangi renk oluşur?</strong>",
+  "o": [
+   "Turuncu",
+   "Kırmızı",
+   "Yeşil",
+   "Macenta",
+   "Koyu mavi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Pigment renklerinden sarının tamamlayıcısı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yeşil",
+   "Kırmızı",
+   "Turuncu",
+   "Macenta",
+   "Koyu mavi"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Renk tayfının dairesel bir temsili olan ve renkler arasındaki ilişkileri tanımlayan araca ne ad verilir?</strong>",
+  "o": [
+   "Renk çarkı",
+   "Renk kalıbı",
+   "Renk kontrol çubuğu",
+   "Tram",
+   "Gamut"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi derste ele alınan renk zıtlıklarından biri değildir?</strong>",
+  "o": [
+   "Yalın zıtlık",
+   "Miktar zıtlığı",
+   "Açık-koyu zıtlığı",
+   "Eşzamanlı zıtlık",
+   "Dokusal zıtlık"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Renk çarkında soğukluk etkisi veren renkler hangileridir?</strong>",
+  "o": [
+   "Yalnızca kırmızı tonları",
+   "Yalnızca siyah ve beyaz",
+   "Sarı ile başlayan ve moru kapsayan renkler",
+   "Yalnızca metalik renkler",
+   "Koyu mavi ile başlayan ve yeşili de kapsayan renkler"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Bir rengin diğerinden ayırılmasını sağlayan ve rengin yalın hâlini ifade eden niteliğe ne ad verilir?</strong>",
+  "o": [
+   "Gamut",
+   "Parlaklık (Value)",
+   "Doygunluk (Saturation)",
+   "Renk tonu (Hue)",
+   "Tram"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Bir rengin saflığını ve griye doğru yaklaşma ya da griden uzaklaşma eğilimini tanımlayan niteliğe ne ad verilir?</strong>",
+  "o": [
+   "Parlaklık (Value)",
+   "Renk tonu (Hue)",
+   "Doygunluk (Saturation)",
+   "Kontrast",
+   "Şişirme"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Bir renk farklı miktarlarda beyaz veya siyahla karıştırıldığında hangi niteliğinde farklılık elde edilir?</strong>",
+  "o": [
+   "Parlaklık (Value)",
+   "Gamut",
+   "Tram açısı",
+   "Doygunluk (Saturation)",
+   "Renk tonu (Hue)"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Yarım ton bulunmayan, renk geçişleri olmayan ve yalnızca tam siyah ve tam beyaz bölgelerden oluşan baskı türü aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Altı renk baskı",
+   "Tek ton baskı (Tire)",
+   "Özel renk baskı",
+   "Yarım ton baskı (Tram)",
+   "Dört renk baskı"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Altı renkli (Hexachrome) baskıda dört renk baskıdan farklı olarak hangi renkler bulunur?</strong>",
+  "o": [
+   "Mor ve pembe",
+   "Altın ve gümüş",
+   "Turuncu ve yeşil",
+   "Beyaz ve gri",
+   "Kırmızı ve koyu mavi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Altı renkli (Hexachrome) baskının dört renkli baskıya göre avantajı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Daha az mürekkep kullanması",
+   "Kalıp gerektirmemesi",
+   "Floresan renkleri tramla üretmesi",
+   "Yalnızca tire baskı yapması",
+   "Daha geniş bir renk gamı oluşturması"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Pantone renk kataloglarında binlerce renk kaç temel mürekkep ile oluşturulup standartlaştırılmıştır?</strong>",
+  "o": [
+   "18",
+   "24",
+   "6",
+   "4",
+   "12"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Dört ve altı renkli baskıda kullanılan mürekkeplerin üretemediği renkler aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Parlak, metalik veya floresan renkler",
+   "Gri tonlar",
+   "Ara tonlar",
+   "Kırmızı ve yeşil",
+   "Koyu mavi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Metalik altın, bronz, gümüş gibi renkler nasıl elde edilir?</strong>",
+  "o": [
+   "Tramın sıklaştırılmasıyla",
+   "Metal pigmentlerin boyar maddelerle karıştırılmasıyla",
+   "Turuncu ve yeşilin eklenmesiyle",
+   "CMYK mürekkeplerin üst üste basılmasıyla",
+   "RGB ışıkların karıştırılmasıyla"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Dört renk baskıda (CMYK) tramla oluşturulan görseller hangi tür mürekkeplerle basılır?</strong>",
+  "o": [
+   "Metalik mürekkepler",
+   "Örtücü mürekkepler",
+   "Kuru toner",
+   "Transparan mürekkepler",
+   "Floresan mürekkepler"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Dört renk ve altı renk baskıda renkler genellikle hangi renk temsil sırasıyla basılır?</strong>",
+  "o": [
+   "KYMC veya GOKYMC",
+   "Sıcaktan soğuğa",
+   "RGB veya RGBK",
+   "CMYK veya CMYKOG",
+   "Pantone sırası"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Renk kalıplarındaki krosların baskı esnasında ayarlarının doğru yapılmaması durumunda ne olur?</strong>",
+  "o": [
+   "Baskı tire baskıya dönüşür.",
+   "Görsel bozulur ve bulanıklaşır.",
+   "Kâğıdın gramajı artar.",
+   "Mürekkepler floresan görünür.",
+   "Renk gamı genişler."
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Baskı ile üretilmek istenen görselin baskı altı malzemeye aktarımında kullanılan metal, plastik veya kauçuk materyallere ne ad verilir?</strong>",
+  "o": [
+   "Kalıp",
+   "Kros",
+   "Gamut",
+   "Renk kontrol çubuğu",
+   "Tram"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>Aşağıdakilerden hangisi tramların şekillerinden biri değildir?</strong>",
+  "o": [
+   "Nokta",
+   "Çizgi",
+   "Üçgen",
+   "Elips",
+   "Kare"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 12,
+  "q": "<strong>İki üretim mürekkebinin üst üste basılması işlemine ne ad verilir?</strong>",
+  "o": [
+   "Üst üste baskı",
+   "Tire baskı",
+   "Renk şişirme",
+   "Renk ayarı",
+   "Tek renk baskı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Dış mekân üretim tekniklerini kullanan açıkhava sektörü, makine parkı, insan kaynakları ve ticari işlem hacmi bakımından hangi işletmelerden çok daha büyüktür?</strong>",
+  "o": [
+   "Gazete matbaaları",
+   "Tabelacı olarak tabir edilen işletmeler",
+   "Yayınevleri",
+   "Kâğıt fabrikaları",
+   "Tifdruk ambalaj firmaları"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi dış mekân grafik tasarım ürünlerinin birbirinden farklılık gösterdiği konulardan biri değildir?</strong>",
+  "o": [
+   "Baskı makinesinin markası",
+   "Hedef kitle ile etkileşim süresi",
+   "Ölçüsü",
+   "Kullanılan baskı altı malzemenin türü",
+   "Üretim yöntemi"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Açıkhava reklam ürünleri başka hangi adla da bilinir?</strong>",
+  "o": [
+   "Esnek ambalaj",
+   "Şehir mobilyaları",
+   "Sanal sayfalar",
+   "Fantezi ürünler",
+   "Masaüstü yayıncılık"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Bobin beslemeli büyük format dijital baskı tekniğinde birçok grafik tasarım ürününün ilgili mecraya tek parça olarak montajına imkân sunan özellik aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "UV mürekkep kullanması",
+   "200 mm yüksekliğe baskı yapabilmesi",
+   "Bobin beslemeli olması",
+   "Kalıp kullanması",
+   "Kuru toner kullanması"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Bobin beslemeli büyük format dijital baskı donanımlarında bobin eni kaç metreye kadar olan ürünler bulunmaktadır?</strong>",
+  "o": [
+   "1",
+   "2",
+   "5",
+   "10",
+   "20"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Bobin beslemeli büyük format dijital baskı donanımları trigromi renklere ilaveten neyi kullanabilme özelliğine sahiptir?</strong>",
+  "o": [
+   "Kuru toneri",
+   "Holtmelt yapıştırıcıyı",
+   "Yalnızca siyah toneri",
+   "Çok farklı spot renkleri",
+   "Ozalit emülsiyonunu"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Düz yataklı dijital baskı tekniği başka hangi adlarla da anılır?</strong>",
+  "o": [
+   "Bobin / web",
+   "Elek / serigrafi",
+   "Rotatif / rotogravür",
+   "Tabaka / flatbed",
+   "Ofis / masaüstü"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Düz yataklı dijital baskı tekniği, üç boyutlu malzemelere doğrudan baskı yapabildiği için geleneksel baskı tekniklerindeki hangi süreci saf dışı bırakır?</strong>",
+  "o": [
+   "Tasarımın bilgisayarda hazırlanmasını",
+   "Renkli çıkış alınmasını",
+   "Baskı altı malzemesi seçimini",
+   "Montaj aşamasını",
+   "Çeşitli kalıp hazırlıkları sonrası üretime geçilmesini"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>CNC Router makineleri bilgisayar destekli tasarım sonrası kesimi hangi programlar vasıtasıyla yapar?</strong>",
+  "o": [
+   "GMG Open Color",
+   "Microsoft Publisher",
+   "CAM programları",
+   "PostScript",
+   "Artpro"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi CNC Router makinelerinin kullanım alanlarından biridir?</strong>",
+  "o": [
+   "Otokopi kâğıdı üretimi",
+   "Bina cephe kaplaması ve fuar standı üretimi",
+   "Gazete baskısı",
+   "Kartvizit ofset baskısı",
+   "Ozalit provası"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>CNC Router makineleri hangi tür materyalleri işler?</strong>",
+  "o": [
+   "Yalnızca bobin kâğıtları",
+   "Çoklu veya tekli tabaka materyalleri",
+   "Yalnızca esnek ambalaj filmlerini",
+   "Yalnızca sıvı mürekkepleri",
+   "Yalnızca ozalit kâğıtlarını"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Folyo kesim tekniği Türkiye'de yaklaşık hangi yıldan itibaren kullanılmaya başlanmıştır?</strong>",
+  "o": [
+   "1960",
+   "1975",
+   "2005",
+   "2015",
+   "1990"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Folyo kesim gibi yeni teknolojilerden önce tabela, yazı veya cephe uygulamaları nasıl yapılırdı?</strong>",
+  "o": [
+   "El ile fırça kullanılarak",
+   "Düz yataklı baskı ile",
+   "Tifdruk baskı ile",
+   "CNC Router ile",
+   "Lazer kesim ile"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Tabelacı ve açıkhava reklam sektöründe folyo kesim için kullanılan donanımlara ne ad verilir?</strong>",
+  "o": [
+   "Flatbed",
+   "Giyotin",
+   "Merdane",
+   "Router",
+   "Plotter"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Lazer kazıma işleminin diğer adı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Laminasyon",
+   "Kurgu",
+   "Markalama",
+   "Tramlama",
+   "Şişirme"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Markalama işlemi yapan lazer donanımları genellikle hangi sektörde kullanılır?</strong>",
+  "o": [
+   "Kâğıt üretimi",
+   "Gazetecilik",
+   "Esnek ambalaj",
+   "Promosyon",
+   "Tekstil boyama"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Aşağıdakilerden hangisi lazer markalama ile doğrudan uygulama yapılan ürünlere örnektir?</strong>",
+  "o": [
+   "Billboard afişi",
+   "Bina cephesi",
+   "Dorse çadırı",
+   "Kalem, rozet, çakmak",
+   "CLP afişi"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Tabela ve totem yapımında metal–platin kesimi ile mika-pleksi ve kutu harf kazıma ve kesim işlemlerinde yaygın olarak kullanılan teknik aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Ozalit",
+   "Serigrafi",
+   "Lazer kesim",
+   "Folyo kesim",
+   "Bobin beslemeli baskı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Grafik tasarım ürünleri içinde değerlendirilen \"kutu harf\" aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Ekranda kayan yazılar",
+   "Folyo kesim yazılar",
+   "Barkod rakamları",
+   "Üç boyutlu yazılar",
+   "Kutu ambalaj üzerindeki yazılar"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Kutu harf ve üç boyutlu simgeler kurum ve kuruluşlar tarafından hangi amaçlarla kullanılır?</strong>",
+  "o": [
+   "Yalnızca barkod için",
+   "Yalnızca ambalaj baskısı için",
+   "Bilgilendirme, yönlendirme ve dekoratif amaçlı",
+   "Yalnızca gazete reklamı için",
+   "Yalnızca ozalit provası için"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Taşıt üzeri grafik tasarım hangi çalışmaların kapsamında yer alır?</strong>",
+  "o": [
+   "Kurumsal kimlik – marka kimliği",
+   "Hareketli grafik",
+   "Özgün baskı",
+   "Masaüstü yayıncılık",
+   "Esnek ambalaj"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Taşıt üzeri grafik tasarımın temel işlevi aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Taşıt ruhsatını göstermek",
+   "Taşıt boyasını korumak",
+   "Taşıtın kime ait olduğunu belirtmek",
+   "Taşıtın yakıt tüketimini azaltmak",
+   "Taşıtın hızını artırmak"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Açıkhava sektöründeki işletmeler taşıt üzeri uygulamalarda malzeme ve uygulama tekniğini neye göre seçer?</strong>",
+  "o": [
+   "Yalnızca tasarımcının tercihine",
+   "Yalnızca baskı makinesinin markasına",
+   "Taşıtın özellikleri ve tasarımın kullanım süresine",
+   "Yalnızca müşterinin bütçesine",
+   "Yalnızca taşıtın rengine"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Dış mekân üretim teknikleri ile ilgili aşağıdaki ifadelerden hangisi doğrudur?</strong>",
+  "o": [
+   "Dış mekân üretim teknikleri iç mekânda hiç kullanılmaz.",
+   "Dış mekân ürünlerinin üretim teknikleri çoğu zaman iç mekân ürünlerinin üretiminde de kullanılır.",
+   "Dış mekân ürünlerinde tasarımcının montaj bilgisine gerek yoktur.",
+   "Dış mekân sektörü tabelacılardan daha küçüktür.",
+   "Dış mekân ürünleri yalnızca kâğıda basılır."
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 13,
+  "q": "<strong>Tasarımcıların CNC Router kesim tekniği ile ilgili donanımları tanımaları ve ürün işleme yöntemini kavramaları neye katkı sağlar?</strong>",
+  "o": [
+   "Özgün tasarımlar üretebilmelerine",
+   "Fotosel beneği yerleştirmelerine",
+   "Kâğıt gramajını belirlemelerine",
+   "Renk profili oluşturmalarına",
+   "Barkod numarası almalarına"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Hareketli grafik hangi kavramı temel alır?</strong>",
+  "o": [
+   "Kalıp",
+   "Kâğıt",
+   "Tram",
+   "Renk",
+   "Zaman"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Hareketli grafiğin çoklu disipline dayalı olmasının nedeni aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Yalnızca durağan görseller içermesi",
+   "Yalnızca baskı teknikleriyle üretilmesi",
+   "Yalnızca sesten oluşması",
+   "Animasyon, illüstrasyon, tipografi, fotoğraf, müzik, film ve video yapımı gibi alanların birleşimi olması",
+   "Yalnızca matbaada çoğaltılması"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>1832 yılında Phenakistoscope'u icat eden Belçikalı fizikçi kimdir?</strong>",
+  "o": [
+   "William George",
+   "Newton",
+   "Thomas Young",
+   "Hermann von Helmholtz",
+   "Joseph Plateau"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Aynaya gerek olmadan kullanım sağlanabilen ve Phenakistoscope'tan hemen sonra icat edilen araç aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Ozalit",
+   "Zoetrope",
+   "Plotter",
+   "Kamera obscura",
+   "Phenakistoscope"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Zoetrope'u icat eden kişi kimdir?</strong>",
+  "o": [
+   "William George",
+   "Thomas Young",
+   "Joseph Plateau",
+   "Steve Jobs",
+   "Ts'ai Lun"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Phenakistoscope'un yapısı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Tek bir dönen silindir ve ayna",
+   "Işıklı bir ekran",
+   "İç içe yerleştirilmiş üç prizma",
+   "Kâğıt şeritli bir kutu",
+   "Aynı eksende bir iş miline monte edilmiş iki dairesel disk"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Hareketli grafikler hangi dönemden itibaren kendi tarihini oluşturmaya başlamıştır?</strong>",
+  "o": [
+   "15. yüzyıl",
+   "17. yüzyıl",
+   "21. yüzyılın başı",
+   "20. yüzyılın başı",
+   "19. yüzyılın başı"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Mısırlıların hangi eserlerinde bugünkü hareketli görüntüyü çağrıştıran örnekler görülmektedir?</strong>",
+  "o": [
+   "Papirüs haritalarında",
+   "Sikkelerde",
+   "Mühürlerde",
+   "Duvar resimlerinde",
+   "Heykellerde"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Antik Yunan çömleklerinde hareket izlenimi nasıl oluşturulmuştur?</strong>",
+  "o": [
+   "Ardıl biçimde çizilen figürlerin çömlek döndürüldükçe hareket ediyormuş gibi görünmesiyle",
+   "Çömleklere ayna yerleştirilmesiyle",
+   "Çömleklerin iki diske monte edilmesiyle",
+   "Çömleklerin ışıkla aydınlatılmasıyla",
+   "Figürlerin kabartma yapılmasıyla"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Görüntü, metin, grafik, canlandırma, çizim ve sesin yanında çoklu ortamı oluşturan en önemli öğe aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kâğıt",
+   "Tram",
+   "Etkileşim",
+   "Kalıp",
+   "Baskı"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Yeni medyayı çoklu ortamdan ayıran özellik aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Metin içermesi",
+   "Hareketli (mobil) olma özelliği",
+   "Basılı olması",
+   "Görüntü içermesi",
+   "Ses içermesi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Yeni medya ekranlarında hareketli grafiklerden yararlanılmasının amacı aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Ekran çözünürlüğünü düşürmek",
+   "Kâğıt tüketimini artırmak",
+   "Baskı maliyetini düşürmek",
+   "Renk sayısını azaltmak",
+   "İzleyicinin dikkatini etkin tutmak"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi ünitede hareketli grafik görüntülerini bir araya getirmek için anılan programlardan biridir?</strong>",
+  "o": [
+   "QuarkXPress",
+   "Microsoft Publisher",
+   "Scribus",
+   "GMG Open Color",
+   "Maxon Cinema 4D"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Müzikle senkronize edilmiş ekran görüntülerinin, filmin ve yazının zamanlı hareketini kapsadığı için hareketli grafiğin en temel öğesi ve kilit noktası olan unsur aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Aydınlatma",
+   "Zaman",
+   "Değişim",
+   "Kurgu",
+   "Tipografi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Boyutlandırılmış sanal sahnede zamana ve çevreye dayalı hareketlenen farklı resim öğelerinin süreç içindeki görüntüsünü ifade eden unsur aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Kurgu",
+   "Değişim",
+   "Ses",
+   "Görüntü",
+   "Tipografi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Kamera çekimleriyle elde edilen görüntüler arasında seçim yapmak, bunları anlatım sırasına göre dizmek ve sürelerini belirlemek hangi unsurun tanımıdır?</strong>",
+  "o": [
+   "Tipografi",
+   "Aydınlatma",
+   "Kurgu",
+   "Zaman",
+   "Değişim"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Filmdeki ritimlerin oluşturulması ve algısında önemli görev üstlenen, izleyene duygu ve gerçeklik hissi veren unsur aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Tipografi",
+   "Değişim",
+   "Ses",
+   "Kamera",
+   "Görüntü"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Grafik tasarım elemanı olarak mesajı kullanıcılara özelleştirilmiş görünümüyle hareketli sunan unsur aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Tipografi",
+   "Zaman",
+   "Kurgu",
+   "Ses",
+   "Aydınlatma"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>2 boyutlu objelerin 3 boyutlu uzama yerleştirilmesi ve kamera ile derinlik kazandırılmasıyla oluşan görünüme ne ad verilir?</strong>",
+  "o": [
+   "1 boyutlu",
+   "Hexachrome",
+   "4 boyutlu",
+   "Tire",
+   "2,5 boyutlu"
+  ],
+  "a": 4
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Tasarım programlarında 2 boyutlu nesnelere 3 boyutluymuş gibi görüntü kazandırmak için hangi araç kullanıma alınır?</strong>",
+  "o": [
+   "Merdane",
+   "Tram",
+   "Fotosel",
+   "Kamera",
+   "Plotter"
+  ],
+  "a": 3
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Çizgi film, animasyon ve hareketli görüntü tasarımlarında inandırıcılığı artırmak ve gerçekliği sağlamak için ışığın ton ve değerlerini ayarlama tekniği aşağıdakilerden hangisidir?</strong>",
+  "o": [
+   "Ses",
+   "Kurgu",
+   "Aydınlatma",
+   "Değişim",
+   "Tipografi"
+  ],
+  "a": 2
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Hareketli görüntülerde gölgeler neyi sağlar?</strong>",
+  "o": [
+   "Çekiciliği ve gerçekliği",
+   "Dosya boyutunu küçültmeyi",
+   "Renk gamını daraltmayı",
+   "Baskı kalitesini",
+   "Yazının okunurluğunu azaltmayı"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Hareketli grafiklerin en eski kullanım alanları hangi mecradadır?</strong>",
+  "o": [
+   "Kartvizit",
+   "Sinema ve televizyon",
+   "Ambalaj",
+   "Tabela",
+   "Gazete ve dergi"
+  ],
+  "a": 1
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Aşağıdakilerden hangisi hareketli grafiklerde birbirleriyle kombinasyon hâlinde kullanılan tasarım elemanlarından biri değildir?</strong>",
+  "o": [
+   "Kâğıt gramajı",
+   "Ses",
+   "Piksel veya vektör tabanlı görseller",
+   "Tipografi",
+   "Geometrik formlar"
+  ],
+  "a": 0
+ },
+ {
+  "c": "Grafik Üretim Teknikleri",
+  "u": 14,
+  "q": "<strong>Hareketli grafik ürünlerin kullanıldığı yerlerin farklı olabilmesi neye dayalıdır?</strong>",
+  "o": [
+   "Barkod sistemine",
+   "Baskı kalıbının türüne",
+   "Kâğıdın su yönüne",
+   "Mürekkep türüne",
+   "Ekranın yapısına"
+  ],
+  "a": 4
+ }
+]
