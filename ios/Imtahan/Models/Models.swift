@@ -201,7 +201,7 @@ struct CourseStyle: Sendable {
 enum Catalog {
     /// Subjects in order. Mixed questions use u = index+1 into this list.
     static let subjects = ["Grafik Üretim Teknikleri", "Özgün Baskı Teknikleri", "Reklam Grafiği", "Tasarım Okumaları", "Web Tasarımının Temelleri"]
-    static let unitCounts: [String: Int] = ["Grafik Üretim Teknikleri": 14, "Özgün Baskı Teknikleri": 14, "Reklam Grafiği": 14, "Tasarım Okumaları": 7, "Web Tasarımının Temelleri": 14]
+    static let unitCounts: [String: Int] = ["Grafik Üretim Teknikleri": 14, "Özgün Baskı Teknikleri": 14, "Reklam Grafiği": 14, "Tasarım Okumaları": 14, "Web Tasarımının Temelleri": 14]
     /// CONFIG keys order: "Mixed" first, then subjects.
     static let configKeys = ["Mixed"] + subjects
     static let mixedKey = "Mixed"
