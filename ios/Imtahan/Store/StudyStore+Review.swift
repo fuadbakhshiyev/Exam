@@ -201,7 +201,7 @@ extension StudyStore {
     /// Due in-scope questions for "Bu günün təkrarı" (cap 50, most overdue first).
     func reviewDueQuestions(limit: Int = 50) -> [Question] {
         review.seedIfNeeded(from: data.wrong)
-        return Array(review.due(where: { inScope($0) }).prefix(limit)).map(\.question)
+        return Array(review.due(where: { inScope($0) && isActive($0) }).prefix(limit)).map(\.question)
     }
 
     /// Due in-scope questions of one subject (its booklet questions included), most overdue first.
@@ -214,11 +214,11 @@ extension StudyStore {
     func reviewDueBySubject() -> [(subject: String, count: Int)] {
         var counts: [String: Int] = [:]
         for e in review.due(where: { inScope($0) }) { counts[QuestionBank.baseCourse(e.question.c), default: 0] += 1 }
-        return Catalog.subjects.map { ($0, counts[$0] ?? 0) }
+        return activeSubjects.map { ($0, counts[$0] ?? 0) }
     }
 
     /// Number of due in-scope questions (uncapped). Read-only: call seedReviewIfNeeded() outside view updates.
-    var reviewDueCount: Int { review.due(where: { inScope($0) }).count }
+    var reviewDueCount: Int { review.due(where: { inScope($0) && isActive($0) }).count }
 
     func seedReviewIfNeeded() { review.seedIfNeeded(from: data.wrong) }
 }
