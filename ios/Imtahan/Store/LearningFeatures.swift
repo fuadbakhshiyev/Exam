@@ -65,7 +65,8 @@ final class ExamDates {
     /// The nearest exam that has not started yet.
     var next: (subject: String, days: Int, date: Date)? {
         let now = Date()
-        return Catalog.subjects.map { ($0, daysLeft($0), date(for: $0)) }
+        // Passed subjects ("Verdim") have no exam left to count down to.
+        return Catalog.activeSubjects.map { ($0, daysLeft($0), date(for: $0)) }
             .filter { $0.2 > now }
             .min { $0.2 < $1.2 }
     }
@@ -73,7 +74,7 @@ final class ExamDates {
     /// Every subject whose exam is at the same moment as the nearest one (several exams share a session).
     var nextGroup: [String] {
         guard let n = next else { return [] }
-        return Catalog.subjects.filter { date(for: $0) == n.date }
+        return Catalog.activeSubjects.filter { date(for: $0) == n.date }
     }
 
     /// Short label of the nearest exam session: "Grafik Üretim: 3 gün" / "3 fənn: sabah 10:30".

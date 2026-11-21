@@ -23,6 +23,7 @@ struct TodaySection: View {
 
     private var header: some View {
         _ = examDateRaw
+        _ = store.passedSubjects
         // Nearest subject exam (Ayarlar → İmtahan tarixləri).
         let next = ExamDates.shared.next
         let days = next?.days ?? -1
