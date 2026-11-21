@@ -85,7 +85,7 @@ struct SubjectsTab: View {
                 }
                 card { router.start(.mock) } content: {
                     MetricCard(title: "Böyük sınaq", symbol: "die.face.5.fill", tint: Theme.warning,
-                               value: "\(Catalog.subjects.count * 20)", unit: "sual",
+                               value: "\(store.activeSubjects.count * 20)", unit: "sual",
                                note: "Hər fəndən 20 · dərhal başlayır") {
                         Image(systemName: "play.circle.fill")
                             .font(.system(size: 34)).foregroundStyle(Theme.warning)
