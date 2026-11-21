@@ -14,7 +14,12 @@ struct SubjectsTab: View {
     @State private var reordering = false
 
     /// Subjects in the chosen order (new subjects go to the end of a custom order).
-    private var subjects: [String] {
+    private var subjects: [String] { allSubjects.filter { !store.passedSubjects.contains($0) } }
+
+    /// Subjects marked as passed ("Verdim"), in the same order; shown in their own section.
+    private var passedSubjects: [String] { allSubjects.filter(store.passedSubjects.contains) }
+
+    private var allSubjects: [String] {
         switch sort {
         case "exam":
             let d = ExamDates.shared
@@ -52,6 +57,18 @@ struct SubjectsTab: View {
                 Text("Fənlər")
             } footer: {
                 Text("İmtahan rejimi: \(store.examModeLabel). Ayarlardan dəyişə bilərsiniz.")
+            }
+
+            if !passedSubjects.isEmpty {
+                Section {
+                    ForEach(passedSubjects, id: \.self) { c in
+                        NavigationLink(value: Route.course(c)) { subjectRow(c) }.appRow()
+                    }
+                } header: {
+                    Text("Verilmiş fənlər")
+                } footer: {
+                    Text("Plana, sınağa, səhvlərə və təkrara düşmür. Statistikası qalır.")
+                }
             }
 
             Section {
