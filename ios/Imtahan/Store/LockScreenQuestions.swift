@@ -181,7 +181,9 @@ final class LockScreenQuestions {
     private static var activeSubjects: [String] {
         let chosen = Set(UserDefaults.standard.stringArray(forKey: SurpriseEngine.subjectsKey) ?? [])
         let list = Catalog.subjects.filter { chosen.contains($0) }
-        return list.isEmpty ? Catalog.subjects : list
+        let active = Catalog.activeSubjects
+        let left = list.filter(active.contains)
+        return left.isEmpty ? active : left
     }
 
     private static func body(of q: Question) -> String {

@@ -102,7 +102,9 @@ final class SurpriseEngine {
     /// The chosen subjects that still exist (every subject when none is chosen).
     var activeSubjects: [String] {
         let chosen = Catalog.subjects.filter { subjects.contains($0) }
-        return chosen.isEmpty ? Catalog.subjects : chosen
+        let active = Catalog.activeSubjects
+        let list = chosen.filter(active.contains)
+        return list.isEmpty ? active : list
     }
 
     /// initSurpriseTimer: a question every `intervalMinutes` while none is open (only when enabled).
