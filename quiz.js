@@ -33,6 +33,11 @@ const QuizApp = {
                 quizData.push(...ataaofSorularData);
             }
         }
+        // Final units 8–14 from the OYS unit material (testsuallari/oys_final_data.js).
+        if (typeof oysFinalData !== 'undefined' && typeof quizData !== 'undefined' && !quizData._oysFinal) {
+            quizData.push(...oysFinalData);
+            quizData._oysFinal = true;
+        }
         this.loadData();
         this.buildMixedUnits();
         this.initSurpriseTimer();
